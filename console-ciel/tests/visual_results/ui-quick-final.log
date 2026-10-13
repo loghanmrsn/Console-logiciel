@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+UI : données isolées /tmp/ciel-quick-final-zo9d9_ml/data/console-ciel/tests/ui_1791869726.77902_374680
+UI : affichage headless; captures réelles false
+ÉCHEC UI : Le deuxième profil commence avec un vrai défi non résolu
+ÉCHEC UI : Action native disponible : pause_menu
+ÉCHEC UI : Action native disponible : home_profiles
+ÉCHEC UI : Action native disponible : select_e08dad24dc52e82fba3faf6c2401002f
+ÉCHEC UI : Changer de joueur restaure le portefeuille, l'inventaire et les trois missions du premier
+ÉCHEC UI : Action native disponible : home_settings
+ÉCHEC UI : Action native disponible : setting_reduce_transparency
+ÉCHEC UI : La fermeture est testée avec un aperçu de paramètre réellement modifié
+ÉCHEC UI : Fermer un brouillon propose conserver la session, appliquer ou abandonner
+ÉCHEC UI : Action native disponible : quit_keep
+ÉCHEC UI : Annuler la fermeture conserve l'écran et le brouillon de paramètres
+ÉCHEC UI : Retour des paramètres restaure leur état enregistré après annulation de fermeture
+ÉCHEC UI : Échec de sauvegarde à la fermeture : l'application reste dans la session
+UI : 309 assertions, 13 échec(s).
+Manette physique non testée : événements InputEventJoypadButton injectés uniquement.
+Contrôleur USB HID fabriqué et performances Raspberry Pi : mesures à réaliser sur le vrai matériel.

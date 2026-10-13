@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+STABILITY : données isolées /tmp/ciel-acceptance-30zgm3o2/xdg-data/console-ciel/tests/stability_303005_7429
+
+Démarrage sans données
+
+Stockage indisponible puis réessai
+
+Réglages invalides et copie précédente
+ERROR: ConfigFile parse error at user://tests/stability_303005_7429/settings_backup/settings.cfg:3: Unexpected identifier 'invalid'.
+   at: _parse (core/io/config_file.cpp:292)
+   GDScript backtrace (most recent call first):
+       [0] _read (res://scripts/services/settings_service.gd:70)
+       [1] load_settings (res://scripts/services/settings_service.gd:90)
+       [2] _boot (res://scripts/ui/main.gd:86)
+
+Réglages sans copie : valeurs par défaut explicites
+
+Profil principal absent, sauvegarde conservée
+
+Session orpheline et sélection contrôlée
+
+Catalogue de test invalide
+STABILITY : 97 assertions, 0 échec(s).
+Démarrage/récupération testés sans affichage ; aucune capture ou manette physique revendiquée.

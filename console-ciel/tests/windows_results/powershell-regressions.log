@@ -1,0 +1,28 @@
+OK Modèles manquants : erreur explicite et aucun ZIP publié
+OK Chemins avec espaces et accents acceptés
+OK CRC de l'archive de test valide
+OK Fichiers associés et licences conservés
+OK Données utilisateur absentes de l'archive
+OK Échec import_error détecté
+OK Échec import_error conserve la livraison précédente
+OK Échec export_error détecté
+OK Échec export_error conserve la livraison précédente
+OK Échec exit_error détecté
+OK Échec exit_error conserve la livraison précédente
+OK Échec empty détecté
+OK Échec empty conserve la livraison précédente
+OK Échec invalid détecté
+OK Échec invalid conserve la livraison précédente
+OK Échec wrong_arch détecté
+OK Échec wrong_arch conserve la livraison précédente
+OK Échec version détecté
+OK Échec version conserve la livraison précédente
+OK Moteur absent détecté
+OK Remplacement d'une archive précédente réussi : Import du projet...
+
+Export Windows x86_64...
+
+Archive prête : /tmp/ciel-windows-export-test-v96n_ffp/projet avec espaces et accents é/builds/Console_CIEL_Windows_x86_64.zip
+
+OK Répertoires de préparation nettoyés
+WINDOWS_EXPORT_SCRIPT : 22 assertions, 0 échec(s).

@@ -1,0 +1,30 @@
+{
+	"captures": [
+		"menu_800x480_normal",
+		"parametres_800x480_normal",
+		"menu_800x480_grand_opaque",
+		"parametres_800x480_grand_opaque",
+		"menu_1024x600_normal",
+		"parametres_1024x600_normal",
+		"menu_1024x600_grand_opaque",
+		"parametres_1024x600_grand_opaque",
+		"menu_1280x720_normal",
+		"parametres_1280x720_normal",
+		"menu_1280x720_grand_opaque",
+		"parametres_1280x720_grand_opaque",
+		"menu_1920x1080_normal",
+		"parametres_1920x1080_normal",
+		"menu_1920x1080_grand_opaque",
+		"parametres_1920x1080_grand_opaque",
+		"atelier_avant_eclairage_1280x720",
+		"atelier_apres_eclairage_1280x720",
+		"atelier_porte_ouverte_1280x720",
+		"ordinateur_repare_1280x720",
+		"boutique_focus_1280x720",
+		"inventaire_apres_achat_1280x720"
+	],
+	"checks": 23,
+	"display": "X11",
+	"failures": 0,
+	"renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

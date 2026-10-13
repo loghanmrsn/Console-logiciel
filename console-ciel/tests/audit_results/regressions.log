@@ -1,0 +1,37 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+OK Définitions livrées
+OK Profil isolé et nouvelle enquête
+OK Éclairage par règles réelles
+OK Progression récente tronquée refusée sans migration destructive
+OK Ancien prototype réel toujours migrable
+OK Version booléenne CFG refusée
+OK Version flottante CFG refusée
+OK Version booléenne du mapping refusée
+OK Observation serrure badge
+OK Observation serrure power
+OK Observation serrure command
+OK Observation serrure link
+OK Serrure par diagnostic
+OK Observation ordinateur pc
+OK Observation ordinateur display
+OK Observation ordinateur no_signal
+OK Vérification ordinateur power
+OK Vérification ordinateur video
+OK Troisième mission et 150 points
+OK Reprise terminée ouvre bilan
+OK Échap annule Rejouer et restitue le bilan
+OK Panneaux fermés libérés sans conserver de défi masqué
+OK Défi fermé réellement libéré
+OK Thème acheté par transaction normale
+OK Choix de thème possédé
+OK Aperçu de thème possède un état sélectionné exact
+OK Annuler conserve le thème enregistré
+OK Déconnexion pendant fermeture de réglages transmise au jeu conservé
+OK Reprise explicite restitue la pause des paramètres
+OK Saisie P, espace et E préservée pendant verrou de transition
+OK Effacement virtuel répété conserve le caret
+OK Suppression inattendue du dialogue restaure les contrôles survivants
+OK Dialogue retiré pendant attente de disposition sans erreur de script
+OK Liste inaccessible ouvre une erreur et un vrai réessai
+AUDIT_REGRESSIONS : 34 assertions, 0 échec(s).

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "items": [
+    {"id":"avatar_default","type":"avatar","name":"Horizon","description":"Une ligne douce pour commencer l'aventure.","price":0,"color":"#527FA3","symbol":"H"},
+    {"id":"theme_brume","type":"theme","name":"Brume","description":"Blanc cassé et bleu doux, le thème de départ.","price":0,"color":"#527FA3","accent":"#527FA3","background":"#F3F5F7","secondary":"#E6EDF2"},
+    {"id":"frame_default","type":"frame","name":"Discret","description":"Une bordure simple, claire et lisible.","price":0,"color":"#A6B7C4","width":2,"style":"simple"},
+    {"id":"avatar_orbit","type":"avatar","name":"Orbite","description":"Un cercle abstrait aux couleurs du ciel.","price":20,"color":"#698EAD","symbol":"O"},
+    {"id":"avatar_leaf","type":"avatar","name":"Feuille","description":"Une forme douce inspirée de la nature.","price":30,"color":"#62876C","symbol":"F"},
+    {"id":"avatar_sun","type":"avatar","name":"Rayon","description":"Un repère chaleureux pour votre profil.","price":40,"color":"#A68146","symbol":"R"},
+    {"id":"theme_sable","type":"theme","name":"Sable","description":"Des tons crème et un accent ocre tranquille.","price":60,"color":"#92764B","accent":"#92764B","background":"#F7F4EE","secondary":"#EDE5D8"},
+    {"id":"theme_sauge","type":"theme","name":"Sauge","description":"Un fond clair avec un accent vert modéré.","price":60,"color":"#607F6C","accent":"#607F6C","background":"#F2F6F2","secondary":"#E3ECE5"},
+    {"id":"frame_round","type":"frame","name":"Arrondi","description":"Un contour ample aux angles très doux.","price":20,"color":"#527FA3","width":3,"style":"round"},
+    {"id":"frame_double","type":"frame","name":"Double trait","description":"Deux lignes sobres pour souligner votre avatar.","price":50,"color":"#6E8597","width":4,"style":"double"}
+  ]
+}

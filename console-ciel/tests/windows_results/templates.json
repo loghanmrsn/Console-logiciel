@@ -1,0 +1,37 @@
+{
+  "official_url": "https://github.com/godotengine/godot-builds/releases/download/4.6.3-stable/Godot_v4.6.3-stable_export_templates.tpz",
+  "version": "4.6.3.stable",
+  "method": "HTTP Range; CRC for each Windows x86_64 member verified",
+  "templates": [
+    {
+      "file": "version.txt",
+      "bytes": 13,
+      "crc32": "9263573e",
+      "sha256": "4855bd38072b77c73c45739cf6a6787d7df790a368b0a437102f352650e6186b"
+    },
+    {
+      "file": "windows_debug_x86_64_console.exe",
+      "bytes": 188928,
+      "crc32": "76171ba2",
+      "sha256": "96ab1dcd4333e2505064b0ecf7a7a241d3eb9284cad2ad710021c35ca9037e5d"
+    },
+    {
+      "file": "windows_debug_x86_64.exe",
+      "bytes": 100787712,
+      "crc32": "e663d89b",
+      "sha256": "1207fd8d65c15c0cea7cfbaa6f082772430444a3f6d8e3d589b964e1d21a7379"
+    },
+    {
+      "file": "windows_release_x86_64_console.exe",
+      "bytes": 188928,
+      "crc32": "a905fb9f",
+      "sha256": "8c0d228f34db4d6a191b9a2247ec8cb595ac33357ac20c985484f21dc845f69c"
+    },
+    {
+      "file": "windows_release_x86_64.exe",
+      "bytes": 104659456,
+      "crc32": "9b972102",
+      "sha256": "91724f15024a3a545e28ccd83134403d31ce2323a38e51c95e4dfa282f732ab6"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+UI : données isolées /tmp/ciel-native-input-check/data/console-ciel/tests/ui_1791869259.1027_1019505
+UI : affichage X11; captures réelles false
+ÉCHEC UI : Achats rapides : une seule modale avant validation explicite
+ÉCHEC UI : Action native disponible : home_settings
+ÉCHEC UI : Action native disponible : setting_reduce_transparency
+ÉCHEC UI : La fermeture est testée avec un aperçu de paramètre réellement modifié
+ÉCHEC UI : Fermer un brouillon propose conserver la session, appliquer ou abandonner
+ÉCHEC UI : Action native disponible : quit_keep
+ÉCHEC UI : Annuler la fermeture conserve l'écran et le brouillon de paramètres
+ÉCHEC UI : Retour des paramètres restaure leur état enregistré après annulation de fermeture
+ÉCHEC UI : Échec de sauvegarde à la fermeture : l'application reste dans la session
+UI : 284 assertions, 9 échec(s).
+Manette physique non testée : événements InputEventJoypadButton injectés uniquement.
+Contrôleur USB HID fabriqué et performances Raspberry Pi : mesures à réaliser sur le vrai matériel.

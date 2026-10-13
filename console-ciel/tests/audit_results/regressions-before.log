@@ -1,0 +1,16 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+OK Définitions livrées
+OK Profil isolé et nouvelle enquête
+OK Éclairage par règles réelles
+AUDIT_FAIL Progression récente tronquée refusée sans migration destructive
+OK Ancien prototype réel toujours migrable
+SCRIPT ERROR: Invalid operands 'bool' and 'int' in operator '!='.
+          at: _read (res://scripts/services/settings_service.gd:72)
+          GDScript backtrace (most recent call first):
+              [0] _read (res://scripts/services/settings_service.gd:72)
+              [1] _run (res://tests/audit_regressions.gd:54)
+SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'.
+          at: _run (res://tests/audit_regressions.gd:54)
+          GDScript backtrace (most recent call first):
+              [0] _run (res://tests/audit_regressions.gd:54)

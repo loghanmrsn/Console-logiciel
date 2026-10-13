@@ -1,0 +1,13 @@
+{
+  "host_os": "Linux",
+  "host_architecture": "x86_64",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "python": "3.12.14",
+  "powershell": "7.4.13",
+  "native_windows_available": false,
+  "graphical_display_used": false,
+  "physical_controller_used": false,
+  "raspberry_pi_available": false,
+  "templates": "official Windows x86_64 4.6.3.stable",
+  "git_metadata_available": false
+}

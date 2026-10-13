@@ -1,0 +1,654 @@
+extends Node
+## Documents locaux validés et remplacement prudent dans le même répertoire.
+## Cette protection ne garantit pas la survie à toute coupure électrique.
+
+signal storage_error_changed(message: String)
+
+const SCHEMA_VERSION := 1
+const INVESTIGATION_VERSION := 1
+const LEGACY_MIGRATION_NOTICE := "La progression du prototype contenait des interactions simulées. Elle a été remise au début pour jouer les vrais défis. Vos points, achats et récompenses déjà attribuées sont conservés : ils ne seront pas gagnés une seconde fois."
+const DEFAULT_ITEMS := ["avatar_default", "theme_brume", "frame_default"]
+const MAX_POINTS := 2147483647
+var root_path: String = "user://"
+var simulate_write_failure: bool = false
+# Dernière erreur réelle d'accès aux documents, conservée même après un nouvel essai.
+# Les erreurs de saisie et les mauvaises réponses pédagogiques ne l'alimentent pas.
+var last_error: String = ""
+var last_error_at: String = ""
+var _catalog_by_id: Dictionary = {}
+var _mission_ids: Array = []
+var _mission_by_id: Dictionary = {}
+
+func _ok(data: Variant = null) -> Dictionary:
+	return {"ok": true, "error": "", "data": data}
+
+func _fail(message: String, data: Variant = null) -> Dictionary:
+	return {"ok": false, "error": message, "data": data}
+
+func record_storage_error(message: String) -> void:
+	last_error = message
+	last_error_at = Time.get_datetime_string_from_system(false, true)
+	storage_error_changed.emit(message)
+
+func _storage_fail(message: String, data: Variant = null) -> Dictionary:
+	record_storage_error(message)
+	return _fail(message, data)
+
+func _storage_result(result: Dictionary) -> Dictionary:
+	if not result.ok:
+		record_storage_error(result.error)
+	return result
+
+func invalidate_definitions() -> void:
+	# Réessayer le démarrage doit relire les fichiers livrés, sans cache ancien.
+	_catalog_by_id.clear()
+	_mission_ids.clear()
+	_mission_by_id.clear()
+
+func _path(relative: String) -> String:
+	return root_path.path_join(relative)
+
+func is_safe_id(id: String) -> bool:
+	if id.is_empty() or id.length() > 64:
+		return false
+	for character in id:
+		var code := character.unicode_at(0)
+		if not ((code >= 48 and code <= 57) or (code >= 65 and code <= 90) or (code >= 97 and code <= 122) or character == "_" or character == "-"):
+			return false
+	return true
+
+func validate_display_name(value: Variant) -> Dictionary:
+	if not value is String:
+		return _fail("Le pseudo doit être du texte.")
+	var raw_name: String = value
+	for character in raw_name:
+		var code := character.unicode_at(0)
+		if code < 32 or (code >= 127 and code <= 159):
+			return _fail("Le pseudo contient un caractère de contrôle interdit.")
+	var name: String = value.strip_edges()
+	if name.length() < 1 or name.length() > 16:
+		return _fail("Le pseudo doit contenir entre 1 et 16 caractères.")
+	return _ok(name)
+
+func _is_integer(value: Variant, minimum: int, maximum: int) -> bool:
+	if not (value is int or value is float):
+		return false
+	return is_finite(float(value)) and float(value) == floor(float(value)) and float(value) >= minimum and float(value) <= maximum
+
+func _resource_json(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return _fail("Fichier livré introuvable : " + path)
+	return _parse_json(FileAccess.get_file_as_string(path), path)
+
+func _parse_json(content: String, label: String) -> Dictionary:
+	var json := JSON.new()
+	var code := json.parse(content)
+	if code != OK:
+		return _fail("JSON invalide dans %s (ligne %s)." % [label, json.get_error_line()])
+	if not json.data is Dictionary:
+		return _fail("Le document %s doit être un objet JSON." % label)
+	return _ok(json.data)
+
+func validate_catalog(value: Variant) -> Dictionary:
+	if not value is Dictionary or not _is_integer(value.get("schema_version"), SCHEMA_VERSION, SCHEMA_VERSION) or not value.get("items") is Array:
+		return _fail("Structure ou version du catalogue invalide.")
+	if value.items.size() < 8:
+		return _fail("Le catalogue doit proposer au moins huit articles.")
+	var seen: Dictionary = {}
+	var normalized: Array = []
+	for entry in value.items:
+		if not entry is Dictionary or not entry.get("id") is String or not is_safe_id(entry.id):
+			return _fail("Un identifiant du catalogue est invalide.")
+		if seen.has(entry.id) or entry.get("type") not in ["avatar", "theme", "frame"]:
+			return _fail("Article dupliqué ou type inconnu dans le catalogue.")
+		if not _is_integer(entry.get("price"), 0, 100) or (int(entry.price) != 0 and int(entry.price) < 20):
+			return _fail("Prix invalide dans le catalogue.")
+		if not entry.get("name") is String or entry.name.strip_edges().is_empty() or not entry.get("description") is String:
+			return _fail("Un texte du catalogue est invalide.")
+		if not entry.get("color") is String or not Color.html_is_valid(entry.color):
+			return _fail("Une couleur d'aperçu du catalogue est invalide.")
+		if entry.type == "theme":
+			for key in ["accent", "background", "secondary"]:
+				if not entry.get(key) is String or not Color.html_is_valid(entry[key]):
+					return _fail("Une couleur de thème est invalide.")
+		if entry.type == "avatar" and (not entry.get("symbol") is String or entry.symbol.is_empty() or entry.symbol.length() > 2):
+			return _fail("Un symbole d'avatar est invalide.")
+		if entry.type == "frame" and (not _is_integer(entry.get("width"), 1, 8) or entry.get("style") not in ["simple", "round", "double"]):
+			return _fail("Une apparence de cadre est invalide.")
+		var product: Dictionary = entry.duplicate(true)
+		product.price = int(product.price)
+		seen[product.id] = product
+		normalized.append(product)
+	for id in DEFAULT_ITEMS:
+		if not seen.has(id) or int(seen[id].price) != 0:
+			return _fail("Un article gratuit par défaut manque au catalogue.")
+	if seen.avatar_default.type != "avatar" or seen.theme_brume.type != "theme" or seen.frame_default.type != "frame":
+		return _fail("Le type d'un article gratuit par défaut est invalide.")
+	return _ok(normalized)
+
+func _option_ids(mission: Dictionary, key: String) -> Array:
+	var ids: Array = []
+	for entry in mission.get(key, []):
+		if entry is Dictionary and entry.get("id") is String:
+			ids.append(entry.id)
+	return ids
+
+func _valid_id_list(value: Variant, allowed: Array) -> bool:
+	if not value is Array:
+		return false
+	var seen: Array = []
+	for id in value:
+		if not id is String or id not in allowed or id in seen:
+			return false
+		seen.append(id)
+	return true
+
+func validate_rules(value: Variant) -> Dictionary:
+	if not value is Dictionary or not _is_integer(value.get("schema_version"), SCHEMA_VERSION, SCHEMA_VERSION) or not value.get("missions") is Array or not _is_integer(value.get("investigation_version"), INVESTIGATION_VERSION, INVESTIGATION_VERSION):
+		return _fail("Structure ou version des règles d'enquête invalide.")
+	var ids: Array = []
+	var clue_ids: Array = []
+	var total := 0
+	var normalized: Array = []
+	for mission in value.missions:
+		if not mission is Dictionary or mission.get("id") not in ["lighting", "lock", "computer"] or mission.id in ids or not _is_integer(mission.get("reward"), 0, MAX_POINTS):
+			return _fail("Une règle de mission est invalide.")
+		if not mission.get("name") is String or mission.name.is_empty() or not mission.get("title") is String or mission.title.is_empty() or not mission.get("description") is String or not mission.get("success_explanation") is String:
+			return _fail("Un texte de mission est invalide.")
+		if not _valid_id_list(mission.get("prerequisites"), ids):
+			return _fail("Un prérequis est inconnu, dupliqué ou cyclique.")
+		if not mission.get("initial_state") is String or mission.get("initial_state") != ("available" if mission.prerequisites.is_empty() else "locked"):
+			return _fail("L'état initial d'une mission ne correspond pas à ses prérequis.")
+		if not mission.get("clue") is Dictionary or not mission.clue.get("id") is String or not is_safe_id(mission.clue.id) or mission.clue.id in clue_ids or not mission.clue.get("text") is String or mission.clue.text.is_empty():
+			return _fail("Un indice livré avec une mission est invalide.")
+		clue_ids.append(mission.clue.id)
+		for key in ["observations", "checks"]:
+			if not mission.get(key) is Array:
+				return _fail("Les observations ou vérifications d'une mission sont invalides.")
+			var seen: Array = []
+			for observation in mission[key]:
+				if not observation is Dictionary or not observation.get("id") is String or not is_safe_id(observation.id) or observation.id in seen or not observation.get("title") is String or observation.title.is_empty() or not observation.get("text") is String or observation.text.is_empty():
+					return _fail("Une observation ou vérification est invalide.")
+				seen.append(observation.id)
+		if not mission.get("solution") is Dictionary:
+			return _fail("Une solution pédagogique est absente.")
+		var option_keys: Array = ["connections"] if mission.id == "lighting" else (["diagnoses", "repairs"] if mission.id == "lock" else ["causes", "corrections"])
+		for key in option_keys:
+			if not mission.get(key) is Array or mission[key].is_empty():
+				return _fail("Les choix d'une simulation sont absents.")
+			var seen: Array = []
+			for choice in mission[key]:
+				if not choice is Dictionary or not choice.get("id") is String or not is_safe_id(choice.id) or choice.id in seen or not choice.get("label") is String or choice.label.is_empty():
+					return _fail("Un choix de simulation est invalide.")
+				if key != "connections" and (not choice.get("feedback") is String or choice.feedback.is_empty()):
+					return _fail("L'explication d'un choix est absente.")
+				seen.append(choice.id)
+		if mission.id == "lighting":
+			if not _valid_id_list(mission.solution.get("connections"), _option_ids(mission, "connections")) or mission.solution.connections != ["source_switch", "switch_lamp", "lamp_return"]:
+				return _fail("La solution d'éclairage doit former la boucle source → interrupteur → lampe → retour.")
+		elif mission.id == "lock":
+			if mission.prerequisites != ["lighting"] or _option_ids(mission, "observations") != ["badge", "power", "command", "link"] or not mission.solution.get("diagnosis") is String or mission.solution.get("diagnosis") != "control_link" or not mission.solution.get("repair") is String or mission.solution.get("repair") != "reconnect_control" or "control_link" not in _option_ids(mission, "diagnoses") or "reconnect_control" not in _option_ids(mission, "repairs"):
+				return _fail("Les observations ou choix de la serrure sont incohérents.")
+		else:
+			if mission.prerequisites != ["lock"] or _option_ids(mission, "observations") != ["pc", "display", "no_signal"] or not _valid_id_list(mission.solution.get("checks"), _option_ids(mission, "checks")) or not mission.solution.get("cause") is String or mission.solution.get("cause") != "video_disconnected" or not mission.solution.get("correction") is String or mission.solution.get("correction") != "reconnect_video" or "video_disconnected" not in _option_ids(mission, "causes") or "reconnect_video" not in _option_ids(mission, "corrections") or mission.solution.checks.size() != 2 or "power" not in mission.solution.checks or "video" not in mission.solution.checks:
+				return _fail("Les observations ou choix de l'ordinateur sont incohérents.")
+		if mission.id == "lighting" and not mission.prerequisites.is_empty():
+			return _fail("L'éclairage doit être la première mission disponible.")
+		total += int(mission.reward)
+		if total > MAX_POINTS:
+			return _fail("La somme des récompenses dépasse la limite.")
+		ids.append(mission.id)
+		var entry: Dictionary = mission.duplicate(true)
+		entry.reward = int(entry.reward)
+		normalized.append(entry)
+	if ids != ["lighting", "lock", "computer"] or not _is_integer(value.get("mission_reward_max"), total, total):
+		return _fail("Le plafond de récompenses ou la liste des missions est incohérent.")
+	return _ok(normalized)
+
+func empty_investigation_progress() -> Dictionary:
+	return {
+		"investigation_version": INVESTIGATION_VERSION,
+		"started": false, "room_id": "room_01", "checkpoint_id": "entrance",
+		"completed_missions": [], "active_mission": "", "clues": [],
+		"observations": {"lighting": [], "lock": [], "computer": []},
+		"checks": {"computer": []}, "run_reward_points": 0,
+		"legacy_migration_notice": false
+	}
+
+func _ensure_definitions() -> Dictionary:
+	if not _catalog_by_id.is_empty() and not _mission_ids.is_empty() and not _mission_by_id.is_empty():
+		return _ok()
+	var catalog := _resource_json("res://data/shop_catalog.json")
+	if not catalog.ok:
+		return catalog
+	var checked_catalog := validate_catalog(catalog.data)
+	if not checked_catalog.ok:
+		return checked_catalog
+	var items: Dictionary = {}
+	for entry in checked_catalog.data:
+		items[entry.id] = entry
+	var rules := _resource_json("res://data/game_rules.json")
+	if not rules.ok:
+		return rules
+	var checked_rules := validate_rules(rules.data)
+	if not checked_rules.ok:
+		return checked_rules
+	var missions: Array = []
+	var mission_definitions: Dictionary = {}
+	for mission in checked_rules.data:
+		missions.append(mission.id)
+		mission_definitions[mission.id] = mission.duplicate(true)
+	_catalog_by_id = items
+	_mission_ids = missions
+	_mission_by_id = mission_definitions
+	return _ok()
+
+func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
+	var definitions := _ensure_definitions()
+	if not definitions.ok:
+		return definitions
+	if not value is Dictionary:
+		return _fail("Le profil doit être un objet JSON.")
+	var document: Dictionary = value.duplicate(true)
+	if not _is_integer(document.get("schema_version"), 1, 2147483647):
+		return _fail("Version de sauvegarde absente ou invalide.")
+	if int(document.schema_version) != SCHEMA_VERSION:
+		return _fail("Version de sauvegarde inconnue (%s). Le fichier est conservé." % document.schema_version)
+	if not document.get("id") is String or not is_safe_id(document.id) or (not expected_id.is_empty() and document.id != expected_id):
+		return _fail("Identifiant interne du profil invalide.")
+	var name := validate_display_name(document.get("display_name"))
+	if not name.ok:
+		return name
+	if document.display_name != name.data:
+		return _fail("Le pseudo enregistré contient des espaces extérieurs.")
+	if not document.get("wallet") is Dictionary or not _is_integer(document.wallet.get("points"), 0, MAX_POINTS):
+		return _fail("Le solde du profil est invalide.")
+	if not document.get("owned_items") is Array or not document.get("equipped") is Dictionary:
+		return _fail("L'inventaire ou l'équipement du profil est invalide.")
+	var owned: Array = []
+	for id in document.owned_items:
+		if not id is String or not _catalog_by_id.has(id) or id in owned:
+			return _fail("L'inventaire contient un article inconnu ou dupliqué.")
+		owned.append(id)
+	for id in DEFAULT_ITEMS:
+		if id not in owned:
+			return _fail("L'inventaire ne contient pas tous les articles gratuits.")
+	for type in ["avatar", "theme", "frame"]:
+		var equipped_id: Variant = document.equipped.get(type)
+		if not equipped_id is String or equipped_id not in owned or _catalog_by_id[equipped_id].type != type:
+			return _fail("L'équipement %s est invalide ou non possédé." % type)
+	if not document.get("rewarded_missions") is Array:
+		return _fail("La liste des récompenses est invalide.")
+	var rewarded: Array = []
+	for id in document.rewarded_missions:
+		if not id is String or id not in _mission_ids or id in rewarded:
+			return _fail("La liste des récompenses contient une mission inconnue ou dupliquée.")
+		rewarded.append(id)
+	if not document.get("progress") is Dictionary:
+		return _fail("La progression est invalide.")
+	var progress: Dictionary = document.progress
+	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") != "room_01" or progress.get("checkpoint_id") not in ["entrance", "lighting", "lock", "computer", "exit"] or not progress.get("completed_missions") is Array:
+		return _fail("La progression contient une scène ou un point de reprise invalide.")
+	var completed: Array = []
+	for id in progress.completed_missions:
+		if not id is String or id not in _mission_ids or id in completed or id not in rewarded:
+			return _fail("Les objectifs terminés sont incohérents avec les récompenses.")
+		completed.append(id)
+	if not progress.started and not completed.is_empty():
+		return _fail("Une enquête non commencée ne peut avoir d'objectifs terminés.")
+	# Les documents du prototype sont d'abord validés intégralement ci-dessus.
+	# Leur progression simulée n'est pas présentée comme la résolution des vrais défis.
+	var migrated := not progress.has("investigation_version")
+	if migrated:
+		# Seul le schéma connu du prototype peut être remis au début.
+		# Une version absente dans une progression enrichie signale une corruption.
+		var legacy_keys := ["started", "room_id", "checkpoint_id", "completed_missions"]
+		for key in progress:
+			if key not in legacy_keys:
+				return _fail("Version d’enquête absente dans une progression récente ou inconnue. Le fichier est conservé ; choisissez une récupération.")
+		var migrated_progress := empty_investigation_progress()
+		migrated_progress.started = progress.started
+		migrated_progress.legacy_migration_notice = true
+		document.progress = migrated_progress
+		progress = document.progress
+	else:
+		if not _is_integer(progress.get("investigation_version"), INVESTIGATION_VERSION, INVESTIGATION_VERSION):
+			return _fail("Version de progression d'enquête inconnue. Le fichier est conservé.")
+		if not progress.get("active_mission") is String or (not progress.active_mission.is_empty() and (progress.active_mission not in _mission_ids or progress.active_mission in completed)):
+			return _fail("La mission en cours est invalide.")
+		if not progress.get("legacy_migration_notice") is bool:
+			return _fail("L'information de migration est invalide.")
+		var expected_clues: Array = []
+		var possible_run_rewards: Array = [0]
+		for id in completed:
+			for prerequisite in _mission_by_id[id].prerequisites:
+				if prerequisite not in completed:
+					return _fail("Une mission terminée ne possède pas ses prérequis.")
+			expected_clues.append(_mission_by_id[id].clue.id)
+			var previous_sums: Array = possible_run_rewards.duplicate()
+			for subtotal in previous_sums:
+				possible_run_rewards.append(int(subtotal) + int(_mission_by_id[id].reward))
+		if not _valid_id_list(progress.get("clues"), expected_clues) or progress.clues.size() != expected_clues.size():
+			return _fail("Les indices collectés ne correspondent pas aux missions terminées.")
+		if not _is_integer(progress.get("run_reward_points"), 0, MAX_POINTS) or int(progress.run_reward_points) not in possible_run_rewards:
+			return _fail("Les points gagnés pendant cette enquête sont incohérents.")
+		if not progress.get("observations") is Dictionary or progress.observations.keys().size() != _mission_ids.size():
+			return _fail("Les observations enregistrées sont invalides.")
+		for id in _mission_ids:
+			var observation_ids := _option_ids(_mission_by_id[id], "observations")
+			if not _valid_id_list(progress.observations.get(id), observation_ids):
+				return _fail("Une observation enregistrée est inconnue ou dupliquée.")
+			if id in completed and progress.observations[id].size() != observation_ids.size():
+				return _fail("Une mission terminée n'a pas toutes ses observations.")
+			if not progress.observations[id].is_empty():
+				for prerequisite in _mission_by_id[id].prerequisites:
+					if prerequisite not in completed:
+						return _fail("Des observations ont été enregistrées avant leur prérequis.")
+		if not progress.get("checks") is Dictionary or progress.checks.keys() != ["computer"] or not _valid_id_list(progress.checks.get("computer"), _option_ids(_mission_by_id.computer, "checks")):
+			return _fail("Les vérifications enregistrées sont invalides.")
+		if not progress.checks.computer.is_empty() and ("lock" not in completed or progress.observations.computer.size() != _option_ids(_mission_by_id.computer, "observations").size()):
+			return _fail("Des vérifications ont été enregistrées avant les observations requises.")
+		if "computer" in completed:
+			for check_id in _mission_by_id.computer.solution.checks:
+				if check_id not in progress.checks.computer:
+					return _fail("L'ordinateur terminé n'a pas ses vérifications requises.")
+		if not progress.active_mission.is_empty():
+			for prerequisite in _mission_by_id[progress.active_mission].prerequisites:
+				if prerequisite not in completed:
+					return _fail("La mission en cours est encore verrouillée.")
+		if progress.checkpoint_id != "entrance" and progress.checkpoint_id != "exit" and progress.checkpoint_id not in completed:
+			return _fail("Le point de reprise correspond à une mission non terminée.")
+		if progress.checkpoint_id == "exit" and completed.size() != _mission_ids.size():
+			return _fail("La conclusion n'est pas encore accessible.")
+		if not progress.started and (not progress.active_mission.is_empty() or not progress.clues.is_empty() or int(progress.run_reward_points) != 0 or not progress.checks.computer.is_empty()):
+			return _fail("Une enquête non commencée contient un état de partie active.")
+		if not progress.started:
+			for id in _mission_ids:
+				if not progress.observations[id].is_empty():
+					return _fail("Une enquête non commencée contient des observations.")
+	document.schema_version = SCHEMA_VERSION
+	document.wallet.points = int(document.wallet.points)
+	document.progress.investigation_version = INVESTIGATION_VERSION
+	document.progress.run_reward_points = int(document.progress.run_reward_points)
+	var response := _ok(document)
+	response["migration_required"] = migrated
+	response["migration_notice"] = LEGACY_MIGRATION_NOTICE if document.progress.legacy_migration_notice else ""
+	return response
+
+func _ensure_directory(path: String) -> Dictionary:
+	var candidate := ProjectSettings.globalize_path(path)
+	while not candidate.is_empty():
+		if FileAccess.file_exists(candidate):
+			return _storage_fail("Un fichier occupe le chemin du dossier de sauvegarde : " + candidate)
+		var parent := candidate.get_base_dir()
+		if parent == candidate: break
+		candidate = parent
+	var code := DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path))
+	if code != OK:
+		return _storage_fail("Impossible de préparer le dossier de sauvegarde (code %s)." % code)
+	return _ok()
+
+func _rename(source: String, target: String) -> Error:
+	return DirAccess.rename_absolute(ProjectSettings.globalize_path(source), ProjectSettings.globalize_path(target))
+
+func _remove(path: String) -> Error:
+	return DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+
+func atomic_write_text(path: String, content: String) -> Dictionary:
+	if simulate_write_failure:
+		return _storage_fail("Échec d'écriture simulé pour les tests.")
+	var ready := _ensure_directory(path.get_base_dir())
+	if not ready.ok:
+		return ready
+	var temporary := path + ".tmp"
+	var backup := path + ".bak"
+	var previous := path + ".bak.previous"
+	var file := FileAccess.open(temporary, FileAccess.WRITE)
+	if file == null:
+		return _storage_fail("Impossible d'écrire la sauvegarde temporaire (code %s)." % FileAccess.get_open_error())
+	file.store_string(content)
+	file.flush()
+	var write_error := file.get_error()
+	file.close()
+	if write_error != OK or FileAccess.get_file_as_string(temporary) != content:
+		_remove(temporary)
+		return _storage_fail("La vérification de la sauvegarde temporaire a échoué.")
+	var had_main := FileAccess.file_exists(path)
+	var had_backup := FileAccess.file_exists(backup)
+	if had_main and had_backup:
+		if FileAccess.file_exists(previous) and _remove(previous) != OK:
+			_remove(temporary)
+			return _storage_fail("Impossible de préparer la rotation des sauvegardes.")
+		if _rename(backup, previous) != OK:
+			_remove(temporary)
+			return _storage_fail("Impossible de conserver la sauvegarde précédente.")
+	if had_main and _rename(path, backup) != OK:
+		if had_backup:
+			_rename(previous, backup)
+		_remove(temporary)
+		return _storage_fail("Impossible de préparer le remplacement du document.")
+	if _rename(temporary, path) != OK:
+		var rollback_ok := true
+		if had_main:
+			rollback_ok = _rename(backup, path) == OK
+		# Ne jamais remplacer une .bak encore nécessaire si le retour au principal échoue.
+		if had_main and had_backup and rollback_ok:
+			_rename(previous, backup)
+		_remove(temporary)
+		if not rollback_ok:
+			return _storage_fail("Le remplacement et sa restauration ont échoué. Les copies .bak et .bak.previous sont conservées pour récupération.")
+		return _storage_fail("Impossible de remplacer la sauvegarde. Le document précédent a été conservé.")
+	if had_main and had_backup:
+		_remove(previous)
+	return _ok()
+
+func write_profile(document: Dictionary) -> Dictionary:
+	var validation := validate_profile(document)
+	if not validation.ok:
+		return validation
+	var path := _path("profiles/%s.json" % validation.data.id)
+	if not FileAccess.file_exists(path) and FileAccess.file_exists(path + ".bak"):
+		return _storage_fail("Le document principal du profil manque. Choisissez la récupération de sa copie précédente avant de sauvegarder.", {"recovery_required": true, "id": validation.data.id})
+	# Un fichier altéré après sélection ne doit pas être remplacé silencieusement.
+	# Cela conserve aussi une éventuelle .bak valide jusqu'au choix de récupération.
+	if FileAccess.file_exists(path):
+		var previous := read_profile(validation.data.id)
+		if not previous.ok:
+			return _storage_fail("Le profil sur disque nécessite une récupération avant sauvegarde : " + previous.error, {"recovery_required": true, "id": validation.data.id})
+	var saved := atomic_write_text(path, JSON.stringify(validation.data, "\t"))
+	if not saved.ok:
+		return saved
+	return _ok(validation.data)
+
+func read_profile(id: String) -> Dictionary:
+	if not is_safe_id(id):
+		return _fail("Identifiant de profil invalide.")
+	var path := _path("profiles/%s.json" % id)
+	if not FileAccess.file_exists(path):
+		return _storage_fail("Le profil est introuvable.")
+	var parsed := _parse_json(FileAccess.get_file_as_string(path), path)
+	if not parsed.ok:
+		return _storage_result(parsed)
+	return _storage_result(validate_profile(parsed.data, id))
+
+func list_profiles() -> Dictionary:
+	var ready := _ensure_directory(_path("profiles"))
+	if not ready.ok:
+		return ready
+	var directory := DirAccess.open(_path("profiles"))
+	if directory == null:
+		return _storage_fail("Impossible de lire les profils locaux.")
+	var profiles: Array = []
+	var issues: Array = []
+	var file_names := directory.get_files()
+	for file_name in file_names:
+		if not file_name.ends_with(".json"):
+			continue
+		var id: String = file_name.trim_suffix(".json")
+		var result := read_profile(id)
+		if result.ok:
+			profiles.append(result.data)
+		else:
+			issues.append({"id": id, "path": _path("profiles/" + file_name), "error": result.error, "has_backup": is_safe_id(id) and FileAccess.file_exists(_path("profiles/%s.json.bak" % id))})
+	# Une interruption entre les renommages peut laisser uniquement la .bak.
+	# La proposer explicitement évite de traiter le joueur comme un premier lancement.
+	for file_name in file_names:
+		if not file_name.ends_with(".json.bak"):
+			continue
+		var id: String = file_name.trim_suffix(".json.bak")
+		if not FileAccess.file_exists(_path("profiles/%s.json" % id)):
+			issues.append({"id": id, "path": _path("profiles/" + file_name), "error": "Le document principal est absent ; une copie précédente a été conservée. Choisissez une récupération.", "has_backup": is_safe_id(id)})
+	profiles.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.display_name.naturalnocasecmp_to(b.display_name) < 0)
+	var response := _ok(profiles)
+	response["issues"] = issues
+	return response
+
+func write_session(id: String) -> Dictionary:
+	if not id.is_empty() and not is_safe_id(id):
+		return _fail("Identifiant de session invalide.")
+	if id.is_empty() and ((FileAccess.file_exists(_path("session.json")) and not _read_session_document(_path("session.json")).ok) or (not FileAccess.file_exists(_path("session.json")) and FileAccess.file_exists(_path("session.json.bak")))):
+		return reset_session()
+	if not id.is_empty() and not FileAccess.file_exists(_path("session.json")) and FileAccess.file_exists(_path("session.json.bak")):
+		return _storage_fail("Le document principal de session manque. Choisissez une récupération avant de changer de profil.", {"recovery_required": true, "id": ""})
+	if not id.is_empty() and FileAccess.file_exists(_path("session.json")):
+		var previous := read_session()
+		if not previous.ok:
+			return _storage_fail("La session nécessite une récupération avant changement de profil : " + previous.error, {"recovery_required": true, "id": ""})
+	return atomic_write_text(_path("session.json"), JSON.stringify({"schema_version": SCHEMA_VERSION, "last_profile_id": id}, "\t"))
+
+func _read_session_document(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return _fail("Le document de session est absent.")
+	var parsed := _parse_json(FileAccess.get_file_as_string(path), path)
+	if not parsed.ok:
+		return parsed
+	if not _is_integer(parsed.data.get("schema_version"), SCHEMA_VERSION, SCHEMA_VERSION) or not parsed.data.get("last_profile_id") is String:
+		return _fail("Le document de session est invalide ; les profils sont conservés.")
+	var id: String = parsed.data.last_profile_id
+	if not id.is_empty() and not is_safe_id(id):
+		return _fail("La session contient un identifiant invalide.")
+	return _ok(id)
+
+func read_session() -> Dictionary:
+	var path := _path("session.json")
+	if not FileAccess.file_exists(path):
+		if FileAccess.file_exists(path + ".bak"):
+			return _storage_fail("Le document principal de session manque. Une copie précédente est conservée ; choisissez une récupération.")
+		return _ok("")
+	return _storage_result(_read_session_document(path))
+
+func session_backup_available() -> bool:
+	return _read_session_document(_path("session.json.bak")).ok
+
+func recover_session() -> Dictionary:
+	var path := _path("session.json")
+	var checked := _read_session_document(path + ".bak")
+	if not checked.ok:
+		return _storage_fail("Aucune copie précédente valide de la session n'est disponible.")
+	return _replace_session_preserving_original(checked.data, false)
+
+func reset_session() -> Dictionary:
+	# Choix explicite : oublier le dernier profil, sans toucher aux profils eux-mêmes.
+	return _replace_session_preserving_original("", true)
+
+func _replace_session_preserving_original(id: String, archive_backup: bool) -> Dictionary:
+	if simulate_write_failure:
+		return _storage_fail("Échec d'écriture simulé pour les tests.")
+	var path := _path("session.json")
+	var marker := ".corrupt_%s_%s" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
+	var sources: Array[String] = [path]
+	if archive_backup:
+		sources.append(path + ".bak")
+	var moved: Array[String] = []
+	for source in sources:
+		if not FileAccess.file_exists(source):
+			continue
+		if _rename(source, source + marker) != OK:
+			for previous in moved:
+				_rename(previous + marker, previous)
+			return _storage_fail("Impossible de conserver les documents de session avant récupération.")
+		moved.append(source)
+	var saved := atomic_write_text(path, JSON.stringify({"schema_version": SCHEMA_VERSION, "last_profile_id": id}, "\t"))
+	if not saved.ok:
+		for source in moved:
+			_rename(source + marker, source)
+		return saved
+	return _ok(id)
+
+func recover_profile(id: String) -> Dictionary:
+	if not is_safe_id(id):
+		return _fail("Identifiant de profil invalide.")
+	var path := _path("profiles/%s.json" % id)
+	var backup := path + ".bak"
+	if not FileAccess.file_exists(backup):
+		return _storage_fail("Aucune sauvegarde précédente n'est disponible.")
+	var parsed := _parse_json(FileAccess.get_file_as_string(backup), backup)
+	if not parsed.ok:
+		return _storage_result(parsed)
+	var checked := validate_profile(parsed.data, id)
+	if not checked.ok:
+		return _storage_result(checked)
+	if simulate_write_failure:
+		return _storage_fail("Échec d'écriture simulé pour les tests.")
+	var quarantine := path + ".corrupt_%s_%s" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
+	var had_main := FileAccess.file_exists(path)
+	if had_main and _rename(path, quarantine) != OK:
+		return _storage_fail("Impossible de mettre le fichier invalide à l'écart.")
+	var restored := atomic_write_text(path, JSON.stringify(checked.data, "\t"))
+	if not restored.ok:
+		if had_main:
+			_rename(quarantine, path)
+		return restored
+	return _ok(checked.data)
+
+func quarantine_profile(id: String) -> Dictionary:
+	if not is_safe_id(id):
+		return _fail("Identifiant de profil invalide.")
+	if simulate_write_failure:
+		return _storage_fail("Échec d'écriture simulé pour les tests.")
+	var path := _path("profiles/%s.json" % id)
+	var candidates: Array[String] = []
+	for suffix in ["", ".bak", ".bak.previous", ".tmp"]:
+		if FileAccess.file_exists(path + suffix):
+			candidates.append(path + suffix)
+	if candidates.is_empty():
+		return _storage_fail("Le fichier à mettre à l'écart est introuvable.")
+	var marker := ".corrupt_%s_%s" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
+	var moved: Array[String] = []
+	for candidate in candidates:
+		if _rename(candidate, candidate + marker) != OK:
+			for prior in moved:
+				_rename(prior + marker, prior)
+			return _storage_fail("Impossible de mettre tous les documents du profil à l'écart. Ils sont conservés.")
+		moved.append(candidate)
+	return _ok(candidates[0] + marker)
+
+func delete_profile(id: String) -> Dictionary:
+	if not is_safe_id(id):
+		return _fail("Identifiant de profil invalide.")
+	if simulate_write_failure:
+		return _storage_fail("Échec d'écriture simulé pour les tests.")
+	var path := _path("profiles/%s.json" % id)
+	if not FileAccess.file_exists(path):
+		return _storage_fail("Le profil à supprimer est introuvable.")
+	# Les deux documents sont déplacés avant suppression, avec retour possible.
+	var paths: Array = []
+	var directory := DirAccess.open(path.get_base_dir())
+	if directory == null:
+		return _storage_fail("Impossible de lire le dossier du profil.")
+	var base_name := path.get_file()
+	for file_name in directory.get_files():
+		if file_name == base_name or file_name.begins_with(base_name + "."):
+			paths.append(path.get_base_dir().path_join(file_name))
+	var suffix := ".deleting_%s_%s" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
+	var moved: Array = []
+	for source in paths:
+		if _rename(source, source + suffix) != OK:
+			for previous_path in moved:
+				_rename(previous_path + suffix, previous_path)
+			return _storage_fail("Impossible de préparer la suppression. Le profil est conservé.")
+		moved.append(source)
+	for source in moved:
+		if _remove(source + suffix) != OK:
+			return _storage_fail("La suppression n'a pas pu terminer. Un document .deleting reste à vérifier.")
+	return _ok()

@@ -1,0 +1,194 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Données temporaires : /tmp/ciel-final-backend/data/console-ciel/tests/run_1791724613.31299_403553
+  OK  Catalogue local chargé
+  OK  Règles des missions chargées
+
+Profils et isolation
+  OK  Racine de test vide, aucun vrai profil chargé
+  OK  Créer le premier profil
+  OK  Espaces extérieurs du pseudo retirés
+  OK  Identifiant interne indépendant du pseudo
+  OK  Un profil commence sans points de test
+  OK  Avatar, thème et cadre gratuits disponibles
+  OK  Créer un deuxième profil
+  OK  Deux profils ont des identifiants distincts
+  OK  Le profil créé devient actif
+  OK  Sélectionner le premier profil
+  OK  Renommer un profil
+  OK  Le renommage conserve l'identifiant et la sauvegarde
+  OK  Renommer Alice ne modifie pas Bob
+  OK  Pseudo invalide refusé : ""
+  OK  Pseudo invalide refusé : "   "
+  OK  Pseudo invalide refusé : "12345678901234567"
+  OK  Pseudo invalide refusé : "Joueur"
+  OK  Pseudo invalide refusé : "\nJoueur"
+  OK  Pseudo d'un type non textuel refusé
+  OK  Échec de sauvegarde pendant renommage signalé
+  OK  Renommage échoué sans changement mémoire ou disque
+  OK  Deux profils seulement après refus de créations invalides
+
+Progression et récompenses uniques
+  OK  Recharger Alice avant les missions
+  OK  Mission refusée tant que l'enquête n'est pas commencée
+  OK  Commencer l'enquête de démonstration
+  OK  Première mission : exactement 50 points
+  OK  Double validation : aucune récompense supplémentaire
+  OK  Échec d'écriture de récompense signalé
+  OK  Récompense échouée sans progression ni crédit partiels
+  OK  Mission inconnue refusée
+  OK  Terminer la serrure simulée
+  OK  Terminer l'ordinateur simulé
+  OK  Trois missions : plafond réel de 150 points
+  OK  Récompenses et progression isolées de Bob
+  OK  Recharger une sauvegarde sans garder l'état mémoire
+  OK  Récompenses et objectifs conservés après rechargement
+  OK  Réinitialiser seulement la progression
+  OK  Réinitialisation efface les objectifs de l'enquête
+  OK  Réinitialisation conserve points, inventaire et récompenses attribuées
+  OK  Recommencer après réinitialisation
+  OK  Mission rejouée sans crédit : lighting
+  OK  Mission rejouée sans crédit : lock
+  OK  Mission rejouée sans crédit : computer
+  OK  Rejouer l'enquête ne dépasse pas 150 points
+
+Boutique et transactions
+  OK  Au moins huit articles locaux
+  OK  Sélectionner Bob pour vérifier le solde insuffisant
+  OK  Achat refusé avec solde insuffisant
+  OK  Équipement non possédé refusé
+  OK  Identifiant d'article inconnu refusé
+  OK  Achats refusés sans modification de Bob
+  OK  Retour à Alice pour acheter
+  OK  Échec d'écriture d'achat signalé
+  OK  Achat échoué : aucun débit ni article ajouté en mémoire ou sur disque
+  OK  Achat sauvegardé avec succès
+  OK  Solde débité exactement du prix et article présent
+  OK  Double achat refusé sans second débit
+  OK  Équiper l'article acheté
+  OK  Un seul article équipé par type
+  OK  Équipement échoué si la sauvegarde échoue
+  OK  Équipement échoué conserve le choix précédent
+  OK  Recharger après achat et équipement
+  OK  Inventaire, points et équipement survivent au rechargement
+  OK  Réinitialiser une progression avec achat
+  OK  Réinitialisation conserve aussi les achats effectifs
+  OK  Prix invalide bloqué par le service : -20
+  OK  Prix invalide bloqué par le service : 1.5
+  OK  Prix invalide bloqué par le service : 20
+
+Validation des documents
+  OK  Document valide accepté
+  OK  Document non objet refusé
+  OK  Identifiant interne ne correspondant pas au fichier refusé
+  OK  Solde invalide refusé : -1
+  OK  Solde invalide refusé : 1.5
+  OK  Solde invalide refusé : 50
+  OK  Solde invalide refusé : true
+  OK  Solde invalide refusé : 2147483648
+  OK  Version de schéma inconnue refusée
+  OK  Identifiant contenant un chemin refusé
+  OK  Article inconnu dans l'inventaire refusé
+  OK  Article dupliqué dans l'inventaire refusé
+  OK  Thème équipé en avatar refusé
+  OK  Scène de reprise inconnue refusée
+  OK  Récompense de mission inconnue refusée
+  OK  Objectif accompli sans identifiant de récompense refusé
+  OK  Document invalide ne remplace jamais la sauvegarde valide
+  OK  Lecture de profil avec traversée de chemin refusée
+  OK  Catalogue livré validé
+  OK  Catalogue avec prix invalide refusé : -1
+  OK  Catalogue avec prix invalide refusé : 1.5
+  OK  Catalogue avec prix invalide refusé : 20
+  OK  Catalogue avec prix invalide refusé : 101
+  OK  Entrée catalogue d'un type invalide refusée sans plantage
+  OK  Identifiant catalogue dupliqué refusé
+  OK  Article gratuit par défaut manquant refusé
+  OK  Règles de récompenses livrées validées
+  OK  Récompense négative refusée dans les données
+  OK  Plafond incohérent avec les récompenses refusé
+
+Corruption et récupération explicite
+  OK  Créer une copie de profil pour corruption
+  OK  Sauvegarder une seconde version et créer une copie précédente
+  OK  Corrompre uniquement le fichier temporaire de test
+  OK  JSON corrompu signalé au lieu d'être chargé
+  OK  Liste conserve une erreur de récupération avec copie disponible
+  OK  Lecture et liste n'effacent ni ne restaurent silencieusement le document
+  OK  Corruption pendant une session : sauvegarde automatique refusée en attente de récupération
+  OK  Sauvegarde refusée préserve le document corrompu et la bonne copie précédente
+  OK  Récupération uniquement après appel explicite, depuis la copie précédente
+  OK  Document récupéré valide sur disque
+  OK  Copie corrompue conservée à part pour diagnostic
+  OK  Simuler un fichier principal absent uniquement dans la copie de test
+  OK  Copie précédente orpheline signalée comme récupérable
+  OK  Restaurer explicitement une copie précédente sans principal
+  OK  Supprimer le profil récupéré
+  OK  Suppression retire aussi les copies associées au profil concerné
+  OK  Créer une copie pour version inconnue
+  OK  Installer un schéma inconnu dans la copie de test
+  OK  Version inconnue conservée et refusée sans migration implicite
+  OK  Récupération sans copie disponible refusée explicitement
+  OK  Supprimer seulement la copie de test à schéma inconnu
+  OK  Restaurer Alice après les copies de corruption
+
+Session et chemins
+  OK  Préparer une session de test avec chemin interdit
+  OK  Traversée de chemin dans session refusée sans effacement
+  OK  Écriture de session contenant un chemin refusée
+  OK  Version de session inconnue refusée
+  OK  Session corrompue ne peut être remplacée implicitement
+  OK  Choisir explicitement de réinitialiser uniquement la session de test
+  OK  Restaurer une session valide de test
+  OK  Dernier profil utilisé persistant
+
+Suppression ciblée
+  OK  Suppression refusée en cas d'échec disque
+  OK  Suppression échouée conserve le profil
+  OK  Supprimer Bob
+  OK  Profil supprimé absent
+  OK  Suppression de Bob conserve Alice et la session active
+
+Réglages, aperçus et persistance
+  OK  Charger les réglages par défaut de la racine isolée
+  OK  Prévisualiser audio, accessibilité et zone morte
+  OK  L'aperçu change current et conserve committed
+  OK  Trois bus audio distincts disponibles
+  OK  Volume zéro coupe réellement les bus audio
+  OK  Zone morte appliquée aux entrées UI et au jeu
+  OK  Annuler restaure tous les aperçus sans modifier les valeurs enregistrées
+  OK  Annuler restaure également la zone morte effective
+  OK  Appliquer et sauvegarder les réglages
+  OK  ConfigFile enregistré dans la racine temporaire uniquement
+  OK  Relire les réglages enregistrés après changement mémoire
+  OK  Réglages persistants restaurés depuis le disque
+  OK  Échec d'écriture de réglages signalé
+  OK  Échec conserve les valeurs validées et le fichier précédent
+  OK  Annulation après échec restaure les réglages validés
+  OK  Réglage invalide refusé : master
+  OK  Réglage invalide refusé : music
+  OK  Réglage invalide refusé : effects
+  OK  Réglage invalide refusé : large_text
+  OK  Réglage invalide refusé : deadzone
+  OK  Aperçus invalides sans modification des valeurs courantes
+  OK  Créer une deuxième sauvegarde et une copie précédente des réglages
+  OK  Corrompre la copie de réglages de test
+ERROR: ConfigFile parse error at user://tests/run_1791724613.31299_403553/settings.cfg:0: Unexpected EOF while parsing simple tag.
+   at: _parse (core/io/config_file.cpp:292)
+   GDScript backtrace (most recent call first):
+       [0] _read (res://scripts/services/settings_service.gd:66)
+       [1] load_settings (res://scripts/services/settings_service.gd:85)
+       [2] _test_settings (res://tests/run_tests.gd:392)
+       [3] _run (res://tests/run_tests.gd:55)
+  OK  Réglages corrompus refusés sans plantage
+  OK  Chargement ne remplace pas silencieusement les réglages corrompus
+  OK  Échec d'écriture pendant récupération des réglages signalé
+  OK  Récupération échouée conserve les fichiers et permet une nouvelle tentative
+  OK  Restaurer les réglages après choix explicite de la copie précédente
+  OK  Copie précédente des réglages restaurée et appliquée
+  OK  Échec d'écriture pendant récupération des valeurs par défaut signalé
+  OK  Récupération des valeurs par défaut échouée conserve la configuration validée
+  OK  Demander explicitement les valeurs par défaut
+  OK  Valeurs par défaut sauvegardées et appliquées
+
+Résultat : 166 assertions, 0 échec(s).

@@ -1,0 +1,53 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+UI : données isolées /tmp/ciel-native-input/data/console-ciel/tests/ui_1791868870.73956_2719780
+UI : affichage X11; captures réelles false
+ÉCHEC UI : Validations rapides : une seule confirmation, aucun appui ne traverse son ouverture
+
+================================================================
+handle_crash: Program crashed with signal 11
+Engine version: Godot Engine v4.6.3.stable.official (7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3)
+Dumping the backtrace. Please include this when reporting the bug on: https://github.com/godotengine/godot/issues
+[1] /lib/x86_64-linux-gnu/libc.so.6(+0x3fd70) [0x7f3f7462bd70] (??:0)
+[2] godot() [0x4590707] (??:0)
+[3] godot() [0xae98b7] (??:0)
+[4] godot() [0xa1b704] (??:0)
+[5] godot() [0xa1c822] (??:0)
+[6] godot() [0xa33523] (??:0)
+[7] godot() [0x472b29b] (??:0)
+[8] godot() [0x457286d] (??:0)
+[9] godot() [0x4572bf4] (??:0)
+[10] godot() [0x486acf4] (??:0)
+[11] godot() [0xaea4ba] (??:0)
+[12] godot() [0xa1b704] (??:0)
+[13] godot() [0xa1c822] (??:0)
+[14] godot() [0xa33523] (??:0)
+[15] godot() [0x472b29b] (??:0)
+[16] godot() [0x457286d] (??:0)
+[17] godot() [0x4572bf4] (??:0)
+[18] godot() [0x486acf4] (??:0)
+[19] godot() [0xaea4ba] (??:0)
+[20] godot() [0xa1b704] (??:0)
+[21] godot() [0xa1c822] (??:0)
+[22] godot() [0xa33523] (??:0)
+[23] godot() [0x472b29b] (??:0)
+[24] godot() [0x457286d] (??:0)
+[25] godot() [0x4572bf4] (??:0)
+[26] godot() [0x486acf4] (??:0)
+[27] godot() [0x2914104] (??:0)
+[28] godot() [0x565dd1] (??:0)
+[29] godot() [0x4321ef] (??:0)
+[30] /lib/x86_64-linux-gnu/libc.so.6(+0x29ca8) [0x7f3f74615ca8] (??:0)
+[31] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x85) [0x7f3f74615d65] (??:0)
+[32] godot() [0x48b13a] (??:0)
+-- END OF C++ BACKTRACE --
+================================================================
+GDScript backtrace (most recent call first):
+    [0] _test_modal (res://tests/ui_smoke.gd:197)
+    [1] _press (res://tests/ui_smoke.gd:955)
+    [2] _frames (res://tests/ui_smoke.gd:1002)
+-- END OF GDSCRIPT BACKTRACE --
+================================================================

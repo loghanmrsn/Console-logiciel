@@ -1,0 +1,507 @@
+--- avant/README.md
++++ après/README.md
+@@ -132,3 +132,5 @@
+ [Le bilan de livraison](docs/DELIVERY.md) distingue tests automatiques, rendu visuel, essais manuels et matériel. [Les problèmes connus](docs/KNOWN_ISSUES.md) listent ce qui doit être vérifié avant une démonstration sur le Pi : modèles d'export, rendu réel, son, manette, mapping fabriqué, plein écran labwc et performances. Aucun chiffre de FPS sur Raspberry Pi n'est acquis ici.
+ 
+ Crédits : **Loghan**, logiciel ; **binôme — nom à compléter**, construction et assemblage. Formes, icônes, décor et sons locaux originaux ; police intégrée à Godot. [Licences](assets/LICENSES.md).
++
++Audit du 12 octobre 2026 : [périmètre, corrections, tests et limites](docs/AUDIT_CODE.md). Les outils de démonstration Linux requièrent `flock` (util-linux) et refusent deux sessions partageant la même racine.
+--- avant/scripts/input_setup.gd
++++ après/scripts/input_setup.gd
+@@ -69,7 +69,7 @@
+ 	return validate_mapping(parser.data)
+ 
+ static func validate_mapping(document: Variant) -> Dictionary:
+-	if not document is Dictionary or document.get("schema_version") != 1 or not document.get("actions") is Dictionary:
++	if not document is Dictionary or not _bounded_integer(document.get("schema_version"), 1, 1) or not document.get("actions") is Dictionary:
+ 		return _mapping_failure("Version ou structure de correspondance manette invalide.")
+ 	for action in JOY_ACTIONS:
+ 		if not document.actions.has(action):
+--- avant/scripts/services/settings_service.gd
++++ après/scripts/services/settings_service.gd
+@@ -69,7 +69,8 @@
+ 	var config := ConfigFile.new()
+ 	if config.load(path) != OK:
+ 		return {"ok": false, "error": "Le fichier de réglages est illisible. Il est conservé.", "data": null}
+-	if not config.has_section_key("meta", "schema_version") or config.get_value("meta", "schema_version", 0) != 1:
++	var schema: Variant = config.get_value("meta", "schema_version", 0)
++	if not schema is int or schema != 1:
+ 		return {"ok": false, "error": "Version des réglages inconnue. Le fichier est conservé.", "data": null}
+ 	var values: Dictionary = {}
+ 	for key in defaults:
+--- avant/scripts/services/save_service.gd
++++ après/scripts/services/save_service.gd
+@@ -157,7 +157,7 @@
+ 			return _fail("Un texte de mission est invalide.")
+ 		if not _valid_id_list(mission.get("prerequisites"), ids):
+ 			return _fail("Un prérequis est inconnu, dupliqué ou cyclique.")
+-		if mission.get("initial_state") != ("available" if mission.prerequisites.is_empty() else "locked"):
++		if not mission.get("initial_state") is String or mission.get("initial_state") != ("available" if mission.prerequisites.is_empty() else "locked"):
+ 			return _fail("L'état initial d'une mission ne correspond pas à ses prérequis.")
+ 		if not mission.get("clue") is Dictionary or not mission.clue.get("id") is String or not is_safe_id(mission.clue.id) or mission.clue.id in clue_ids or not mission.clue.get("text") is String or mission.clue.text.is_empty():
+ 			return _fail("Un indice livré avec une mission est invalide.")
+@@ -187,10 +187,10 @@
+ 			if not _valid_id_list(mission.solution.get("connections"), _option_ids(mission, "connections")) or mission.solution.connections != ["source_switch", "switch_lamp", "lamp_return"]:
+ 				return _fail("La solution d'éclairage doit former la boucle source → interrupteur → lampe → retour.")
+ 		elif mission.id == "lock":
+-			if mission.prerequisites != ["lighting"] or _option_ids(mission, "observations") != ["badge", "power", "command", "link"] or mission.solution.get("diagnosis") != "control_link" or mission.solution.get("repair") != "reconnect_control" or "control_link" not in _option_ids(mission, "diagnoses") or "reconnect_control" not in _option_ids(mission, "repairs"):
++			if mission.prerequisites != ["lighting"] or _option_ids(mission, "observations") != ["badge", "power", "command", "link"] or not mission.solution.get("diagnosis") is String or mission.solution.get("diagnosis") != "control_link" or not mission.solution.get("repair") is String or mission.solution.get("repair") != "reconnect_control" or "control_link" not in _option_ids(mission, "diagnoses") or "reconnect_control" not in _option_ids(mission, "repairs"):
+ 				return _fail("Les observations ou choix de la serrure sont incohérents.")
+ 		else:
+-			if mission.prerequisites != ["lock"] or _option_ids(mission, "observations") != ["pc", "display", "no_signal"] or not _valid_id_list(mission.solution.get("checks"), _option_ids(mission, "checks")) or mission.solution.get("cause") != "video_disconnected" or mission.solution.get("correction") != "reconnect_video" or "video_disconnected" not in _option_ids(mission, "causes") or "reconnect_video" not in _option_ids(mission, "corrections") or mission.solution.checks.size() != 2 or "power" not in mission.solution.checks or "video" not in mission.solution.checks:
++			if mission.prerequisites != ["lock"] or _option_ids(mission, "observations") != ["pc", "display", "no_signal"] or not _valid_id_list(mission.solution.get("checks"), _option_ids(mission, "checks")) or not mission.solution.get("cause") is String or mission.solution.get("cause") != "video_disconnected" or not mission.solution.get("correction") is String or mission.solution.get("correction") != "reconnect_video" or "video_disconnected" not in _option_ids(mission, "causes") or "reconnect_video" not in _option_ids(mission, "corrections") or mission.solution.checks.size() != 2 or "power" not in mission.solution.checks or "video" not in mission.solution.checks:
+ 				return _fail("Les observations ou choix de l'ordinateur sont incohérents.")
+ 		if mission.id == "lighting" and not mission.prerequisites.is_empty():
+ 			return _fail("L'éclairage doit être la première mission disponible.")
+@@ -287,7 +287,7 @@
+ 	if not document.get("progress") is Dictionary:
+ 		return _fail("La progression est invalide.")
+ 	var progress: Dictionary = document.progress
+-	if not progress.get("started") is bool or progress.get("room_id") != "room_01" or progress.get("checkpoint_id") not in ["entrance", "lighting", "lock", "computer", "exit"] or not progress.get("completed_missions") is Array:
++	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") != "room_01" or progress.get("checkpoint_id") not in ["entrance", "lighting", "lock", "computer", "exit"] or not progress.get("completed_missions") is Array:
+ 		return _fail("La progression contient une scène ou un point de reprise invalide.")
+ 	var completed: Array = []
+ 	for id in progress.completed_missions:
+@@ -300,6 +300,12 @@
+ 	# Leur progression simulée n'est pas présentée comme la résolution des vrais défis.
+ 	var migrated := not progress.has("investigation_version")
+ 	if migrated:
++		# Seul le schéma connu du prototype peut être remis au début.
++		# Une version absente dans une progression enrichie signale une corruption.
++		var legacy_keys := ["started", "room_id", "checkpoint_id", "completed_missions"]
++		for key in progress:
++			if key not in legacy_keys:
++				return _fail("Version d’enquête absente dans une progression récente ou inconnue. Le fichier est conservé ; choisissez une récupération.")
+ 		var migrated_progress := empty_investigation_progress()
+ 		migrated_progress.started = progress.started
+ 		migrated_progress.legacy_migration_notice = true
+@@ -370,6 +376,13 @@
+ 	return response
+ 
+ func _ensure_directory(path: String) -> Dictionary:
++	var candidate := ProjectSettings.globalize_path(path)
++	while not candidate.is_empty():
++		if FileAccess.file_exists(candidate):
++			return _storage_fail("Un fichier occupe le chemin du dossier de sauvegarde : " + candidate)
++		var parent := candidate.get_base_dir()
++		if parent == candidate: break
++		candidate = parent
+ 	var code := DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path))
+ 	if code != OK:
+ 		return _storage_fail("Impossible de préparer le dossier de sauvegarde (code %s)." % code)
+--- avant/scripts/ui/confirmation_dialog.gd
++++ après/scripts/ui/confirmation_dialog.gd
+@@ -126,7 +126,9 @@
+ 	_fit_content.call_deferred(_layout_serial, available)
+ 
+ func _fit_content(serial: int, available: float) -> void:
++	if _closed or not is_inside_tree(): return
+ 	await get_tree().process_frame
++	if _closed or not is_inside_tree(): return
+ 	await get_tree().process_frame
+ 	if _closed or serial != _layout_serial or not is_inside_tree():
+ 		return
+@@ -195,3 +197,8 @@
+ 	closed.emit()
+ 	queue_free()
+ 
++
++func _exit_tree() -> void:
++	# Restore surviving controls even if a parent removes the dialog abruptly.
++	for entry in disabled_controls:
++		if is_instance_valid(entry[0]): entry[0].focus_mode = entry[1]
+--- avant/scripts/ui/main.gd
++++ après/scripts/ui/main.gd
+@@ -399,18 +399,23 @@
+ 	var paused_for_modal=screen=='game' and is_instance_valid(demo) and not demo.paused
+ 	if paused_for_modal: demo.paused=true
+ 	modal=Modal.new()
+-	modal.closed.connect(func():
+-		modal=null
+-		if is_instance_valid(demo) and not _pending_controller_message.is_empty():
+-			demo.call_deferred('controller_lost',_pending_controller_message)
+-			_pending_controller_message=''
+-		elif paused_for_modal and is_instance_valid(demo) and demo.overlay_kind.is_empty():
+-			demo.paused=false
+-			SceneRouter.lock_until_release())
++	modal.closed.connect(_modal_finished.bind(paused_for_modal))
+ 	modal.open(self,title,message,action,callback,cancelled)
+ 
++func _modal_finished(paused_for_modal: bool=false) -> void:
++	modal=null
++	if not _pending_controller_message.is_empty():
++		if is_instance_valid(demo): demo.call_deferred('controller_lost',_pending_controller_message)
++		_pending_controller_message=''
++	elif paused_for_modal and is_instance_valid(demo) and demo.overlay_kind.is_empty():
++		demo.paused=false
++		SceneRouter.lock_until_release()
++
+ func _profiles() -> void:
+-	ProfileService.refresh()
++	var loaded=ProfileService.refresh()
++	if not loaded.ok:
++		_show_fatal("Profils inaccessibles",loaded.error)
++		return
+ 	_title('À chacun son aventure','Choisissez un profil. Points, achats et progression restent propres à chaque joueur.')
+ 	var grid=_grid(content,310,3)
+ 	for profile in ProfileService.profiles:
+@@ -678,8 +683,8 @@
+ 				if item.type=='theme' and item.id in AppState.profile.owned_items:
+ 					_button(panel,('✓ ' if draft_settings.get('profile_theme',AppState.profile.equipped.theme)==item.id else '')+item.name,func():
+ 						draft_settings.profile_theme=item.id
+-						theme=ThemeFactory.build(SettingsService.current,item)
+-						background.color=Color(item.get('background','#F3F5F7')),'theme_'+item.id)
++						_apply_theme()
++						_show_screen('settings'),'theme_'+item.id)
+ 			_label(panel,'D’autres thèmes sont disponibles dans la boutique locale.',0,true)
+ 		5:
+ 			_label(panel,'Progression de l’enquête',22)
+@@ -792,7 +797,10 @@
+ 
+ func _recovery_content() -> void:
+ 	_title('Des données demandent votre attention','Aucun fichier invalide n’est effacé automatiquement. Vous pouvez restaurer une copie précédente ou conserver l’original à part.')
+-	ProfileService.refresh()
++	var loaded=ProfileService.refresh()
++	if not loaded.ok:
++		_show_fatal("Profils inaccessibles",loaded.error)
++		return
+ 	for issue in ProfileService.issues:
+ 		var panel=_panel(content)
+ 		if issue.get('id','').is_empty():
+@@ -820,7 +828,10 @@
+ 	_button(content,'Quitter',_request_quit,'recovery_quit')
+ 
+ func _after_recovery() -> void:
+-	ProfileService.refresh()
++	var loaded=ProfileService.refresh()
++	if not loaded.ok:
++		_show_fatal("Profils inaccessibles",loaded.error)
++		return
+ 	if not ProfileService.issues.is_empty(): _show_screen('recovery')
+ 	elif ProfileService.profiles.is_empty(): _open_editor('')
+ 	else: _show_screen('profiles')
+@@ -891,7 +902,7 @@
+ 	if _boot_running or is_instance_valid(modal): return
+ 	if _settings_dirty():
+ 		modal=Modal.new()
+-		modal.closed.connect(func(): modal=null)
++		modal.closed.connect(_modal_finished)
+ 		modal.open_choices(self,'Des réglages restent à appliquer','Choisissez quoi faire des aperçus avant de fermer l’application. Cette fermeture n’éteint pas le système.',[
+ 			{'key':'quit_keep','text':'Revenir aux réglages','action':func():
+ 				if screen!='settings': _show_screen('settings')},
+@@ -941,7 +952,7 @@
+ 		return
+ 	if not SceneRouter.gameplay_allowed():
+ 		for action in ['ui_accept','ui_cancel','game_interact','pause','tab_previous','tab_next']:
+-			if action in ['tab_previous','tab_next'] and (screen=='editor' or get_viewport().gui_get_focus_owner() is LineEdit): continue
++			if action in ['game_interact','pause','tab_previous','tab_next'] and get_viewport().gui_get_focus_owner() is LineEdit: continue
+ 			if event.is_action_pressed(action):
+ 				get_viewport().set_input_as_handled()
+ 				return
+--- avant/scripts/game/demo_game.gd
++++ après/scripts/game/demo_game.gd
+@@ -399,7 +399,8 @@
+ 	match overlay_kind:
+ 		'controller_pause': return
+ 		'': request_pause()
+-		'challenge', 'pause', 'confirm': _close_overlay()
++		'confirm': _show_conclusion()
++		'challenge', 'pause': _close_overlay()
+ 		'dialog': _close_overlay()
+ 		'conclusion': _return_to_menu()
+ 
+@@ -491,6 +492,10 @@
+ 
+ func _close_overlay() -> void:
+ 	_modal_serial += 1
++	for child in modal_content.get_children():
++		modal_content.remove_child(child)
++		child.queue_free()
++	challenge = null
+ 	_overlay.hide()
+ 	overlay_kind = ''
+ 	_release_focus_modes()
+--- avant/tools/check_close.py
++++ après/tools/check_close.py
+@@ -45,8 +45,12 @@
+         environment = os.environ.copy()
+         for key, folder in (("XDG_DATA_HOME", "xdg-data"), ("XDG_CONFIG_HOME", "xdg-config"), ("XDG_CACHE_HOME", "xdg-cache")):
+             environment[key] = str(runtime / folder)
+-        version = subprocess.check_output([args.godot, "--version"], cwd=project, env=environment, text=True, timeout=15).strip()
+-        if not version.startswith("4.6.3."):
++        try:
++            version = subprocess.check_output([args.godot, "--version"], cwd=project, env=environment, text=True, timeout=15).strip()
++        except (OSError, subprocess.SubprocessError) as error:
++            print("Version Godot impossible à lire : " + str(error))
++            return 1
++        if not version.startswith("4.6.3.stable."):
+             raise SystemExit("Godot 4.6.3 requis : " + version)
+         for case in cases:
+             fixture = runtime / case
+@@ -62,6 +66,9 @@
+                 if isinstance(output, bytes): output = output.decode("utf-8", errors="replace")
+                 output += "\nCLOSE FAIL : application did not close within 30 seconds.\n"
+                 status = 124
++            except OSError as error:
++                output = "CLOSE FAIL : moteur impossible à lancer : " + str(error)
++                status = 127
+             errors = []
+             ready = re.search(r"^CLOSE_READY " + re.escape(case) + r" : (\d+) assertions, 0 échec\(s\)\.", output, re.MULTILINE)
+             if status != 0: errors.append("code de sortie " + str(status))
+--- avant/tools/run_acceptance.py
++++ après/tools/run_acceptance.py
+@@ -17,6 +17,7 @@
+ import subprocess
+ import sys
+ import tempfile
++from test_support import unexpected_engine_errors
+ 
+ 
+ def main() -> int:
+@@ -45,7 +46,7 @@
+         except (OSError, subprocess.SubprocessError) as error:
+             print(f"Version Godot impossible à lire : {error}", file=sys.stderr)
+             return 1
+-        if not engine_version.startswith("4.6.3."):
++        if not engine_version.startswith("4.6.3.stable."):
+             print(f"Godot 4.6.3 requis pour cette recette ; version reçue : {engine_version}", file=sys.stderr)
+             return 1
+         print(f"Godot : {engine_version}", flush=True)
+@@ -55,6 +56,8 @@
+                 ("business", "tests/run_tests.gd", []),
+                 ("investigation", "tests/investigation_tests.gd", []),
+                 ("controllers", "tests/controller_tests.gd", []),
++                ("audit_regressions", "tests/audit_regressions.gd", []),
++                ("audit_validation", "tests/audit_validation.gd", []),
+                 ("native_ui", "tests/ui_smoke.gd", []),
+                 ("stability", "tests/stability_tests.gd", []),
+             ]
+@@ -74,12 +77,14 @@
+                     partial = partial.decode("utf-8", errors="replace")
+                 output = partial + "\n" + str(error)
+                 status = 124
+-            bad_log = bool(re.search(r"(?:SCRIPT ERROR:|Parse Error:|^[ÉE]CHEC(?:\s+UI)?\s*:|\b[1-9]\d* échec\(s\))", output, re.MULTILINE))
++            bad_log = bool(unexpected_engine_errors(output, name in ("business", "stability"))) or bool(re.search(r"(?:SCRIPT ERROR:|Parse Error:|^[ÉE]CHEC(?:\s+UI)?\s*:|\b[1-9]\d* échec\(s\))", output, re.MULTILINE))
+             summary_prefix = {
+                 "business": "Résultat :",
+                 "investigation": "Résultat enquête :",
+                 "native_ui": "UI :",
+                 "controllers": "CONTROLLERS :",
++                "audit_regressions": "AUDIT_REGRESSIONS :",
++                "audit_validation": "AUDIT_VALIDATION :",
+                 "stability": "STABILITY :",
+             }.get(name, "PROCESS_PERSISTENCE " + name.removeprefix("persistence_") + " :")
+             finished = bool(re.search(r"^" + re.escape(summary_prefix) + r" \d+ assertions, 0 échec\(s\)\.", output, re.MULTILINE))
+--- avant/tools/export.sh
++++ après/tools/export.sh
+@@ -2,6 +2,7 @@
+ set -euo pipefail
+ project_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+ godot_bin="${GODOT_BIN:-godot}"
++source "$project_dir/tools/godot_checked.sh"
+ engine_version="$("$godot_bin" --version)"
+ if [[ "$engine_version" != 4.6.3.stable.* ]]; then
+   printf 'Godot 4.6.3 stable requis ; version reçue : %s\n' "$engine_version" >&2
+@@ -19,6 +20,17 @@
+   exit 2
+ fi
+ mkdir -p -- "$project_dir/builds/$(dirname -- "$target")"
+-"$godot_bin" --headless --path "$project_dir" --import
+-"$godot_bin" --headless --path "$project_dir" "--export-$mode" "$preset" "$project_dir/builds/$target"
++run_godot_checked "$godot_bin" --headless --path "$project_dir" --import
++# Write to a new path: an old executable cannot be mistaken for this export.
++export_staging_dir="$(mktemp -d "$project_dir/builds/$(dirname -- "$target")/.export.XXXXXX")"
++trap 'rm -rf -- "$export_staging_dir"' EXIT
++export_staging_path="$export_staging_dir/$(basename -- "$target")"
++run_godot_checked "$godot_bin" --headless --path "$project_dir" "--export-$mode" "$preset" "$export_staging_path"
++if [[ ! -s "$export_staging_path" ]]; then
++  printf '%s\n' 'Export refusé : aucun exécutable produit.' >&2
++  exit 1
++fi
++for export_file in "$export_staging_dir"/*; do
++  mv -- "$export_file" "$project_dir/builds/$(dirname -- "$target")/"
++done
+ printf 'Export créé : %s/builds/%s\n' "$project_dir" "$target"
+--- avant/tools/package_source.py
++++ après/tools/package_source.py
+@@ -1,18 +1,52 @@
+ #!/usr/bin/env python3
+-"""Archive the local Godot project, excluding imports and all player data."""
++"""Archive project sources without following symlinks or including player data."""
+ from pathlib import Path
++from tempfile import NamedTemporaryFile
+ from zipfile import ZIP_DEFLATED, ZipFile
++import os
+ 
+-project = Path(__file__).resolve().parents[1]
+-output = project / 'builds' / 'console-ciel-source.zip'
+-folders = ('scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools')
+-root_files = ('project.godot', 'default_bus_layout.tres', 'export_presets.cfg', 'README.md', '.gitignore')
+-files = [project / name for name in root_files]
+-for name in folders:
+-    files.extend(path for path in (project / name).rglob('*') if path.is_file() and '__pycache__' not in path.parts)
+-output.parent.mkdir(parents=True, exist_ok=True)
+-with ZipFile(output, 'w', compression=ZIP_DEFLATED) as archive:
+-    for path in sorted(set(files)):
+-        archive.write(path, 'console-ciel/' + path.relative_to(project).as_posix())
+-    assert archive.testzip() is None
+-print(f'{len(files)} fichiers : {output} ({output.stat().st_size} octets)')
++FOLDERS = ('scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools')
++ROOT_FILES = ('project.godot', 'default_bus_layout.tres', 'export_presets.cfg', 'README.md', '.gitignore')
++
++def create_archive(project: Path, output: Path) -> int:
++    project = project.resolve()
++    for parent in (output, *output.parents):
++        if parent.is_symlink():
++            raise ValueError(f'Lien symbolique refusé pour la sortie : {parent}')
++        if parent == project:
++            break
++    files = []
++    for name in ROOT_FILES:
++        path = project / name
++        if path.is_symlink() or not path.is_file():
++            raise ValueError(f'Source absente ou liée : {path}')
++        files.append(path)
++    for name in FOLDERS:
++        folder = project / name
++        if folder.is_symlink() or not folder.is_dir():
++            raise ValueError(f'Dossier source absent ou lié : {folder}')
++        for directory, dirs, names in os.walk(folder, followlinks=False):
++            for entry in [*dirs, *names]:
++                if (Path(directory) / entry).is_symlink():
++                    raise ValueError(f'Lien symbolique refusé : {Path(directory) / entry}')
++            dirs[:] = [name for name in dirs if name != '__pycache__']
++            files.extend(Path(directory) / name for name in names)
++    output.parent.mkdir(parents=True, exist_ok=True)
++    with NamedTemporaryFile(dir=output.parent, suffix='.zip.tmp', delete=False) as staging:
++        staging_path = Path(staging.name)
++    try:
++        with ZipFile(staging_path, 'w', compression=ZIP_DEFLATED) as archive:
++            for path in sorted(set(files)):
++                archive.write(path, 'console-ciel/' + path.relative_to(project).as_posix())
++            if archive.testzip() is not None:
++                raise ValueError('Vérification CRC de l’archive échouée.')
++        os.replace(staging_path, output)
++    finally:
++        staging_path.unlink(missing_ok=True)
++    return len(files)
++
++if __name__ == '__main__':
++    project = Path(__file__).resolve().parents[1]
++    output = project / 'builds' / 'console-ciel-source.zip'
++    count = create_archive(project, output)
++    print(f'{count} fichiers : {output} ({output.stat().st_size} octets)')
+--- avant/tools/run_demo.sh
++++ après/tools/run_demo.sh
+@@ -4,6 +4,7 @@
+ 
+ project_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+ godot_bin="${GODOT_BIN:-godot}"
++source "$project_dir/tools/godot_checked.sh"
+ demo_runtime_dir="$project_dir/builds/demo-runtime"
+ prepare_only=false
+ prepare_args=()
+@@ -74,7 +75,17 @@
+ export XDG_CONFIG_HOME="$demo_runtime_dir/config"
+ export XDG_CACHE_HOME="$demo_runtime_dir/cache"
+ mkdir -p -- "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+-"$godot_bin" --headless --path "$project_dir" --script res://tools/prepare_demo.gd -- --output "$demo_runtime_dir" "${prepare_args[@]}"
++# The descriptor survives exec so one demo cannot overwrite another session.
++if ! command -v flock >/dev/null 2>&1; then
++  printf '%s\n' 'flock (util-linux) est requis pour protéger la session de démonstration.' >&2
++  exit 1
++fi
++exec {demo_lock_fd}>"$demo_runtime_dir/.launch.lock"
++if ! flock -n "$demo_lock_fd"; then
++  printf '%s\n' 'Une démonstration utilise déjà cette racine. Fermez-la avant de préparer ou relancer.' >&2
++  exit 1
++fi
++run_godot_checked "$godot_bin" --headless --path "$project_dir" --script res://tools/prepare_demo.gd -- --output "$demo_runtime_dir" "${prepare_args[@]}"
+ if "$prepare_only"; then
+   exit 0
+ fi
+--- avant/docs/RASPBERRY_PI.md
++++ après/docs/RASPBERRY_PI.md
+@@ -32,7 +32,9 @@
+ Copier les fichiers de l'export dans un nouveau dossier de version. Si ce dossier existe déjà, choisir un autre nom de livraison au lieu d'écraser son contenu. Ces commandes sont des opérations manuelles à réaliser sur le Pi ; elles n'ont pas été exécutées par le projet sur la machine de développement :
+ 
+ ```sh
+-mkdir -p "$HOME/Applications/console-ciel/releases/0.3.0"
++set -e
++mkdir -p "$HOME/Applications/console-ciel/releases"
++mkdir "$HOME/Applications/console-ciel/releases/0.3.0"
+ # Après copie du binaire et des fichiers associés :
+ chmod +x "$HOME/Applications/console-ciel/releases/0.3.0/console-ciel.arm64"
+ ```
+@@ -75,9 +77,11 @@
+ Avant une mise à jour, fermer normalement l'application et sauvegarder ce dossier utilisateur. Exemple de copie datée, réalisée manuellement sous le compte utilisateur :
+ 
+ ```sh
++set -e
+ mkdir -p "$HOME/Backups/console-ciel"
+-cp -a "$HOME/.local/share/console-ciel" \
+-  "$HOME/Backups/console-ciel/avant-0.3.0"
++backup_dir="$HOME/Backups/console-ciel/avant-0.3.0"
++test ! -e "$backup_dir" && test ! -L "$backup_dir"
++cp -aT -- "$HOME/.local/share/console-ciel" "$backup_dir"
+ ```
+ 
+ Choisir un nom de copie inexistant pour préserver la sauvegarde précédente. Installer le nouvel export dans un autre dossier de `releases/`, le lancer explicitement, vérifier sélection du profil, reprise, achat, équipement et fermeture, puis modifier seulement `current`. Ne pas supprimer ni copier des données utilisateur dans le dossier du binaire.
+--- avant/docs/DEMONSTRATION.md
++++ après/docs/DEMONSTRATION.md
+@@ -10,7 +10,7 @@
+ ./tools/run_demo.sh
+ ```
+ 
+-Par défaut, les données sont dans `builds/demo-runtime/data/console-ciel/`, avec configuration et cache séparés. Le profil **CIEL Démo** est neuf, avec **0 point**. Relancer cette commande conserve son état. Les profils habituels de `~/.local/share/console-ciel/` ne sont pas utilisés.
++Par défaut, les données sont dans `builds/demo-runtime/data/console-ciel/`, avec configuration et cache séparés. Le profil **CIEL Démo** est neuf, avec **0 point**. Relancer cette commande conserve son état. Un verrou `flock` (util-linux) interdit deux préparations ou sessions utilisant simultanément cette même racine ; des racines distinctes restent indépendantes. Les profils habituels de `~/.local/share/console-ciel/` ne sont pas utilisés.
+ 
+ ```sh
+ # Préparer sans ouvrir de fenêtre :
+--- avant/docs/EXPORT.md
++++ après/docs/EXPORT.md
+@@ -7,10 +7,14 @@
+ Sur Linux, le dossier habituel est `~/.local/share/godot/export_templates/4.6.3.stable/`. Pour une installation isolée dans le dépôt sans écrire dans le HOME :
+ 
+ ```sh
+-mkdir -p .runtime-data/godot/export_templates/4.6.3.stable .runtime-cache
+-unzip /chemin/Godot_v4.6.3-stable_export_templates.tpz -d /tmp/ciel-templates
+-cp /tmp/ciel-templates/templates/* .runtime-data/godot/export_templates/4.6.3.stable/
+-XDG_DATA_HOME="$PWD/.runtime-data" XDG_CACHE_HOME="$PWD/.runtime-cache" tools/export.sh linux
++set -e
++models_tmp_dir="$(mktemp -d -t ciel-templates.XXXXXX)"
++trap 'rm -rf -- "$models_tmp_dir"' EXIT
++mkdir -p .runtime-data/godot/export_templates/4.6.3.stable .runtime-cache .runtime-config
++unzip /chemin/Godot_v4.6.3-stable_export_templates.tpz -d "$models_tmp_dir"
++cp -- "$models_tmp_dir"/templates/* .runtime-data/godot/export_templates/4.6.3.stable/
++XDG_DATA_HOME="$PWD/.runtime-data" XDG_CONFIG_HOME="$PWD/.runtime-config" \
++XDG_CACHE_HOME="$PWD/.runtime-cache" tools/export.sh linux
+ ```
+ 
+ Vérifier notamment `linux_release.x86_64`, `linux_debug.x86_64`, `linux_release.arm64`, `linux_debug.arm64` et les modèles Windows si l'on exporte cette cible. Ne pas commettre les modèles, caches ou données personnelles. Le dossier temporaire ne contient que les modèles de cet essai.
+@@ -37,7 +41,7 @@
+ tools/export.sh arm64 debug
+ ```
+ 
+-Le script vérifie la version, importe les ressources et lance l'export. Il échoue explicitement si Godot ou les modèles nécessaires manquent. `GODOT_BIN=/chemin/vers/godot` permet de choisir l'éditeur.
++Le script vérifie la version, importe les ressources et lance l'export. Il refuse aussi les erreurs de script même si Godot retourne 0 et vérifie qu’un nouveau binaire non vide a été produit. Un export échoué conserve le binaire précédent. Les erreurs de socket de l’éditeur dans un environnement restreint font également échouer cet outil ; le journal indique leur cause. `GODOT_BIN=/chemin/vers/godot` permet de choisir l'éditeur.
+ 
+ Depuis l'éditeur : Projet → Exporter, sélectionner le preset, vérifier l'architecture, exporter en désactivant « Exporter avec débogage » pour une livraison. Ne pas confondre ARM64 avec x86_64 ou ARM32.
+ 
+--- avant/docs/TESTS.md
++++ après/docs/TESTS.md
+@@ -15,10 +15,10 @@
+ Si le dossier personnel est en lecture seule, donner à Godot des répertoires de travail isolés :
+ 
+ ```sh
+-XDG_DATA_HOME=/workspace/.runtime-data \
+-XDG_CONFIG_HOME=/workspace/.runtime-config \
+-XDG_CACHE_HOME=/workspace/.runtime-cache \
+-godot --headless --path /workspace --script res://tests/investigation_tests.gd
++XDG_DATA_HOME="$PWD/.runtime-data" \
++XDG_CONFIG_HOME="$PWD/.runtime-config" \
++XDG_CACHE_HOME="$PWD/.runtime-cache" \
++godot --headless --path "$PWD" --script res://tests/investigation_tests.gd
+ ```
+ 
+ Une suite retourne `1` en cas d'échec, `0` si ses assertions réussissent. Une sortie `0` seule ne remplace pas la lecture du journal : une erreur de script Godot doit également être repérée.

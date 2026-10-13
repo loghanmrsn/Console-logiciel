@@ -1,0 +1,149 @@
+Import du projet...
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] _update_scan_actions | Started Scanning actions... (6 steps)
+[   0% ] _update_scan_actions | boutique_1280x720_normal.png
+[  14% ] _update_scan_actions | creation_1280x720.png
+[  28% ] _update_scan_actions | demarrage.png
+[  42% ] _update_scan_actions | menu_1280x720_normal.png
+[  57% ] _update_scan_actions | parametres_1280x720_normal.png
+[  71% ] _update_scan_actions | profils_1280x720_normal.png
+[ DONE ] _update_scan_actions
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+
+Export Windows x86_64...
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] _update_scan_actions | Started Scanning actions... (7 steps)
+[   0% ] _update_scan_actions | defi_1280x720_normal.png
+[  12% ] _update_scan_actions | dialogue_1280x720_normal.png
+[  25% ] _update_scan_actions | enquete_1280x720_normal.png
+[  37% ] _update_scan_actions | inventaire_1280x720_normal.png
+[  50% ] _update_scan_actions | menu_1280x720_grand_opaque.png
+[  62% ] _update_scan_actions | pause_1280x720_normal.png
+[  75% ] _update_scan_actions | profils_1280x720_grand_opaque.png
+[ DONE ] _update_scan_actions
+
+[   0% ] savepack | Started Packing (102 steps)
+[   1% ] savepack | Storing File: res://.godot/imported/confirm.wav-f384b89b03be0f4c54dea669aece985b.sample
+[   1% ] savepack | Storing File: res://assets/audio/confirm.wav.import
+[   3% ] savepack | Storing File: res://.godot/imported/menu.wav-de54ed9cbf594325d64fc7b093374005.sample
+[   3% ] savepack | Storing File: res://assets/audio/menu.wav.import
+[   5% ] savepack | Storing File: res://assets/licenses/GODOT_LICENSE_TEXTS.json
+[   7% ] savepack | Storing File: res://assets/licenses/GODOT_THIRD_PARTY.json
+[   9% ] savepack | Storing File: res://.godot/imported/console.svg-1ee0be9bbd6f0ccf4b5e99e78625c6e7.ctex
+[   9% ] savepack | Storing File: res://assets/console.svg.import
+[  11% ] savepack | Storing File: res://scripts/ui/startup_panel.gdc
+[  13% ] savepack | Storing File: res://.godot/exported/133200997/export-3d0be3949fcba8ed0f83d816dc760758-demo_game.scn
+[  15% ] savepack | Storing File: res://assets/LICENSES.md
+[  17% ] savepack | Storing File: res://scripts/ui/profile_card.gdc
+[  19% ] savepack | Storing File: res://data/controller_mapping.json
+[  21% ] savepack | Storing File: res://data/game_rules.json
+[  23% ] savepack | Storing File: res://data/shop_catalog.json
+[  25% ] savepack | Storing File: res://scripts/services/reward_service.gdc
+[  27% ] savepack | Storing File: res://scripts/ui/main.gdc
+[  29% ] savepack | Storing File: res://scripts/services/platform_service.gdc
+[  31% ] savepack | Storing File: res://scripts/ui/product_card.gdc
+[  33% ] savepack | Storing File: res://scripts/input_setup.gdc
+[  34% ] savepack | Storing File: res://scripts/ui/theme_factory.gdc
+[  36% ] savepack | Storing File: res://scripts/ui/virtual_keyboard.gdc
+[  38% ] savepack | Storing File: res://.godot/exported/133200997/export-9bb02b5c7b6edcdb6d8b9659f486990f-startup.scn
+[  40% ] savepack | Storing File: res://scripts/game/interactable.gdc
+[  42% ] savepack | Storing File: res://scripts/game/demo_game.gdc
+[  44% ] savepack | Storing File: res://.godot/exported/133200997/export-0eb8574bb7fd6477440fed68fa7911c4-investigation_world.scn
+[  46% ] savepack | Storing File: res://scripts/ui/translucent_button.gdc
+[  48% ] savepack | Storing File: res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+[  50% ] savepack | Storing File: res://scripts/ui/notification.gdc
+[  52% ] savepack | Storing File: res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+[  54% ] savepack | Storing File: res://scripts/ui/enquiry_art.gdc
+[  56% ] savepack | Storing File: res://scripts/services/app_state.gdc
+[  58% ] savepack | Storing File: res://scripts/services/investigation_service.gdc
+[  60% ] savepack | Storing File: res://scripts/ui/setting_row.gdc
+[  62% ] savepack | Storing File: res://assets/licenses/OFL-1.1.txt
+[  64% ] savepack | Storing File: res://scripts/services/profile_service.gdc
+[  66% ] savepack | Storing File: res://scripts/services/controller_service.gdc
+[  67% ] savepack | Storing File: res://scripts/ui/avatar_icon.gdc
+[  69% ] savepack | Storing File: res://scripts/ui/confirmation_dialog.gdc
+[  71% ] savepack | Storing File: res://scripts/services/settings_service.gdc
+[  73% ] savepack | Storing File: res://.godot/exported/133200997/export-088e461bfc6d856aee27a936aca65a48-console_theme.res
+[  75% ] savepack | Storing File: res://scripts/game/circuit_diagram.gdc
+[  77% ] savepack | Storing File: res://scripts/services/save_service.gdc
+[  79% ] savepack | Storing File: res://scripts/game/investigation_world.gdc
+[  81% ] savepack | Storing File: res://scripts/services/scene_router.gdc
+[  83% ] savepack | Storing File: res://scripts/services/shop_service.gdc
+[  85% ] savepack | Storing File: res://assets/licenses/CC0.txt
+[  87% ] savepack | Storing File: res://scripts/game/player.gdc
+[  89% ] savepack | Storing File: res://scripts/ui/input_monitor.gdc
+[  91% ] savepack | Storing File: res://scripts/ui/diagnostics_panel.gdc
+[  93% ] savepack | Storing File: res://assets/licenses/GODOT_MIT.txt
+[  95% ] savepack | Storing File: res://scripts/game/challenge_panel.gdc
+[  97% ] savepack | Storing File: res://scripts/ui/joy_navigation.gdc
+[  97% ] savepack | Storing File: res://scripts/ui/startup_panel.gd.remap
+[  97% ] savepack | Storing File: res://scenes/demo_game.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/ui/profile_card.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/reward_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/main.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/platform_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/product_card.gd.remap
+[  97% ] savepack | Storing File: res://scripts/input_setup.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/theme_factory.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/virtual_keyboard.gd.remap
+[  97% ] savepack | Storing File: res://scenes/startup.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/game/interactable.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/demo_game.gd.remap
+[  97% ] savepack | Storing File: res://scenes/investigation_world.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/ui/translucent_button.gd.remap
+[  97% ] savepack | Storing File: res://scenes/main.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/ui/notification.gd.remap
+[  97% ] savepack | Storing File: res://default_bus_layout.tres.remap
+[  97% ] savepack | Storing File: res://scripts/ui/enquiry_art.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/app_state.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/investigation_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/setting_row.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/profile_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/controller_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/avatar_icon.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/confirmation_dialog.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/settings_service.gd.remap
+[  97% ] savepack | Storing File: res://themes/console_theme.tres.remap
+[  97% ] savepack | Storing File: res://scripts/game/circuit_diagram.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/save_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/investigation_world.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/scene_router.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/shop_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/player.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/input_monitor.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/diagnostics_panel.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/challenge_panel.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/joy_navigation.gd.remap
+[  97% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  97% ] savepack | Storing File: res://assets/console.svg
+[  97% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  97% ] savepack | Storing File: res://project.binary
+[ DONE ] savepack
+
+
+Archive prête : /workspace/builds/Console_CIEL_Windows_x86_64_finition_0.3.1.zip

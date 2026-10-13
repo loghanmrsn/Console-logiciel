@@ -1,0 +1,5 @@
+CLOSE apply : 23 assertions, 0 échec(s).
+CLOSE discard : 23 assertions, 0 échec(s).
+CLOSE failure_retry : 28 assertions, 0 échec(s).
+CLOSE failure_cancel : 31 assertions, 0 échec(s).
+Fermeture réelle : 105 assertions, 0 échec(s).

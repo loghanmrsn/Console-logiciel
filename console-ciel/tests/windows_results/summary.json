@@ -1,0 +1,80 @@
+{
+  "verified_at_utc": "2026-10-12T20:29:00.877727+00:00",
+  "application_version": "0.3.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "export_windows_release_succeeded": true,
+  "powershell_exporter_actual_export_succeeded": true,
+  "archive": {
+    "path": "builds/Console_CIEL_Windows_x86_64.zip",
+    "bytes": 36455773,
+    "sha256": "4a09d53550b152d9bf7fdc618c5130a170ccb4fc63d1f99443b5c2b9b2b47739",
+    "crc_valid": true,
+    "entries": [
+      "LIRE_MOI.txt",
+      "Console_CIEL.exe",
+      "assets/LICENSES.md",
+      "assets/licenses/OFL-1.1.txt",
+      "assets/licenses/GODOT_LICENSE_TEXTS.json",
+      "assets/licenses/GODOT_MIT.txt",
+      "assets/licenses/CC0.txt",
+      "assets/licenses/GODOT_THIRD_PARTY.json"
+    ]
+  },
+  "embedded_pack_files": 95,
+  "tests": [
+    {
+      "name": "source_acceptance",
+      "assertions": 3694,
+      "ok": true,
+      "log": "acceptance/summary.json"
+    },
+    {
+      "name": "closure",
+      "assertions": 105,
+      "ok": true,
+      "log": "close-run.log"
+    },
+    {
+      "name": "pack",
+      "assertions": 47,
+      "ok": true,
+      "log": "embedded-pack-tests.log"
+    },
+    {
+      "name": "contracts",
+      "assertions": 16,
+      "ok": true,
+      "log": "contracts.log"
+    },
+    {
+      "name": "powershell_exporter",
+      "assertions": 22,
+      "ok": true,
+      "log": "powershell-regressions.log"
+    },
+    {
+      "name": "native_compilation",
+      "assertions": 148,
+      "ok": true,
+      "log": "static/godot-project-context.log"
+    },
+    {
+      "name": "other_tool_regressions",
+      "assertions": 16,
+      "ok": true,
+      "log": "audit-tools.log"
+    }
+  ],
+  "all_passed": true,
+  "test_data_isolated": true,
+  "windows_native_run_tested": false,
+  "graphical_render_tested": false,
+  "physical_usb_controller_tested": false,
+  "raspberry_pi_hardware_tested": false,
+  "limits": [
+    "Tests executed with Linux Godot headless and PowerShell 7.4.13.",
+    "PCK loaded from the actual Windows EXE by the Linux engine; Windows machine code not executed.",
+    "Windows PowerShell 5.1, double-click, rendering, fullscreen, audio and USB remain manual checks.",
+    "Linux ARM64 preset preserved; Linux templates remain unavailable."
+  ]
+}

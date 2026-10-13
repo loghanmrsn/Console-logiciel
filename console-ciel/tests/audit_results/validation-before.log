@@ -1,0 +1,171 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 0, "initial_state"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 0, "initial_state"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 0, "initial_state"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "initial_state"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "initial_state"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "initial_state"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "diagnosis"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "diagnosis"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "diagnosis"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "repair"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "repair"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:190)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:190)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 1, "solution", "repair"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "initial_state"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "initial_state"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:160)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:160)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "initial_state"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "cause"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "cause"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "cause"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "correction"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "correction"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_rules (res://scripts/services/save_service.gd:193)
+          GDScript backtrace (most recent call first):
+              [0] validate_rules (res://scripts/services/save_service.gd:193)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:38)
+AUDIT_VALIDATION_FAIL rules ["missions", 2, "solution", "correction"] poison={  }
+SCRIPT ERROR: Invalid operands 'bool' and 'String' in operator '!='.
+          at: validate_profile (res://scripts/services/save_service.gd:290)
+          GDScript backtrace (most recent call first):
+              [0] validate_profile (res://scripts/services/save_service.gd:290)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:39)
+AUDIT_VALIDATION_FAIL profile ["progress", "room_id"] poison=false
+SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '!='.
+          at: validate_profile (res://scripts/services/save_service.gd:290)
+          GDScript backtrace (most recent call first):
+              [0] validate_profile (res://scripts/services/save_service.gd:290)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:39)
+AUDIT_VALIDATION_FAIL profile ["progress", "room_id"] poison=[]
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'String' in operator '!='.
+          at: validate_profile (res://scripts/services/save_service.gd:290)
+          GDScript backtrace (most recent call first):
+              [0] validate_profile (res://scripts/services/save_service.gd:290)
+              [1] probe (res://tests/audit_validation.gd:24)
+              [2] _run (res://tests/audit_validation.gd:39)
+AUDIT_VALIDATION_FAIL profile ["progress", "room_id"] poison={  }
+AUDIT_VALIDATION : 1160 assertions, 24 échec(s).

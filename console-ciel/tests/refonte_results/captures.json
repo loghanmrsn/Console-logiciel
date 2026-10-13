@@ -1,0 +1,514 @@
+{
+	"captures": [
+		{
+			"file": "res://docs/screenshots/refonte/apres/creation_1280x720.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/navigation_focus_1280x720.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/menu_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/profils_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/parametres_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/boutique_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/inventaire_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/enquete_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/interaction_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/objectifs_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/pause_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/dialogue_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/defi_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/eclairage_retabli_1280x720.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/porte_ouverte_1280x720.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1920x1080_normal.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1920x1080_grand_opaque.png",
+			"height": 1080,
+			"width": 1920
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1280x720_normal.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1280x720_grand_opaque.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1024x600_normal.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_1024x600_grand_opaque.png",
+			"height": 600,
+			"width": 1024
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_800x480_normal.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/conclusion_800x480_grand_opaque.png",
+			"height": 480,
+			"width": 800
+		},
+		{
+			"file": "res://docs/screenshots/refonte/apres/confirmation_1280x720.png",
+			"height": 720,
+			"width": 1280
+		}
+	],
+	"display": "X11",
+	"failures": 0,
+	"isolated_data": "user://tests/refonte_review",
+	"physical_controller_tested": false,
+	"renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

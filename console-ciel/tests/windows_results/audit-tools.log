@@ -1,0 +1,17 @@
+OK Archive normale valide
+OK Lien source refusé, archive précédente et cible conservées
+OK Lien de sortie refusé
+OK Échec import_error ne remplace pas le binaire et ne signale pas succès
+OK Échec export_error ne remplace pas le binaire et ne signale pas succès
+OK Échec empty ne remplace pas le binaire et ne signale pas succès
+OK Export réussi avec chemins contenant des espaces
+OK Répertoire de préparation nettoyé
+OK Version rc refusée
+OK Erreur de préparation empêche le lancement graphique
+OK Double préparation de la même racine refusée
+OK Verrou libéré après fermeture
+OK Erreur moteur générique détectée même sans erreur de script
+OK Corruption volontaire uniquement dans la copie de test reconnue
+OK Erreur hors copie de test jamais masquée
+OK Moteur absent produit un diagnostic exploitable
+AUDIT_TOOLS : 16 assertions, 0 échec(s).

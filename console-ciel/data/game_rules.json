@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "investigation_version": 1,
+  "mission_reward_max": 150,
+  "missions": [
+    {
+      "id": "lighting",
+      "name": "Rétablir l'éclairage",
+      "title": "Rétablir l'éclairage",
+      "description": "Former une boucle fermée dans une simulation fictive en très basse tension.",
+      "prerequisites": [],
+      "initial_state": "available",
+      "reward": 50,
+      "observations": [],
+      "checks": [],
+      "connections": [
+        {
+          "id": "source_switch",
+          "label": "Source → interrupteur"
+        },
+        {
+          "id": "switch_lamp",
+          "label": "Interrupteur → lampe"
+        },
+        {
+          "id": "lamp_return",
+          "label": "Lampe → retour source"
+        },
+        {
+          "id": "source_lamp",
+          "label": "Source → lampe sans interrupteur"
+        },
+        {
+          "id": "switch_return",
+          "label": "Interrupteur → retour sans lampe"
+        }
+      ],
+      "solution": {
+        "connections": [
+          "source_switch",
+          "switch_lamp",
+          "lamp_return"
+        ]
+      },
+      "clue": {
+        "id": "badge_note",
+        "text": "Indice révélé : le badge est reconnu par le lecteur de la porte. Vérifie séparément l'alimentation et la commande."
+      },
+      "success_explanation": "Le courant peut circuler dans une boucle fermée : source → interrupteur → lampe → retour à la source. L'interrupteur contrôle le passage dans cette boucle. Cette activité est une simulation fictive en très basse tension, jamais une consigne de câblage secteur."
+    },
+    {
+      "id": "lock",
+      "name": "Débloquer la porte du bureau",
+      "title": "Débloquer la porte du bureau",
+      "description": "Distinguer alimentation, reconnaissance du badge et signal de commande.",
+      "prerequisites": [
+        "lighting"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "badge",
+          "title": "Lecteur de badge",
+          "text": "Le lecteur affiche « Badge reconnu ». La reconnaissance du badge fonctionne."
+        },
+        {
+          "id": "power",
+          "title": "Alimentation fictive",
+          "text": "Le témoin de l'alimentation est actif et le diagnostic indique « Alimentation correcte ». Ce circuit fictif reçoit de l'énergie."
+        },
+        {
+          "id": "command",
+          "title": "Actionneur",
+          "text": "L'actionneur indique « Aucune commande reçue » après le passage du badge. Il n'ouvre pas la porte."
+        },
+        {
+          "id": "link",
+          "title": "Liaison de commande",
+          "text": "Dans la simulation, la liaison entre le lecteur et l'actionneur est déconnectée. Le signal ne peut pas atteindre l'actionneur."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "power_fault",
+          "label": "Alimentation absente",
+          "feedback": "L'observation de l'alimentation la signale correcte. Le problème vient du trajet de la commande, pas de l'énergie disponible."
+        },
+        {
+          "id": "badge_fault",
+          "label": "Badge non reconnu",
+          "feedback": "Le lecteur confirme « Badge reconnu ». Cherche pourquoi ce lecteur ne transmet pas sa commande à l'actionneur."
+        },
+        {
+          "id": "control_link",
+          "label": "Liaison de commande déconnectée",
+          "feedback": "Le lecteur reconnaît le badge, mais la commande n'arrive pas à l'actionneur : la liaison est interrompue."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "replace_power",
+          "label": "Remplacer l'alimentation",
+          "feedback": "L'alimentation est déjà correcte. La remplacer ne reconnecte pas le trajet du signal de commande."
+        },
+        {
+          "id": "reconnect_control",
+          "label": "Reconnecter la commande",
+          "feedback": "La reconnexion virtuelle rétablit le trajet entre le lecteur et l'actionneur."
+        },
+        {
+          "id": "change_badge",
+          "label": "Changer de badge",
+          "feedback": "Le badge actuel est reconnu. Changer de badge ne répare pas une liaison déconnectée."
+        }
+      ],
+      "solution": {
+        "diagnosis": "control_link",
+        "repair": "reconnect_control"
+      },
+      "clue": {
+        "id": "video_note",
+        "text": "Indice du bureau : l'ordinateur démarre, mais l'écran affiche « Aucun signal ». Observe avant de conclure."
+      },
+      "success_explanation": "L'alimentation fournit l'énergie ; la commande transmet l'ordre d'ouverture. Ici l'énergie et le badge étaient corrects, mais la liaison de commande était interrompue. La reconnexion virtuelle transmet à nouveau l'ordre à l'actionneur et ouvre la porte fictive."
+    },
+    {
+      "id": "computer",
+      "name": "Diagnostiquer l'ordinateur",
+      "title": "Diagnostiquer l'ordinateur",
+      "description": "Observer les symptômes, vérifier les liaisons puis corriger la cause identifiée.",
+      "prerequisites": [
+        "lock"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "pc",
+          "title": "Unité centrale",
+          "text": "Le témoin de l'unité centrale s'allume et son ventilateur tourne. Elle semble démarrer ; cela ne prouve pas encore que l'image arrive à l'écran."
+        },
+        {
+          "id": "display",
+          "title": "Écran",
+          "text": "Le témoin de l'écran est actif. Son alimentation est présente."
+        },
+        {
+          "id": "no_signal",
+          "title": "Message affiché",
+          "text": "L'écran affiche « Aucun signal ». Il ne reçoit pas de signal vidéo exploitable ; ce message ne signifie pas qu'il n'a plus d'alimentation."
+        }
+      ],
+      "checks": [
+        {
+          "id": "power",
+          "title": "Vérifier les alimentations",
+          "text": "Les alimentations de l'écran et de l'unité centrale sont présentes. Une panne d'alimentation n'explique pas les observations."
+        },
+        {
+          "id": "video",
+          "title": "Inspecter la liaison vidéo",
+          "text": "Le câble vidéo de la simulation est débranché à l'arrière de l'écran. La liaison entre l'unité centrale et l'écran est interrompue."
+        }
+      ],
+      "causes": [
+        {
+          "id": "screen_power",
+          "label": "Écran non alimenté",
+          "feedback": "Le témoin actif et le message visible montrent que l'écran est alimenté. Vérifie plutôt la liaison vidéo."
+        },
+        {
+          "id": "network_fault",
+          "label": "Connexion réseau absente",
+          "feedback": "Un réseau déconnecté n'empêche pas un ordinateur d'envoyer son image à un écran. La panne observée concerne le signal vidéo local."
+        },
+        {
+          "id": "video_disconnected",
+          "label": "Câble vidéo débranché",
+          "feedback": "La vérification de la liaison révèle le câble débranché, ce qui explique « Aucun signal »."
+        }
+      ],
+      "corrections": [
+        {
+          "id": "reset_network",
+          "label": "Réinitialiser le réseau fictif",
+          "feedback": "Le réseau ne transporte pas l'image de cette liaison locale. Cette action ne corrige pas le câble vidéo débranché."
+        },
+        {
+          "id": "reconnect_video",
+          "label": "Rebrancher le câble vidéo virtuel",
+          "feedback": "Le signal vidéo retrouve un chemin entre l'unité centrale et l'écran."
+        },
+        {
+          "id": "replace_screen",
+          "label": "Remplacer l'écran",
+          "feedback": "L'écran est alimenté et signale correctement l'absence de vidéo. Commence par rétablir la liaison trouvée débranchée."
+        }
+      ],
+      "solution": {
+        "checks": [
+          "video",
+          "power"
+        ],
+        "cause": "video_disconnected",
+        "correction": "reconnect_video"
+      },
+      "clue": {
+        "id": "incident_message",
+        "text": "Message retrouvé : « Pendant le rangement du local, le circuit pédagogique est resté ouvert, la liaison de commande a été déconnectée et le câble vidéo oublié. Rien n'a été piraté : trois liaisons interrompues expliquent l'incident. Merci d'avoir observé puis vérifié chaque cause. »"
+      },
+      "success_explanation": "Observe, vérifie puis conclus. « Aucun signal » concernait la liaison vidéo, alors que l'écran et l'unité centrale étaient alimentés. Le câble virtuel rebranché rétablit l'image. Une hypothèse doit être soutenue par des observations, pas choisie au hasard."
+    }
+  ]
+}

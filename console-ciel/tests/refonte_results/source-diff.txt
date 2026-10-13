@@ -1,0 +1,1104 @@
+--- avant/README.md
++++ apres/README.md
+@@ -1,12 +1,12 @@
+ # Console CIEL — version intégrée de démonstration
+ 
+-Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.3.1**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
++Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.0**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
+ 
+-Finition du 13 octobre 2026 : [rendu réel, corrections et recette](docs/FINITION_VISUELLE.md). Captures Godot X11/Mesa disponibles dans `docs/screenshots/finition/`. Nouvelle archive Windows : `builds/Console_CIEL_Windows_x86_64_finition_0.3.1.zip`. Le ZIP Windows initial 0.3.0 est conservé sans modification.
++Refonte graphique **0.4.0** : [changements, captures avant/après et recette](docs/REFONTE_GRAPHIQUE.md). Navigation inférieure, grand accueil, atelier illustré, personnage animé et objectifs compacts. Captures réelles dans `docs/screenshots/refonte/`. Les versions Windows 0.3.0 et 0.3.1 sont conservées.
+ 
+ ## Lancer la version
+ 
+-**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_finition_0.3.1.zip](builds/Console_CIEL_Windows_x86_64_finition_0.3.1.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Ancien ZIP 0.3.0 conservé](builds/Console_CIEL_Windows_x86_64.zip).
++**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_refonte_0.4.0.zip](builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Ancien ZIP 0.3.0 conservé](builds/Console_CIEL_Windows_x86_64.zip).
+ 
+ Version exacte du moteur utilisée : `4.6.3.stable.official.7d41c59c4`, édition standard. Importer `project.godot` dans cet éditeur et appuyer sur **F5**, ou lancer depuis la racine du dépôt :
+ 
+@@ -19,7 +19,7 @@
+ 
+ Le démarrage affiche les étapes de chargement réelles, charge les réglages et les données, applique l'accessibilité puis ouvre la sélection du profil. Sans profil, il propose la création et un clavier virtuel utilisable sans clavier physique. Une erreur essentielle ouvre une page avec réessai ou récupération disponible ; aucune donnée défectueuse n'est effacée automatiquement.
+ 
+-Sélectionner un profil puis **Commencer / Nouvelle partie**. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](docs/ENQUETE.md).
++Sélectionner un profil puis **Commencer / Nouvelle partie**. La barre du bas donne accès à Accueil, Boutique, Profils, Paramètres et Aide. Haut/bas depuis les onglets rejoignent le contenu ; gauche/droite parcourent la barre. Elle est masquée pendant l’enquête. **Paramètres → Quitter l’application** ferme le logiciel. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](docs/ENQUETE.md).
+ 
+ Les manipulations sont des **simulations pédagogiques fictives**, avec observations, choix corrects, erreurs possibles et explications. Le circuit utilise une très basse tension virtuelle ; il ne constitue pas un tutoriel de câblage secteur. Aucun équipement, terminal ou réglage du système hôte n'est modifié.
+ 
+@@ -50,6 +50,8 @@
+ La manette active possède le plus petit identifiant Godot au démarrage, puis reste sélectionnée tant qu'elle est branchée. Son retrait met l'enquête en pause. Le clavier reste disponible ; la reconnexion ne reprend pas automatiquement les déplacements. Si plusieurs périphériques sont présents, consulter [les règles de contrôleur et le diagnostic](docs/ARCHITECTURE.md).
+ 
+ **Paramètres → Commandes → Test des commandes** affiche les noms, boutons et axes réellement reçus, la zone morte et l'état de repos du joystick. Le mapping USB HID du contrôleur fabriqué doit être mesuré sur le vrai matériel. Les numéros de boutons Godot ne prouvent pas la correspondance d'un périphérique futur.
++
++**Pause → Afficher les objectifs** développe la liste ; la même action permet de la masquer puis de reprendre. Le bouton d’interaction reste compact et affiche le nom de l’objet ciblé.
+ 
+ Les réglages comprennent volumes réels sur bus distincts, plein écran, texte agrandi, animations réduites, transparence réduite et zone morte. **Annuler** restaure les aperçus ; **Appliquer** persiste les valeurs. Le focus possède une bordure et les états disposent de textes explicites.
+ 
+@@ -82,7 +84,8 @@
+ | `data/game_rules.json` | Trois missions, prérequis, indices, réponses et récompenses configurables |
+ | `data/shop_catalog.json` | Dix cosmétiques, dont un avatar, un thème et un cadre gratuits |
+ | `data/controller_mapping.json` | Actions de manette configurables ; mapping standard à adapter après mesure USB HID |
+-| `scripts/ui/`, `themes/` | Composants réutilisables et thème partagé |
++| `scripts/ui/`, `themes/` | Thème, navigation persistante et aperçus de cosmétiques |
++| `assets/art/`, `scripts/game/room_art.gd`, `tools/generate_art.py` | 36 SVG originaux CC0, collection commune au décor et à l’accueil |
+ | `tests/`, [bilan de recette](docs/TESTS.md) | Tests isolés et résultats exécutés |
+ | `export_presets.cfg`, `tools/export.sh`, `tools/export_windows.ps1` | Export PC et Linux ARM64 ; PowerShell produit le ZIP Windows |
+ | `docs/windows/LIRE_MOI.txt`, [guide Windows](docs/WINDOWS.md) | Aide portable et réexport Windows avec les modèles exacts |
+@@ -101,6 +104,8 @@
+ godot --headless --path . --script res://tests/ui_smoke.gd
+ # Recette groupée, dont trois processus indépendants :
+ python3 tools/run_acceptance.py --log-dir tests/release_results
++# Barre inférieure et quatre résolutions (0.4.0) :
++godot --headless --path . --script res://tests/refonte_navigation.gd
+ # Navigation et politique des périphériques virtuels de test :
+ godot --headless --path . --script res://tests/controller_tests.gd
+ # Quatre fermetures réelles avec brouillon et erreur d'écriture :
+--- avant/assets/LICENSES.md
++++ apres/assets/LICENSES.md
+@@ -2,6 +2,7 @@
+ 
+ - **Loghan** : logiciel du projet scolaire ; **binôme — nom à compléter** : construction et assemblage. Établissement et promotion à compléter.
+ - **Graphismes et icônes locaux originaux** (`console.svg`, dessins GDScript d'avatars, enquête, cartes et interface) : créations de cette première version ; mise à disposition sous **CC0 1.0**. Aucun logo, capture ou ressource Apple repris. Voir `licenses/CC0.txt`.
++- **Collection atelier 0.4.0** (`art/world/`, `art/character/`, `art/icons/`) : **36 fichiers SVG originaux, CC0 1.0**, dessinés pour cette application avec `tools/generate_art.py`. Sols, murs, mobilier, états de porte/écran, personnage (quatre directions, trois poses) et cinq pictogrammes. Aucune ressource tierce téléchargée. Les captures dans `docs/screenshots/refonte/` proviennent du jeu Godot exécuté ; ce ne sont pas des illustrations de maquette.
+ - **Sons WAV locaux originaux**, lorsqu'ils sont présents dans `assets/audio/` : synthèse créée pour cette première version ; **CC0 1.0**. Aucun extrait musical propriétaire. Voir `licenses/CC0.txt`.
+ - **Police** : police de secours intégrée au moteur Godot ; aucune police du PC requise ou téléchargée. Godot distribue notamment Noto Sans sous SIL Open Font License 1.1. Les licences intégrées du moteur sont reprises dans `licenses/GODOT_THIRD_PARTY.json` après extraction depuis le moteur exact.
+ - **Godot Engine 4.6.3** : licence **MIT**, texte dans `licenses/GODOT_MIT.txt`, composants tiers dans `licenses/GODOT_THIRD_PARTY.json` et textes de licences dans `licenses/GODOT_LICENSE_TEXTS.json`. Référence : https://godotengine.org/license/.
+--- avant/export_presets.cfg
++++ apres/export_presets.cfg
+@@ -71,7 +71,7 @@
+ texture_format/etc2_astc=false
+ codesign/enable=false
+ application/icon="res://assets/console.svg"
+-application/file_version="0.3.1"
+-application/product_version="0.3.1"
++application/file_version="0.4.0"
++application/product_version="0.4.0"
+ application/product_name="Console CIEL"
+ application/file_description="Console CIEL — enquête pédagogique"
+--- avant/project.godot
++++ apres/project.godot
+@@ -4,7 +4,7 @@
+ [application]
+ config/name="Console CIEL"
+ config/icon="res://assets/console.svg"
+-config/version="0.3.1"
++config/version="0.4.0"
+ run/main_scene="res://scenes/main.tscn"
+ config/features=PackedStringArray("4.6", "GL Compatibility")
+ config/use_custom_user_dir=true
+--- avant/scripts/game/challenge_panel.gd
++++ apres/scripts/game/challenge_panel.gd
+@@ -57,6 +57,7 @@
+ 	definition = _service.mission(id)
+ 	var title := _text(str(definition.get("title", definition.get("name", "Défi pédagogique"))))
+ 	title.name = "challenge_title"
++	title.add_theme_font_size_override("font_size",get_theme_default_font_size()+8)
+ 	_text(str(definition.get("description", "")))
+ 	if mission_id == "lighting":
+ 		_build_lighting()
+@@ -112,6 +113,7 @@
+ 		add_child(button)
+ 		connection_buttons[id] = button
+ 	submit_button = _action("Vérifier le circuit", "light_validate", _submit_lighting)
++	submit_button.theme_type_variation="PrimaryButton"
+ 
+ func _connections_changed() -> void:
+ 	if is_instance_valid(circuit):
+--- avant/scripts/game/demo_game.gd
++++ apres/scripts/game/demo_game.gd
+@@ -22,11 +22,17 @@
+ var _room: SubViewportContainer
+ var _viewport: SubViewport
+ var _hint: Label
+-var _objectives: HFlowContainer
++var _objectives: VBoxContainer
++var _objective_panel: PanelContainer
++var _objective_toggle: Button
++var _objectives_expanded=false
++var _target_label: Label
+ var _interact_button: Button
+ var _layer: CanvasLayer
+ var _overlay: Control
+ var _modal_scroll: ScrollContainer
++var _modal_panel: PanelContainer
++var _modal_layout_serial=0
+ var _disabled_controls: Array = []
+ var _original_focus: Control
+ var _modal_serial := 0
+@@ -63,9 +69,6 @@
+ 	_layout.add_theme_constant_override('separation', 8)
+ 	_layout.minimum_size_changed.connect(_fit_minimum)
+ 	add_child(_layout)
+-	_objectives = HFlowContainer.new()
+-	_objectives.add_theme_constant_override('h_separation', 14)
+-	_layout.add_child(_objectives)
+ 	_room = RoomViewport.new()
+ 	_room.name = 'game_room'
+ 	_room.focus_mode = Control.FOCUS_ALL
+@@ -91,17 +94,69 @@
+ 	_viewport.add_child(world)
+ 	world.interaction_requested.connect(_interaction_requested)
+ 	world.target_changed.connect(func(_id, label):
+-		_interact_button.text = 'Interagir' if label.is_empty() else 'Examiner : ' + label
++		_target_label.text='Approchez un équipement' if label.is_empty() else label.replace(' fictif','')
+ 		_interact_button.disabled = label.is_empty())
+-	_hint = _label(_layout, 'Le local est en panne. Approchez le tableau électrique pour rétablir l’éclairage.')
+-	var row := HBoxContainer.new()
+-	_layout.add_child(row)
+-	_interact_button = _button(row, 'Approchez un équipement', _interact, 'game_interact')
+-	_interact_button.disabled = true
+-	_interact_button.focus_mode = Control.FOCUS_NONE
+-	var pause_button := _button(row, 'Pause', request_pause, 'game_pause')
+-	pause_button.custom_minimum_size.x = 120
+-	pause_button.size_flags_horizontal = Control.SIZE_SHRINK_END
++	# HUD uses native-size controls above the room; it is not scaled with the camera.
++	var hud=MarginContainer.new()
++	hud.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
++	for side in ['left','right','top','bottom']: hud.add_theme_constant_override('margin_'+side,12)
++	add_child(hud)
++	var hud_column=VBoxContainer.new()
++	hud_column.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	hud.add_child(hud_column)
++	var top=HBoxContainer.new()
++	top.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	hud_column.add_child(top)
++	_objective_panel=PanelContainer.new()
++	_objective_panel.theme_type_variation='HUDPanel'
++	_objective_panel.custom_minimum_size.x=260
++	_objective_panel.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
++	_objective_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
++	top.add_child(_objective_panel)
++	var objectives_column=VBoxContainer.new()
++	objectives_column.add_theme_constant_override('separation',4)
++	_objective_panel.add_child(objectives_column)
++	_objective_toggle=_button(objectives_column,'Objectifs',_toggle_objectives,'game_objectives')
++	_objective_toggle.custom_minimum_size.y=32
++	_objective_toggle.add_theme_font_size_override('font_size',16)
++	_objectives=VBoxContainer.new()
++	_objectives.add_theme_constant_override('separation',4)
++	objectives_column.add_child(_objectives)
++	_hint=_label(objectives_column,'Approchez le tableau électrique.')
++	_hint.custom_minimum_size.x=0
++	_hint.hide()
++	_hint.add_theme_font_size_override('font_size',16)
++	var flexible=Control.new()
++	flexible.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	flexible.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	top.add_child(flexible)
++	var pause_button=_button(top,'Pause · P',request_pause,'game_pause')
++	pause_button.custom_minimum_size=Vector2(136,44)
++	pause_button.size_flags_horizontal=Control.SIZE_SHRINK_END
++	pause_button.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
++	var space=Control.new()
++	space.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
++	hud_column.add_child(space)
++	var bottom=CenterContainer.new()
++	bottom.mouse_filter=Control.MOUSE_FILTER_IGNORE
++	hud_column.add_child(bottom)
++	var target_panel=PanelContainer.new()
++	target_panel.theme_type_variation='HUDPanel'
++	target_panel.custom_minimum_size.x=320
++	bottom.add_child(target_panel)
++	var target_column=VBoxContainer.new()
++	target_column.add_theme_constant_override('separation',2)
++	target_panel.add_child(target_column)
++	_target_label=_label(target_column,'Approchez un équipement')
++	_target_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
++	_target_label.add_theme_font_size_override('font_size',18)
++	_interact_button=_button(target_column,'Interagir · Espace / face bas',_interact,'game_interact')
++	_interact_button.add_theme_font_size_override('font_size',16)
++	_interact_button.custom_minimum_size.y=36
++	_interact_button.disabled=true
++	_interact_button.focus_mode=Control.FOCUS_NONE
+ 	_layer = CanvasLayer.new()
+ 	_layer.layer = 80
+ 	add_child(_layer)
+@@ -118,8 +173,11 @@
+ 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ 	for side in ['left', 'right', 'top', 'bottom']: margin.add_theme_constant_override('margin_' + side, 18)
+ 	_overlay.add_child(margin)
++	var center=CenterContainer.new()
++	margin.add_child(center)
+ 	var panel := PanelContainer.new()
+-	margin.add_child(panel)
++	_modal_panel=panel
++	center.add_child(panel)
+ 	_modal_scroll = ScrollContainer.new()
+ 	_modal_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+ 	_modal_scroll.follow_focus = false
+@@ -158,6 +216,15 @@
+ 	world.restore_progress(progress)
+ 	_update_objectives()
+ 
++func _current_mission() -> String:
++	for mission in RewardService.missions:
++		if InvestigationService.mission_state(mission.id) in ['available','in_progress']:return mission.id
++	return ''
++
++func _toggle_objectives() -> void:
++	_objectives_expanded=not _objectives_expanded
++	_update_objectives()
++
+ func _update_objectives() -> void:
+ 	for child in _objectives.get_children():
+ 		_objectives.remove_child(child)
+@@ -166,8 +233,13 @@
+ 		var status: String = InvestigationService.mission_state(mission.id)
+ 		var prefix: String = {'locked': 'Verrouillé', 'available': 'Disponible', 'in_progress': 'En cours', 'completed': '✓ Terminé'}.get(status, 'Disponible')
+ 		var short_name: String = {'lighting':'Éclairage', 'lock':'Porte', 'computer':'Ordinateur'}.get(mission.id, mission.name)
+-		_label(_objectives, '%s · %s' % [short_name, prefix])
++		var label=_label(_objectives, '%s · %s' % [short_name, prefix])
++		label.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
++		if status in ['available','in_progress']: label.add_theme_color_override('font_color',Color('#345F71'))
+ 	var done: Array = AppState.profile.get('progress', {}).get('completed_missions', [])
++	_objectives.visible=_objectives_expanded
++	_objective_toggle.text=('Masquer' if _objectives_expanded else {'lighting':'Éclairage','lock':'Porte','computer':'Ordinateur'}.get(_current_mission(),'Bilan'))+' · %d / 3'%done.size()
++	_hint.visible=not _objectives_expanded and get_viewport_rect().size.y>=800
+ 	_hint.text = 'Lisez le message de l’ordinateur.' if done.has('computer') else ('Examinez l’ordinateur dans le bureau.' if done.has('lock') else ('Examinez la liaison de commande de la porte.' if done.has('lighting') else 'Approchez le tableau électrique.'))
+ 
+ func _resize_viewport() -> void:
+@@ -178,10 +250,11 @@
+ 	# Son signal size_changed permet à la Camera2D d'ajuster la pièce.
+ 	if is_instance_valid(world) and world.is_inside_tree(): world._fit_camera()
+ 	_fit_minimum()
++	if not overlay_kind.is_empty(): _fit_modal.call_deferred()
+ 
+ func _fit_minimum() -> void:
+ 	if not is_inside_tree() or _layout == null: return
+-	var available := 275.0
++	var available := 170.0
+ 	var ancestor: Node = get_parent()
+ 	while ancestor != null:
+ 		if ancestor is ScrollContainer:
+@@ -193,8 +266,11 @@
+ func _settings_changed(_value: Dictionary) -> void:
+ 	if is_inside_tree():
+ 		_sync_overlay_theme()
++		_update_objectives()
++		_hint.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
++		_target_label.add_theme_font_size_override('font_size',22 if SettingsService.current.get('large_text',false) else 18)
+ 		_resize_viewport.call_deferred()
+-		if not overlay_kind.is_empty(): _wire_modal.call_deferred()
++		if not overlay_kind.is_empty(): _fit_modal.call_deferred(); _wire_modal.call_deferred()
+ 
+ func _visibility_changed() -> void:
+ 	if _overlay != null:
+@@ -298,7 +374,11 @@
+ 	_open_overlay('pause')
+ 	_label(modal_content, 'Pause', 26)
+ 	_label(modal_content, 'Les déplacements et interactions sont suspendus.')
+-	_button(modal_content, 'Reprendre', resume, 'pause_resume')
++	var resume_button=_button(modal_content, 'Reprendre', resume, 'pause_resume')
++	resume_button.theme_type_variation='PrimaryButton'
++	_button(modal_content, 'Masquer les objectifs' if _objectives_expanded else 'Afficher les objectifs', func():
++		_toggle_objectives()
++		resume(), 'pause_objectives')
+ 	_button(modal_content, 'Paramètres', func(): settings_requested.emit(), 'pause_settings')
+ 	_button(modal_content, 'Aide aux commandes', func(): help_requested.emit(), 'pause_help')
+ 	_button(modal_content, 'Retour au menu', _return_to_menu, 'pause_menu')
+@@ -483,7 +563,21 @@
+ 	paused = true
+ 	_overlay.show()
+ 	_modal_scroll.scroll_vertical = 0
++	_fit_modal.call_deferred()
+ 	SceneRouter.lock_until_release()
++
++func _fit_modal() -> void:
++	if not is_inside_tree() or overlay_kind.is_empty():return
++	_modal_layout_serial+=1
++	var token=_modal_layout_serial
++	var extent=get_viewport_rect().size
++	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind=='challenge' else 660)
++	await get_tree().process_frame
++	if not is_inside_tree():return
++	await get_tree().process_frame
++	if not is_inside_tree() or overlay_kind.is_empty() or token!=_modal_layout_serial:return
++	_modal_panel.custom_minimum_size.y=minf(extent.y-36,modal_content.get_combined_minimum_size().y+32)
++
+ 
+ func _disable_focus(node: Node) -> void:
+ 	# Disable underlying header/buttons too, while leaving the modal's own tree alone.
+--- avant/scripts/game/interactable.gd
++++ apres/scripts/game/interactable.gd
+@@ -11,9 +11,8 @@
+ 			queue_redraw()
+ 
+ func _draw() -> void:
+-	if not highlighted:
+-		return
+-	# A shape and symbol accompany the accent colour, including reduced motion.
+-	draw_circle(Vector2.ZERO, 18.0, Color(0.97, 0.98, 0.99, 0.96))
+-	draw_arc(Vector2.ZERO, 18.0, 0, TAU, 36, accent, 2.5, true)
+-	draw_string(ThemeDB.fallback_font, Vector2(-5, 7), "!", HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color("25313c"))
++	if not highlighted: return
++	draw_circle(Vector2.ZERO,9,Color(1,1,1,.96))
++	draw_arc(Vector2.ZERO,9,0,TAU,32,accent,2,true)
++	draw_line(Vector2(-3,0),Vector2(3,0),accent,2,true)
++	draw_line(Vector2(0,-3),Vector2(0,3),accent,2,true)
+--- avant/scripts/game/investigation_world.gd
++++ apres/scripts/game/investigation_world.gd
+@@ -5,6 +5,7 @@
+ signal interaction_requested(id: String)
+ signal target_changed(id: String, label: String)
+ 
++const Art=preload('res://scripts/game/room_art.gd')
+ const PlayerScript = preload("res://scripts/game/player.gd")
+ const InteractableScript = preload("res://scripts/game/interactable.gd")
+ const WORLD_SIZE := Vector2(1000, 520)
+@@ -35,8 +36,22 @@
+ var _accent := Color("527fa3")
+ var _floor_lit := Color("e8eef1")
+ var _large_text := false
++var _props: Node2D
++var _cabinet_sprite: Sprite2D
++var _monitor_sprite: Sprite2D
++var _reader_sprite: Sprite2D
++var _light_sprite: Sprite2D
++var _closed_door: Sprite2D
++var _open_door: Sprite2D
++var _note: Sprite2D
++var _was_repaired := false
++var _repair_tween: Tween
+ 
+ func _ready() -> void:
++	_props=Node2D.new()
++	_props.name='RoomObjects'
++	_props.y_sort_enabled=true
++	add_child(_props)
+ 	# Perimeter and office partition. The doorway is a real, separate body.
+ 	_add_obstacle(Rect2(24, 30, 952, 20), "NorthWall")
+ 	_add_obstacle(Rect2(24, 476, 952, 20), "SouthWall")
+@@ -46,20 +61,25 @@
+ 	_add_obstacle(Rect2(619, 388, 20, 88), "OfficeWallSouth")
+ 	door_body = _add_obstacle(DOOR_RECT, "OfficeDoor", false)
+ 	door_shape = door_body.get_child(0)
+-	# Furniture shares the exact rectangle used by its visible shape.
+-	_add_obstacle(Rect2(76, 102, 90, 60), "ElectricalCabinet", false)
+-	_add_obstacle(Rect2(250, 298, 146, 54), "LowBench", false)
+-	_add_obstacle(Rect2(444, 106, 64, 64), "Storage", false)
+-	_add_obstacle(Rect2(755, 142, 172, 80), "ComputerDesk", false)
+-	_add_obstacle(Rect2(700, 408, 114, 52), "OfficeCabinet", false)
++	_closed_door=_sprite(door_body,'door_closed',Rect2(616,276,28,120))
++	_open_door=_sprite(door_body,'door_open',Rect2(639,272,120,28))
++	for prop in Art.PROPS:
++		var body=_add_obstacle(prop[1],prop[0],false)
++		var visual=_sprite(body,prop[2],prop[3])
++		if prop[0]=='ElectricalCabinet': _cabinet_sprite=visual
++		if prop[0]=='ComputerDesk':
++			_monitor_sprite=_sprite(body,'monitor_off',Rect2(781,127,85,61))
++			_sprite(body,'tower',Rect2(879,145,36,68))
++	_reader_sprite=_sprite(self,'reader_off',Rect2(568,289,30,49))
++	_light_sprite=_sprite(self,'light',Rect2(274,61,172,28))
++	_note=_sprite(self,'note',Rect2(447,194,70,48))
+ 	_add_target("lighting", "Tableau électrique fictif", Vector2(120, 192), 104)
+ 	_add_target("lock", "Commande de la porte", Vector2(582, 340), 104)
+ 	_add_target("computer", "Ordinateur du bureau", Vector2(825, 247), 104)
+ 	player = PlayerScript.new()
+ 	player.name = "Player"
+ 	player.position = CHECKPOINTS.entrance
+-	player.z_index = 5
+-	add_child(player)
++	_props.add_child(player)
+ 	player.controls_enabled = _controls_enabled
+ 	camera = Camera2D.new()
+ 	camera.name = "RoomCamera"
+@@ -83,18 +103,49 @@
+ func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
+ 	var body := StaticBody2D.new()
+ 	body.name = node_name
+-	body.position = rect.get_center()
++	body.position = rect.get_center() if wall else Vector2(rect.get_center().x,rect.end.y)
+ 	body.collision_layer = 1
+ 	body.collision_mask = 2
+ 	var collision := CollisionShape2D.new()
+ 	var shape := RectangleShape2D.new()
+ 	shape.size = rect.size
+ 	collision.shape = shape
++	if not wall: collision.position.y=-rect.size.y/2
+ 	body.add_child(collision)
+-	add_child(body)
++	if wall: add_child(body)
++	else: _props.add_child(body)
+ 	if wall:
+ 		_obstacle_rects.append(rect)
+ 	return body
++
++func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
++	var visual=Sprite2D.new()
++	visual.name=asset.capitalize().replace('_','')+'Art'
++	visual.texture=Art.TEXTURES[asset]
++	visual.centered=false
++	visual.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
++	visual.position=rect.position-host.position if host!=self else rect.position
++	visual.scale=rect.size/visual.texture.get_size()
++	host.add_child(visual)
++	return visual
++
++func _refresh_art() -> void:
++	if _closed_door==null: return
++	_closed_door.visible=not door_open
++	_open_door.visible=door_open
++	_cabinet_sprite.texture=Art.TEXTURES.electrical_on if lighting_restored else Art.TEXTURES.electrical_off
++	_monitor_sprite.texture=Art.TEXTURES.monitor_on if computer_repaired else Art.TEXTURES.monitor_off
++	_reader_sprite.texture=Art.TEXTURES.reader_on if door_open else Art.TEXTURES.reader_off
++	_note.visible=lighting_restored
++	_light_sprite.modulate=Color.WHITE if lighting_restored else Color(.67,.77,.83)
++	_props.modulate=Color.WHITE if lighting_restored else Color(.88,.91,.94)
++	# A brief, soft emphasis, triggered only by an actual state transition.
++	if computer_repaired and not _was_repaired and not SettingsService.current.get('reduce_motion',false):
++		if _repair_tween!=null and _repair_tween.is_valid(): _repair_tween.kill()
++		_monitor_sprite.modulate=Color('#C6E0C5')
++		_repair_tween=create_tween()
++		_repair_tween.tween_property(_monitor_sprite,'modulate',Color.WHITE,.20)
++	_was_repaired=computer_repaired
+ 
+ func _add_target(id: String, label_text: String, at: Vector2, radius: float) -> void:
+ 	var target := InteractableScript.new()
+@@ -166,6 +217,7 @@
+ 	computer_repaired = completed.has("computer")
+ 	door_body.collision_layer = 0 if door_open else 1
+ 	door_shape.set_deferred("disabled", door_open)
++	_refresh_art()
+ 	if not _restored_once:
+ 		restore_checkpoint()
+ 		_restored_once = true
+@@ -258,73 +310,10 @@
+ 	if is_instance_valid(_target) and _can_reach(_target, 12.0):
+ 		interaction_requested.emit(_target.interaction_id)
+ 
+-func _panel(rect: Rect2, fill: Color, border: Color, radius := 9, width := 1) -> void:
+-	var style := StyleBoxFlat.new()
+-	style.bg_color = fill
+-	style.border_color = border
+-	style.set_corner_radius_all(radius)
+-	style.set_border_width_all(width)
+-	draw_style_box(style, rect)
+-
+-func _text(at: Vector2, text: String, size := 21, colour := Color("586674")) -> void:
+-	draw_string(ThemeDB.fallback_font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size + (4 if _large_text else 0), colour)
+-
+ func _draw() -> void:
+-	# A dim but readable beginning; no black overlay obscures obstacles.
+-	var floor := _floor_lit if lighting_restored else _floor_lit.darkened(0.12)
+-	_panel(Rect2(24, 30, 952, 466), floor, Color("aabcc6"), 15, 2)
+-	_panel(Rect2(639, 50, 317, 426), Color("eef0e9") if lighting_restored else Color("d2d9d4"), Color.TRANSPARENT, 0, 0)
+-	for wall in _obstacle_rects:
+-		_panel(wall, Color("aebfc9"), Color("94aab8"), 3, 1)
+-	# Light fixture and tiny floor markings identify an orderly technical room.
+-	_panel(Rect2(277, 62, 166, 18), Color("fff4cf") if lighting_restored else Color("bac7cf"), Color("a8bac5"), 8)
+-	_text(Vector2(79, 85), "LOCAL TECHNIQUE", 23)
+-	_text(Vector2(716, 88), "BUREAU", 23)
+-	# Low-voltage simulation cabinet, visibly separate from a real installation.
+-	_panel(Rect2(76, 102, 90, 60), Color("f6f8f9"), Color("91a9b8"), 10, 2)
+-	_panel(Rect2(88, 111, 38, 35), Color("e6edf2"), Color("afc1cc"), 4)
+-	draw_line(Vector2(95, 128), Vector2(108, 128), _accent, 3)
+-	draw_line(Vector2(108, 128), Vector2(118, 118), _accent, 3)
+-	draw_circle(Vector2(142, 125), 7, Color("72957f") if lighting_restored else Color("94a8b3"))
+-	_text(Vector2(78, 178), "Éclairage", 22, Color("25313c"))
+-	# Visible bench and storage, never traversable despite their soft colours.
+-	_panel(Rect2(250, 298, 146, 54), Color("d9d3c5"), Color("b8ae9b"), 9, 2)
+-	draw_line(Vector2(267, 310), Vector2(380, 310), Color("b8ae9b"), 2)
+-	_panel(Rect2(444, 106, 64, 64), Color("d5dedc"), Color("a7bbb4"), 8, 2)
+-	draw_line(Vector2(459, 139), Vector2(492, 139), Color("99afa7"), 3)
+-	# A small note is revealed by the restored light. Its text is delivered by UI.
+-	if lighting_restored:
+-		_panel(Rect2(447, 194, 68, 44), Color("fff8df"), Color("d4cba9"), 5)
+-		draw_line(Vector2(458, 208), Vector2(505, 208), Color("b7ae8d"), 2)
+-		draw_line(Vector2(458, 218), Vector2(489, 218), Color("b7ae8d"), 2)
+-	# Control reader and door. An open door leaves an uninterrupted floor gap.
+-	_panel(Rect2(570, 292, 25, 38), Color("f6f8f9"), Color("9db2be"), 5)
+-	draw_circle(Vector2(582, 303), 4, Color("72957f") if door_open else Color("8aa6b9"))
+-	draw_line(Vector2(577, 314), Vector2(588, 314), Color("94a8b3"), 2)
+-	if door_open:
+-		_panel(Rect2(639, 276, 100, 12), Color("a9bfc9"), Color("91a9b8"), 3)
+-		_text(Vector2(644, 383), "Accès ouvert", 18, Color("345b50"))
+-	else:
+-		_panel(DOOR_RECT, Color("b6c5cf"), Color("829eaf"), 4, 2)
+-		draw_line(Vector2(630, 287), Vector2(630, 377), Color("e6edf2"), 3)
+-	_text(Vector2(480, 412), "Porte du bureau", 20, Color("25313c"))
+-	# Desk, monitor and keyboard use the same collider rectangle as the desk.
+-	_panel(Rect2(755, 142, 172, 80), Color("ddd8cc"), Color("baaf9e"), 10, 2)
+-	_panel(Rect2(790, 152, 75, 39), Color("fbfcfd"), Color("7f99a8"), 5, 2)
+-	_panel(Rect2(796, 158, 63, 26), Color("d9e8de") if computer_repaired else Color("7f94a1"), Color.TRANSPARENT, 2, 0)
+-	if computer_repaired:
+-		draw_line(Vector2(805, 169), Vector2(850, 169), Color("72957f"), 3)
+-		draw_line(Vector2(805, 177), Vector2(836, 177), Color("72957f"), 2)
+-	else:
+-		draw_line(Vector2(820, 168), Vector2(834, 178), Color("e6edf2"), 2)
+-		draw_line(Vector2(834, 168), Vector2(820, 178), Color("e6edf2"), 2)
+-	draw_line(Vector2(827, 191), Vector2(827, 199), Color("7f99a8"), 3)
+-	_panel(Rect2(800, 201, 55, 11), Color("f0f2f3"), Color("a8bac5"), 3)
+-	_panel(Rect2(884, 154, 26, 48), Color("f4f6f7"), Color("a8bac5"), 4)
+-	draw_circle(Vector2(896, 167), 3, Color("72957f"))
+-	_text(Vector2(760, 237), "Ordinateur", 22, Color("25313c"))
+-	_panel(Rect2(700, 408, 114, 52), Color("d6ddd5"), Color("b0bfb0"), 8, 2)
+-	draw_line(Vector2(716, 434), Vector2(799, 434), Color("9cad9c"), 2)
+-	# The entrance is decorative; the pause menu provides the explicit exit.
+-	_panel(Rect2(105, 461, 100, 15), Color("d1dce2"), Color("a6bac6"), 3)
+-	_text(Vector2(117, 451), "Entrée", 18)
++	var ambient=Color.WHITE if lighting_restored else Color(.83,.88,.90)
++	draw_texture(Art.TEXTURES.floor,Vector2.ZERO,ambient)
++	draw_texture(Art.TEXTURES.walls,Vector2.ZERO,ambient)
++	# Small diegetic signage is decorative; interaction text belongs to the HUD.
++	draw_string(ThemeDB.fallback_font,Vector2(66,73),'ATELIER · CIEL',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
++	draw_string(ThemeDB.fallback_font,Vector2(676,73),'BUREAU',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
+--- avant/scripts/game/player.gd
++++ apres/scripts/game/player.gd
+@@ -1,39 +1,43 @@
+ extends CharacterBody2D
+-## The investigation's only moving body. Dialogues and pause disable this body,
+-## rather than pausing the scene tree (the menu must remain interactive).
+-
++## Feet collide, body draws above them; four directional walk / idle states.
+ const SPEED := 190.0
+ var controls_enabled := true
+ var facing := Vector2.DOWN
+ var accent := Color("527fa3")
+-
++var sprite: AnimatedSprite2D
++var _direction='down'
+ func _ready() -> void:
+-	collision_layer = 2
+-	collision_mask = 1
+-	var shape := CollisionShape2D.new()
+-	var circle := CircleShape2D.new()
+-	circle.radius = 13.0
+-	shape.shape = circle
+-	add_child(shape)
+-	queue_redraw()
+-
++ collision_layer=2;collision_mask=1
++ var collider=CollisionShape2D.new()
++ var circle=CircleShape2D.new();circle.radius=10.0
++ collider.shape=circle;add_child(collider)
++ sprite=AnimatedSprite2D.new()
++ sprite.name='CharacterAnimation'
++ sprite.position=Vector2(0,-23)
++ sprite.scale=Vector2(.78,.78)
++ sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
++ var frames=SpriteFrames.new();frames.remove_animation('default')
++ for direction in ['down','up','left','right']:
++  frames.add_animation(direction);frames.set_animation_speed(direction,7)
++  for pose in [0,1,0,2]: frames.add_frame(direction,load('res://assets/art/character/'+direction+'_'+str(pose)+'.svg'))
++ sprite.sprite_frames=frames;add_child(sprite)
++ _update_animation(false)
+ func _physics_process(_delta: float) -> void:
+-	var router := get_node_or_null("/root/SceneRouter")
+-	if not controls_enabled or not is_visible_in_tree() or (router != null and not router.gameplay_allowed()):
+-		velocity = Vector2.ZERO
+-		return
+-	var direction := Input.get_vector("game_left", "game_right", "game_up", "game_down")
+-	if direction.length_squared() > 0.001:
+-		facing = direction.normalized()
+-		queue_redraw()
+-	velocity = direction * SPEED
+-	move_and_slide()
+-
+-func _draw() -> void:
+-	draw_circle(Vector2(0, 5), 15, Color(0.17, 0.23, 0.28, 0.13))
+-	draw_circle(Vector2.ZERO, 13, accent)
+-	draw_arc(Vector2.ZERO, 13, 0, TAU, 32, Color("ffffff"), 2.5, true)
+-	var side := facing.orthogonal() * 3.4
+-	var eyes := facing * 6.0
+-	draw_circle(eyes + side, 1.5, Color.WHITE)
+-	draw_circle(eyes - side, 1.5, Color.WHITE)
++ var router=get_node_or_null('/root/SceneRouter')
++ if not controls_enabled or not is_visible_in_tree() or (router!=null and not router.gameplay_allowed()):
++  velocity=Vector2.ZERO;_update_animation(false);return
++ var direction=Input.get_vector('game_left','game_right','game_up','game_down')
++ if direction.length_squared()>.001:
++  facing=direction.normalized()
++  _direction=('right' if facing.x>0 else 'left') if absf(facing.x)>absf(facing.y) else ('down' if facing.y>0 else 'up')
++ velocity=direction*SPEED
++ move_and_slide()
++ _update_animation(velocity.length_squared()>1)
++func _update_animation(walking: bool) -> void:
++ if sprite==null:return
++ var settings=get_node_or_null('/root/SettingsService')
++ var reduced=settings!=null and settings.current.get('reduce_motion',false)
++ sprite.self_modulate=Color.WHITE.lerp(accent,.12)
++ if sprite.animation!=_direction:sprite.animation=_direction
++ if walking and not reduced:sprite.play()
++ else:sprite.stop();sprite.frame=0
+--- avant/scripts/ui/enquiry_art.gd
++++ apres/scripts/ui/enquiry_art.gd
+@@ -1,33 +1,12 @@
+ extends Control
++const RoomArt=preload('res://scripts/game/room_art.gd')
+ func _init() -> void:
+-	custom_minimum_size=Vector2(260,180)
+-	mouse_filter=Control.MOUSE_FILTER_IGNORE
++ custom_minimum_size=Vector2(0,240)
++ mouse_filter=Control.MOUSE_FILTER_IGNORE
++func _ready() -> void:
++ resized.connect(queue_redraw)
+ func _draw() -> void:
+-	var factor=minf(size.x/420.0,size.y/250.0)
+-	var origin=(size-Vector2(420,250)*factor)/2
+-	draw_set_transform(origin,0,Vector2(factor,factor))
+-	var flat=StyleBoxFlat.new()
+-	flat.bg_color=Color('#DDE8EC')
+-	flat.set_corner_radius_all(24)
+-	draw_style_box(flat,Rect2(24,24,372,212))
+-	flat=flat.duplicate()
+-	flat.bg_color=Color('#F5F7F5')
+-	flat.set_corner_radius_all(16)
+-	draw_style_box(flat,Rect2(44,42,332,172))
+-	draw_line(Vector2(190,44),Vector2(190,150),Color('#B6C9D0'),8,true)
+-	draw_line(Vector2(190,150),Vector2(270,150),Color('#B6C9D0'),8,true)
+-	draw_line(Vector2(44,142),Vector2(118,142),Color('#B6C9D0'),8,true)
+-	draw_line(Vector2(124,150),Vector2(175,150),Color('#527FA3'),3,true)
+-	flat.bg_color=Color('#C8D9D9')
+-	flat.set_corner_radius_all(8)
+-	draw_style_box(flat,Rect2(68,62,86,50))
+-	draw_rect(Rect2(78,73,40,26),Color('#527FA3'))
+-	draw_line(Vector2(98,100),Vector2(98,106),Color('#527FA3'),3)
+-	draw_circle(Vector2(316,85),20,Color('#E5D7B1'))
+-	draw_circle(Vector2(316,85),8,Color('#B39C66'))
+-	draw_rect(Rect2(310,185,40,8),Color('#ADC8B4'))
+-	draw_circle(Vector2(326,176),14,Color('#87AB93'))
+-	draw_circle(Vector2(228,185),14,Color('#527FA3'))
+-	draw_circle(Vector2(228,181),6,Color('#F5F8FB'))
+-	draw_arc(Vector2(228,185),24,-PI*.80,-PI*.20,30,Color('#8CABBE'),2,true)
+-	draw_set_transform(Vector2.ZERO)
++ var panel=StyleBoxFlat.new()
++ panel.bg_color=Color('#D5E1DF');panel.set_corner_radius_all(24)
++ draw_style_box(panel,Rect2(Vector2.ZERO,size))
++ RoomArt.draw_preview(self,Rect2(Vector2(4,6),size-Vector2(8,12)))
+--- avant/scripts/ui/main.gd
++++ apres/scripts/ui/main.gd
+@@ -8,6 +8,7 @@
+ const Modal=preload('res://scripts/ui/confirmation_dialog.gd')
+ const Toast=preload('res://scripts/ui/notification.gd')
+ const SettingRow=preload('res://scripts/ui/setting_row.gd')
++const Navigation=preload('res://scripts/ui/navigation_bar.gd')
+ const EnquiryArt=preload('res://scripts/ui/enquiry_art.gd')
+ const InputSetup=preload('res://scripts/input_setup.gd')
+ const InputMonitor=preload('res://scripts/ui/input_monitor.gd')
+@@ -17,7 +18,15 @@
+ const Diagnostics=preload('res://scripts/ui/diagnostics_panel.gd')
+ 
+ var background: ColorRect
++var shell_column: VBoxContainer
+ var shell: MarginContainer
++var navigation: CenterContainer
++var hero_grid: GridContainer
++var hero_art: Control
++var hero_panel: PanelContainer
++var home_labels: Dictionary={}
++var home_objectives: Control
++var home_story: VBoxContainer
+ var header_profile: Label
+ var header_avatar: Control
+ var header_points: Label
+@@ -128,28 +137,33 @@
+ 	add_child(shell)
+ 	shell.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ 	var col=VBoxContainer.new()
++	shell_column=col
+ 	col.add_theme_constant_override('separation',16)
+ 	shell.add_child(col)
+ 	var header=HBoxContainer.new()
+ 	header.custom_minimum_size.y=46
+ 	col.add_child(header)
+ 	var brand=Label.new()
+-	brand.text='CIEL'
+-	brand.add_theme_font_size_override('font_size',28)
++	brand.text='Console CIEL'
++	brand.add_theme_font_size_override('font_size',26)
+ 	brand.add_theme_color_override('font_color',Color('#527FA3'))
+ 	header.add_child(brand)
+ 	header_back=_button(header,'Retour',_back,'header_back')
+ 	header_back.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+ 	header_back.custom_minimum_size.x=112
+ 	var spacer=Control.new()
+-	spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	spacer.size_flags_horizontal=Control.SIZE_FILL
+ 	header.add_child(spacer)
+ 	header_profile=Label.new()
+ 	header_avatar=Avatar.new()
+ 	header_avatar.custom_minimum_size=Vector2(40,40)
+ 	header.add_child(header_avatar)
+ 	header_profile.add_theme_color_override('font_color',Color('#586674'))
++	header_profile.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
++	header_profile.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	header_profile.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+ 	header.add_child(header_profile)
++	header.move_child(header_avatar,header_profile.get_index())
+ 	header_points=Label.new()
+ 	header_points.add_theme_font_size_override('font_size',20)
+ 	header.add_child(header_points)
+@@ -158,6 +172,7 @@
+ 	scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+ 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+ 	scroll.follow_focus=false
++	scroll.resized.connect(_responsive)
+ 	col.add_child(scroll)
+ 	content=VBoxContainer.new()
+ 	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+@@ -169,6 +184,9 @@
+ 	footer.add_theme_color_override('font_color',Color('#586674'))
+ 	toast=Toast.new()
+ 	col.add_child(toast)
++	navigation=Navigation.new()
++	col.add_child(navigation)
++	navigation.destination_requested.connect(_navigation_destination)
+ 	col.add_child(footer)
+ 	_responsive()
+ 
+@@ -206,14 +224,48 @@
+ 		header_avatar.frame=AppState.profile.equipped.frame
+ 		header_avatar.frame_spec=ShopService.item(AppState.profile.equipped.frame)
+ 		header_avatar.queue_redraw()
+-	header_profile.text=AppState.profile.display_name if active else 'Console CIEL'
++	header_profile.text=((AppState.profile.display_name if size.x<1000 else 'Bonjour, '+AppState.profile.display_name)) if active else 'Votre console pédagogique'
+ 	header_points.text='%d pts' % AppState.profile.wallet.points if active else 'Hors ligne'
+ 
+ func _responsive() -> void:
+ 	if shell==null: return
+ 	var compact=size.x<1000 or size.y<600
+-	var margin=16 if compact else 28
+-	for side in ['left','right','top','bottom']: shell.add_theme_constant_override('margin_'+side,margin)
++	var margin=12 if compact else 28
++	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
++	if footer!=null and screen=='game':
++		footer.text='Flèches / joystick · Espace / face bas : interagir · P / Start : pause'
++	if footer!=null and screen in ['home','shop','profiles','help']:
++		footer.text='Flèches / joystick · Entrée / face bas : valider · Échap : retour'
++	var horizontal=maxi(margin,int((size.x-1400)/2))
++	for side in ['left','right']: shell.add_theme_constant_override('margin_'+side,horizontal)
++	for side in ['top','bottom']: shell.add_theme_constant_override('margin_'+side,margin)
++	if navigation!=null: navigation.fit(size.x-2*horizontal,SettingsService.current.get('large_text',false),compact)
++	if screen=='home' and is_instance_valid(hero_grid):
++		hero_grid.columns=2
++		var compact_home=size.x<1100 or size.y<650
++		hero_grid.add_theme_constant_override('h_separation',18 if compact_home else 36)
++		if is_instance_valid(home_story):home_story.add_theme_constant_override('separation',8 if compact_home else 12)
++		if home_labels.has('title'):
++			home_labels.title.add_theme_font_size_override('font_size',(32 if compact_home else 42)+(2 if SettingsService.current.get('large_text',false) else 0))
++			home_labels.kicker.visible=not compact_home
++			home_labels.subtitle.visible=not compact_home
++			home_labels.note.visible=not compact_home
++			if home_labels.has('hint'):home_labels.hint.visible=not compact_home
++			home_labels.progress.text=('0 / 3 · Sans sauvegarde' if compact_home and not AppState.profile.progress.started else '%d / 3 missions réalisées'%AppState.profile.progress.completed_missions.size())
++			home_labels.description.text='Trois pannes. Un message à retrouver.' if compact_home else 'Un atelier en panne. Trois équipements à rétablir.\nÀ vous de retrouver le message et d’expliquer l’incident.'
++			home_objectives.visible=not compact_home
++		var hero_style=theme.get_stylebox('panel','HeroPanel').duplicate()
++		hero_style.content_margin_left=18 if compact_home else 28
++		hero_style.content_margin_right=18 if compact_home else 28
++		hero_style.content_margin_top=12 if compact_home else 24
++		hero_style.content_margin_bottom=12 if compact_home else 24
++		hero_panel.add_theme_stylebox_override('panel',hero_style)
++		hero_art.custom_minimum_size=Vector2(200 if compact_home else 420,170 if compact_home else (360 if size.y>=900 else 270))
++		hero_panel.custom_minimum_size.y=minf(720,maxf(0,scroll.size.y-4))
++	if screen=='game' and is_instance_valid(demo) and demo.is_inside_tree():demo._fit_minimum()
++	if header_profile!=null:
++		header_profile.add_theme_font_size_override('font_size',(18 if compact else 20)+(2 if SettingsService.current.get('large_text',false) else 0))
++		header_profile.text=((AppState.profile.display_name if size.x<1000 else 'Bonjour, '+AppState.profile.display_name)) if not AppState.profile.is_empty() else 'Votre console pédagogique'
+ 	for entry in responsive_grids:
+ 		if is_instance_valid(entry[0]):
+ 			_adapt_grid(entry[0],entry[1],entry[2])
+@@ -237,6 +289,10 @@
+ 		content.remove_child(child)
+ 		if child!=demo: child.queue_free()
+ 	responsive_grids.clear()
++	hero_grid=null;hero_art=null;hero_panel=null;home_labels.clear();home_objectives=null;home_story=null
++	if navigation!=null:
++		navigation.visible=next in ['home','shop','profiles','settings','help'] and not (next=='settings' and settings_origin=='game') and not (next=='help' and parent_screen=='game')
++		navigation.update_state(next,not AppState.profile.is_empty())
+ 	header_back.visible=next not in ['home','boot','recovery','settings_recovery','fatal'] and not (next=='editor' and ProfileService.profiles.is_empty())
+ 	footer.text='Flèches / joystick : naviguer   ·   Entrée / face bas : valider   ·   Échap / face droit : retour'
+ 	scroll.scroll_vertical=0
+@@ -271,6 +327,7 @@
+ 	if is_instance_valid(modal): return
+ 	var key=SceneRouter.focus_key(screen)
+ 	var choices=_focusables(content)
++	if navigation.visible: choices.append_array(_focusables(navigation))
+ 	for choice in choices:
+ 		if not choice.focus_entered.is_connected(_ensure_focus_visible): choice.focus_entered.connect(_ensure_focus_visible)
+ 	if screen=='game' and is_instance_valid(demo):
+@@ -319,6 +376,8 @@
+ 	await get_tree().process_frame
+ 	if not is_inside_tree() or token!=navigation_serial or screen=='game' or is_instance_valid(modal): return
+ 	var targets=_focusables(content)
++	if navigation.visible: targets.append_array(_focusables(navigation))
++	if header_back.visible: targets.append(header_back)
+ 	for index in range(targets.size()):
+ 		var control=targets[index]
+ 		control.focus_next=control.get_path_to(targets[(index+1)%targets.size()])
+@@ -339,6 +398,17 @@
+ 					best=candidate
+ 			if is_instance_valid(best): control.set_focus_neighbor(side,control.get_path_to(best))
+ 
++	if navigation.visible:
++		var body=_focusables(content)
++		var tabs=_focusables(navigation)
++		for i in range(tabs.size()):
++			var tab: Control=tabs[i]
++			tab.focus_neighbor_left=tab.get_path_to(tabs[posmod(i-1,tabs.size())])
++			tab.focus_neighbor_right=tab.get_path_to(tabs[(i+1)%tabs.size()])
++			if not body.is_empty():
++				tab.focus_neighbor_top=tab.get_path_to(body[-1])
++				tab.focus_neighbor_bottom=tab.get_path_to(body[0])
++
+ func _label(host: Node,text: String,font_size: int=0,secondary: bool=false) -> Label:
+ 	var label=Label.new()
+ 	label.text=text
+@@ -413,7 +483,7 @@
+ 	if not loaded.ok:
+ 		_show_fatal("Profils inaccessibles",loaded.error)
+ 		return
+-	_title('À chacun son aventure','Choisissez un profil. Points, achats et progression restent propres à chaque joueur.')
++	_title('À chacun son aventure','Chaque profil garde ses points, achats et progression.')
+ 	var grid=_grid(content,310,3)
+ 	for profile in ProfileService.profiles:
+ 		var card=ProfileCard.new()
+@@ -514,42 +584,71 @@
+ 			else: _show_screen('profiles'))
+ 
+ func _home() -> void:
+-	if AppState.profile.is_empty():
+-		_show_screen('profiles')
+-		return
+-	_title('Bonjour, '+AppState.profile.display_name+'.','Votre espace pour explorer, comprendre et progresser.')
+-	var grid=_grid(content,520,2)
+-	var hero=_panel(grid)
+-	_label(hero,'L’enquête CIEL',32)
+-	var artwork=EnquiryArt.new()
+-	artwork.custom_minimum_size.y=108
+-	hero.add_child(artwork)
+-	_label(hero,'Le message du local technique',0,true)
++	if AppState.profile.is_empty(): return
++	hero_panel=PanelContainer.new()
++	hero_panel.name='home_hero'
++	hero_panel.theme_type_variation='HeroPanel'
++	hero_panel.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	content.add_child(hero_panel)
++	hero_grid=GridContainer.new()
++	hero_grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	hero_grid.add_theme_constant_override('h_separation',36)
++	hero_grid.add_theme_constant_override('v_separation',18)
++	hero_panel.add_child(hero_grid)
++	var story=VBoxContainer.new()
++	home_story=story
++	story.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	story.size_flags_vertical=Control.SIZE_EXPAND|Control.SIZE_SHRINK_CENTER
++	story.add_theme_constant_override('separation',12)
++	hero_grid.add_child(story)
++	home_labels.kicker=_label(story,'EXPLORER · COMPRENDRE · RÉSOUDRE',15,true)
++	home_labels.title=_label(story,'L’enquête CIEL',42)
++	home_labels.subtitle=_label(story,'Le message du local technique',24)
++	home_labels.description=_label(story,'Un atelier en panne. Trois équipements à rétablir.
++À vous de retrouver le message et d’expliquer l’incident.',0,true)
+ 	var done=AppState.profile.progress.completed_missions
+-	var objectives=_grid(hero,170,3)
++	home_labels.progress=_label(story,'%d / 3 missions réalisées'%done.size(),20)
++	var actions=HBoxContainer.new()
++	story.add_child(actions)
++	var started=AppState.profile.progress.started
++	var primary=_button(actions,'Continuer' if started else 'Commencer',_continue_game if started else _new_game,'continue_game' if started else 'new_game')
++	primary.theme_type_variation='PrimaryButton'
++	primary.custom_minimum_size=Vector2(170,56)
++	primary.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
++	var secondary=_button(actions,'Nouvelle partie' if started else 'Continuer',_new_game if started else _continue_game,'new_game' if started else 'continue_game')
++	secondary.disabled=not started
++	secondary.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
++	secondary.custom_minimum_size.x=220 if started else 155
++	if not started:
++		secondary.tooltip_text='Commencez une partie pour créer une progression.'
++		home_labels.hint=_label(story,'Aucune partie enregistrée : choisissez Commencer.',16,true)
++	var art_column=VBoxContainer.new()
++	art_column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	art_column.size_flags_vertical=Control.SIZE_EXPAND|Control.SIZE_SHRINK_CENTER
++	hero_grid.add_child(art_column)
++	hero_art=EnquiryArt.new()
++	hero_art.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	hero_art.size_flags_vertical=Control.SIZE_EXPAND_FILL
++	art_column.add_child(hero_art)
++	var objectives=VBoxContainer.new()
++	home_objectives=objectives
++	objectives.add_theme_constant_override('separation',6)
++	art_column.add_child(objectives)
+ 	for mission in RewardService.missions:
+-		_label(objectives,('✓ ' if mission.id in done else '○ ')+mission.name,16)
+-	var row=_grid(hero,205,2)
+-	var cont=_button(row,'Continuer',_continue_game,'continue_game')
+-	cont.disabled=not AppState.profile.progress.started
+-	if cont.disabled: cont.tooltip_text='Commencez une partie pour créer une progression.'
+-	_button(row,'Nouvelle partie' if AppState.profile.progress.started else 'Commencer',_new_game,'new_game')
+-	if cont.disabled: _label(hero,'Continuer : aucune partie enregistrée.',16,true)
+-	var aside=_panel(grid)
+-	var actions=[['Boutique','Des détails qui vous ressemblent.','shop'],['Profils','Chaque joueur garde son parcours.','profiles'],['Paramètres','À votre rythme, à votre façon.','settings'],['Aide / Crédits','Commandes, projet et licences.','help']]
+-	for action in actions:
+-		var panel=VBoxContainer.new()
+-		panel.add_theme_constant_override('separation',6)
+-		aside.add_child(panel)
+-		_button(panel,action[0],func(): _navigate(action[2]),'home_'+action[2])
+-		_label(panel,action[1],16,true)
+-	var bottom=HBoxContainer.new()
+-	content.add_child(bottom)
+-	_label(bottom,'Console CIEL · version '+str(ProjectSettings.get_setting('application/config/version'))+' · données locales',14,true)
+-	if PlatformService.is_pi():
+-		var shutdown=_button(bottom,'Arrêt système non configuré',func(): pass,'shutdown')
+-		shutdown.disabled=true
+-	_button(bottom,'Quitter',_request_quit,'quit')
++		var title={'lighting':'Rétablir l’éclairage','lock':'Ouvrir le bureau','computer':'Retrouver le message'}.get(mission.id,mission.name)
++		_label(objectives,('✓  ' if mission.id in done else '○  ')+title,16)
++	home_labels.note=_label(story,'Données locales · points gagnés dans les missions',14,true)
++
++func _navigation_destination(next: String) -> void:
++	if next==screen or is_instance_valid(modal) or not SceneRouter.gameplay_allowed(): return
++	if screen=='settings':
++		if _settings_dirty():
++			_confirm('Quitter les réglages ?','Les aperçus non appliqués seront annulés. Pour les conserver, revenez ici et choisissez Appliquer.','Annuler les aperçus',func():
++				_discard_settings()
++				_navigate(next))
++			return
++		_discard_settings()
++	_navigate(next)
+ 
+ func _navigate(next: String) -> void:
+ 	if next=='help': parent_screen=screen
+@@ -603,11 +702,11 @@
+ 	content.add_child(demo)
+ 	demo.show()
+ 	demo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+-	demo.custom_minimum_size.y=400 if size.y>=600 else 275
++	demo.custom_minimum_size.y=maxf(170,scroll.size.y)
+ 	if demo.has_method('refresh'): demo.refresh()
+ 
+ func _shop() -> void:
+-	_title('Une touche personnelle','Cosmétiques uniquement · aucun achat réel. Les défis pédagogiques rapportent des points une seule fois.')
++	_title('Une touche personnelle','Des cosmétiques en points virtuels, sans achat réel.')
+ 	var bar=_grid(content,250,3)
+ 	var filter=OptionButton.new()
+ 	filter.name='shop_filter'
+@@ -647,10 +746,11 @@
+ 			if _result(ShopService.purchase(id),'✓ Achat réussi et enregistré',func(): _product_action(id)): _show_screen('shop'))
+ 
+ func _settings() -> void:
+-	_title('Paramètres','Les aperçus restent temporaires jusqu’à Appliquer. Annuler restaure les réglages précédents.')
++	_title('Paramètres','Appliquer enregistre. Annuler restaure les aperçus.')
+ 	var categories=OptionButton.new()
+ 	categories.name='settings_categories'
+-	categories.custom_minimum_size.y=48
++	categories.custom_minimum_size=Vector2(320,48)
++	categories.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+ 	for title in ['Audio','Affichage','Accessibilité','Commandes','Apparence','Données','À propos']: categories.add_item(title)
+ 	categories.selected=settings_category
+ 	categories.item_selected.connect(func(index): settings_category=index; _show_screen('settings'))
+@@ -699,6 +799,14 @@
+ 		draft_settings=SettingsService.defaults.duplicate(true)
+ 		SettingsService.preview(draft_settings)
+ 		_show_screen('settings'),'settings_defaults')
++	var system_actions=HBoxContainer.new()
++	content.add_child(system_actions)
++	var quit_button=_button(system_actions,'Quitter l’application',_request_quit,'quit')
++	quit_button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
++	quit_button.custom_minimum_size.x=260
++	if PlatformService.is_pi():
++		var shutdown=_button(system_actions,'Arrêt système non configuré',func(): pass,'shutdown')
++		shutdown.disabled=true
+ 	footer.text='Q / E ou boutons supérieurs : catégorie   ·   Échap : annuler   ·   Aperçus temporaires'
+ 
+ func _toggle(host: Node,title: String,key: String) -> void:
+--- avant/scripts/ui/product_card.gd
++++ apres/scripts/ui/product_card.gd
+@@ -1,22 +1,16 @@
+ extends PanelContainer
+-const Avatar = preload('res://scripts/ui/avatar_icon.gd')
++const Preview = preload('res://scripts/ui/cosmetic_preview.gd')
+ const GlassButton = preload('res://scripts/ui/translucent_button.gd')
+ signal action_requested(id)
+ func configure(item: Dictionary, owned: bool, equipped: bool, enough: bool) -> void:
+ 	var col = VBoxContainer.new()
+ 	add_child(col)
+-	var preview = HBoxContainer.new()
++	var preview=Preview.new()
+ 	col.add_child(preview)
+-	var icon = Avatar.new()
+-	icon.color = Color(item.get('color', item.get('accent','#527FA3')))
+-	icon.variant = int(item.get('variant', 1 if item.type == 'theme' else {'H':0,'O':2,'F':1,'R':2}.get(item.get('symbol','H'),0)))
+-	if item.type == 'frame':
+-		icon.frame=item.id
+-		icon.frame_spec=item
+-	preview.add_child(icon)
+-	var texts = VBoxContainer.new()
+-	texts.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+-	preview.add_child(texts)
++	preview.configure(item)
++	var texts=VBoxContainer.new()
++	texts.add_theme_constant_override('separation',4)
++	col.add_child(texts)
+ 	var type_label = Label.new()
+ 	type_label.text = {'avatar':'AVATAR','theme':'THÈME','frame':'CADRE'}.get(item.type,'OBJET')
+ 	type_label.add_theme_font_size_override('font_size',maxi(14,get_theme_default_font_size()-4))
+@@ -25,7 +19,7 @@
+ 	var label = Label.new()
+ 	label.text = item.name
+ 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+-	label.add_theme_font_size_override('font_size',22)
++	label.add_theme_font_size_override('font_size',get_theme_default_font_size()+4)
+ 	texts.add_child(label)
+ 	var desc = Label.new()
+ 	desc.text=item.description
+@@ -41,6 +35,7 @@
+ 	action.name='product_'+item.id
+ 	if equipped:
+ 		action.text='✓ Équipé'
++		action.theme_type_variation='NavigationSelected'
+ 	elif owned:
+ 		action.text='Équiper · possédé'
+ 	elif enough:
+--- avant/scripts/ui/theme_factory.gd
++++ apres/scripts/ui/theme_factory.gd
+@@ -46,6 +46,47 @@
+ 		box.content_margin_bottom = 9
+ 		box.shadow_size = 3
+ 	t.set_stylebox('panel', 'PanelContainer', panel(Color(1, 1, 1, 1.0 if opaque else 0.94)))
++	t.set_type_variation('PrimaryButton','Button')
++	t.set_type_variation('NavigationButton','Button')
++	t.set_type_variation('NavigationSelected','NavigationButton')
++	t.set_type_variation('NavigationPanel','PanelContainer')
++	t.set_type_variation('HeroPanel','PanelContainer')
++	t.set_type_variation('HUDPanel','PanelContainer')
++	for state in ['normal','hover','pressed','disabled']:
++		var primary=panel(accent.darkened(.12 if state=='pressed' else 0.0),16,accent)
++		primary.content_margin_top=13; primary.content_margin_bottom=13
++		t.set_stylebox(state,'PrimaryButton',primary)
++		t.set_color('font_'+('color' if state=='normal' else state+'_color'),'PrimaryButton',Color.WHITE)
++	t.set_color('font_focus_color','PrimaryButton',Color.WHITE)
++	var primary_focus=focus.duplicate()
++	primary_focus.border_color=Color('#25313C')
++	t.set_stylebox('focus','PrimaryButton',primary_focus)
++	var nav_panel=panel(Color(1,1,1,1.0 if opaque else .88),24,Color('#D9E2E9'))
++	nav_panel.content_margin_top=6;nav_panel.content_margin_bottom=6
++	nav_panel.content_margin_left=8;nav_panel.content_margin_right=8
++	t.set_stylebox('panel','NavigationPanel',nav_panel)
++	for state in ['normal','hover','pressed','disabled']:
++		var box=panel(Color(1,1,1,0) if state=='normal' else Color('#EDF3F5'),16,Color(1,1,1,0))
++		box.shadow_size=0;box.content_margin_left=6;box.content_margin_right=6
++		box.content_margin_top=4;box.content_margin_bottom=4
++		t.set_stylebox(state,'NavigationButton',box)
++	var active_nav=panel(accent.lightened(.83),16,accent.lightened(.5))
++	active_nav.shadow_size=0;active_nav.set_border_width_all(1)
++	active_nav.border_width_bottom=3
++	active_nav.content_margin_top=4;active_nav.content_margin_bottom=4
++	active_nav.content_margin_left=6;active_nav.content_margin_right=6
++	t.set_stylebox('normal','NavigationSelected',active_nav)
++	t.set_stylebox('hover','NavigationSelected',active_nav)
++	t.set_stylebox('focus','NavigationButton',focus)
++	var hero_panel=panel(Color('#E6EEF0') if opaque else Color(.90,.94,.95,.91),28,Color('#D0DFE2'))
++	hero_panel.content_margin_left=28;hero_panel.content_margin_right=28
++	hero_panel.content_margin_top=24;hero_panel.content_margin_bottom=24
++	t.set_stylebox('panel','HeroPanel',hero_panel)
++	var hud_panel=panel(Color(1,1,1,1 if opaque else .93),16,Color('#D7E2DD'))
++	hud_panel.content_margin_left=12;hud_panel.content_margin_right=12
++	hud_panel.content_margin_top=10;hud_panel.content_margin_bottom=10
++	hud_panel.shadow_size=4
++	t.set_stylebox('panel','HUDPanel',hud_panel)
+ 	for entry in [['slider', Color('#DCE5EC')], ['grabber_area', accent], ['grabber_area_highlight', accent.darkened(0.15)]]:
+ 		var track = StyleBoxFlat.new()
+ 		track.bg_color = entry[1]

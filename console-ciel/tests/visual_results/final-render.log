@@ -1,0 +1,127 @@
+WorkerThreadPool: 3 threads, 1 max low-priority.
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Unrecognized output string "misc2" in mapping:
+030000008a2e0000dd10000011010000,Hand Held Legend GC Ultimate,a:b0,b:b2,back:b17,dpdown:b5,dpleft:b6,dpright:b7,dpup:b4,guide:b18,leftshoulder:b10,leftstick:b8,lefttrigger:a3,leftx:a0,lefty:a1,misc1:b19,misc2:b24,paddle1:b13,paddle2:b12,rightshoulder:b11,rightstick:b9,righttrigger:a4,rightx:a2,righty:a5,start:b16,x:b1,y:b3,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000000d0f0000ab01000011010000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+050000000d0f00009601000091000000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000007e0500006920000011010000,Nintendo Switch 2 Pro Controller,a:b0,b:b1,back:b14,dpdown:b8,dpleft:b10,dpright:b9,dpup:b11,guide:b16,leftshoulder:b12,leftstick:b15,lefttrigger:b13,leftx:a0,lefty:a1~,misc1:b17,misc2:b20,paddle1:b18,paddle2:b19,rightshoulder:b4,rightstick:b7,righttrigger:b5,rightx:a2,righty:a3~,start:b6,x:b2,y:b3,platform:Linux,
+SDL: Init OK!
+Xshape 1.1 detected.
+Xinerama 1.1 detected.
+Xrandr 1.6 detected.
+Xrender 0.11 detected.
+Xinput 2.2 detected.
+XInput: Refreshing devices.
+XInput: No touch devices found.
+Detecting GPUs, set DRI_PRIME in the environment to override GPU detection logic.
+Only one GPU found, using default.
+Accessibility: window 0 adapter created.
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+XcursorGetTheme could not get cursor theme
+Failed loading custom cursor: crossed_circle
+DBus 1.16.2 detected.
+Using "default" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: e1fc4015d45db07fce0346b99c312728ab006030520ec796da1461e1428345c5
+Shader 'SkeletonShaderGLES3' SHA256: e42116215ed2a92dea7085176e3b3f1089edcb71a3405ab67073ce8e77114587
+Shader 'ParticlesShaderGLES3' SHA256: ffb4401639aafac71f9f113685cb6db157587dac2f1a352495327188f37419b2
+Shader 'ParticlesCopyShaderGLES3' SHA256: 9899e9a2ef961a3d8b457619edf04eca325601701531cee383193a6c83ec1a13
+Shader 'CopyShaderGLES3' SHA256: e360dbabe48fbad4409fd02e3794a652b8c7d7778b2d408785702371b1c962c6
+Shader 'CubemapFilterShaderGLES3' SHA256: 017276394727d66a84d83b8b9d67287226d828c938b0adde3d2f699f78cf1582
+Shader 'GlowShaderGLES3' SHA256: 427cfd9bd0cc4045ecaa4bc4f23055a2a40660411d8e1663897a7c2cd3c80665
+Shader 'PostShaderGLES3' SHA256: a31034a68aa96e1495d69b387fe1f9198e7da7c39aaca2ae4881120445f14d7a
+Shader 'FeedShaderGLES3' SHA256: 9c5f15371d9ed62661ff3bb3ecc28f82cb15be9a4be89518b1f6fd8d372fbe4b
+Shader 'CanvasShaderGLES3' SHA256: 16f1396f2f5ac39d277138cd33a6d284e2d97309f2a547816c220d0ef0318826
+Shader 'CanvasOcclusionShaderGLES3' SHA256: 6baa8caaecef40c331cf27f156879d8ca7d8bf94ec84f8168903490f61264d2d
+Shader 'SceneShaderGLES3' SHA256: 6d63bbf4b53e4a6a75547f4788484cc8b6c054bccd3c1331ef7b8b504184effa
+Shader 'SkyShaderGLES3' SHA256: 9ed6b1ef29b56a1ac888c4de409d9caf637e7cb9b41ab33a7c5391c352788c40
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres
+CORE API HASH: 2475187701
+EDITOR API HASH: 3867286884
+Loading resource: res://tests/visual_review.gd
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://scripts/services/save_service.gd
+Loading resource: res://scripts/services/app_state.gd
+Loading resource: res://scripts/services/shop_service.gd
+Loading resource: res://scripts/services/reward_service.gd
+Loading resource: res://scripts/services/profile_service.gd
+Loading resource: res://scripts/services/controller_service.gd
+Loading resource: res://scripts/services/settings_service.gd
+Loading resource: res://scripts/services/scene_router.gd
+Loading resource: res://scripts/services/platform_service.gd
+Loaded system CA certificates
+Loading resource: res://scenes/main.tscn
+Loading resource: res://scripts/ui/main.gd
+Loading resource: res://scenes/startup.tscn
+Loading resource: res://scripts/ui/startup_panel.gd
+Loading resource: res://scenes/investigation_world.tscn
+Loading resource: res://scripts/game/investigation_world.gd
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+Loading resource: res://themes/console_theme.tres
+VISUAL_REVIEW : 62 captures, 0 échec(s).
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.
+Leaked instance: AudioStreamWAV:9223372081532503542 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372105926575749 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Orphan StringName: Music (static: 0, total: 2)
+StringName: 1 unclaimed string names at exit.

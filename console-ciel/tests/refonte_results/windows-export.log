@@ -1,0 +1,500 @@
+Import du projet...
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (2 steps)
+[   0% ] update_scripts_classes | 
+[  33% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] _update_scan_actions | Started Scanning actions... (108 steps)
+[   0% ] _update_scan_actions | atelier_apres_eclairage_1280x720.png
+[   0% ] _update_scan_actions | atelier_avant_eclairage_1280x720.png
+[   1% ] _update_scan_actions | atelier_porte_ouverte_1280x720.png
+[   2% ] _update_scan_actions | boutique_800x480_grand_opaque.png
+[   3% ] _update_scan_actions | boutique_800x480_normal.png
+[   4% ] _update_scan_actions | boutique_1024x600_grand_opaque.png
+[   5% ] _update_scan_actions | boutique_1024x600_normal.png
+[   6% ] _update_scan_actions | boutique_1280x720_grand_opaque.png
+[   7% ] _update_scan_actions | boutique_1280x720_normal.png
+[   8% ] _update_scan_actions | boutique_1920x1080_grand_opaque.png
+[   9% ] _update_scan_actions | boutique_1920x1080_normal.png
+[  10% ] _update_scan_actions | boutique_focus_1280x720.png
+[  11% ] _update_scan_actions | conclusion_800x480_grand_opaque.png
+[  11% ] _update_scan_actions | conclusion_800x480_normal.png
+[  12% ] _update_scan_actions | conclusion_1024x600_grand_opaque.png
+[  13% ] _update_scan_actions | conclusion_1024x600_normal.png
+[  14% ] _update_scan_actions | conclusion_1280x720_grand_opaque.png
+[  15% ] _update_scan_actions | conclusion_1280x720_normal.png
+[  16% ] _update_scan_actions | conclusion_1920x1080_grand_opaque.png
+[  17% ] _update_scan_actions | conclusion_1920x1080_normal.png
+[  18% ] _update_scan_actions | confirmation_1280x720.png
+[  19% ] _update_scan_actions | creation_1280x720.png
+[  20% ] _update_scan_actions | defi_800x480_grand_opaque.png
+[  21% ] _update_scan_actions | defi_800x480_normal.png
+[  22% ] _update_scan_actions | defi_1024x600_grand_opaque.png
+[  22% ] _update_scan_actions | defi_1024x600_normal.png
+[  23% ] _update_scan_actions | defi_1280x720_grand_opaque.png
+[  24% ] _update_scan_actions | defi_1280x720_normal.png
+[  25% ] _update_scan_actions | defi_1920x1080_grand_opaque.png
+[  26% ] _update_scan_actions | defi_1920x1080_normal.png
+[  27% ] _update_scan_actions | demarrage.png
+[  28% ] _update_scan_actions | dialogue_800x480_grand_opaque.png
+[  29% ] _update_scan_actions | dialogue_800x480_normal.png
+[  30% ] _update_scan_actions | dialogue_1024x600_grand_opaque.png
+[  31% ] _update_scan_actions | dialogue_1024x600_normal.png
+[  32% ] _update_scan_actions | dialogue_1280x720_grand_opaque.png
+[  33% ] _update_scan_actions | dialogue_1280x720_normal.png
+[  33% ] _update_scan_actions | dialogue_1920x1080_grand_opaque.png
+[  34% ] _update_scan_actions | dialogue_1920x1080_normal.png
+[  35% ] _update_scan_actions | eclairage_retabli_1280x720.png
+[  36% ] _update_scan_actions | enquete_800x480_grand_opaque.png
+[  37% ] _update_scan_actions | enquete_800x480_normal.png
+[  38% ] _update_scan_actions | enquete_1024x600_grand_opaque.png
+[  39% ] _update_scan_actions | enquete_1024x600_normal.png
+[  40% ] _update_scan_actions | enquete_1280x720_grand_opaque.png
+[  41% ] _update_scan_actions | enquete_1280x720_normal.png
+[  42% ] _update_scan_actions | enquete_1920x1080_grand_opaque.png
+[  43% ] _update_scan_actions | enquete_1920x1080_normal.png
+[  44% ] _update_scan_actions | interaction_800x480_grand_opaque.png
+[  44% ] _update_scan_actions | interaction_800x480_normal.png
+[  45% ] _update_scan_actions | interaction_1024x600_grand_opaque.png
+[  46% ] _update_scan_actions | interaction_1024x600_normal.png
+[  47% ] _update_scan_actions | interaction_1280x720_grand_opaque.png
+[  48% ] _update_scan_actions | interaction_1280x720_normal.png
+[  49% ] _update_scan_actions | interaction_1920x1080_grand_opaque.png
+[  50% ] _update_scan_actions | interaction_1920x1080_normal.png
+[  51% ] _update_scan_actions | inventaire_800x480_grand_opaque.png
+[  52% ] _update_scan_actions | inventaire_800x480_normal.png
+[  53% ] _update_scan_actions | inventaire_1024x600_grand_opaque.png
+[  54% ] _update_scan_actions | inventaire_1024x600_normal.png
+[  55% ] _update_scan_actions | inventaire_1280x720_grand_opaque.png
+[  55% ] _update_scan_actions | inventaire_1280x720_normal.png
+[  56% ] _update_scan_actions | inventaire_1920x1080_grand_opaque.png
+[  57% ] _update_scan_actions | inventaire_1920x1080_normal.png
+[  58% ] _update_scan_actions | inventaire_apres_achat_1280x720.png
+[  59% ] _update_scan_actions | menu_800x480_grand_opaque.png
+[  60% ] _update_scan_actions | menu_800x480_normal.png
+[  61% ] _update_scan_actions | menu_1024x600_grand_opaque.png
+[  62% ] _update_scan_actions | menu_1024x600_normal.png
+[  63% ] _update_scan_actions | menu_1280x720_grand_opaque.png
+[  64% ] _update_scan_actions | menu_1280x720_normal.png
+[  65% ] _update_scan_actions | menu_1920x1080_grand_opaque.png
+[  66% ] _update_scan_actions | menu_1920x1080_normal.png
+[  66% ] _update_scan_actions | navigation_focus_1280x720.png
+[  67% ] _update_scan_actions | objectifs_800x480_grand_opaque.png
+[  68% ] _update_scan_actions | objectifs_800x480_normal.png
+[  69% ] _update_scan_actions | objectifs_1024x600_grand_opaque.png
+[  70% ] _update_scan_actions | objectifs_1024x600_normal.png
+[  71% ] _update_scan_actions | objectifs_1280x720_grand_opaque.png
+[  72% ] _update_scan_actions | objectifs_1280x720_normal.png
+[  73% ] _update_scan_actions | objectifs_1920x1080_grand_opaque.png
+[  74% ] _update_scan_actions | objectifs_1920x1080_normal.png
+[  75% ] _update_scan_actions | ordinateur_repare_1280x720.png
+[  76% ] _update_scan_actions | parametres_800x480_grand_opaque.png
+[  77% ] _update_scan_actions | parametres_800x480_normal.png
+[  77% ] _update_scan_actions | parametres_1024x600_grand_opaque.png
+[  78% ] _update_scan_actions | parametres_1024x600_normal.png
+[  79% ] _update_scan_actions | parametres_1280x720_grand_opaque.png
+[  80% ] _update_scan_actions | parametres_1280x720_normal.png
+[  81% ] _update_scan_actions | parametres_1920x1080_grand_opaque.png
+[  82% ] _update_scan_actions | parametres_1920x1080_normal.png
+[  83% ] _update_scan_actions | pause_800x480_grand_opaque.png
+[  84% ] _update_scan_actions | pause_800x480_normal.png
+[  85% ] _update_scan_actions | pause_1024x600_grand_opaque.png
+[  86% ] _update_scan_actions | pause_1024x600_normal.png
+[  87% ] _update_scan_actions | pause_1280x720_grand_opaque.png
+[  88% ] _update_scan_actions | pause_1280x720_normal.png
+[  88% ] _update_scan_actions | pause_1920x1080_grand_opaque.png
+[  89% ] _update_scan_actions | pause_1920x1080_normal.png
+[  90% ] _update_scan_actions | porte_ouverte_1280x720.png
+[  91% ] _update_scan_actions | profils_800x480_grand_opaque.png
+[  92% ] _update_scan_actions | profils_800x480_normal.png
+[  93% ] _update_scan_actions | profils_1024x600_grand_opaque.png
+[  94% ] _update_scan_actions | profils_1024x600_normal.png
+[  95% ] _update_scan_actions | profils_1280x720_grand_opaque.png
+[  96% ] _update_scan_actions | profils_1280x720_normal.png
+[  97% ] _update_scan_actions | profils_1920x1080_grand_opaque.png
+[  98% ] _update_scan_actions | profils_1920x1080_normal.png
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started (Re)Importing Assets (63 steps)
+[   0% ] reimport | Preparing files to reimport...
+[   1% ] reimport | Preparing files to reimport...
+[   3% ] reimport | Preparing files to reimport...
+[   4% ] reimport | Preparing files to reimport...
+[   6% ] reimport | Preparing files to reimport...
+[   7% ] reimport | Preparing files to reimport...
+[   9% ] reimport | Preparing files to reimport...
+[  10% ] reimport | Preparing files to reimport...
+[  12% ] reimport | Preparing files to reimport...
+[  14% ] reimport | Preparing files to reimport...
+[  15% ] reimport | Preparing files to reimport...
+[  17% ] reimport | Preparing files to reimport...
+[  18% ] reimport | Preparing files to reimport...
+[  20% ] reimport | Preparing files to reimport...
+[  21% ] reimport | Preparing files to reimport...
+[  23% ] reimport | Preparing files to reimport...
+[  25% ] reimport | Preparing files to reimport...
+[  26% ] reimport | Preparing files to reimport...
+[  28% ] reimport | Preparing files to reimport...
+[  29% ] reimport | Preparing files to reimport...
+[  31% ] reimport | Preparing files to reimport...
+[  32% ] reimport | Preparing files to reimport...
+[  34% ] reimport | Preparing files to reimport...
+[  35% ] reimport | Preparing files to reimport...
+[  37% ] reimport | Preparing files to reimport...
+[  39% ] reimport | Preparing files to reimport...
+[  40% ] reimport | Preparing files to reimport...
+[  42% ] reimport | Preparing files to reimport...
+[  43% ] reimport | Preparing files to reimport...
+[  45% ] reimport | Preparing files to reimport...
+[  46% ] reimport | Preparing files to reimport...
+[  48% ] reimport | Preparing files to reimport...
+[  50% ] reimport | Preparing files to reimport...
+[  51% ] reimport | Preparing files to reimport...
+[  53% ] reimport | Preparing files to reimport...
+[  54% ] reimport | Preparing files to reimport...
+[  56% ] reimport | Preparing files to reimport...
+[  57% ] reimport | Preparing files to reimport...
+[  59% ] reimport | Preparing files to reimport...
+[  60% ] reimport | Preparing files to reimport...
+[  62% ] reimport | Preparing files to reimport...
+[  64% ] reimport | Preparing files to reimport...
+[  65% ] reimport | Preparing files to reimport...
+[  67% ] reimport | Preparing files to reimport...
+[  68% ] reimport | Preparing files to reimport...
+[  70% ] reimport | Preparing files to reimport...
+[  71% ] reimport | Preparing files to reimport...
+[  73% ] reimport | Preparing files to reimport...
+[  75% ] reimport | Preparing files to reimport...
+[  76% ] reimport | Preparing files to reimport...
+[  78% ] reimport | Preparing files to reimport...
+[  79% ] reimport | Preparing files to reimport...
+[  81% ] reimport | Preparing files to reimport...
+[  82% ] reimport | Preparing files to reimport...
+[  84% ] reimport | Preparing files to reimport...
+[  85% ] reimport | Preparing files to reimport...
+[  87% ] reimport | Preparing files to reimport...
+[  89% ] reimport | Preparing files to reimport...
+[  90% ] reimport | Preparing files to reimport...
+[  92% ] reimport | Preparing files to reimport...
+[  93% ] reimport | Preparing files to reimport...
+[  95% ] reimport | Preparing files to reimport...
+[  96% ] reimport | Preparing files to reimport...
+[   0% ] reimport | Executing pre-reimport operations...
+[   0% ] reimport | interaction_1920x1080_grand_opaque.png
+[   1% ] reimport | interaction_1920x1080_normal.png
+[   3% ] reimport | inventaire_800x480_grand_opaque.png
+[   4% ] reimport | inventaire_800x480_normal.png
+[   6% ] reimport | inventaire_1024x600_grand_opaque.png
+[   7% ] reimport | inventaire_1024x600_normal.png
+[   9% ] reimport | inventaire_1280x720_grand_opaque.png
+[  10% ] reimport | inventaire_1280x720_normal.png
+[  12% ] reimport | inventaire_1920x1080_grand_opaque.png
+[  14% ] reimport | inventaire_1920x1080_normal.png
+[  15% ] reimport | objectifs_800x480_grand_opaque.png
+[  17% ] reimport | objectifs_800x480_normal.png
+[  18% ] reimport | objectifs_1024x600_grand_opaque.png
+[  20% ] reimport | objectifs_1024x600_normal.png
+[  21% ] reimport | objectifs_1280x720_grand_opaque.png
+[  23% ] reimport | objectifs_1280x720_normal.png
+[  25% ] reimport | objectifs_1920x1080_grand_opaque.png
+[  25% ] reimport | objectifs_1920x1080_grand_opaque.png
+[  26% ] reimport | objectifs_1920x1080_normal.png
+[  28% ] reimport | pause_800x480_normal.png
+[  29% ] reimport | pause_1024x600_normal.png
+[  31% ] reimport | pause_1280x720_normal.png
+[  32% ] reimport | pause_1920x1080_grand_opaque.png
+[  34% ] reimport | pause_1920x1080_normal.png
+[  35% ] reimport | profils_800x480_grand_opaque.png
+[  37% ] reimport | profils_800x480_normal.png
+[  39% ] reimport | profils_1024x600_grand_opaque.png
+[  40% ] reimport | profils_1024x600_normal.png
+[  42% ] reimport | profils_1280x720_grand_opaque.png
+[  43% ] reimport | profils_1280x720_normal.png
+[  45% ] reimport | profils_1920x1080_grand_opaque.png
+[  46% ] reimport | profils_1920x1080_normal.png
+[  48% ] reimport | atelier_avant_eclairage_1280x720.png
+[  50% ] reimport | boutique_800x480_grand_opaque.png
+[  51% ] reimport | boutique_800x480_normal.png
+[  53% ] reimport | boutique_1024x600_grand_opaque.png
+[  54% ] reimport | boutique_1024x600_normal.png
+[  56% ] reimport | boutique_1280x720_grand_opaque.png
+[  57% ] reimport | boutique_1280x720_normal.png
+[  59% ] reimport | boutique_1920x1080_grand_opaque.png
+[  60% ] reimport | boutique_1920x1080_normal.png
+[  62% ] reimport | defi_1024x600_normal.png
+[  64% ] reimport | dialogue_800x480_grand_opaque.png
+[  65% ] reimport | dialogue_800x480_normal.png
+[  67% ] reimport | dialogue_1024x600_grand_opaque.png
+[  68% ] reimport | dialogue_1024x600_normal.png
+[  70% ] reimport | dialogue_1280x720_grand_opaque.png
+[  71% ] reimport | dialogue_1280x720_normal.png
+[  73% ] reimport | dialogue_1920x1080_grand_opaque.png
+[  75% ] reimport | dialogue_1920x1080_normal.png
+[  76% ] reimport | enquete_800x480_grand_opaque.png
+[  78% ] reimport | enquete_800x480_normal.png
+[  79% ] reimport | enquete_1024x600_grand_opaque.png
+[  81% ] reimport | enquete_1024x600_normal.png
+[  82% ] reimport | enquete_1280x720_grand_opaque.png
+[  84% ] reimport | enquete_1280x720_normal.png
+[  85% ] reimport | enquete_1920x1080_grand_opaque.png
+[  87% ] reimport | enquete_1920x1080_normal.png
+[  89% ] reimport | interaction_800x480_grand_opaque.png
+[  90% ] reimport | interaction_800x480_normal.png
+[  92% ] reimport | interaction_1024x600_grand_opaque.png
+[  93% ] reimport | interaction_1024x600_normal.png
+[  95% ] reimport | interaction_1280x720_grand_opaque.png
+[  96% ] reimport | interaction_1280x720_normal.png
+[  98% ] reimport | Finalizing Asset Import...
+[ DONE ] reimport
+
+[   0% ] reimport | Started (Re)Importing Assets (63 steps)
+[   0% ] reimport | Executing post-reimport operations...
+[ DONE ] reimport
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+
+Export Windows x86_64...
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] _update_scan_actions | Started Scanning actions... (20 steps)
+[   0% ] _update_scan_actions | atelier_apres_eclairage_1280x720.png
+[   4% ] _update_scan_actions | atelier_avant_eclairage_1280x720.png
+[   9% ] _update_scan_actions | atelier_porte_ouverte_1280x720.png
+[  14% ] _update_scan_actions | menu_800x480_grand_opaque.png
+[  19% ] _update_scan_actions | menu_800x480_normal.png
+[  23% ] _update_scan_actions | menu_1024x600_grand_opaque.png
+[  28% ] _update_scan_actions | menu_1024x600_normal.png
+[  33% ] _update_scan_actions | menu_1280x720_grand_opaque.png
+[  38% ] _update_scan_actions | menu_1280x720_normal.png
+[  42% ] _update_scan_actions | menu_1920x1080_grand_opaque.png
+[  47% ] _update_scan_actions | menu_1920x1080_normal.png
+[  52% ] _update_scan_actions | ordinateur_repare_1280x720.png
+[  57% ] _update_scan_actions | parametres_800x480_grand_opaque.png
+[  61% ] _update_scan_actions | parametres_800x480_normal.png
+[  66% ] _update_scan_actions | parametres_1024x600_grand_opaque.png
+[  71% ] _update_scan_actions | parametres_1024x600_normal.png
+[  76% ] _update_scan_actions | parametres_1280x720_grand_opaque.png
+[  80% ] _update_scan_actions | parametres_1280x720_normal.png
+[  85% ] _update_scan_actions | parametres_1920x1080_grand_opaque.png
+[  90% ] _update_scan_actions | parametres_1920x1080_normal.png
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started (Re)Importing Assets (4 steps)
+[   0% ] reimport | Preparing files to reimport...
+[  20% ] reimport | Preparing files to reimport...
+[  40% ] reimport | Preparing files to reimport...
+[  60% ] reimport | Preparing files to reimport...
+[   0% ] reimport | Executing pre-reimport operations...
+[   0% ] reimport | atelier_apres_eclairage_1280x720.png
+[  20% ] reimport | atelier_avant_eclairage_1280x720.png
+[  40% ] reimport | atelier_porte_ouverte_1280x720.png
+[  60% ] reimport | ordinateur_repare_1280x720.png
+[  80% ] reimport | Finalizing Asset Import...
+[ DONE ] reimport
+
+[   0% ] reimport | Started (Re)Importing Assets (4 steps)
+[   0% ] reimport | Executing post-reimport operations...
+[ DONE ] reimport
+
+[   0% ] savepack | Started Packing (102 steps)
+[   1% ] savepack | Storing File: res://.godot/imported/down_0.svg-026867e2f547dab91dbd8a3f105a6d41.ctex
+[   1% ] savepack | Storing File: res://assets/art/character/down_0.svg.import
+[   2% ] savepack | Storing File: res://.godot/imported/down_1.svg-cabcf9817210a6e417f7344672f863f9.ctex
+[   2% ] savepack | Storing File: res://assets/art/character/down_1.svg.import
+[   3% ] savepack | Storing File: res://.godot/imported/down_2.svg-2aa74c6c3fbb2e6151c1ba3a9b1807d5.ctex
+[   3% ] savepack | Storing File: res://assets/art/character/down_2.svg.import
+[   4% ] savepack | Storing File: res://.godot/imported/left_0.svg-26674f261634b26028690fd2f35a12c3.ctex
+[   4% ] savepack | Storing File: res://assets/art/character/left_0.svg.import
+[   5% ] savepack | Storing File: res://.godot/imported/left_1.svg-df093bf270a05e3ee8843284504fcba3.ctex
+[   5% ] savepack | Storing File: res://assets/art/character/left_1.svg.import
+[   6% ] savepack | Storing File: res://.godot/imported/left_2.svg-8efd0f06d390051de18ebd2fc311a826.ctex
+[   6% ] savepack | Storing File: res://assets/art/character/left_2.svg.import
+[   7% ] savepack | Storing File: res://.godot/imported/right_0.svg-a4da3ca17031c7c6240f4fba1614c42c.ctex
+[   7% ] savepack | Storing File: res://assets/art/character/right_0.svg.import
+[   8% ] savepack | Storing File: res://.godot/imported/right_1.svg-b5d8fb4b6786d8bd7bb7bdc1a5ee4fdc.ctex
+[   8% ] savepack | Storing File: res://assets/art/character/right_1.svg.import
+[   9% ] savepack | Storing File: res://.godot/imported/right_2.svg-af973d8aed5aedf217a0b34d1157492e.ctex
+[   9% ] savepack | Storing File: res://assets/art/character/right_2.svg.import
+[  11% ] savepack | Storing File: res://.godot/imported/up_0.svg-97ebd597f4d4862fa5cdf80b8c62b47b.ctex
+[  11% ] savepack | Storing File: res://assets/art/character/up_0.svg.import
+[  12% ] savepack | Storing File: res://.godot/imported/up_1.svg-75fdd531a714348561e8f2780a0d7d0b.ctex
+[  12% ] savepack | Storing File: res://assets/art/character/up_1.svg.import
+[  13% ] savepack | Storing File: res://.godot/imported/up_2.svg-eed75f235da17c253335dedcb74d15bb.ctex
+[  13% ] savepack | Storing File: res://assets/art/character/up_2.svg.import
+[  14% ] savepack | Storing File: res://.godot/imported/help.svg-5cf492cbc62f170fb5666a01ad56b5d9.ctex
+[  14% ] savepack | Storing File: res://assets/art/icons/help.svg.import
+[  15% ] savepack | Storing File: res://.godot/imported/home.svg-facdd0c4aa6aec2a85ec00e74fd409a9.ctex
+[  15% ] savepack | Storing File: res://assets/art/icons/home.svg.import
+[  16% ] savepack | Storing File: res://.godot/imported/profiles.svg-e29c73cf341ac8be1f2aec751804c0b0.ctex
+[  16% ] savepack | Storing File: res://assets/art/icons/profiles.svg.import
+[  17% ] savepack | Storing File: res://.godot/imported/settings.svg-4ce57bd515ee457c85a2fecc75d78029.ctex
+[  17% ] savepack | Storing File: res://assets/art/icons/settings.svg.import
+[  18% ] savepack | Storing File: res://.godot/imported/shop.svg-87f80c72ecafd1bb405bbbbd4406017c.ctex
+[  18% ] savepack | Storing File: res://assets/art/icons/shop.svg.import
+[  20% ] savepack | Storing File: res://.godot/imported/cabinet.svg-510092dd526ad98cb115930545231c38.ctex
+[  20% ] savepack | Storing File: res://assets/art/world/cabinet.svg.import
+[  21% ] savepack | Storing File: res://.godot/imported/chair.svg-9ac307a9c9bc284683a8b9f3b6d19c9a.ctex
+[  21% ] savepack | Storing File: res://assets/art/world/chair.svg.import
+[  22% ] savepack | Storing File: res://.godot/imported/desk.svg-d33fac309d543be08d329a2f2201ec6e.ctex
+[  22% ] savepack | Storing File: res://assets/art/world/desk.svg.import
+[  23% ] savepack | Storing File: res://.godot/imported/door_closed.svg-fdc1cb2207feca5d480b033826f99296.ctex
+[  23% ] savepack | Storing File: res://assets/art/world/door_closed.svg.import
+[  24% ] savepack | Storing File: res://.godot/imported/door_open.svg-ab58a607644d03dc638ad293a8494670.ctex
+[  24% ] savepack | Storing File: res://assets/art/world/door_open.svg.import
+[  25% ] savepack | Storing File: res://.godot/imported/electrical_off.svg-906192fc3cd8ad61083a77373d2a20c6.ctex
+[  25% ] savepack | Storing File: res://assets/art/world/electrical_off.svg.import
+[  26% ] savepack | Storing File: res://.godot/imported/electrical_on.svg-acfdfc88dfe4ebbdee8626cc2be05d27.ctex
+[  26% ] savepack | Storing File: res://assets/art/world/electrical_on.svg.import
+[  27% ] savepack | Storing File: res://.godot/imported/floor.svg-633de64ce4f34f35268bd3599ea988ae.ctex
+[  27% ] savepack | Storing File: res://assets/art/world/floor.svg.import
+[  29% ] savepack | Storing File: res://.godot/imported/light.svg-f20e46b1f83aafc7cc35cfad20f67e6c.ctex
+[  29% ] savepack | Storing File: res://assets/art/world/light.svg.import
+[  30% ] savepack | Storing File: res://.godot/imported/monitor_off.svg-8d8d86ccd171dcce723c12f5962cc093.ctex
+[  30% ] savepack | Storing File: res://assets/art/world/monitor_off.svg.import
+[  31% ] savepack | Storing File: res://.godot/imported/monitor_on.svg-b8975980d203c5f568e8fac7bc5dd952.ctex
+[  31% ] savepack | Storing File: res://assets/art/world/monitor_on.svg.import
+[  32% ] savepack | Storing File: res://.godot/imported/note.svg-a5e0bb69ec2a96e01e6b28d4d3cdc608.ctex
+[  32% ] savepack | Storing File: res://assets/art/world/note.svg.import
+[  33% ] savepack | Storing File: res://.godot/imported/plant.svg-2b9b6f68e5719077ec605f664b85dda5.ctex
+[  33% ] savepack | Storing File: res://assets/art/world/plant.svg.import
+[  33% ] savepack | Storing File: res://.godot/imported/reader_off.svg-adc79cd7cd96a96d7289b0aa025124ec.ctex
+[  33% ] savepack | Storing File: res://assets/art/world/reader_off.svg.import
+[  34% ] savepack | Storing File: res://.godot/imported/reader_on.svg-99bb5ff67647abcb146b351da6e88a68.ctex
+[  34% ] savepack | Storing File: res://assets/art/world/reader_on.svg.import
+[  35% ] savepack | Storing File: res://.godot/imported/shelf.svg-a3c9b047a8b0978cdf2b5d59c4112aa0.ctex
+[  35% ] savepack | Storing File: res://assets/art/world/shelf.svg.import
+[  37% ] savepack | Storing File: res://.godot/imported/tower.svg-a50135dc234cf7572b58bfdcf0c30ac4.ctex
+[  37% ] savepack | Storing File: res://assets/art/world/tower.svg.import
+[  38% ] savepack | Storing File: res://.godot/imported/walls.svg-3b31f73b5dedc6c7cf6ce3c3c54287ec.ctex
+[  38% ] savepack | Storing File: res://assets/art/world/walls.svg.import
+[  39% ] savepack | Storing File: res://.godot/imported/workbench.svg-f4a0cdde1fadd6fa43ee4d5396515be9.ctex
+[  39% ] savepack | Storing File: res://assets/art/world/workbench.svg.import
+[  40% ] savepack | Storing File: res://.godot/imported/confirm.wav-f384b89b03be0f4c54dea669aece985b.sample
+[  40% ] savepack | Storing File: res://assets/audio/confirm.wav.import
+[  41% ] savepack | Storing File: res://.godot/imported/menu.wav-de54ed9cbf594325d64fc7b093374005.sample
+[  41% ] savepack | Storing File: res://assets/audio/menu.wav.import
+[  42% ] savepack | Storing File: res://assets/licenses/GODOT_LICENSE_TEXTS.json
+[  43% ] savepack | Storing File: res://assets/licenses/GODOT_THIRD_PARTY.json
+[  44% ] savepack | Storing File: res://.godot/imported/console.svg-1ee0be9bbd6f0ccf4b5e99e78625c6e7.ctex
+[  44% ] savepack | Storing File: res://assets/console.svg.import
+[  46% ] savepack | Storing File: res://scripts/ui/confirmation_dialog.gdc
+[  47% ] savepack | Storing File: res://assets/licenses/CC0.txt
+[  48% ] savepack | Storing File: res://scripts/ui/virtual_keyboard.gdc
+[  49% ] savepack | Storing File: res://scripts/services/app_state.gdc
+[  50% ] savepack | Storing File: res://.godot/exported/133200997/export-088e461bfc6d856aee27a936aca65a48-console_theme.res
+[  51% ] savepack | Storing File: res://scripts/game/challenge_panel.gdc
+[  52% ] savepack | Storing File: res://scripts/services/shop_service.gdc
+[  53% ] savepack | Storing File: res://data/controller_mapping.json
+[  55% ] savepack | Storing File: res://data/game_rules.json
+[  56% ] savepack | Storing File: res://data/shop_catalog.json
+[  57% ] savepack | Storing File: res://scripts/ui/product_card.gdc
+[  58% ] savepack | Storing File: res://.godot/exported/133200997/export-9bb02b5c7b6edcdb6d8b9659f486990f-startup.scn
+[  59% ] savepack | Storing File: res://scripts/ui/cosmetic_preview.gdc
+[  60% ] savepack | Storing File: res://scripts/ui/translucent_button.gdc
+[  61% ] savepack | Storing File: res://scripts/services/profile_service.gdc
+[  62% ] savepack | Storing File: res://scripts/game/player.gdc
+[  64% ] savepack | Storing File: res://scripts/services/scene_router.gdc
+[  65% ] savepack | Storing File: res://scripts/services/investigation_service.gdc
+[  66% ] savepack | Storing File: res://scripts/game/room_art.gdc
+[  66% ] savepack | Storing File: res://scripts/ui/setting_row.gdc
+[  67% ] savepack | Storing File: res://scripts/services/save_service.gdc
+[  68% ] savepack | Storing File: res://scripts/ui/navigation_bar.gdc
+[  69% ] savepack | Storing File: res://scripts/ui/avatar_icon.gdc
+[  70% ] savepack | Storing File: res://scripts/ui/main.gdc
+[  72% ] savepack | Storing File: res://scripts/ui/diagnostics_panel.gdc
+[  73% ] savepack | Storing File: res://scripts/services/platform_service.gdc
+[  74% ] savepack | Storing File: res://scripts/ui/enquiry_art.gdc
+[  75% ] savepack | Storing File: res://.godot/exported/133200997/export-0eb8574bb7fd6477440fed68fa7911c4-investigation_world.scn
+[  76% ] savepack | Storing File: res://scripts/game/investigation_world.gdc
+[  77% ] savepack | Storing File: res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+[  78% ] savepack | Storing File: res://scripts/ui/input_monitor.gdc
+[  79% ] savepack | Storing File: res://scripts/ui/startup_panel.gdc
+[  81% ] savepack | Storing File: res://.godot/exported/133200997/export-3d0be3949fcba8ed0f83d816dc760758-demo_game.scn
+[  82% ] savepack | Storing File: res://scripts/game/circuit_diagram.gdc
+[  83% ] savepack | Storing File: res://scripts/services/reward_service.gdc
+[  84% ] savepack | Storing File: res://scripts/ui/profile_card.gdc
+[  85% ] savepack | Storing File: res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+[  86% ] savepack | Storing File: res://scripts/ui/theme_factory.gdc
+[  87% ] savepack | Storing File: res://scripts/services/settings_service.gdc
+[  88% ] savepack | Storing File: res://assets/licenses/OFL-1.1.txt
+[  90% ] savepack | Storing File: res://assets/licenses/GODOT_MIT.txt
+[  91% ] savepack | Storing File: res://assets/LICENSES.md
+[  92% ] savepack | Storing File: res://scripts/services/controller_service.gdc
+[  93% ] savepack | Storing File: res://scripts/game/demo_game.gdc
+[  94% ] savepack | Storing File: res://scripts/ui/joy_navigation.gdc
+[  95% ] savepack | Storing File: res://scripts/input_setup.gdc
+[  96% ] savepack | Storing File: res://scripts/game/interactable.gdc
+[  97% ] savepack | Storing File: res://scripts/ui/notification.gdc
+[  97% ] savepack | Storing File: res://scripts/ui/confirmation_dialog.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/virtual_keyboard.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/app_state.gd.remap
+[  97% ] savepack | Storing File: res://themes/console_theme.tres.remap
+[  97% ] savepack | Storing File: res://scripts/game/challenge_panel.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/shop_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/product_card.gd.remap
+[  97% ] savepack | Storing File: res://scenes/startup.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/ui/cosmetic_preview.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/translucent_button.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/profile_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/player.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/scene_router.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/investigation_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/room_art.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/setting_row.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/save_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/navigation_bar.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/avatar_icon.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/main.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/diagnostics_panel.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/platform_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/enquiry_art.gd.remap
+[  97% ] savepack | Storing File: res://scenes/investigation_world.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/game/investigation_world.gd.remap
+[  97% ] savepack | Storing File: res://default_bus_layout.tres.remap
+[  97% ] savepack | Storing File: res://scripts/ui/input_monitor.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/startup_panel.gd.remap
+[  97% ] savepack | Storing File: res://scenes/demo_game.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/game/circuit_diagram.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/reward_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/profile_card.gd.remap
+[  97% ] savepack | Storing File: res://scenes/main.tscn.remap
+[  97% ] savepack | Storing File: res://scripts/ui/theme_factory.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/settings_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/services/controller_service.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/demo_game.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/joy_navigation.gd.remap
+[  97% ] savepack | Storing File: res://scripts/input_setup.gd.remap
+[  97% ] savepack | Storing File: res://scripts/game/interactable.gd.remap
+[  97% ] savepack | Storing File: res://scripts/ui/notification.gd.remap
+[  97% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  97% ] savepack | Storing File: res://assets/console.svg
+[  97% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  97% ] savepack | Storing File: res://project.binary
+[ DONE ] savepack
+
+
+Archive prête : /workspace/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip

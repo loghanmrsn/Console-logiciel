@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3]
+
+[resource]
+default_font_size = 18
+HBoxContainer/constants/separation = 12
+VBoxContainer/constants/separation = 12
+GridContainer/constants/h_separation = 14
+GridContainer/constants/v_separation = 14

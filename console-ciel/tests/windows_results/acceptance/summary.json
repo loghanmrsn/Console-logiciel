@@ -1,0 +1,94 @@
+{
+  "tested_at_utc": "2026-10-12T20:08:27.784328+00:00",
+  "godot": "/usr/local/bin/godot",
+  "engine_version": "4.6.3.stable.official.7d41c59c4",
+  "assertions": 3694,
+  "results": [
+    {
+      "name": "business",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "log": "business.log"
+    },
+    {
+      "name": "investigation",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 189,
+      "log": "investigation.log"
+    },
+    {
+      "name": "controllers",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 22,
+      "log": "controllers.log"
+    },
+    {
+      "name": "audit_regressions",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 34,
+      "log": "audit_regressions.log"
+    },
+    {
+      "name": "audit_validation",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1160,
+      "log": "audit_validation.log"
+    },
+    {
+      "name": "native_ui",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1937,
+      "log": "native_ui.log"
+    },
+    {
+      "name": "stability",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "log": "stability.log"
+    },
+    {
+      "name": "persistence_write",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 28,
+      "log": "persistence_write.log"
+    },
+    {
+      "name": "persistence_read_replay",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "log": "persistence_read_replay.log"
+    },
+    {
+      "name": "persistence_read_final",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 11,
+      "log": "persistence_read_final.log"
+    }
+  ],
+  "failures": [],
+  "notes": [
+    "Headless: no visual, physical controller, fullscreen, audio listening or Raspberry Pi performance claim.",
+    "Input events and controller hotplug test hooks are explicitly synthetic.",
+    "Three persistence stages execute in distinct OS processes using one marked temporary fixture."
+  ]
+}

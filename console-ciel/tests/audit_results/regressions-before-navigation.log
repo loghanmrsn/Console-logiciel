@@ -1,0 +1,41 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+OK Définitions livrées
+OK Profil isolé et nouvelle enquête
+OK Éclairage par règles réelles
+AUDIT_FAIL Progression récente tronquée refusée sans migration destructive
+OK Ancien prototype réel toujours migrable
+OK Version booléenne CFG refusée
+OK Version flottante CFG refusée
+OK Version booléenne du mapping refusée
+OK Observation serrure badge
+OK Observation serrure power
+OK Observation serrure command
+OK Observation serrure link
+OK Serrure par diagnostic
+OK Observation ordinateur pc
+OK Observation ordinateur display
+OK Observation ordinateur no_signal
+OK Vérification ordinateur power
+OK Vérification ordinateur video
+OK Troisième mission et 150 points
+OK Reprise terminée ouvre bilan
+AUDIT_FAIL Échap annule Rejouer et restitue le bilan
+AUDIT_FAIL Panneaux fermés libérés sans conserver de défi masqué
+AUDIT_FAIL Défi fermé réellement libéré
+OK Thème acheté par transaction normale
+OK Choix de thème possédé
+AUDIT_FAIL Aperçu de thème possède un état sélectionné exact
+OK Annuler conserve le thème enregistré
+ERROR: Could not create directory: '/tmp/ciel-audit-runtime/data/console-ciel/tests/audit_372305/blocked/profiles'.
+   at: make_dir_recursive (core/io/dir_access.cpp:178)
+   GDScript backtrace (most recent call first):
+       [0] _ensure_directory (res://scripts/services/save_service.gd:373)
+       [1] list_profiles (res://scripts/services/save_service.gd:462)
+       [2] refresh (res://scripts/services/profile_service.gd:9)
+       [3] _profiles (res://scripts/ui/main.gd:413)
+       [4] _show_screen (res://scripts/ui/main.gd:254)
+       [5] _run (res://tests/audit_regressions.gd:96)
+       [6] frames (res://tests/audit_regressions.gd:20)
+AUDIT_FAIL Liste inaccessible ouvre une erreur et un vrai réessai
+AUDIT_REGRESSIONS : 28 assertions, 6 échec(s).

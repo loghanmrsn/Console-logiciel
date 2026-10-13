@@ -1,0 +1,84 @@
+# Architecture native — version 0.3.0
+
+Godot 4.6.3 stable, GDScript, rendu Compatibility. `scenes/main.tscn` lance l'interface existante ; `scripts/ui/main.gd` conserve ses écrans et compose le jeu dans leur navigation. `scenes/demo_game.tscn` et `scripts/game/demo_game.gd` restent les points d'entrée, malgré leur nom historique : ils ouvrent désormais l'enquête jouable. Les transactions nécessitent un profil actif ; lancer le projet entier avec F5 permet de le sélectionner.
+
+## Services réutilisés
+
+| Service | Responsabilité |
+|---|---|
+| SaveService | Validation et adaptation des documents, temporaires vérifiés, copies précédentes, récupération explicite |
+| AppState | Document du profil actif ; signaux profil, portefeuille, équipement et objectifs |
+| ProfileService | Création, sélection, édition, suppression, nouvelle partie et réinitialisation |
+| InvestigationService | Prérequis, observations, indices, diagnostic réel des trois défis et transitions de mission |
+| RewardService | Règles configurables et transaction cohérente d'une récompense attribuée une seule fois |
+| ShopService | Catalogue, achats et équipement ; règles métier avant écriture |
+| SettingsService | Réglages communs, aperçu réversible, audio, accessibilité et affichage |
+| SceneRouter | Navigation, mémorisation du focus et attente du relâchement des entrées |
+| ControllerService | Sélection d'une manette active, filtrage des événements et état de connexion |
+| PlatformService | Détection de plateforme ; arrêt système explicitement non configuré |
+
+L'enquête complète l'architecture existante avec sa validation métier. Elle ne crée ni second gestionnaire de profils, ni second portefeuille, ni second répertoire de sauvegarde. L'interface transmet les choix ; le service vérifie les réponses et prérequis, puis la réussite utilise la transaction de récompense existante. Un clic d'interface ne peut pas attribuer arbitrairement une mission ou des points.
+
+Une transaction prépare une copie du profil en mémoire. Les changements de mission, portefeuille et identifiant de récompense sont enregistrés dans le même fichier ; AppState ne publie le nouveau document qu'après réussite. Les signaux actualisent l'enquête, l'en-tête et la boutique. Une erreur d'écriture garde le dernier état cohérent et permet une nouvelle tentative.
+
+## Progression et données
+
+`data/game_rules.json` définit les missions, leurs descriptions, prérequis, états initiaux et récompenses ainsi que les choix pédagogiques. Les identifiants `lighting`, `lock` et `computer` sont conservés pour préserver les récompenses des profils existants.
+
+La progression du profil contient missions terminées, observations, indices, checkpoint et gains nouveaux de cette partie. L'état visuel de la salle est dérivé des missions terminées : éclairage rétabli, porte ouverte et ordinateur réparé. Les états d'objectif sont dérivés des prérequis et de l'avancement, sans copie contradictoire de la réussite.
+
+Le schéma du profil reste `schema_version: 1`. Les champs ajoutés à `progress` sont :
+
+| Champ | Rôle |
+|---|---|
+| `investigation_version: 1` | Distingue les défis jouables des anciennes interactions simulées |
+| `active_mission` | Mission commencée, sans attribution de réussite |
+| `clues` | Identifiants `badge_note`, `video_note`, `incident_message` collectés |
+| `observations` | Listes par mission : `lighting`, `lock`, `computer` |
+| `checks` | Vérifications réalisées, notamment celles de l'ordinateur |
+| `run_reward_points` | Points nouvellement attribués dans cette partie |
+| `legacy_migration_notice` | Information de migration à acquitter par le joueur |
+
+`started`, `room_id`, `checkpoint_id` et `completed_missions` restent les champs de progression existants. Les checkpoints sont `entrance`, `lighting`, `lock`, `computer` et `exit` ; les identifiants et types sont validés avant utilisation. Le chargement détecte les profils antérieurs puis adapte leur progression ; la sélection persiste cette adaptation avec copie précédente, au lieu d'écraser silencieusement un fichier lors d'une simple lecture.
+
+La nouvelle partie remet l'enquête à son point initial, mais conserve le portefeuille, les achats, l'équipement et `rewarded_missions`. Le compteur des gains de la partie repart à zéro et n'augmente que si une récompense est nouvellement accordée. Une migration explicite adapte les anciens succès simulés tout en préservant les données économiques.
+
+## Exploration et interface
+
+La salle, le joueur et les objets interactifs sont séparés de l'écran de défi. Le personnage utilise le moteur de collisions Godot ; murs, mobilier et porte fermée sont des obstacles. Le choix de l'objet proche prend en compte la distance et l'orientation avec une stabilité de cible. Sur petit écran, le zoom minimal de 0,70 conserve un personnage d'environ 18 pixels : la caméra suit les portions hors cadre et reste limitée aux murs, au lieu de réduire toute la salle jusqu'à rendre le personnage trop petit.
+
+Les dialogues, défis, pause et conclusion suspendent les contrôles d'exploration. Les actions de jeu restent distinctes des actions UI. SceneRouter attend le relâchement des touches et boutons après une transition, afin que l'appui d'ouverture n'effectue pas une deuxième action dans l'écran suivant. La fermeture restaure les contrôles et le focus appropriés.
+
+Les défis emploient des contrôles natifs sélectionnables : connexions du circuit, observations, diagnostics et réparations. Le schéma dessiné représente les choix sélectionnés ; la vérification appartient au service. Aucune mécanique ne requiert un tracé à la souris.
+
+Les composants partagés restent dans `scripts/ui/` : boutons, cartes, confirmations, notifications, lignes de réglages et clavier virtuel. `themes/console_theme.tres` et ThemeFactory fournissent StyleBoxFlat, états de focus et accessibilité. Les panneaux utilisent des aplats alpha, sans flou obligatoire. Décor, personnage et diagrammes sont originaux et procéduraux.
+
+Les grilles dépendent de leur largeur disponible. Le défilement suit le focus après stabilisation des conteneurs. Les modales capturent les interactions et restaurent le focus à leur fermeture. Les réglages sont globaux sauf les cosmétiques, enregistrés par profil.
+
+## Démarrage, transitions et erreurs
+
+`scenes/startup.tscn` et `scripts/ui/startup_panel.gd` affichent **Console CIEL** et l'étape en cours : commandes, réglages, catalogue/règles puis profils. Le démarrage cède la main au moteur entre les étapes ; il n'impose pas de délai d'animation et ne présente pas un pourcentage fictif. Le thème et les options d'accessibilité sont appliqués avant la sélection du profil. Sans profil valide, la création est proposée.
+
+Un échec essentiel ouvre un écran dédié. Le réessai invalide les caches de définitions et relit les fichiers livrés ; il ne réutilise pas un catalogue ancien après un chargement refusé. Les récupérations de profil, de réglages et de session demandent une action explicite et conservent les originaux dans une copie de corruption. Une copie `.bak` seule est également détectée : une écriture ne recrée pas silencieusement le document principal manquant.
+
+Les confirmations ne peuvent pas se superposer. SceneRouter conserve le contexte et le focus, et attend le relâchement après une transition. L'enquête est conservée pendant les paramètres ouverts depuis la pause, puis revient à cette pause. Le retour au menu et la fermeture passent par la sauvegarde ; une erreur maintient la session ouverte avec réessai. L'interface n'annonce pas une réussite avant la transaction persistante.
+
+`SaveService.last_error` et `last_error_at` conservent la dernière erreur réelle de lecture ou d'écriture, même après un essai réussi. Les erreurs de pseudo et les mauvaises réponses pédagogiques ne remplacent pas ce diagnostic. Les erreurs importantes attendent une décision explicite, tandis que les informations ordinaires utilisent une notification lisible.
+
+## Manette active et contrôleur fabriqué
+
+`scripts/services/controller_service.gd` complète la navigation existante. Au démarrage, la manette possédant le plus petit identifiant Godot est active. Elle reste sélectionnée tant qu'elle est connectée ; les autres manettes ne contrôlent pas l'application. Si elle est retirée, le service choisit le plus petit identifiant encore connecté, ou conserve le clavier comme seul moyen d'entrée. Rebrancher une ancienne manette ne remplace pas automatiquement celle qui est désormais active.
+
+La perte de la manette active suspend les contrôles et met l'enquête en pause avec un message. La reconnexion ne reprend pas la partie : **Reprendre** est une action explicite. Les entrées clavier restent utilisables. Les appuis et axes précédents sont relâchés lors d'un changement pour éviter un déplacement maintenu.
+
+`data/controller_mapping.json` contient `schema_version: 1` et un dictionnaire `actions`, avec des associations de bouton ou d'axe/direction. `scripts/input_setup.gd` traduit ces associations vers les actions de l'Input Map. Le fichier livré décrit le mapping standard Godot ; il ne prétend pas mesurer le futur contrôleur USB HID. Pour celui-ci, relever d'abord les indices bruts et sens d'axes avec le test des commandes, modifier les données puis relancer et refaire la recette.
+
+Le test des commandes présente nom, GUID, identifiant et état actif des périphériques reçus, boutons actuellement pressés et valeurs brutes des axes. L'indication **au repos** est calculée à partir des axes de navigation et de la zone morte courante. L'absence de périphérique est affichée explicitement ; aucun faux contrôleur n'est présenté comme branché.
+
+## Diagnostic de développement
+
+**F3**, action `debug_diagnostics` centralisée, ouvre en exécution debug `scripts/ui/diagnostics_panel.gd`. Il présente version logiciel/Godot, résolution courante, backend d'affichage, méthode/pilote de rendu, FPS observés, identifiant interne du profil actif, état du contrôleur et dernière erreur de stockage. En headless, la méthode réellement rendue est indisponible : le panneau distingue cette absence du renderer configuré. L'outil est absent de l'interface de livraison release et ne modifie pas les données. Les métriques indisponibles de température, batterie ou mémoire ne sont pas inventées. Les FPS du moteur headless n'évaluent pas le Raspberry Pi. Les textes sont actualisés au plus quatre fois par seconde ; le test des commandes échantillonne à dix fois par seconde.
+
+La préparation de soutenance passe par `tools/run_demo.sh` et une racine de données distincte, suivie par un manifeste. Aucune commande de crédit ou outil de triche n'apparaît dans les menus exportés. [Procédure de démonstration](DEMONSTRATION.md).
+
+Le modèle reste local et scolaire, sans cryptographie anti-triche ni garantie contre toutes les coupures électriques. Le raccordement matériel final relève du mapping USB HID, de l'export ARM64 et des essais dans la session graphique du Raspberry Pi.

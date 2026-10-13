@@ -1,0 +1,10 @@
+.godot/
+.runtime-data/
+.runtime-cache/
+.runtime-config/
+.runtime-tools/
+builds/
+*.tpz
+*.log
+export_credentials.cfg
+# .uid Godot sont conservés avec les sources.

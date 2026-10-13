@@ -1,0 +1,12 @@
+{
+  "previous_windows_unchanged": true,
+  "previous_sha256": "4a09d53550b152d9bf7fdc618c5130a170ccb4fc63d1f99443b5c2b9b2b47739",
+  "new_archive": "/workspace/builds/Console_CIEL_Windows_x86_64_finition_0.3.1.zip",
+  "bytes": 36459710,
+  "sha256": "9eb83c6e5c952630a9762673f7511dc77de3e360556a64907364f5778f842d91",
+  "zip_crc_valid": true,
+  "architecture": "Windows x86_64",
+  "native_windows_tested": false,
+  "embedded_pack_tested_with": "Linux Godot headless",
+  "pack_assertions": 47
+}

@@ -1,0 +1,40 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "cases": [
+    {
+      "case": "apply",
+      "ok": true,
+      "assertions": 23,
+      "exit_code": 0,
+      "errors": [],
+      "log": "close_apply.log"
+    },
+    {
+      "case": "discard",
+      "ok": true,
+      "assertions": 23,
+      "exit_code": 0,
+      "errors": [],
+      "log": "close_discard.log"
+    },
+    {
+      "case": "failure_retry",
+      "ok": true,
+      "assertions": 28,
+      "exit_code": 0,
+      "errors": [],
+      "log": "close_failure_retry.log"
+    },
+    {
+      "case": "failure_cancel",
+      "ok": true,
+      "assertions": 31,
+      "exit_code": 0,
+      "errors": [],
+      "log": "close_failure_cancel.log"
+    }
+  ],
+  "assertions": 105,
+  "failures": 0,
+  "scope": "four real Godot closes plus external persistent-document checks; no graphical or physical-controller verification"
+}

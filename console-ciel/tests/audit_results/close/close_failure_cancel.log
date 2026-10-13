@@ -1,0 +1,33 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+  OK  Racine temporaire et cas explicites obligatoires
+  OK  Marqueur de test présent ; aucun profil normal utilisé
+  OK  Services et catalogue existants chargés
+  OK  Réglage initial réellement enregistré
+  OK  Profil de test créé par le service normal
+  OK  Enquête commencée dans ce profil isolé
+  OK  Mission validée par ses vraies règles
+  OK  Achat et équipement enregistrés ensemble
+  OK  Fixture : 50 points gagnés, 20 dépensés, récompense unique
+  OK  L'application démarre sur la sélection du profil enregistré
+  OK  Bouton natif accessible : select_7522328113482a15d975d37b8cd92436
+  OK  La sélection restaure le profil et ses achats
+  OK  Bouton natif accessible : home_settings
+  OK  Paramètres ouverts depuis le menu
+  OK  Slider réel du volume disponible
+  OK  Aperçu natif : valeur 32, réglage enregistré 31, brouillon détecté
+  OK  La fermeture demande quoi faire des aperçus
+  OK  Bouton natif accessible : quit_apply
+  OK  Erreur d'écriture : session toujours ouverte avec dialogue explicite
+  OK  Erreur : état enregistré précédent conservé, aperçu encore annulable
+  OK  Erreur : fichier précédent conservé
+  OK  Erreur : profil inchangé et diagnostic renseigné
+  OK  Annuler l'erreur laisse revenir aux paramètres
+  OK  Bouton natif accessible : settings_cancel
+  OK  Annuler restaure réellement tous les aperçus
+  OK  Bouton natif accessible : modal_confirm
+CLOSE_READY failure_cancel : 26 assertions, 0 échec(s). Fermeture réelle attendue par le bouton.
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+
+CLOSE_EXTERNAL : documents exacts après sortie réelle

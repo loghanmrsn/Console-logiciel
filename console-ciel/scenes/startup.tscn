@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/startup_panel.gd" id="1"]
+
+[node name="Startup" type="VBoxContainer"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+script = ExtResource("1")
+
+[node name="ProjectName" type="Label" parent="."]
+theme_override_font_sizes/font_size = 38
+text = "Console CIEL"
+autowrap_mode = 3
+
+[node name="Status" type="Label" parent="."]
+text = "Initialisation des données locales…"
+autowrap_mode = 3
+
+[node name="LocalOnly" type="Label" parent="."]
+text = "Chargement local · vos données restent sur cette console."
+autowrap_mode = 3

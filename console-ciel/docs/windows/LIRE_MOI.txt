@@ -1,0 +1,82 @@
+﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
+Logiciel 0.4.0 — Godot 4.6.3 stable — rendu Compatibility
+
+DÉMARRER
+1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
+2. Double-cliquez sur Console_CIEL.exe depuis le dossier décompressé.
+Godot n'a pas besoin d'être installé pour jouer. Aucun droit administrateur,
+Bash, Python ou outil Raspberry Pi n'est nécessaire. Gardez tous les fichiers
+fournis à côté de l'exécutable : .pck, DLL ou exécutable console, s'ils existent.
+Ne lancez pas directement le programme depuis l'aperçu du ZIP.
+
+PREMIER LANCEMENT
+La fenêtre est redimensionnable, en 1280 × 720 par défaut (minimum 800 × 480).
+Créez un profil puis choisissez Commencer. Le clavier virtuel permet aussi
+la saisie sans clavier physique. Continuer reprend la progression du profil.
+
+NAVIGATION
+Accueil, Boutique, Profils, Paramètres et Aide sont dans la barre du bas.
+Haut et bas depuis un onglet rejoignent le contenu ; gauche et droite
+parcourent les onglets. La barre est masquée pendant l’enquête.
+Pause > Afficher / Masquer les objectifs permet de réduire leur liste.
+
+COMMANDES
+Flèches : naviguer et déplacer le personnage ; ZQSD : déplacer également.
+Entrée / Entrée numérique : valider. Échap : retour / annuler un dialogue.
+Espace : interagir. P : pause. Q / E : catégorie précédente / suivante,
+hors saisie de texte. Tab / Maj+Tab : déplacer le focus dans les menus.
+Souris : clics et curseurs facultatifs ; aucun glisser-déposer obligatoire.
+Manette USB compatible Godot : croix / joystick gauche, bouton de face bas
+pour valider/interagir, bouton de face droit pour revenir, Start/Menu pour
+la pause, boutons supérieurs gauche/droite pour les catégories.
+Les noms A/B ou Croix/Rond dépendent de la manette et de son mapping.
+Paramètres > Commandes > Test des commandes montre les entrées reçues.
+Une déconnexion suspend le jeu ; reconnecter ne reprend pas automatiquement.
+
+AFFICHAGE ET FERMETURE
+Paramètres > Affichage > Plein écran, puis Appliquer. Annuler restaure l'aperçu.
+Le réglage sauvegardé est utilisé aux lancements suivants. Grand texte,
+animations et transparence réduites se trouvent dans Accessibilité.
+Paramètres > Quitter l’application ou la croix de la fenêtre demande une confirmation et sauvegarde.
+En cas d'échec, l'application reste ouverte et permet un réessai.
+Quitter n'arrête ni ne redémarre Windows.
+
+SAUVEGARDES ET JOURNAUX
+Les données sont dans user://, pas dans le dossier de l'exécutable.
+Configuration du projet : dossier utilisateur personnalisé « console-ciel ».
+Sur Windows normal, Win+R puis %APPDATA%\console-ciel ouvre ce dossier.
+Le chemin effectif calculé par Godot est affiché dans Paramètres > À propos,
+ce qui permet aussi de retrouver un dossier utilisateur redirigé.
+profiles\<identifiant>.json : profil, progression, points, achats et équipement.
+settings.cfg : réglages de la console. session.json : dernier profil choisi.
+logs\godot.log : journal Godot ; des journaux précédents peuvent être présents.
+Fermez normalement l'application avant de copier les sauvegardes.
+Mettre à jour ou déplacer les fichiers du programme conserve ce dossier.
+Le ZIP ne contient aucun profil prérempli ni sauvegarde personnelle.
+
+ENQUÊTE ET BOUTIQUE
+Trois défis pédagogiques fictifs : boucle électrique fermée, liaison de
+commande de serrure et diagnostic vidéo. Aucun câblage secteur, terminal
+réel ou réglage du système hôte n'est modifié. Chaque mission rapporte
+50 points à sa première réussite seulement. Les achats sont cosmétiques,
+en points virtuels, sans paiement réel. Rejouer ne redonne pas les récompenses.
+
+LIMITES ET TESTS À FAIRE SUR VOTRE PC
+Export Windows produit et archive contrôlée dans un environnement Linux.
+Refonte graphique 0.4.0 : atelier illustré, personnage animé et navigation
+inférieure. Captures Godot réelles via X11/Mesa logiciel aux quatre résolutions,
+en texte normal et grand texte. Pas de test Windows natif.
+Les tests du projet utilisent Godot en headless : cela ne prouve pas le
+fonctionnement du double-clic, du rendu, du son ou de la manette sur Windows.
+Essayer profils, paramètres, trois missions, reprise, boutique, équipement,
+fermeture puis relance. Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480,
+en texte normal et grand texte. Vérifier aussi retrait/reconnexion USB.
+Windows 10/11 x86_64 avec pilote graphique compatible OpenGL 3.3 conseillé.
+L'application n'est pas signée par le projet. Aucun certificat n'est fourni.
+Ne désactivez pas l'antivirus pour la tester ; suivez les règles de votre PC.
+Le contrôleur fabriqué, les performances Pi et l'arrêt matériel sont distincts.
+
+CRÉDITS ET LICENCES
+Logiciel : Loghan. Construction/assemblage : binôme, nom à compléter.
+Formes, décor et sons originaux : CC0 1.0. Godot et sa police intégrée :
+licences fournies dans assets\LICENSES.md et assets\licenses\.

@@ -1,0 +1,4157 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "files": [
+    {
+      "file": ".gitignore",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "README.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "assets/LICENSES.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "assets/art/character/down_0.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/down_0.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/down_1.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/down_1.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/down_2.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/down_2.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_0.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_0.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_1.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_1.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_2.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/left_2.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_0.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_0.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_1.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_1.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_2.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/right_2.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_0.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_0.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_1.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_1.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_2.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/character/up_2.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/help.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/help.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/home.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/home.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/profiles.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/profiles.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/settings.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/settings.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/shop.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/icons/shop.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/cabinet.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/cabinet.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/chair.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/chair.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/desk.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/desk.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/door_closed.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/door_closed.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/door_open.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/door_open.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/electrical_off.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/electrical_off.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/electrical_on.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/electrical_on.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/floor.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/floor.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/light.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/light.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/monitor_off.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/monitor_off.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/monitor_on.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/monitor_on.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/note.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/note.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/plant.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/plant.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/reader_off.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/reader_off.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/reader_on.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/reader_on.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/shelf.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/shelf.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/tower.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/tower.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/walls.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/walls.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/workbench.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/art/world/workbench.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/audio/LICENSE.txt",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/audio/confirm.wav",
+      "category": "binary_resource",
+      "checks": [
+        "Présence et en-tête WAV, pas écoute"
+      ],
+      "wav": {
+        "frames": 3528,
+        "rate": 22050,
+        "channels": 1
+      }
+    },
+    {
+      "file": "assets/audio/confirm.wav.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/audio/generate_audio.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "assets/audio/menu.wav",
+      "category": "binary_resource",
+      "checks": [
+        "Présence et en-tête WAV, pas écoute"
+      ],
+      "wav": {
+        "frames": 352800,
+        "rate": 22050,
+        "channels": 1
+      }
+    },
+    {
+      "file": "assets/audio/menu.wav.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/console.svg",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "assets/console.svg.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "assets/licenses/CC0.txt",
+      "category": "third_party_license",
+      "checks": []
+    },
+    {
+      "file": "assets/licenses/GODOT_LICENSE_TEXTS.json",
+      "category": "third_party_license",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "assets/licenses/GODOT_MIT.txt",
+      "category": "third_party_license",
+      "checks": []
+    },
+    {
+      "file": "assets/licenses/GODOT_THIRD_PARTY.json",
+      "category": "third_party_license",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "assets/licenses/OFL-1.1.txt",
+      "category": "third_party_license",
+      "checks": []
+    },
+    {
+      "file": "data/controller_mapping.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "data/game_rules.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "data/shop_catalog.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "default_bus_layout.tres",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/ARCHIVE_COMPLETE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/ASSUMPTIONS.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/AUDIT_CODE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/DELIVERY.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/DEMONSTRATION.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/ENQUETE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/EXPORT.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/FINITION_VISUELLE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/KNOWN_ISSUES.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/RASPBERRY_PI.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/REFONTE_GRAPHIQUE.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/TESTS.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/UI_TESTS.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/WINDOWS.md",
+      "category": "source",
+      "checks": [
+        "Liens Markdown locaux"
+      ]
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/boutique_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/conclusion_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/confirmation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/confirmation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/creation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/creation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/defi_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/demarrage.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/demarrage.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/dialogue_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/enquete_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/inventaire_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/menu_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/parametres_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/pause_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/finition/profils_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/help_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/help_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/home_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/home_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/investigation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/investigation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/profile_editor_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/profile_editor_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_apres_eclairage_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_apres_eclairage_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_avant_eclairage_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_avant_eclairage_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_porte_ouverte_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/atelier_porte_ouverte_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_focus_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/boutique_focus_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/conclusion_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/confirmation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/confirmation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/creation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/creation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/defi_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/demarrage.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/demarrage.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/dialogue_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/eclairage_retabli_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/eclairage_retabli_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/enquete_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/interaction_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_apres_achat_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/inventaire_apres_achat_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/menu_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/navigation_focus_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/navigation_focus_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/objectifs_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/ordinateur_repare_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/ordinateur_repare_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/parametres_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/pause_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/porte_ouverte_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/porte_ouverte_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1024x600_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1024x600_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1024x600_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1024x600_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1280x720_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1280x720_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1280x720_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1280x720_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1920x1080_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1920x1080_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1920x1080_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_1920x1080_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_800x480_grand_opaque.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_800x480_grand_opaque.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_800x480_normal.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/apres/profils_800x480_normal.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/accueil_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/accueil_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/accueil_1920x1080.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/accueil_1920x1080.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/pause_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/pause_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/pause_1920x1080.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/pause_1920x1080.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/piece_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/piece_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/piece_1920x1080.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/piece_1920x1080.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/profiles_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/profiles_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/settings_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/settings_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/shop_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/refonte/avant/shop_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/settings_audio_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/settings_audio_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/shop_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "docs/screenshots/shop_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "docs/windows/LIRE_MOI.txt",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "export_presets.cfg",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "project.godot",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "scenes/demo_game.tscn",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "scenes/investigation_world.tscn",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "scenes/main.tscn",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "scenes/startup.tscn",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "scripts/game/challenge_panel.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/challenge_panel.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/demo_game.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/demo_game.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/interactable.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/interactable.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/investigation_world.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/investigation_world.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/player.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/player.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/game/room_art.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/game/room_art.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/input_setup.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/input_setup.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/app_state.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/app_state.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/controller_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/controller_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/investigation_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/investigation_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/platform_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/platform_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/profile_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/profile_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/reward_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/reward_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/save_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/save_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/scene_router.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/scene_router.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/settings_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/settings_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/services/shop_service.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/services/shop_service.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/input_monitor.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/input_monitor.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/main.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/main.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/notification.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/notification.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/product_card.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/product_card.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/profile_card.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/profile_card.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/setting_row.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/setting_row.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/startup_panel.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/startup_panel.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/theme_factory.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/theme_factory.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/translucent_button.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/translucent_button.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/audit_regressions.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/audit_regressions.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/audit_resources.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/audit_resources.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/audit_validation.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/audit_validation.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/close_persistence.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/close_persistence.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/controller_tests.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/controller_tests.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/investigation_tests.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/investigation_tests.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/process_persistence.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/process_persistence.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/refonte_navigation.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/refonte_navigation.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/refonte_results/audit/inventory.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/refonte_results/captures.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/refonte_results/source-diff.txt",
+      "category": "source",
+      "checks": []
+    },
+    {
+      "file": "tests/refonte_results/states.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/refonte_results/summary.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/refonte_results/windows-package.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/refonte_states.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/refonte_states.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/refonte_visual.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/refonte_visual.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/run_tests.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/run_tests.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/stability_tests.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/stability_tests.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/ui_smoke.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/ui_smoke.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/visual_results/before/help_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/help_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/home_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/home_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/investigation_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/investigation_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/profile_editor_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/profile_editor_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/settings_audio_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/settings_audio_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/shop_1280x720.png",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/before/shop_1280x720.png.import",
+      "category": "metadata",
+      "checks": []
+    },
+    {
+      "file": "tests/visual_results/captures.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/visual_results/previous_windows.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/visual_results/static/inventory.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/visual_results/summary.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/visual_results/windows-package.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/visual_review.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/visual_review.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/windows_art_pack.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/windows_art_pack.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/windows_contracts.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/windows_contracts.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/windows_pack.gd",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tests/windows_pack.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tests/windows_results/acceptance/summary.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/close/close_summary.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/environment.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/package.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/static/inventory.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/summary.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "tests/windows_results/templates.json",
+      "category": "source",
+      "checks": [
+        "JSON"
+      ]
+    },
+    {
+      "file": "themes/console_theme.tres",
+      "category": "source",
+      "checks": [
+        "Chemins res:// littéraux exacts"
+      ]
+    },
+    {
+      "file": "tools/audit_project.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/check_audit_tools.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/check_close.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/check_demo.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/check_windows_export.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/export.sh",
+      "category": "source",
+      "checks": [
+        "bash -n"
+      ]
+    },
+    {
+      "file": "tools/export_windows.ps1",
+      "category": "binary_resource",
+      "checks": []
+    },
+    {
+      "file": "tools/generate_art.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/godot_checked.sh",
+      "category": "source",
+      "checks": [
+        "bash -n"
+      ]
+    },
+    {
+      "file": "tools/package_complete.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/package_source.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/prepare_demo.gd",
+      "category": "source",
+      "checks": [
+        "Dossier de sortie créé à l’exécution : res://builds/demo-runtime",
+        "Chemins res:// littéraux exacts",
+        "Compilation ResourceLoader dans le projet avec Autoloads"
+      ]
+    },
+    {
+      "file": "tools/prepare_demo.gd.uid",
+      "category": "metadata",
+      "checks": [
+        "UID unique et source présente"
+      ]
+    },
+    {
+      "file": "tools/run_acceptance.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/run_demo.sh",
+      "category": "source",
+      "checks": [
+        "bash -n"
+      ]
+    },
+    {
+      "file": "tools/test_support.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    },
+    {
+      "file": "tools/verify_windows_package.py",
+      "category": "source",
+      "checks": [
+        "Python AST et compilation"
+      ]
+    }
+  ],
+  "counts": {
+    "source": 154,
+    "metadata": 285,
+    "binary_resource": 196,
+    "third_party_license": 5
+  },
+  "resource_references": [
+    {
+      "from": "export_presets.cfg",
+      "to": "res://assets/console.svg"
+    },
+    {
+      "from": "project.godot",
+      "to": "res://assets/console.svg"
+    },
+    {
+      "from": "project.godot",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "project.godot",
+      "to": "res://default_bus_layout.tres"
+    },
+    {
+      "from": "scenes/demo_game.tscn",
+      "to": "res://scripts/game/demo_game.gd"
+    },
+    {
+      "from": "scenes/investigation_world.tscn",
+      "to": "res://scripts/game/investigation_world.gd"
+    },
+    {
+      "from": "scenes/main.tscn",
+      "to": "res://scripts/ui/main.gd"
+    },
+    {
+      "from": "scenes/startup.tscn",
+      "to": "res://scripts/ui/startup_panel.gd"
+    },
+    {
+      "from": "scripts/game/challenge_panel.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/game/challenge_panel.gd",
+      "to": "res://scripts/game/circuit_diagram.gd"
+    },
+    {
+      "from": "scripts/game/demo_game.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/game/demo_game.gd",
+      "to": "res://scenes/investigation_world.tscn"
+    },
+    {
+      "from": "scripts/game/demo_game.gd",
+      "to": "res://scripts/game/challenge_panel.gd"
+    },
+    {
+      "from": "scripts/game/investigation_world.gd",
+      "to": "res://scripts/game/room_art.gd"
+    },
+    {
+      "from": "scripts/game/investigation_world.gd",
+      "to": "res://scripts/game/player.gd"
+    },
+    {
+      "from": "scripts/game/investigation_world.gd",
+      "to": "res://scripts/game/interactable.gd"
+    },
+    {
+      "from": "scripts/game/player.gd",
+      "to": "res://assets/art/character/"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/character/down_0.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/cabinet.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/chair.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/desk.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/door_closed.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/door_open.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/electrical_off.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/electrical_on.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/floor.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/light.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/monitor_off.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/monitor_on.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/note.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/plant.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/reader_off.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/reader_on.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/shelf.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/tower.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/walls.svg"
+    },
+    {
+      "from": "scripts/game/room_art.gd",
+      "to": "res://assets/art/world/workbench.svg"
+    },
+    {
+      "from": "scripts/input_setup.gd",
+      "to": "res://data/controller_mapping.json"
+    },
+    {
+      "from": "scripts/services/controller_service.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "scripts/services/reward_service.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "scripts/services/save_service.gd",
+      "to": "res://data/shop_catalog.json"
+    },
+    {
+      "from": "scripts/services/save_service.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "scripts/services/settings_service.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "scripts/services/settings_service.gd",
+      "to": "res://assets/audio/menu.wav"
+    },
+    {
+      "from": "scripts/services/settings_service.gd",
+      "to": "res://assets/audio/confirm.wav"
+    },
+    {
+      "from": "scripts/services/shop_service.gd",
+      "to": "res://data/shop_catalog.json"
+    },
+    {
+      "from": "scripts/ui/confirmation_dialog.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/ui/cosmetic_preview.gd",
+      "to": "res://scripts/ui/avatar_icon.gd"
+    },
+    {
+      "from": "scripts/ui/enquiry_art.gd",
+      "to": "res://scripts/game/room_art.gd"
+    },
+    {
+      "from": "scripts/ui/joy_navigation.gd",
+      "to": "res://scripts/game/demo_game.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/theme_factory.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/profile_card.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/product_card.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/avatar_icon.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/virtual_keyboard.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/confirmation_dialog.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/notification.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/setting_row.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/navigation_bar.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/enquiry_art.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/input_monitor.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/game/demo_game.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/joy_navigation.gd"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scenes/startup.tscn"
+    },
+    {
+      "from": "scripts/ui/main.gd",
+      "to": "res://scripts/ui/diagnostics_panel.gd"
+    },
+    {
+      "from": "scripts/ui/navigation_bar.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/ui/navigation_bar.gd",
+      "to": "res://assets/art/icons/"
+    },
+    {
+      "from": "scripts/ui/product_card.gd",
+      "to": "res://scripts/ui/cosmetic_preview.gd"
+    },
+    {
+      "from": "scripts/ui/product_card.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/ui/profile_card.gd",
+      "to": "res://scripts/ui/avatar_icon.gd"
+    },
+    {
+      "from": "scripts/ui/profile_card.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "scripts/ui/theme_factory.gd",
+      "to": "res://themes/console_theme.tres"
+    },
+    {
+      "from": "scripts/ui/virtual_keyboard.gd",
+      "to": "res://scripts/ui/translucent_button.gd"
+    },
+    {
+      "from": "tests/audit_regressions.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "tests/audit_regressions.gd",
+      "to": "res://data/controller_mapping.json"
+    },
+    {
+      "from": "tests/audit_regressions.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/audit_regressions.gd",
+      "to": "res://scripts/ui/confirmation_dialog.gd"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://scripts"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://tests"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://tools"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://scenes/"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://default_bus_layout.tres"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://themes/console_theme.tres"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://export_presets.cfg"
+    },
+    {
+      "from": "tests/audit_resources.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/audit_validation.gd",
+      "to": "res://data/shop_catalog.json"
+    },
+    {
+      "from": "tests/audit_validation.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "tests/close_persistence.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/controller_tests.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "tests/refonte_navigation.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/refonte_states.gd",
+      "to": "res://docs/screenshots/refonte/apres/"
+    },
+    {
+      "from": "tests/refonte_states.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/refonte_states.gd",
+      "to": "res://tests/refonte_results/states.json"
+    },
+    {
+      "from": "tests/refonte_visual.gd",
+      "to": "res://docs/screenshots/refonte/apres/"
+    },
+    {
+      "from": "tests/refonte_visual.gd",
+      "to": "res://docs/screenshots/refonte/apres"
+    },
+    {
+      "from": "tests/refonte_visual.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/refonte_visual.gd",
+      "to": "res://docs/screenshots/refonte/apres/demarrage.png"
+    },
+    {
+      "from": "tests/refonte_visual.gd",
+      "to": "res://tests/refonte_results/captures.json"
+    },
+    {
+      "from": "tests/run_tests.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "tests/run_tests.gd",
+      "to": "res://data/shop_catalog.json"
+    },
+    {
+      "from": "tests/run_tests.gd",
+      "to": "res://scripts/input_setup.gd"
+    },
+    {
+      "from": "tests/stability_tests.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/stability_tests.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "tests/ui_smoke.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/ui_smoke.gd",
+      "to": "res://docs/screenshots"
+    },
+    {
+      "from": "tests/ui_smoke.gd",
+      "to": "res://docs/screenshots/"
+    },
+    {
+      "from": "tests/visual_review.gd",
+      "to": "res://docs/screenshots/finition/"
+    },
+    {
+      "from": "tests/visual_review.gd",
+      "to": "res://docs/screenshots/finition"
+    },
+    {
+      "from": "tests/visual_review.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/visual_review.gd",
+      "to": "res://docs/screenshots/finition/demarrage.png"
+    },
+    {
+      "from": "tests/visual_review.gd",
+      "to": "res://tests/visual_results/captures.json"
+    },
+    {
+      "from": "tests/windows_art_pack.gd",
+      "to": "res://assets/art"
+    },
+    {
+      "from": "tests/windows_art_pack.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/windows_contracts.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/windows_contracts.gd",
+      "to": "res://export_presets.cfg"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://tests/windows_pack.gd"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://scenes/main.tscn"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://scenes/startup.tscn"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://scenes/demo_game.tscn"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://scenes/investigation_world.tscn"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://themes/console_theme.tres"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://default_bus_layout.tres"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://assets/audio/menu.wav"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://assets/audio/confirm.wav"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://assets/console.svg"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://data/shop_catalog.json"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://data/game_rules.json"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://data/controller_mapping.json"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://assets/LICENSES.md"
+    },
+    {
+      "from": "tests/windows_pack.gd",
+      "to": "res://assets/licenses/GODOT_MIT.txt"
+    },
+    {
+      "from": "tools/prepare_demo.gd",
+      "to": "res://builds/demo-runtime"
+    }
+  ],
+  "uids": 53,
+  "markdown_links": 94,
+  "shellcheck_available": false,
+  "errors": []
+}

@@ -1,0 +1,32 @@
+{
+  "modified": [
+    "README.md",
+    "scripts/input_setup.gd",
+    "scripts/services/settings_service.gd",
+    "scripts/services/save_service.gd",
+    "scripts/ui/confirmation_dialog.gd",
+    "scripts/ui/main.gd",
+    "scripts/game/demo_game.gd",
+    "tools/check_close.py",
+    "tools/run_acceptance.py",
+    "tools/export.sh",
+    "tools/package_source.py",
+    "tools/run_demo.sh",
+    "docs/RASPBERRY_PI.md",
+    "docs/DEMONSTRATION.md",
+    "docs/EXPORT.md",
+    "docs/TESTS.md"
+  ],
+  "added_sources": [
+    "tests/audit_regressions.gd",
+    "tests/audit_resources.gd",
+    "tests/audit_validation.gd",
+    "tools/godot_checked.sh",
+    "tools/audit_project.py",
+    "tools/test_support.py",
+    "tools/check_audit_tools.py",
+    "docs/AUDIT_CODE.md"
+  ],
+  "deleted_sources": [],
+  "baseline": "sources présentes avant cette passe, Git indisponible"
+}

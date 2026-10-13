@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+UI : données isolées /tmp/ciel-acceptance-u8hv_7x4/xdg-data/console-ciel/tests/ui_1791831567.34356_381455
+UI : affichage headless; captures réelles false
+UI : 1937 assertions, 0 échec(s).
+Manette physique non testée : événements InputEventJoypadButton injectés uniquement.
+Contrôleur USB HID fabriqué et performances Raspberry Pi : mesures à réaliser sur le vrai matériel.

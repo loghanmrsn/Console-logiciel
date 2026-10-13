@@ -1,0 +1,37 @@
+OK  Commande run_demo.sh : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Profil neuf de démonstration : aucun point distribué
+OK  Commande run_demo.sh : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Relance : identifiant inchangé
+OK  Commande run_demo.sh : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Préremplissage : vraie mission 1, récompense et indice cohérents
+OK  Commande run_demo.sh : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Préremplissage répété : aucune récompense supplémentaire
+OK  Commande run_demo.sh : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Réinitialisation : seul l'identifiant désigné est remplacé
+OK  Réinitialisation : second profil conservé octet pour octet
+OK  Réinitialisation : aucun faux crédit
+OK  Commande run_demo.sh : code 1 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Manifeste invalide : aucun profil modifié
+OK  Commande run_demo.sh : code 2 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Lien de document refusé avant le lancement Godot
+OK  Commande run_demo.sh : code 2 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Lien de racine refusé sans modifier la cible
+OK  Commande run_demo.sh : code 1 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Données sans manifeste : aucun remplacement
+OK  Commande run_demo.sh : code 2 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Commande run_demo.sh : code 1 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Commande godot : code 0 attendu
+OK  Aucune erreur du moteur pendant la préparation
+OK  Démarrage normal avec XDG isolés : profils conservés
+Résultat préparation démo : 36 vérifications, 0 échec. Les données temporaires ont été retirées.

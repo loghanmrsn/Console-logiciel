@@ -1,0 +1,6 @@
+Console CIEL — Original synthesized interface audio
+
+menu.wav and confirm.wav were composed and synthesized for this project.
+Dedicated to the public domain under CC0 1.0 Universal.
+https://creativecommons.org/publicdomain/zero/1.0/
+No sampled or proprietary material is used.

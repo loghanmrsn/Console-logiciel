@@ -1,0 +1,38 @@
+{
+  "software_version": "0.3.1",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "real_render": "X11 / Mesa llvmpipe OpenGL 4.5 Compatibility",
+  "capture_count": 62,
+  "capture_failures": 0,
+  "sizes": [
+    "1280x720",
+    "1024x600",
+    "800x480"
+  ],
+  "modes": [
+    "normal",
+    "grand_opaque"
+  ],
+  "headless_layout_assertions": 1937,
+  "graphical_input_assertions": 309,
+  "business_assertions": 190,
+  "new_windows_pack_assertions": 47,
+  "powershell_guard_assertions": 22,
+  "previous_windows_unchanged": true,
+  "native_windows_tested": false,
+  "physical_controller_tested": false,
+  "audio_output_listened": false,
+  "raspberry_pi_tested": false,
+  "initial_test_failures_retained": true,
+  "production_input_accumulation_unchanged": true,
+  "notes": [
+    "Initial graphical stress-test input buffering/timing corrected in the test harness; freed-modal guard added.",
+    "X11 V-Sync warning expected on the virtual driver.",
+    "Development-only isolated fixtures; no user profiles in archives."
+  ],
+  "final_headless_layout_log": "navigation-layout-final.log",
+  "final_graphical_input_log": "graphical-navigation-unbuffered.log",
+  "native_compilation_assertions": 150,
+  "source_archive": "builds/console-ciel-source-finition-0.3.1.zip",
+  "new_windows_archive": "builds/Console_CIEL_Windows_x86_64_finition_0.3.1.zip"
+}

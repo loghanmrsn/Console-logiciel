@@ -1,0 +1,522 @@
+Godot : 4.6.3.stable.official.7d41c59c4
+Exécution : business
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Données temporaires : /tmp/ciel-acceptance-u8hv_7x4/xdg-data/console-ciel/tests/run_1791831561.91113_376338
+  OK  Catalogue local chargé
+  OK  Règles des missions chargées
+
+Profils et isolation
+  OK  Racine de test vide, aucun vrai profil chargé
+  OK  Créer le premier profil
+  OK  Espaces extérieurs du pseudo retirés
+  OK  Identifiant interne indépendant du pseudo
+  OK  Un profil commence sans points de test
+  OK  Avatar, thème et cadre gratuits disponibles
+  OK  Créer un deuxième profil
+  OK  Deux profils ont des identifiants distincts
+  OK  Le profil créé devient actif
+  OK  Sélectionner le premier profil
+  OK  Renommer un profil
+  OK  Le renommage conserve l'identifiant et la sauvegarde
+  OK  Renommer Alice ne modifie pas Bob
+  OK  Pseudo invalide refusé : ""
+  OK  Pseudo invalide refusé : "   "
+  OK  Pseudo invalide refusé : "12345678901234567"
+  OK  Pseudo invalide refusé : "Joueur"
+  OK  Pseudo invalide refusé : "\nJoueur"
+  OK  Pseudo d'un type non textuel refusé
+  OK  Échec de sauvegarde pendant renommage signalé
+  OK  Renommage échoué sans changement mémoire ou disque
+  OK  Deux profils seulement après refus de créations invalides
+
+Progression et récompenses uniques
+  OK  Recharger Alice avant les missions
+  OK  Mission refusée tant que l'enquête n'est pas commencée
+  OK  Commencer l'enquête jouable
+  OK  Ouvrir le défi : lighting
+  OK  Première mission : exactement 50 points
+  OK  Double validation : aucune récompense supplémentaire
+  OK  Ouvrir le défi : lock
+  OK  Consulter l'observation : badge
+  OK  Consulter l'observation : power
+  OK  Consulter l'observation : command
+  OK  Consulter l'observation : link
+  OK  Échec d'écriture de récompense signalé
+  OK  Récompense échouée sans progression ni crédit partiels
+  OK  Mission inconnue refusée
+  OK  Diagnostiquer et réparer la liaison de commande
+  OK  Ouvrir le défi : computer
+  OK  Observer le symptôme : pc
+  OK  Observer le symptôme : display
+  OK  Observer le symptôme : no_signal
+  OK  Vérifier : video
+  OK  Vérifier : power
+  OK  Diagnostiquer et reconnecter le câble vidéo
+  OK  Trois missions : plafond réel de 150 points
+  OK  Récompenses et progression isolées de Bob
+  OK  Recharger une sauvegarde sans garder l'état mémoire
+  OK  Récompenses et objectifs conservés après rechargement
+  OK  Réinitialiser seulement la progression
+  OK  Réinitialisation efface les objectifs de l'enquête
+  OK  Réinitialisation conserve points, inventaire et récompenses attribuées
+  OK  Recommencer après réinitialisation
+  OK  Ouvrir le défi : lighting
+  OK  Mission rejouée sans crédit : lighting
+  OK  Ouvrir le défi : lock
+  OK  Consulter l'observation : badge
+  OK  Consulter l'observation : power
+  OK  Consulter l'observation : command
+  OK  Consulter l'observation : link
+  OK  Mission rejouée sans crédit : lock
+  OK  Ouvrir le défi : computer
+  OK  Observer le symptôme : pc
+  OK  Observer le symptôme : display
+  OK  Observer le symptôme : no_signal
+  OK  Vérifier : video
+  OK  Vérifier : power
+  OK  Mission rejouée sans crédit : computer
+  OK  Rejouer l'enquête ne dépasse pas 150 points
+
+Boutique et transactions
+  OK  Au moins huit articles locaux
+  OK  Sélectionner Bob pour vérifier le solde insuffisant
+  OK  Achat refusé avec solde insuffisant
+  OK  Équipement non possédé refusé
+  OK  Identifiant d'article inconnu refusé
+  OK  Achats refusés sans modification de Bob
+  OK  Retour à Alice pour acheter
+  OK  Échec d'écriture d'achat signalé
+  OK  Achat échoué : aucun débit ni article ajouté en mémoire ou sur disque
+  OK  Achat sauvegardé avec succès
+  OK  Solde débité exactement du prix et article présent
+  OK  Double achat refusé sans second débit
+  OK  Équiper l'article acheté
+  OK  Un seul article équipé par type
+  OK  Équipement échoué si la sauvegarde échoue
+  OK  Équipement échoué conserve le choix précédent
+  OK  Recharger après achat et équipement
+  OK  Inventaire, points et équipement survivent au rechargement
+  OK  Réinitialiser une progression avec achat
+  OK  Réinitialisation conserve aussi les achats effectifs
+  OK  Prix invalide bloqué par le service : -20
+  OK  Prix invalide bloqué par le service : 1.5
+  OK  Prix invalide bloqué par le service : 20
+
+Validation des documents
+  OK  Document valide accepté
+  OK  Document non objet refusé
+  OK  Identifiant interne ne correspondant pas au fichier refusé
+  OK  Solde invalide refusé : -1
+  OK  Solde invalide refusé : 1.5
+  OK  Solde invalide refusé : 50
+  OK  Solde invalide refusé : true
+  OK  Solde invalide refusé : 2147483648
+  OK  Version de schéma inconnue refusée
+  OK  Identifiant contenant un chemin refusé
+  OK  Article inconnu dans l'inventaire refusé
+  OK  Article dupliqué dans l'inventaire refusé
+  OK  Thème équipé en avatar refusé
+  OK  Scène de reprise inconnue refusée
+  OK  Récompense de mission inconnue refusée
+  OK  Objectif accompli sans identifiant de récompense refusé
+  OK  Document invalide ne remplace jamais la sauvegarde valide
+  OK  Lecture de profil avec traversée de chemin refusée
+  OK  Catalogue livré validé
+  OK  Catalogue avec prix invalide refusé : -1
+  OK  Catalogue avec prix invalide refusé : 1.5
+  OK  Catalogue avec prix invalide refusé : 20
+  OK  Catalogue avec prix invalide refusé : 101
+  OK  Entrée catalogue d'un type invalide refusée sans plantage
+  OK  Identifiant catalogue dupliqué refusé
+  OK  Article gratuit par défaut manquant refusé
+  OK  Règles de récompenses livrées validées
+  OK  Récompense négative refusée dans les données
+  OK  Plafond incohérent avec les récompenses refusé
+
+Corruption et récupération explicite
+  OK  Créer une copie de profil pour corruption
+  OK  Sauvegarder une seconde version et créer une copie précédente
+  OK  Corrompre uniquement le fichier temporaire de test
+  OK  JSON corrompu signalé au lieu d'être chargé
+  OK  Liste conserve une erreur de récupération avec copie disponible
+  OK  Lecture et liste n'effacent ni ne restaurent silencieusement le document
+  OK  Corruption pendant une session : sauvegarde automatique refusée en attente de récupération
+  OK  Sauvegarde refusée préserve le document corrompu et la bonne copie précédente
+  OK  Récupération uniquement après appel explicite, depuis la copie précédente
+  OK  Document récupéré valide sur disque
+  OK  Copie corrompue conservée à part pour diagnostic
+  OK  Simuler un fichier principal absent uniquement dans la copie de test
+  OK  Copie précédente orpheline signalée comme récupérable
+  OK  Restaurer explicitement une copie précédente sans principal
+  OK  Supprimer le profil récupéré
+  OK  Suppression retire aussi les copies associées au profil concerné
+  OK  Créer une copie pour version inconnue
+  OK  Installer un schéma inconnu dans la copie de test
+  OK  Version inconnue conservée et refusée sans migration implicite
+  OK  Récupération sans copie disponible refusée explicitement
+  OK  Supprimer seulement la copie de test à schéma inconnu
+  OK  Restaurer Alice après les copies de corruption
+
+Session et chemins
+  OK  Préparer une session de test avec chemin interdit
+  OK  Traversée de chemin dans session refusée sans effacement
+  OK  Écriture de session contenant un chemin refusée
+  OK  Version de session inconnue refusée
+  OK  Session corrompue ne peut être remplacée implicitement
+  OK  Choisir explicitement de réinitialiser uniquement la session de test
+  OK  Restaurer une session valide de test
+  OK  Dernier profil utilisé persistant
+
+Suppression ciblée
+  OK  Suppression refusée en cas d'échec disque
+  OK  Suppression échouée conserve le profil
+  OK  Supprimer Bob
+  OK  Profil supprimé absent
+  OK  Suppression de Bob conserve Alice et la session active
+
+Réglages, aperçus et persistance
+  OK  Charger les réglages par défaut de la racine isolée
+  OK  Prévisualiser audio, accessibilité et zone morte
+  OK  L'aperçu change current et conserve committed
+  OK  Trois bus audio distincts disponibles
+  OK  Volume zéro coupe réellement les bus audio
+  OK  Zone morte appliquée aux entrées UI et au jeu
+  OK  Annuler restaure tous les aperçus sans modifier les valeurs enregistrées
+  OK  Annuler restaure également la zone morte effective
+  OK  Appliquer et sauvegarder les réglages
+  OK  ConfigFile enregistré dans la racine temporaire uniquement
+  OK  Relire les réglages enregistrés après changement mémoire
+  OK  Réglages persistants restaurés depuis le disque
+  OK  Échec d'écriture de réglages signalé
+  OK  Échec conserve les valeurs validées et le fichier précédent
+  OK  Annulation après échec restaure les réglages validés
+  OK  Réglage invalide refusé : master
+  OK  Réglage invalide refusé : music
+  OK  Réglage invalide refusé : effects
+  OK  Réglage invalide refusé : large_text
+  OK  Réglage invalide refusé : deadzone
+  OK  Aperçus invalides sans modification des valeurs courantes
+  OK  Créer une deuxième sauvegarde et une copie précédente des réglages
+  OK  Corrompre la copie de réglages de test
+ERROR: ConfigFile parse error at user://tests/run_1791831561.91113_376338/settings.cfg:0: Unexpected EOF while parsing simple tag.
+   at: _parse (core/io/config_file.cpp:292)
+   GDScript backtrace (most recent call first):
+       [0] _read (res://scripts/services/settings_service.gd:70)
+       [1] load_settings (res://scripts/services/settings_service.gd:90)
+       [2] _test_settings (res://tests/run_tests.gd:421)
+       [3] _run (res://tests/run_tests.gd:57)
+  OK  Réglages corrompus refusés sans plantage
+  OK  Chargement ne remplace pas silencieusement les réglages corrompus
+  OK  Échec d'écriture pendant récupération des réglages signalé
+  OK  Récupération échouée conserve les fichiers et permet une nouvelle tentative
+  OK  Restaurer les réglages après choix explicite de la copie précédente
+  OK  Copie précédente des réglages restaurée et appliquée
+  OK  Échec d'écriture pendant récupération des valeurs par défaut signalé
+  OK  Récupération des valeurs par défaut échouée conserve la configuration validée
+  OK  Demander explicitement les valeurs par défaut
+  OK  Valeurs par défaut sauvegardées et appliquées
+
+Résultat : 190 assertions, 0 échec(s).
+Exécution : investigation
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Racine temporaire : /tmp/ciel-acceptance-u8hv_7x4/xdg-data/console-ciel/tests/investigation_1791831562.53058_409980
+  OK  Catalogue chargé
+  OK  Définitions chargées
+  OK  Créer le premier profil
+  OK  Créer le deuxième profil
+  OK  Sélection du profil A
+
+Nouvelle partie et prérequis
+  OK  Un profil sans partie ne peut pas ouvrir le défi
+  OK  L'ancienne API ne peut pas attribuer une réussite arbitraire
+  OK  Nouvelle enquête initialisée
+  OK  Une nouvelle partie commence sans objectif terminé
+  OK  Données de reprise initiales cohérentes
+  OK  États initiaux : un objectif disponible et deux verrouillés
+  OK  Serrure verrouillée avant l'éclairage
+  OK  Ordinateur verrouillé avant la serrure
+  OK  Solution de serrure refusée sans prérequis
+  OK  Solution ordinateur refusée sans prérequis
+  OK  Mission inconnue refusée
+  OK  Interactions précoces n'accordent aucun point ni réussite
+  OK  Reprise d'une nouvelle partie
+  OK  Nouvelle partie persistée après rechargement
+
+Circuit fermé réel, erreurs et transaction atomique
+  OK  Défi éclairage ouvert
+  OK  Un défi ouvert devient en cours
+  OK  Ouvrir un défi ne permet pas de contourner sa validation métier
+  OK  Circuit incorrect expliqué : []
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_switch"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_switch", "switch_lamp"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_lamp", "lamp_return"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_switch", "switch_lamp", "lamp_return", "lamp_return"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_switch", "switch_lamp", "lamp_return", "switch_return"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Circuit incorrect expliqué : ["source_switch", "switch_lamp", "unknown"]
+  OK  Circuit incorrect sans validation ni gain
+  OK  Échec de sauvegarde de la réussite signalé
+  OK  Échec conserve ensemble la progression, le solde et les récompenses
+  OK  Boucle source–interrupteur–lampe–retour validée et récompensée
+  OK  Gain de partie distingué du solde
+  OK  Mission et identifiant de récompense persistés ensemble
+  OK  Réussir le circuit débloque seulement la porte
+  OK  La réussite révèle et conserve un indice
+  OK  Indice du badge ajouté seulement par la réussite du circuit
+  OK  Validation rapide répétée sans second gain : 0
+  OK  Validation rapide répétée sans second gain : 1
+  OK  Validation rapide répétée sans second gain : 2
+  OK  Validation rapide répétée sans second gain : 3
+  OK  Validation rapide répétée sans second gain : 4
+  OK  Aucun cumul après plusieurs validations
+  OK  Reprise après l'éclairage
+  OK  Éclairage, indice, checkpoint et récompense restaurés exactement
+  OK  Les points d'une mission sont immédiatement utilisables dans la boutique
+  OK  Achat débite le solde sans réécrire le gain de la partie
+  OK  Cosmétique équipé pendant l'enquête
+
+Diagnostic alimentation / commande / liaison
+  OK  Serrure disponible après éclairage
+  OK  Diagnostic correct refusé avant consultation des indices
+  OK  Observation de serrure inconnue refusée
+  OK  Échec de sauvegarde d'un indice consulté signalé
+  OK  Indice consulté sans sauvegarde ne reste pas partiellement en mémoire
+  OK  Observation serrure : badge
+  OK  Observation serrure : power
+  OK  Observation serrure : command
+  OK  La liaison doit aussi être observée
+  OK  Liaison de commande examinée
+  OK  Reprise avec observations de serrure avant résolution
+  OK  Les quatre observations restent disponibles après rechargement
+  OK  Mauvais diagnostic ou réparation expliqué : ["power_fault", "reconnect_control"]
+  OK  Erreur de serrure ne valide pas et ne récompense pas
+  OK  Mauvais diagnostic ou réparation expliqué : ["badge_fault", "reconnect_control"]
+  OK  Erreur de serrure ne valide pas et ne récompense pas
+  OK  Mauvais diagnostic ou réparation expliqué : ["control_link", "replace_power"]
+  OK  Erreur de serrure ne valide pas et ne récompense pas
+  OK  Mauvais diagnostic ou réparation expliqué : ["control_link", "change_badge"]
+  OK  Erreur de serrure ne valide pas et ne récompense pas
+  OK  Mauvais diagnostic ou réparation expliqué : ["unknown", "unknown"]
+  OK  Erreur de serrure ne valide pas et ne récompense pas
+  OK  Échec d'écriture du diagnostic signalé
+  OK  Serrure non terminée et portefeuille inchangé après échec d'écriture
+  OK  Liaison de commande reconnectée après diagnostic justifié
+  OK  Deux missions donnent 100 points de partie, achat déjà déduit du solde
+  OK  La porte débloque le diagnostic ordinateur
+  OK  La serrure réparée révèle l'indice vidéo
+  OK  Reprise après l'ouverture de la porte
+  OK  Porte ouverte et observations restaurées depuis une source unique
+
+Ordinateur : observations, vérifications, cause et correction
+  OK  Ordinateur disponible après ouverture de la porte
+  OK  Réponse ne remplace pas l'observation des symptômes
+  OK  Une vérification ne court-circuite pas la phase d'observation
+  OK  Symptôme observé : pc
+  OK  Symptôme observé : display
+  OK  Symptôme observé : no_signal
+  OK  Symptôme inconnu refusé
+  OK  Vérification inconnue refusée
+  OK  Vérifier alimentation de l'écran et démarrage
+  OK  L'interface ne peut pas inventer une vérification vidéo non effectuée
+  OK  Vérifier le câble vidéo
+  OK  Reprise avec ordinateur encore en cours de diagnostic
+  OK  Observations et vérifications conservées avant validation finale
+  OK  Hypothèse ou correction incorrecte expliquée : [[], "video_disconnected", "reconnect_video"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["power"], "video_disconnected", "reconnect_video"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["video", "power"], "screen_power", "reconnect_video"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["video", "power"], "network_fault", "reconnect_video"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["video", "power"], "video_disconnected", "reset_network"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["video", "power"], "video_disconnected", "replace_screen"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Hypothèse ou correction incorrecte expliquée : [["video", "power", "unknown"], "video_disconnected", "reconnect_video"]
+  OK  Erreur ordinateur sans réussite ni récompense
+  OK  Échec d'écriture ordinateur signalé
+  OK  Échec ordinateur laisse une transaction entière inchangée
+  OK  Câble vidéo reconnecté virtuellement après les vérifications
+  OK  Bilan : 150 points nouvellement gagnés, solde réel 130 après achat
+  OK  Le message de conclusion est obtenu seulement après réparation
+  OK  Le troisième objectif est terminé après validation métier
+  OK  Les trois missions et récompenses sont cohérentes
+  OK  Reprise de l'enquête terminée
+  OK  Conclusion et salle réparée restaurées après rechargement
+  OK  Relancer une validation finale ne double pas le gain
+
+Deux profils, nouvelle partie et conservation des achats
+  OK  Changer vers le profil B
+  OK  Aucune donnée d'enquête ou de boutique ne passe au profil B
+  OK  Le profil B commence sa propre enquête
+  OK  Éclairage du profil B
+  OK  Le profil B gagne sa propre première récompense
+  OK  La mission du profil B ne modifie pas le profil A
+  OK  Retour au profil A
+  OK  Équipement et progression du profil A conservés
+  OK  Rejouer remet à zéro la progression seulement
+  OK  Nouvelle partie efface objectifs, indices et compteur de partie
+  OK  Solde, achats et récompenses déjà attribuées survivent au rejeu
+  OK  Défi ouvert : lighting
+  OK  Rejouer ne récompense pas une seconde fois : lighting
+  OK  Défi ouvert : lock
+  OK  Observation : badge
+  OK  Observation : power
+  OK  Observation : command
+  OK  Observation : link
+  OK  Rejouer ne récompense pas une seconde fois : lock
+  OK  Défi ouvert : computer
+  OK  Symptôme : pc
+  OK  Symptôme : display
+  OK  Symptôme : no_signal
+  OK  Vérification : video
+  OK  Vérification : power
+  OK  Rejouer ne récompense pas une seconde fois : computer
+  OK  Conclusion du rejeu affiche zéro point nouvellement gagné
+  OK  Réinitialisation de progression depuis les paramètres
+  OK  Réinitialiser conserve toutes les données économiques
+
+Migration explicite des anciennes simulations
+  OK  Créer une copie pour migration
+  OK  Copie de l'ancien schéma écrite uniquement dans la racine de test
+  OK  Ancien document reconnu sans l'effacer
+  OK  Une lecture seule n'écrase pas l'ancienne sauvegarde
+  OK  Migration conserve portefeuille, récompenses et cosmétiques
+  OK  Les simulations ne sont pas présentées comme des défis résolus, avec avis explicite
+  OK  La sélection persiste la migration avec copie précédente
+  OK  Document enrichi enregistré et prototype précédent conservé
+  OK  L'avis de migration peut être acquitté explicitement
+  OK  L'avis acquitté ne revient pas à chaque chargement
+  OK  Nouvelle enquête réelle après migration
+  OK  Défi ouvert : lighting
+  OK  Les points du prototype ne peuvent pas être gagnés une deuxième fois
+  OK  Restaurer le profil A après la copie de migration
+
+Validation du nouveau progrès et récupération contrôlée
+  OK  Nouveau document valide accepté
+  OK  Champ de progression invalide refusé : ["investigation_version", 999]
+  OK  Champ de progression invalide refusé : ["investigation_version", "1"]
+  OK  Champ de progression invalide refusé : ["clues", ["unknown_clue"]]
+  OK  Champ de progression invalide refusé : ["clues", "badge"]
+  OK  Champ de progression invalide refusé : ["active_mission", "unknown"]
+  OK  Champ de progression invalide refusé : ["run_reward_points", -1]
+  OK  Champ de progression invalide refusé : ["run_reward_points", 49]
+  OK  Champ de progression invalide refusé : ["run_reward_points", 500]
+  OK  Champ de progression invalide refusé : ["run_reward_points", 1.5]
+  OK  Champ de progression invalide refusé : ["legacy_migration_notice", "oui"]
+  OK  Champ de progression invalide refusé : ["observations", { "lighting": [], "lock": ["unknown"], "computer": [] }]
+  OK  Champ de progression invalide refusé : ["checks", { "computer": ["unknown"] }]
+  OK  Mission terminée sans prérequis refusée dans le nouveau schéma
+  OK  Créer une copie de corruption
+  OK  Commencer la copie de corruption
+  OK  Défi ouvert : lighting
+  OK  Terminer l'éclairage de la copie
+  OK  Créer une sauvegarde précédente de la progression valide
+  OK  Corrompre uniquement le document de test
+  OK  Corruption signalée sans effacement silencieux
+  OK  Copie précédente restaure mission, indice et récompense de manière cohérente
+  OK  Recharger le document récupéré
+  OK  Une récupération ne permet pas de cumuler la récompense déjà sauvegardée
+
+Résultat enquête : 189 assertions, 0 échec(s).
+Exécution : controllers
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CONTROLLERS : 22 assertions, 0 échec(s). Périphériques virtuels de test ; matériel non testé.
+Exécution : audit_regressions
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+OK Définitions livrées
+OK Profil isolé et nouvelle enquête
+OK Éclairage par règles réelles
+OK Progression récente tronquée refusée sans migration destructive
+OK Ancien prototype réel toujours migrable
+OK Version booléenne CFG refusée
+OK Version flottante CFG refusée
+OK Version booléenne du mapping refusée
+OK Observation serrure badge
+OK Observation serrure power
+OK Observation serrure command
+OK Observation serrure link
+OK Serrure par diagnostic
+OK Observation ordinateur pc
+OK Observation ordinateur display
+OK Observation ordinateur no_signal
+OK Vérification ordinateur power
+OK Vérification ordinateur video
+OK Troisième mission et 150 points
+OK Reprise terminée ouvre bilan
+OK Échap annule Rejouer et restitue le bilan
+OK Panneaux fermés libérés sans conserver de défi masqué
+OK Défi fermé réellement libéré
+OK Thème acheté par transaction normale
+OK Choix de thème possédé
+OK Aperçu de thème possède un état sélectionné exact
+OK Annuler conserve le thème enregistré
+OK Déconnexion pendant fermeture de réglages transmise au jeu conservé
+OK Reprise explicite restitue la pause des paramètres
+OK Saisie P, espace et E préservée pendant verrou de transition
+OK Effacement virtuel répété conserve le caret
+OK Suppression inattendue du dialogue restaure les contrôles survivants
+OK Dialogue retiré pendant attente de disposition sans erreur de script
+OK Liste inaccessible ouvre une erreur et un vrai réessai
+AUDIT_REGRESSIONS : 34 assertions, 0 échec(s).
+Exécution : audit_validation
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+AUDIT_VALIDATION : 1160 assertions, 0 échec(s).
+Exécution : native_ui
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+UI : données isolées /tmp/ciel-acceptance-u8hv_7x4/xdg-data/console-ciel/tests/ui_1791831567.34356_381455
+UI : affichage headless; captures réelles false
+UI : 1937 assertions, 0 échec(s).
+Manette physique non testée : événements InputEventJoypadButton injectés uniquement.
+Contrôleur USB HID fabriqué et performances Raspberry Pi : mesures à réaliser sur le vrai matériel.
+Exécution : stability
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+STABILITY : données isolées /tmp/ciel-acceptance-u8hv_7x4/xdg-data/console-ciel/tests/stability_1262880_3935
+
+Démarrage sans données
+
+Stockage indisponible puis réessai
+
+Réglages invalides et copie précédente
+ERROR: ConfigFile parse error at user://tests/stability_1262880_3935/settings_backup/settings.cfg:3: Unexpected identifier 'invalid'.
+   at: _parse (core/io/config_file.cpp:292)
+   GDScript backtrace (most recent call first):
+       [0] _read (res://scripts/services/settings_service.gd:70)
+       [1] load_settings (res://scripts/services/settings_service.gd:90)
+       [2] _boot (res://scripts/ui/main.gd:86)
+
+Réglages sans copie : valeurs par défaut explicites
+
+Profil principal absent, sauvegarde conservée
+
+Session orpheline et sélection contrôlée
+
+Catalogue de test invalide
+STABILITY : 97 assertions, 0 échec(s).
+Démarrage/récupération testés sans affichage ; aucune capture ou manette physique revendiquée.
+Exécution : persistence_write
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PROCESS_PERSISTENCE write : 28 assertions, 0 échec(s).
+Exécution : persistence_read_replay
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PROCESS_PERSISTENCE read_replay : 26 assertions, 0 échec(s).
+Exécution : persistence_read_final
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PROCESS_PERSISTENCE read_final : 11 assertions, 0 échec(s).
+Recette : réussie
