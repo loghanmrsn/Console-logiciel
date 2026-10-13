@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.4.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.4.1 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -15,7 +15,9 @@ Créez un profil puis choisissez Commencer. Le clavier virtuel permet aussi
 la saisie sans clavier physique. Continuer reprend la progression du profil.
 
 NAVIGATION
-Accueil, Boutique, Profils, Paramètres et Aide sont dans la barre du bas.
+Accueil, Boutique, Paramètres et Profil sont dans la barre translucide du bas.
+Le profil actif, son avatar et ses points sont affichés dans la barre.
+Aide / Crédits reste accessible dans Paramètres > À propos.
 Haut et bas depuis un onglet rejoignent le contenu ; gauche et droite
 parcourent les onglets. La barre est masquée pendant l’enquête.
 Pause > Afficher / Masquer les objectifs permet de réduire leur liste.
@@ -63,8 +65,9 @@ en points virtuels, sans paiement réel. Rejouer ne redonne pas les récompenses
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
 Export Windows produit et archive contrôlée dans un environnement Linux.
-Refonte graphique 0.4.0 : atelier illustré, personnage animé et navigation
-inférieure. Captures Godot réelles via X11/Mesa logiciel aux quatre résolutions,
+Navigation 0.4.1 : capsule translucide, quatre destinations et infos du profil.
+Atelier illustré et personnage animé conservés. Captures Godot réelles via
+X11/Mesa logiciel aux quatre résolutions,
 en texte normal et grand texte. Pas de test Windows natif.
 Les tests du projet utilisent Godot en headless : cela ne prouve pas le
 fonctionnement du double-clic, du rendu, du son ou de la manette sur Windows.

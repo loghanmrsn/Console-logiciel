@@ -1,12 +1,14 @@
 # Console CIEL — version intégrée de démonstration
 
-Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.0**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
+Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.1**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
 
-Refonte graphique **0.4.0** : [changements, captures avant/après et recette](docs/REFONTE_GRAPHIQUE.md). Navigation inférieure, grand accueil, atelier illustré, personnage animé et objectifs compacts. Captures réelles dans `docs/screenshots/refonte/`. Les versions Windows 0.3.0 et 0.3.1 sont conservées.
+Navigation **0.4.1** : capsule inférieure translucide, quatre destinations **Accueil → Boutique → Paramètres → Profil** et informations du joueur dans la barre. [Détails et captures réelles](docs/NAVIGATION_TRANSLUCIDE.md).
+
+Refonte graphique **0.4.0** : [changements, captures avant/après et recette](docs/REFONTE_GRAPHIQUE.md). Navigation inférieure, grand accueil, atelier illustré, personnage animé et objectifs compacts. Captures réelles dans `docs/screenshots/refonte/`. Les sources et rapports historiques sont conservés ; les anciens exécutables 0.3.0/0.3.1 n’étaient pas inclus dans l’archive reçue.
 
 ## Lancer la version
 
-**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_refonte_0.4.0.zip](builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Ancien ZIP 0.3.0 conservé](builds/Console_CIEL_Windows_x86_64.zip).
+**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_navigation_0.4.1.zip](builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Version Windows 0.4.0 conservée](builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
 
 Version exacte du moteur utilisée : `4.6.3.stable.official.7d41c59c4`, édition standard. Importer `project.godot` dans cet éditeur et appuyer sur **F5**, ou lancer depuis la racine du dépôt :
 
@@ -19,7 +21,7 @@ godot --path . --fullscreen
 
 Le démarrage affiche les étapes de chargement réelles, charge les réglages et les données, applique l'accessibilité puis ouvre la sélection du profil. Sans profil, il propose la création et un clavier virtuel utilisable sans clavier physique. Une erreur essentielle ouvre une page avec réessai ou récupération disponible ; aucune donnée défectueuse n'est effacée automatiquement.
 
-Sélectionner un profil puis **Commencer / Nouvelle partie**. La barre du bas donne accès à Accueil, Boutique, Profils, Paramètres et Aide. Haut/bas depuis les onglets rejoignent le contenu ; gauche/droite parcourent la barre. Elle est masquée pendant l’enquête. **Paramètres → Quitter l’application** ferme le logiciel. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](docs/ENQUETE.md).
+Sélectionner un profil puis **Commencer / Nouvelle partie**. La barre du bas donne accès à Accueil, Boutique, Paramètres et Profil ; Aide / Crédits reste dans Paramètres → À propos. Haut/bas depuis les onglets rejoignent le contenu ; gauche/droite parcourent la barre. Elle est masquée pendant l’enquête. **Paramètres → Quitter l’application** ferme le logiciel. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](docs/ENQUETE.md).
 
 Les manipulations sont des **simulations pédagogiques fictives**, avec observations, choix corrects, erreurs possibles et explications. Le circuit utilise une très basse tension virtuelle ; il ne constitue pas un tutoriel de câblage secteur. Aucun équipement, terminal ou réglage du système hôte n'est modifié.
 

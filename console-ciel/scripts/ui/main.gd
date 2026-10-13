@@ -18,6 +18,7 @@ const Startup=preload('res://scenes/startup.tscn')
 const Diagnostics=preload('res://scripts/ui/diagnostics_panel.gd')
 
 var background: ColorRect
+var ambient_glows: Array[TextureRect]=[]
 var shell_column: VBoxContainer
 var shell: MarginContainer
 var navigation: CenterContainer
@@ -133,6 +134,21 @@ func _build_shell() -> void:
 	background.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(background)
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	for _index in range(2):
+		var glow=TextureRect.new()
+		glow.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		glow.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+		var gradient=Gradient.new()
+		gradient.offsets=PackedFloat32Array([0.0,.5,1.0])
+		gradient.colors=PackedColorArray([Color(.32,.50,.64,.14),Color(.32,.50,.64,.035),Color(.32,.50,.64,0)])
+		var texture=GradientTexture2D.new()
+		texture.width=512;texture.height=512
+		texture.fill=GradientTexture2D.FILL_RADIAL
+		texture.fill_from=Vector2(.5,.5);texture.fill_to=Vector2(1,.5)
+		texture.gradient=gradient
+		glow.texture=texture
+		background.add_child(glow)
+		ambient_glows.append(glow)
 	shell=MarginContainer.new()
 	add_child(shell)
 	shell.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -182,16 +198,17 @@ func _build_shell() -> void:
 	footer.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	footer.add_theme_font_size_override('font_size',16)
 	footer.add_theme_color_override('font_color',Color('#586674'))
+	footer.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	toast=Toast.new()
 	col.add_child(toast)
+	col.add_child(footer)
 	navigation=Navigation.new()
 	col.add_child(navigation)
 	navigation.destination_requested.connect(_navigation_destination)
-	col.add_child(footer)
 	_responsive()
 
 func _palette() -> Dictionary:
-	if screen=='settings' and draft_settings.has('profile_theme') and not AppState.profile.is_empty():
+	if _is_settings_screen(screen) and draft_settings.has('profile_theme') and not AppState.profile.is_empty():
 		if draft_settings.profile_theme in AppState.profile.owned_items:
 			var preview=ShopService.item(draft_settings.profile_theme)
 			if not preview.is_empty(): return preview
@@ -207,6 +224,10 @@ func _apply_theme() -> void:
 	theme=ThemeFactory.build(SettingsService.current,background_palette)
 	if footer!=null: footer.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
 	if background!=null: background.color=Color(background_palette.get('background','#F3F5F7'))
+	var accent=Color(background_palette.get('accent','#527FA3'))
+	for glow in ambient_glows:
+		glow.texture.gradient.colors=PackedColorArray([Color(accent.r,accent.g,accent.b,.14),Color(accent.r,accent.g,accent.b,.035),Color(accent.r,accent.g,accent.b,0)])
+	if navigation!=null: navigation.apply_appearance(SettingsService.current,background_palette)
 	_responsive()
 
 func _profile_updated(_profile: Dictionary) -> void:
@@ -216,7 +237,13 @@ func _profile_updated(_profile: Dictionary) -> void:
 
 func _update_header() -> void:
 	var active=not AppState.profile.is_empty()
-	header_avatar.visible=active
+	var player_in_bar=navigation!=null and navigation.visible
+	header_avatar.visible=active and not player_in_bar
+	header_profile.visible=not player_in_bar
+	header_points.visible=not player_in_bar
+	var avatar_item=ShopService.item(AppState.profile.equipped.avatar) if active else {}
+	var frame_item=ShopService.item(AppState.profile.equipped.frame) if active else {}
+	if navigation!=null: navigation.update_player(AppState.profile,avatar_item,frame_item)
 	if active:
 		var item=ShopService.item(AppState.profile.equipped.avatar)
 		header_avatar.color=Color(item.get('color','#527FA3'))
@@ -230,6 +257,11 @@ func _update_header() -> void:
 func _responsive() -> void:
 	if shell==null: return
 	var compact=size.x<1000 or size.y<600
+	if ambient_glows.size()==2:
+		ambient_glows[0].size=Vector2(size.x*.75,size.y*1.1)
+		ambient_glows[0].position=Vector2(-size.x*.15,size.y*.35)
+		ambient_glows[1].size=Vector2(size.x*.65,size.y)
+		ambient_glows[1].position=Vector2(size.x*.5,-size.y*.35)
 	var margin=12 if compact else 28
 	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
 	if footer!=null and screen=='game':
@@ -291,7 +323,9 @@ func _clear(next: String) -> void:
 	responsive_grids.clear()
 	hero_grid=null;hero_art=null;hero_panel=null;home_labels.clear();home_objectives=null;home_story=null
 	if navigation!=null:
-		navigation.visible=next in ['home','shop','profiles','settings','help'] and not (next=='settings' and settings_origin=='game') and not (next=='help' and parent_screen=='game')
+		var pause_settings=_is_settings_screen(next) and settings_origin=='game'
+		var pause_help=(next=='help' or (next=='controls' and controls_origin=='help')) and parent_screen=='game'
+		navigation.visible=next in ['home','shop','profiles','settings','help','controls'] and not pause_settings and not pause_help
 		navigation.update_state(next,not AppState.profile.is_empty())
 	header_back.visible=next not in ['home','boot','recovery','settings_recovery','fatal'] and not (next=='editor' and ProfileService.profiles.is_empty())
 	footer.text='Flèches / joystick : naviguer   ·   Entrée / face bas : valider   ·   Échap / face droit : retour'
@@ -639,9 +673,16 @@ func _home() -> void:
 		_label(objectives,('✓  ' if mission.id in done else '○  ')+title,16)
 	home_labels.note=_label(story,'Données locales · points gagnés dans les missions',14,true)
 
+func _is_settings_screen(view: String) -> bool:
+	return view=='settings' or (view=='help' and parent_screen=='settings') or (view=='controls' and (controls_origin=='settings' or (controls_origin=='help' and parent_screen=='settings')))
+
 func _navigation_destination(next: String) -> void:
 	if next==screen or is_instance_valid(modal) or not SceneRouter.gameplay_allowed(): return
-	if screen=='settings':
+	var settings_subpage=screen!='settings' and _is_settings_screen(screen)
+	if next=='settings' and settings_subpage:
+		_show_screen('settings')
+		return
+	if screen=='settings' or settings_subpage:
 		if _settings_dirty():
 			_confirm('Quitter les réglages ?','Les aperçus non appliqués seront annulés. Pour les conserver, revenez ici et choisissez Appliquer.','Annuler les aperçus',func():
 				_discard_settings()

@@ -1,6 +1,8 @@
 # Version portable Windows x86_64
 
-Nouvelle livraison **0.4.0 — refonte graphique** : `builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip`, binaire dans `builds/windows-x86_64-refonte-0.4.0/`. [Captures et vérifications](REFONTE_GRAPHIQUE.md). Les livraisons 0.3.0 et 0.3.1 sont conservées ; le reste de cette page décrit les vérifications historiques 0.3.0.
+Livraison actuelle **0.4.1 — navigation translucide** : [ZIP Windows](../builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip). Décompresser tout le ZIP, puis double-cliquer sur `Console_CIEL.exe`. Barre **Accueil → Boutique → Paramètres → Profil**, avec avatar, pseudo et points. [Captures et vérifications](NAVIGATION_TRANSLUCIDE.md).
+
+Livraison précédente **0.4.0 — refonte graphique**, conservée : `builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip`, binaire local dans `builds/windows-x86_64-refonte-0.4.0/`. [Captures et vérifications historiques](REFONTE_GRAPHIQUE.md). Les anciens exécutables 0.3.0 et 0.3.1 n'étaient pas inclus dans les sources reçues ; le reste de cette page décrit les vérifications historiques 0.3.0.
 
 Pour exporter 0.4.0 sans remplacer ces versions, utiliser :
 

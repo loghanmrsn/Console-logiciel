@@ -1,0 +1,79 @@
+{
+	"captures": [
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1920x1080_normal.png",
+			"screen": "home",
+			"size": "(1920, 1080)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1920x1080_grand_opaque.png",
+			"screen": "home",
+			"size": "(1920, 1080)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1280x720_normal.png",
+			"screen": "home",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1280x720_grand_opaque.png",
+			"screen": "home",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1024x600_normal.png",
+			"screen": "home",
+			"size": "(1024, 600)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_1024x600_grand_opaque.png",
+			"screen": "home",
+			"size": "(1024, 600)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_800x480_normal.png",
+			"screen": "home",
+			"size": "(800, 480)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/accueil_800x480_grand_opaque.png",
+			"screen": "home",
+			"size": "(800, 480)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/shop_1280x720.png",
+			"screen": "shop",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/settings_1280x720.png",
+			"screen": "settings",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/profiles_1280x720.png",
+			"screen": "profiles",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/focus_boutique_1280x720.png",
+			"screen": "home",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/avatar_equipe_1280x720.png",
+			"screen": "home",
+			"size": "(1280, 720)"
+		},
+		{
+			"file": "res://docs/screenshots/navigation_0.4.1/pseudo_long_800x480_grand_opaque.png",
+			"screen": "home",
+			"size": "(800, 480)"
+		}
+	],
+	"display": "X11",
+	"failures": 0,
+	"isolated_data": "user://tests/glass_visual_9399720",
+	"physical_controller_tested": false,
+	"renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

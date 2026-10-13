@@ -20,7 +20,7 @@ func resources(folder: String) -> Array:
  return result
 func run():
  await process_frame
- check(ProjectSettings.get_setting('application/config/version')=='0.4.0','Version embarquée')
+ check(ProjectSettings.get_setting('application/config/version')=='0.4.1','Version embarquée')
  var all=resources('res://assets/art');check(all.size()==36,'36 SVG dans le pack')
  for path in all:
   var asset=ResourceLoader.load(path)
@@ -30,7 +30,12 @@ func run():
  app=load('res://scenes/main.tscn').instantiate();root.add_child(app);await frames(30)
  check(app.screen=='editor','Pack démarre sans profil')
  var p=profiles.create_profile('Export graphique');check(p.ok and profiles.select_profile(p.data.id).ok,'Profil isolé du pack')
- app._show_screen('home');await frames();check(app.navigation.visible and app.navigation.buttons.size()==5,'Accueil compilé et cinq onglets')
+ app._show_screen('home');await frames();check(app.navigation.visible and app.navigation.buttons.size()==4,'Accueil compilé et quatre destinations')
+ var destinations=['home','shop','settings','profiles'];var labels=['Accueil','Boutique','Paramètres','Profil']
+ check(app.navigation.destination_labels.size()==4,'Quatre libellés compilés')
+ for i in range(destinations.size()):
+  check(String(app.navigation.buttons[i].name)=='home_'+destinations[i] and app.navigation.destination_labels[i].text==labels[i],'Ordre compilé '+labels[i])
+ check(app.navigation.profile_name_label.text==state.profile.display_name and app.navigation.profile_points_label.text=='0 pts' and app.navigation.profile_avatar.visible,'Vrai profil intégré à la barre du pack')
  check(profiles.start_game().ok,'Partie du pack');app._show_screen('game');await frames()
  check(not app.navigation.visible and app.demo.world.player.sprite!=null,'Jeu avec personnage et barre masquée')
  check(app.demo.world.player.sprite.sprite_frames.get_animation_names().size()==4,'Animations des quatre directions')
@@ -39,6 +44,7 @@ func run():
  app.demo.resume();await frames()
  check(investigation.begin_mission('lighting').ok and investigation.submit_lighting(['source_switch','switch_lamp','lamp_return']).ok,'Mission inchangée')
  await frames();check(app.demo.world.lighting_restored and state.profile.wallet.points==50,'État visuel et récompense du pack')
+ check(app.navigation.profile_points_label.text=='50 pts','La récompense met à jour la barre du pack')
  check(app.demo.world._light_sprite.modulate==Color.WHITE,'Luminaire allumé après validation')
  app._show_screen('shop');await frames();check(app.screen=='shop' and app.navigation.selected=='shop','Boutique compilée avec aperçu')
  root.remove_child(app);app.queue_free();await frames(3)

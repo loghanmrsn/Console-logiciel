@@ -1,0 +1,34 @@
+[
+  {
+    "name": "navigation",
+    "exit_code": 0,
+    "summaries": [
+      "REFONTE_NAVIGATION : 1829 assertions, 0 échec(s)."
+    ],
+    "unexpected_errors": []
+  },
+  {
+    "name": "ui",
+    "exit_code": 0,
+    "summaries": [
+      "UI : 1979 assertions, 0 échec(s)."
+    ],
+    "unexpected_errors": []
+  },
+  {
+    "name": "services",
+    "exit_code": 0,
+    "summaries": [
+      "Résultat : 190 assertions, 0 échec(s)."
+    ],
+    "unexpected_errors": []
+  },
+  {
+    "name": "investigation",
+    "exit_code": 0,
+    "summaries": [
+      "Résultat enquête : 189 assertions, 0 échec(s)."
+    ],
+    "unexpected_errors": []
+  }
+]

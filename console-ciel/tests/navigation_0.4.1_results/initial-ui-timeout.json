@@ -1,0 +1,5 @@
+{
+  "command": "godot --headless --path console-ciel --script res://tests/ui_smoke.gd",
+  "outcome": "timeout after 180 seconds",
+  "diagnosis": "The old UI fixture referenced the removed home_help navigation button. Its help path now follows Settings -> About -> Help through keyboard events."
+}

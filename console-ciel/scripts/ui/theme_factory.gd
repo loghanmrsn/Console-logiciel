@@ -61,23 +61,38 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 	var primary_focus=focus.duplicate()
 	primary_focus.border_color=Color('#25313C')
 	t.set_stylebox('focus','PrimaryButton',primary_focus)
-	var nav_panel=panel(Color(1,1,1,1.0 if opaque else .88),24,Color('#D9E2E9'))
+	# One luminous glass capsule; accessibility uses a genuinely opaque surface.
+	var nav_panel=panel(Color(1,1,1,1.0 if opaque else .74),44,Color(1,1,1,1.0 if opaque else .95))
 	nav_panel.content_margin_top=6;nav_panel.content_margin_bottom=6
 	nav_panel.content_margin_left=8;nav_panel.content_margin_right=8
+	nav_panel.shadow_color=Color(.18,.30,.38,.12)
+	nav_panel.shadow_size=16
+	nav_panel.shadow_offset=Vector2(0,5)
+	nav_panel.border_width_top=2
 	t.set_stylebox('panel','NavigationPanel',nav_panel)
 	for state in ['normal','hover','pressed','disabled']:
-		var box=panel(Color(1,1,1,0) if state=='normal' else Color('#EDF3F5'),16,Color(1,1,1,0))
+		var surface=Color(1,1,1,0)
+		if state=='hover':surface=Color(1,1,1,1.0 if opaque else .58)
+		if state=='pressed':surface=accent.lightened(.86)
+		var box=panel(surface,36,Color(1,1,1,0))
 		box.shadow_size=0;box.content_margin_left=6;box.content_margin_right=6
 		box.content_margin_top=4;box.content_margin_bottom=4
 		t.set_stylebox(state,'NavigationButton',box)
-	var active_nav=panel(accent.lightened(.83),16,accent.lightened(.5))
+	var active_nav=panel(accent.lightened(.88),36,Color(1,1,1,1.0 if opaque else .9))
+	active_nav.bg_color.a=1.0 if opaque else .86
 	active_nav.shadow_size=0;active_nav.set_border_width_all(1)
-	active_nav.border_width_bottom=3
 	active_nav.content_margin_top=4;active_nav.content_margin_bottom=4
 	active_nav.content_margin_left=6;active_nav.content_margin_right=6
 	t.set_stylebox('normal','NavigationSelected',active_nav)
-	t.set_stylebox('hover','NavigationSelected',active_nav)
-	t.set_stylebox('focus','NavigationButton',focus)
+	var active_hover=active_nav.duplicate()
+	active_hover.bg_color=accent.lightened(.82)
+	active_hover.bg_color.a=1.0 if opaque else .96
+	t.set_stylebox('hover','NavigationSelected',active_hover)
+	# This independent outline is visible on any selected or unselected tab.
+	var nav_focus=panel(Color(0,0,0,0),36,accent.darkened(.12))
+	nav_focus.set_border_width_all(3)
+	nav_focus.shadow_size=0
+	t.set_stylebox('focus','NavigationButton',nav_focus)
 	var hero_panel=panel(Color('#E6EEF0') if opaque else Color(.90,.94,.95,.91),28,Color('#D0DFE2'))
 	hero_panel.content_margin_left=28;hero_panel.content_margin_right=28
 	hero_panel.content_margin_top=24;hero_panel.content_margin_bottom=24
