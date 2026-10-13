@@ -1,0 +1,899 @@
+{
+  "executable": "console-ciel/builds/windows-x86_64-refonte-0.4.0/Console_CIEL.exe",
+  "architecture": "PE32+ x86_64",
+  "exe_bytes": 105134208,
+  "exe_sha256": "bb733739ed0ab2c2dc2b872dfe6c8511ae87eab11204e7df2540d85dd0f6b2a0",
+  "archive": "console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip",
+  "zip_bytes": 36350922,
+  "zip_sha256": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6",
+  "crc_valid": true,
+  "archive_entries": [
+    "Console_CIEL.exe",
+    "LIRE_MOI.txt",
+    "assets/LICENSES.md",
+    "assets/licenses/CC0.txt",
+    "assets/licenses/GODOT_LICENSE_TEXTS.json",
+    "assets/licenses/GODOT_MIT.txt",
+    "assets/licenses/GODOT_THIRD_PARTY.json",
+    "assets/licenses/OFL-1.1.txt"
+  ],
+  "embedded_files": [
+    {
+      "file": ".godot/exported/133200997/export-088e461bfc6d856aee27a936aca65a48-console_theme.res",
+      "bytes": 519,
+      "md5": "c8d9d01fd4fa038298c748c644c0aba2"
+    },
+    {
+      "file": ".godot/exported/133200997/export-0eb8574bb7fd6477440fed68fa7911c4-investigation_world.scn",
+      "bytes": 711,
+      "md5": "b24961c7148b838ee32a4fa8efc8663b"
+    },
+    {
+      "file": ".godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res",
+      "bytes": 725,
+      "md5": "99f2de62e8a92adb40ddc75c32b4b700"
+    },
+    {
+      "file": ".godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn",
+      "bytes": 876,
+      "md5": "5efd1a6f9b37910f1fcb8dce77fea561"
+    },
+    {
+      "file": ".godot/exported/133200997/export-3d0be3949fcba8ed0f83d816dc760758-demo_game.scn",
+      "bytes": 880,
+      "md5": "355e49bdef2d9543539c4e45e1d88a9a"
+    },
+    {
+      "file": ".godot/exported/133200997/export-9bb02b5c7b6edcdb6d8b9659f486990f-startup.scn",
+      "bytes": 1259,
+      "md5": "63b5f9b9a6cb252138e28f3668e8ebc3"
+    },
+    {
+      "file": ".godot/global_script_class_cache.cfg",
+      "bytes": 340,
+      "md5": "af97f4912a069877d42063a6b060fee0"
+    },
+    {
+      "file": ".godot/imported/cabinet.svg-510092dd526ad98cb115930545231c38.ctex",
+      "bytes": 1352,
+      "md5": "45a2a363a6e77ab46730bbfce0f9d0aa"
+    },
+    {
+      "file": ".godot/imported/chair.svg-9ac307a9c9bc284683a8b9f3b6d19c9a.ctex",
+      "bytes": 1372,
+      "md5": "52cbe9e9838d23344a311db1ffe53134"
+    },
+    {
+      "file": ".godot/imported/confirm.wav-f384b89b03be0f4c54dea669aece985b.sample",
+      "bytes": 1831,
+      "md5": "b4286b521849e8e117101c906b92a534"
+    },
+    {
+      "file": ".godot/imported/console.svg-1ee0be9bbd6f0ccf4b5e99e78625c6e7.ctex",
+      "bytes": 1634,
+      "md5": "3a4f61f793a8ee1a6b6d80943c1cfb5a"
+    },
+    {
+      "file": ".godot/imported/desk.svg-d33fac309d543be08d329a2f2201ec6e.ctex",
+      "bytes": 3180,
+      "md5": "abbf77cd16ad99c39df69ec439fea6d5"
+    },
+    {
+      "file": ".godot/imported/door_closed.svg-fdc1cb2207feca5d480b033826f99296.ctex",
+      "bytes": 330,
+      "md5": "f75f767e30ecad4f2748a579d4ab7394"
+    },
+    {
+      "file": ".godot/imported/door_open.svg-ab58a607644d03dc638ad293a8494670.ctex",
+      "bytes": 320,
+      "md5": "b2fe1ff95943ea633844433c0312d2a1"
+    },
+    {
+      "file": ".godot/imported/down_0.svg-026867e2f547dab91dbd8a3f105a6d41.ctex",
+      "bytes": 2254,
+      "md5": "8ef1b5e99cd7c80c93b80c7a775fde57"
+    },
+    {
+      "file": ".godot/imported/down_1.svg-cabcf9817210a6e417f7344672f863f9.ctex",
+      "bytes": 2254,
+      "md5": "8c8ed29ee62c47465e2f05b30f79571a"
+    },
+    {
+      "file": ".godot/imported/down_2.svg-2aa74c6c3fbb2e6151c1ba3a9b1807d5.ctex",
+      "bytes": 2318,
+      "md5": "9470fc2393b5bd65fabc2569c6f9cd1b"
+    },
+    {
+      "file": ".godot/imported/electrical_off.svg-906192fc3cd8ad61083a77373d2a20c6.ctex",
+      "bytes": 1746,
+      "md5": "79988f722ec83c6e8844cc834a0e663c"
+    },
+    {
+      "file": ".godot/imported/electrical_on.svg-acfdfc88dfe4ebbdee8626cc2be05d27.ctex",
+      "bytes": 1736,
+      "md5": "e6982b70b98e7723d6f04b3e1c41fd15"
+    },
+    {
+      "file": ".godot/imported/floor.svg-633de64ce4f34f35268bd3599ea988ae.ctex",
+      "bytes": 1332,
+      "md5": "37426fff76004e74a0416a80ecfd32e7"
+    },
+    {
+      "file": ".godot/imported/help.svg-5cf492cbc62f170fb5666a01ad56b5d9.ctex",
+      "bytes": 764,
+      "md5": "5fb694a69b47501dbe001bea47b8be48"
+    },
+    {
+      "file": ".godot/imported/home.svg-facdd0c4aa6aec2a85ec00e74fd409a9.ctex",
+      "bytes": 412,
+      "md5": "f5aa6d2af53ebc90fb769bc93636e6fb"
+    },
+    {
+      "file": ".godot/imported/left_0.svg-26674f261634b26028690fd2f35a12c3.ctex",
+      "bytes": 2344,
+      "md5": "2403ab10575c5f73e058c90e1e5c26e8"
+    },
+    {
+      "file": ".godot/imported/left_1.svg-df093bf270a05e3ee8843284504fcba3.ctex",
+      "bytes": 2322,
+      "md5": "56fed58d31dbb750eafcfab7537ebfbe"
+    },
+    {
+      "file": ".godot/imported/left_2.svg-8efd0f06d390051de18ebd2fc311a826.ctex",
+      "bytes": 2384,
+      "md5": "7d01d65a733c701abd72ab2f768f6bcb"
+    },
+    {
+      "file": ".godot/imported/light.svg-f20e46b1f83aafc7cc35cfad20f67e6c.ctex",
+      "bytes": 438,
+      "md5": "85e5998c41f82902097b67b219445175"
+    },
+    {
+      "file": ".godot/imported/menu.wav-de54ed9cbf594325d64fc7b093374005.sample",
+      "bytes": 143167,
+      "md5": "be8d99d40295b70d1bb1cbbb9831c953"
+    },
+    {
+      "file": ".godot/imported/monitor_off.svg-8d8d86ccd171dcce723c12f5962cc093.ctex",
+      "bytes": 592,
+      "md5": "3b286adf09fe6a184288db1bdc3baa66"
+    },
+    {
+      "file": ".godot/imported/monitor_on.svg-b8975980d203c5f568e8fac7bc5dd952.ctex",
+      "bytes": 654,
+      "md5": "60834990e231ab093426a88515c49d3d"
+    },
+    {
+      "file": ".godot/imported/note.svg-a5e0bb69ec2a96e01e6b28d4d3cdc608.ctex",
+      "bytes": 482,
+      "md5": "b4fd8ccda874072523bfefb614766c2c"
+    },
+    {
+      "file": ".godot/imported/plant.svg-2b9b6f68e5719077ec605f664b85dda5.ctex",
+      "bytes": 1154,
+      "md5": "c6f7d40b7f2b59f0a6099c615b6f7e68"
+    },
+    {
+      "file": ".godot/imported/profiles.svg-e29c73cf341ac8be1f2aec751804c0b0.ctex",
+      "bytes": 468,
+      "md5": "3a183662e6ea4ecc7736b61cb78706f2"
+    },
+    {
+      "file": ".godot/imported/reader_off.svg-adc79cd7cd96a96d7289b0aa025124ec.ctex",
+      "bytes": 456,
+      "md5": "be5c0b326080bd265460194fba777495"
+    },
+    {
+      "file": ".godot/imported/reader_on.svg-99bb5ff67647abcb146b351da6e88a68.ctex",
+      "bytes": 442,
+      "md5": "f0f6c788cf756654ae6463800c1d675f"
+    },
+    {
+      "file": ".godot/imported/right_0.svg-a4da3ca17031c7c6240f4fba1614c42c.ctex",
+      "bytes": 2340,
+      "md5": "a65da3e1cdf293bbf99bbdc9e8e0101e"
+    },
+    {
+      "file": ".godot/imported/right_1.svg-b5d8fb4b6786d8bd7bb7bdc1a5ee4fdc.ctex",
+      "bytes": 2330,
+      "md5": "ce72287cd50e97be4bf9c9fef43c96dd"
+    },
+    {
+      "file": ".godot/imported/right_2.svg-af973d8aed5aedf217a0b34d1157492e.ctex",
+      "bytes": 2364,
+      "md5": "f192a4fe608185cd6507319bb840d196"
+    },
+    {
+      "file": ".godot/imported/settings.svg-4ce57bd515ee457c85a2fecc75d78029.ctex",
+      "bytes": 224,
+      "md5": "50b232391c8bdfcc24bdb6ce70a82874"
+    },
+    {
+      "file": ".godot/imported/shelf.svg-a3c9b047a8b0978cdf2b5d59c4112aa0.ctex",
+      "bytes": 1352,
+      "md5": "54c404f96637fcc664bec1c80bb55ad0"
+    },
+    {
+      "file": ".godot/imported/shop.svg-87f80c72ecafd1bb405bbbbd4406017c.ctex",
+      "bytes": 476,
+      "md5": "9155a2c07de1142199f6c565cb3ad58c"
+    },
+    {
+      "file": ".godot/imported/tower.svg-a50135dc234cf7572b58bfdcf0c30ac4.ctex",
+      "bytes": 470,
+      "md5": "37c853cdce16b6eb6c6b2d8b5c547ce7"
+    },
+    {
+      "file": ".godot/imported/up_0.svg-97ebd597f4d4862fa5cdf80b8c62b47b.ctex",
+      "bytes": 2372,
+      "md5": "a078a5848f3fede96d11bec796752a00"
+    },
+    {
+      "file": ".godot/imported/up_1.svg-75fdd531a714348561e8f2780a0d7d0b.ctex",
+      "bytes": 2378,
+      "md5": "2c93b29744aa7e24460b8ffe88e32212"
+    },
+    {
+      "file": ".godot/imported/up_2.svg-eed75f235da17c253335dedcb74d15bb.ctex",
+      "bytes": 2410,
+      "md5": "66723a55ec1c03b3b42a1bbf88fdd9bc"
+    },
+    {
+      "file": ".godot/imported/walls.svg-3b31f73b5dedc6c7cf6ce3c3c54287ec.ctex",
+      "bytes": 1494,
+      "md5": "277e4c112a9299676759ffa26da8059c"
+    },
+    {
+      "file": ".godot/imported/workbench.svg-f4a0cdde1fadd6fa43ee4d5396515be9.ctex",
+      "bytes": 1690,
+      "md5": "cf255806e361602de26c06bf32459b18"
+    },
+    {
+      "file": ".godot/uid_cache.bin",
+      "bytes": 18871,
+      "md5": "81ba205012dd47015f0cf23c8f76af27"
+    },
+    {
+      "file": "assets/LICENSES.md",
+      "bytes": 1916,
+      "md5": "87fdb67526f7cc23b577d0064e1cd126"
+    },
+    {
+      "file": "assets/art/character/down_0.svg.import",
+      "bytes": 195,
+      "md5": "6ee1b999c06e383b3041442c4b732a4d"
+    },
+    {
+      "file": "assets/art/character/down_1.svg.import",
+      "bytes": 194,
+      "md5": "de8c325823994aacf272a212ec20f401"
+    },
+    {
+      "file": "assets/art/character/down_2.svg.import",
+      "bytes": 194,
+      "md5": "63e38f35e35572c1164a8ba8cdecd256"
+    },
+    {
+      "file": "assets/art/character/left_0.svg.import",
+      "bytes": 195,
+      "md5": "ea52066ad1f94e40c7bc69fe4746514a"
+    },
+    {
+      "file": "assets/art/character/left_1.svg.import",
+      "bytes": 195,
+      "md5": "b802950964cfcc00039930c7bf71ea54"
+    },
+    {
+      "file": "assets/art/character/left_2.svg.import",
+      "bytes": 194,
+      "md5": "f000a48bc1c8a88609acb0d553423ce8"
+    },
+    {
+      "file": "assets/art/character/right_0.svg.import",
+      "bytes": 196,
+      "md5": "93029ba0f108e095249b7c424fa7f1f6"
+    },
+    {
+      "file": "assets/art/character/right_1.svg.import",
+      "bytes": 196,
+      "md5": "79fc1c9faeb7e5e8fce745330c72bd5b"
+    },
+    {
+      "file": "assets/art/character/right_2.svg.import",
+      "bytes": 196,
+      "md5": "85e38bc6a82a2f3b5009646fb1875213"
+    },
+    {
+      "file": "assets/art/character/up_0.svg.import",
+      "bytes": 192,
+      "md5": "dec4917bb786d2faeecfecc198e7dad5"
+    },
+    {
+      "file": "assets/art/character/up_1.svg.import",
+      "bytes": 193,
+      "md5": "382ff1dbbd2e0d2326e8877a1e75d99a"
+    },
+    {
+      "file": "assets/art/character/up_2.svg.import",
+      "bytes": 192,
+      "md5": "a389442b81ce93558545a761c708ec6d"
+    },
+    {
+      "file": "assets/art/icons/help.svg.import",
+      "bytes": 193,
+      "md5": "b340c618fdec1f61195b0e886eeb9f5d"
+    },
+    {
+      "file": "assets/art/icons/home.svg.import",
+      "bytes": 193,
+      "md5": "d6bf6cf73cb91f9268e4ec52b5a5d5d2"
+    },
+    {
+      "file": "assets/art/icons/profiles.svg.import",
+      "bytes": 197,
+      "md5": "b50235287da9230ed9a6e08715d871d2"
+    },
+    {
+      "file": "assets/art/icons/settings.svg.import",
+      "bytes": 196,
+      "md5": "6805b9cc4e739c58d1887382b91ce559"
+    },
+    {
+      "file": "assets/art/icons/shop.svg.import",
+      "bytes": 193,
+      "md5": "2bd010d3cd26b6d33f48e058a7b45408"
+    },
+    {
+      "file": "assets/art/world/cabinet.svg.import",
+      "bytes": 195,
+      "md5": "8b238d2957de784b4318bde8013406e7"
+    },
+    {
+      "file": "assets/art/world/chair.svg.import",
+      "bytes": 194,
+      "md5": "97a9dc4481857b3c4ebca20ba4c9ce20"
+    },
+    {
+      "file": "assets/art/world/desk.svg.import",
+      "bytes": 192,
+      "md5": "0d97c6dbf289441f6bca3321d0e90d18"
+    },
+    {
+      "file": "assets/art/world/door_closed.svg.import",
+      "bytes": 200,
+      "md5": "1ea50e29537c4fd6b925c513ed782f34"
+    },
+    {
+      "file": "assets/art/world/door_open.svg.import",
+      "bytes": 198,
+      "md5": "c46ec7e384bf8a4c8bcc666c62845135"
+    },
+    {
+      "file": "assets/art/world/electrical_off.svg.import",
+      "bytes": 203,
+      "md5": "96800667574b2437e56659cd16f98af9"
+    },
+    {
+      "file": "assets/art/world/electrical_on.svg.import",
+      "bytes": 201,
+      "md5": "c2a9bc0413e6e5268e42d10fe0305b0a"
+    },
+    {
+      "file": "assets/art/world/floor.svg.import",
+      "bytes": 194,
+      "md5": "bed66c206a6c5631e1a5f3c3447c2430"
+    },
+    {
+      "file": "assets/art/world/light.svg.import",
+      "bytes": 194,
+      "md5": "043503e6d11de7188d8d1af17cec02db"
+    },
+    {
+      "file": "assets/art/world/monitor_off.svg.import",
+      "bytes": 200,
+      "md5": "b88acfb06a600dfb09e2b7784bb61c89"
+    },
+    {
+      "file": "assets/art/world/monitor_on.svg.import",
+      "bytes": 199,
+      "md5": "3ccef08aa1164304a1154555a65c5f6d"
+    },
+    {
+      "file": "assets/art/world/note.svg.import",
+      "bytes": 193,
+      "md5": "d8ecb3cce36acba533cc1f91a5bfc4ef"
+    },
+    {
+      "file": "assets/art/world/plant.svg.import",
+      "bytes": 194,
+      "md5": "4e062ac19b9c1daeda225a0b70065775"
+    },
+    {
+      "file": "assets/art/world/reader_off.svg.import",
+      "bytes": 199,
+      "md5": "c220aca1998168236d34d09bad7c168a"
+    },
+    {
+      "file": "assets/art/world/reader_on.svg.import",
+      "bytes": 198,
+      "md5": "435af91fe8f9a432192d87aa7c5b6665"
+    },
+    {
+      "file": "assets/art/world/shelf.svg.import",
+      "bytes": 194,
+      "md5": "73c330a0e2b8854c64fb08c54c096302"
+    },
+    {
+      "file": "assets/art/world/tower.svg.import",
+      "bytes": 194,
+      "md5": "0b32f42d6c810ed07dee76fa39c1b6d8"
+    },
+    {
+      "file": "assets/art/world/walls.svg.import",
+      "bytes": 194,
+      "md5": "eb19136d254a5b38c98891eca9095e66"
+    },
+    {
+      "file": "assets/art/world/workbench.svg.import",
+      "bytes": 198,
+      "md5": "b7d7f23abd2cd35f96b5f643c2f94124"
+    },
+    {
+      "file": "assets/audio/confirm.wav.import",
+      "bytes": 154,
+      "md5": "a8e973694b7f362bea524e853420e55f"
+    },
+    {
+      "file": "assets/audio/menu.wav.import",
+      "bytes": 151,
+      "md5": "c463a862a698bee77e252a18cc1aba53"
+    },
+    {
+      "file": "assets/console.svg",
+      "bytes": 575,
+      "md5": "0d0fd6ca2dd6b3f48eff18e84157df11"
+    },
+    {
+      "file": "assets/console.svg.import",
+      "bytes": 196,
+      "md5": "ea627264bb1be467143b480911d61734"
+    },
+    {
+      "file": "assets/licenses/CC0.txt",
+      "bytes": 6407,
+      "md5": "562cf666bc397b397c4986ca06f6e9f4"
+    },
+    {
+      "file": "assets/licenses/GODOT_LICENSE_TEXTS.json",
+      "bytes": 79548,
+      "md5": "0a75df1ce1096b09dbeaa8d6e0633901"
+    },
+    {
+      "file": "assets/licenses/GODOT_MIT.txt",
+      "bytes": 1149,
+      "md5": "429628d6598a258acb0c2524e08a3036"
+    },
+    {
+      "file": "assets/licenses/GODOT_THIRD_PARTY.json",
+      "bytes": 31441,
+      "md5": "c88e24f3c7ee77b64b93057da54ce3e7"
+    },
+    {
+      "file": "assets/licenses/OFL-1.1.txt",
+      "bytes": 3910,
+      "md5": "79429d55c8a2f86bfb2f33c10a40ae3e"
+    },
+    {
+      "file": "data/controller_mapping.json",
+      "bytes": 947,
+      "md5": "034799b304f257451a7c833cf2a3cb42"
+    },
+    {
+      "file": "data/game_rules.json",
+      "bytes": 8787,
+      "md5": "c818445fcdfc1648eed0076784a1fe1b"
+    },
+    {
+      "file": "data/shop_catalog.json",
+      "bytes": 1831,
+      "md5": "3a65bb10ba5fa542034590916aec5ff5"
+    },
+    {
+      "file": "default_bus_layout.tres.remap",
+      "bytes": 111,
+      "md5": "caa69edbcd9c267d88b28eef335d0f5e"
+    },
+    {
+      "file": "project.binary",
+      "bytes": 16033,
+      "md5": "ee5fa31dfa43b71c259a15c1b3cc3a6d"
+    },
+    {
+      "file": "scenes/demo_game.tscn.remap",
+      "bytes": 102,
+      "md5": "c88ed2c49dab114429945c4f31f94820"
+    },
+    {
+      "file": "scenes/investigation_world.tscn.remap",
+      "bytes": 112,
+      "md5": "fb27a4bdd9ec98cba10b291e99092a2d"
+    },
+    {
+      "file": "scenes/main.tscn.remap",
+      "bytes": 97,
+      "md5": "0ab3b58be7f208f78c8c53387aea9d73"
+    },
+    {
+      "file": "scenes/startup.tscn.remap",
+      "bytes": 100,
+      "md5": "0cd261eb26fa3e108b7707a2cd3b56bd"
+    },
+    {
+      "file": "scripts/game/challenge_panel.gd.remap",
+      "bytes": 55,
+      "md5": "910b2cf726ce1bcd2510deb284923a0e"
+    },
+    {
+      "file": "scripts/game/challenge_panel.gdc",
+      "bytes": 10194,
+      "md5": "7157c25b5fb6bcca62ff6e07fd4ee2f5"
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gd.remap",
+      "bytes": 55,
+      "md5": "c54284c29fcdccc9318504d3affea889"
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gdc",
+      "bytes": 2675,
+      "md5": "dc46d3aebb0e85355211a2fb008445ba"
+    },
+    {
+      "file": "scripts/game/demo_game.gd.remap",
+      "bytes": 49,
+      "md5": "af6e4d1f402d563a875ea52fcfd59770"
+    },
+    {
+      "file": "scripts/game/demo_game.gdc",
+      "bytes": 22145,
+      "md5": "f474901265d4178937c0de613f3c89ed"
+    },
+    {
+      "file": "scripts/game/interactable.gd.remap",
+      "bytes": 52,
+      "md5": "ef39fa2055ac383bfdcd9231f69e5f92"
+    },
+    {
+      "file": "scripts/game/interactable.gdc",
+      "bytes": 796,
+      "md5": "8d825f091c1d5355153d39801055c84a"
+    },
+    {
+      "file": "scripts/game/investigation_world.gd.remap",
+      "bytes": 59,
+      "md5": "a785d4c5d238d8b9b3f653a43f55de31"
+    },
+    {
+      "file": "scripts/game/investigation_world.gdc",
+      "bytes": 10488,
+      "md5": "4c33e11c3fd620a177719cd0761028b8"
+    },
+    {
+      "file": "scripts/game/player.gd.remap",
+      "bytes": 46,
+      "md5": "09a28ce576e665a5913b5f492df43b1c"
+    },
+    {
+      "file": "scripts/game/player.gdc",
+      "bytes": 2283,
+      "md5": "30d19debb470797d7626d6a6db4a43f5"
+    },
+    {
+      "file": "scripts/game/room_art.gd.remap",
+      "bytes": 48,
+      "md5": "53b06a15dadf3c33fb5aceb1d1b37d7f"
+    },
+    {
+      "file": "scripts/game/room_art.gdc",
+      "bytes": 2332,
+      "md5": "5f507bcc2db11a12205903315829a4df"
+    },
+    {
+      "file": "scripts/input_setup.gd.remap",
+      "bytes": 46,
+      "md5": "36672df6fd411844782fa7c54dae86fe"
+    },
+    {
+      "file": "scripts/input_setup.gdc",
+      "bytes": 4538,
+      "md5": "73e215377615e61185510a225f015ace"
+    },
+    {
+      "file": "scripts/services/app_state.gd.remap",
+      "bytes": 53,
+      "md5": "1a6f5242df9f87cf610241f00e66ed6c"
+    },
+    {
+      "file": "scripts/services/app_state.gdc",
+      "bytes": 749,
+      "md5": "9a0e04492cfc4a8bb1473376c4e08ad3"
+    },
+    {
+      "file": "scripts/services/controller_service.gd.remap",
+      "bytes": 62,
+      "md5": "7c71e7acfb929529e9cc8e8293cdab11"
+    },
+    {
+      "file": "scripts/services/controller_service.gdc",
+      "bytes": 2250,
+      "md5": "186c5534d61936070ab5e7ae2a59b340"
+    },
+    {
+      "file": "scripts/services/investigation_service.gd.remap",
+      "bytes": 65,
+      "md5": "fae25b334d152ae9986cbf5920c9ccba"
+    },
+    {
+      "file": "scripts/services/investigation_service.gdc",
+      "bytes": 7967,
+      "md5": "f438077bac80fdf92840e4abd421c263"
+    },
+    {
+      "file": "scripts/services/platform_service.gd.remap",
+      "bytes": 60,
+      "md5": "5a0c2e391d726a4d0089df8eebaef402"
+    },
+    {
+      "file": "scripts/services/platform_service.gdc",
+      "bytes": 993,
+      "md5": "c399b30985718829f70b4f5ed077df95"
+    },
+    {
+      "file": "scripts/services/profile_service.gd.remap",
+      "bytes": 59,
+      "md5": "72058fc65da2d3d725a0c4bc3de634c0"
+    },
+    {
+      "file": "scripts/services/profile_service.gdc",
+      "bytes": 4269,
+      "md5": "67cd77e4f213a802b4eb20cc00cbaa39"
+    },
+    {
+      "file": "scripts/services/reward_service.gd.remap",
+      "bytes": 58,
+      "md5": "7583e2eff1df4db2de8b2cc081ce0340"
+    },
+    {
+      "file": "scripts/services/reward_service.gdc",
+      "bytes": 2299,
+      "md5": "cb0721c4be6e3cf55628cbc18a4b3bf0"
+    },
+    {
+      "file": "scripts/services/save_service.gd.remap",
+      "bytes": 56,
+      "md5": "11bd30f9c721147e1e59b37c7ad9e2f0"
+    },
+    {
+      "file": "scripts/services/save_service.gdc",
+      "bytes": 23545,
+      "md5": "a32bc305e280c64500c958e0d1575114"
+    },
+    {
+      "file": "scripts/services/scene_router.gd.remap",
+      "bytes": 56,
+      "md5": "e59628c279412ccb3c25ffb4055e744d"
+    },
+    {
+      "file": "scripts/services/scene_router.gdc",
+      "bytes": 1160,
+      "md5": "7c856cf39aaf76547ca45f94176f0f8c"
+    },
+    {
+      "file": "scripts/services/settings_service.gd.remap",
+      "bytes": 60,
+      "md5": "901298cb775e9f278bac020065fb2dbd"
+    },
+    {
+      "file": "scripts/services/settings_service.gdc",
+      "bytes": 8247,
+      "md5": "dfda68a8cede5eb658a43ecb3edd408b"
+    },
+    {
+      "file": "scripts/services/shop_service.gd.remap",
+      "bytes": 56,
+      "md5": "a69c2f7ee16a921bd56122726d212d04"
+    },
+    {
+      "file": "scripts/services/shop_service.gdc",
+      "bytes": 2245,
+      "md5": "7ab917e262f2ce82cf5e9f491af8d751"
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gd.remap",
+      "bytes": 49,
+      "md5": "cee1c1ee62e49df36c2c15c637f24620"
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gdc",
+      "bytes": 1758,
+      "md5": "40c1dce5623bec6d2669fe92a72ac82b"
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gd.remap",
+      "bytes": 57,
+      "md5": "1d575e76a5798924f16e1fb2888e997a"
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gdc",
+      "bytes": 6572,
+      "md5": "5e7d93dde23dee94b7e4ba2960c15b5e"
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gd.remap",
+      "bytes": 54,
+      "md5": "6cb09e8271f677947f44434d3b9bcf90"
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gdc",
+      "bytes": 1675,
+      "md5": "96c432845e39ac3accd2ea60a38cbbd2"
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gd.remap",
+      "bytes": 55,
+      "md5": "8b0af77a873a033aea48b0a86fce7d4e"
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gdc",
+      "bytes": 3516,
+      "md5": "1a09f4f116861f07f86a99991cc13484"
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gd.remap",
+      "bytes": 49,
+      "md5": "14649870b8117e9f37a14ef3d6e3fb87"
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gdc",
+      "bytes": 741,
+      "md5": "e2cd35f239b2b9bc7a3d09c5440c9939"
+    },
+    {
+      "file": "scripts/ui/input_monitor.gd.remap",
+      "bytes": 51,
+      "md5": "52db3ca1e8d2549b184548f4d6698400"
+    },
+    {
+      "file": "scripts/ui/input_monitor.gdc",
+      "bytes": 4550,
+      "md5": "ee8f5a0dbcaf6589e7752300efff0f63"
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gd.remap",
+      "bytes": 52,
+      "md5": "ba1b2102825cc9d398a0190b2923355c"
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gdc",
+      "bytes": 3267,
+      "md5": "940b7141786f9957e67c436c9f350654"
+    },
+    {
+      "file": "scripts/ui/main.gd.remap",
+      "bytes": 42,
+      "md5": "db2a9f447b04381dad04d3659b30e320"
+    },
+    {
+      "file": "scripts/ui/main.gdc",
+      "bytes": 38979,
+      "md5": "45c2343c706486d6b92ad1b522538bb3"
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gd.remap",
+      "bytes": 52,
+      "md5": "024e4fd5e13f5bf71f113f3ac0aec786"
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gdc",
+      "bytes": 2656,
+      "md5": "03b0101d4bd2a77272ba2deaa214e790"
+    },
+    {
+      "file": "scripts/ui/notification.gd.remap",
+      "bytes": 50,
+      "md5": "43ba6d6af67067289bda1d808e8f1116"
+    },
+    {
+      "file": "scripts/ui/notification.gdc",
+      "bytes": 777,
+      "md5": "4be7b89da8fd25824d3ac0a72b85b18c"
+    },
+    {
+      "file": "scripts/ui/product_card.gd.remap",
+      "bytes": 50,
+      "md5": "ec0094be5b9a419125dcaaff48aa0d62"
+    },
+    {
+      "file": "scripts/ui/product_card.gdc",
+      "bytes": 1962,
+      "md5": "d1db9b7e3b8c347b5b6b8c36849ccaca"
+    },
+    {
+      "file": "scripts/ui/profile_card.gd.remap",
+      "bytes": 50,
+      "md5": "ee65b0dfa652c605de4e8dc91e6b9b68"
+    },
+    {
+      "file": "scripts/ui/profile_card.gdc",
+      "bytes": 1876,
+      "md5": "f321ef6d2e44d1d355a82798a1f9f967"
+    },
+    {
+      "file": "scripts/ui/setting_row.gd.remap",
+      "bytes": 49,
+      "md5": "4936269a02aa30de45d8d99e3904555f"
+    },
+    {
+      "file": "scripts/ui/setting_row.gdc",
+      "bytes": 930,
+      "md5": "25c15ca2acf94d379d5b17094d4f5031"
+    },
+    {
+      "file": "scripts/ui/startup_panel.gd.remap",
+      "bytes": 51,
+      "md5": "bf0930900b1a6b26982e6de0bdac9b36"
+    },
+    {
+      "file": "scripts/ui/startup_panel.gdc",
+      "bytes": 202,
+      "md5": "9474ab9fcc4103f0ea8640fd28fa033b"
+    },
+    {
+      "file": "scripts/ui/theme_factory.gd.remap",
+      "bytes": 51,
+      "md5": "a20f0afd419ea9d37c45cceb37e92fd7"
+    },
+    {
+      "file": "scripts/ui/theme_factory.gdc",
+      "bytes": 3921,
+      "md5": "0134ee55c17bd91d79532be9be724641"
+    },
+    {
+      "file": "scripts/ui/translucent_button.gd.remap",
+      "bytes": 56,
+      "md5": "b1bb3871c41c88beb649eb3500e463e3"
+    },
+    {
+      "file": "scripts/ui/translucent_button.gdc",
+      "bytes": 687,
+      "md5": "b1465535269c28c4707907500638d569"
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gd.remap",
+      "bytes": 54,
+      "md5": "5048de9b7e39606fc8f7a8ad46749298"
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gdc",
+      "bytes": 1709,
+      "md5": "3428cc06777742ff7a0c722e43265b72"
+    },
+    {
+      "file": "themes/console_theme.tres.remap",
+      "bytes": 106,
+      "md5": "e2c7312798605bd47f24d1a22fb5eb46"
+    }
+  ],
+  "art_textures": 36,
+  "source_commit": "0448674637ade891f1db79b59dba5a2c071dac16",
+  "godot_version": "4.6.3.stable.official.7d41c59c4",
+  "validation": {
+    "windows_contracts_assertions": 16,
+    "compiled_pack_assertions": 47,
+    "compiled_art_ui_assertions": 50,
+    "failures": 0,
+    "native_windows_execution": false,
+    "environment": "Linux Godot headless, isolated XDG directories"
+  },
+  "official_templates_sha512": "da606b61c10157844f8300172df374472665f95015495cb1a7cd132c40ede404faa96cc1016a4b9662db9909ddea69632c4948b2cd11163438dad4808881fb68"
+}
