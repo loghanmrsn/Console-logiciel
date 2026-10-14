@@ -1,5 +1,7 @@
 # Bibliothèque, boutique et apparence — 0.5.0
 
+La version courante **0.6.0** ajoute trois missions à l’étage de l’enquête, accessibles par l’ascenseur après le chapitre 1, et porte les récompenses uniques à **300 points par profil**. [Parcours des deux chapitres et tableau de missions](ENQUETE.md). Les prix et les fonctions de bibliothèque ci-dessous restent valables ; les 150 points cités plus bas décrivent les trois missions disponibles en 0.5.0.
+
 La version **0.5.0** organise l’accueil autour de votre bibliothèque, refait les cartes de la boutique et du profil et ajoute les styles de la console dans les paramètres. Tout fonctionne localement, avec les profils et les points existants.
 
 ## Choisir une disposition de l’accueil
