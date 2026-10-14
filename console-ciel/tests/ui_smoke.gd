@@ -300,10 +300,9 @@ func _test_pause() -> void:
 	await _frames(5)
 	_check(app.demo.world.computer_repaired and app.demo.world.door_open and app.demo.world.lighting_restored, "Reprise après les trois missions restaure toute la pièce")
 	if app.demo.overlay_kind != "conclusion":
-		await _approach("computer")
-		await _press(KEY_SPACE)
-	if app.demo.overlay_kind == "dialog":
-		await _activate("dialog_continue")
+		await _press(KEY_P)
+		await _activate("pause_conclusion")
+	_check(app.demo.overlay_kind == "conclusion", "Le bilan du chapitre terminé se retrouve depuis la pause sans réactiver un équipement terminé")
 	if _find(app, "conclusion_replay") != null:
 		await _activate("conclusion_replay")
 		_check(state.profile.progress.completed_missions.size() == 3, "Rejouer ne réinitialise rien avant la confirmation")
