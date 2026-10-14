@@ -1,32 +1,36 @@
 # Console CIEL — version intégrée de démonstration
 
+**Bibliothèque et apparence 0.5.0 :** accueil avec enquête à gauche et quatre jeux à droite, ou couvertures égales avec défilement horizontal. La boutique présente **Test 1 à Test 4**, emplacements achetables à **20, 30, 40 et 50 points** ; les vrais jeux sont encore en préparation. Le profil affiche ses jeux acquis. **Paramètres → Apparence** ajoute six styles gratuits et des couleurs indépendantes pour le fond et les boutons ; **Crédits** termine les catégories. [Guide des nouveautés](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
+
 ## Jouer sur Windows sans installer Godot
 
-**[Télécharger la version Windows 0.4.2](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip)** (environ 36 Mo).
+**[Télécharger la version Windows 0.5.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip)**.
 
 1. Décompresser tout ce ZIP avec **Extraire tout**.
 2. Ouvrir le dossier extrait.
 3. Double-cliquer sur **Console_CIEL.exe**, situé directement dans ce dossier.
 
-Si vous avez téléchargé tout le dépôt avec **Code → Download ZIP**, ouvrez d'abord `console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip`, puis extrayez également ce ZIP Windows. Le véritable EXE est dans ce paquet ; sa taille dépasse la limite GitHub de 100 Mio pour un fichier Git ordinaire.
+Si vous avez téléchargé tout le dépôt avec **Code → Download ZIP**, ouvrez d'abord `console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip`, puis extrayez également ce ZIP Windows. Le véritable EXE est dans ce paquet ; sa taille dépasse la limite GitHub de 100 Mio pour un fichier Git ordinaire.
 
-L'export et l'intégrité du paquet sont vérifiés. Les contrôles comptent **751 assertions sur le pack compilé et 18 sur la configuration Windows, aucun échec**, avec Godot Linux ; le lancement sous Windows reste à essayer sur votre PC. [Notice Windows](console-ciel/builds/README_WINDOWS.md) et [rapport de vérification](console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.verification.json).
+Les rapports de la livraison détaillent les contrôles du paquet exporté. Les essais Godot sous Linux ne remplacent pas le lancement du binaire Windows, à essayer sur votre PC. [Notice Windows](console-ciel/builds/README_WINDOWS.md) et [rapport de vérification](console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.verification.json).
 
-**Navigation 0.4.1 :** barre inférieure translucide avec **Accueil → Boutique → Paramètres → Profil**, avatar, pseudo et points du joueur. L’aide reste dans **Paramètres → À propos**. [Captures réelles et détails](console-ciel/docs/NAVIGATION_TRANSLUCIDE.md). La [version Windows 0.4.0](console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip) est conservée.
+**Navigation 0.4.1 :** barre inférieure translucide avec **Accueil → Boutique → Paramètres → Profil**, avatar, pseudo et points du joueur. Les crédits figurent dans la dernière catégorie **Paramètres → Crédits** ; l’aide reste dans **À propos**. [Captures réelles et détails](console-ciel/docs/NAVIGATION_TRANSLUCIDE.md). La [version Windows 0.4.0](console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip) est conservée.
 
 **Profils 0.4.2 :** nouvel aperçu du profil, photos locales et clavier AZERTY avec minuscules, **⇧**, **123** et **ABC**. Déposez vos photos dans **images_profil/** à côté de `Console_CIEL.exe`, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. [Guide des profils](console-ciel/docs/PROFILS_ET_CLAVIER.md).
 
-**[Télécharger le projet complet 0.4.2](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.4.2.zip)** : sources et version Windows réunies. Après extraction, le logiciel est dans `console-ciel/builds/windows-x86_64-profils-0.4.2/Console_CIEL.exe`. [Contenu du dossier complet](console-ciel/docs/ARCHIVE_COMPLETE.md).
+**[Télécharger le projet complet 0.5.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.5.0.zip)** : sources et version Windows réunies. Après extraction, le logiciel est dans `console-ciel/builds/windows-x86_64-bibliotheque-0.5.0/Console_CIEL.exe`. [Contenu du dossier complet](console-ciel/docs/ARCHIVE_COMPLETE.md).
 
 Les sources, la documentation et les outils sont dans `console-ciel/`. Exécuter les commandes de développement ci-dessous depuis ce dossier.
 
-Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.2**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
+Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.5.0**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
 
 Refonte graphique **0.4.0** : [changements, captures avant/après et recette](console-ciel/docs/REFONTE_GRAPHIQUE.md). Navigation inférieure, grand accueil, atelier illustré, personnage animé et objectifs compacts. Captures réelles dans `docs/screenshots/refonte/`. Les sources et rapports historiques reçus sont conservés ; les anciens exécutables Windows 0.3.0 et 0.3.1 n'étaient pas inclus dans l'archive de sources fournie.
 
+Versions Windows conservées : [0.4.2 — profils et clavier](console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip), [0.4.1 — navigation](console-ciel/builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), [0.4.0 — refonte](console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
+
 ## Lancer la version
 
-**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_profils_0.4.2.zip](console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](console-ciel/docs/WINDOWS.md).
+**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip](console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](console-ciel/docs/WINDOWS.md).
 
 Version exacte du moteur utilisée : `4.6.3.stable.official.7d41c59c4`, édition standard. Importer `console-ciel/project.godot` dans cet éditeur et appuyer sur **F5**, ou lancer depuis le dossier `console-ciel` :
 
@@ -39,7 +43,7 @@ godot --path . --fullscreen
 
 Le démarrage affiche les étapes de chargement réelles, charge les réglages et les données, applique l'accessibilité puis ouvre la sélection du profil. Sans profil, il propose la création et un clavier virtuel utilisable sans clavier physique. Une erreur essentielle ouvre une page avec réessai ou récupération disponible ; aucune donnée défectueuse n'est effacée automatiquement.
 
-Sélectionner un profil puis **Commencer / Nouvelle partie**. La barre du bas donne accès à Accueil, Boutique, Paramètres et Profil ; Aide / Crédits reste dans Paramètres → À propos. Haut/bas depuis les onglets rejoignent le contenu ; gauche/droite parcourent la barre. Elle est masquée pendant l’enquête. **Paramètres → Quitter l’application** ferme le logiciel. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](console-ciel/docs/ENQUETE.md).
+Sélectionner un profil puis **Commencer / Nouvelle partie**. La barre du bas donne accès à Accueil, Boutique, Paramètres et Profil ; l’aide reste dans Paramètres → À propos ; les crédits sont dans la dernière catégorie Paramètres → Crédits. Haut/bas depuis les onglets rejoignent le contenu ; gauche/droite parcourent la barre. Elle est masquée pendant l’enquête. **Paramètres → Quitter l’application** ferme le logiciel. **Continuer** reprend sa progression enregistrée. Les trois défis se jouent dans l'ordre : circuit fermé pour l'éclairage, liaison de commande de la serrure, diagnostic du signal vidéo. Voir [les notions et le parcours de l'enquête](console-ciel/docs/ENQUETE.md).
 
 Les manipulations sont des **simulations pédagogiques fictives**, avec observations, choix corrects, erreurs possibles et explications. Le circuit utilise une très basse tension virtuelle ; il ne constitue pas un tutoriel de câblage secteur. Aucun équipement, terminal ou réglage du système hôte n'est modifié.
 
@@ -47,7 +51,7 @@ Les manipulations sont des **simulations pédagogiques fictives**, avec observat
 
 [Le guide de soutenance](console-ciel/docs/DEMONSTRATION.md) décrit les huit étapes : profil → menu → réglage → enquête → mission → sauvegarde et points → achat et équipement → fermeture et relance. Il indique les réponses attendues pour le présentateur et la préparation d'un environnement de démonstration isolé.
 
-Chaque mission réussie pour la première fois rapporte **50 points**, au maximum **150 par profil**. Les points sont utilisables immédiatement en boutique. Le bilan distingue les gains nouveaux de cette partie et le solde total. Nouvelle partie et réinitialisation conservent achats, équipement, solde et identifiants des récompenses déjà attribuées. Supprimer un profil efface l'ensemble de ses données après confirmation.
+Chaque mission réussie pour la première fois rapporte **50 points**, au maximum **150 par profil**. Les points sont utilisables immédiatement en boutique : les quatre emplacements Test coûtent **140 points au total**. Leur ouverture affiche un jeu en préparation et ne rapporte aucun point. Un solde nul ou insuffisant interdit un achat payant ; un article possédé ne peut pas être facturé deux fois. Les achats appartiennent au profil actif. Le bilan distingue les gains nouveaux de cette partie et le solde total. Nouvelle partie et réinitialisation conservent achats, équipement, solde et identifiants des récompenses déjà attribuées. Supprimer un profil efface l'ensemble de ses données après confirmation.
 
 ## Commandes
 
@@ -73,7 +77,7 @@ La manette active possède le plus petit identifiant Godot au démarrage, puis r
 
 **Pause → Afficher les objectifs** développe la liste ; la même action permet de la masquer puis de reprendre. Le bouton d’interaction reste compact et affiche le nom de l’objet ciblé.
 
-Les réglages comprennent volumes réels sur bus distincts, plein écran, texte agrandi, animations réduites, transparence réduite et zone morte. **Annuler** restaure les aperçus ; **Appliquer** persiste les valeurs. Le focus possède une bordure et les états disposent de textes explicites.
+Les réglages comprennent volumes réels sur bus distincts, plein écran, disposition de la bibliothèque, texte agrandi, animations réduites, transparence réduite et zone morte. Apparence propose **Thème du profil, Brume, Sable, Sauge, Nuit et Aurore**, avec couleur du fond et couleur des boutons indépendantes, y compris un choix RGB personnalisé. Les styles gratuits ne dépensent aucun point ; les thèmes cosmétiques du profil restent en boutique. **Annuler** restaure les aperçus ; **Appliquer** persiste les valeurs. Le focus possède une bordure et les états disposent de textes explicites.
 
 ## Sauvegardes et récupération
 
@@ -102,7 +106,7 @@ Cette stratégie réduit les incohérences ; elle ne garantit pas la survie à t
 | `scenes/demo_game.tscn`, `scripts/game/demo_game.gd` | Enquête intégrée ; nom historique conservé |
 | `scenes/investigation_world.tscn`, `scripts/game/` | Salle, personnage, collisions, objets interactifs et défis |
 | `data/game_rules.json` | Trois missions, prérequis, indices, réponses et récompenses configurables |
-| `data/shop_catalog.json` | Dix cosmétiques, dont un avatar, un thème et un cadre gratuits |
+| `data/shop_catalog.json` | Dix cosmétiques, dont un avatar, un thème et un cadre gratuits, et quatre emplacements de jeux payants |
 | `data/controller_mapping.json` | Actions de manette configurables ; mapping standard à adapter après mesure USB HID |
 | `scripts/ui/`, `themes/` | Thème, navigation persistante et aperçus de cosmétiques |
 | `assets/art/`, `scripts/game/room_art.gd`, `tools/generate_art.py` | 36 SVG originaux CC0, collection commune au décor et à l’accueil |
