@@ -1,6 +1,40 @@
-# Livraison 0.3.0 — console CIEL intégrée
+# Livraison courante 0.6.0 — enquête, chapitre 2
 
-Livraison courante **0.5.0** : [projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.5.0.zip) et [Windows prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip). Les anciens noms d’archives ci-dessous proviennent des documents reçus ; leurs exécutables n’étaient pas fournis. [Guide de la livraison actuelle](ARCHIVE_COMPLETE.md).
+[Projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.0.zip) et [Windows prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip). Décompresser tout le ZIP Windows et ouvrir **Console_CIEL.exe**. Dans le projet complet, il se trouve sous `console-ciel/builds/windows-x86_64-chapitre-2-0.6.0/`. [Guide de l’archive](ARCHIVE_COMPLETE.md).
+
+Le chapitre 1 est conservé. Après ses trois missions, l’ascenseur en bas du bureau conduit à la salle réseau : liaison RJ45, adressage IPv4 et protection Wi-Fi. Le tableau de missions compact à droite s’ouvre et se ferme par son bouton, **T** ou le **bouton de face haut**. Chaque chapitre possède son bilan ; les nouveaux gains de la partie restent cumulés entre les étages. [Explications et parcours manuel](ENQUETE.md).
+
+Les six premières réussites rapportent **50 points chacune**, au maximum **300 par profil**. Rejouer conserve les identifiants de récompense et ne rapporte pas ces points une seconde fois. Les anciens profils reçoivent les missions du chapitre 2 sans perdre réussites, observations, portefeuille, achats ni équipement. La progression de salle et de chapitre est persistée. Toutes les manipulations restent fictives et hors ligne ; aucun réglage réseau réel n’est changé.
+
+La bibliothèque, les emplacements **Test 1 à Test 4**, les styles/couleurs, les crédits, les images locales et le clavier de la version 0.5.0 restent disponibles. Les Test sont toujours des emplacements provisoires, et leur ouverture ne rapporte aucun point. Les anciennes livraisons sont conservées dans le dépôt.
+
+## Vérifications de la livraison courante
+
+Le [rapport Windows](../builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.verification.json) et le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_0.6.0.verification.json) décrivent les empreintes et le contenu des deux archives. La recette distingue tests de logique avec données isolées, affichage réel sous Linux, configuration Windows et exécution du pack compilé avec Godot Linux.
+
+Recette exécutée le **14 octobre 2026**, avec données temporaires isolées :
+
+| Périmètre | Résultat |
+|---|---|
+| Sources, 14 suites | **9 568 assertions, zéro échec** |
+| Persistance entre trois processus Godot réels | **65 assertions, zéro échec** |
+| Rendu X11 Linux, Mesa llvmpipe / Compatibility | **694 contrôles, zéro échec**, 12 captures |
+| Pack réellement embarqué dans l’EXE Windows, exécuté avec Godot Linux | **4 351 assertions, zéro échec** |
+| Contrats de configuration Windows | **18 contrôles, zéro échec** |
+| Outils de packaging | **27 contrôles, zéro échec** |
+| Ressources du pack | **203 empreintes contrôlées**, dont 43 SVG ; CRC du ZIP vérifiés |
+| Audit statique du projet | **797 fichiers, 70 UID, 191 références**, zéro erreur |
+| Chargement des ressources avec Godot Linux | **199 contrôles, zéro échec** |
+
+[Résumé détaillé et empreintes des journaux](../tests/chapitre_2_0.6.0_results/summary.json). Les captures montrent l’[ascenseur déverrouillé](screenshots/chapitre_2_0.6.0/chapter_1_elevator_unlocked.png), l’[arrivée à l’étage](screenshots/chapitre_2_0.6.0/chapter_2_arrival_missions.png), les trois défis et le panneau ouvert ou replié à 1280 × 720, 1024 × 600 et 800 × 480, en texte normal ou grand. [Les 12 captures](screenshots/chapitre_2_0.6.0/).
+
+L’affichage Linux utilise un rendu logiciel et un pilote audio Dummy ; ces essais ne valident pas le son perçu. Le pilote signale que le réglage VSync n’est pas pris en charge. Les tests de manette emploient des événements et périphériques virtuels. La suite générale provoque volontairement la corruption de son propre fichier de paramètres pour vérifier la récupération.
+
+Ces contrôles ne remplacent pas le lancement natif, le son ou une manette USB physique sur Windows. Le contrôleur de la console reste à mesurer sur le matériel réel ; les tests virtuels ne prouvent pas son mapping. Les limites Raspberry Pi et d’alimentation sont conservées dans [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
+
+# Historique — livraison 0.3.0 intégrée
+
+Les noms d’archives et résultats ci-dessous décrivent la livraison historique reçue. Les anciens exécutables 0.3.0/0.3.1 n’étaient pas inclus dans les sources fournies. La phrase « Tests visuels exécutés : aucun » dans cet historique concerne cette recette ancienne ; elle ne décrit pas les captures des versions ultérieures.
 
 Projet natif Godot **4.6.3.stable.official.7d41c59c4**, édition standard, GDScript, rendu **Compatibility**. Cette version stabilise le menu et l'enquête existants ; elle n'ajoute pas de nouvelle enquête et conserve les profils, le portefeuille, les cosmétiques et le format d'enquête 0.2.0.
 
@@ -86,7 +120,7 @@ La source peut être présentée sur PC avec Godot après répétition visuelle 
 
 ## Complément Windows — 12 octobre 2026
 
-La version portable Windows x86_64 (`Console_CIEL_Windows_x86_64.zip`, nom historique ; utiliser la livraison 0.5.0) a été réellement exportée avec Godot officiel 4.6.3 et ses modèles Windows correspondants. Décompresser puis lancer **Console_CIEL.exe** sans installer Godot. Le [guide Windows](WINDOWS.md) indique les commandes, données utilisateur, script PowerShell de réexport et résultats détaillés.
+La version portable Windows x86_64 (`Console_CIEL_Windows_x86_64.zip`, nom historique ; utiliser la livraison 0.6.0) a été réellement exportée avec Godot officiel 4.6.3 et ses modèles Windows correspondants. Décompresser puis lancer **Console_CIEL.exe** sans installer Godot. Le [guide Windows](WINDOWS.md) indique les commandes, données utilisateur, script PowerShell de réexport et résultats détaillés.
 
 Le preset Windows, le nom de l'exécutable, la fenêtre initiale redimensionnable et l'affichage du chemin utilisateur dans À propos ont été complétés. La fermeture par la croix réutilise la confirmation et la sauvegarde existantes. Les fichiers associés, aide et licences sont inclus ; aucune sauvegarde personnelle n'est distribuée. Le script PowerShell conserve la livraison précédente si l'export échoue ; le remplacement d'un ZIP existant a été corrigé et testé.
 
