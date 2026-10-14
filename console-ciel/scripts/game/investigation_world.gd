@@ -15,7 +15,16 @@ const CHECKPOINTS := {
 	"lighting": Vector2(120, 230),
 	"lock": Vector2(554, 340),
 	"computer": Vector2(824, 270),
+	"elevator": Vector2(835, 407),
 	"exit": Vector2(790, 355)
+}
+const CHAPTER_TWO_CHECKPOINTS := {
+	"entrance": Vector2(158, 405),
+	"elevator": Vector2(158, 405),
+	"network": Vector2(292, 224),
+	"addressing": Vector2(532, 336),
+	"security": Vector2(803, 248),
+	"exit": Vector2(532, 381)
 }
 const DOOR_RECT := Rect2(619, 276, 20, 112)
 
@@ -27,6 +36,12 @@ var target_id := ""
 var lighting_restored := false
 var door_open := false
 var computer_repaired := false
+var chapter_id := 1
+var room_id := "room_01"
+var elevator_unlocked := false
+var network_restored := false
+var addressing_restored := false
+var security_restored := false
 var _targets: Array[Node2D] = []
 var _target: Node2D
 var _controls_enabled := true
@@ -46,47 +61,20 @@ var _open_door: Sprite2D
 var _note: Sprite2D
 var _was_repaired := false
 var _repair_tween: Tween
+var _room_root: Node2D
+var _elevator_sprite: Sprite2D
+var _network_sprite: Sprite2D
+var _addressing_sprite: Sprite2D
+var _security_sprite: Sprite2D
 
 func _ready() -> void:
-	_props=Node2D.new()
-	_props.name='RoomObjects'
-	_props.y_sort_enabled=true
-	add_child(_props)
-	# Perimeter and office partition. The doorway is a real, separate body.
-	_add_obstacle(Rect2(24, 30, 952, 20), "NorthWall")
-	_add_obstacle(Rect2(24, 476, 952, 20), "SouthWall")
-	_add_obstacle(Rect2(24, 50, 20, 426), "WestWall")
-	_add_obstacle(Rect2(956, 50, 20, 426), "EastWall")
-	_add_obstacle(Rect2(619, 50, 20, 226), "OfficeWallNorth")
-	_add_obstacle(Rect2(619, 388, 20, 88), "OfficeWallSouth")
-	door_body = _add_obstacle(DOOR_RECT, "OfficeDoor", false)
-	door_shape = door_body.get_child(0)
-	_closed_door=_sprite(door_body,'door_closed',Rect2(616,276,28,120))
-	_open_door=_sprite(door_body,'door_open',Rect2(639,272,120,28))
-	for prop in Art.PROPS:
-		var body=_add_obstacle(prop[1],prop[0],false)
-		var visual=_sprite(body,prop[2],prop[3])
-		if prop[0]=='ElectricalCabinet': _cabinet_sprite=visual
-		if prop[0]=='ComputerDesk':
-			_monitor_sprite=_sprite(body,'monitor_off',Rect2(781,127,85,61))
-			_sprite(body,'tower',Rect2(879,145,36,68))
-	_reader_sprite=_sprite(self,'reader_off',Rect2(568,289,30,49))
-	_light_sprite=_sprite(self,'light',Rect2(274,61,172,28))
-	_note=_sprite(self,'note',Rect2(447,194,70,48))
-	_add_target("lighting", "Tableau électrique fictif", Vector2(120, 192), 104)
-	_add_target("lock", "Commande de la porte", Vector2(582, 340), 104)
-	_add_target("computer", "Ordinateur du bureau", Vector2(825, 247), 104)
-	player = PlayerScript.new()
-	player.name = "Player"
-	player.position = CHECKPOINTS.entrance
-	_props.add_child(player)
-	player.controls_enabled = _controls_enabled
 	camera = Camera2D.new()
 	camera.name = "RoomCamera"
 	camera.position = WORLD_SIZE * 0.5
 	camera.position_smoothing_enabled = false
 	camera.enabled = true
 	add_child(camera)
+	_build_room(2 if _pending_progress.get("room_id", "room_01") == "room_02" else 1)
 	get_viewport().size_changed.connect(_fit_camera)
 	var settings := get_node_or_null("/root/SettingsService")
 	if settings != null:
@@ -100,6 +88,98 @@ func _ready() -> void:
 		restore_progress(_pending_progress)
 	queue_redraw()
 
+func _build_room(chapter: int) -> void:
+	if is_instance_valid(_room_root):
+		remove_child(_room_root)
+		_room_root.queue_free()
+	_targets.clear()
+	_target = null
+	target_id = ""
+	_obstacle_rects.clear()
+	_closed_door = null
+	_open_door = null
+	_cabinet_sprite = null
+	_monitor_sprite = null
+	_reader_sprite = null
+	_light_sprite = null
+	_note = null
+	_network_sprite = null
+	_addressing_sprite = null
+	_security_sprite = null
+	door_body = null
+	door_shape = null
+	chapter_id = chapter
+	room_id = "room_02" if chapter == 2 else "room_01"
+	_room_root = Node2D.new()
+	_room_root.name = "ChapterTwoRoom" if chapter == 2 else "ChapterOneRoom"
+	add_child(_room_root)
+	_props=Node2D.new()
+	_props.name='RoomObjects'
+	_props.y_sort_enabled=true
+	_room_root.add_child(_props)
+	# Perimeter and office partition. The doorway is a real, separate body.
+	_add_obstacle(Rect2(24, 30, 952, 20), "NorthWall")
+	_add_obstacle(Rect2(24, 476, 952, 20), "SouthWall")
+	_add_obstacle(Rect2(24, 50, 20, 426), "WestWall")
+	_add_obstacle(Rect2(956, 50, 20, 426), "EastWall")
+	if chapter == 1:
+		_build_workshop()
+	else:
+		_build_network_room()
+	player = PlayerScript.new()
+	player.name = "Player"
+	player.position = CHAPTER_TWO_CHECKPOINTS.elevator if chapter == 2 else CHECKPOINTS.entrance
+	_props.add_child(player)
+	player.controls_enabled = _controls_enabled
+	_restored_once = false
+	_was_repaired = false
+	target_changed.emit("", "")
+
+func _build_workshop() -> void:
+	_add_obstacle(Rect2(619, 50, 20, 226), "OfficeWallNorth")
+	_add_obstacle(Rect2(619, 388, 20, 88), "OfficeWallSouth")
+	door_body = _add_obstacle(DOOR_RECT, "OfficeDoor", false)
+	door_shape = door_body.get_child(0)
+	_closed_door=_sprite(door_body,'door_closed',Rect2(616,276,28,120))
+	_open_door=_sprite(door_body,'door_open',Rect2(639,272,120,28))
+	for prop in Art.PROPS:
+		var body=_add_obstacle(prop[1],prop[0],false)
+		var visual=_sprite(body,prop[2],prop[3])
+		if prop[0]=='ElectricalCabinet': _cabinet_sprite=visual
+		if prop[0]=='ComputerDesk':
+			_monitor_sprite=_sprite(body,'monitor_off',Rect2(781,127,85,61))
+			_sprite(body,'tower',Rect2(879,145,36,68))
+	_reader_sprite=_sprite(_room_root,'reader_off',Rect2(568,289,30,49))
+	_light_sprite=_sprite(_room_root,'light',Rect2(274,61,172,28))
+	_note=_sprite(_room_root,'note',Rect2(447,194,70,48))
+	_add_target("lighting", "Tableau électrique fictif", Vector2(120, 192), 104)
+	_add_target("lock", "Commande de la porte", Vector2(582, 340), 104)
+	_add_target("computer", "Ordinateur du bureau", Vector2(825, 247), 104)
+	var elevator_body := _add_obstacle(Rect2(843, 435, 104, 35), "Elevator", false)
+	_elevator_sprite = _sprite(elevator_body, 'elevator_locked', Rect2(835, 389, 112, 87))
+	_elevator_sprite.name = "ElevatorArt"
+	_add_target("elevator", "Ascenseur · accès à l’étage", Vector2(875, 400), 92)
+
+func _build_network_room() -> void:
+	# The rack, the addressing station and Wi-Fi area share an open walkway.
+	# The short privacy divider leaves a wide passage towards the wireless area.
+	_add_obstacle(Rect2(691, 50, 9, 178), "WirelessDivider")
+	for prop in Art.NETWORK_PROPS:
+		var body := _add_obstacle(prop[1], prop[0], false)
+		var visual := _sprite(body, prop[2], prop[3])
+		if prop[0] == "NetworkRack": _network_sprite = visual
+		if prop[0] == "AddressingDesk":
+			_addressing_sprite = _sprite(body, 'network_terminal', Rect2(485, 215, 85, 61))
+			_sprite(body, 'tower', Rect2(574, 228, 36, 68))
+		if prop[0] == "WirelessStation": _security_sprite = visual
+	var elevator_body := _add_obstacle(Rect2(88, 435, 112, 35), "Elevator", false)
+	_elevator_sprite = _sprite(elevator_body, 'elevator_ready', Rect2(84, 389, 120, 87))
+	_elevator_sprite.name = "ElevatorArt"
+	_add_target("elevator", "Ascenseur · retour au bureau", Vector2(158, 400), 92)
+	_add_target("network", "Baie réseau · liaison Ethernet", Vector2(292, 221), 100)
+	_add_target("addressing", "Poste réseau · adresse IP", Vector2(532, 332), 100)
+	_add_target("security", "Borne Wi-Fi · sécurisation", Vector2(803, 244), 100)
+
 func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
 	var body := StaticBody2D.new()
 	body.name = node_name
@@ -112,7 +192,7 @@ func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D
 	collision.shape = shape
 	if not wall: collision.position.y=-rect.size.y/2
 	body.add_child(collision)
-	if wall: add_child(body)
+	if wall: _room_root.add_child(body)
 	else: _props.add_child(body)
 	if wall:
 		_obstacle_rects.append(rect)
@@ -130,7 +210,15 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 	return visual
 
 func _refresh_art() -> void:
-	if _closed_door==null: return
+	if is_instance_valid(_elevator_sprite):
+		_elevator_sprite.texture = Art.TEXTURES.elevator_ready if elevator_unlocked else Art.TEXTURES.elevator_locked
+	if chapter_id == 2:
+		_props.modulate = Color.WHITE
+		if is_instance_valid(_network_sprite): _network_sprite.modulate = Color("b9d9bc") if network_restored else Color.WHITE
+		if is_instance_valid(_addressing_sprite): _addressing_sprite.modulate = Color("b9d9bc") if addressing_restored else Color.WHITE
+		if is_instance_valid(_security_sprite): _security_sprite.modulate = Color("b9d9bc") if security_restored else Color.WHITE
+		return
+	if not is_instance_valid(_closed_door): return
 	_closed_door.visible=not door_open
 	_open_door.visible=door_open
 	_cabinet_sprite.texture=Art.TEXTURES.electrical_on if lighting_restored else Art.TEXTURES.electrical_off
@@ -155,7 +243,7 @@ func _add_target(id: String, label_text: String, at: Vector2, radius: float) -> 
 	target.interaction_radius = radius
 	target.position = at
 	target.z_index = 7
-	add_child(target)
+	_room_root.add_child(target)
 	_targets.append(target)
 
 func _fit_camera() -> void:
@@ -200,9 +288,10 @@ func restore_checkpoint() -> void:
 	if not is_instance_valid(player):
 		return
 	var checkpoint := str(_pending_progress.get("checkpoint_id", "entrance"))
-	if checkpoint in ["computer", "exit"] and not door_open:
+	if chapter_id == 1 and checkpoint in ["computer", "exit", "elevator"] and not door_open:
 		checkpoint = "entrance"
-	player.position = CHECKPOINTS.get(checkpoint, CHECKPOINTS.entrance)
+	var checkpoints: Dictionary = CHAPTER_TWO_CHECKPOINTS if chapter_id == 2 else CHECKPOINTS
+	player.position = checkpoints.get(checkpoint, checkpoints.entrance)
 	player.velocity = Vector2.ZERO
 	_update_camera_position()
 	_update_target()
@@ -211,12 +300,20 @@ func restore_progress(progress: Dictionary) -> void:
 	_pending_progress = progress.duplicate(true)
 	if not is_instance_valid(player):
 		return
+	var desired_chapter := 2 if progress.get("room_id", "room_01") == "room_02" else 1
+	if chapter_id != desired_chapter:
+		_build_room(desired_chapter)
 	var completed: Array = progress.get("completed_missions", [])
 	lighting_restored = completed.has("lighting")
 	door_open = completed.has("lock")
 	computer_repaired = completed.has("computer")
-	door_body.collision_layer = 0 if door_open else 1
-	door_shape.set_deferred("disabled", door_open)
+	elevator_unlocked = lighting_restored and door_open and computer_repaired
+	network_restored = completed.has("network")
+	addressing_restored = completed.has("addressing")
+	security_restored = completed.has("security")
+	if is_instance_valid(door_body):
+		door_body.collision_layer = 0 if door_open else 1
+		door_shape.set_deferred("disabled", door_open)
 	_refresh_art()
 	if not _restored_once:
 		restore_checkpoint()
@@ -311,6 +408,12 @@ func interact_nearest() -> void:
 		interaction_requested.emit(_target.interaction_id)
 
 func _draw() -> void:
+	if chapter_id == 2:
+		draw_texture(Art.TEXTURES.network_floor, Vector2.ZERO)
+		draw_texture(Art.TEXTURES.network_walls, Vector2.ZERO)
+		draw_string(ThemeDB.fallback_font, Vector2(66,73), 'ÉTAGE 1 · RÉSEAU CIEL', HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color('#5A736B'))
+		draw_string(ThemeDB.fallback_font, Vector2(737,73), 'ESPACE WI-FI', HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color('#5A736B'))
+		return
 	var ambient=Color.WHITE if lighting_restored else Color(.83,.88,.90)
 	draw_texture(Art.TEXTURES.floor,Vector2.ZERO,ambient)
 	draw_texture(Art.TEXTURES.walls,Vector2.ZERO,ambient)
