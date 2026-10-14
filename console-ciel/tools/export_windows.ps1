@@ -94,6 +94,13 @@ try {
     [System.IO.Directory]::CreateDirectory($assetDirectory) | Out-Null
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/LICENSES.md') -Destination $assetDirectory
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/licenses') -Destination $assetDirectory -Recurse
+    # Keep local profile pictures outside the PCK so users can add pictures later.
+    $profileImages = Join-Path $projectRoot 'images_profil'
+    if (Test-Path -LiteralPath $profileImages -PathType Container) {
+        Copy-Item -LiteralPath $profileImages -Destination (Join-Path $packageDirectory 'images_profil') -Recurse
+    } else {
+        [System.IO.Directory]::CreateDirectory((Join-Path $packageDirectory 'images_profil')) | Out-Null
+    }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $zip = Join-Path $stagingRoot $ArchiveName
     [System.IO.Compression.ZipFile]::CreateFromDirectory($packageDirectory, $zip, [System.IO.Compression.CompressionLevel]::Optimal, $false)
