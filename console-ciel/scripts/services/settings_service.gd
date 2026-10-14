@@ -3,7 +3,9 @@ const InputMapping=preload('res://scripts/input_setup.gd')
 
 signal settings_changed(settings: Dictionary)
 
-var defaults: Dictionary = {"master": 75, "music": 35, "effects": 65, "fullscreen": false, "large_text": false, "reduce_motion": false, "reduce_transparency": false, "deadzone": 0.25}
+const OPTIONAL_KEYS := ["appearance_style", "background_color", "button_color", "home_layout"]
+const APPEARANCE_STYLES := ["profile", "brume", "sable", "sauge", "nuit", "aurore"]
+var defaults: Dictionary = {"master": 75, "music": 35, "effects": 65, "fullscreen": false, "large_text": false, "reduce_motion": false, "reduce_transparency": false, "deadzone": 0.25, "appearance_style": "profile", "background_color": "", "button_color": "", "home_layout": "split"}
 var current: Dictionary = defaults.duplicate(true)
 var committed: Dictionary = defaults.duplicate(true)
 var storage_root: String = ""
@@ -57,11 +59,33 @@ func _normalize(values: Dictionary) -> Dictionary:
 			if not (value is int or value is float) or not is_finite(float(value)) or float(value) < 0.1 or float(value) > 0.6:
 				return {"ok": false, "error": "La zone morte doit être comprise entre 0,10 et 0,60.", "data": null}
 			result[key] = float(value)
+		elif key == "appearance_style":
+			if not value is String or value not in APPEARANCE_STYLES:
+				return {"ok": false, "error": "Style d’apparence inconnu.", "data": null}
+			result[key] = value
+		elif key in ["background_color", "button_color"]:
+			if not value is String or not _valid_rgb(value):
+				return {"ok": false, "error": "Utilisez une couleur au format #RRGGBB : " + key, "data": null}
+			result[key] = value.to_upper() if not value.is_empty() else ""
+		elif key == "home_layout":
+			if not value is String or value not in ["split", "carousel"]:
+				return {"ok": false, "error": "Disposition de l’accueil inconnue.", "data": null}
+			result[key] = value
 		else:
 			if not value is bool:
 				return {"ok": false, "error": "Réglage booléen invalide : " + key, "data": null}
 			result[key] = value
 	return _ok(result)
+
+func _valid_rgb(value: String) -> bool:
+	if value.is_empty():
+		return true
+	if value.length() != 7 or not value.begins_with("#"):
+		return false
+	for character in value.substr(1):
+		if character not in "0123456789abcdefABCDEF":
+			return false
+	return true
 
 func _read(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
@@ -75,6 +99,8 @@ func _read(path: String) -> Dictionary:
 	var values: Dictionary = {}
 	for key in defaults:
 		if not config.has_section_key("settings", key):
+			if key in OPTIONAL_KEYS:
+				continue
 			return {"ok": false, "error": "Réglage obligatoire absent : " + key, "data": null}
 		values[key] = config.get_value("settings", key)
 	return _normalize(values)
