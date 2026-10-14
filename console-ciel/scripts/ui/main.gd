@@ -11,6 +11,9 @@ const Toast=preload('res://scripts/ui/notification.gd')
 const SettingRow=preload('res://scripts/ui/setting_row.gd')
 const Navigation=preload('res://scripts/ui/navigation_bar.gd')
 const EnquiryArt=preload('res://scripts/ui/enquiry_art.gd')
+const GameCard=preload('res://scripts/ui/game_card.gd')
+const GameLibrary=preload('res://scripts/services/game_library.gd')
+const AppearancePalette=preload('res://scripts/ui/appearance_palette.gd')
 const InputSetup=preload('res://scripts/input_setup.gd')
 const InputMonitor=preload('res://scripts/ui/input_monitor.gd')
 const Demo=preload('res://scripts/game/demo_game.gd')
@@ -29,6 +32,13 @@ var hero_panel: PanelContainer
 var home_labels: Dictionary={}
 var home_objectives: Control
 var home_story: VBoxContainer
+var header_brand: Label
+var home_split: GridContainer
+var home_game_library: GridContainer
+var home_carousel: ScrollContainer
+var home_cards: Array[Control]=[]
+var arcade: Control
+var arcade_id=''
 var header_profile: Label
 var header_avatar: Control
 var header_points: Label
@@ -171,6 +181,7 @@ func _build_shell() -> void:
 	header.custom_minimum_size.y=46
 	col.add_child(header)
 	var brand=Label.new()
+	header_brand=brand
 	brand.text='Console CIEL'
 	brand.add_theme_font_size_override('font_size',26)
 	brand.add_theme_color_override('font_color',Color('#527FA3'))
@@ -218,7 +229,7 @@ func _build_shell() -> void:
 	navigation.destination_requested.connect(_navigation_destination)
 	_responsive()
 
-func _palette() -> Dictionary:
+func _profile_palette() -> Dictionary:
 	if _is_settings_screen(screen) and draft_settings.has('profile_theme') and not AppState.profile.is_empty():
 		if draft_settings.profile_theme in AppState.profile.owned_items:
 			var preview=ShopService.item(draft_settings.profile_theme)
@@ -227,12 +238,18 @@ func _palette() -> Dictionary:
 		return ShopService.item(AppState.profile.equipped.theme)
 	return {'background':'#F3F5F7','accent':'#527FA3'}
 
+func _palette() -> Dictionary:
+	return AppearancePalette.resolve(SettingsService.current,_profile_palette())
+
 func _apply_theme() -> void:
 	if SettingsService.current.get('reduce_motion',false) and _content_tween!=null and _content_tween.is_valid():
 		_content_tween.kill()
 		content.modulate.a=1.0
 	background_palette=_palette()
 	theme=ThemeFactory.build(SettingsService.current,background_palette)
+	if header_brand!=null: header_brand.add_theme_color_override('font_color',Color(background_palette.foreground))
+	if header_profile!=null: header_profile.theme_type_variation='SecondaryLabel';header_profile.remove_theme_color_override('font_color')
+	if footer!=null: footer.theme_type_variation='SecondaryLabel';footer.remove_theme_color_override('font_color')
 	if footer!=null: footer.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
 	if background!=null: background.color=Color(background_palette.get('background','#F3F5F7'))
 	var accent=Color(background_palette.get('accent','#527FA3'))
@@ -284,28 +301,7 @@ func _responsive() -> void:
 	for side in ['left','right']: shell.add_theme_constant_override('margin_'+side,horizontal)
 	for side in ['top','bottom']: shell.add_theme_constant_override('margin_'+side,margin)
 	if navigation!=null: navigation.fit(size.x-2*horizontal,SettingsService.current.get('large_text',false),compact)
-	if screen=='home' and is_instance_valid(hero_grid):
-		hero_grid.columns=2
-		var compact_home=size.x<1100 or size.y<650
-		hero_grid.add_theme_constant_override('h_separation',18 if compact_home else 36)
-		if is_instance_valid(home_story):home_story.add_theme_constant_override('separation',8 if compact_home else 12)
-		if home_labels.has('title'):
-			home_labels.title.add_theme_font_size_override('font_size',(32 if compact_home else 42)+(2 if SettingsService.current.get('large_text',false) else 0))
-			home_labels.kicker.visible=not compact_home
-			home_labels.subtitle.visible=not compact_home
-			home_labels.note.visible=not compact_home
-			if home_labels.has('hint'):home_labels.hint.visible=not compact_home
-			home_labels.progress.text=('0 / 3 · Sans sauvegarde' if compact_home and not AppState.profile.progress.started else '%d / 3 missions réalisées'%AppState.profile.progress.completed_missions.size())
-			home_labels.description.text='Trois pannes. Un message à retrouver.' if compact_home else 'Un atelier en panne. Trois équipements à rétablir.\nÀ vous de retrouver le message et d’expliquer l’incident.'
-			home_objectives.visible=not compact_home
-		var hero_style=theme.get_stylebox('panel','HeroPanel').duplicate()
-		hero_style.content_margin_left=18 if compact_home else 28
-		hero_style.content_margin_right=18 if compact_home else 28
-		hero_style.content_margin_top=12 if compact_home else 24
-		hero_style.content_margin_bottom=12 if compact_home else 24
-		hero_panel.add_theme_stylebox_override('panel',hero_style)
-		hero_art.custom_minimum_size=Vector2(200 if compact_home else 420,170 if compact_home else (360 if size.y>=900 else 270))
-		hero_panel.custom_minimum_size.y=minf(720,maxf(0,scroll.size.y-4))
+	if screen=='home': _fit_home_library()
 	if screen=='game' and is_instance_valid(demo) and demo.is_inside_tree():demo._fit_minimum()
 	if header_profile!=null:
 		header_profile.add_theme_font_size_override('font_size',(18 if compact else 20)+(2 if SettingsService.current.get('large_text',false) else 0))
@@ -335,6 +331,10 @@ func _clear(next: String) -> void:
 		if child!=demo: child.queue_free()
 	responsive_grids.clear()
 	hero_grid=null;hero_art=null;hero_panel=null;home_labels.clear();home_objectives=null;home_story=null
+	home_split=null;home_game_library=null;home_carousel=null;home_cards.clear()
+	if is_instance_valid(arcade):
+		arcade.queue_free()
+		arcade=null
 	if navigation!=null:
 		var pause_settings=_is_settings_screen(next) and settings_origin=='game'
 		var pause_help=(next=='help' or (next=='controls' and controls_origin=='help')) and parent_screen=='game'
@@ -358,6 +358,7 @@ func _show_screen(next: String) -> void:
 		'help': _help()
 		'controls': _controls()
 		'game': _game()
+		'arcade': _arcade()
 		'recovery': _recovery_content()
 		'diagnostics': _diagnostics()
 		_: _home()
@@ -462,7 +463,7 @@ func _label(host: Node,text: String,font_size: int=0,secondary: bool=false) -> L
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	if font_size>0: label.add_theme_font_size_override('font_size',font_size+(2 if SettingsService.current.get('large_text',false) else 0))
-	if secondary: label.add_theme_color_override('font_color',Color('#586674'))
+	if secondary: label.theme_type_variation='SecondaryLabel'
 	host.add_child(label)
 	return label
 
@@ -530,7 +531,9 @@ func _profiles() -> void:
 	if not loaded.ok:
 		_show_fatal("Profils inaccessibles",loaded.error)
 		return
-	_title('À chacun son aventure','Chaque profil garde ses points, achats et progression.')
+	_title('Votre profil' if not AppState.profile.is_empty() else 'Qui joue aujourd’hui ?','Une identité, une bibliothèque et une aventure pour chacun.')
+	if not AppState.profile.is_empty():
+		_profile_overview()
 	var grid=_grid(content,310,3)
 	for profile in ProfileService.profiles:
 		var card=ProfileCard.new()
@@ -545,6 +548,31 @@ func _profiles() -> void:
 	_button(add,'＋ Ajouter un profil',func(): _open_editor(''),'add_profile')
 	if not ProfileService.issues.is_empty(): _button(content,'Données à récupérer',func(): _show_screen('recovery'),'recover_profiles')
 	if AppState.profile.is_empty(): _button(content,'Quitter',_request_quit,'quit_profiles')
+
+func _profile_overview() -> void:
+	var panel=_panel(content)
+	panel.name='profile_overview'
+	var row=HBoxContainer.new()
+	panel.add_child(row)
+	var avatar=Avatar.new()
+	avatar.name='profile_overview_avatar'
+	avatar.custom_minimum_size=Vector2(70,70)
+	avatar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	var spec=ShopService.item(AppState.profile.equipped.avatar)
+	avatar.color=Color(spec.get('color','#527FA3'))
+	avatar.variant={'H':0,'O':2,'F':1,'R':2}.get(spec.get('symbol','H'),0)
+	avatar.frame=AppState.profile.equipped.frame
+	avatar.frame_spec=ShopService.item(avatar.frame)
+	avatar.set_local_image(AppState.profile.get('avatar_image',''))
+	row.add_child(avatar)
+	var identity=VBoxContainer.new()
+	identity.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	row.add_child(identity)
+	_label(identity,AppState.profile.display_name,24)
+	_label(identity,'%d points · %d jeux acquis · %d / 3 défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size()],14,true)
+	var edit=_button(row,'Personnaliser',func():_open_editor(AppState.profile.id),'profile_personalize')
+	edit.size_flags_horizontal=Control.SIZE_SHRINK_END
+	edit.custom_minimum_size.x=200
 
 func _select_profile(id: String) -> void:
 	# ProfileService sélectionne seulement après sauvegarde réussie de l'ancien joueur.
@@ -702,7 +730,9 @@ func _add_editor_avatar_choice(title: String,avatar_id: String,filename: String,
 		_refresh_editor_preview()
 		for other in editor_avatar_buttons:
 			var selected=other.get_meta('avatar_image')==editor_image and (not editor_image.is_empty() or other.get_meta('avatar_id')==editor_avatar)
-			other.theme_type_variation='NavigationSelected' if selected else 'Button',key)
+			other.theme_type_variation='NavigationSelected' if selected else 'Button'
+			var caption=other.find_child('avatar_choice_label',true,false)
+			if caption!=null:caption.add_theme_color_override('font_color',other.get_theme_color('font_color',other.theme_type_variation)),key)
 	button.set_meta('avatar_image',filename)
 	button.set_meta('avatar_id',avatar_id)
 	button.custom_minimum_size.y=76
@@ -727,6 +757,8 @@ func _add_editor_avatar_choice(title: String,avatar_id: String,filename: String,
 	label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	label.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	label.name='avatar_choice_label'
+	label.add_theme_color_override('font_color',button.get_theme_color('font_color',button.theme_type_variation))
 	row.add_child(label)
 	editor_avatar_buttons.append(button)
 
@@ -774,59 +806,144 @@ func _delete_profile() -> void:
 
 func _home() -> void:
 	if AppState.profile.is_empty(): return
-	hero_panel=PanelContainer.new()
-	hero_panel.name='home_hero'
-	hero_panel.theme_type_variation='HeroPanel'
-	hero_panel.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	content.add_child(hero_panel)
-	hero_grid=GridContainer.new()
-	hero_grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	hero_grid.add_theme_constant_override('h_separation',36)
-	hero_grid.add_theme_constant_override('v_separation',18)
-	hero_panel.add_child(hero_grid)
-	var story=VBoxContainer.new()
-	home_story=story
-	story.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	story.size_flags_vertical=Control.SIZE_EXPAND|Control.SIZE_SHRINK_CENTER
-	story.add_theme_constant_override('separation',12)
-	hero_grid.add_child(story)
-	home_labels.kicker=_label(story,'EXPLORER · COMPRENDRE · RÉSOUDRE',15,true)
-	home_labels.title=_label(story,'L’enquête CIEL',42)
-	home_labels.subtitle=_label(story,'Le message du local technique',24)
-	home_labels.description=_label(story,'Un atelier en panne. Trois équipements à rétablir.
-À vous de retrouver le message et d’expliquer l’incident.',0,true)
-	var done=AppState.profile.progress.completed_missions
-	home_labels.progress=_label(story,'%d / 3 missions réalisées'%done.size(),20)
-	var actions=HBoxContainer.new()
-	story.add_child(actions)
-	var started=AppState.profile.progress.started
-	var primary=_button(actions,'Continuer' if started else 'Commencer',_continue_game if started else _new_game,'continue_game' if started else 'new_game')
-	primary.theme_type_variation='PrimaryButton'
-	primary.custom_minimum_size=Vector2(170,56)
-	primary.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
-	var secondary=_button(actions,'Nouvelle partie' if started else 'Continuer',_new_game if started else _continue_game,'new_game' if started else 'continue_game')
-	secondary.disabled=not started
-	secondary.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
-	secondary.custom_minimum_size.x=220 if started else 155
-	if not started:
-		secondary.tooltip_text='Commencez une partie pour créer une progression.'
-		home_labels.hint=_label(story,'Aucune partie enregistrée : choisissez Commencer.',16,true)
-	var art_column=VBoxContainer.new()
-	art_column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	art_column.size_flags_vertical=Control.SIZE_EXPAND|Control.SIZE_SHRINK_CENTER
-	hero_grid.add_child(art_column)
-	hero_art=EnquiryArt.new()
-	hero_art.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	hero_art.size_flags_vertical=Control.SIZE_EXPAND_FILL
-	art_column.add_child(hero_art)
-	var objectives=VBoxContainer.new()
-	home_objectives=objectives
-	objectives.add_theme_constant_override('separation',6)
-	art_column.add_child(objectives)
-	for mission in RewardService.missions:
-		var title={'lighting':'Rétablir l’éclairage','lock':'Ouvrir le bureau','computer':'Retrouver le message'}.get(mission.id,mission.name)
-		_label(objectives,('✓  ' if mission.id in done else '○  ')+title,16)
-	home_labels.note=_label(story,'Données locales · points gagnés dans les missions',14,true)
+	_label(content,'Votre bibliothèque',28)
+	var entries=GameLibrary.definitions(ShopService.catalog)
+	if SettingsService.current.get('home_layout','split')=='carousel':
+		var controls=HBoxContainer.new()
+		content.add_child(controls)
+		_button(controls,'‹ Précédent',func(): _scroll_home(-1),'home_previous').custom_minimum_size.y=38
+		_label(controls,'Choisissez une couverture · les jeux Test sont en préparation',14,true)
+		_button(controls,'Suivant ›',func(): _scroll_home(1),'home_next').custom_minimum_size.y=38
+		home_carousel=ScrollContainer.new()
+		home_carousel.name='home_carousel'
+		home_carousel.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+		home_carousel.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_AUTO
+		home_carousel.follow_focus=true
+		content.add_child(home_carousel)
+		var row=HBoxContainer.new()
+		row.add_theme_constant_override('separation',14)
+		home_carousel.add_child(row)
+		for entry in entries:
+			var card=_add_home_game(row,entry,true)
+			card.custom_minimum_size.x=270
+	else:
+		home_split=GridContainer.new()
+		home_split.name='home_split'
+		home_split.columns=2
+		home_split.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		home_split.add_theme_constant_override('h_separation',16)
+		content.add_child(home_split)
+		_add_home_game(home_split,entries[0],false)
+		var right=VBoxContainer.new()
+		right.name='home_library_column'
+		right.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		home_split.add_child(right)
+		_label(right,'Vos prochains jeux',20)
+		_label(right,'Quatre emplacements de test · achats en points',13,true)
+		home_game_library=GridContainer.new()
+		home_game_library.name='home_game_library'
+		home_game_library.columns=2
+		home_game_library.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		home_game_library.add_theme_constant_override('h_separation',10)
+		home_game_library.add_theme_constant_override('v_separation',10)
+		right.add_child(home_game_library)
+		for index in range(1,entries.size()):
+			_add_home_game(home_game_library,entries[index],true)
+	_fit_home_library()
+
+func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
+	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
+	var definition=entry.duplicate(true)
+	if educational:
+		definition.description='Trois défis · jusqu’à 150 points par profil.'
+		definition.action_label='Continuer' if AppState.profile.progress.started else 'Commencer'
+	var card=GameCard.new()
+	card.size_flags_horizontal=Control.SIZE_EXPAND_FILL if host is GridContainer else Control.SIZE_FILL
+	host.add_child(card)
+	card.configure(definition,educational or entry.id in AppState.profile.owned_items,educational,compact)
+	card.play_requested.connect(_launch_library_game)
+	card.details_requested.connect(func(id): shop_filter=4;shop_inventory=false;_show_screen('shop');_focus_product.call_deferred(id))
+	var cover=card.find_child('game_cover_'+entry.id,true,false)
+	if cover!=null:
+		cover.name='home_education_cover' if educational else 'library_cover_'+entry.id
+		if is_instance_valid(home_carousel):cover.custom_minimum_size.y=132
+	if educational:
+		hero_panel=card
+		hero_panel.name='home_hero'
+		hero_art=cover
+		var action=card.find_child('play_'+entry.id,true,false)
+		action.name='continue_game' if AppState.profile.progress.started else 'new_game'
+		var column=card.get_child(0)
+		column.add_theme_constant_override('separation',8)
+		home_labels.progress=_label(column,'%d / 3 défis réalisés'%AppState.profile.progress.completed_missions.size(),15,true)
+		var secondary=_button(column,'Nouvelle partie' if AppState.profile.progress.started else 'Continuer',_new_game if AppState.profile.progress.started else _continue_game,'new_game' if AppState.profile.progress.started else 'continue_game')
+		secondary.disabled=not AppState.profile.progress.started
+		secondary.visible=AppState.profile.progress.started
+		secondary.custom_minimum_size.y=38
+	home_cards.append(card)
+	return card
+
+func _fit_home_library() -> void:
+	if not AppState.profile.is_empty() and home_labels.has('progress') and is_instance_valid(home_labels.progress):
+		home_labels.progress.text='%d / 3 défis réalisés'%AppState.profile.progress.completed_missions.size()
+	if is_instance_valid(home_split):
+		home_split.columns=1 if size.x<1000 else 2
+		# Two equally sized columns on a desktop; stack them on the small console.
+		if home_split.columns==2:
+			var half=maxf(250,(size.x-2*maxf(28,(size.x-1400)/2)-16)/2)
+			for child in home_split.get_children(): child.custom_minimum_size.x=half-18
+		else:
+			for child in home_split.get_children(): child.custom_minimum_size.x=0
+		if is_instance_valid(hero_art): hero_art.custom_minimum_size.y=96 if size.y<600 else 112
+	if is_instance_valid(home_game_library):home_game_library.columns=2
+	if is_instance_valid(home_carousel):
+		for card in home_cards:card.custom_minimum_size.x=250 if size.x<1000 else 270
+
+func _scroll_home(direction: int) -> void:
+	if not is_instance_valid(home_carousel): return
+	var step=264 if size.x<1000 else 284
+	var maximum=maxf(0,home_carousel.get_h_scroll_bar().max_value-home_carousel.get_h_scroll_bar().page)
+	home_carousel.scroll_horizontal=int(clampf(home_carousel.scroll_horizontal+direction*step,0,maximum))
+
+func _focus_product(id: String) -> void:
+	var button=content.find_child('product_'+id,true,false)
+	if button!=null:button.grab_focus()
+
+func _launch_library_game(id: String) -> void:
+	if not GameLibrary.can_play(AppState.profile,id,ShopService.catalog):
+		_confirm('Jeu à débloquer','Achetez cet emplacement avec les points de l’enquête pour le retrouver dans votre bibliothèque.','Compris',func():pass)
+		return
+	if id==GameLibrary.EDUCATIONAL_ID:
+		if AppState.profile.progress.started:_continue_game()
+		else:_new_game()
+		return
+	if not _result(ProfileService.save_active()):return
+	arcade_id=id
+	_show_screen('arcade')
+
+func _arcade() -> void:
+	if not GameLibrary.can_play(AppState.profile,arcade_id,ShopService.catalog):
+		_notify('Cet emplacement n’est pas possédé par ce profil.')
+		_show_screen.call_deferred('home')
+		return
+	var entry=GameLibrary.entry(ShopService.catalog,arcade_id)
+	var scene=load(entry.scene) as PackedScene
+	var instance=scene.instantiate() if scene!=null else null
+	if not instance is Control:
+		if instance!=null:instance.queue_free()
+		_confirm('Jeu indisponible','La scène du jeu ne peut pas être ouverte. Vos achats sont conservés.','Revenir',func():_show_screen('home'))
+		return
+	arcade=instance
+	if arcade.has_method('configure'):arcade.call('configure',entry)
+	if arcade.has_signal('menu_requested'):arcade.connect('menu_requested',_close_arcade)
+	content.add_child(arcade)
+	footer.text='Emplacement de test · le vrai jeu sera ajouté lorsqu’il sera prêt · Échap : bibliothèque'
+
+func _close_arcade() -> void:
+	var played=arcade_id
+	_show_screen('home')
+	var action=content.find_child('play_'+played,true,false)
+	if action!=null:action.grab_focus.call_deferred()
 
 func _is_settings_screen(view: String) -> bool:
 	return view=='settings' or (view=='help' and parent_screen=='settings') or (view=='controls' and (controls_origin=='settings' or (controls_origin=='help' and parent_screen=='settings')))
@@ -902,35 +1019,49 @@ func _game() -> void:
 	if demo.has_method('refresh'): demo.refresh()
 
 func _shop() -> void:
-	_title('Une touche personnelle','Des cosmétiques en points virtuels, sans achat réel.')
-	var bar=_grid(content,250,3)
+	_label(content,'La boutique CIEL',28)
+	var wallet=_panel(content)
+	wallet.name='shop_wallet'
+	var bar=HBoxContainer.new()
+	wallet.add_child(bar)
+	var balance=_label(bar,'%d points'%AppState.profile.wallet.points,22)
+	balance.autowrap_mode=TextServer.AUTOWRAP_OFF
+	balance.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	var filter=OptionButton.new()
 	filter.name='shop_filter'
-	filter.custom_minimum_size.y=48
-	for title in ['Tous les articles','Avatars','Thèmes','Cadres']: filter.add_item(title)
+	filter.custom_minimum_size=Vector2(180,42)
+	filter.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	for title in ['Tout découvrir','Avatars','Thèmes','Cadres','Jeux']:filter.add_item(title)
 	filter.selected=shop_filter
-	filter.item_selected.connect(func(index): shop_filter=index; _show_screen('shop'))
+	filter.item_selected.connect(func(index):shop_filter=index;_show_screen('shop'))
 	bar.add_child(filter)
-	_button(bar,'Catalogue' if shop_inventory else 'Mon inventaire',func(): shop_inventory=not shop_inventory; _show_screen('shop'),'shop_inventory')
-	_label(bar,'Solde : %d points' % AppState.profile.wallet.points,22)
-	var grid=_grid(content,290,3)
+	_button(bar,'Tout découvrir' if shop_inventory else 'Mes achats',func():shop_inventory=not shop_inventory;_show_screen('shop'),'shop_inventory').custom_minimum_size.y=42
+	_label(wallet,'Gagnés dans les défis de l’enquête · aucun argent réel',13,true)
+	var games=_grid(content,240,4)
+	games.name='shop_games'
+	var cosmetics=_grid(content,260,3)
+	cosmetics.name='shop_cosmetics'
 	var count=0
 	for item in ShopService.catalog:
-		if shop_filter>0 and item.type!=['','avatar','theme','frame'][shop_filter]: continue
+		if shop_filter>0 and item.type!=['','avatar','theme','frame','game'][shop_filter]:continue
 		var owned=item.id in AppState.profile.owned_items
-		if shop_inventory and not owned: continue
+		if shop_inventory and not owned:continue
 		var card=ProductCard.new()
 		card.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-		grid.add_child(card)
+		(games if item.type=='game' else cosmetics).add_child(card)
 		card.configure(item,owned,AppState.profile.equipped.get(item.type,'')==item.id,AppState.profile.wallet.points>=item.price)
 		card.action_requested.connect(_product_action)
 		count+=1
-	if count==0: _label(content,'Aucun article possédé dans cette catégorie.',0,true)
+	if games.get_child_count()==0:games.hide()
+	if cosmetics.get_child_count()==0:cosmetics.hide()
+	if count==0:_label(content,'Aucun achat dans cette catégorie pour le moment.',0,true)
+	_label(content,'Test 1 à Test 4 sont des emplacements en préparation. Leur achat permet de vérifier votre bibliothèque.',13,true)
 
 func _product_action(id: String) -> void:
 	var item=ShopService.item(id)
 	if item.is_empty(): _notify('Cet article est inconnu.'); return
 	if id in AppState.profile.owned_items:
+		if item.type=='game':_launch_library_game(id);return
 		if AppState.profile.equipped.get(item.type,'')==id: _notify('Cet article est déjà équipé.'); return
 		if _result(ShopService.equip(id),'✓ « '+item.name+' » équipé',func(): _product_action(id)): _show_screen('shop')
 	elif AppState.profile.wallet.points<item.price:
@@ -945,9 +1076,9 @@ func _settings() -> void:
 	_title('Paramètres','Appliquer enregistre. Annuler restaure les aperçus.')
 	var categories=OptionButton.new()
 	categories.name='settings_categories'
-	categories.custom_minimum_size=Vector2(320,48)
+	categories.custom_minimum_size=Vector2(260,42)
 	categories.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
-	for title in ['Audio','Affichage','Accessibilité','Commandes','Apparence','Données','À propos']: categories.add_item(title)
+	for title in ['Audio','Affichage','Accessibilité','Commandes','Apparence','Données','À propos','Crédits']: categories.add_item(title)
 	categories.selected=settings_category
 	categories.item_selected.connect(func(index): settings_category=index; _show_screen('settings'))
 	content.add_child(categories)
@@ -959,7 +1090,9 @@ func _settings() -> void:
 			_slider(panel,'Effets','effects',0,100,1,'%')
 			_button(panel,'Écouter un effet',func(): SettingsService.play_effect(),'test_effect')
 		1:
+			_label(panel,'Votre écran et votre bibliothèque',22)
 			_toggle(panel,'Plein écran','fullscreen')
+			_home_layout_setting(panel)
 			_label(panel,'Base : 1280 × 720. Mode compact : 800 × 480 et 1024 × 600. La taille de fenêtre reste ajustable sur PC.',0,true)
 		2:
 			_toggle(panel,'Grand texte','large_text')
@@ -971,14 +1104,7 @@ func _settings() -> void:
 			_button(panel,'Test des commandes',func(): controls_origin='settings'; _show_screen('controls'),'test_controls')
 			_label(panel,'La correspondance USB HID du contrôleur fabriqué devra être mesurée sur le matériel. Le joystick au repos doit rester dans la zone morte.',0,true)
 		4:
-			_label(panel,'Thèmes possédés · aperçu temporaire',22)
-			for item in ShopService.catalog:
-				if item.type=='theme' and item.id in AppState.profile.owned_items:
-					_button(panel,('✓ ' if draft_settings.get('profile_theme',AppState.profile.equipped.theme)==item.id else '')+item.name,func():
-						draft_settings.profile_theme=item.id
-						_apply_theme()
-						_show_screen('settings'),'theme_'+item.id)
-			_label(panel,'D’autres thèmes sont disponibles dans la boutique locale.',0,true)
+			_appearance_settings(panel)
 		5:
 			_label(panel,'Progression de l’enquête',22)
 			_button(panel,'Réinitialiser la progression',_reset_progress,'reset_progress')
@@ -988,6 +1114,8 @@ func _settings() -> void:
 			_label(panel,'Logiciel : Loghan\nConstruction et assemblage : binôme, nom à compléter\nDonnées locales ; aucune connexion requise.',0,true)
 			_label(panel,'Données : '+PlatformService.user_data_directory()+'\nJournaux : '+PlatformService.application_log_directory(),0,true)
 			_button(panel,'Aide / Crédits',func(): parent_screen='settings'; _show_screen('help'),'settings_help')
+		7:
+			_settings_credits(panel)
 	var actions=_grid(content,215,3)
 	_button(actions,'Appliquer',_apply_settings,'settings_apply')
 	_button(actions,'Annuler',_cancel_settings,'settings_cancel')
@@ -1003,7 +1131,99 @@ func _settings() -> void:
 	if PlatformService.is_pi():
 		var shutdown=_button(system_actions,'Arrêt système non configuré',func(): pass,'shutdown')
 		shutdown.disabled=true
+	var credits=_panel(content)
+	credits.name='settings_credits_footer'
+	_label(credits,'Crédits · Console CIEL',16)
+	_label(credits,'Logiciel : Loghan · projet scolaire bac pro CIEL · moteur Godot',13,true)
+	if settings_category!=7:_button(credits,'Voir les crédits et les licences',func():settings_category=7;_show_screen('settings'),'settings_credits').custom_minimum_size.y=38
 	footer.text='Q / E ou boutons supérieurs : catégorie   ·   Échap : annuler   ·   Aperçus temporaires'
+
+func _home_layout_setting(host: Node) -> void:
+	_label(host,'Disposition de l’accueil',20)
+	var selector=OptionButton.new()
+	selector.name='setting_home_layout'
+	selector.custom_minimum_size.y=42
+	selector.add_item('Enquête à gauche · quatre jeux à droite')
+	selector.add_item('Couvertures égales · défilement horizontal')
+	selector.selected=1 if draft_settings.get('home_layout','split')=='carousel' else 0
+	selector.item_selected.connect(func(index):
+		draft_settings.home_layout='carousel' if index==1 else 'split'
+		SettingsService.preview(draft_settings))
+	host.add_child(selector)
+	_label(host,'L’affichage s’adapte aux petits écrans. Le défilement suit aussi le focus de la manette.',14,true)
+
+func _appearance_settings(host: Node) -> void:
+	_label(host,'Un style qui vous ressemble',22)
+	_label(host,'Styles de la console · aperçu immédiat · annulation possible',14,true)
+	var styles=_grid(host,180,3)
+	for preset in AppearancePalette.presets():
+		var id:String=preset.id
+		var button=_button(styles,preset.name,func():
+			draft_settings.appearance_style=id
+			if id!='profile':draft_settings.erase('profile_theme')
+			SettingsService.preview(draft_settings)
+			_show_screen('settings'),'appearance_'+id)
+		button.theme_type_variation='NavigationSelected' if draft_settings.get('appearance_style','profile')==id else 'Button'
+		button.custom_minimum_size.y=42
+	var color_grid=_grid(host,390,2)
+	_color_setting(color_grid,'Couleur du fond','background_color',[
+		['Couleur du style',''],['Brume','#F3F5F7'],['Bleu nuit','#101827'],['Sable','#F7F0E3'],['Sauge','#DDEBE3'],['Lilas','#E7DFF5'],['Rose','#F4E0E8']])
+	_color_setting(color_grid,'Couleur des boutons','button_color',[
+		['Couleur du style',''],['Bleu CIEL','#527FA3'],['Violet','#7760BC'],['Émeraude','#327D68'],['Corail','#C56C55'],['Or','#C39B42'],['Noir','#1B2435']])
+	_label(host,'Thèmes de votre profil',20)
+	for item in ShopService.catalog:
+		if item.type=='theme' and item.id in AppState.profile.owned_items:
+			var id:String=item.id
+			_button(host,item.name,func():
+				draft_settings.profile_theme=id
+				draft_settings.appearance_style='profile'
+				SettingsService.preview(draft_settings)
+				_show_screen('settings'),'theme_'+id).custom_minimum_size.y=38
+	_label(host,'Les styles gratuits ci-dessus n’utilisent pas vos points. Les cosmétiques du profil restent dans la boutique.',13,true)
+
+func _color_setting(host: Node,title: String,key: String,choices: Array) -> void:
+	var row=SettingRow.new()
+	host.add_child(row)
+	var controls=HBoxContainer.new()
+	controls.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var selector=OptionButton.new()
+	selector.name='setting_'+key
+	selector.custom_minimum_size=Vector2(180,42)
+	selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var chosen:String=draft_settings.get(key,'')
+	var selected=0
+	for index in range(choices.size()):
+		selector.add_item(choices[index][0])
+		if chosen==choices[index][1]:selected=index
+	if not chosen.is_empty() and selected==0:
+		choices=choices.duplicate(true)
+		choices.append(['Personnalisée',chosen])
+		selector.add_item('Personnalisée')
+		selected=choices.size()-1
+	selector.selected=selected
+	selector.item_selected.connect(func(index):draft_settings[key]=choices[index][1];SettingsService.preview(draft_settings))
+	controls.add_child(selector)
+	var picker=ColorPickerButton.new()
+	picker.name='background_custom' if key=='background_color' else 'button_custom'
+	picker.custom_minimum_size=Vector2(130,42)
+	picker.text='Personnaliser'
+	picker.edit_alpha=false
+	picker.color=Color(chosen if not chosen.is_empty() else background_palette.get('background' if key=='background_color' else 'button','#527FA3'))
+	picker.color_changed.connect(func(color):draft_settings[key]='#'+color.to_html(false).to_upper();SettingsService.preview(draft_settings))
+	controls.add_child(picker)
+	row.configure(title,controls,'Un choix de couleur reste temporaire jusqu’à Appliquer.')
+
+func _settings_credits(host: Node) -> void:
+	_label(host,'Crédits et licences',24)
+	_label(host,'Console CIEL · logiciel '+str(ProjectSettings.get_setting('application/config/version')),20)
+	_label(host,'Logiciel : Loghan
+Construction et assemblage : binôme, nom à compléter
+Projet scolaire bac pro CIEL',16,true)
+	_label(host,'Illustrations et sons originaux : CC0 1.0.
+Moteur Godot : licence MIT.
+Polices et dépendances du moteur : notices fournies dans assets/licenses/.',16,true)
+	_label(host,'L’enquête CIEL est une simulation pédagogique fictive. Test 1 à Test 4 sont des emplacements en attente des vrais jeux. Points virtuels uniquement ; aucun compte ni paiement réel.',16,true)
+	_button(host,'Aide et commandes',func():parent_screen='settings';_show_screen('help'),'credits_help')
 
 func _toggle(host: Node,title: String,key: String) -> void:
 	var check=CheckButton.new()
@@ -1183,6 +1403,7 @@ func _back() -> void:
 	if is_instance_valid(modal): modal.cancel_dialog(); return
 	match screen:
 		'home': _request_quit()
+		'arcade': _close_arcade()
 		'game':
 			if is_instance_valid(demo) and demo.has_method('handle_back'): demo.handle_back()
 		'settings': _cancel_settings()
@@ -1275,8 +1496,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed('tab_previous'): step=-1
 		if step!=0:
 			get_viewport().set_input_as_handled()
-			if screen=='settings': settings_category=posmod(settings_category+step,7)
-			else: shop_filter=posmod(shop_filter+step,4)
+			if screen=='settings': settings_category=posmod(settings_category+step,8)
+			else: shop_filter=posmod(shop_filter+step,5)
 			_show_screen(screen)
 
 func _process(delta: float) -> void:
