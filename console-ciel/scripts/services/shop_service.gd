@@ -34,10 +34,12 @@ func purchase(id: String) -> Dictionary:
 	var product := item(id)
 	if product.is_empty():
 		return SaveService._fail("Article inconnu.")
-	if not SaveService._is_integer(product.get("price"), 0, 100):
-		return SaveService._fail("Prix d'article invalide.")
 	if product.get("type") not in ["avatar", "theme", "frame", "game"]:
 		return SaveService._fail("Type d'article invalide.")
+	var minimum_paid_price := 200 if product.type == "game" else 20
+	var maximum_price: int = SaveService.MAX_POINTS if product.type == "game" else 100
+	if not SaveService._is_integer(product.get("price"), 0, maximum_price) or (int(product.price) != 0 and int(product.price) < minimum_paid_price):
+		return SaveService._fail("Prix d'article invalide.")
 	if product.type == "game" and not GameLibrary.is_valid_game_scene(product.get("scene")):
 		return SaveService._fail("Ce jeu n'est pas disponible dans les fichiers locaux livrés.")
 	var profile: Dictionary = AppState.profile.duplicate(true)
