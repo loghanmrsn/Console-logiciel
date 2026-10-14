@@ -1,6 +1,8 @@
 # Version portable Windows x86_64
 
-Livraison actuelle **0.4.1 — navigation translucide** : [ZIP Windows](../builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip). Décompresser tout le ZIP, puis double-cliquer sur `Console_CIEL.exe`. Barre **Accueil → Boutique → Paramètres → Profil**, avec avatar, pseudo et points. [Captures et vérifications](NAVIGATION_TRANSLUCIDE.md).
+Livraison actuelle **0.4.2 — profils et clavier mobile** : [ZIP Windows](../builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip). Décompresser tout le ZIP puis lancer `Console_CIEL.exe`. Le dossier **images_profil/** est fourni à côté de l’exécutable : y déposer des PNG, JPEG ou WebP, puis **Profil → Modifier → Mes images → Actualiser les images**. [Guide des profils et du clavier](PROFILS_ET_CLAVIER.md). [Rapport de cette livraison](../builds/Console_CIEL_Windows_x86_64_profils_0.4.2.verification.json).
+
+Livraison précédente **0.4.1 — navigation translucide**, conservée : [ZIP Windows](../builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip). Décompresser tout le ZIP, puis double-cliquer sur `Console_CIEL.exe`. Barre **Accueil → Boutique → Paramètres → Profil**, avec avatar, pseudo et points. [Captures et vérifications](NAVIGATION_TRANSLUCIDE.md).
 
 Livraison précédente **0.4.0 — refonte graphique**, conservée : `builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip`, binaire local dans `builds/windows-x86_64-refonte-0.4.0/`. [Captures et vérifications historiques](REFONTE_GRAPHIQUE.md). Les anciens exécutables 0.3.0 et 0.3.1 n'étaient pas inclus dans les sources reçues ; le reste de cette page décrit les vérifications historiques 0.3.0.
 
@@ -14,7 +16,7 @@ Logiciel **0.3.0**, moteur officiel **4.6.3.stable.official.7d41c59c4**, GDScrip
 
 ## Lancer sur votre PC
 
-1. Copier [builds/Console_CIEL_Windows_x86_64.zip](../builds/Console_CIEL_Windows_x86_64.zip) sur un PC Windows x86_64.
+1. Copier `builds/Console_CIEL_Windows_x86_64.zip` (chemin historique ; utiliser le ZIP 0.4.2 indiqué en tête de page) sur un PC Windows x86_64.
 2. Décompresser **tout** le ZIP dans un dossier de votre choix.
 3. Double-cliquer sur **Console_CIEL.exe** depuis ce dossier. Godot, Bash, Python, labwc et les outils Raspberry Pi ne sont pas nécessaires sur le PC destinataire. L'application ne demande pas de droits administrateur.
 
