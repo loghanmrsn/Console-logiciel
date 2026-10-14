@@ -174,7 +174,7 @@ func check_rewards_and_equipment(profile_id: String):
 	check(investigation.begin_mission('lighting').ok and investigation.submit_lighting(['source_switch', 'switch_lamp', 'lamp_return']).ok, 'Récompense obtenue par une vraie mission')
 	await frames()
 	check(state.profile.wallet.points == 50 and app.navigation.profile_points_label.text == '50 pts', 'Les points gagnés actualisent la barre persistante')
-	check(app.home_labels.progress.text.begins_with('1 / 3'), 'La progression réelle actualise l’accueil : « ' + app.home_labels.progress.text + ' »')
+	check(app.home_labels.progress.text.contains('Chapitre 1') and app.home_labels.progress.text.contains('1 / 3'), 'La progression réelle actualise le chapitre affiché à l’accueil : « ' + app.home_labels.progress.text + ' »')
 	check(shop.purchase('avatar_orbit').ok, 'Achat d’avatar avec les points gagnés')
 	await frames()
 	check(state.profile.wallet.points == 30 and app.navigation.profile_points_label.text == '30 pts', 'L’achat actualise le solde dans la barre')
@@ -293,9 +293,10 @@ func run():
 	app.demo.request_pause()
 	await frames()
 	var objectives = app.demo.modal_content.find_child('pause_objectives', true, false)
+	var objectives_before: bool = app.demo._objectives_expanded
 	objectives.grab_focus()
 	await key(KEY_ENTER)
-	check(app.demo._objectives_expanded and not app.demo.paused, 'Objectifs accessibles depuis la pause sans souris')
+	check(app.demo._objectives_expanded != objectives_before and not app.demo.paused and app.demo.overlay_kind.is_empty() and root.gui_get_focus_owner() == app.demo._room, 'La pause bascule les objectifs et restitue le déplacement sans souris')
 	app.demo.request_pause()
 	app.settings_origin = 'game'
 	app.draft_settings = settings.committed.duplicate(true)
