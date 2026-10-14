@@ -101,7 +101,7 @@ func _test_first_chapter() -> void:
 	_check(not investigation.conclusion(2).ok, "Bilan du deuxième chapitre encore verrouillé")
 	var first_bilan: Dictionary = investigation.conclusion()
 	_check(first_bilan.ok and first_bilan.data.chapter == 1 and first_bilan.data.missions.size() == 3, "Ancien appel conclusion() reste limité au premier chapitre")
-	_ok(shop.purchase("game_test_1"), "Acheter un jeu avec les points du premier chapitre")
+	_ok(shop.purchase("avatar_orbit"), "Acheter un avatar à 20 points avant la transition d’étage")
 	_ok(shop.equip("theme_brume"), "Équipement de profil enregistré")
 	_check(state.profile.wallet.points == 130 and state.profile.progress.run_reward_points == 150, "Achat conserve le total gagné et débite uniquement le portefeuille")
 	chapter_one_snapshot = state.profile.duplicate(true)
@@ -229,7 +229,7 @@ func _test_legacy_expansion() -> void:
 	_check(not saves.read_profile(legacy.id).migration_required and not state.profile.progress.legacy_migration_notice, "L’enrichissement ne répète pas la migration ni l’avis du prototype")
 	_check(investigation.can_use_elevator() and investigation.conclusion(1).ok, "Ancien premier chapitre terminé ouvre directement l’ascenseur et son bilan")
 	_ok(investigation.enter_chapter(2), "Ancienne sauvegarde continue réellement au chapitre 2")
-	_check(state.profile.progress.completed_missions == saves.CHAPTER_ONE_IDS and state.profile.wallet.points == 130 and state.profile.owned_items.has("game_test_1"), "Nouveau chapitre conserve fidèlement les acquis de l’ancienne sauvegarde")
+	_check(state.profile.progress.completed_missions == saves.CHAPTER_ONE_IDS and state.profile.wallet.points == 130 and state.profile.owned_items.has("avatar_orbit"), "Nouveau chapitre conserve fidèlement les acquis de l’ancienne sauvegarde")
 	_reload(first_id, "Revenir au profil principal après la copie ancienne")
 
 func _test_invalid_documents() -> void:
@@ -283,7 +283,7 @@ func _test_profiles_and_replay() -> void:
 	_check(state.profile == before and investigation.current_chapter() == 2, "Changement de profil restaure le bon étage et ses données")
 	_ok(profiles.start_game(), "Rejouer l’enquête entière")
 	_check(investigation.current_chapter() == 1 and not investigation.can_use_elevator() and state.profile.progress.completed_missions.is_empty() and state.profile.progress.run_reward_points == 0, "Rejeu revient au premier chapitre, referme l’ascenseur et efface les six objectifs")
-	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("game_test_1"), "Rejeu préserve tous les gains antérieurs et les achats")
+	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("avatar_orbit"), "Rejeu préserve tous les gains antérieurs et les achats")
 	for id in saves.CHAPTER_ONE_IDS:
 		_complete(id, 0)
 	_ok(investigation.enter_chapter(2), "Rejeu déverrouille à nouveau le trajet vers l’étage")
@@ -292,7 +292,7 @@ func _test_profiles_and_replay() -> void:
 	_check(state.profile.wallet.points == 280 and state.profile.progress.run_reward_points == 0 and investigation.conclusion(2).data.run_reward_points == 0, "Aucune des six missions ne rapporte une seconde récompense au rejeu")
 	_ok(profiles.reset_progress(), "Réinitialiser la progression depuis les paramètres")
 	_check(not state.profile.progress.started and investigation.current_chapter() == 1 and state.profile.progress.observations.size() == 6 and state.profile.progress.completed_missions.is_empty(), "Réinitialisation remet les six listes et les deux chapitres au début")
-	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("game_test_1"), "Réinitialisation conserve les données économiques")
+	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("avatar_orbit"), "Réinitialisation conserve les données économiques")
 	_check(not investigation.enter_chapter(2).ok and not investigation.conclusion(2).ok, "Après réinitialisation, ascenseur et bilan redeviennent verrouillés")
 
 func _complete(id: String, expected_reward: int = 50) -> void:
