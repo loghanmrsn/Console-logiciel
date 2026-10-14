@@ -65,6 +65,8 @@ func configure(id: String) -> void:
 		_build_lock()
 	elif mission_id == "computer":
 		_build_computer()
+	elif mission_id in ["network", "addressing", "security"]:
+		_build_diagnostic()
 	feedback_label = _text("")
 	feedback_label.name = "challenge_feedback"
 	feedback_label.hide()
@@ -166,6 +168,16 @@ func _build_computer() -> void:
 	correction_selector = _selector("computer_correction", "Choisir une correction", definition.get("corrections", []))
 	submit_button = _action("Vérifier et corriger l’ordinateur", "computer_validate", _submit_computer)
 
+func _build_diagnostic() -> void:
+	_text("Chapitre 2 · Simulation réseau locale. Les choix concernent uniquement les équipements fictifs de cette pièce.")
+	_observations()
+	_text("2 · Comparez les indices et identifiez la cause de la panne.")
+	diagnosis_selector = _selector(mission_id + "_diagnosis", "Choisir un diagnostic", definition.get("diagnoses", []))
+	_text("3 · Choisissez la correction qui résout cette cause.")
+	repair_selector = _selector(mission_id + "_repair", "Choisir une réparation", definition.get("repairs", []))
+	submit_button = _action("Vérifier diagnostic et correction", mission_id + "_validate", _submit_diagnostic)
+	submit_button.theme_type_variation = "PrimaryButton"
+
 func _selector(key: String, placeholder: String, choices: Array) -> OptionButton:
 	var selector := OptionButton.new()
 	selector.name = key
@@ -259,7 +271,7 @@ func _update_submit_state() -> void:
 		return
 	var seen: Array = _stored_observations()
 	var observed_all := _available and seen.size() >= observation_buttons.size()
-	if mission_id == "lock":
+	if mission_id in ["lock", "network", "addressing", "security"]:
 		diagnosis_selector.disabled = not observed_all
 		repair_selector.disabled = not observed_all
 		submit_button.disabled = _busy or _finished or not observed_all or _selection(diagnosis_selector).is_empty() or _selection(repair_selector).is_empty()
@@ -286,7 +298,7 @@ func _feedback(value: String, is_error: bool = false) -> void:
 	feedback_label.text = ("! " if is_error else "ℹ ") + value
 	feedback_label.show()
 	# The symbol and message remain understandable without depending on color.
-	feedback_label.add_theme_color_override("font_color", Color("92554f") if is_error else Color("345b50"))
+	feedback_label.remove_theme_color_override("font_color")
 	notification_requested.emit(value)
 
 func _submit_lighting() -> void:
@@ -306,6 +318,12 @@ func _submit_computer() -> void:
 		return
 	_busy = true
 	_finish_submission(_service.submit_computer(_stored_checks(), _selection(cause_selector), _selection(correction_selector)))
+
+func _submit_diagnostic() -> void:
+	if _busy or _finished:
+		return
+	_busy = true
+	_finish_submission(_service.submit_diagnostic(mission_id, _selection(diagnosis_selector), _selection(repair_selector)))
 
 func _finish_submission(result: Dictionary) -> void:
 	_busy = false
