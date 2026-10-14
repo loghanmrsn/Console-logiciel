@@ -18,8 +18,7 @@ var selected = 'home'
 
 var _icons: Array[TextureRect] = []
 var _contents: Array[Control] = []
-var _profile_detail: HBoxContainer
-var _profile_content: HBoxContainer
+var _profile_content: VBoxContainer
 var _profile: Dictionary = {}
 var _avatar_spec: Dictionary = {}
 var _frame_spec: Dictionary = {}
@@ -46,7 +45,7 @@ func _ready() -> void:
 		button.name = 'home_' + key
 		button.tooltip_text = destination[1]
 		button.theme_type_variation = 'NavigationButton'
-		button.size_flags_stretch_ratio = 1.8 if key == 'profiles' else 1.0
+		button.size_flags_stretch_ratio = 1.0
 		row.add_child(button)
 		buttons.append(button)
 		if key == 'profiles':
@@ -85,43 +84,34 @@ func _build_destination(button: Button, destination: String, title: String) -> v
 	destination_labels.append(label)
 
 func _build_profile(button: Button) -> void:
-	_profile_content = HBoxContainer.new()
+	_profile_content = VBoxContainer.new()
 	_profile_content.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_profile_content.alignment = BoxContainer.ALIGNMENT_CENTER
-	_profile_content.add_theme_constant_override('separation', 8)
+	_profile_content.add_theme_constant_override('separation', 1)
 	button.add_child(_profile_content)
 	_profile_content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_profile_content.offset_left = 10
-	_profile_content.offset_right = -12
-	_profile_content.offset_top = 6
-	_profile_content.offset_bottom = -6
+	_profile_content.offset_left = 8
+	_profile_content.offset_right = -8
+	_profile_content.offset_top = 5
+	_profile_content.offset_bottom = -5
 	_contents.append(_profile_content)
 	profile_avatar = AvatarIcon.new()
-	profile_avatar.custom_minimum_size = Vector2(44, 44)
-	profile_avatar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	profile_avatar.custom_minimum_size = Vector2(32, 32)
+	profile_avatar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_profile_content.add_child(profile_avatar)
-	var details = VBoxContainer.new()
-	details.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	details.alignment = BoxContainer.ALIGNMENT_CENTER
-	details.add_theme_constant_override('separation', 0)
-	_profile_content.add_child(details)
+	var destination = _clipped_label('Profil')
+	destination.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_profile_content.add_child(destination)
+	destination_labels.append(destination)
+	# Keep these data labels for callers; the visible identity belongs to the header.
 	profile_name_label = _clipped_label('Votre profil')
 	profile_name_label.name = 'navigation_profile_name'
-	details.add_child(profile_name_label)
-	_profile_detail = HBoxContainer.new()
-	_profile_detail.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_profile_detail.add_theme_constant_override('separation', 6)
-	details.add_child(_profile_detail)
-	var destination = _clipped_label('Profil')
-	_profile_detail.add_child(destination)
-	destination_labels.append(destination)
+	profile_name_label.hide()
+	_profile_content.add_child(profile_name_label)
 	profile_points_label = _clipped_label('0 pts')
 	profile_points_label.name = 'navigation_profile_points'
-	profile_points_label.theme_type_variation = 'SecondaryLabel'
-	profile_points_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	profile_points_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_profile_detail.add_child(profile_points_label)
+	profile_points_label.hide()
+	_profile_content.add_child(profile_points_label)
 
 func _clipped_label(value: String) -> Label:
 	var label = Label.new()
@@ -205,9 +195,4 @@ func fit(available_width: float, large: bool, compact: bool) -> void:
 		label.add_theme_font_size_override('font_size', (20 if compact else 22) if large else 16)
 	for icon in _icons:
 		icon.custom_minimum_size = Vector2(36,36) if large else (Vector2(28,28) if compact else Vector2(32,32))
-	profile_avatar.custom_minimum_size = Vector2(46, 46) if large else Vector2(42, 42)
-	profile_name_label.add_theme_font_size_override('font_size', 22 if large else 18)
-	destination_labels[3].add_theme_font_size_override('font_size', 18 if large else 14)
-	destination_labels[3].custom_minimum_size.x = 52 if large else 42
-	profile_points_label.add_theme_font_size_override('font_size', 18 if large else 14)
-	_profile_content.add_theme_constant_override('separation', 6 if compact else 8)
+	profile_avatar.custom_minimum_size = Vector2(36,36) if large else (Vector2(28,28) if compact else Vector2(32,32))
