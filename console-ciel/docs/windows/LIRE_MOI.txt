@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.4.2 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.5.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -13,7 +13,8 @@ pour y ajouter vos portraits personnels.
 
 PREMIER LANCEMENT
 La fenêtre est redimensionnable, en 1280 × 720 par défaut (minimum 800 × 480).
-Créez un profil puis choisissez Commencer. Le clavier virtuel permet aussi
+Créez un profil puis choisissez Commencer sur la carte de l’enquête gratuite.
+Le clavier virtuel permet aussi
 la saisie sans clavier physique. Continuer reprend la progression du profil.
 
 PROFIL ET IMAGES PERSONNELLES
@@ -48,7 +49,8 @@ Le clavier physique reste disponible.
 NAVIGATION
 Accueil, Boutique, Paramètres et Profil sont dans la barre translucide du bas.
 Le profil actif, son avatar et ses points sont affichés dans la barre.
-Aide / Crédits reste accessible dans Paramètres > À propos.
+Crédits est la dernière catégorie de Paramètres ; un bloc est aussi en bas
+de chaque catégorie. L’aide reste dans Paramètres > À propos.
 Haut et bas depuis un onglet rejoignent le contenu ; gauche et droite
 parcourent les onglets. La barre est masquée pendant l’enquête.
 Pause > Afficher / Masquer les objectifs permet de réduire leur liste.
@@ -65,6 +67,22 @@ la pause, boutons supérieurs gauche/droite pour les catégories.
 Les noms A/B ou Croix/Rond dépendent de la manette et de son mapping.
 Paramètres > Commandes > Test des commandes montre les entrées reçues.
 Une déconnexion suspend le jeu ; reconnecter ne reprend pas automatiquement.
+
+BIBLIOTHÈQUE ET APPARENCE
+Paramètres > Affichage > Disposition de l’accueil propose deux choix :
+- Enquête à gauche, quatre emplacements de jeux à droite (par défaut).
+- Couvertures égales avec défilement horizontal : Précédent/Suivant,
+  flèches ou manette pour parcourir les cartes. Le focus suit le défilement.
+Sur petit écran, le contenu s’adapte et peut défiler verticalement.
+
+Paramètres > Apparence propose six styles gratuits : Thème du profil,
+Brume, Sable, Sauge, Nuit, Aurore. Les couleurs du fond et des boutons sont
+indépendantes : choisir une couleur proposée ou Personnaliser (couleur RGB).
+Couleur du style retrouve la couleur prévue par le style choisi.
+Les styles gratuits ne consomment pas de points. Les thèmes cosmétiques
+équipés appartiennent au profil et restent dans la boutique.
+L’aperçu est immédiat ; Appliquer enregistre, Annuler restaure les réglages.
+Les anciens fichiers de paramètres restent acceptés.
 
 AFFICHAGE ET FERMETURE
 Paramètres > Affichage > Plein écran, puis Appliquer. Annuler restaure l'aperçu.
@@ -91,21 +109,35 @@ ENQUÊTE ET BOUTIQUE
 Trois défis pédagogiques fictifs : boucle électrique fermée, liaison de
 commande de serrure et diagnostic vidéo. Aucun câblage secteur, terminal
 réel ou réglage du système hôte n'est modifié. Chaque mission rapporte
-50 points à sa première réussite seulement. Les achats sont cosmétiques,
-en points virtuels, sans paiement réel. Rejouer ne redonne pas les récompenses.
+50 points à sa première réussite seulement, au maximum 150 points par profil.
+Rejouer ne redonne pas ces récompenses ; l’enquête reste gratuite.
+
+Boutique > Jeux présente Test 1, Test 2, Test 3 et Test 4, pour respectivement
+20, 30, 40 et 50 points (140 au total). Les vrais jeux ne sont pas encore prêts :
+ces emplacements ouvrent seulement une page « jeu en préparation ».
+Les ouvrir ne rapporte aucun point. Les cartes de l’accueil montrent les
+jeux achetés ; les profils affichent aussi leur nombre de jeux acquis.
+Boutique > Mes achats retrouve les acquisitions du joueur actif.
+Avatars, thèmes de profil et cadres restent dans leurs catégories.
+
+Un achat payant est refusé sans points ou lorsque le solde est insuffisant.
+Un article possédé n’est pas facturé deux fois. Une erreur de sauvegarde
+laisse points et inventaire inchangés. Chaque profil a ses achats et son solde.
+Les cosmétiques gratuits restent gratuits. Aucun compte ni paiement réel.
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
-Version 0.4.2 : nouvel éditeur, images locales et clavier à plusieurs pages.
-La capsule translucide et ses quatre destinations sont conservées.
-Clavier : 784 assertions ; éditeur : 644 ; images locales : 122 ;
-interface générale : 1988. Zéro échec dans ces suites headless.
-Les captures réelles ont été vérifiées sous Linux, y compris à 800 x 480 en
-grand texte. Le rapport du paquet Windows est disponible dans le dépôt GitHub.
-Pas de test Windows natif.
-Les tests du projet utilisent Godot en headless : cela ne prouve pas le
-fonctionnement du double-clic, du rendu, du son ou de la manette sur Windows.
-Essayer profils, paramètres, trois missions, reprise, boutique, équipement,
-fermeture puis relance. Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480,
+Version 0.5.0 : bibliothèque, boutique et profils, styles/couleurs et crédits.
+Les images locales, le clavier à plusieurs pages et la barre translucide sont
+conservés. Les rapports du projet et du paquet sont disponibles sur GitHub :
+https://github.com/loghanmrsn/Console-logiciel
+
+Les tests Godot Linux vérifient la logique et les sauvegardes ; les contrôles
+du pack compilé ne constituent pas un essai du binaire Windows natif.
+Sur votre PC, essayer : profil/photo/clavier, achat refusé avec zéro point,
+trois missions puis achat, page de préparation sans gain, changement de profil,
+les deux dispositions d’accueil, aperçu/Annuler/Appliquer des couleurs,
+Crédits, fermeture et relance avec points, achats et réglages conservés.
+Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480,
 en texte normal et grand texte. Vérifier aussi retrait/reconnexion USB.
 Windows 10/11 x86_64 avec pilote graphique compatible OpenGL 3.3 conseillé.
 L'application n'est pas signée par le projet. Aucun certificat n'est fourni.
