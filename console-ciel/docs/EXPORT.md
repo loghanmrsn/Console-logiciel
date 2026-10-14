@@ -19,7 +19,7 @@ XDG_CACHE_HOME="$PWD/.runtime-cache" tools/export.sh linux
 
 Vérifier notamment `linux_release.x86_64`, `linux_debug.x86_64`, `linux_release.arm64`, `linux_debug.arm64` et les modèles Windows si l'on exporte cette cible. Ne pas commettre les modèles, caches ou données personnelles. Le dossier temporaire ne contient que les modèles de cet essai.
 
-**État au 12 octobre 2026 :** les modèles officiels Windows x86_64 **4.6.3 stable** ont été récupérés, vérifiés et utilisés pour produire l'exécutable et le ZIP portables. Voir [WINDOWS.md](WINDOWS.md). Les modèles Linux sont toujours absents. L'export Pi nécessite notamment `linux_debug.arm64` et `linux_release.arm64`. Le projet source est lançable avec Godot ; un pack ZIP de ressources chargé par le moteur installé ne constitue pas un exécutable autonome. Les tentatives antérieures ARM64 et les journaux de la version intégrée sont indiqués dans [DELIVERY.md](DELIVERY.md). Aucun binaire ARM64 n'est annoncé comme produit ou testé sans cet export réussi.
+**Livraison 0.6.1 :** les modèles officiels **4.6.3 stable** sont utilisés pour les paquets Windows x86_64 et Raspberry Pi **ARM64**, conservés séparément. L’export Pi utilise `linux_release.arm64` ; `linux_debug.arm64` est nécessaire uniquement pour un export debug. Le programme ARM64 livré est un exécutable ELF autonome avec pack intégré. Le [bilan de livraison](DELIVERY.md), les [rapports Linux](../builds/README_LINUX.md) et le [guide Windows](WINDOWS.md) distinguent export, intégrité, exécution du pack avec Godot Linux x86_64 et lancement natif sur la cible.
 
 Pour la **0.3.0**, une tentative réelle d'export ARM64 autonome a échoué avec la sortie 1 et ces deux modèles manquants : [`tests/arm64-export-results.log`](../tests/arm64-export-results.log). Un pack ZIP de ressources a été exporté avec la sortie 0, contrôlé puis chargé pendant 30 frames par Godot headless : [`tests/pack-launch-results.log`](../tests/pack-launch-results.log). Le pack n'est pas un binaire Pi. Des refus de socket TCP de l'éditeur dans le sandbox apparaissent au stade de l'export de pack ; ils sont distincts de l'absence des modèles et du lancement propre du pack.
 
@@ -55,7 +55,7 @@ chmod +x builds/linux-x86_64/console-ciel.x86_64
 ./builds/linux-x86_64/console-ciel.x86_64 --fullscreen
 ```
 
-Sur Windows, décompresser tout `builds/Console_CIEL_Windows_x86_64.zip` puis lancer **Console_CIEL.exe**, ou depuis PowerShell `./Console_CIEL.exe --fullscreen`. L'archive inclut les ressources dans l'exécutable, les crédits et les licences. L'export a réussi sous Linux ; il reste à essayer sur un PC Windows réel.
+Sur Windows, décompresser tout `builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip` puis lancer **Console_CIEL.exe**, ou depuis PowerShell `./Console_CIEL.exe --fullscreen`. L’archive inclut les ressources dans l’exécutable, les crédits et les licences. L’export a réussi sous Linux ; il reste à essayer sur un PC Windows réel. Le script de réexport peut employer son nom historique `Console_CIEL_Windows_x86_64.zip`, distinct de la livraison versionnée.
 
 Pour refaire l'export et l'archive depuis la racine du projet avec Godot officiel et les modèles exacts installés :
 
@@ -65,16 +65,27 @@ Pour refaire l'export et l'archive depuis la racine du projet avec Godot officie
 
 Le script PowerShell vérifie le moteur et le projet, importe, exporte dans un dossier provisoire puis contrôle le PE x86_64, copie tous les fichiers associés et les licences, crée et vérifie le ZIP. Il ne publie rien si l'export échoue et conserve la livraison précédente. Voir [la procédure complète Windows](WINDOWS.md), y compris l'export par l'éditeur. `tools/export.sh windows` produit le binaire sous Linux ; c'est le script PowerShell qui assemble le ZIP portable.
 
-## Raspberry Pi 5, Raspberry Pi OS 64 bits, labwc
+## Raspberry Pi 4, Raspberry Pi OS 64 bits avec bureau
 
-Le guide [RASPBERRY_PI.md](RASPBERRY_PI.md) détaille l'installation retenue sous `~/Applications/console-ciel/releases/<version>/`, le lien `current`, les sauvegardes, journaux et le retour arrière. Les étapes suivantes résument l'export et son raccordement. Aucun pack d'autostart n'a été trouvé dans le dépôt ; le lanceur annoncé reste un livrable distinct.
+Le guide [RASPBERRY_PI.md](RASPBERRY_PI.md) décrit l’installation du paquet prêt à jouer, les photos, les sauvegardes, les journaux et les mises à jour. Le lanceur manuel **Lancer_Console_CIEL.sh** et le script facultatif **Installer_raccourci.sh** sont livrés dans le ZIP. Aucun autostart ni service système n’est ajouté. Les étapes suivantes résument la fabrication et la vérification d’une livraison.
 
 1. Confirmer un système 64 bits : `uname -m` doit donner `aarch64`.
 2. Exporter `Linux ARM64 Raspberry Pi` avec l'éditeur et les modèles 4.6.3.
-3. Copier le binaire ARM64 et le dossier des licences sur le Pi, dans le dossier attendu par le lanceur existant. Donner le droit d'exécution avec `chmod +x /chemin/console-ciel.arm64`.
-4. Depuis la **session graphique ouverte**, essayer `/chemin/console-ciel.arm64 --fullscreen`. Le renderer Compatibility requiert un pilote OpenGL/OpenGL ES fonctionnel. Pour diagnostiquer un souci sous Wayland/labwc, essayer explicitement `--display-driver wayland --rendering-driver opengl3_es`, puis XWayland avec `--display-driver x11`, selon les pilotes réellement disponibles.
-5. Configurer uniquement le chemin de ce binaire dans le **lanceur distinct existant**, qui le lance avec `--fullscreen` après ouverture du bureau. Aucun second fichier d'autostart ou service système n'est fourni.
-6. Vérifier profils, son, manette, relance, focus, plein écran et trois résolutions sur le matériel. Jouer les trois défis, reprendre après chacun, essayer la porte avant et après réparation, puis utiliser les points dans la boutique. Mesurer menu et enquête avec `--print-fps` et/ou le profileur Godot ; l'objectif de 60 images/s reste à confirmer.
+3. Préparer un dossier de livraison avec **console-ciel.arm64**, les scripts de `docs/linux/`, sa notice, **images_profil/** et les licences. Les modèles officiels réclament des symboles jusqu’à **GLIBC 2.28** ; Raspberry Pi OS Bookworm ou Trixie 64 bits avec bureau sont recommandés.
+4. Sur le Pi, depuis la **session graphique ouverte**, lancer `bash ./Lancer_Console_CIEL.sh`, éventuellement avec `--fullscreen`. Le lanceur sélectionne **gl_compatibility / opengl3_es**. Pour diagnostiquer la fenêtre, ajouter `--display-driver wayland` ou `--display-driver x11`, selon les pilotes réellement disponibles.
+5. Facultativement, lancer `bash ./Installer_raccourci.sh` pour créer une entrée du menu utilisateur. La future intégration à un lanceur automatique distinct doit respecter les mêmes données utilisateur et la session bureau ; elle n’est pas créée par ce paquet.
+6. Vérifier profils, photos, son, manette, relance, focus, plein écran et trois résolutions sur le matériel. Jouer les six défis, reprendre après chacun, essayer la porte avant et après réparation, l’ascenseur et le panneau de missions, puis les achats. Mesurer menu et enquête avec `--print-fps` et/ou le profileur Godot ; aucun résultat de FPS Raspberry Pi n’est déclaré comme acquis.
+
+Après création du ZIP portable, vérifier son binaire et son contenu depuis la racine du projet :
+
+```sh
+python3 tools/verify_linux_package.py \
+  --exe builds/linux-arm64-raspberry-pi-0.6.1/console-ciel.arm64 \
+  --zip builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip \
+  --report builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.verification.json
+```
+
+Cet outil vérifie la livraison existante ; il ne crée pas l’export ni les essais matériels. [Assemblage du projet complet Raspberry Pi](ARCHIVE_COMPLETE.md).
 
 Les réglages du bureau/écran, le son et les permissions des périphériques relèvent de la session Raspberry Pi OS. Ne pas lancer l'application en root. Quitter ferme l'application ; « Arrêt système non configuré » reste indisponible jusqu'à une intégration spécifique, limitée et testée avec les droits de session. Aucun faux réglage de luminosité matérielle, Wi-Fi ou Bluetooth.
 
