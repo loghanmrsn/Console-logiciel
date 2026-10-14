@@ -5,7 +5,7 @@ extends RefCounted
 ## controller_mapping.json; gameplay code consumes named InputMap actions.
 const NO_CONTROLLER_DEVICE := 2147483647
 const MAPPING_PATH := "res://data/controller_mapping.json"
-const JOY_ACTIONS := ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "tab_previous", "tab_next", "game_up", "game_down", "game_left", "game_right", "game_interact", "pause"]
+const JOY_ACTIONS := ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "tab_previous", "tab_next", "game_up", "game_down", "game_left", "game_right", "game_interact", "game_missions", "pause"]
 static var controller_device := NO_CONTROLLER_DEVICE
 static var mapping_error := ""
 static var _joy_mapping: Dictionary = {}
@@ -21,7 +21,7 @@ static func configure(deadzone: float = 0.25) -> Dictionary:
 		"tab_previous": [_key(KEY_Q)], "tab_next": [_key(KEY_E)],
 		"game_up": [_key(KEY_UP), _key(KEY_Z)], "game_down": [_key(KEY_DOWN), _key(KEY_S)],
 		"game_left": [_key(KEY_LEFT), _key(KEY_Q)], "game_right": [_key(KEY_RIGHT), _key(KEY_D)],
-		"game_interact": [_key(KEY_SPACE)], "pause": [_key(KEY_P)]
+		"game_interact": [_key(KEY_SPACE)], "game_missions": [_key(KEY_T)], "pause": [_key(KEY_P)]
 	}
 	for action in JOY_ACTIONS:
 		var events: Array = keys[action]
@@ -72,6 +72,10 @@ static func validate_mapping(document: Variant) -> Dictionary:
 	if not document is Dictionary or not _bounded_integer(document.get("schema_version"), 1, 1) or not document.get("actions") is Dictionary:
 		return _mapping_failure("Version ou structure de correspondance manette invalide.")
 	for action in JOY_ACTIONS:
+		# Previous custom HID files do not define this new shortcut. Preserve
+		# their measured mappings and keep T usable without guessing a HID index.
+		if action == "game_missions" and not document.actions.has(action):
+			continue
 		if not document.actions.has(action):
 			return _mapping_failure("Commande manette obligatoire absente : " + action)
 	var normalized: Dictionary = {}
@@ -97,6 +101,8 @@ static func validate_mapping(document: Variant) -> Dictionary:
 		elif spec.has("direction"):
 			return _mapping_failure("Un sens nécessite un axe : " + action)
 		normalized[action] = output
+	if not normalized.has("game_missions"):
+		normalized.game_missions = {}
 	return {"ok": true, "error": "", "data": normalized}
 
 static func _bounded_integer(value: Variant, minimum: int, maximum: int) -> bool:
