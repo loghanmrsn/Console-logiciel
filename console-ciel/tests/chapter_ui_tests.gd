@@ -420,12 +420,17 @@ func _test_compact_layouts() -> void:
 			_check(settings.apply_settings(values).ok, "Mode de lecture enregistré pour vérifier l’interface de jeu")
 			root.size = resolution
 			await _frames(10)
+			app.demo.world.player.position = app.demo.world.CHAPTER_TWO_CHECKPOINTS["security"]
+			await _physics_frames(3)
+			await _frames(3)
 			var tracker := _find("mission_tracker")
 			if tracker != null and not tracker.is_expanded():
 				await _key(KEY_T)
-			for id in ["mission_board", "game_objectives", "mission_chapter", "mission_progress", "game_pause", "game_interact"]:
+			for id in ["mission_board", "game_objectives", "mission_chapter", "mission_progress", "game_pause"]:
 				var control := _find(id) as Control
 				_check(control != null and control.is_visible_in_tree() and Rect2(Vector2.ZERO, Vector2(root.size)).grow(1).encloses(control.get_global_rect()), "HUD dans l’écran %s, grands textes=%s : %s" % [resolution, large, id])
+			var interact := _find("game_interact") as Control
+			_check(interact != null and not interact.is_visible_in_tree(), "Un équipement terminé ne conserve aucun bouton d’interaction dans le HUD compact")
 			await _key(KEY_T)
 			_check(tracker != null and not tracker.is_expanded(), "Le panneau se replie dans chaque résolution et mode de lecture")
 			var board := _find("mission_board") as Control
@@ -452,7 +457,7 @@ func _test_shop_and_isolation() -> void:
 	var before: Dictionary = state.profile.duplicate(true)
 	await _activate("product_game_test_1")
 	await _activate("modal_confirm")
-	_check(state.profile.wallet.points == before.wallet.points - 20 and "game_test_1" in state.profile.owned_items, "Les points du chapitre 2 servent à un achat natif dans la boutique")
+	_check(state.profile.wallet.points == before.wallet.points - 200 and state.profile.wallet.points == 100 and "game_test_1" in state.profile.owned_items, "Les 300 points des deux chapitres achètent un jeu à 200 points et laissent 100 points")
 	_check(state.profile.progress == before.progress and saves.read_profile(first_id).data == state.profile, "La boutique conserve la progression des deux étages")
 	await _key(KEY_ESCAPE)
 	var completed: Dictionary = state.profile.duplicate(true)
