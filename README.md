@@ -1,5 +1,21 @@
 # Console CIEL — version intégrée de démonstration
 
+## Jouer sur Raspberry Pi 4, système 64 bits
+
+**[Télécharger Console CIEL 0.6.1 pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip)**. Sur **Raspberry Pi OS 64 bits avec bureau**, extraire tout le ZIP, ouvrir un terminal dans le dossier extrait, puis :
+
+```sh
+bash ./Lancer_Console_CIEL.sh
+# Pour le plein écran :
+bash ./Lancer_Console_CIEL.sh --fullscreen
+```
+
+Le logiciel est **console-ciel.arm64**, avec ses ressources intégrées ; Godot n’a pas besoin d’être installé pour jouer. `uname -m` doit indiquer **aarch64**. Bookworm ou Trixie à jour sont recommandés. Le lanceur utilise le rendu **Compatibility / OpenGL ES 3** et la session graphique de l’utilisateur. Un raccourci facultatif s’ajoute avec `bash ./Installer_raccourci.sh`.
+
+**[Projet complet Raspberry Pi avec les sources](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip)** : après extraction, lancer depuis `console-ciel/builds/linux-arm64-raspberry-pi-0.6.1/`. Déposer vos photos dans **images_profil/** à côté de `console-ciel.arm64`. Les profils restent généralement dans `~/.local/share/console-ciel/`, séparés de l’exécutable.
+
+Le jeu conserve les deux chapitres et les ajustements Windows 0.6.1 : profil en haut à gauche, jeux Test à 200 points et repères masqués après réussite. [Installation et données Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md), [notice Linux](console-ciel/builds/README_LINUX.md) et [rapports de livraison](console-ciel/docs/DELIVERY.md). Le lancement natif, les pilotes, le son et la manette réelle restent à essayer sur votre Pi 4 ; aucun FPS matériel n’est annoncé comme mesuré dans le cloud.
+
 **Confort visuel et tarifs — 0.6.1 :** le profil actif, son avatar et ses points sont en haut à gauche, avec quatre onglets centrés dans la barre du bas. **Test 1 à Test 4 coûtent désormais 200 points chacun** ; les anciens achats sont conservés sans supplément. Après une mission réussie et sauvegardée, son repère et son bouton d’interaction disparaissent ; les meubles réparés et l’ascenseur restent visibles. Un chapitre terminé peut être revu par **Pause → Bilan du chapitre**. [Parcours de l’enquête](console-ciel/docs/ENQUETE.md) et [bibliothèque et tarifs](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 
 **Enquête, chapitre 2 — 0.6.0 :** après les trois épreuves du local technique, l’ascenseur situé en bas du bureau donne accès à la salle réseau à l’étage. Trois nouvelles missions portent sur la liaison RJ45, l’adressage IPv4 et la protection Wi-Fi. Le tableau de missions compact à droite se déplie ou se replie avec **T** ou le **bouton de face haut** de la manette. [Parcours des deux chapitres](console-ciel/docs/ENQUETE.md).
@@ -20,7 +36,7 @@ Les rapports de la livraison détaillent les contrôles du paquet exporté. Les 
 
 **Navigation 0.4.1 :** introduction de la barre inférieure translucide avec **Accueil → Boutique → Paramètres → Profil**. Depuis 0.6.1, avatar, pseudo et points sont en haut à gauche ; la barre conserve ses quatre onglets centrés. Les crédits figurent dans la dernière catégorie **Paramètres → Crédits** ; l’aide reste dans **À propos**. [Captures réelles et détails](console-ciel/docs/NAVIGATION_TRANSLUCIDE.md). La [version Windows 0.4.0](console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip) est conservée.
 
-**Profils 0.4.2 :** nouvel aperçu du profil, photos locales et clavier AZERTY avec minuscules, **⇧**, **123** et **ABC**. Déposez vos photos dans **images_profil/** à côté de `Console_CIEL.exe`, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. [Guide des profils](console-ciel/docs/PROFILS_ET_CLAVIER.md).
+**Profils 0.4.2 :** nouvel aperçu du profil, photos locales et clavier AZERTY avec minuscules, **⇧**, **123** et **ABC**. Déposez vos photos dans **images_profil/** à côté de `Console_CIEL.exe` sur Windows ou de `console-ciel.arm64` sur le Pi, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. [Guide des profils](console-ciel/docs/PROFILS_ET_CLAVIER.md).
 
 **[Télécharger le projet complet 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip)** : sources et version Windows réunies. Après extraction, le logiciel est dans `console-ciel/builds/windows-x86_64-confort-0.6.1/Console_CIEL.exe`. [Contenu du dossier complet](console-ciel/docs/ARCHIVE_COMPLETE.md).
 
@@ -166,7 +182,7 @@ Après fermeture, supprimer uniquement ces dossiers d'essai pour réinitialiser 
 
 [Le guide Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md) précise les fichiers à copier, l'installation par versions, les journaux, la conservation des profils et le retour à la version précédente. [EXPORT.md](console-ciel/docs/EXPORT.md) indique les modèles requis et les commandes.
 
-Les presets Linux x86_64, **Windows Desktop x86_64** et Linux **ARM64** sont configurés pour les modèles **4.6.3 stable**. Les modèles officiels Windows ont été récupérés et l'export portable a réussi le **12 octobre 2026**. Les modèles Linux restent absents ; aucun exécutable ARM64 autonome n'est annoncé comme produit ou testé. Le préréglage Pi est conservé. Le projet source fonctionne avec le moteur installé. Un pack de ressources n'est pas un binaire autonome.
+Les presets Linux x86_64, **Windows Desktop x86_64** et Linux **ARM64** utilisent les modèles officiels **4.6.3 stable**. Les livraisons portables Windows et Raspberry Pi sont séparées. Le paquet Pi 4 contient un exécutable **ELF ARM64 autonome avec pack intégré**, ses lanceurs, l’aide et les licences. L’export, l’intégrité des ressources et les essais avec Godot Linux sont distingués du lancement natif sur le Pi dans les rapports de livraison.
 
 L'export et les tests du projet ont été exécutés sous Linux. Aucun lancement par double-clic, rendu, son ou périphérique USB n'a été testé sous Windows ici. Le [guide Windows](console-ciel/docs/WINDOWS.md) sépare ces vérifications et donne le parcours à tester sur votre PC.
 
@@ -174,7 +190,7 @@ Le lanceur automatique est un livrable distinct : un exécutable utilisateur lan
 
 **Quitter** ferme l'application après sauvegarde. `PlatformService` conserve **« Arrêt système non configuré »** indisponible. Fermeture de l'application, arrêt du système et coupure électrique sont trois opérations distinctes. Aucun état fictif de batterie, température ou réseau n'est affiché.
 
-[Le bilan de livraison](console-ciel/docs/DELIVERY.md) distingue tests automatiques, rendu visuel, essais manuels et matériel. [Les problèmes connus](console-ciel/docs/KNOWN_ISSUES.md) listent ce qui doit être vérifié avant une démonstration sur le Pi : modèles d'export, rendu réel, son, manette, mapping fabriqué, plein écran labwc et performances. Aucun chiffre de FPS sur Raspberry Pi n'est acquis ici.
+[Le bilan de livraison](console-ciel/docs/DELIVERY.md) distingue tests automatiques, rendu visuel, essais manuels et matériel. [Les problèmes connus](console-ciel/docs/KNOWN_ISSUES.md) listent ce qui doit être vérifié avant une démonstration sur le Pi : rendu réel, son, manette, mapping fabriqué, plein écran dans la session bureau et performances. Aucun chiffre de FPS sur Raspberry Pi n'est acquis ici.
 
 Crédits : **Loghan**, logiciel ; **binôme — nom à compléter**, construction et assemblage. Formes, icônes, décor et sons locaux originaux ; police intégrée à Godot. [Licences](console-ciel/assets/LICENSES.md).
 
