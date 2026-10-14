@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.4.1 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.4.2 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -8,11 +8,42 @@ Godot n'a pas besoin d'être installé pour jouer. Aucun droit administrateur,
 Bash, Python ou outil Raspberry Pi n'est nécessaire. Gardez tous les fichiers
 fournis à côté de l'exécutable : .pck, DLL ou exécutable console, s'ils existent.
 Ne lancez pas directement le programme depuis l'aperçu du ZIP.
+Le dossier images_profil est fourni à côté de Console_CIEL.exe ; conservez-le
+pour y ajouter vos portraits personnels.
 
 PREMIER LANCEMENT
 La fenêtre est redimensionnable, en 1280 × 720 par défaut (minimum 800 × 480).
 Créez un profil puis choisissez Commencer. Le clavier virtuel permet aussi
 la saisie sans clavier physique. Continuer reprend la progression du profil.
+
+PROFIL ET IMAGES PERSONNELLES
+Profil > Modifier ouvre la carte avec portrait, pseudo et clavier.
+Le pseudo accepte 1 à 16 caractères, en conservant minuscules et majuscules.
+Avatars présente les portraits gratuits et ceux déjà achetés dans la boutique.
+Mes images présente les fichiers locaux du dossier images_profil.
+Choisir une image modifie l'aperçu ; Valider enregistre, Annuler abandonne.
+
+Pour ajouter vos images : Mes images > Ouvrir le dossier, copier des PNG,
+JPG/JPEG ou WebP directement dans images_profil, puis Actualiser les images.
+Choisissez ensuite un portrait et validez. Aucun compte, transfert, accès
+Internet ni réexportation du programme n'est nécessaire.
+Limites : 8 Mio par fichier, 4096 pixels par côté, 128 images affichées.
+Les sous-dossiers ne sont pas parcourus ; les fichiers invalides sont ignorés.
+Une image absente ou illisible laisse apparaître l'avatar classique, sans
+perdre le profil, les points, les achats ou la progression.
+La sauvegarde conserve seulement le nom du fichier. Gardez ce nom stable
+et copiez aussi images_profil si vous déplacez le programme sur un autre PC.
+Après renommage d'une photo, choisissez le nouveau fichier puis validez.
+
+CLAVIER VIRTUEL
+Les lettres commencent en AZERTY minuscule. La touche ⇧ met la prochaine
+lettre en majuscule ; deux appuis rapides verrouillent les majuscules (⇪).
+Un nouvel appui revient aux minuscules. 123 affiche chiffres et ponctuation,
+#+= affiche d'autres symboles et lettres accentuées ; ABC revient aux lettres.
+Espace, Effacer, Valider et Annuler restent disponibles sur chaque page.
+Le texte et la position de saisie sont conservés en changeant de page.
+Flèches + Entrée, ou croix/joystick + bouton de face bas, activent les touches.
+Le clavier physique reste disponible.
 
 NAVIGATION
 Accueil, Boutique, Paramètres et Profil sont dans la barre translucide du bas.
@@ -64,11 +95,13 @@ réel ou réglage du système hôte n'est modifié. Chaque mission rapporte
 en points virtuels, sans paiement réel. Rejouer ne redonne pas les récompenses.
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
-Export Windows produit et archive contrôlée dans un environnement Linux.
-Navigation 0.4.1 : capsule translucide, quatre destinations et infos du profil.
-Atelier illustré et personnage animé conservés. Captures Godot réelles via
-X11/Mesa logiciel aux quatre résolutions,
-en texte normal et grand texte. Pas de test Windows natif.
+Version 0.4.2 : nouvel éditeur, images locales et clavier à plusieurs pages.
+La capsule translucide et ses quatre destinations sont conservées.
+Clavier : 784 assertions ; éditeur : 644 ; images locales : 122 ;
+interface générale : 1988. Zéro échec dans ces suites headless.
+Les captures réelles ont été vérifiées sous Linux, y compris à 800 x 480 en
+grand texte. Le rapport du paquet Windows est disponible dans le dépôt GitHub.
+Pas de test Windows natif.
 Les tests du projet utilisent Godot en headless : cela ne prouve pas le
 fonctionnement du double-clic, du rendu, du son ou de la manette sur Windows.
 Essayer profils, paramètres, trois missions, reprise, boutique, équipement,
