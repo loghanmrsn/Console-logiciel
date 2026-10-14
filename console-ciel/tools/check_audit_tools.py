@@ -18,12 +18,79 @@ def check(ok, message):
     if not ok: raise AssertionError(message)
     print('OK ' + message)
 
+def check_profile_packages(project, base):
+    """Verify delivery contents with inert, temporary binary fixtures only."""
+    (project/'project.godot').write_text('config/version="0.4.2"\n', encoding='utf-8')
+    pictures=project/'images_profil'
+    pictures.mkdir(exist_ok=True)
+    (pictures/'.gdignore').write_bytes(b'')
+    (pictures/'LIRE_MOI.txt').write_text('Images locales de test ; fichiers externes au PCK.\n', encoding='utf-8')
+    image_bytes=b'LOCAL IMAGE PACKAGING FIXTURE, NOT A DECODED IMAGE\n'
+    (pictures/'portrait personnel.png').write_bytes(image_bytes)
+    selected_relative='builds/releases/windows-x86_64-profils-0.4.2'
+    selected=project/selected_relative
+    old=project/'builds/windows-x86_64-navigation-0.4.1'
+    for directory, content in ((selected, b'INERT CURRENT BINARY FIXTURE\n'), (old, b'INERT PREVIOUS BINARY FIXTURE\n')):
+        (directory/'assets/licenses').mkdir(parents=True)
+        # Packaging preserves existing bytes; these are deliberately not PE files.
+        (directory/'Console_CIEL.exe').write_bytes(content)
+        (directory/'LIRE_MOI.txt').write_text('Livraison temporaire de test.\n', encoding='utf-8')
+        (directory/'assets/LICENSES.md').write_text('Fixture licences.\n', encoding='utf-8')
+        (directory/'assets/licenses/GODOT_MIT.txt').write_text('Fixture Godot licence.\n', encoding='utf-8')
+    shutil.copytree(pictures, selected/'images_profil')
+    binary_before={path: path.read_bytes() for path in (selected/'Console_CIEL.exe', old/'Console_CIEL.exe')}
+
+    spec=importlib.util.spec_from_file_location('complete_package_fixture', project/'tools/package_complete.py')
+    complete=importlib.util.module_from_spec(spec); spec.loader.exec_module(complete)
+    current_output=base/'current-delivery.zip'
+    report=complete.create_archive(project, current_output, selected_relative, current_windows_only=True)
+    selected_prefix='console-ciel/'+selected_relative+'/'
+    old_prefix='console-ciel/builds/windows-x86_64-navigation-0.4.1/'
+    with ZipFile(current_output) as archive:
+        names=set(archive.namelist())
+        check(archive.testzip() is None and report['crc_valid'] and report['all_source_hashes_verified'], 'Livraison courante : CRC et empreintes source vérifiés')
+        check(archive.read(selected_prefix+'Console_CIEL.exe')==binary_before[selected/'Console_CIEL.exe'], 'Livraison courante : binaire sélectionné préservé avec chemin imbriqué')
+        for prefix in ('console-ciel/images_profil/', selected_prefix+'images_profil/'):
+            check({prefix+'.gdignore', prefix+'LIRE_MOI.txt', prefix+'portrait personnel.png'}.issubset(names)
+                  and archive.read(prefix+'portrait personnel.png')==image_bytes,
+                  'Livraison courante : dossier local, notice, .gdignore et image inclus dans '+prefix)
+        check(not any(name.startswith(old_prefix) for name in names), 'Livraison courante : ancien dossier binaire exclu de l’archive')
+        manifest=json.loads(archive.read('console-ciel/CONTENU_ARCHIVE.json'))
+        check(manifest['latest_windows_directory']==selected_relative
+              and any(item['path']=='builds/windows-x86_64-navigation-0.4.1/' for item in manifest['excluded'])
+              and any('conservés séparément' in note for note in manifest['notes']),
+              'Livraison courante : manifeste indique la sélection et la conservation séparée')
+    check(all(path.read_bytes()==content for path, content in binary_before.items()), 'Livraison courante : nouveaux et anciens binaires restent intacts sur disque')
+
+    default_output=base/'default-delivery.zip'
+    default_report=complete.create_archive(project, default_output, selected_relative)
+    with ZipFile(default_output) as archive:
+        check(archive.testzip() is None
+              and archive.read(old_prefix+'Console_CIEL.exe')==binary_before[old/'Console_CIEL.exe']
+              and archive.read(selected_prefix+'Console_CIEL.exe')==binary_before[selected/'Console_CIEL.exe'],
+              'Mode par défaut : ancien et nouveau binaire toujours inclus')
+    check(not any(item['path']=='builds/windows-x86_64-navigation-0.4.1/' for item in default_report['excluded'])
+          and all(path.read_bytes()==content for path, content in binary_before.items()),
+          'Mode par défaut : conservation sur disque et ancien comportement préservés')
+
+    spec=importlib.util.spec_from_file_location('source_package_fixture', project/'tools/package_source.py')
+    source=importlib.util.module_from_spec(spec); spec.loader.exec_module(source)
+    source_output=base/'profile-source.zip'
+    source.create_archive(project, source_output)
+    with ZipFile(source_output) as archive:
+        names=set(archive.namelist())
+        check({'console-ciel/images_profil/'+name for name in ('.gdignore', 'LIRE_MOI.txt', 'portrait personnel.png')}.issubset(names)
+              and archive.read('console-ciel/images_profil/portrait personnel.png')==image_bytes,
+              'Archive source : dossier images_profil et images personnelles locales inclus')
+        check(archive.testzip() is None and not any(name.startswith('console-ciel/builds/') for name in names),
+              'Archive source : CRC valide et livraisons binaires exclues')
+
 def run():
     with tempfile.TemporaryDirectory(prefix='ciel-audit-tools-') as temporary:
         base=Path(temporary)
         project=base/'project with spaces'
         shutil.copytree(PROJECT/'tools',project/'tools',ignore=shutil.ignore_patterns('__pycache__'))
-        for folder in ('scenes','scripts','assets','themes','data','tests','docs'): (project/folder).mkdir()
+        for folder in ('scenes','scripts','assets','themes','data','tests','docs','images_profil'): (project/folder).mkdir()
         for name in ('project.godot','default_bus_layout.tres','export_presets.cfg','README.md','.gitignore'): (project/name).write_text('fixture')
         spec=importlib.util.spec_from_file_location('package',project/'tools/package_source.py')
         package=importlib.util.module_from_spec(spec);spec.loader.exec_module(package)
@@ -43,6 +110,7 @@ def run():
         else: raise AssertionError('Output symlink accepted')
         check(external.read_text()=='protected test data','Lien de sortie refusé')
         out.unlink()
+        check_profile_packages(project,base)
         stub=base/'godot stub'
         stub.write_text('''#!/usr/bin/env python3
 import os,sys,time
