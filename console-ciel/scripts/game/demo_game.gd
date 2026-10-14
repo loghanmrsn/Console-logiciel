@@ -4,6 +4,7 @@ extends Control
 const GlassButton = preload('res://scripts/ui/translucent_button.gd')
 const WorldScene = preload('res://scenes/investigation_world.tscn')
 const Challenge = preload('res://scripts/game/challenge_panel.gd')
+const MissionTracker = preload('res://scripts/game/mission_tracker.gd')
 
 signal menu_requested
 signal settings_requested
@@ -25,7 +26,8 @@ var _hint: Label
 var _objectives: VBoxContainer
 var _objective_panel: PanelContainer
 var _objective_toggle: Button
-var _objectives_expanded=false
+var _objectives_expanded=true
+var mission_tracker: Control
 var _target_label: Label
 var _interact_button: Button
 var _layer: CanvasLayer
@@ -48,6 +50,7 @@ var _controller_saved_focus: Control
 var _controller_saved_focus_key := ''
 var _controller_saved_scroll := 0
 var _controller_deferred_conclusion := false
+var _missions_held := false
 
 class RoomViewport extends SubViewportContainer:
 	func _draw() -> void:
@@ -108,33 +111,24 @@ func _build() -> void:
 	var top=HBoxContainer.new()
 	top.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	hud_column.add_child(top)
-	_objective_panel=PanelContainer.new()
-	_objective_panel.theme_type_variation='HUDPanel'
-	_objective_panel.custom_minimum_size.x=260
-	_objective_panel.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
-	_objective_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
-	top.add_child(_objective_panel)
-	var objectives_column=VBoxContainer.new()
-	objectives_column.add_theme_constant_override('separation',4)
-	_objective_panel.add_child(objectives_column)
-	_objective_toggle=_button(objectives_column,'Objectifs',_toggle_objectives,'game_objectives')
-	_objective_toggle.custom_minimum_size.y=32
-	_objective_toggle.add_theme_font_size_override('font_size',16)
-	_objectives=VBoxContainer.new()
-	_objectives.add_theme_constant_override('separation',4)
-	objectives_column.add_child(_objectives)
-	_hint=_label(objectives_column,'Approchez le tableau électrique.')
-	_hint.custom_minimum_size.x=0
-	_hint.hide()
-	_hint.add_theme_font_size_override('font_size',16)
+	var pause_button=_button(top,'Pause · P',request_pause,'game_pause')
+	pause_button.custom_minimum_size=Vector2(136,44)
+	pause_button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	pause_button.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
 	var flexible=Control.new()
 	flexible.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	flexible.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	top.add_child(flexible)
-	var pause_button=_button(top,'Pause · P',request_pause,'game_pause')
-	pause_button.custom_minimum_size=Vector2(136,44)
-	pause_button.size_flags_horizontal=Control.SIZE_SHRINK_END
-	pause_button.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	mission_tracker = MissionTracker.new()
+	mission_tracker.panel_expanded = true
+	mission_tracker.configure(InvestigationService)
+	add_child(mission_tracker)
+	mission_tracker.expanded_changed.connect(func(expanded: bool): _objectives_expanded = expanded)
+	# Retained aliases keep the pause menu and keyboard tests on the same board.
+	_objective_panel = mission_tracker.panel
+	_objective_toggle = mission_tracker.toggle_button
+	_objectives = mission_tracker.mission_list
+	_hint = mission_tracker.next_step_label
 	var space=Control.new()
 	space.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
@@ -199,7 +193,9 @@ func refresh() -> void:
 		_update_objectives()
 		if not _restored or changed:
 			_restored = true
-			if 'computer' in AppState.profile.progress.completed_missions:
+			world.restore_checkpoint()
+			var final_mission := 'security' if InvestigationService.current_chapter() == 2 else 'computer'
+			if final_mission in AppState.profile.progress.completed_missions:
 				_show_conclusion.call_deferred()
 	_sync_controls()
 	if _controller_waiting:
@@ -217,30 +213,21 @@ func _progress_changed(progress: Dictionary) -> void:
 	_update_objectives()
 
 func _current_mission() -> String:
-	for mission in RewardService.missions:
+	for mission in InvestigationService.chapter_missions():
 		if InvestigationService.mission_state(mission.id) in ['available','in_progress']:return mission.id
 	return ''
 
 func _toggle_objectives() -> void:
-	_objectives_expanded=not _objectives_expanded
-	_update_objectives()
+	if mission_tracker == null: return
+	# Pause owns the input lock, but its explicit action can change the board.
+	mission_tracker.set_input_enabled(true)
+	mission_tracker.toggle_panel()
+	_sync_controls()
 
 func _update_objectives() -> void:
-	for child in _objectives.get_children():
-		_objectives.remove_child(child)
-		child.queue_free()
-	for mission in RewardService.missions:
-		var status: String = InvestigationService.mission_state(mission.id)
-		var prefix: String = {'locked': 'Verrouillé', 'available': 'Disponible', 'in_progress': 'En cours', 'completed': '✓ Terminé'}.get(status, 'Disponible')
-		var short_name: String = {'lighting':'Éclairage', 'lock':'Porte', 'computer':'Ordinateur'}.get(mission.id, mission.name)
-		var label=_label(_objectives, '%s · %s' % [short_name, prefix])
-		label.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
-		if status in ['available','in_progress']: label.add_theme_color_override('font_color',Color('#345F71'))
-	var done: Array = AppState.profile.get('progress', {}).get('completed_missions', [])
-	_objectives.visible=_objectives_expanded
-	_objective_toggle.text=('Masquer' if _objectives_expanded else {'lighting':'Éclairage','lock':'Porte','computer':'Ordinateur'}.get(_current_mission(),'Bilan'))+' · %d / 3'%done.size()
-	_hint.visible=not _objectives_expanded and get_viewport_rect().size.y>=800
-	_hint.text = 'Lisez le message de l’ordinateur.' if done.has('computer') else ('Examinez l’ordinateur dans le bureau.' if done.has('lock') else ('Examinez la liaison de commande de la porte.' if done.has('lighting') else 'Approchez le tableau électrique.'))
+	if mission_tracker != null:
+		mission_tracker.refresh()
+		_hint = mission_tracker.next_step_label
 
 func _resize_viewport() -> void:
 	if not is_inside_tree(): return
@@ -267,7 +254,6 @@ func _settings_changed(_value: Dictionary) -> void:
 	if is_inside_tree():
 		_sync_overlay_theme()
 		_update_objectives()
-		_hint.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
 		_target_label.add_theme_font_size_override('font_size',22 if SettingsService.current.get('large_text',false) else 18)
 		_resize_viewport.call_deferred()
 		if not overlay_kind.is_empty(): _fit_modal.call_deferred(); _wire_modal.call_deferred()
@@ -276,6 +262,7 @@ func _visibility_changed() -> void:
 	if _overlay != null:
 		_overlay.visible = is_visible_in_tree() and not overlay_kind.is_empty()
 	if not is_visible_in_tree():
+		_missions_held = false
 		_release_focus_modes()
 	elif not overlay_kind.is_empty() and _disabled_controls.is_empty():
 		_disable_focus(get_tree().root)
@@ -298,7 +285,12 @@ func _release_focus_modes() -> void:
 	_disabled_controls.clear()
 
 func _sync_controls() -> void:
-	if is_instance_valid(world): world.set_controls_enabled(is_visible_in_tree() and not paused and overlay_kind.is_empty())
+	var enabled := is_visible_in_tree() and not paused and overlay_kind.is_empty()
+	if not enabled: _missions_held = false
+	if is_instance_valid(world): world.set_controls_enabled(enabled)
+	if is_instance_valid(mission_tracker):
+		mission_tracker.visible = enabled
+		mission_tracker.set_input_enabled(enabled)
 
 func _sync_overlay_theme() -> void:
 	if _overlay == null: return
@@ -314,9 +306,20 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('game_interact'): _interact()
 
 func _input(event: InputEvent) -> void:
+	if not ControllerService.accepts_event(event): return
+	if event.is_action_released('game_missions'):
+		_missions_held = false
+		return
 	# La confirmation globale possède la navigation, y compris Start/P.
 	if get_tree().get_first_node_in_group('blocking_confirmation')!=null: return
 	if not is_visible_in_tree() or event.is_echo(): return
+	if event.is_action_pressed('game_missions'):
+		if not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
+			if not _missions_held:
+				_missions_held = true
+				_toggle_objectives()
+			get_viewport().set_input_as_handled()
+		return
 	if not overlay_kind.is_empty() and not SceneRouter.gameplay_allowed():
 		if event.is_action('ui_accept') or event.is_action('game_interact') or event.is_action('ui_cancel') or event.is_action('pause'):
 			get_viewport().set_input_as_handled()
@@ -335,13 +338,19 @@ func _interact() -> void:
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if id == 'elevator':
+		_show_elevator()
+		return
 	var state: String = InvestigationService.mission_state(id)
 	if state == 'locked':
-		_show_dialog('Un préalable manque', 'Rétablissez d’abord l’éclairage pour lire les observations de la serrure.' if id == 'lock' else 'Débloquez la porte du bureau pour accéder à l’ordinateur.', _close_overlay)
+		var blocked := {'lock': 'Rétablissez d’abord l’éclairage pour lire les observations de la serrure.', 'computer': 'Débloquez la porte du bureau pour accéder à l’ordinateur.', 'network': 'Terminez le rez-de-chaussée puis prenez l’ascenseur.', 'addressing': 'Rétablissez la liaison Ethernet avant de vérifier l’adresse du poste.', 'security': 'Corrigez l’adresse IP du poste avant de protéger la connexion Wi-Fi.'}
+		_show_dialog('Un préalable manque', str(blocked.get(id, 'Terminez la mission précédente.')), _close_overlay)
 		return
 	if state == 'completed':
-		if id == 'computer': _show_conclusion()
-		else: _show_dialog('Équipement rétabli', 'La lampe fonctionne : le courant peut parcourir une boucle fermée.' if id == 'lighting' else 'La porte est ouverte : la liaison transmet maintenant la commande à l’actionneur.', _close_overlay)
+		if id in ['computer', 'security']: _show_conclusion()
+		else:
+			var definition: Dictionary = InvestigationService.mission(id)
+			_show_dialog('Équipement rétabli', str(definition.get('success_explanation', 'Cette mission est terminée et sa récompense a déjà été enregistrée.')), _close_overlay)
 		return
 	_busy = true
 	var result: Dictionary = InvestigationService.begin_mission(id)
@@ -366,8 +375,40 @@ func _mission_completed(result: Dictionary) -> void:
 	var clue_text: String = str(data.get('clue', {}).get('text', ''))
 	if not clue_text.is_empty(): explanation += '\n\n' + clue_text
 	var reward_text := '%d points nouvellement gagnés.' % reward if reward > 0 else 'Déjà récompensée : aucun point ajouté pour cette mission rejouée.'
-	var next: Callable = _show_conclusion if data.get('mission_id') == 'computer' else _close_overlay
+	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security'] else _close_overlay
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
+
+func _show_elevator() -> void:
+	if not InvestigationService.can_use_elevator():
+		_show_dialog('Ascenseur verrouillé', 'L’accès à l’étage sera disponible après les trois missions du rez-de-chaussée : éclairage, porte et ordinateur. Consultez le panneau Missions avec T ou le bouton du haut de la manette.', _close_overlay)
+		return
+	var destination := 1 if InvestigationService.current_chapter() == 2 else 2
+	_open_overlay('elevator')
+	_label(modal_content, 'Ascenseur · CIEL', 26)
+	_label(modal_content, 'Étage 1 · Chapitre 2' if destination == 2 else 'Rez-de-chaussée · Chapitre 1', 22)
+	_label(modal_content, 'La salle réseau vous attend : rétablissez une liaison Ethernet, corrigez une adresse IP et protégez un point d’accès Wi-Fi.' if destination == 2 else 'Retournez dans le bureau. Vos missions terminées et votre progression dans les deux chapitres sont conservées.')
+	var travel := _button(modal_content, 'Monter au chapitre 2' if destination == 2 else 'Revenir au chapitre 1', func(): _travel_to_chapter(destination), 'elevator_travel')
+	travel.theme_type_variation = 'PrimaryButton'
+	_button(modal_content, 'Rester dans la pièce', _close_overlay, 'elevator_cancel')
+	_wire_modal()
+
+func _travel_to_chapter(destination: int) -> void:
+	if _busy or overlay_kind != 'elevator': return
+	_busy = true
+	var result: Dictionary = InvestigationService.enter_chapter(destination)
+	_busy = false
+	if not result.ok:
+		_show_dialog('Déplacement non enregistré', result.error + '\nVous restez dans la pièce actuelle. Votre progression est conservée.', _show_elevator)
+		return
+	# The service has committed the checkpoint before the new room is displayed.
+	world.restore_progress(AppState.profile.progress)
+	world.restore_checkpoint()
+	_close_overlay()
+	if not SettingsService.current.get('reduce_motion', false):
+		_room.modulate = Color(.76, .83, .80)
+		var arrival := create_tween()
+		arrival.tween_property(_room, 'modulate', Color.WHITE, .24)
+	notification_requested.emit('Chapitre 2 · Bienvenue dans la salle réseau.' if destination == 2 else 'Chapitre 1 · Retour au bureau.')
 
 func request_pause() -> void:
 	if not is_visible_in_tree() or not overlay_kind.is_empty(): return
@@ -483,7 +524,7 @@ func handle_back() -> void:
 		'controller_pause': return
 		'': request_pause()
 		'confirm': _show_conclusion()
-		'challenge', 'pause': _close_overlay()
+		'challenge', 'pause', 'elevator': _close_overlay()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
 
@@ -515,14 +556,18 @@ func _show_conclusion() -> void:
 		_show_dialog('Enquête en cours',result.error,_close_overlay)
 		return
 	_open_overlay('conclusion')
-	_label(modal_content, 'Ordinateur rétabli · Bureau fictif', 22)
-	_label(modal_content, 'Le message retrouvé', 28)
+	var chapter := InvestigationService.current_chapter()
+	_label(modal_content, 'Chapitre %d terminé · %s' % [chapter, 'Bureau fictif' if chapter == 1 else 'Salle réseau'], 22)
+	_label(modal_content, 'Le message retrouvé' if chapter == 1 else 'Un réseau rétabli et protégé', 28)
 	_label(modal_content, str(result.data.message))
 	_label(modal_content, 'Bilan de l’enquête', 24)
-	_label(modal_content, '✓ Éclairage : un circuit doit former une boucle fermée.\n✓ Serrure : une alimentation correcte ne garantit pas la transmission de la commande.\n✓ Ordinateur : observer et vérifier permet de distinguer une panne du poste d’une liaison vidéo débranchée.')
+	_label(modal_content, '✓ Éclairage : un circuit doit former une boucle fermée.\n✓ Serrure : une alimentation correcte ne garantit pas la transmission de la commande.\n✓ Ordinateur : observer et vérifier permet de distinguer une panne du poste d’une liaison vidéo débranchée.' if chapter == 1 else '✓ Ethernet : un lien réseau nécessite une liaison physique correctement connectée.\n✓ IPv4 : le poste et sa passerelle doivent partager un réseau cohérent.\n✓ Wi-Fi : utilisez un chiffrement adapté pour protéger l’accès au réseau.')
 	var progress: Dictionary = AppState.profile.get('progress', {})
 	_label(modal_content, '%d points nouvellement gagnés pendant cette partie.\nSolde total du profil : %d points.' % [int(progress.get('run_reward_points', 0)), int(AppState.profile.get('wallet', {}).get('points', 0))], 22)
 	_label(modal_content, 'Simulations pédagogiques fictives. Aucune intervention sur le matériel ou le système hôte.')
+	_label(modal_content, 'L’ascenseur en bas du bureau est maintenant déverrouillé. Revenez dans la pièce pour monter au chapitre 2.' if chapter == 1 else 'Vous pouvez rester à cet étage et consulter vos équipements, ou reprendre l’ascenseur pour revisiter le bureau.')
+	var stay := _button(modal_content, 'Revenir dans la pièce', _close_overlay, 'conclusion_stay')
+	stay.theme_type_variation = 'PrimaryButton'
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'conclusion_menu')
 	_button(modal_content, 'Rejouer', _confirm_replay, 'conclusion_replay')
 	_wire_modal()
