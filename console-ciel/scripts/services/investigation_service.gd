@@ -6,6 +6,58 @@ signal mission_changed(mission_id: String, state: String)
 
 var _authorizations: Dictionary = {}
 
+func current_chapter() -> int:
+	if AppState.profile.is_empty():
+		return 1
+	return 2 if AppState.profile.progress.room_id == "room_02" else 1
+
+func chapter_missions(chapter: int = 0) -> Array:
+	var selected := current_chapter() if chapter == 0 else chapter
+	if selected not in [1, 2]:
+		return []
+	if RewardService.missions.is_empty() and not RewardService.load_rules().ok:
+		return []
+	var definitions: Array = []
+	for definition in RewardService.missions:
+		if int(definition.chapter) == selected:
+			definitions.append(definition.duplicate(true))
+	return definitions
+
+func _chapter_complete(chapter: int) -> bool:
+	if AppState.profile.is_empty() or not AppState.profile.progress.started:
+		return false
+	var definitions := chapter_missions(chapter)
+	if definitions.size() != 3:
+		return false
+	for definition in definitions:
+		if definition.id not in AppState.profile.progress.completed_missions:
+			return false
+	return true
+
+func can_use_elevator() -> bool:
+	return _chapter_complete(1)
+
+func enter_chapter(chapter: int) -> Dictionary:
+	if chapter not in [1, 2]:
+		return SaveService._fail("Cet étage n’existe pas dans l’enquête.")
+	if AppState.profile.is_empty():
+		return SaveService._fail("Aucun profil actif.")
+	var validation := SaveService.validate_profile(AppState.profile)
+	if not validation.ok:
+		return validation
+	if validation.get("migration_required", false):
+		return SaveService._fail("Sélectionnez ce profil pour enregistrer sa migration avant de changer d’étage.")
+	if not can_use_elevator():
+		return SaveService._fail("L’ascenseur se déverrouille après les trois missions du premier chapitre.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.room_id = "room_01" if chapter == 1 else "room_02"
+	progress.checkpoint_id = "elevator"
+	progress.active_mission = ""
+	var saved := _save_progress(progress)
+	if not saved.ok:
+		return saved
+	return SaveService._ok({"chapter": chapter, "room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
+
 func mission(id: String) -> Dictionary:
 	if RewardService.missions.is_empty():
 		if not RewardService.load_rules().ok:
@@ -22,6 +74,8 @@ func mission_state(id: String) -> String:
 	var progress: Dictionary = AppState.profile.progress
 	if id in progress.completed_missions:
 		return "completed"
+	if progress.room_id != definition.room_id:
+		return "locked"
 	for prerequisite in definition.prerequisites:
 		if prerequisite not in progress.completed_missions:
 			return "locked"
@@ -40,6 +94,8 @@ func _ready_for(id: String) -> Dictionary:
 		return SaveService._fail("Sélectionnez ce profil pour enregistrer sa migration avant de jouer.")
 	if not AppState.profile.progress.started:
 		return SaveService._fail("Commencez une enquête depuis l'accueil.")
+	if AppState.profile.progress.room_id != definition.room_id:
+		return SaveService._fail("Cette mission se déroule au chapitre %s. Utilise l’ascenseur pour rejoindre cet étage." % definition.chapter)
 	for prerequisite in definition.prerequisites:
 		if prerequisite not in AppState.profile.progress.completed_missions:
 			return SaveService._fail("Objectif verrouillé : termine d'abord « %s ». Observe les équipements accessibles dans le local." % mission(prerequisite).name)
@@ -166,6 +222,24 @@ func _validate_lock(diagnosis: String, repair: String) -> Dictionary:
 		return SaveService._fail(_feedback(definition.repairs, repair))
 	return SaveService._ok()
 
+func submit_diagnostic(id: String, diagnosis: String, repair: String) -> Dictionary:
+	if id not in SaveService.CHAPTER_TWO_IDS:
+		return SaveService._fail("Ce défi ne fait pas partie des diagnostics de l’étage réseau.")
+	return _finish_validated(id, {"diagnosis": diagnosis, "repair": repair})
+
+func _validate_diagnostic(id: String, diagnosis: String, repair: String) -> Dictionary:
+	var ready := _ready_for(id)
+	if not ready.ok:
+		return ready
+	var definition: Dictionary = ready.data
+	if not _observed_all(id, definition):
+		return SaveService._fail("Consulte les trois observations de « %s » avant de choisir un diagnostic et une réparation. Elles permettent de justifier ta réponse." % definition.name)
+	if diagnosis != definition.solution.diagnosis:
+		return SaveService._fail(_feedback(definition.diagnoses, diagnosis))
+	if repair != definition.solution.repair:
+		return SaveService._fail(_feedback(definition.repairs, repair))
+	return SaveService._ok()
+
 func submit_computer(checks: Array, cause: String, correction: String) -> Dictionary:
 	return _finish_validated("computer", {"checks": checks, "cause": cause, "correction": correction})
 
@@ -200,6 +274,10 @@ func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
 			if not evidence.get("diagnosis") is String or not evidence.get("repair") is String:
 				return SaveService._fail("Le diagnostic et la réparation sont absents.")
 			checked = _validate_lock(evidence.diagnosis, evidence.repair)
+		"network", "addressing", "security":
+			if not evidence.get("diagnosis") is String or not evidence.get("repair") is String:
+				return SaveService._fail("Le diagnostic et la réparation sont absents.")
+			checked = _validate_diagnostic(id, evidence.diagnosis, evidence.repair)
 		"computer":
 			if not evidence.get("checks") is Array or not evidence.get("cause") is String or not evidence.get("correction") is String:
 				return SaveService._fail("Les vérifications, la cause et la correction sont absentes.")
@@ -240,10 +318,18 @@ func acknowledge_migration() -> Dictionary:
 	progress.legacy_migration_notice = false
 	return _save_progress(progress)
 
-func conclusion() -> Dictionary:
-	var ready := _ready_for("computer")
-	if not ready.ok:
-		return ready
-	if mission_state("computer") != "completed":
-		return SaveService._fail("Termine les trois objectifs pour lire le bilan de l'enquête.")
-	return SaveService._ok({"message": ready.data.clue.text, "run_reward_points": int(AppState.profile.progress.run_reward_points), "wallet_points": int(AppState.profile.wallet.points), "missions": RewardService.missions.duplicate(true)})
+func conclusion(chapter: int = 0) -> Dictionary:
+	var selected := current_chapter() if chapter == 0 else chapter
+	if selected not in [1, 2]:
+		return SaveService._fail("Ce chapitre n’existe pas dans l’enquête.")
+	if AppState.profile.is_empty():
+		return SaveService._fail("Aucun profil actif.")
+	var validation := SaveService.validate_profile(AppState.profile)
+	if not validation.ok:
+		return validation
+	if validation.get("migration_required", false):
+		return SaveService._fail("Sélectionnez ce profil pour enregistrer sa migration avant de lire le bilan.")
+	if not _chapter_complete(selected):
+		return SaveService._fail("Termine les trois objectifs du chapitre %s pour lire son bilan." % selected)
+	var definitions := chapter_missions(selected)
+	return SaveService._ok({"chapter": selected, "message": definitions.back().clue.text, "run_reward_points": int(AppState.profile.progress.run_reward_points), "wallet_points": int(AppState.profile.wallet.points), "missions": definitions})
