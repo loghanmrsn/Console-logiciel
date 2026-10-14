@@ -40,7 +40,10 @@ def verify(executable: Path, archive: Path) -> dict:
     files={entry['file'] for entry in entries}
     assert len(files)==count,'Ressource dupliquée'
     art=[p for p in files if p.startswith('assets/art/') and p.endswith('.svg.import')]
-    assert len(art)==36,'Collection graphique incomplète'
+    project = Path(__file__).resolve().parents[1]
+    expected_art = {path.relative_to(project).as_posix() + '.import'
+                    for path in (project / 'assets/art').rglob('*.svg')}
+    assert expected_art and set(art) == expected_art,'Collection graphique différente des sources livrées'
     for name in ['data/game_rules.json','data/shop_catalog.json','data/controller_mapping.json','project.binary']:
         assert name in files,'Ressource absente : '+name
     with zipfile.ZipFile(archive) as package:
