@@ -1,32 +1,41 @@
-# Console CIEL 0.5.0 — Windows x86_64
+# Console CIEL 0.6.0 — Windows x86_64
 
-[Télécharger Windows 0.5.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip). Le ZIP contient le véritable **Console_CIEL.exe**, l’aide, les licences et **images_profil/**. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.6.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip). Le ZIP contient le véritable **Console_CIEL.exe**, l’aide, les licences et **images_profil/**. Godot n’est pas nécessaire pour jouer.
 
 1. Télécharger le ZIP Windows et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
 3. Double-cliquer sur **Console_CIEL.exe**, à la racine de ce dossier.
 
-Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. L’EXE complet mesure **105193000 octets** et dépasse la limite de 100 Mio par fichier Git ; le ZIP contient le binaire complet, sans pointeur Git LFS.
+Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. L’EXE complet mesure **105 240 440 octets** ; sa taille dépasse la limite de 100 Mio par fichier Git. Le paquet contient l’EXE complet, sans pointeur Git LFS.
 
-Le [projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.5.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-bibliotheque-0.5.0/Console_CIEL.exe`.
+Le [projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-chapitre-2-0.6.0/Console_CIEL.exe`.
 
 ## Nouveautés
 
-Boutique et profils refaits, deux dispositions d’accueil, styles/couleurs et crédits dans les paramètres. **Test 1 à Test 4** sont des emplacements de jeux encore en préparation : leur achat en points ouvre une page de test, sans jeu final ni nouveau gain. Prix **20 / 30 / 40 / 50 points** ; achats enregistrés séparément pour chaque profil. [Guide des nouveautés](../docs/BIBLIOTHEQUE_ET_THEMES.md).
+Après les trois missions du local technique, l’ascenseur situé en bas du bureau se déverrouille et mène au chapitre 2 : **liaison RJ45, adressage IPv4, protection Wi-Fi**. Le tableau de missions à droite se déplie ou se replie par son bouton, **T** ou le **bouton de face haut** de la manette (Triangle / Y / X selon le modèle). [Parcours et recette des deux chapitres](../docs/ENQUETE.md).
 
-Les photos locales et le clavier sont conservés : déposer vos PNG/JPEG/WebP dans **images_profil/**, puis **Profil → Personnaliser → Mes images → Actualiser les images**. Clavier minuscule avec **⇧**, **123**, **#+=** et **ABC**.
+Les six missions rapportent chacune **50 points une seule fois**, soit **300 points au maximum par profil**. Les anciens profils conservent leurs réussites, observations, points et achats, puis reçoivent les objectifs du chapitre 2. Les deux bilans distinguent les nouveaux gains cumulés de la partie du solde total. Les activités réseau sont fictives et ne changent aucun réglage du PC.
 
-## Vérification exécutée
+Les deux dispositions d’accueil, les styles/couleurs, les crédits, les profils et les achats **Test 1 à Test 4** sont conservés. Ces Test coûtent **20 / 30 / 40 / 50 points** et ouvrent seulement une page de préparation, sans nouveau gain. [Guide de la bibliothèque](../docs/BIBLIOTHEQUE_ET_THEMES.md).
 
-- Moteur officiel **4.6.3.stable.official.7d41c59c4**, modèles officiels vérifiés par SHA-512.
-- Export release réussi, PE32+ x86_64 et pack intégré.
-- CRC ZIP et empreintes des **187 ressources intégrées** vérifiés, dont **36 SVG**.
-- Pack compilé : **3 242 assertions, zéro échec** — 47 métier, 76 ressources/interface, 644 profils/clavier/photos, 127 achats de jeux, 1 881 apparence, 467 bibliothèque.
+Pour les photos locales, déposer vos PNG/JPEG/WebP dans **images_profil/**, puis **Profil → Personnaliser → Mes images → Actualiser les images**. Le clavier minuscule avec **⇧**, **123**, **#+=** et **ABC** est conservé.
+
+## Vérification et essai sur votre PC
+
+Vérifications exécutées le **14 octobre 2026** :
+
+- Moteur officiel **4.6.3.stable.official.7d41c59c4**, modèles officiels contrôlés par SHA-512, export release PE32+ x86_64 avec pack intégré.
+- CRC du ZIP et empreintes des **203 ressources intégrées**, dont **43 SVG**, contrôlés.
+- Pack compilé : **4 351 assertions, zéro échec**, pour ressources, profils, clavier, photos, achats, apparence, bibliothèque, chapitres et tableau de missions.
 - Configuration Windows : **18 contrôles, zéro échec**.
-- Tests depuis des dossiers indépendants du dépôt, avec des données temporaires isolées.
+- Audit statique : **797 fichiers, 70 UID, 191 références**, zéro erreur ; chargement des ressources avec Godot Linux : **199 contrôles, zéro échec**.
+- Sources : **9 568 assertions, zéro échec** dans 14 suites ; persistance : **65 assertions** dans trois processus réels, zéro échec.
+- Rendu X11 sous Linux : **694 contrôles, zéro échec**, avec **12 captures réelles** ; outils de packaging : **27 contrôles, zéro échec**.
 
-Les tests exécutent le pack avec Godot **Linux**. Le lancement natif sous Windows, le son et une manette USB physique restent à essayer sur un PC Windows. Le logiciel n’est pas signé.
+[Résultats de la recette](../tests/chapitre_2_0.6.0_results/summary.json) et [captures](../docs/screenshots/chapitre_2_0.6.0/). Le [rapport Windows](Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.verification.json) décrit le pack et ses empreintes. Le [rapport du projet complet](Console_CIEL_Projet_Complet_0.6.0.verification.json) donne l’inventaire et l’empreinte finale de l’archive complète.
 
-ZIP : **36405957 octets**. SHA-256 : `5d7ce9f0c557021d62477eb824c64742031b27989ed86e8ab9cf02ba2e1ac26e`.
+ZIP Windows : **36 441 246 octets**. SHA-256 : `7a1e8250250bfd6c407c4d843bf2a12a6dae4403607c9589d7faff43b333b82a`.
 
-[Rapport Windows](Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.verification.json). Livraisons conservées : [0.4.2](Console_CIEL_Windows_x86_64_profils_0.4.2.zip), [0.4.1](Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), [0.4.0](Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
+Les essais du pack exécutent ses ressources avec Godot **Linux**, depuis des dossiers indépendants du dépôt et des données temporaires. Ils ne constituent pas un lancement natif sous Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC ; le logiciel n’est pas signé. [Parcours manuel Windows](../docs/WINDOWS.md).
+
+Livraisons conservées : [0.5.0](Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip), [0.4.2](Console_CIEL_Windows_x86_64_profils_0.4.2.zip), [0.4.1](Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), [0.4.0](Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
