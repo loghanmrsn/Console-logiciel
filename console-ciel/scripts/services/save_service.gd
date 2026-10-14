@@ -8,6 +8,7 @@ const SCHEMA_VERSION := 1
 const INVESTIGATION_VERSION := 1
 const LEGACY_MIGRATION_NOTICE := "La progression du prototype contenait des interactions simulées. Elle a été remise au début pour jouer les vrais défis. Vos points, achats et récompenses déjà attribuées sont conservés : ils ne seront pas gagnés une seconde fois."
 const DEFAULT_ITEMS := ["avatar_default", "theme_brume", "frame_default"]
+const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
 const MAX_POINTS := 2147483647
 var root_path: String = "user://"
 var simulate_write_failure: bool = false
@@ -261,6 +262,10 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return name
 	if document.display_name != name.data:
 		return _fail("Le pseudo enregistré contient des espaces extérieurs.")
+	# Champ facultatif du schéma 1 : une image absente n'invalide jamais le profil.
+	# L'avatar du catalogue reste l'équipement possédé et sert de repli visuel.
+	if document.has("avatar_image") and (not document.avatar_image is String or (not document.avatar_image.is_empty() and not LocalAvatarLibrary.is_safe_filename(document.avatar_image))):
+		return _fail("Le nom de l'image de profil locale est invalide.")
 	if not document.get("wallet") is Dictionary or not _is_integer(document.wallet.get("points"), 0, MAX_POINTS):
 		return _fail("Le solde du profil est invalide.")
 	if not document.get("owned_items") is Array or not document.get("equipped") is Dictionary:
