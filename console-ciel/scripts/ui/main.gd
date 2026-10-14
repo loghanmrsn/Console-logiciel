@@ -5,6 +5,7 @@ const ProfileCard=preload('res://scripts/ui/profile_card.gd')
 const ProductCard=preload('res://scripts/ui/product_card.gd')
 const Avatar=preload('res://scripts/ui/avatar_icon.gd')
 const Keyboard=preload('res://scripts/ui/virtual_keyboard.gd')
+const LocalAvatars=preload('res://scripts/services/local_avatar_library.gd')
 const Modal=preload('res://scripts/ui/confirmation_dialog.gd')
 const Toast=preload('res://scripts/ui/notification.gd')
 const SettingRow=preload('res://scripts/ui/setting_row.gd')
@@ -46,6 +47,16 @@ var settings_category=0
 var settings_origin='home'
 var editor_id=''
 var editor_avatar='avatar_default'
+var editor_image=''
+var editor_record: Dictionary={}
+var editor_preview: Control
+var editor_preview_name: Label
+var editor_name_count: Label
+var editor_image_status: Label
+var editor_gallery: GridContainer
+var editor_keyboard: Control
+var editor_image_tab=false
+var editor_avatar_buttons: Array[Button]=[]
 var name_edit: LineEdit
 var shop_filter=0
 var shop_inventory=false
@@ -238,9 +249,9 @@ func _profile_updated(_profile: Dictionary) -> void:
 func _update_header() -> void:
 	var active=not AppState.profile.is_empty()
 	var player_in_bar=navigation!=null and navigation.visible
-	header_avatar.visible=active and not player_in_bar
-	header_profile.visible=not player_in_bar
-	header_points.visible=not player_in_bar
+	header_avatar.visible=active and not player_in_bar and screen!='editor'
+	header_profile.visible=not player_in_bar and screen!='editor'
+	header_points.visible=not player_in_bar and screen!='editor'
 	var avatar_item=ShopService.item(AppState.profile.equipped.avatar) if active else {}
 	var frame_item=ShopService.item(AppState.profile.equipped.frame) if active else {}
 	if navigation!=null: navigation.update_player(AppState.profile,avatar_item,frame_item)
@@ -250,6 +261,7 @@ func _update_header() -> void:
 		header_avatar.variant={'H':0,'O':2,'F':1,'R':2}.get(item.get('symbol','H'),0)
 		header_avatar.frame=AppState.profile.equipped.frame
 		header_avatar.frame_spec=ShopService.item(AppState.profile.equipped.frame)
+		header_avatar.set_local_image(AppState.profile.get('avatar_image',''))
 		header_avatar.queue_redraw()
 	header_profile.text=((AppState.profile.display_name if size.x<1000 else 'Bonjour, '+AppState.profile.display_name)) if active else 'Votre console pédagogique'
 	header_points.text='%d pts' % AppState.profile.wallet.points if active else 'Hors ligne'
@@ -315,6 +327,7 @@ func _clear(next: String) -> void:
 	content.modulate.a=1.0
 	if screen!='boot': SceneRouter.remember(screen,get_viewport().gui_get_focus_owner())
 	screen=next
+	content.add_theme_constant_override('separation',16)
 	SceneRouter.current_screen=next
 	for child in content.get_children():
 		if child==demo: child.hide()
@@ -552,9 +565,37 @@ func _open_editor(id: String) -> void:
 	for p in ProfileService.profiles:
 		if p.id==id: record=p
 	editor_avatar=record.get('equipped',{}).get('avatar','avatar_default')
+	editor_image=record.get('avatar_image','')
+	editor_record=record.duplicate(true)
+	editor_image_tab=not editor_image.is_empty()
+	LocalAvatars.refresh()
 	_clear('editor')
-	_title('Votre profil' if id.is_empty() else 'Modifier '+record.get('display_name','le profil'),'Pseudo : 1 à 16 caractères. Le clavier à l’écran fonctionne sans clavier physique.')
+	content.add_theme_constant_override('separation',8)
+	_title('Créer votre profil' if id.is_empty() else 'Personnaliser le profil','')
 	var panel=_panel(content)
+	panel.add_theme_constant_override('separation',6)
+	var editor_panel=panel.get_parent() as PanelContainer
+	var editor_style=editor_panel.get_theme_stylebox('panel').duplicate()
+	editor_style.content_margin_top=8
+	editor_style.content_margin_bottom=8
+	editor_panel.add_theme_stylebox_override('panel',editor_style)
+	var identity=HBoxContainer.new()
+	identity.add_theme_constant_override('separation',18)
+	panel.add_child(identity)
+	editor_preview=Avatar.new()
+	editor_preview.name='profile_avatar_preview'
+	editor_preview.custom_minimum_size=Vector2(88,88)
+	editor_preview.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	identity.add_child(editor_preview)
+	var details=VBoxContainer.new()
+	details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	details.add_theme_constant_override('separation',6)
+	identity.add_child(details)
+	editor_preview_name=_label(details,record.get('display_name','Votre profil'),22)
+	editor_preview_name.hide()
+	editor_preview_name.clip_text=true
+	editor_preview_name.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	_label(details,'Votre pseudo',16,true)
 	name_edit=LineEdit.new()
 	name_edit.name='profile_name'
 	name_edit.text=record.get('display_name','Joueur '+str(ProfileService.profiles.size()+1))
@@ -563,32 +604,146 @@ func _open_editor(id: String) -> void:
 	name_edit.custom_minimum_size.y=48
 	name_edit.select_all_on_focus=true
 	name_edit.text_submitted.connect(func(_text): _submit_profile())
-	panel.add_child(name_edit)
-	_label(panel,'Avatar',18)
-	var avatars=_grid(panel,180,3)
-	for item in ShopService.catalog:
-		if item.type!='avatar': continue
-		if item.price!=0 and not (not record.is_empty() and item.id in record.owned_items): continue
-		var button=_button(avatars,('✓ ' if editor_avatar==item.id else '')+item.name,func():
-			editor_avatar=item.id
-			for other in avatars.get_children(): other.text=other.text.trim_prefix('✓ ')
-			var focus=get_viewport().gui_get_focus_owner()
-			if focus is Button: focus.text='✓ '+focus.text,'avatar_'+item.id)
-		button.tooltip_text='Avatar gratuit' if item.price==0 else 'Avatar possédé'
-	var keyboard=Keyboard.new()
-	panel.add_child(keyboard)
-	keyboard.configure(name_edit)
-	keyboard.submitted.connect(_submit_profile)
-	keyboard.cancelled.connect(_back)
+	details.add_child(name_edit)
+	editor_name_count=_label(details,'',14,true)
+	name_edit.text_changed.connect(func(_text): _refresh_editor_preview())
+	var gallery_header=HBoxContainer.new()
+	panel.add_child(gallery_header)
+	_button(gallery_header,'Avatars',func(): _switch_editor_images(false),'profile_tab_avatars').custom_minimum_size.y=38
+	_button(gallery_header,'Mes images',func(): _switch_editor_images(true),'profile_tab_images').custom_minimum_size.y=38
+	var clear_image=_button(gallery_header,'Avatar classique',func():
+		editor_image=''
+		_refresh_editor_preview()
+		_refresh_editor_choices(),'clear_profile_image')
+	clear_image.custom_minimum_size.y=38
+	clear_image.tooltip_text='Retirer la photo locale et garder votre avatar de la boutique.'
+	editor_image_status=_label(panel,'',14,true)
+	var gallery_scroll=ScrollContainer.new()
+	gallery_scroll.name='profile_avatar_gallery'
+	gallery_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	gallery_scroll.follow_focus=true
+	gallery_scroll.custom_minimum_size.y=78
+	panel.add_child(gallery_scroll)
+	editor_gallery=_grid(gallery_scroll,160,6)
+	editor_gallery.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var image_actions=HBoxContainer.new()
+	panel.add_child(image_actions)
+	_button(image_actions,'Ouvrir le dossier',_open_profile_images,'open_profile_images').custom_minimum_size.y=38
+	_button(image_actions,'Actualiser les images',_reload_profile_images,'refresh_profile_images').custom_minimum_size.y=38
+	editor_keyboard=Keyboard.new()
+	editor_keyboard.name='profile_keyboard'
+	panel.add_child(editor_keyboard)
+	editor_keyboard.configure(name_edit)
+	editor_keyboard.submitted.connect(_submit_profile)
+	editor_keyboard.cancelled.connect(_back)
+	editor_keyboard.layout_changed.connect(_editor_layout_changed)
+	_refresh_editor_choices()
+	_refresh_editor_preview()
 	if not id.is_empty():
 		_button(content,'Supprimer ce profil',_delete_profile,'delete_profile')
 	_responsive()
+	_editor_layout_changed()
+	if id.is_empty(): editor_keyboard.focus_first_key.call_deferred()
+	else: name_edit.call_deferred('grab_focus')
+	footer.text='Clavier virtuel : flèches + Entrée / face bas. Le clavier physique reste disponible.'
+
+func _editor_layout_changed() -> void:
 	for control in _focusables(content):
 		if not control.focus_entered.is_connected(_ensure_focus_visible): control.focus_entered.connect(_ensure_focus_visible)
 	_wire_navigation()
-	if id.is_empty(): keyboard.get_child(0).get_child(0).call_deferred('grab_focus')
-	else: name_edit.call_deferred('grab_focus')
-	footer.text='Clavier virtuel : flèches + Entrée / face bas. Le clavier physique reste disponible.'
+	_ensure_focus_visible.call_deferred()
+
+func _refresh_editor_preview() -> void:
+	if not is_instance_valid(editor_preview):return
+	var item=ShopService.item(editor_avatar)
+	editor_preview.color=Color(item.get('color','#527FA3'))
+	editor_preview.variant={'H':0,'O':2,'F':1,'R':2}.get(item.get('symbol','H'),0)
+	editor_preview.frame=editor_record.get('equipped',{}).get('frame','frame_default')
+	editor_preview.frame_spec=ShopService.item(editor_preview.frame)
+	editor_preview.set_local_image(editor_image)
+	editor_preview.queue_redraw()
+	editor_preview_name.text=name_edit.text if not name_edit.text.is_empty() else 'Votre profil'
+	editor_name_count.text='%d / 16 caractères · enregistré seulement avec Valider'%name_edit.text.length()
+
+func _switch_editor_images(local: bool) -> void:
+	editor_image_tab=local
+	_refresh_editor_choices()
+
+func _refresh_editor_choices() -> void:
+	if not is_instance_valid(editor_gallery):return
+	for child in editor_gallery.get_children():
+		editor_gallery.remove_child(child)
+		child.queue_free()
+	editor_avatar_buttons.clear()
+	if editor_image_tab:
+		var images=LocalAvatars.list_images()
+		editor_image_status.text='%d image(s) locale(s) · PNG, JPG ou WEBP · bouton Actualiser après un ajout'%images.size()
+		for item in images:
+			var filename:String=item.filename
+			_add_editor_avatar_choice(item.name,editor_avatar,filename,'image_'+filename.sha256_text().substr(0,12))
+		if images.is_empty():
+			_label(editor_gallery,'Ajoutez vos images dans le dossier images_profil, puis cliquez sur Actualiser.',0,true)
+	else:
+		editor_image_status.text='Vos avatars gratuits et ceux déjà obtenus dans la boutique.'
+		for item in ShopService.catalog:
+			if item.type!='avatar':continue
+			if item.price!=0 and not (not editor_record.is_empty() and item.id in editor_record.owned_items):continue
+			_add_editor_avatar_choice(item.name,item.id,'','avatar_'+item.id)
+	if not editor_image.is_empty() and LocalAvatars.texture_for(editor_image)==null:
+		editor_image_status.text+=' · Image absente : votre avatar classique reste affiché.'
+	_responsive()
+	_editor_layout_changed()
+
+func _add_editor_avatar_choice(title: String,avatar_id: String,filename: String,key: String) -> void:
+	var chosen=editor_image==filename and (not filename.is_empty() or editor_avatar==avatar_id)
+	var button=_button(editor_gallery,'',func():
+		editor_avatar=avatar_id
+		editor_image=filename
+		_refresh_editor_preview()
+		for other in editor_avatar_buttons:
+			var selected=other.get_meta('avatar_image')==editor_image and (not editor_image.is_empty() or other.get_meta('avatar_id')==editor_avatar)
+			other.theme_type_variation='NavigationSelected' if selected else 'Button',key)
+	button.set_meta('avatar_image',filename)
+	button.set_meta('avatar_id',avatar_id)
+	button.custom_minimum_size.y=76
+	button.theme_type_variation='NavigationSelected' if chosen else 'Button'
+	button.tooltip_text=filename if not filename.is_empty() else title
+	var row=HBoxContainer.new()
+	row.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	button.add_child(row)
+	row.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	row.offset_left=8;row.offset_right=-8;row.offset_top=6;row.offset_bottom=-6
+	var avatar=Avatar.new()
+	avatar.custom_minimum_size=Vector2(52,52)
+	avatar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	var spec=ShopService.item(avatar_id)
+	avatar.color=Color(spec.get('color','#527FA3'))
+	avatar.variant={'H':0,'O':2,'F':1,'R':2}.get(spec.get('symbol','H'),0)
+	avatar.set_local_image(filename)
+	row.add_child(avatar)
+	var label=Label.new()
+	label.text=title
+	label.clip_text=true;label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	label.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	row.add_child(label)
+	editor_avatar_buttons.append(button)
+
+func _reload_profile_images() -> void:
+	LocalAvatars.refresh()
+	_refresh_editor_choices()
+	_refresh_editor_preview()
+	_update_header()
+
+func _open_profile_images() -> void:
+	var folder=LocalAvatars.folder_path()
+	var result=DirAccess.make_dir_recursive_absolute(folder)
+	if result!=OK and result!=ERR_ALREADY_EXISTS:
+		_confirm('Dossier indisponible','Impossible de créer le dossier images_profil. Choisissez un emplacement accessible pour les fichiers du programme.','Compris',func():pass)
+		return
+	if OS.shell_open(folder)!=OK:
+		_confirm('Dossier des images',folder+'\nOuvrez ce dossier dans votre explorateur, ajoutez une image PNG, JPG ou WEBP, puis utilisez Actualiser.','Compris',func():pass)
 
 func _submit_profile() -> void:
 	if is_instance_valid(modal): return
@@ -597,14 +752,14 @@ func _submit_profile() -> void:
 		return
 	var result: Dictionary
 	if editor_id.is_empty():
-		result=ProfileService.create_profile(name_edit.text,editor_avatar)
+		result=ProfileService.create_profile(name_edit.text,editor_avatar,editor_image)
 		if not result.ok and result.get('data') is Dictionary and result.data.has('id'):
 			_pending_created_id=result.data.id
 			_confirm('Profil créé, sélection à terminer',result.error+' Le profil est conservé. Réessayer sélectionnera ce profil sans en créer un deuxième.','Réessayer',func(): _select_profile(_pending_created_id))
 			return
 	else:
 		if not _result(ProfileService.select_profile(editor_id)): return
-		result=ProfileService.update_profile(name_edit.text,editor_avatar)
+		result=ProfileService.update_profile(name_edit.text,editor_avatar,editor_image)
 	if _result(result,'✓ Profil créé' if editor_id.is_empty() else '✓ Profil modifié',_submit_profile): _show_screen('home')
 
 func _delete_profile() -> void:
