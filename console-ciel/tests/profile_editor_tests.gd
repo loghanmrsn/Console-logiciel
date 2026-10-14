@@ -191,7 +191,7 @@ func _test_create_with_keyboard() -> void:
 		_check(icon != null and icon.local_image == PHOTO and icon.image_texture != null, "La carte du profil affiche également la photo locale")
 		var card = selector.get_parent().get_parent().get_parent()
 		for label in card.find_children("*", "Label", true, false):
-			if "Récent" in label.text:
+			if String(label.name).begins_with("profile_recent_"):
 				_check(label.size.y < 40 and label.size.x > 50, "Le badge Récent reste sur une ligne dans une carte de profil")
 	await _capture("profiles_local_photo_1280x720")
 	app._show_screen("home")
