@@ -59,11 +59,12 @@ func _test_library() -> void:
 		var game := Library.entry(shop.catalog, id)
 		_check(not game.is_empty() and game.get("name") == "Test %d" % number, "Jeu de test livré : " + id)
 		_check(game.get("placeholder") == true and game.get("scene") == "res://scenes/games/test_game.tscn", "Emplacement clairement identifié, sans gameplay fictif : " + id)
+		_check(game.get("price") == 200, "Chaque jeu livré coûte désormais 200 points : " + id)
 		_check(Library.is_valid_game_scene(game.get("scene")), "Scène locale de jeu réellement livrée : " + id)
 		total += int(game.get("price", 0))
 		game["name"] = "Copie modifiée"
 		_check(Library.entry(shop.catalog, id).name == "Test %d" % number, "Les résultats de bibliothèque sont copiés : " + id)
-	_check(total == 140, "Les quatre emplacements coûtent 140 points, sous les 150 points de l'enquête")
+	_check(total == 800, "Les quatre emplacements totalisent 800 points ; les récompenses de l'enquête restent inchangées")
 	_check(Library.entry(shop.catalog, "inconnu").is_empty(), "Jeu inconnu sans entrée ni scène")
 	var malformed: Array = [null, 42, {}, {"id": "game_bad", "type": "game", "scene": "user://bad.tscn"}]
 	_check(Library.definitions(malformed).size() == 1, "Une bibliothèque mal formée ne propose que l'enquête gratuite")
@@ -97,10 +98,25 @@ func _test_catalog_validation() -> void:
 		var bad: Dictionary = document.duplicate(true)
 		bad.items[index].placeholder = invalid
 		_check(not saves.validate_catalog(bad).ok, "Le marqueur de jeu en préparation doit être booléen")
-	for invalid in [-1, 1, 19, 20.5, "20", true, 101]:
+	for invalid in [-1, 1, 19, 20, 50, 100, 199, 199.5, 200.5, "200", true, saves.MAX_POINTS + 1, INF, NAN, 1e30]:
 		var bad: Dictionary = document.duplicate(true)
 		bad.items[index].price = invalid
-		_check(not saves.validate_catalog(bad).ok, "Prix de jeu invalide refusé dans le catalogue : " + JSON.stringify(invalid))
+		_check(not saves.validate_catalog(bad).ok, "Prix de jeu invalide refusé dans le catalogue : " + str(invalid))
+	for valid in [0, 200, 201, 1000, saves.MAX_POINTS, float(saves.MAX_POINTS)]:
+		var accepted: Dictionary = document.duplicate(true)
+		accepted.items[index].price = valid
+		var checked: Dictionary = saves.validate_catalog(accepted)
+		_check(checked.ok and checked.data[index].price is int and checked.data[index].price == int(valid), "Prix de jeu gratuit ou entier jusqu'au plafond normalisé : " + str(valid))
+	# Le changement de tarifs vise uniquement les jeux : les cosmétiques
+	# gardent leurs valeurs historiques et leurs limites de validation.
+	for invalid in [1, 19, 101, 200, saves.MAX_POINTS, INF, NAN]:
+		var bad: Dictionary = document.duplicate(true)
+		bad.items[3].price = invalid
+		_check(not saves.validate_catalog(bad).ok, "Anciennes limites de prix cosmétique conservées : " + str(invalid))
+	for valid in [0, 20, 100]:
+		var accepted: Dictionary = document.duplicate(true)
+		accepted.items[3].price = valid
+		_check(saves.validate_catalog(accepted).ok, "Ancien prix cosmétique accepté : " + str(valid))
 	var normal_game: Dictionary = document.duplicate(true)
 	normal_game.items[index].erase("placeholder")
 	_check(saves.validate_catalog(normal_game).ok, "Le schéma accueille aussi un futur vrai jeu sans marqueur placeholder")
@@ -129,23 +145,29 @@ func _test_transactions() -> void:
 	_check(not shop.purchase("game_inconnu").ok, "Identifiant de jeu inconnu refusé")
 	_check(not shop.purchase(Library.EDUCATIONAL_ID).ok, "Aucun achat ni débit possible pour l'enquête gratuite")
 	_check(not shop.equip("game_test_1").ok and state.profile == before, "Un jeu non possédé ne peut pas être équipé")
+	_test_199_boundary()
 	if not _succeeds(profiles.select_profile(alice_id), "Sélectionner Alice pour gagner des points pédagogiques"):
 		return
 	if not _succeeds(profiles.start_game(), "Commencer la vraie enquête éducative"):
 		return
-	if not _succeeds(investigation.begin_mission("lighting"), "Ouvrir le vrai défi d'éclairage"):
+	for id in ["lighting", "lock", "computer"]:
+		if not _complete_mission(id):
+			return
+	_check(state.profile.wallet.points == 150, "Les trois vrais défis du chapitre 1 rapportent 150 points, encore insuffisants pour un jeu")
+	before = state.profile.duplicate(true)
+	disk_before = _profile_text(alice_id)
+	_check(not shop.purchase("game_test_4").ok and state.profile == before and _profile_text(alice_id) == disk_before, "150 points pédagogiques ne permettent pas de payer un jeu à 200")
+	if not _succeeds(investigation.enter_chapter(2), "Prendre le vrai ascenseur vers le chapitre 2") or not _complete_mission("network"):
 		return
-	var earned: Dictionary = investigation.submit_lighting(["source_switch", "switch_lamp", "lamp_return"])
-	if not _succeeds(earned, "Résoudre le vrai défi pour financer un achat"):
-		return
-	_check(state.profile.wallet.points == 50 and earned.data.reward == 50, "L'achat utilise exactement les 50 points de la mission, sans crédit de test")
+	_check(state.profile.wallet.points == 200 and state.profile.progress.run_reward_points == 200 and state.profile.rewarded_missions.size() == 4, "L'achat est financé par quatre missions réelles de 50 points, sans crédit de test")
 	before = state.profile.duplicate(true)
 	disk_before = _profile_text(alice_id)
 	var committed: Array = []
 	var on_commit := func(profile: Dictionary) -> void: committed.append(profile.duplicate(true))
 	state.profile_changed.connect(on_commit)
 	saves.simulate_write_failure = true
-	_check(not shop.purchase("game_test_4").ok, "Échec de sauvegarde d'un achat de jeu signalé")
+	var failed: Dictionary = shop.purchase("game_test_4")
+	_check(not failed.ok and "simulé" in failed.error, "Un achat solvable à 200 atteint réellement l'écriture et signale son échec simulé")
 	saves.simulate_write_failure = false
 	_check(state.profile == before and _profile_text(alice_id) == disk_before, "Échec d'achat : aucun débit ni propriété partiels en mémoire ou sur disque")
 	_check(committed.is_empty(), "Aucun signal de profil validé n'est émis avant l'écriture réussie")
@@ -181,6 +203,100 @@ func _test_transactions() -> void:
 	_succeeds(profiles.select_profile(bob_id), "Resélectionner Bob pour vérifier l'isolation entre profils")
 	_check(state.profile.wallet.points == 0 and Library.owned_games(state.profile, shop.catalog).is_empty() and not Library.can_play(state.profile, "game_test_4", shop.catalog), "Les achats d'Alice ne débloquent aucun jeu pour Bob")
 	_test_free_game_and_invalid_scene()
+	_test_historical_purchase()
+
+
+func _complete_mission(id: String) -> bool:
+	if not _succeeds(investigation.begin_mission(id), "Ouvrir le vrai défi pédagogique : " + id):
+		return false
+	var definition: Dictionary = investigation.mission(id)
+	for observation in definition.observations:
+		if not _succeeds(investigation.observe(id, observation.id), "Consulter une vraie observation : " + id + "/" + observation.id):
+			return false
+	var earned: Dictionary
+	match id:
+		"lighting":
+			earned = investigation.submit_lighting(definition.solution.connections)
+		"lock":
+			earned = investigation.submit_lock(definition.solution.diagnosis, definition.solution.repair)
+		"computer":
+			for check in definition.solution.checks:
+				if not _succeeds(investigation.check_computer(check), "Effectuer la vraie vérification du poste : " + check):
+					return false
+			earned = investigation.submit_computer(definition.solution.checks, definition.solution.cause, definition.solution.correction)
+		"network":
+			earned = investigation.submit_diagnostic(id, definition.solution.diagnosis, definition.solution.repair)
+	if not _succeeds(earned, "Résoudre le vrai défi : " + id):
+		return false
+	_check(earned.data.reward == 50, "Le vrai défi conserve son gain unique de 50 points : " + id)
+	return true
+
+
+func _test_199_boundary() -> void:
+	# Fixture économique isolée pour le seuil impossible à atteindre avec
+	# des gains de 50 : le parcours d'Alice, lui, reste entièrement réel.
+	var created: Dictionary = profiles.create_profile("Seuil 199")
+	if not _succeeds(created, "Créer un profil isolé pour la frontière économique à 199 points"):
+		return
+	var fixture: Dictionary = created.data.duplicate(true)
+	fixture.wallet.points = 199
+	if not _succeeds(saves.write_profile(fixture), "Écrire uniquement la fixture de frontière à 199 points") or not _succeeds(profiles.select_profile(fixture.id), "Charger la fixture de frontière"):
+		return
+	var before: Dictionary = state.profile.duplicate(true)
+	var disk_before := _profile_text(fixture.id)
+	var committed: Array = []
+	var on_commit := func(profile: Dictionary) -> void: committed.append(profile.duplicate(true))
+	state.profile_changed.connect(on_commit)
+	for number in range(1, 5):
+		var denied: Dictionary = shop.purchase("game_test_%d" % number)
+		_check(not denied.ok and "Points insuffisants" in denied.error, "199 points refusés pour Test %d à 200 points" % number)
+		_check(state.profile == before and _profile_text(fixture.id) == disk_before and committed.is_empty(), "Frontière 199 sans mutation, réécriture ou signal : Test %d" % number)
+	for invalid in [null, -1, 1, 20, 50, 100, 199, 199.5, 200.5, "200", true, saves.MAX_POINTS + 1, INF, NAN, 1e30]:
+		var fake_catalog: Array = original_catalog.duplicate(true)
+		for product in fake_catalog:
+			if product.id == "game_test_1":
+				product.price = invalid
+		shop.catalog = fake_catalog
+		var denied: Dictionary = shop.purchase("game_test_1")
+		_check(not denied.ok and denied.error == "Prix d'article invalide.", "Le service revalide le prix de jeu avant débit : " + str(invalid))
+		_check(state.profile == before and _profile_text(fixture.id) == disk_before and committed.is_empty(), "Prix de jeu invalide sans mutation ni signal : " + str(invalid))
+	for valid in [200, 201, 1000, saves.MAX_POINTS]:
+		var fake_catalog: Array = original_catalog.duplicate(true)
+		for product in fake_catalog:
+			if product.id == "game_test_1":
+				product.price = valid
+		shop.catalog = fake_catalog
+		var denied: Dictionary = shop.purchase("game_test_1")
+		_check(not denied.ok and "Points insuffisants" in denied.error, "Un prix futur jusqu'au plafond atteint la vérification réelle du solde : " + str(valid))
+		_check(state.profile == before and _profile_text(fixture.id) == disk_before and committed.is_empty(), "Un prix valide non finançable ne déborde pas le portefeuille : " + str(valid))
+	shop.catalog = original_catalog.duplicate(true)
+	state.profile_changed.disconnect(on_commit)
+
+
+func _test_historical_purchase() -> void:
+	# Une sauvegarde créée avant la hausse contient seulement l'identifiant
+	# acquis, pas le prix historique. La nouvelle valeur ne doit jamais
+	# remettre en vente le jeu déjà possédé ni réclamer un complément.
+	var created: Dictionary = profiles.create_profile("Ancien achat")
+	if not _succeeds(created, "Créer une fixture indépendante de sauvegarde avec achat à l'ancien tarif"):
+		return
+	var legacy: Dictionary = created.data.duplicate(true)
+	legacy.wallet.points = 30
+	legacy.owned_items.append("game_test_1")
+	if not _succeeds(saves.write_profile(legacy), "Écrire la sauvegarde historique : jeu acquis et ancien solde de 30 points"):
+		return
+	state.clear_profile()
+	if not _succeeds(profiles.select_profile(legacy.id), "Recharger l'achat historique avec le catalogue à 200 points"):
+		return
+	_check(state.profile == legacy and shop.item("game_test_1").price == 200 and Library.can_play(state.profile, "game_test_1", shop.catalog), "L'ancien achat reste jouable sans modification de solde ni de propriété")
+	var disk_before := _profile_text(legacy.id)
+	var committed: Array = []
+	var on_commit := func(profile: Dictionary) -> void: committed.append(profile.duplicate(true))
+	state.profile_changed.connect(on_commit)
+	var repeated: Dictionary = shop.purchase("game_test_1")
+	_check(not repeated.ok and "déjà possédé" in repeated.error, "Un jeu acheté avant la hausse reste un achat déjà possédé")
+	_check(state.profile == legacy and _profile_text(legacy.id) == disk_before and committed.is_empty(), "Hausse de tarif sans complément débité, réécriture ou signal pour un ancien achat")
+	state.profile_changed.disconnect(on_commit)
 
 
 func _test_placeholder() -> void:
