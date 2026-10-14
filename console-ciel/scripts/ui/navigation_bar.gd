@@ -118,6 +118,7 @@ func _build_profile(button: Button) -> void:
 	destination_labels.append(destination)
 	profile_points_label = _clipped_label('0 pts')
 	profile_points_label.name = 'navigation_profile_points'
+	profile_points_label.theme_type_variation = 'SecondaryLabel'
 	profile_points_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	profile_points_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_profile_detail.add_child(profile_points_label)
@@ -157,11 +158,28 @@ func apply_appearance(settings: Dictionary, palette: Dictionary) -> void:
 		return
 	# Native translucent surfaces stay compatible with the Compatibility renderer.
 	# There are no movement tweens, including when reduced motion is requested.
-	for label in destination_labels:
-		label.add_theme_color_override('font_color', Color('#334756'))
-	profile_name_label.add_theme_color_override('font_color', Color('#203443'))
-	profile_points_label.add_theme_color_override('font_color', Color('#536977'))
+	# Labels inherit the current theme, including during a settings preview.
+	# Imported SVGs keep their original dark strokes unless their alpha mask is
+	# recolored; multiplying those pixels by a light modulate would stay dark.
+	var foreground := Color(palette.get('foreground', get_theme_color('font_color', 'Label')))
+	for icon in _icons:
+		_recolor_icon(icon, foreground)
 	fit(_available_width, bool(settings.get('large_text', _large)), _compact)
+
+func _recolor_icon(icon: TextureRect, foreground: Color) -> void:
+	if icon.texture == null:
+		return
+	var image := icon.texture.get_image()
+	if image == null or image.is_empty():
+		return
+	if image.is_compressed() and image.decompress() != OK:
+		return
+	image.convert(Image.FORMAT_RGBA8)
+	for y in range(image.get_height()):
+		for x in range(image.get_width()):
+			var alpha := image.get_pixel(x, y).a
+			image.set_pixel(x, y, Color(foreground.r, foreground.g, foreground.b, alpha))
+	icon.texture = ImageTexture.create_from_image(image)
 
 func update_state(destination: String, active_profile: bool) -> void:
 	selected = 'settings' if destination in ['help', 'controls'] else destination
