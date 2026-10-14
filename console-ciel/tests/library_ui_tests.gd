@@ -1,12 +1,13 @@
 extends SceneTree
 ## Exercises the real library, purchases, appearance previews and credits.
-## Saves and settings are isolated; points come from the educational missions.
+## Real affordability uses educational rewards; a separate saved UI fixture
+## supplies the remaining cards for the four-owned-game layout checks.
 ## Optional real viewport captures: -- --screenshots
 
 const Library := preload("res://scripts/services/game_library.gd")
 const Palette := preload("res://scripts/ui/appearance_palette.gd")
 const GAMES := ["game_test_1", "game_test_2", "game_test_3", "game_test_4"]
-const PRICES := [20, 30, 40, 50]
+const PRICES := [200, 200, 200, 200]
 
 var checks := 0
 var failures: Array[String] = []
@@ -132,10 +133,29 @@ func _earn_points() -> void:
 
 func _test_purchases() -> void:
 	await _earn_points()
+	var chapter_one: Dictionary = state.profile.duplicate(true)
+	_check(not shop.purchase(GAMES[0]).ok and state.profile == chapter_one and saves.read_profile(first_id).data == chapter_one, "Les 150 points du premier chapitre ne suffisent pas à acheter un jeu à 200 points")
+	_check(investigation.enter_chapter(2).ok and investigation.begin_mission("network").ok, "Le vrai chapitre 2 permet de gagner les 50 points manquants")
+	var network: Dictionary = investigation.mission("network")
+	for observation in network.observations:
+		_check(investigation.observe("network", observation.id).ok, "Observation réseau réelle : " + observation.id)
+	_check(investigation.submit_diagnostic("network", network.solution.diagnosis, network.solution.repair).ok, "Le diagnostic réseau atteint exactement 200 points gagnés")
+	_check(state.profile.wallet.points == 200 and state.profile.rewarded_missions.size() == 4, "Trois missions au rez-de-chaussée et le réseau financent un seul jeu")
 	app.shop_filter = 4
 	app._show_screen("shop")
 	await _frames(8)
 	for index in range(GAMES.size()):
+		if index == 1:
+			# This saved fixture exists only in this test's isolated storage. It
+			# exercises all four purchased cards without creating fake rewards
+			# in the product or pretending the six missions can fund 800 points.
+			var fixture: Dictionary = state.profile.duplicate(true)
+			fixture.wallet.points = 600
+			var written: Dictionary = saves.write_profile(fixture)
+			_check(written.ok, "Fixture UI isolée : 600 points pour vérifier les trois dernières cartes achetées")
+			if written.ok:
+				state.commit_profile(written.data)
+			await _frames(5)
 		var id: String = GAMES[index]
 		var before: Dictionary = state.profile.duplicate(true)
 		if not await _activate("product_" + id, index % 2 == 1):
@@ -147,15 +167,18 @@ func _test_purchases() -> void:
 		await _activate("modal_confirm", index % 2 == 0)
 		await _frames(5)
 		_check(state.profile.wallet.points == before.wallet.points - PRICES[index] and id in state.profile.owned_items, "Achat réel avec débit exact : " + id)
+		if index == 0:
+			_check(state.profile.wallet.points == 0 and state.profile.rewarded_missions.size() == 4, "Le premier achat dépense uniquement les 200 points réellement gagnés")
 		_check(saves.read_profile(first_id).data == state.profile, "Solde et possession sauvegardés ensemble : " + id)
 		var after: Dictionary = state.profile.duplicate(true)
 		_check(not shop.purchase(id).ok and state.profile == after, "Un second achat n’effectue aucun second débit : " + id)
-	_check(state.profile.wallet.points == 10 and Library.owned_games(state.profile, shop.catalog).size() == 4, "Les quatre achats coûtent 140 points et laissent 10 points")
+	_check(state.profile.wallet.points == 0 and Library.owned_games(state.profile, shop.catalog).size() == 4, "Les quatre achats coûtent 800 points, financés par 200 gains réels et 600 points de fixture UI isolée")
 	_check_shop_badges()
 	await _capture("shop_games_after_purchase")
 	app._show_screen("home")
 	await _frames(8)
-	_check(app.navigation.profile_points_label.text == "10 pts", "La barre affiche le solde réel après achat de jeux")
+	_check(app.header_points.is_visible_in_tree() and app.header_points.text == "0 pts", "Le profil en haut à gauche affiche le solde réel après les achats")
+	_check(not app.navigation.profile_points_label.is_visible_in_tree(), "Le solde ne surcharge plus la barre des quatre onglets")
 	for id in GAMES:
 		_check(_find("play_" + id) != null and _find("buy_" + id) == null, "Chaque achat remplace le bouton d’achat par un lancement : " + id)
 		if await _activate("play_" + id, id == GAMES[1]):
