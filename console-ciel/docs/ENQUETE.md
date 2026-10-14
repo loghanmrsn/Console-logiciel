@@ -6,9 +6,9 @@ Tout se joue hors ligne dans une simulation fictive. Aucun câble réel, termina
 
 ## Exploration et tableau de missions
 
-Le personnage se déplace en vue du dessus. Les murs, les meubles et les portes fermées bloquent ses déplacements. Un indicateur désigne l’objet proche avec lequel interagir ; un objet dont le prérequis manque explique ce qu’il reste à accomplir. Les défis, dialogues et pauses suspendent le déplacement.
+Le personnage se déplace en vue du dessus. Les murs, les meubles et les portes fermées bloquent ses déplacements. Un indicateur désigne l’objet proche avec lequel interagir ; un objet dont le prérequis manque explique ce qu’il reste à accomplir. Depuis **0.6.1**, après une réussite sauvegardée, le repère et le bouton d’interaction des objets liés à la mission terminée disparaissent. Les meubles restent visibles dans leur état réparé ; l’ascenseur conserve son interaction pour changer de chapitre. La reprise garde les repères masqués et une nouvelle partie les rétablit pour les missions à refaire, sans redonner les points déjà attribués. Les défis, dialogues et pauses suspendent le déplacement.
 
-Le **tableau de missions** se trouve à droite de l’écran. Replié, il occupe peu de place ; déplié, il montre les trois missions du chapitre courant et leur état **À débloquer**, **Disponible**, **En cours** ou **Terminé**, avec une coche après réussite. Les états ne reposent pas seulement sur la couleur.
+Le profil actif, son avatar et ses points sont en haut à gauche de l’écran. Le **tableau de missions** se trouve à droite de l’écran. Replié, il occupe peu de place ; déplié, il montre les trois missions du chapitre courant et leur état **À débloquer**, **Disponible**, **En cours** ou **Terminé**, avec une coche après réussite. Les états ne reposent pas seulement sur la couleur.
 
 En exploration, utiliser son bouton **Afficher / Masquer**, la touche **T**, ou le **bouton de face haut** : Triangle sur PlayStation, Y sur une manette Xbox, X sur une manette Nintendo reconnue avec son mapping standard. **Pause → Afficher les objectifs** donne aussi accès à cette action. Le mapping Godot standard utilise le bouton 3 ; le contrôleur fabriqué doit être mesuré dans **Paramètres → Commandes → Test des commandes** pour confirmer le bouton réellement envoyé.
 
@@ -70,24 +70,32 @@ Les six missions rapportent chacune **50 points à leur première réussite**, s
 
 Les missions, observations, indices, salle atteinte, checkpoint et gains de la partie sont enregistrés dans le profil actif. Les deux bilans séparent les **nouveaux points gagnés dans cette partie**, cumulés entre les chapitres, du **solde total**, qui peut aussi refléter des achats ou des parties précédentes. Un profil neuf ayant terminé les six missions sans achat atteint 300 nouveaux points et un solde de 300.
 
-Les profils créés avant 0.6.0 sont complétés avec les trois objectifs de l’étage sans perdre leurs anciennes réussites, observations, points, achats ou récompenses. Le schéma de sauvegarde reste en version 1. Si le chapitre 1 est déjà terminé, l’ascenseur est disponible à la reprise ; les nouvelles récompenses du chapitre 2 restent à gagner. Chaque profil conserve sa progression propre.
+Les profils créés avant 0.6.0 sont complétés avec les trois objectifs de l’étage sans perdre leurs anciennes réussites, observations, points, achats ou récompenses. Le schéma de sauvegarde reste en version 1. Si le chapitre 1 est déjà terminé, l’ascenseur est disponible à la reprise ; les nouvelles récompenses du chapitre 2 restent à gagner. Chaque profil conserve sa progression propre. Une fois le chapitre courant terminé, **Pause → Bilan du chapitre** permet de consulter de nouveau ses explications sans réactiver les repères des missions achevées.
+
+Les quatre emplacements Test de la boutique coûtent **200 points chacun** depuis 0.6.1. Sans autre dépense, quatre premières réussites permettent un achat ; après six réussites et cet achat, il reste 100 points. Le plafond de 300 points reste inchangé : acquérir les autres jeux demande de futurs défis ou un solde déjà présent dans un ancien profil. Les anciens achats restent possédés sans supplément.
 
 ## Parcours manuel de validation
 
-1. Créer un profil neuf et commencer. Déplier et replier le panneau par son bouton, **T**, puis le bouton de face haut. Vérifier sa lisibilité et les trois objectifs du chapitre 1.
+1. Créer un profil neuf et commencer. Vérifier le profil, l’avatar et les points en haut à gauche. Déplier et replier le panneau par son bouton, **T**, puis le bouton de face haut. Vérifier sa lisibilité et les trois objectifs du chapitre 1.
 2. Avant chaque réussite, essayer l’objet suivant. L’indice explique le prérequis ; la porte du bureau et l’ascenseur restent bloqués jusqu’aux réussites requises.
-3. Soumettre un circuit incomplet, constater l’explication, puis fermer la boucle correcte. Quitter au menu et reprendre : lumière et premier objectif doivent être conservés.
-4. Consulter la serrure, essayer une hypothèse erronée, puis réparer la liaison de commande. Dans le bureau, observer l’ordinateur, vérifier alimentation et câble, puis corriger la liaison vidéo.
-5. Lire le bilan du chapitre 1 : trois objectifs terminés et **150 nouveaux points** pour ce profil neuf. Reprendre l’exploration et monter par l’ascenseur en bas du bureau.
+3. Soumettre un circuit incomplet, constater l’explication, puis fermer la boucle correcte. Après sauvegarde, vérifier que le repère et le bouton d’interaction de l’éclairage disparaissent et que le meuble reste visible. Quitter au menu et reprendre : lumière et premier objectif doivent être conservés, sans retour du repère.
+4. Consulter la serrure, essayer une hypothèse erronée, puis réparer la liaison de commande. Dans le bureau, observer l’ordinateur, vérifier alimentation et câble, puis corriger la liaison vidéo. Vérifier après chaque réussite la disparition du repère et du bouton de la mission achevée, avec son décor réparé toujours visible.
+5. Lire le bilan du chapitre 1 : trois objectifs terminés et **150 nouveaux points** pour ce profil neuf. Consulter aussi **Pause → Bilan du chapitre** ; avant la troisième réussite, ce bouton doit être absent. Reprendre l’exploration et monter par l’ascenseur en bas du bureau, qui reste interactif.
 6. À l’étage, vérifier que le panneau montre les missions réseau. Essayer l’adressage ou le Wi-Fi trop tôt : leur prérequis bloque la mission. Consulter les trois observations réseau, essayer un diagnostic erroné, puis reconnecter le câble RJ45 virtuel.
-7. Corriger l’adresse du poste selon le plan **192.168.10.42/24**, puis activer le chiffrement Wi-Fi et la phrase unique. Lire le second bilan : **300 nouveaux points cumulés** sans achat et six missions terminées.
-8. Fermer et relancer entre les missions et après la montée. **Continuer** doit restaurer le bon étage, les observations, les objectifs et les points. Un ancien profil ayant terminé le chapitre 1 doit accéder à l’ascenseur tout en conservant ses achats.
-9. Rejouer les six missions : nouveaux gains à zéro, récompenses et solde conservés. Comparer avec un second profil neuf et acheter un emplacement Test avec les points du premier pour vérifier la séparation des profils.
+7. Corriger l’adresse du poste selon le plan **192.168.10.42/24**, puis activer le chiffrement Wi-Fi et la phrase unique. Lire le second bilan : **300 nouveaux points cumulés** sans achat et six missions terminées. Les trois repères réseau sont masqués et leurs équipements réparés restent visibles. Vérifier le bilan en pause et redescendre par l’ascenseur, puis remonter.
+8. Fermer et relancer entre les missions et après la montée. **Continuer** doit restaurer le bon étage, les observations, les objectifs et les points, avec les repères des missions terminées toujours masqués. Un ancien profil ayant terminé le chapitre 1 doit accéder à l’ascenseur tout en conservant ses achats.
+9. Commencer une nouvelle partie : les repères des missions à refaire doivent réapparaître. Rejouer les six missions : nouveaux gains à zéro, récompenses et solde conservés. Acheter un emplacement Test à **200 points** avec les 300 points du premier profil laisse 100 ; le second achat est refusé. Comparer avec un second profil neuf et reprendre un ancien achat sans supplément pour vérifier la séparation et la conservation des profils.
 10. Essayer Échap et P avant, pendant et après les défis. Un dialogue ne doit pas permettre d’interagir derrière lui ; le déplacement reprend après fermeture et reste arrêté en pause. Vérifier le panneau en **1280 × 720, 1024 × 600 et 800 × 480**, texte normal et grand, puis les commandes sans souris.
 
 Les tests automatisés utilisent des dossiers temporaires pour les erreurs d’écriture et la migration. Ne pas corrompre les vrais profils pour reproduire ces cas. L’exécution native, le son et une manette USB physique sous Windows restent à essayer sur le PC destinataire.
 
-## Captures et recette 0.6.0
+## Captures et recette 0.6.1
+
+La commande de porte montre le changement demandé : [avant réussite avec repère](screenshots/confort_0.6.1/door_before_success_marker.png), puis [après réussite sans repère ni bouton d’interaction](screenshots/confort_0.6.1/door_after_success_no_marker.png). Le meuble reste dans le décor. Les captures montrent aussi le [chapitre terminé sans repères de missions](screenshots/confort_0.6.1/chapter_completed_no_mission_marker.png) et l’[ascenseur disponible](screenshots/confort_0.6.1/elevator_available_after_missions.png).
+
+La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source** dans 16 suites, **65 de persistance** entre trois processus, **58 contrôles de rendu réel X11** avec 8 captures et **6 547 assertions du pack compilé**, sans échec. Les suites ciblées comptent 137 contrôles des repères terminés et 235 des achats ; le rejeu ne réattribue aucun point. [Résumé courant](../tests/confort_0.6.1_results/summary.json) et [liens des huit captures](DELIVERY.md). Les événements de manette sont virtuels et le son utilise le pilote Dummy ; le pack compilé est testé avec le moteur Linux et le lancement natif Windows reste à vérifier.
+
+## Captures et recette historique 0.6.0
 
 ![Arrivée dans la salle réseau avec les trois missions du chapitre 2](screenshots/chapitre_2_0.6.0/chapter_2_arrival_missions.png)
 
