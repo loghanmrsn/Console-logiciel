@@ -63,9 +63,12 @@ func equip(id: String) -> Dictionary:
 		return SaveService._fail("Cet article n'est pas possédé.")
 	if product.type not in ["avatar", "theme", "frame"]:
 		return SaveService._fail("Type d'équipement inconnu.")
-	if profile.equipped.get(product.type) == id:
+	# Rééquiper l'avatar courant doit aussi retirer une image personnelle active.
+	if profile.equipped.get(product.type) == id and not (product.type == "avatar" and profile.has("avatar_image")):
 		return SaveService._ok(product)
 	profile.equipped[product.type] = id
+	if product.type == "avatar":
+		profile.erase("avatar_image")
 	var saved := SaveService.write_profile(profile)
 	if not saved.ok:
 		return saved
