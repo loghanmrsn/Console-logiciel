@@ -20,7 +20,7 @@ func resources(folder: String) -> Array:
  return result
 func run():
  await process_frame
- check(ProjectSettings.get_setting('application/config/version')=='0.4.1','Version embarquée')
+ check(ProjectSettings.get_setting('application/config/version')=='0.4.2','Version embarquée')
  var all=resources('res://assets/art');check(all.size()==36,'36 SVG dans le pack')
  for path in all:
   var asset=ResourceLoader.load(path)
@@ -29,6 +29,9 @@ func run():
  saves.root_path='user://tests/art_pack_'+str(Time.get_ticks_usec());settings.storage_root=saves.root_path
  app=load('res://scenes/main.tscn').instantiate();root.add_child(app);await frames(30)
  check(app.screen=='editor','Pack démarre sans profil')
+ check(app.find_child('profile_avatar_preview',true,false)!=null,'Aperçu du profil embarqué')
+ check(app.find_child('key_A',true,false).text=='a' and app.find_child('key_Shift',true,false)!=null and app.find_child('key_123',true,false).text=='123','Clavier mobile compilé : minuscules, majuscule et chiffres')
+ check(app.find_child('open_profile_images',true,false)!=null and app.find_child('refresh_profile_images',true,false)!=null,'Dossier des images locales accessible depuis le pack')
  var p=profiles.create_profile('Export graphique');check(p.ok and profiles.select_profile(p.data.id).ok,'Profil isolé du pack')
  app._show_screen('home');await frames();check(app.navigation.visible and app.navigation.buttons.size()==4,'Accueil compilé et quatre destinations')
  var destinations=['home','shop','settings','profiles'];var labels=['Accueil','Boutique','Paramètres','Profil']
