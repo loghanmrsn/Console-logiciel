@@ -1,6 +1,10 @@
 # Console CIEL — version intégrée de démonstration
 
-Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.1**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
+**Profils 0.4.2 :** nouvel aperçu du profil, photos locales et clavier AZERTY avec minuscules, **⇧**, **123** et **ABC**. Déposez vos photos dans **images_profil/** à côté de `Console_CIEL.exe`, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. [Guide des profils](docs/PROFILS_ET_CLAVIER.md).
+
+**[Télécharger le projet complet 0.4.2](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.4.2.zip)** : sources et version Windows réunies. Après extraction, le logiciel est dans `console-ciel/builds/windows-x86_64-profils-0.4.2/Console_CIEL.exe`. [Contenu du dossier complet](docs/ARCHIVE_COMPLETE.md).
+
+Application native hors ligne **Godot 4.6.3 stable**, GDScript, rendu **Compatibility**, version logiciel **0.4.2**. Le projet réunit profils locaux, menu, paramètres, enquête pédagogique jouable, boutique et inventaire. Aucun compte, serveur ou paiement réel.
 
 Navigation **0.4.1** : capsule inférieure translucide, quatre destinations **Accueil → Boutique → Paramètres → Profil** et informations du joueur dans la barre. [Détails et captures réelles](docs/NAVIGATION_TRANSLUCIDE.md).
 
@@ -8,7 +12,7 @@ Refonte graphique **0.4.0** : [changements, captures avant/après et recette](do
 
 ## Lancer la version
 
-**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_navigation_0.4.1.zip](builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Version Windows 0.4.0 conservée](builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
+**Test sur Windows x86_64 :** décompresser tout [Console_CIEL_Windows_x86_64_profils_0.4.2.zip](builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip), puis double-cliquer sur **Console_CIEL.exe**. Godot n'a pas besoin d'être installé sur le PC destinataire. Le ZIP contient le `LIRE_MOI.txt` français et les licences ; les ressources sont intégrées à l'exécutable. [Guide Windows, export et vérifications](docs/WINDOWS.md). [Version Windows 0.4.0 conservée](builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
 
 Version exacte du moteur utilisée : `4.6.3.stable.official.7d41c59c4`, édition standard. Importer `project.godot` dans cet éditeur et appuyer sur **F5**, ou lancer depuis la racine du dépôt :
 
