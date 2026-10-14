@@ -1,5 +1,7 @@
 extends Node
 
+const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
+
 signal profiles_changed(profiles: Array)
 var profiles: Array = []
 var issues: Array = []
@@ -26,13 +28,15 @@ func _new_id() -> String:
 func _empty_progress() -> Dictionary:
 	return SaveService.empty_investigation_progress()
 
-func create_profile(display_name: String, avatar_id: String = "avatar_default") -> Dictionary:
+func create_profile(display_name: String, avatar_id: String = "avatar_default", avatar_image: String = "") -> Dictionary:
 	var name := SaveService.validate_display_name(display_name)
 	if not name.ok:
 		return name
 	var avatar := ShopService.item(avatar_id)
 	if avatar.is_empty() or avatar.type != "avatar" or int(avatar.price) != 0:
 		return SaveService._fail("Choisissez un avatar gratuit pour créer le profil.")
+	if not avatar_image.is_empty() and (not LocalAvatarLibrary.is_safe_filename(avatar_image) or LocalAvatarLibrary.texture_for(avatar_image) == null):
+		return SaveService._fail("Choisissez une image locale valide dans le dossier images_profil.")
 	var id := _new_id()
 	while FileAccess.file_exists(SaveService._path("profiles/%s.json" % id)):
 		id = _new_id()
@@ -44,6 +48,8 @@ func create_profile(display_name: String, avatar_id: String = "avatar_default") 
 	}
 	if avatar_id not in document.owned_items:
 		document.owned_items.append(avatar_id)
+	if not avatar_image.is_empty():
+		document["avatar_image"] = avatar_image
 	var saved := SaveService.write_profile(document)
 	if not saved.ok:
 		return saved
@@ -77,7 +83,7 @@ func select_profile(id: String) -> Dictionary:
 	last_profile_id = id
 	return loaded
 
-func update_profile(display_name: String, avatar_id: String) -> Dictionary:
+func update_profile(display_name: String, avatar_id: String, avatar_image: String = "") -> Dictionary:
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
 	var name := SaveService.validate_display_name(display_name)
@@ -86,9 +92,20 @@ func update_profile(display_name: String, avatar_id: String) -> Dictionary:
 	var avatar := ShopService.item(avatar_id)
 	if avatar.is_empty() or avatar.type != "avatar" or avatar_id not in AppState.profile.owned_items:
 		return SaveService._fail("Cet avatar n'est pas possédé.")
+	if not avatar_image.is_empty():
+		if not LocalAvatarLibrary.is_safe_filename(avatar_image):
+			return SaveService._fail("Le nom de l'image de profil locale est invalide.")
+		# Un renommage garde une référence existante même si l'image a été retirée.
+		# Une nouvelle sélection doit en revanche pouvoir être réellement décodée.
+		if avatar_image != AppState.profile.get("avatar_image", "") and LocalAvatarLibrary.texture_for(avatar_image) == null:
+			return SaveService._fail("Choisissez une image locale valide dans le dossier images_profil.")
 	var document: Dictionary = AppState.profile.duplicate(true)
 	document.display_name = name.data
 	document.equipped.avatar = avatar_id
+	if avatar_image.is_empty():
+		document.erase("avatar_image")
+	else:
+		document["avatar_image"] = avatar_image
 	var saved := SaveService.write_profile(document)
 	if not saved.ok:
 		return saved
