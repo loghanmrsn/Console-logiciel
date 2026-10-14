@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "investigation_version": 1,
-  "mission_reward_max": 150,
+  "mission_reward_max": 300,
   "missions": [
     {
       "id": "lighting",
@@ -46,7 +46,9 @@
         "id": "badge_note",
         "text": "Indice révélé : le badge est reconnu par le lecteur de la porte. Vérifie séparément l'alimentation et la commande."
       },
-      "success_explanation": "Le courant peut circuler dans une boucle fermée : source → interrupteur → lampe → retour à la source. L'interrupteur contrôle le passage dans cette boucle. Cette activité est une simulation fictive en très basse tension, jamais une consigne de câblage secteur."
+      "success_explanation": "Le courant peut circuler dans une boucle fermée : source → interrupteur → lampe → retour à la source. L'interrupteur contrôle le passage dans cette boucle. Cette activité est une simulation fictive en très basse tension, jamais une consigne de câblage secteur.",
+      "chapter": 1,
+      "room_id": "room_01"
     },
     {
       "id": "lock",
@@ -123,7 +125,9 @@
         "id": "video_note",
         "text": "Indice du bureau : l'ordinateur démarre, mais l'écran affiche « Aucun signal ». Observe avant de conclure."
       },
-      "success_explanation": "L'alimentation fournit l'énergie ; la commande transmet l'ordre d'ouverture. Ici l'énergie et le badge étaient corrects, mais la liaison de commande était interrompue. La reconnexion virtuelle transmet à nouveau l'ordre à l'actionneur et ouvre la porte fictive."
+      "success_explanation": "L'alimentation fournit l'énergie ; la commande transmet l'ordre d'ouverture. Ici l'énergie et le badge étaient corrects, mais la liaison de commande était interrompue. La reconnexion virtuelle transmet à nouveau l'ordre à l'actionneur et ouvre la porte fictive.",
+      "chapter": 1,
+      "room_id": "room_01"
     },
     {
       "id": "computer",
@@ -210,7 +214,231 @@
         "id": "incident_message",
         "text": "Message retrouvé : « Pendant le rangement du local, le circuit pédagogique est resté ouvert, la liaison de commande a été déconnectée et le câble vidéo oublié. Rien n'a été piraté : trois liaisons interrompues expliquent l'incident. Merci d'avoir observé puis vérifié chaque cause. »"
       },
-      "success_explanation": "Observe, vérifie puis conclus. « Aucun signal » concernait la liaison vidéo, alors que l'écran et l'unité centrale étaient alimentés. Le câble virtuel rebranché rétablit l'image. Une hypothèse doit être soutenue par des observations, pas choisie au hasard."
+      "success_explanation": "Observe, vérifie puis conclus. « Aucun signal » concernait la liaison vidéo, alors que l'écran et l'unité centrale étaient alimentés. Le câble virtuel rebranché rétablit l'image. Une hypothèse doit être soutenue par des observations, pas choisie au hasard.",
+      "chapter": 1,
+      "room_id": "room_01"
+    },
+    {
+      "id": "network",
+      "name": "Rétablir la liaison réseau",
+      "title": "Rétablir la liaison réseau",
+      "description": "Observer une liaison Ethernet fictive avant de rechercher une panne de configuration.",
+      "chapter": 2,
+      "room_id": "room_02",
+      "prerequisites": [
+        "computer"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "switch",
+          "title": "Commutateur",
+          "text": "Le commutateur de la salle réseau est alimenté. Les autres ports actifs montrent que cet équipement fonctionne."
+        },
+        {
+          "id": "link",
+          "title": "Témoin de liaison",
+          "text": "Le port du poste affiche « Liaison absente ». Aucun lien Ethernet physique n’est établi avec ce poste."
+        },
+        {
+          "id": "cable",
+          "title": "Câble RJ45",
+          "text": "Dans cette simulation, le câble RJ45 du poste est débranché du commutateur. Aucun réglage logiciel ne reconnecte cette liaison physique."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "switch_power",
+          "label": "Commutateur non alimenté",
+          "feedback": "Le commutateur est alimenté et ses autres ports sont actifs. Le défaut observé concerne le câble de ce poste."
+        },
+        {
+          "id": "cable_unplugged",
+          "label": "Câble RJ45 débranché",
+          "feedback": "L’absence de liaison et le câble débranché désignent la même cause : le trajet physique est interrompu."
+        },
+        {
+          "id": "dns_fault",
+          "label": "Serveur DNS indisponible",
+          "feedback": "Une panne DNS peut empêcher de résoudre des noms, mais elle n’explique pas un témoin de liaison éteint et un câble débranché."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "reconnect_rj45",
+          "label": "Rebrancher le câble RJ45 virtuel",
+          "feedback": "Reconnecter le câble de la simulation établit à nouveau la liaison entre le poste et le commutateur."
+        },
+        {
+          "id": "change_dns",
+          "label": "Changer le DNS fictif",
+          "feedback": "Changer le DNS ne rétablit pas une liaison physique interrompue. Commence par le câble observé débranché."
+        },
+        {
+          "id": "replace_switch",
+          "label": "Remplacer le commutateur",
+          "feedback": "Le commutateur fonctionne déjà. Remplacer cet équipement ne traite pas directement le câble débranché du poste."
+        }
+      ],
+      "solution": {
+        "diagnosis": "cable_unplugged",
+        "repair": "reconnect_rj45"
+      },
+      "clue": {
+        "id": "addressing_note",
+        "text": "La liaison est rétablie. Le poste voit maintenant le réseau, mais sa passerelle reste inaccessible : compare son adresse IPv4 avec celle de la passerelle."
+      },
+      "success_explanation": "Une liaison Ethernet a besoin d’un trajet physique continu. Dans cette simulation, le câble RJ45 reconnecté rétablit ce trajet ; les réglages IP et DNS se vérifient ensuite, séparément."
+    },
+    {
+      "id": "addressing",
+      "name": "Corriger l’adressage IPv4",
+      "title": "Corriger l’adressage IPv4",
+      "description": "Comparer des adresses IPv4 fictives et leur masque pour identifier un mauvais sous-réseau.",
+      "chapter": 2,
+      "room_id": "room_02",
+      "prerequisites": [
+        "network"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "workstation",
+          "title": "Adresse du poste",
+          "text": "Le poste fictif utilise 192.168.20.42 avec le masque 255.255.255.0 (/24). Son réseau est donc 192.168.20.0/24."
+        },
+        {
+          "id": "gateway",
+          "title": "Passerelle du local",
+          "text": "La passerelle fictive utilise 192.168.10.1 avec le masque 255.255.255.0 (/24). Elle appartient au réseau 192.168.10.0/24."
+        },
+        {
+          "id": "allocation",
+          "title": "Plan d’adressage",
+          "text": "Le plan du local réserve au poste 192.168.10.42/24, une adresse disponible, avec la passerelle 192.168.10.1. La liaison RJ45 est maintenant active."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "wrong_subnet",
+          "label": "Poste dans le mauvais sous-réseau",
+          "feedback": "Avec ce masque /24, 192.168.20.42 et 192.168.10.1 appartiennent à deux sous-réseaux différents. Le poste doit suivre le plan d’adressage du local."
+        },
+        {
+          "id": "cable_fault",
+          "label": "Câble RJ45 encore débranché",
+          "feedback": "La liaison est active après la mission précédente. Compare les adresses et le masque au lieu de refaire le diagnostic physique."
+        },
+        {
+          "id": "same_network",
+          "label": "Adresses déjà dans le même réseau",
+          "feedback": "Avec 255.255.255.0, les trois premiers octets identifient le réseau : 192.168.20 et 192.168.10 sont différents."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "align_subnet",
+          "label": "Appliquer le plan IPv4 fictif",
+          "feedback": "Le poste reçoit virtuellement 192.168.10.42/24 et conserve la passerelle 192.168.10.1, dans le même sous-réseau."
+        },
+        {
+          "id": "disable_gateway",
+          "label": "Retirer la passerelle",
+          "feedback": "Retirer la passerelle ne corrige pas l’adresse du poste et supprime son chemin vers les autres réseaux."
+        },
+        {
+          "id": "random_address",
+          "label": "Choisir une adresse au hasard",
+          "feedback": "Une adresse doit respecter le plan du réseau et rester disponible. Ici le plan fournit précisément 192.168.10.42/24."
+        }
+      ],
+      "solution": {
+        "diagnosis": "wrong_subnet",
+        "repair": "align_subnet"
+      },
+      "clue": {
+        "id": "security_note",
+        "text": "Le poste atteint sa passerelle. Le point d’accès du local annonce toutefois un réseau ouvert : examine sa protection avant d’y connecter les appareils."
+      },
+      "success_explanation": "Avec un masque /24, les trois premiers octets désignent le réseau. Le poste et sa passerelle fictive partagent maintenant 192.168.10.0/24 grâce à l’adresse réservée par le plan. Cette activité ne change aucun réglage réseau réel."
+    },
+    {
+      "id": "security",
+      "name": "Protéger le Wi-Fi du local",
+      "title": "Protéger le Wi-Fi du local",
+      "description": "Identifier un réseau Wi-Fi ouvert et choisir un chiffrement compatible avec une phrase secrète unique.",
+      "chapter": 2,
+      "room_id": "room_02",
+      "prerequisites": [
+        "addressing"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "wifi",
+          "title": "Protection du Wi-Fi",
+          "text": "Le point d’accès fictif affiche « Réseau ouvert — aucun chiffrement ». La connexion ne demande aucune phrase secrète."
+        },
+        {
+          "id": "compatibility",
+          "title": "Compatibilité des appareils",
+          "text": "Les appareils du local prennent en charge WPA2 et WPA3. Le point d’accès permet un mode WPA2/WPA3 adapté à ces appareils."
+        },
+        {
+          "id": "passphrase",
+          "title": "Phrase de connexion",
+          "text": "La fiche propose une nouvelle phrase longue et unique pour ce réseau. Le mot de passe d’administration du point d’accès est distinct de cette phrase Wi-Fi et ne doit pas être réutilisé."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "open_wifi",
+          "label": "Wi-Fi sans chiffrement",
+          "feedback": "Les observations indiquent un réseau ouvert. Il faut activer une protection WPA2/WPA3 compatible et une phrase de connexion unique."
+        },
+        {
+          "id": "hidden_name",
+          "label": "Nom du réseau trop visible",
+          "feedback": "Masquer le nom du réseau ne chiffre pas les échanges et ne remplace pas une protection WPA2/WPA3."
+        },
+        {
+          "id": "admin_only",
+          "label": "Mot de passe administrateur suffisant",
+          "feedback": "Le mot de passe d’administration protège les réglages du point d’accès. Il ne protège pas à lui seul la connexion Wi-Fi ouverte."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "enable_encryption",
+          "label": "Activer WPA2/WPA3 et une phrase unique",
+          "feedback": "Le réseau fictif utilise désormais un chiffrement compatible WPA2/WPA3 avec la nouvelle phrase longue et unique prévue pour sa connexion."
+        },
+        {
+          "id": "hide_ssid",
+          "label": "Masquer seulement le nom du Wi-Fi",
+          "feedback": "Un nom masqué ne remplace pas le chiffrement. Le réseau resterait ouvert avec cette seule action."
+        },
+        {
+          "id": "reuse_password",
+          "label": "Réutiliser le mot de passe administrateur",
+          "feedback": "Les accès d’administration et de connexion ont des rôles distincts. Choisis une phrase Wi-Fi longue et unique pour éviter la réutilisation."
+        }
+      ],
+      "solution": {
+        "diagnosis": "open_wifi",
+        "repair": "enable_encryption"
+      },
+      "clue": {
+        "id": "network_report",
+        "text": "Bilan de l’étage : la liaison physique est rétablie, le poste suit le plan IPv4 et le Wi-Fi utilise un chiffrement compatible avec une phrase unique. Trois vérifications complémentaires ont remis le local en service."
+      },
+      "success_explanation": "Un réseau ouvert manque de chiffrement Wi-Fi. WPA2/WPA3 et une phrase longue, unique et gardée privée améliorent cette protection. Le mot de passe d’administration reste distinct ; masquer le nom du réseau ne remplace pas le chiffrement."
     }
   ]
 }
