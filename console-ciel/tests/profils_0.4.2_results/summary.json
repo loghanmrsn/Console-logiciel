@@ -1,0 +1,107 @@
+{
+  "version": "0.4.2",
+  "tested_at_utc": "2026-10-14T05:38:02.948449+00:00",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_suites": [
+    {
+      "suite": "keyboard_tests",
+      "assertions": 784,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "51d3b5ff1ced24d729aff8b6b7a27ca78aa2b3fc7265149589fcc706bed3eab5"
+    },
+    {
+      "suite": "run_tests",
+      "assertions": 190,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "7613040dff569d4afef59aeddc32df2911f462baa1417ea99fe28c71bbf4c7a5"
+    },
+    {
+      "suite": "investigation_tests",
+      "assertions": 189,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "0040e18d808f02db2928c9075309ab1834382f777c216dffe01998ff83df952a"
+    },
+    {
+      "suite": "local_avatar_tests",
+      "assertions": 122,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "e2ae2d1c7c09cc18b5be7736beae0d066df262a1c0faaa3fe8bcf4d78d2a0beb"
+    },
+    {
+      "suite": "profile_editor_tests",
+      "assertions": 644,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "suite": "ui_smoke",
+      "assertions": 1988,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "c42606be13118a7cea3e19a63a4e195fd5b13ee6ed2c396b5af35ab02d216c67"
+    },
+    {
+      "suite": "refonte_navigation",
+      "assertions": 1829,
+      "failures": 0,
+      "exit_code": 0,
+      "log_sha256": "b6cf79271936e145549ffdd3e2b8aa38c4bc27f762798d05004b313b7437aabd"
+    }
+  ],
+  "source_assertions": 5746,
+  "real_render": {
+    "display": "X11 / Mesa llvmpipe, Compatibility",
+    "audio_driver": "Dummy",
+    "assertions": 662,
+    "failures": 0,
+    "screenshots": [
+      "docs/screenshots/profils_0.4.2/home_local_profile_1280x720.png",
+      "docs/screenshots/profils_0.4.2/profile_editor_800x480_large.png",
+      "docs/screenshots/profils_0.4.2/profile_editor_800x480_normal.png",
+      "docs/screenshots/profils_0.4.2/profile_keyboard_123_1280x720.png",
+      "docs/screenshots/profils_0.4.2/profile_photo_selection_1280x720.png",
+      "docs/screenshots/profils_0.4.2/profiles_local_photo_1280x720.png"
+    ],
+    "engine_errors": [],
+    "leaked_instances": false,
+    "warnings": [
+      "Le pilote virtuel ne permet pas de modifier V-Sync."
+    ]
+  },
+  "static_audit": {
+    "files": 696,
+    "uids": 58,
+    "res_references": 149,
+    "errors": [],
+    "native_resource_assertions": 174
+  },
+  "package_tools": {
+    "assertions": 27,
+    "failures": 0
+  },
+  "windows_validation": {
+    "windows_contracts_assertions": 18,
+    "compiled_pack_assertions": 47,
+    "compiled_art_ui_assertions": 60,
+    "compiled_profile_editor_assertions": 644,
+    "failures": 0,
+    "native_windows_execution": false,
+    "environment": "Linux Godot headless, isolated XDG directories"
+  },
+  "windows_zip_sha256": "93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b",
+  "old_releases_sha256": {
+    "Console_CIEL_Windows_x86_64_refonte_0.4.0.zip": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6",
+    "Console_CIEL_Windows_x86_64_navigation_0.4.1.zip": "4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf"
+  },
+  "notes": [
+    "Corruption ConfigFile volontaire dans le test de récupération uniquement ; diagnostic attendu vérifié séparément.",
+    "Clavier, manette et périphériques déclarés dans les tests sont simulés.",
+    "Pack Windows exécuté avec Godot Linux depuis un dossier indépendant ; lancement Windows natif et manette physique non testés.",
+    "Captures et tests utilisent uniquement des données temporaires isolées."
+  ]
+}
