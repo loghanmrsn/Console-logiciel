@@ -1,31 +1,27 @@
-# Console CIEL 0.4.1 — Windows x86_64
+# Console CIEL 0.4.2 — Windows x86_64
 
-Le paquet `Console_CIEL_Windows_x86_64_navigation_0.4.1.zip` contient le véritable exécutable **Console_CIEL.exe**, l'aide en français et les licences. Godot n'a pas besoin d'être installé pour jouer.
+[Télécharger le paquet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip). Il contient le véritable **Console_CIEL.exe**  l’aide française  les licences et le dossier **images_profil/**. Godot n’est pas nécessaire pour jouer.
 
-## Lancer
+1. Télécharger le ZIP  puis **Extraire tout** dans l’Explorateur Windows.
+2. Ouvrir le dossier extrait.
+3. Double-cliquer sur **Console_CIEL.exe**  directement à la racine de ce dossier.
 
-1. Télécharger le ZIP Windows.
-2. Cliquer sur **Extraire tout** dans l'Explorateur Windows.
-3. Ouvrir le dossier extrait et double-cliquer sur **Console_CIEL.exe**.
+Déposer vos PNG  JPEG ou WebP dans **images_profil/** à côté de l’EXE  puis **Profil → Modifier → Mes images → Actualiser les images**. Le pseudo utilise un clavier AZERTY minuscule avec **⇧**  **123**  **#+=** et **ABC**. [Guide des profils](../docs/PROFILS_ET_CLAVIER.md).
 
-Le fichier EXE se trouve à la racine du dossier extrait, à côté de `LIRE_MOI.txt` et du dossier `assets/`. Ne pas lancer depuis l'aperçu du ZIP.
+Si vous téléchargez tout le dépôt  extraire aussi le ZIP Windows contenu dans `console-ciel/builds/`. L’EXE complet mesure **105 162 952 octets** et dépasse la limite GitHub de 100 Mio par fichier ; le ZIP contient ce binaire  sans pointeur Git LFS.
 
-Si vous avez téléchargé tout le dépôt GitHub, ce paquet est dans `console-ciel/builds/` ; il faut aussi extraire ce ZIP Windows avant de jouer. Le fichier EXE de 105 141 392 octets dépasse la limite GitHub de 100 Mio pour un fichier Git ordinaire : le ZIP contient le binaire complet, sans pointeur Git LFS.
+Le [projet complet 0.4.2](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.4.2.zip) contient directement le logiciel dans `console-ciel/builds/windows-x86_64-profils-0.4.2/Console_CIEL.exe`  ainsi que les sources  les ressources et les outils.
 
-## Vérification de cette livraison
+## Vérifications exécutées
 
-- Moteur officiel : `4.6.3.stable.official.7d41c59c4`, édition standard.
-- Modèles officiels 4.6.3 vérifiés avec le SHA-512 de leur publication.
-- Export release réussi ; fichier Windows PE32+ x86_64 avec pack intégré.
-- CRC ZIP et empreintes des 173 ressources du pack vérifiés, dont 36 SVG importés.
-- Contrat Windows : 18 assertions, zéro échec.
-- Missions, profils, achats et sauvegardes du pack compilé : 47 assertions, zéro échec.
-- Ressources graphiques et interface compilée : 57 assertions, zéro échec.
+- Godot officiel **4.6.3.stable.official.7d41c59c4**  modèles Windows officiels vérifiés par SHA-512.
+- Export release réussi ; PE32+ x86_64  pack intégré.
+- CRC ZIP et empreintes des **175 ressources intégrées** vérifiés  dont **36 SVG**.
+- Configuration Windows : **18 contrôles** ; missions  achats et sauvegardes du pack compilé : **47** ; ressources et interface : **60** ; profil  clavier et images locales du pack : **644**. Aucun échec.
+- Paquet testé depuis un dossier indépendant du dépôt avec des données temporaires isolées.
 
-Les tests exécutent le pack avec le moteur Godot Linux en headless et des données isolées. Le double-clic, l'affichage, le son et les manettes sur Windows restent à vérifier sur le PC Windows. L'application n'est pas signée.
+Les essais exécutent le pack compilé avec Godot **Linux**. Le double-clic Windows  le son et une manette USB physique restent à essayer sur un PC Windows. Le programme n’est pas signé.
 
-SHA-256 du ZIP : `4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf`.
+ZIP : **36 377 860 octets**. SHA-256 : `93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b`.
 
-Le fichier `Console_CIEL_Windows_x86_64_navigation_0.4.1.verification.json` contient l'inventaire, les empreintes et les résultats de cette livraison. Les sources et anciens rapports reçus sont conservés ; les anciens exécutables Windows 0.3.0 et 0.3.1 ne figuraient pas dans l'archive de sources fournie.
-
-La [livraison Windows 0.4.0 précédente](Console_CIEL_Windows_x86_64_refonte_0.4.0.zip) reste conservée. La version 0.4.1 apporte la barre translucide **Accueil → Boutique → Paramètres → Profil**, avec avatar, pseudo et points.
+[Rapport détaillé](Console_CIEL_Windows_x86_64_profils_0.4.2.verification.json). Les anciennes livraisons [0.4.1](Console_CIEL_Windows_x86_64_navigation_0.4.1.zip) et [0.4.0](Console_CIEL_Windows_x86_64_refonte_0.4.0.zip) sont conservées.
