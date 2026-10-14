@@ -315,6 +315,7 @@ func restore_progress(progress: Dictionary) -> void:
 		door_body.collision_layer = 0 if door_open else 1
 		door_shape.set_deferred("disabled", door_open)
 	_refresh_art()
+	_refresh_target_availability()
 	if not _restored_once:
 		restore_checkpoint()
 		_restored_once = true
@@ -322,6 +323,24 @@ func restore_progress(progress: Dictionary) -> void:
 	_fit_camera()
 	queue_redraw()
 	_update_target()
+
+func _is_target_available(target: Node2D) -> bool:
+	# Mission equipment remains part of the room after repair, but its marker
+	# and interaction stop. The elevator is travel, never a completed mission.
+	return target.interaction_id == "elevator" or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
+
+func _refresh_target_availability() -> void:
+	for target in _targets:
+		var available := _is_target_available(target)
+		target.visible = available
+		if not available:
+			target.highlighted = false
+	# A challenge can finish while movement is suspended by its dialog. Clear
+	# the latched target immediately, without waiting for a physics frame.
+	if is_instance_valid(_target) and not _is_target_available(_target):
+		_target = null
+		target_id = ""
+		target_changed.emit("", "")
 
 func _appearance_changed(_value: Dictionary) -> void:
 	_sync_appearance()
@@ -358,6 +377,8 @@ func _physics_process(_delta: float) -> void:
 			_update_target()
 
 func _can_reach(target: Node2D, margin := 0.0) -> bool:
+	if not _is_target_available(target):
+		return false
 	if player.global_position.distance_to(target.global_position) > target.interaction_radius + margin:
 		return false
 	# In particular, an unopened door prevents interacting with the computer
