@@ -88,7 +88,10 @@ func check_draft_navigation():
 	check(settings.current == committed and settings.committed == committed and FileAccess.get_file_as_string(settings._path()) == settings_file, 'Le départ annule les aperçus sans les sauvegarder')
 
 func choose_settings_category(category: int, message: String):
-	for i in range(posmod(category - app.settings_category, 7)):
+	var picker: OptionButton = app.content.find_child('settings_categories', true, false)
+	check(picker != null and picker.item_count == 8, 'Huit catégories avec Crédits en dernière position')
+	if picker == null: return
+	for i in range(posmod(category - app.settings_category, picker.item_count)):
 		var focus_target = app.navigation.buttons[2] if app.navigation.visible else app.header_back
 		focus_target.grab_focus()
 		await key(KEY_E)
@@ -171,7 +174,7 @@ func check_rewards_and_equipment(profile_id: String):
 	check(investigation.begin_mission('lighting').ok and investigation.submit_lighting(['source_switch', 'switch_lamp', 'lamp_return']).ok, 'Récompense obtenue par une vraie mission')
 	await frames()
 	check(state.profile.wallet.points == 50 and app.navigation.profile_points_label.text == '50 pts', 'Les points gagnés actualisent la barre persistante')
-	check(app.home_labels.progress.text.begins_with('1 / 3'), 'La progression réelle actualise l’accueil')
+	check(app.home_labels.progress.text.begins_with('1 / 3'), 'La progression réelle actualise l’accueil : « ' + app.home_labels.progress.text + ' »')
 	check(shop.purchase('avatar_orbit').ok, 'Achat d’avatar avec les points gagnés')
 	await frames()
 	check(state.profile.wallet.points == 30 and app.navigation.profile_points_label.text == '30 pts', 'L’achat actualise le solde dans la barre')
