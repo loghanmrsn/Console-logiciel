@@ -39,10 +39,12 @@ func key(code):
 func check_player(message: String):
 	var nav = app.navigation
 	var avatar = shop.item(state.profile.equipped.avatar)
-	check(nav.profile_name_label.text == state.profile.display_name, 'Pseudo réel dans la barre ' + message)
-	check(nav.profile_points_label.text == '%d pts' % state.profile.wallet.points, 'Solde réel dans la barre ' + message)
-	check(nav.profile_avatar.visible and nav.profile_avatar.color == Color(avatar.color) and nav.profile_avatar.variant == {'H': 0, 'O': 2, 'F': 1, 'R': 2}.get(avatar.symbol, 0), 'Avatar équipé dans la barre ' + message)
-	check(nav.profile_avatar.frame == state.profile.equipped.frame and nav.profile_avatar.frame_spec == shop.item(state.profile.equipped.frame), 'Cadre équipé dans la barre ' + message)
+	check(app.header_profile.is_visible_in_tree() and app.header_profile.text == state.profile.display_name, 'Pseudo réel en haut à gauche ' + message)
+	check(app.header_points.is_visible_in_tree() and app.header_points.text == '%d pts' % state.profile.wallet.points, 'Solde réel en haut à gauche ' + message)
+	check(app.header_avatar.is_visible_in_tree() and app.header_avatar.color == Color(avatar.color) and app.header_avatar.variant == {'H': 0, 'O': 2, 'F': 1, 'R': 2}.get(avatar.symbol, 0), 'Avatar équipé en haut à gauche ' + message)
+	check(app.header_avatar.frame == state.profile.equipped.frame and app.header_avatar.frame_spec == shop.item(state.profile.equipped.frame), 'Cadre équipé en haut à gauche ' + message)
+	check(nav.profile_name_label.text == state.profile.display_name and nav.profile_points_label.text == '%d pts' % state.profile.wallet.points, 'Métadonnées de navigation actualisées ' + message)
+	check(not nav.profile_name_label.is_visible_in_tree() and not nav.profile_points_label.is_visible_in_tree(), 'Pseudo et solde masqués dans la barre pour laisser quatre onglets simples ' + message)
 
 func check_readable(label: Label, bounds: Rect2, message: String, allow_ellipsis = false):
 	check(label.is_visible_in_tree() and bounds.encloses(label.get_global_rect()), 'Information visible ' + message)
@@ -173,11 +175,11 @@ func check_rewards_and_equipment(profile_id: String):
 	await frames()
 	check(investigation.begin_mission('lighting').ok and investigation.submit_lighting(['source_switch', 'switch_lamp', 'lamp_return']).ok, 'Récompense obtenue par une vraie mission')
 	await frames()
-	check(state.profile.wallet.points == 50 and app.navigation.profile_points_label.text == '50 pts', 'Les points gagnés actualisent la barre persistante')
+	check(state.profile.wallet.points == 50 and app.header_points.text == '50 pts' and app.header_points.is_visible_in_tree(), 'Les points gagnés actualisent le profil en haut à gauche')
 	check(app.home_labels.progress.text.contains('Chapitre 1') and app.home_labels.progress.text.contains('1 / 3'), 'La progression réelle actualise le chapitre affiché à l’accueil : « ' + app.home_labels.progress.text + ' »')
 	check(shop.purchase('avatar_orbit').ok, 'Achat d’avatar avec les points gagnés')
 	await frames()
-	check(state.profile.wallet.points == 30 and app.navigation.profile_points_label.text == '30 pts', 'L’achat actualise le solde dans la barre')
+	check(state.profile.wallet.points == 30 and app.header_points.text == '30 pts' and app.header_points.is_visible_in_tree(), 'L’achat actualise le solde en haut à gauche')
 	check(shop.equip('avatar_orbit').ok and shop.purchase('frame_round').ok and shop.equip('frame_round').ok, 'Avatar et cadre achetés puis équipés')
 	await frames()
 	check_player('après achats')
@@ -235,13 +237,13 @@ func run():
 				var selected = 'settings' if destination in ['help', 'controls'] else destination
 				check(nav.get_instance_id() == nav_id, 'Navigation persistante ' + destination)
 				check(nav.visible and nav.selected == selected, 'Onglet actif ' + destination)
-				check(not app.header_profile.visible and not app.header_points.visible and not app.header_avatar.visible, 'Informations du joueur déplacées dans la barre ' + destination)
+				check(app.header_profile.is_visible_in_tree() and app.header_points.is_visible_in_tree() and app.header_avatar.is_visible_in_tree(), 'Informations du joueur affichées en haut à gauche ' + destination)
 				check(app.scroll.get_global_rect().end.y <= nav.get_global_rect().position.y + .5, 'Aucun recouvrement du contenu ' + str(resolution))
 				check(bounds.encloses(nav.panel.get_global_rect()), 'Barre entière visible ' + str(resolution))
 				check_player(destination)
-				check_readable(nav.profile_name_label, bounds, 'pseudo de 16 caractères ' + str(resolution), true)
-				check_readable(nav.profile_points_label, bounds, 'points ' + str(resolution))
-				check(nav.buttons[3].get_global_rect().encloses(nav.profile_avatar.get_global_rect()), 'Avatar contenu dans Profil ' + str(resolution))
+				check_readable(app.header_profile, bounds, 'pseudo de 16 caractères ' + str(resolution), true)
+				check_readable(app.header_points, bounds, 'points ' + str(resolution))
+				check(app.header_avatar.get_global_rect().position.x < app.header_brand.get_global_rect().position.x and app.header_profile.get_global_rect().position.x < app.header_brand.get_global_rect().position.x, 'Avatar et pseudo précèdent Console CIEL à gauche ' + str(resolution))
 				var panel_style = nav.panel.get_theme_stylebox('panel')
 				check(panel_style is StyleBoxFlat and (is_equal_approx(panel_style.bg_color.a, 1.0) if large else panel_style.bg_color.a > 0 and panel_style.bg_color.a < 1), 'Réduire la transparence rend la barre opaque ' + str(large))
 				for index in range(nav.buttons.size()):
