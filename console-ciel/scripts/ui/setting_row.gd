@@ -13,7 +13,7 @@ func configure(title: String, editor: Control, help: String = '') -> void:
 	if not help.is_empty():
 		var detail=Label.new()
 		detail.text=help
+		detail.theme_type_variation='SecondaryLabel'
 		detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-		detail.add_theme_color_override('font_color',Color('#586674'))
 		detail.add_theme_font_size_override('font_size',maxi(16,get_theme_default_font_size()-2))
 		add_child(detail)
