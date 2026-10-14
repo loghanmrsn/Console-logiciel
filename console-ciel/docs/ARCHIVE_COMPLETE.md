@@ -1,4 +1,29 @@
-# Archive complète Console CIEL 0.6.1
+# Archive complète Console CIEL 0.6.1 — Raspberry Pi
+
+[Télécharger le projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip). Le ZIP réunit les sources, ressources, documentation, outils, tests et le logiciel **Linux ARM64 courant**, sous **console-ciel/**.
+
+Après extraction complète :
+
+- **Jouer sur le Pi 4 64 bits** : ouvrir un terminal dans `console-ciel/builds/linux-arm64-raspberry-pi-0.6.1/` puis lancer `bash ./Lancer_Console_CIEL.sh`. Le véritable exécutable est **console-ciel.arm64**, avec pack intégré ; Godot n’est pas nécessaire pour jouer.
+- **Ouvrir les sources** : importer `console-ciel/project.godot` dans Godot standard **4.6.3.stable.official.7d41c59c4**, rendu Compatibility.
+- **Ajouter des photos** : utiliser **images_profil/** à côté du binaire ARM64 ; en édition Godot, utiliser `console-ciel/images_profil/`. Puis **Profil → Personnaliser → Mes images → Actualiser les images**.
+- **Consulter l’inventaire** : `CONTENU_ARCHIVE.json` donne les chemins, tailles et SHA-256 des fichiers inclus ; le [rapport externe Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.verification.json) donne l’empreinte finale du ZIP.
+
+Le contenu jouable reste celui de la version **0.6.1** : deux chapitres, six missions, ascenseur, profil en haut à gauche, jeux Test à 200 points, panneau de missions et repères masqués après réussite. [Guide Raspberry Pi](RASPBERRY_PI.md), [enquête](ENQUETE.md) et [bibliothèque](BIBLIOTHEQUE_ET_THEMES.md).
+
+Ce projet complet inclut seulement le binaire **ARM64 0.6.1**. Les ZIP Windows et les autres livraisons restent conservés séparément sur GitHub, sans être imbriqués dans cette archive. Les caches, modèles Godot téléchargeables, secrets et données personnelles sont exclus. Les sauvegardes des joueurs ne sont pas distribuées. Les licences des ressources et des polices intégrées au moteur restent incluses.
+
+Pour refaire l’assemblage après avoir préparé et vérifié la livraison ARM64, depuis `console-ciel/` :
+
+```sh
+python3 tools/package_linux_complete.py \
+  --linux-directory builds/linux-arm64-raspberry-pi-0.6.1 \
+  --output builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip
+```
+
+Le programme assemble et vérifie l’archive ; il ne reconstruit pas le binaire. Le [rapport ARM64](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.verification.json) décrit séparément l’export portable et son intégrité. [Bilan des vérifications](DELIVERY.md). Le lancement natif, l’affichage, le son et la manette restent à essayer sur votre **Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
+
+# Livraison Windows conservée — archive complète 0.6.1
 
 [Télécharger le projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip). Le ZIP regroupe les sources, ressources, documentation, outils, tests et la livraison Windows courante sous **console-ciel/**.
 
