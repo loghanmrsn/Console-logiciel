@@ -1,0 +1,169 @@
+{
+  "version": "0.5.0",
+  "tested_at_utc": "2026-10-14T06:45:11.878195+00:00",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_assertions": 8438,
+  "source_suites": [
+    {
+      "suite": "library_ui_tests",
+      "assertions": 467,
+      "failures": 0,
+      "log_sha256": "1f8ce03dfeb6c6a2d9ffd51db5eef1718205a94b5a1c734c1d63cc101fdef441"
+    },
+    {
+      "suite": "profile_editor_tests",
+      "assertions": 644,
+      "failures": 0,
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "suite": "refonte_navigation",
+      "assertions": 1842,
+      "failures": 0,
+      "log_sha256": "3d8b7a3491efc368d75bca21adb4af5a456672ebd1881e9abafae788181af3a3"
+    },
+    {
+      "suite": "ui_smoke",
+      "assertions": 2192,
+      "failures": 0,
+      "log_sha256": "299483ff9e4d34f3be2b2e64a30c886612e7657057fb44bf6293531632735b75"
+    },
+    {
+      "suite": "services",
+      "assertions": 190,
+      "failures": 0,
+      "log_sha256": "ce6ebf1941dc82926209bee11d809c02a6422e2cc760d120ce31d2cf6fbc68e2"
+    },
+    {
+      "suite": "investigation",
+      "assertions": 189,
+      "failures": 0,
+      "log_sha256": "20bdd33da45b018724f3ddc71ba23d533ecb5e91cda27c6deed6e4ea83a7e241"
+    },
+    {
+      "suite": "local_avatars",
+      "assertions": 122,
+      "failures": 0,
+      "log_sha256": "e2ae2d1c7c09cc18b5be7736beae0d066df262a1c0faaa3fe8bcf4d78d2a0beb"
+    },
+    {
+      "suite": "keyboard",
+      "assertions": 784,
+      "failures": 0,
+      "log_sha256": "51d3b5ff1ced24d729aff8b6b7a27ca78aa2b3fc7265149589fcc706bed3eab5"
+    },
+    {
+      "suite": "game_purchases",
+      "assertions": 127,
+      "failures": 0,
+      "log_sha256": "62b01d53efa3f52c11dda9c1cee10a66e8454ed539bb06f9b54027bb1f1ba9f9"
+    },
+    {
+      "suite": "appearance",
+      "assertions": 1881,
+      "failures": 0,
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    }
+  ],
+  "render": {
+    "assertions": 501,
+    "failures": 0,
+    "display": "X11 / Mesa llvmpipe, Compatibility",
+    "audio_driver": "Dummy",
+    "engine_errors": [],
+    "screenshots": [
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_1024x600_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_1024x600_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_1280x720_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_1280x720_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_800x480_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_carousel_800x480_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_1024x600_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_1024x600_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_1280x720_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_1280x720_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_800x480_large.png",
+      "docs/screenshots/bibliotheque_0.5.0/home_split_800x480_normal.png",
+      "docs/screenshots/bibliotheque_0.5.0/profiles_purchased_library.png",
+      "docs/screenshots/bibliotheque_0.5.0/settings_appearance_aurore.png",
+      "docs/screenshots/bibliotheque_0.5.0/settings_credits_nuit.png",
+      "docs/screenshots/bibliotheque_0.5.0/shop_games_after_purchase.png",
+      "docs/screenshots/bibliotheque_0.5.0/shop_games_without_points.png"
+    ],
+    "warnings": [
+      "Virtual driver cannot set V-Sync.",
+      "Godot verbose shutdown reports one unclaimed process_frame StringName; no ObjectDB instance leak."
+    ]
+  },
+  "windows_validation": {
+    "windows_contracts_assertions": 18,
+    "compiled_pack_assertions": 47,
+    "compiled_pack_suites": [
+      {
+        "windows-contracts": [
+          "WINDOWS_CONTRACTS : 18 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-pack": [
+          "WINDOWS_PACK : 47 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-art-pack": [
+          "WINDOWS_ART_PACK : 76 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-profile-editor": [
+          "PROFILE_EDITOR_TESTS : 644 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-game-purchases": [
+          "ACHATS DE JEUX : 127 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-appearance": [
+          "APPARENCE : 1881 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-library-ui": [
+          "LIBRARY_UI : 467 assertions, 0 échec(s)."
+        ]
+      }
+    ],
+    "failures": 0,
+    "native_windows_execution": false,
+    "environment": "Linux Godot headless, isolated XDG directories"
+  },
+  "windows_pack_assertions": 3242,
+  "windows_configuration_assertions": 18,
+  "windows_zip_sha256": "5d7ce9f0c557021d62477eb824c64742031b27989ed86e8ab9cf02ba2e1ac26e",
+  "package_tools": {
+    "assertions": 27,
+    "failures": 0
+  },
+  "old_releases_sha256": {
+    "Console_CIEL_Windows_x86_64_refonte_0.4.0.zip": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6",
+    "Console_CIEL_Windows_x86_64_navigation_0.4.1.zip": "4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf",
+    "Console_CIEL_Windows_x86_64_profils_0.4.2.zip": "93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b",
+    "Console_CIEL_Projet_Complet_0.4.2.zip": "78e9edaa4277ce9ebf68eea67dcc8f2f9cd0445b2729fce217c2f29d2ace7184"
+  },
+  "notes": [
+    "Test 1 à Test 4 sont les emplacements demandés, sans gameplay final et sans récompense supplémentaire.",
+    "Achats financés par les vrais défis, refus à zéro point, double achat et échecs d’écriture contrôlés.",
+    "Profils, settings et images de tests sont isolés ; aucune donnée personnelle incluse.",
+    "Contrôleur et touches manette simulés. Pack compilé exécuté avec Godot Linux, pas avec Windows natif.",
+    "Corruption de ConfigFile volontaire uniquement dans le test de récupération."
+  ],
+  "static_audit": {
+    "files": 750,
+    "uids": 66,
+    "res_references": 176,
+    "errors": [],
+    "native_resource_assertions": 190
+  }
+}
