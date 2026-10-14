@@ -128,7 +128,7 @@ func _run() -> void:
 	_check(app.settings_category == 6, "À propos accessible au clavier")
 	_find(app, "settings_help").grab_focus()
 	await _press(KEY_ENTER)
-	_check(app.screen == "help", "Aide / Crédits conserve son écran sans cinquième onglet")
+	_check(app.screen == "help", "L’aide conserve son écran accessible depuis les paramètres")
 	await _capture("help_1280x720")
 	await _press(KEY_ESCAPE)
 	_check(app.screen == "settings", "Retour de l'aide vers les paramètres")
@@ -867,7 +867,7 @@ func _test_layouts() -> void:
 			await _check_confirmation_layout("purchase", window_size, large_text)
 			await _press(KEY_ESCAPE)
 			await _press(KEY_ESCAPE)
-			for category in range(7):
+			for category in range(8):
 				app.settings_category = category
 				app.settings_origin = "home"
 				app.draft_settings = preview.duplicate(true)
