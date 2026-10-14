@@ -107,6 +107,7 @@ func _open(host: Control, title: String, message: String, choices: Array, vertic
 		button.focus_next = button.get_path_to(next)
 	var hint := Label.new()
 	hint.text = "Q / E ou boutons supérieurs : défiler le texte"
+	hint.theme_type_variation = "SecondaryLabel"
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_column.add_child(hint)
 	resized.connect(_resize_dialog)
