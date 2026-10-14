@@ -1,4 +1,49 @@
-# Livraison courante 0.6.0 — enquête, chapitre 2
+# Livraison courante 0.6.1 — confort visuel et tarifs
+
+[Projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip) et [Windows prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip). Décompresser tout le ZIP Windows et ouvrir **Console_CIEL.exe**. Dans le projet complet, il se trouve sous `console-ciel/builds/windows-x86_64-confort-0.6.1/`. [Guide de l’archive](ARCHIVE_COMPLETE.md).
+
+Le profil actif, son avatar et ses points sont en haut à gauche, y compris pendant l’enquête. La barre inférieure conserve quatre onglets centrés et ne répète plus le pseudo ni le solde. Les quatre emplacements **Test 1 à Test 4** coûtent **200 points chacun** ; les jeux déjà acquis restent possédés sans supplément.
+
+Après une mission réussie et sauvegardée, son repère et son bouton d’interaction disparaissent. Le décor reste visible dans son état réparé ; l’ascenseur reste utilisable dans les deux chapitres. Une reprise conserve cet état et une nouvelle partie rétablit les repères des missions à refaire. **Pause → Bilan du chapitre** permet de revoir un chapitre terminé. [Parcours manuel](ENQUETE.md).
+
+Les six missions rapportent toujours **50 points à leur première réussite**, au maximum **300 par profil**, sans nouveau gain lors d’un rejeu. Sans autre dépense, quatre premières réussites financent un jeu ; après les six missions et cet achat, il reste 100 points. Les quatre jeux coûtent 800 points au total : les autres achats attendent de futurs défis ou un solde déjà présent dans un ancien profil. Les Test restent des emplacements de préparation, sans gameplay ni récompense supplémentaires. [Bibliothèque et tarifs](BIBLIOTHEQUE_ET_THEMES.md).
+
+## Rapports de la livraison courante
+
+Le [rapport Windows 0.6.1](../builds/Console_CIEL_Windows_x86_64_confort_0.6.1.verification.json) et le [rapport du projet complet 0.6.1](../builds/Console_CIEL_Projet_Complet_0.6.1.verification.json) détaillent contenu et empreintes. Les recettes distinguent logique source, rendu réel sous Linux, contrats Windows et ressources embarquées exécutées avec Godot Linux. Les résultats historiques ci-dessous restent ceux de leurs versions respectives.
+
+Recette exécutée le **14 octobre 2026**, avec données temporaires isolées :
+
+| Périmètre | Résultat |
+|---|---|
+| Sources, 16 suites | **11 844 assertions, zéro échec** |
+| Persistance entre trois processus Godot réels | **65 assertions, zéro échec** |
+| Rendu X11 Linux, Mesa llvmpipe / Compatibility | **58 contrôles, zéro échec**, 8 captures |
+| Pack réellement embarqué dans l’EXE Windows, exécuté avec Godot Linux | **6 547 assertions, zéro échec** |
+| Contrats de configuration Windows | **18 contrôles, zéro échec** |
+| Outils de packaging | **27 contrôles, zéro échec** |
+| Ressources du pack | **203 empreintes contrôlées**, dont 43 SVG ; CRC du ZIP vérifiés |
+| Audit statique du projet | **818 fichiers, 72 UID, 194 références**, zéro erreur |
+| Chargement des ressources avec Godot Linux | **203 contrôles, zéro échec** |
+
+[Résumé détaillé et empreintes des journaux](../tests/confort_0.6.1_results/summary.json). Les contrôles couvrent le profil en haut à gauche, les prix à 200 points, l’achat refusé à 199 et accepté à 200 après quatre missions réussies, les achats antérieurs, les repères des six missions, la reprise, le rejeu, l’ascenseur et le bilan en pause.
+
+Les huit captures réelles montrent :
+
+- [Accueil, profil à gauche et prix à 200 en 1280 × 720](screenshots/confort_0.6.1/home_profile_left_prices_200_1280x720.png).
+- [Accueil en 800 × 480 avec grand texte](screenshots/confort_0.6.1/home_profile_left_800x480_large.png).
+- [Accueil en 800 × 480 avec style Nuit](screenshots/confort_0.6.1/home_profile_left_800x480_nuit.png).
+- [Boutique, quatre jeux à 200 points](screenshots/confort_0.6.1/shop_prices_200_1280x720.png).
+- [Commande de porte avant réussite, avec repère](screenshots/confort_0.6.1/door_before_success_marker.png).
+- [Commande de porte après réussite, sans repère ni bouton d’interaction](screenshots/confort_0.6.1/door_after_success_no_marker.png).
+- [Chapitre terminé, sans repères de missions](screenshots/confort_0.6.1/chapter_completed_no_mission_marker.png).
+- [Ascenseur toujours disponible après les missions](screenshots/confort_0.6.1/elevator_available_after_missions.png).
+
+Le rendu Linux utilise le pilote audio Dummy et ne valide pas le son perçu. Le pilote graphique ne prend pas en charge le changement de VSync. La fermeture verbose signale un unique StringName `process_frame` non libéré, sans fuite d’instance ObjectDB. Les contrôles de manette utilisent des périphériques virtuels ; la corruption ConfigFile est provoquée uniquement dans des données de test.
+
+Le [guide Windows](WINDOWS.md) décrit les contrôles manuels : profil en haut à gauche, quatre prix à 200, refus sous 200 points, achats antérieurs conservés, repères masqués après réussite et relance, repères rétablis en nouvelle partie, absence de récompense répétée, bilan en pause et ascenseur dans les deux sens. Le lancement natif, le son et une manette USB physique sous Windows restent à essayer sur le PC destinataire. Le contrôleur de la console et les performances Pi restent à mesurer sur le matériel réel.
+
+# Historique — livraison 0.6.0 : enquête, chapitre 2
 
 [Projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.0.zip) et [Windows prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip). Décompresser tout le ZIP Windows et ouvrir **Console_CIEL.exe**. Dans le projet complet, il se trouve sous `console-ciel/builds/windows-x86_64-chapitre-2-0.6.0/`. [Guide de l’archive](ARCHIVE_COMPLETE.md).
 
@@ -8,7 +53,7 @@ Les six premières réussites rapportent **50 points chacune**, au maximum **300
 
 La bibliothèque, les emplacements **Test 1 à Test 4**, les styles/couleurs, les crédits, les images locales et le clavier de la version 0.5.0 restent disponibles. Les Test sont toujours des emplacements provisoires, et leur ouverture ne rapporte aucun point. Les anciennes livraisons sont conservées dans le dépôt.
 
-## Vérifications de la livraison courante
+## Vérifications de la livraison historique 0.6.0
 
 Le [rapport Windows](../builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.verification.json) et le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_0.6.0.verification.json) décrivent les empreintes et le contenu des deux archives. La recette distingue tests de logique avec données isolées, affichage réel sous Linux, configuration Windows et exécution du pack compilé avec Godot Linux.
 
@@ -120,7 +165,7 @@ La source peut être présentée sur PC avec Godot après répétition visuelle 
 
 ## Complément Windows — 12 octobre 2026
 
-La version portable Windows x86_64 (`Console_CIEL_Windows_x86_64.zip`, nom historique ; utiliser la livraison 0.6.0) a été réellement exportée avec Godot officiel 4.6.3 et ses modèles Windows correspondants. Décompresser puis lancer **Console_CIEL.exe** sans installer Godot. Le [guide Windows](WINDOWS.md) indique les commandes, données utilisateur, script PowerShell de réexport et résultats détaillés.
+La version portable Windows x86_64 (`Console_CIEL_Windows_x86_64.zip`, nom historique ; utiliser la livraison 0.6.1) a été réellement exportée avec Godot officiel 4.6.3 et ses modèles Windows correspondants. Décompresser puis lancer **Console_CIEL.exe** sans installer Godot. Le [guide Windows](WINDOWS.md) indique les commandes, données utilisateur, script PowerShell de réexport et résultats détaillés.
 
 Le preset Windows, le nom de l'exécutable, la fenêtre initiale redimensionnable et l'affichage du chemin utilisateur dans À propos ont été complétés. La fermeture par la croix réutilise la confirmation et la sauvegarde existantes. Les fichiers associés, aide et licences sont inclus ; aucune sauvegarde personnelle n'est distribuée. Le script PowerShell conserve la livraison précédente si l'export échoue ; le remplacement d'un ZIP existant a été corrigé et testé.
 
