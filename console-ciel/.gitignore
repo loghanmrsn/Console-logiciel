@@ -8,3 +8,6 @@ builds/
 *.log
 export_credentials.cfg
 # .uid Godot sont conservés avec les sources.
+
+# Caches Python des outils de vérification.
+__pycache__/
