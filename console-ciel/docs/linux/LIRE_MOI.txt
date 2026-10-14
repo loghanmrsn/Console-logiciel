@@ -1,0 +1,129 @@
+CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
+Logiciel 0.6.1 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+
+DÉMARRER
+1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
+2. Décompressez tout le ZIP dans un dossier de votre utilisateur.
+3. Ouvrez un terminal dans ce dossier depuis la session de bureau, puis :
+   bash ./Lancer_Console_CIEL.sh
+
+Godot n’a pas besoin d’être installé. Le programme autonome est
+console-ciel.arm64 : le fichier Console_CIEL.exe de Windows ne fonctionne
+pas sur le Raspberry Pi. Gardez les scripts, assets et images_profil à côté
+du programme. Ne le lancez pas depuis l’aperçu du ZIP ni avec sudo.
+Le lanceur rétablit, si nécessaire, le droit d’exécution du programme pour
+son propriétaire. Il conserve les arguments et les dossiers de données.
+Il vérifie ARM64, le système utilisateur 64 bits et la présence d’un bureau.
+Le rendu est Compatibility avec OpenGL ES 3, adapté au pilote V3D du Pi 4.
+
+RACCOURCI FACULTATIF
+Depuis le même dossier :
+   bash ./Installer_raccourci.sh
+Une entrée « Console CIEL » apparaît dans le menu du bureau de l’utilisateur.
+Ce script ajoute seulement ~/.local/share/applications/console-ciel.desktop
+(ou le dossier applications de XDG_DATA_HOME si vous l’avez configuré).
+Il ne copie pas le programme, ne crée pas de service et ne configure pas
+de lancement automatique. Gardez le dossier en place ; après un déplacement,
+relancez ce script pour mettre le raccourci à jour. Pour le retirer, supprimez
+uniquement cette entrée console-ciel.desktop.
+
+AFFICHAGE
+La fenêtre commence en 1280 × 720, avec un minimum de 800 × 480.
+Paramètres > Affichage permet de choisir le plein écran et la disposition
+de la bibliothèque. Accessibilité propose grand texte et animations réduites.
+Vous pouvez aussi demander le plein écran au lancement :
+   bash ./Lancer_Console_CIEL.sh --fullscreen
+
+Le bureau Wayland/labwc ou X11 doit déjà être ouvert. Si le pilote d’affichage
+échoue, lisez le journal et essayez, selon le bureau réellement disponible :
+   bash ./Lancer_Console_CIEL.sh --display-driver wayland
+   bash ./Lancer_Console_CIEL.sh --display-driver x11
+Ces choix ne changent pas la configuration du système. Ils nécessitent les
+pilotes correspondants installés sur Raspberry Pi OS. Le ZIP ARM64 ne remplace
+pas les bibliothèques et pilotes graphiques du système.
+
+PROFIL, AVATARS ET CLAVIER
+Créez un profil au premier lancement. Avatar, pseudo et points sont en haut
+à gauche. Profil > Modifier permet de choisir un avatar ou une image locale.
+Ajoutez vos PNG, JPG/JPEG ou WebP directement dans images_profil, puis utilisez
+Mes images > Actualiser les images. Limites : 8 Mio par fichier, 4096 pixels
+par côté, 128 images ; les sous-dossiers ne sont pas parcourus.
+Déplacer le programme conserve les profils, mais copiez aussi images_profil.
+Une image absente laisse l’avatar classique visible et conserve le profil.
+
+Le clavier virtuel démarre en AZERTY minuscule : ⇧ pour une majuscule,
+deux appuis pour les verrouiller ; 123 pour chiffres et ponctuation,
+#+= pour les autres symboles, ABC pour revenir aux lettres.
+Le clavier physique reste disponible.
+
+COMMANDES
+Flèches ou ZQSD : déplacement. Entrée : valider. Échap : retour.
+Espace : interagir. T : afficher/masquer les missions. P : pause.
+Tab / Maj+Tab : déplacer le focus. Q / E : changer de catégorie hors saisie.
+Manette USB reconnue par Godot : croix/joystick, bouton de face bas pour
+valider/interagir, face droit pour revenir, Start/Menu pour la pause.
+Face haut affiche/masque les missions : Triangle sur PlayStation, Y sur Xbox,
+X sur Nintendo selon le mapping reconnu. Paramètres > Commandes > Test des
+commandes montre les entrées réelles ; le contrôleur fabriqué reste à vérifier.
+Débrancher une manette suspend le jeu ; reconnecter ne reprend pas tout seul.
+
+ENQUÊTE, BIBLIOTHÈQUE ET BOUTIQUE
+Chapitre 1 : électricité, commande de serrure et diagnostic vidéo.
+Après les trois missions, l’ascenseur en bas du bureau mène au chapitre 2 :
+RJ45, IPv4 et Wi-Fi. L’ascenseur permet ensuite de revenir au chapitre 1.
+Le tableau de missions à droite est repliable avec T ou la face haut.
+Les repères et boutons des missions terminées disparaissent après réussite
+et sauvegarde ; les meubles réparés restent visibles, l’ascenseur accessible.
+Pause > Bilan du chapitre retrouve le bilan d’un chapitre déjà terminé.
+
+Chaque première réussite donne 50 points : 150 par chapitre, 300 au maximum
+par profil. Rejouer ne redonne pas les récompenses. L’enquête reste gratuite.
+Les exercices sont fictifs et hors ligne ; ils ne modifient pas le réseau,
+le câblage ou la configuration réelle de votre Raspberry Pi.
+
+Test 1 à Test 4 coûtent 200 points chacun. Ils affichent seulement
+« jeu en préparation », en attendant les vrais jeux ; les ouvrir ne donne
+aucun point. Les achats antérieurs restent acquis. Un achat est refusé sous
+200 points ; un article possédé n’est pas facturé deux fois. Une erreur de
+sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 300
+points permet un achat sans autre dépense ; les autres jeux attendent de
+nouveaux défis ou des points déjà présents dans un ancien profil.
+
+Deux présentations de l’accueil sont dans Paramètres > Affichage : enquête
+à gauche et quatre jeux à droite, ou couvertures égales avec défilement.
+Paramètres > Apparence propose six styles gratuits et des couleurs de fond
+et de boutons. Appliquer enregistre ; Annuler restaure les réglages.
+Crédits se trouve à la fin des paramètres.
+
+SAUVEGARDES ET MISES À JOUR
+Les profils et réglages sont distincts du dossier du programme.
+Sur Linux, le dossier habituel est ~/.local/share/console-ciel ; si
+XDG_DATA_HOME est défini, il est dans $XDG_DATA_HOME/console-ciel.
+Paramètres > À propos affiche le chemin exact calculé par Godot.
+profiles/<identifiant>.json : progression, points, achats et équipement.
+settings.cfg : réglages ; session.json : dernier profil ; logs/godot.log : journal.
+Fermez normalement l’application avant de copier vos sauvegardes.
+Extraire une nouvelle version dans un autre dossier conserve les données
+utilisateur. Pour reprendre un profil Windows, fermez les deux applications
+et copiez son dossier de données %APPDATA%\console-ciel vers le dossier Linux,
+en gardant une copie de sécurité et vos éventuelles images_profil.
+Le ZIP ne contient aucun profil prérempli ni sauvegarde personnelle.
+
+FERMETURE ET VÉRIFICATION SUR VOTRE PI
+Paramètres > Quitter l’application ou la croix demande confirmation et
+sauvegarde. Quitter ferme uniquement Console CIEL : cela n’arrête pas le Pi.
+Utilisez ensuite l’arrêt normal de Raspberry Pi OS avant de couper le courant.
+
+Les contrôles de l’archive, de l’ELF ARM64, des ressources compilées et des
+lanceurs sont consignés dans le rapport de livraison sur GitHub.
+Ils ne constituent pas un essai natif sur votre Raspberry Pi 4.
+À vérifier sur le matériel : premier lancement, six missions et ascenseur,
+reprise, achats et profils, clavier/photo, tableau de missions, plein écran,
+son, manette USB et contrôleur fabriqué, fluidité en 1280 × 720 et petit écran.
+Aucun résultat de FPS, son ou mapping matériel n’est annoncé comme acquis.
+
+CRÉDITS ET LICENCES
+Logiciel : Loghan. Construction/assemblage : binôme, nom à compléter.
+Formes, décor et sons originaux : CC0 1.0. Godot et sa police intégrée :
+licences dans assets/LICENSES.md et assets/licenses/.
+Sources et rapports : https://github.com/loghanmrsn/Console-logiciel
