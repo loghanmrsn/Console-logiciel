@@ -9,6 +9,7 @@ const INVESTIGATION_VERSION := 1
 const LEGACY_MIGRATION_NOTICE := "La progression du prototype contenait des interactions simulées. Elle a été remise au début pour jouer les vrais défis. Vos points, achats et récompenses déjà attribuées sont conservés : ils ne seront pas gagnés une seconde fois."
 const DEFAULT_ITEMS := ["avatar_default", "theme_brume", "frame_default"]
 const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
+const GameLibrary := preload("res://scripts/services/game_library.gd")
 const MAX_POINTS := 2147483647
 var root_path: String = "user://"
 var simulate_write_failure: bool = false
@@ -100,7 +101,7 @@ func validate_catalog(value: Variant) -> Dictionary:
 	for entry in value.items:
 		if not entry is Dictionary or not entry.get("id") is String or not is_safe_id(entry.id):
 			return _fail("Un identifiant du catalogue est invalide.")
-		if seen.has(entry.id) or entry.get("type") not in ["avatar", "theme", "frame"]:
+		if seen.has(entry.id) or entry.id == GameLibrary.EDUCATIONAL_ID or entry.get("type") not in ["avatar", "theme", "frame", "game"]:
 			return _fail("Article dupliqué ou type inconnu dans le catalogue.")
 		if not _is_integer(entry.get("price"), 0, 100) or (int(entry.price) != 0 and int(entry.price) < 20):
 			return _fail("Prix invalide dans le catalogue.")
@@ -116,6 +117,10 @@ func validate_catalog(value: Variant) -> Dictionary:
 			return _fail("Un symbole d'avatar est invalide.")
 		if entry.type == "frame" and (not _is_integer(entry.get("width"), 1, 8) or entry.get("style") not in ["simple", "round", "double"]):
 			return _fail("Une apparence de cadre est invalide.")
+		if entry.type == "game" and not GameLibrary.is_valid_game_scene(entry.get("scene")):
+			return _fail("Le jeu doit proposer une scène locale livrée dans scenes/games.")
+		if entry.type == "game" and entry.has("placeholder") and not entry.placeholder is bool:
+			return _fail("L'indication de jeu en préparation est invalide.")
 		var product: Dictionary = entry.duplicate(true)
 		product.price = int(product.price)
 		seen[product.id] = product
@@ -282,6 +287,9 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		var equipped_id: Variant = document.equipped.get(type)
 		if not equipped_id is String or equipped_id not in owned or _catalog_by_id[equipped_id].type != type:
 			return _fail("L'équipement %s est invalide ou non possédé." % type)
+	# Les jeux appartiennent à la bibliothèque, jamais aux emplacements cosmétiques.
+	if document.equipped.has("game"):
+		return _fail("Un jeu se lance depuis la bibliothèque ; il ne peut pas être équipé.")
 	if not document.get("rewarded_missions") is Array:
 		return _fail("La liste des récompenses est invalide.")
 	var rewarded: Array = []
