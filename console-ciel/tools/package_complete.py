@@ -16,7 +16,7 @@ from tempfile import NamedTemporaryFile
 from zipfile import ZIP_DEFLATED, ZipFile
 
 PROJECT_FOLDERS = (
-    'scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools',
+    'scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil',
     'builds', 'export_templates', 'script_templates', 'feature_profiles',
     'text_editor_themes', 'shared', 'scratch', 'library-files',
 )
@@ -57,7 +57,7 @@ def project_version(project: Path) -> str:
     return found.group(1)
 
 
-def create_archive(project: Path, output: Path, windows_directory: str | None = None) -> dict:
+def create_archive(project: Path, output: Path, windows_directory: str | None = None, current_windows_only: bool = False) -> dict:
     project = project.resolve()
     if output.is_symlink() or any(parent.is_symlink() for parent in output.parents):
         raise ValueError('Une sortie liée est interdite.')
@@ -99,6 +99,13 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
             accepted = []
             for name in children:
                 child = parent / name
+                if current_windows_only and folder == 'builds':
+                    parts = child.relative_to(project).parts
+                    selected_parts = latest_relative.parts
+                    related = parts[:len(selected_parts)] == selected_parts or selected_parts[:len(parts)] == parts
+                    if not related:
+                        skipped.append({'path': child.relative_to(project).as_posix()+'/', 'reason': 'ancienne livraison conservée séparément dans le dépôt'})
+                        continue
                 reason = excluded(child, project)
                 if reason:
                     skipped.append({'path': child.relative_to(project).as_posix()+'/', 'reason': reason})
@@ -138,7 +145,7 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
                 {'version': version, 'files': records, 'excluded': skipped,
                  'latest_windows_directory': latest_relative.as_posix(),
                  'notes': ['Aucun ZIP imbriqué ; exécutables existants non reconstruits.',
-                           f'Utiliser {latest_relative.as_posix()}/Console_CIEL.exe ; les anciens binaires restent dans leurs dossiers.']},
+                           f'Utiliser {latest_relative.as_posix()}/Console_CIEL.exe ; les anciens binaires restent conservés séparément.' if current_windows_only else f'Utiliser {latest_relative.as_posix()}/Console_CIEL.exe ; les anciens binaires restent dans leurs dossiers.']},
                 ensure_ascii=False, indent=2))
         with ZipFile(stage) as archive:
             bad = archive.testzip()
@@ -165,19 +172,20 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
             'all_source_hashes_verified': True, 'layout': 'console-ciel/<organisation existante>',
             'windows_latest': 'console-ciel/'+latest_relative.as_posix()+'/Console_CIEL.exe',
             'notes': ['Sources et binaires existants, sans nouvel export.',
-                      'Ancien binaire Windows conservé dans son dossier existant ; aucun ZIP imbriqué.',
+                      'Anciennes livraisons conservées séparément ; seule la livraison Windows courante est incluse.' if current_windows_only else 'Ancien binaire Windows conservé dans son dossier existant ; aucun ZIP imbriqué.',
                       'Polices intégrées à Godot : notices dans assets/licenses/ ; pas de police du PC requise.',
-                      'Dossiers .aws/.codex/.agents/.git de l’environnement non inclus ; aucun dépôt Git exploitable ici.']}
+                      'Métadonnées Git, caches, secrets et sauvegardes personnelles non inclus.']}
 
 
 if __name__ == '__main__':
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--windows-directory', help='Dossier relatif des binaires existants sous builds/.')
+    parser.add_argument('--current-windows-only', action='store_true', help='Inclure seulement les binaires Windows courants ; garder les anciennes livraisons séparément.')
     args = parser.parse_args()
     version = project_version(root)
     destination = root / f'builds/Console_CIEL_Projet_Complet_{version}.zip'
-    report = create_archive(root, destination, args.windows_directory)
+    report = create_archive(root, destination, args.windows_directory, args.current_windows_only)
     # Verification report is separate so it cannot recursively include itself.
     destination.with_suffix('.verification.json').write_text(
         json.dumps(report, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
