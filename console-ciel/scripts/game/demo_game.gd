@@ -30,6 +30,7 @@ var _objectives_expanded=true
 var mission_tracker: Control
 var _target_label: Label
 var _interact_button: Button
+var _target_panel: PanelContainer
 var _layer: CanvasLayer
 var _overlay: Control
 var _modal_scroll: ScrollContainer
@@ -97,8 +98,9 @@ func _build() -> void:
 	_viewport.add_child(world)
 	world.interaction_requested.connect(_interaction_requested)
 	world.target_changed.connect(func(_id, label):
-		_target_label.text='Approchez un équipement' if label.is_empty() else label.replace(' fictif','')
-		_interact_button.disabled = label.is_empty())
+		_target_label.text=label.replace(' fictif','')
+		_interact_button.disabled = label.is_empty()
+		_target_panel.visible = not label.is_empty())
 	# HUD uses native-size controls above the room; it is not scaled with the camera.
 	var hud=MarginContainer.new()
 	hud.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -137,6 +139,8 @@ func _build() -> void:
 	bottom.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	hud_column.add_child(bottom)
 	var target_panel=PanelContainer.new()
+	_target_panel=target_panel
+	target_panel.name='game_target_panel'
 	target_panel.theme_type_variation='HUDPanel'
 	target_panel.custom_minimum_size.x=320
 	bottom.add_child(target_panel)
@@ -151,6 +155,7 @@ func _build() -> void:
 	_interact_button.custom_minimum_size.y=36
 	_interact_button.disabled=true
 	_interact_button.focus_mode=Control.FOCUS_NONE
+	target_panel.hide()
 	_layer = CanvasLayer.new()
 	_layer.layer = 80
 	add_child(_layer)
@@ -420,6 +425,8 @@ func request_pause() -> void:
 	_button(modal_content, 'Masquer les objectifs' if _objectives_expanded else 'Afficher les objectifs', func():
 		_toggle_objectives()
 		resume(), 'pause_objectives')
+	if InvestigationService.conclusion().ok:
+		_button(modal_content, 'Bilan du chapitre', _show_conclusion, 'pause_conclusion')
 	_button(modal_content, 'Paramètres', func(): settings_requested.emit(), 'pause_settings')
 	_button(modal_content, 'Aide aux commandes', func(): help_requested.emit(), 'pause_help')
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'pause_menu')
