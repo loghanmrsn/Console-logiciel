@@ -5,7 +5,7 @@ from tempfile import NamedTemporaryFile
 from zipfile import ZIP_DEFLATED, ZipFile
 import os
 
-FOLDERS = ('scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools')
+FOLDERS = ('scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil')
 ROOT_FILES = ('project.godot', 'default_bus_layout.tres', 'export_presets.cfg', 'README.md', '.gitignore')
 
 def create_archive(project: Path, output: Path) -> int:
