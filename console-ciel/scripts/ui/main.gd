@@ -39,6 +39,7 @@ var home_carousel: ScrollContainer
 var home_cards: Array[Control]=[]
 var arcade: Control
 var arcade_id=''
+var header_player: HBoxContainer
 var header_profile: Label
 var header_avatar: Control
 var header_points: Label
@@ -178,33 +179,51 @@ func _build_shell() -> void:
 	col.add_theme_constant_override('separation',16)
 	shell.add_child(col)
 	var header=HBoxContainer.new()
+	header.name='header'
 	header.custom_minimum_size.y=46
+	header.add_theme_constant_override('separation',12)
 	col.add_child(header)
+	header_player=HBoxContainer.new()
+	header_player.name='header_player'
+	header_player.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	header_player.alignment=BoxContainer.ALIGNMENT_BEGIN
+	header_player.add_theme_constant_override('separation',8)
+	header.add_child(header_player)
+	header_avatar=Avatar.new()
+	header_avatar.name='header_avatar'
+	header_avatar.custom_minimum_size=Vector2(44,44)
+	header_avatar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	header_player.add_child(header_avatar)
+	var identity=VBoxContainer.new()
+	identity.name='header_identity'
+	identity.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	identity.alignment=BoxContainer.ALIGNMENT_CENTER
+	identity.add_theme_constant_override('separation',0)
+	header_player.add_child(identity)
+	header_profile=Label.new()
+	header_profile.name='header_profile'
+	header_profile.clip_text=true
+	header_profile.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	header_profile.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	identity.add_child(header_profile)
+	header_points=Label.new()
+	header_points.name='header_points'
+	header_points.clip_text=true
+	header_points.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	header_points.theme_type_variation='SecondaryLabel'
+	identity.add_child(header_points)
 	var brand=Label.new()
 	header_brand=brand
+	brand.name='header_brand'
 	brand.text='Console CIEL'
-	brand.add_theme_font_size_override('font_size',26)
+	brand.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	brand.add_theme_font_size_override('font_size',22)
 	brand.add_theme_color_override('font_color',Color('#527FA3'))
 	header.add_child(brand)
 	header_back=_button(header,'Retour',_back,'header_back')
 	header_back.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	header_back.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	header_back.custom_minimum_size.x=112
-	var spacer=Control.new()
-	spacer.size_flags_horizontal=Control.SIZE_FILL
-	header.add_child(spacer)
-	header_profile=Label.new()
-	header_avatar=Avatar.new()
-	header_avatar.custom_minimum_size=Vector2(40,40)
-	header.add_child(header_avatar)
-	header_profile.add_theme_color_override('font_color',Color('#586674'))
-	header_profile.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	header_profile.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	header_profile.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
-	header.add_child(header_profile)
-	header.move_child(header_avatar,header_profile.get_index())
-	header_points=Label.new()
-	header_points.add_theme_font_size_override('font_size',20)
-	header.add_child(header_points)
 	scroll=ScrollContainer.new()
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
@@ -248,7 +267,7 @@ func _apply_theme() -> void:
 	background_palette=_palette()
 	theme=ThemeFactory.build(SettingsService.current,background_palette)
 	if header_brand!=null: header_brand.add_theme_color_override('font_color',Color(background_palette.foreground))
-	if header_profile!=null: header_profile.theme_type_variation='SecondaryLabel';header_profile.remove_theme_color_override('font_color')
+	if header_profile!=null: header_profile.remove_theme_color_override('font_color')
 	if footer!=null: footer.theme_type_variation='SecondaryLabel';footer.remove_theme_color_override('font_color')
 	if footer!=null: footer.add_theme_font_size_override('font_size',18 if SettingsService.current.get('large_text',false) else 16)
 	if background!=null: background.color=Color(background_palette.get('background','#F3F5F7'))
@@ -265,10 +284,10 @@ func _profile_updated(_profile: Dictionary) -> void:
 
 func _update_header() -> void:
 	var active=not AppState.profile.is_empty()
-	var player_in_bar=navigation!=null and navigation.visible
-	header_avatar.visible=active and not player_in_bar and screen!='editor'
-	header_profile.visible=not player_in_bar and screen!='editor'
-	header_points.visible=not player_in_bar and screen!='editor'
+	header_player.visible=active
+	header_avatar.visible=active
+	header_profile.visible=active
+	header_points.visible=active
 	var avatar_item=ShopService.item(AppState.profile.equipped.avatar) if active else {}
 	var frame_item=ShopService.item(AppState.profile.equipped.frame) if active else {}
 	if navigation!=null: navigation.update_player(AppState.profile,avatar_item,frame_item)
@@ -280,8 +299,10 @@ func _update_header() -> void:
 		header_avatar.frame_spec=ShopService.item(AppState.profile.equipped.frame)
 		header_avatar.set_local_image(AppState.profile.get('avatar_image',''))
 		header_avatar.queue_redraw()
-	header_profile.text=((AppState.profile.display_name if size.x<1000 else 'Bonjour, '+AppState.profile.display_name)) if active else 'Votre console pédagogique'
-	header_points.text='%d pts' % AppState.profile.wallet.points if active else 'Hors ligne'
+	header_profile.text=AppState.profile.display_name if active else ''
+	header_profile.tooltip_text=header_profile.text
+	header_points.text='%d pts' % AppState.profile.wallet.points if active else ''
+	header_points.tooltip_text='%d points disponibles' % AppState.profile.wallet.points if active else ''
 
 func _responsive() -> void:
 	if shell==null: return
@@ -304,8 +325,12 @@ func _responsive() -> void:
 	if screen=='home': _fit_home_library()
 	if screen=='game' and is_instance_valid(demo) and demo.is_inside_tree():demo._fit_minimum()
 	if header_profile!=null:
-		header_profile.add_theme_font_size_override('font_size',(18 if compact else 20)+(2 if SettingsService.current.get('large_text',false) else 0))
-		header_profile.text=((AppState.profile.display_name if size.x<1000 else 'Bonjour, '+AppState.profile.display_name)) if not AppState.profile.is_empty() else 'Votre console pédagogique'
+		var large=SettingsService.current.get('large_text',false)
+		header_profile.add_theme_font_size_override('font_size',(18 if compact else 20)+(2 if large else 0))
+		header_points.add_theme_font_size_override('font_size',18 if large else 15)
+		header_avatar.custom_minimum_size=Vector2(48,48) if large else Vector2(44,44)
+		header_brand.add_theme_font_size_override('font_size',(20 if compact else 22)+(2 if large else 0))
+		header_player.get_parent().custom_minimum_size.y=48 if large else 46
 	for entry in responsive_grids:
 		if is_instance_valid(entry[0]):
 			_adapt_grid(entry[0],entry[1],entry[2])
