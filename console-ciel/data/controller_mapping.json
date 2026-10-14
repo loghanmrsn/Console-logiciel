@@ -15,6 +15,7 @@
     "game_left": {"button": 13, "axis": 0, "direction": -1},
     "game_right": {"button": 14, "axis": 0, "direction": 1},
     "game_interact": {"button": 0},
+    "game_missions": {"button": 3},
     "pause": {"button": 6}
   }
 }
