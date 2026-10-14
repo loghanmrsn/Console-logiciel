@@ -1,0 +1,21 @@
+IMAGES LOCALES DE PROFIL — CONSOLE CIEL
+
+Ajoutez vos images PNG, JPG/JPEG ou WEBP directement dans ce dossier.
+Les images sont locales : aucun compte, transfert ou téléchargement requis.
+
+Dans l'application : Profil > Modifier > Mes images > Actualiser les images.
+Choisissez une image, puis Valider pour enregistrer le profil.
+
+Dans la version Windows, ce dossier images_profil se trouve à côté de
+Console_CIEL.exe. Il n'est pas nécessaire de réexporter le programme après
+l'ajout d'une image. Le bouton Ouvrir le dossier ouvre cet emplacement.
+
+Limites : 8 Mio par image, 4096 pixels par côté, 128 images affichées maximum.
+Pas de sous-dossiers. Une image absente ou illisible fait apparaître l'avatar
+classique ; le profil, ses points et ses achats restent disponibles.
+
+Gardez un nom de fichier stable pour une image déjà choisie. Si vous changez
+le nom, sélectionnez le nouveau fichier et validez à nouveau le profil.
+
+Le fichier .gdignore permet de garder ces images modifiables hors du pack
+du jeu. Ne le supprimez pas du projet source.
