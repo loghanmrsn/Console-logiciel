@@ -294,7 +294,7 @@ func _responsive() -> void:
 	var margin=12 if compact else 28
 	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
 	if footer!=null and screen=='game':
-		footer.text='Flèches / joystick · Espace / face bas : interagir · P / Start : pause'
+		footer.text='Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause'
 	if footer!=null and screen in ['home','shop','profiles','help']:
 		footer.text='Flèches / joystick · Entrée / face bas : valider · Échap : retour'
 	var horizontal=maxi(margin,int((size.x-1400)/2))
@@ -569,7 +569,7 @@ func _profile_overview() -> void:
 	identity.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	row.add_child(identity)
 	_label(identity,AppState.profile.display_name,24)
-	_label(identity,'%d points · %d jeux acquis · %d / 3 défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size()],14,true)
+	_label(identity,'%d points · %d jeux acquis · %d / %d défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size(),RewardService.missions.size()],14,true)
 	var edit=_button(row,'Personnaliser',func():_open_editor(AppState.profile.id),'profile_personalize')
 	edit.size_flags_horizontal=Control.SIZE_SHRINK_END
 	edit.custom_minimum_size.x=200
@@ -855,7 +855,7 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
 	var definition=entry.duplicate(true)
 	if educational:
-		definition.description='Trois défis · jusqu’à 150 points par profil.'
+		definition.description='Deux chapitres · jusqu’à 300 points.'
 		definition.action_label='Continuer' if AppState.profile.progress.started else 'Commencer'
 	var card=GameCard.new()
 	card.size_flags_horizontal=Control.SIZE_EXPAND_FILL if host is GridContainer else Control.SIZE_FILL
@@ -875,7 +875,7 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 		action.name='continue_game' if AppState.profile.progress.started else 'new_game'
 		var column=card.get_child(0)
 		column.add_theme_constant_override('separation',8)
-		home_labels.progress=_label(column,'%d / 3 défis réalisés'%AppState.profile.progress.completed_missions.size(),15,true)
+		home_labels.progress=_label(column,_investigation_progress_text(),15,true)
 		var secondary=_button(column,'Nouvelle partie' if AppState.profile.progress.started else 'Continuer',_new_game if AppState.profile.progress.started else _continue_game,'new_game' if AppState.profile.progress.started else 'continue_game')
 		secondary.disabled=not AppState.profile.progress.started
 		secondary.visible=AppState.profile.progress.started
@@ -883,9 +883,17 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	home_cards.append(card)
 	return card
 
+func _investigation_progress_text() -> String:
+	var missions: Array = InvestigationService.chapter_missions()
+	var completed: Array = AppState.profile.get('progress',{}).get('completed_missions',[])
+	var count := 0
+	for mission in missions:
+		if mission.id in completed: count += 1
+	return 'Chapitre %d · %d / %d défis réalisés'%[InvestigationService.current_chapter(),count,missions.size()]
+
 func _fit_home_library() -> void:
 	if not AppState.profile.is_empty() and home_labels.has('progress') and is_instance_valid(home_labels.progress):
-		home_labels.progress.text='%d / 3 défis réalisés'%AppState.profile.progress.completed_missions.size()
+		home_labels.progress.text=_investigation_progress_text()
 	if is_instance_valid(home_split):
 		home_split.columns=1 if size.x<1000 else 2
 		# Two equally sized columns on a desktop; stack them on the small console.
@@ -997,7 +1005,7 @@ func _continue_game() -> void:
 
 func _game() -> void:
 	header_back.hide()
-	footer.text='Flèches / ZQSD / joystick : déplacement   ·   Espace / face bas : interaction   ·   P / Start : pause'
+	footer.text='Flèches / joystick : déplacement · Espace / face bas : interagir · T / face haut : missions · P : pause'
 	if not is_instance_valid(demo):
 		demo=Demo.new()
 		demo.menu_requested.connect(func():
@@ -1067,7 +1075,7 @@ func _product_action(id: String) -> void:
 	elif AppState.profile.wallet.points<item.price:
 		var maximum=0
 		for mission in RewardService.missions: maximum+=mission.reward
-		_confirm('Points insuffisants','Résolvez les trois missions de l’enquête pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
+		_confirm('Points insuffisants','Résolvez les missions des deux chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
 	else:
 		_confirm('Acheter « '+item.name+' » ?','Prix : %d points virtuels. Nouveau solde : %d points. Aucun argent réel.' % [item.price,AppState.profile.wallet.points-item.price],'Acheter',func():
 			if _result(ShopService.purchase(id),'✓ Achat réussi et enregistré',func(): _product_action(id)): _show_screen('shop'))
@@ -1299,14 +1307,14 @@ func _help() -> void:
 	_title('Tout commence par une commande','Console CIEL · un projet pédagogique porté par deux élèves.')
 	var panel=_panel(content)
 	_label(panel,'Au clavier',24)
-	_label(panel,'Flèches : navigation et déplacement\nEntrée : valider · Échap : retour\nP : pause de l’enquête\nQ / E : catégories (hors saisie)\nZQSD : déplacement · Espace : interagir')
+	_label(panel,'Flèches : navigation et déplacement\nEntrée : valider · Échap : retour\nP : pause de l’enquête · T : afficher / masquer les missions\nQ / E : catégories (hors saisie)\nZQSD : déplacement · Espace : interagir')
 	_label(panel,'À la manette',24)
-	_label(panel,'Croix ou joystick gauche : naviguer / se déplacer\nBouton de face bas : valider / interagir\nBouton de face droit : retour\nStart / Menu : pause · LB / RB : catégories\nLes noms A/B, Croix/Rond dépendent de la manette. Le test montre les entrées réellement reçues.')
+	_label(panel,'Croix ou joystick gauche : naviguer / se déplacer\nBouton de face bas : valider / interagir\nBouton de face droit : retour\nBouton de face haut (Triangle / Y / X) : afficher / masquer les missions\nStart / Menu : pause · LB / RB : catégories\nLes noms varient selon la manette. Le test montre les entrées réellement reçues.')
 	_button(panel,'Test des commandes',func(): controls_origin='help'; _show_screen('controls'),'help_controls')
 	var credits=_panel(content)
 	_label(credits,'Crédits & licences',24)
 	_label(credits,'Logiciel : Loghan\nConstruction et assemblage : binôme, nom à compléter\nFormes et illustrations originales : CC0 1.0\nSons originaux : CC0 1.0\nMoteur Godot et police intégrée : licences fournies dans assets/LICENSES.md et assets/licenses/.')
-	_label(credits,'L’enquête « Le message du local technique » comporte trois défis : boucle électrique fermée, liaison de commande d’une serrure et diagnostic vidéo. Simulations fictives uniquement ; le circuit 5 V ne constitue pas un tutoriel de câblage secteur.',0,true)
+	_label(credits,'Deux chapitres et six défis : éclairage, commande de porte, vidéo, liaison réseau, adressage IPv4 et Wi-Fi. L’ascenseur du bureau s’ouvre après les trois premières missions. Simulations locales uniquement ; aucun réglage du PC ou d’un réseau réel n’est modifié.',0,true)
 	_label(credits,'Points virtuels uniquement. Pas de compte, de serveur, de paiement ni d’indicateur de batterie simulé.',0,true)
 
 func _controls() -> void:
@@ -1476,8 +1484,8 @@ func _input(event: InputEvent) -> void:
 		_open_diagnostics()
 		return
 	if not SceneRouter.gameplay_allowed():
-		for action in ['ui_accept','ui_cancel','game_interact','pause','tab_previous','tab_next']:
-			if action in ['game_interact','pause','tab_previous','tab_next'] and get_viewport().gui_get_focus_owner() is LineEdit: continue
+		for action in ['ui_accept','ui_cancel','game_interact','game_missions','pause','tab_previous','tab_next']:
+			if action in ['game_interact','game_missions','pause','tab_previous','tab_next'] and get_viewport().gui_get_focus_owner() is LineEdit: continue
 			if event.is_action_pressed(action):
 				get_viewport().set_input_as_handled()
 				return
