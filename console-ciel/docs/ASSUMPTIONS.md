@@ -1,3 +1,13 @@
+# Cible Raspberry Pi confirmée — livraison 0.6.1
+
+L’utilisateur a confirmé le **Raspberry Pi 4 avec système 64 bits**. La livraison cible **Raspberry Pi OS 64 bits avec bureau**, architecture aarch64 ; Bookworm ou Trixie à jour sont recommandés. Cette confirmation remplace l’ancienne hypothèse Pi 5. Écran et mapping du contrôleur fabriqué restent à vérifier sur le matériel réel.
+
+Le logiciel reste en **0.6.1**, avec le même jeu que Windows. Les archives Raspberry Pi sont distinctes pour préserver les livraisons précédentes. Godot standard **4.6.3 stable** et le preset ARM64 sont conservés ; le lanceur choisit Compatibility / OpenGL ES 3. Le binaire requiert des symboles jusqu’à **GLIBC 2.28**.
+
+Les données restent dans le dossier utilisateur `console-ciel` donné par Godot, généralement `~/.local/share/console-ciel/`. Les photos restent dans **images_profil/** voisin de l’exécutable. Aucun autostart, service, arrêt système ou réglage de GPIO n’est ajouté. L’intégrité du paquet et les tests de ses ressources sous Linux x86_64 sont distincts des essais natifs sur le Pi ; aucune performance matérielle n’est déclarée comme mesurée.
+
+[Installation Raspberry Pi](RASPBERRY_PI.md) et [bilan de livraison](DELIVERY.md). Les décisions de la version 0.3.0 ci-dessous sont conservées comme historique ; les trois missions et le plafond de 150 points y décrivent cette version ancienne. Depuis 0.6.0, l’enquête comprend six missions sur deux chapitres, soit 300 points au maximum.
+
 # Hypothèses et décisions — version 0.3.0
 
 - Le projet natif de la version 0.1.0 est conservé : menu, profils, récupération, boutique, paramètres, thème, Input Map et services existants. Aucun `AGENTS.md` n'a été trouvé dans le dépôt inspecté.
