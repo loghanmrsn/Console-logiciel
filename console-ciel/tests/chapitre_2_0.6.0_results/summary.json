@@ -1,0 +1,280 @@
+{
+  "version": "0.6.0",
+  "tested_at_utc": "2026-10-14T10:58:28.009093+00:00",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_assertions": 9568,
+  "source_suites": [
+    {
+      "suite": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "suite": "chapter_services_tests",
+      "assertions": 262,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "494dcd7d541dea496f85c384beb7c1f930d930ae2272ba4be7d86bf81cbb3b2c"
+    },
+    {
+      "suite": "chapter_ui_tests",
+      "assertions": 658,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "4bb34b65848525abc359cc77b618474a24cf735141890dcf2ca6a83ce88401e0"
+    },
+    {
+      "suite": "controller_tests",
+      "assertions": 22,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "bf216becb13fb2fce3796beefb05d7ec5721beb7263c387a838f08bf72ef7c80"
+    },
+    {
+      "suite": "game_purchase_tests",
+      "assertions": 127,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "62b01d53efa3f52c11dda9c1cee10a66e8454ed539bb06f9b54027bb1f1ba9f9"
+    },
+    {
+      "suite": "investigation_tests",
+      "assertions": 189,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "e7015027c74a78e494dd253457d1bc187595da24dab12f27b535f20578da2326"
+    },
+    {
+      "suite": "keyboard_tests",
+      "assertions": 784,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "51d3b5ff1ced24d729aff8b6b7a27ca78aa2b3fc7265149589fcc706bed3eab5"
+    },
+    {
+      "suite": "library_ui_tests",
+      "assertions": 467,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "1f8ce03dfeb6c6a2d9ffd51db5eef1718205a94b5a1c734c1d63cc101fdef441"
+    },
+    {
+      "suite": "local_avatar_tests",
+      "assertions": 122,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "e2ae2d1c7c09cc18b5be7736beae0d066df262a1c0faaa3fe8bcf4d78d2a0beb"
+    },
+    {
+      "suite": "mission_tracker_tests",
+      "assertions": 182,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "3d9e7ef6c5b0ec41a8596ae2338a28a81175e9b447227820d8ac869f540ea604"
+    },
+    {
+      "suite": "profile_editor_tests",
+      "assertions": 644,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "suite": "refonte_navigation",
+      "assertions": 1842,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "3d8b7a3491efc368d75bca21adb4af5a456672ebd1881e9abafae788181af3a3"
+    },
+    {
+      "suite": "run_tests",
+      "assertions": 190,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "fb26db06d9817d513bc47570c627c503165e0be3bc988eacc41df42ac8b23d15"
+    },
+    {
+      "suite": "ui_smoke",
+      "assertions": 2198,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "bc49bec6b7d9d35b380802fdd8a234d3edb51d33ebb05fc7bcb940ac06b3b598"
+    }
+  ],
+  "persistence_assertions": 65,
+  "persistence_suites": [
+    {
+      "name": "persistence_write",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 28,
+      "log": "persistence_write.log"
+    },
+    {
+      "name": "persistence_read_replay",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "log": "persistence_read_replay.log"
+    },
+    {
+      "name": "persistence_read_final",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 11,
+      "log": "persistence_read_final.log"
+    }
+  ],
+  "render": {
+    "assertions": 694,
+    "failures": 0,
+    "display": "X11 / Mesa llvmpipe, Compatibility",
+    "audio_driver": "Dummy",
+    "engine_errors": [],
+    "warnings": [
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    ],
+    "screenshots": [
+      "docs/screenshots/chapitre_2_0.6.0/chapter_1_elevator_unlocked.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_1024x600_large_folded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_1024x600_normal_expanded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_1280x720_large_folded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_1280x720_normal_expanded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_800x480_large_folded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_800x480_normal_expanded.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_addressing_challenge.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_arrival_missions.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_completed_missions.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_network_challenge.png",
+      "docs/screenshots/chapitre_2_0.6.0/chapter_2_security_challenge.png"
+    ],
+    "log_sha256": "17a53120563ff59bdf055b912be20d73281f4bd3f9fd27f0f363d618b6f1b173"
+  },
+  "windows_configuration_assertions": 18,
+  "windows_pack_assertions": 4351,
+  "windows_validation": {
+    "windows_contracts_assertions": 18,
+    "compiled_pack_assertions": 4351,
+    "compiled_pack_suites": [
+      {
+        "windows-contracts": [
+          "WINDOWS_CONTRACTS : 18 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-pack": [
+          "WINDOWS_PACK : 47 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-art-pack": [
+          "WINDOWS_ART_PACK : 83 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-profile-editor": [
+          "PROFILE_EDITOR_TESTS : 644 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-game-purchases": [
+          "ACHATS DE JEUX : 127 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-appearance": [
+          "APPARENCE : 1881 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-library-ui": [
+          "LIBRARY_UI : 467 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-chapter-services": [
+          "Résultat chapitres services : 262 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-mission-tracker": [
+          "MISSION_TRACKER : 182 assertions, 0 échec(s). Géométrie native et périphériques virtuels ; matériel non testé."
+        ]
+      },
+      {
+        "windows-chapter-ui": [
+          "CHAPTER_UI : 658 assertions, 0 échec(s)."
+        ]
+      }
+    ],
+    "failures": 0,
+    "native_windows_execution": false,
+    "environment": "Linux Godot headless, isolated XDG directories",
+    "compiled_pack_assertions_total": 4351,
+    "windows_pack_suite_assertions": 47
+  },
+  "windows_zip_sha256": "7a1e8250250bfd6c407c4d843bf2a12a6dae4403607c9589d7faff43b333b82a",
+  "embedded_resources": 203,
+  "svg_textures": 43,
+  "package_tools": {
+    "assertions": 27,
+    "failures": 0
+  },
+  "old_releases_sha256": {
+    "Console_CIEL_Windows_x86_64_refonte_0.4.0.zip": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6",
+    "Console_CIEL_Windows_x86_64_navigation_0.4.1.zip": "4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf",
+    "Console_CIEL_Windows_x86_64_profils_0.4.2.zip": "93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b",
+    "Console_CIEL_Projet_Complet_0.4.2.zip": "78e9edaa4277ce9ebf68eea67dcc8f2f9cd0445b2729fce217c2f29d2ace7184",
+    "Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip": "5d7ce9f0c557021d62477eb824c64742031b27989ed86e8ab9cf02ba2e1ac26e",
+    "Console_CIEL_Projet_Complet_0.5.0.zip": "bddc7ef70b41f156ebc01026802b095fd5fd63498d77b75acc64507b4c8f3e23"
+  },
+  "notes": [
+    "Six missions validées dans les services et via les contrôles natifs, réparties en deux chapitres de trois missions.",
+    "Ascenseur verrouillé avant trois réussites ; refus et atomicité des écritures vérifiés.",
+    "Anciennes sauvegardes 0.5 enrichies sans réinitialiser la progression ou l’économie, avec sauvegarde précédente conservée.",
+    "Données de test isolées ; aucune sauvegarde personnelle incluse.",
+    "Touches manette et déconnexion simulées ; matériel physique non testé.",
+    "Le pack Windows compilé est exécuté avec Godot Linux. Exécution Windows native à vérifier sur un PC Windows.",
+    "La suite générale simule volontairement la corruption de son propre settings.cfg."
+  ],
+  "static_audit": {
+    "files": 797,
+    "uids": 70,
+    "res_references": 191,
+    "errors": [],
+    "native_resource_assertions": 199
+  }
+}
