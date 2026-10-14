@@ -138,7 +138,10 @@ func _test_create_with_keyboard() -> void:
 	await _activate(_image_key(PHOTO), true)
 	var preview = _find("profile_avatar_preview")
 	_check(preview.local_image == PHOTO and preview.image_texture != null, "Choisir une image locale actualise immédiatement le grand aperçu")
-	_check(app.scroll.get_global_rect().encloses(_find("key_Valider").get_global_rect()) and app.scroll.get_global_rect().encloses(_find("key_123").get_global_rect()), "Toutes les rangées du clavier sont visibles à 1280×720 sans défilement")
+	var keyboard_fits: bool = app.scroll.get_global_rect().encloses(_find("key_Valider").get_global_rect()) and app.scroll.get_global_rect().encloses(_find("key_123").get_global_rect())
+	_check(keyboard_fits, "Toutes les rangées du clavier sont visibles à 1280×720 sans défilement")
+	if not keyboard_fits:
+		printerr("PROFILE_EDITOR_LAYOUT : viewport=%s, scroll=%s, valider=%s, page=%s" % [root.size, app.scroll.get_global_rect(), _find("key_Valider").get_global_rect(), _find("key_123").get_global_rect()])
 	await _capture("profile_photo_selection_1280x720")
 	await _activate("key_A", true)
 	_check(editor.text == "a", "La saisie manette remplace le pseudo proposé")
@@ -180,7 +183,7 @@ func _test_create_with_keyboard() -> void:
 	_check(app.screen == "home" and state.profile.display_name == "aB1@ b" and state.profile.get("avatar_image", "") == PHOTO, "Valider crée le pseudo mixte et sa photo locale")
 	if state.profile.is_empty() or app.screen != "home":
 		return
-	_check(app.navigation.profile_avatar.local_image == PHOTO and app.navigation.profile_avatar.image_texture != null, "La barre de navigation affiche la photo du profil actif")
+	_check(app.header_avatar.is_visible_in_tree() and app.header_avatar.local_image == PHOTO and app.header_avatar.image_texture != null, "Le profil en haut à gauche affiche la photo personnelle active")
 	await _capture("home_local_profile_1280x720")
 	app._show_screen("profiles")
 	await _frames(6)
@@ -203,7 +206,7 @@ func _test_editor_choices() -> void:
 	var before: Dictionary = state.profile.duplicate(true)
 	app._open_editor(profile_id)
 	await _frames(6)
-	_check(not app.header_avatar.visible and not app.header_profile.visible and not app.header_points.visible, "L’éditeur réserve les informations du joueur au grand aperçu")
+	_check(app.header_avatar.is_visible_in_tree() and app.header_profile.is_visible_in_tree() and app.header_points.is_visible_in_tree(), "Modifier un profil conserve l’identité active en haut à gauche")
 	_check(app.header_avatar.local_image == PHOTO and app.header_avatar.image_texture != null, "La photo du joueur actif reste configurée pour les autres écrans")
 	_check(_find("profile_avatar_preview").local_image == PHOTO, "Modifier le profil retrouve sa photo sélectionnée")
 	_check(_find(_image_key(PHOTO)) != null and _find("avatar_avatar_default") == null, "Un profil avec une photo ouvre directement Mes images")
@@ -256,13 +259,13 @@ func _test_restart_and_missing_photo() -> void:
 	_check(app.screen == "profiles" and app.last_profile_id == profile_id and state.profile.is_empty(), "Relancer la scène propose le dernier profil sans conserver l’état mémoire")
 	await _activate("select_" + profile_id, true)
 	_check(app.screen == "home" and state.profile.id == profile_id and state.profile == snapshot, "La sélection recharge le profil complet depuis le disque")
-	_check(app.navigation.profile_avatar.local_image == PHOTO and app.navigation.profile_avatar.image_texture != null, "La photo locale réapparaît après rechargement de la sauvegarde")
+	_check(app.header_avatar.is_visible_in_tree() and app.header_avatar.local_image == PHOTO and app.header_avatar.image_texture != null, "La photo locale réapparaît en haut à gauche après rechargement de la sauvegarde")
 	_check(DirAccess.remove_absolute(ProjectSettings.globalize_path(image_root.path_join(PHOTO))) == OK, "La fixture photo est retirée du disque")
 	LocalLibrary.refresh()
 	_check(LocalLibrary.texture_for(PHOTO) == null, "Une photo disparue n’est plus fournie par le cache")
 	app._show_screen("home")
 	await _frames(6)
-	_check(app.navigation.profile_avatar.image_texture == null and app.navigation.profile_avatar.color == Color("#527FA3"), "Une photo retirée laisse un avatar illustré visible dans la barre")
+	_check(app.header_avatar.is_visible_in_tree() and app.header_avatar.image_texture == null and app.header_avatar.color == Color("#527FA3"), "Une photo retirée laisse un avatar illustré visible en haut à gauche")
 	_check(saves.read_profile(profile_id).ok and saves.read_profile(profile_id).data.avatar_image == PHOTO, "Le retrait du fichier ne corrompt ni ne supprime la sauvegarde")
 	app._open_editor(profile_id)
 	await _frames(6)
@@ -275,7 +278,7 @@ func _test_restart_and_missing_photo() -> void:
 	LocalLibrary.refresh()
 	app._show_screen("home")
 	await _frames(6)
-	_check(app.navigation.profile_avatar.image_texture != null, "Remettre la photo à son nom rétablit le portrait du profil")
+	_check(app.header_avatar.is_visible_in_tree() and app.header_avatar.image_texture != null, "Remettre la photo à son nom rétablit le portrait du profil en haut à gauche")
 
 
 func _test_small_editor() -> void:
