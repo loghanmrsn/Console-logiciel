@@ -1,0 +1,310 @@
+{
+  "version": "0.6.1",
+  "tested_at_utc": "2026-10-14T19:22:12.950200+00:00",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_assertions": 11844,
+  "source_suites": [
+    {
+      "suite": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "suite": "chapter_services_tests",
+      "assertions": 262,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "8341e233f684fda9c37eb07bc09815d90e318dd98b60d7959c82fb213b8547e4"
+    },
+    {
+      "suite": "chapter_ui_tests",
+      "assertions": 664,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "d47e1052a67f00e75ccd9ae38ca54f037b7987ce738b73333798d172eff95cd1"
+    },
+    {
+      "suite": "completed_marker_tests",
+      "assertions": 137,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "5be206199cb1424e962cd0619f5353170bccfa95dd7106a67cf474c1028cef03"
+    },
+    {
+      "suite": "controller_tests",
+      "assertions": 22,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "bf216becb13fb2fce3796beefb05d7ec5721beb7263c387a838f08bf72ef7c80"
+    },
+    {
+      "suite": "game_purchase_tests",
+      "assertions": 235,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "36a4611aeea72e32ede92f6af098f89dc4b9274148cfa5a88e244a4aff50ed04"
+    },
+    {
+      "suite": "investigation_tests",
+      "assertions": 189,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "cc67e4b9d615b9449d49979af9da5a4dfd16bb80392bfd548707f65c63b4e131"
+    },
+    {
+      "suite": "keyboard_tests",
+      "assertions": 784,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "51d3b5ff1ced24d729aff8b6b7a27ca78aa2b3fc7265149589fcc706bed3eab5"
+    },
+    {
+      "suite": "library_ui_tests",
+      "assertions": 477,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "943699c5c51f5ebe9ea407b701fa86b3a4ba0395e1525dc019e5144315036f48"
+    },
+    {
+      "suite": "local_avatar_tests",
+      "assertions": 122,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "e2ae2d1c7c09cc18b5be7736beae0d066df262a1c0faaa3fe8bcf4d78d2a0beb"
+    },
+    {
+      "suite": "mission_tracker_tests",
+      "assertions": 182,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "3d9e7ef6c5b0ec41a8596ae2338a28a81175e9b447227820d8ac869f540ea604"
+    },
+    {
+      "suite": "profile_editor_tests",
+      "assertions": 644,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "suite": "profile_header_tests",
+      "assertions": 1912,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "beee7187337528a1cd1c6cea9e46b2adf1a0c63c3472e666dcf1212d775f9bdc"
+    },
+    {
+      "suite": "refonte_navigation",
+      "assertions": 1944,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "7dd3dc770710c1ffccfe82079c4744242fdd9820c952ee2a67673647264885ba"
+    },
+    {
+      "suite": "run_tests",
+      "assertions": 190,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "5883fc3a472150a4692cbf21ddc55d0b70062e49fda00346c87a23c332f69543"
+    },
+    {
+      "suite": "ui_smoke",
+      "assertions": 2199,
+      "failures": 0,
+      "exit_code": 0,
+      "ok": true,
+      "unexpected_errors": [],
+      "log_sha256": "a8c8fe8edf7f461d1b950f4b3f0c82e5bf816360e0058e2a8d058d62e51a6a74"
+    }
+  ],
+  "persistence_assertions": 65,
+  "persistence_suites": [
+    {
+      "name": "persistence_write",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 28,
+      "log": "persistence_write.log"
+    },
+    {
+      "name": "persistence_read_replay",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "log": "persistence_read_replay.log"
+    },
+    {
+      "name": "persistence_read_final",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 11,
+      "log": "persistence_read_final.log"
+    }
+  ],
+  "render": {
+    "assertions": 58,
+    "failures": 0,
+    "display": "X11 / Mesa llvmpipe, Compatibility",
+    "audio_driver": "Dummy",
+    "engine_errors": [],
+    "warnings": [
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "Verbose shutdown reports one unclaimed process_frame StringName; no ObjectDB instance leak."
+    ],
+    "screenshots": [
+      "docs/screenshots/confort_0.6.1/chapter_completed_no_mission_marker.png",
+      "docs/screenshots/confort_0.6.1/door_after_success_no_marker.png",
+      "docs/screenshots/confort_0.6.1/door_before_success_marker.png",
+      "docs/screenshots/confort_0.6.1/elevator_available_after_missions.png",
+      "docs/screenshots/confort_0.6.1/home_profile_left_800x480_large.png",
+      "docs/screenshots/confort_0.6.1/home_profile_left_800x480_nuit.png",
+      "docs/screenshots/confort_0.6.1/home_profile_left_prices_200_1280x720.png",
+      "docs/screenshots/confort_0.6.1/shop_prices_200_1280x720.png"
+    ],
+    "log_sha256": "770f706ca628b8937ea810d7d292b13a766efb9ba092d8165990db0f85c0c730",
+    "fixture_sha256": "ab1d92f069993454d62d40a0e7035d6ef71fde69b38417510c0f8b4c4a7123b8"
+  },
+  "windows_configuration_assertions": 18,
+  "windows_pack_assertions": 6547,
+  "windows_validation": {
+    "windows_contracts_assertions": 18,
+    "compiled_pack_assertions": 6547,
+    "compiled_pack_suites": [
+      {
+        "windows-contracts": [
+          "WINDOWS_CONTRACTS : 18 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-pack": [
+          "WINDOWS_PACK : 47 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-art-pack": [
+          "WINDOWS_ART_PACK : 106 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-profile-editor": [
+          "PROFILE_EDITOR_TESTS : 644 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-game-purchases": [
+          "ACHATS DE JEUX : 235 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-appearance": [
+          "APPARENCE : 1881 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-library-ui": [
+          "LIBRARY_UI : 477 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-chapter-services": [
+          "Résultat chapitres services : 262 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-mission-tracker": [
+          "MISSION_TRACKER : 182 assertions, 0 échec(s). Géométrie native et périphériques virtuels ; matériel non testé."
+        ]
+      },
+      {
+        "windows-chapter-ui": [
+          "CHAPTER_UI : 664 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-profile-header": [
+          "PROFILE_HEADER : 1912 assertions, 0 échec(s)."
+        ]
+      },
+      {
+        "windows-completed-markers": [
+          "COMPLETED_MARKERS : 137 assertions, 0 échec(s)."
+        ]
+      }
+    ],
+    "failures": 0,
+    "native_windows_execution": false,
+    "environment": "Linux Godot headless, isolated XDG directories",
+    "windows_pack_suite_assertions": 47,
+    "compiled_pack_assertions_total": 6547
+  },
+  "windows_zip_sha256": "bcceba1c337c69db48cfe5e236856246ecd9b97759f1111b079efd8f9de0ba37",
+  "embedded_resources": 203,
+  "svg_textures": 43,
+  "package_tools": {
+    "assertions": 27,
+    "failures": 0
+  },
+  "old_releases_sha256": {
+    "Console_CIEL_Windows_x86_64_refonte_0.4.0.zip": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6",
+    "Console_CIEL_Windows_x86_64_navigation_0.4.1.zip": "4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf",
+    "Console_CIEL_Windows_x86_64_profils_0.4.2.zip": "93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b",
+    "Console_CIEL_Projet_Complet_0.4.2.zip": "78e9edaa4277ce9ebf68eea67dcc8f2f9cd0445b2729fce217c2f29d2ace7184",
+    "Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip": "5d7ce9f0c557021d62477eb824c64742031b27989ed86e8ab9cf02ba2e1ac26e",
+    "Console_CIEL_Projet_Complet_0.5.0.zip": "bddc7ef70b41f156ebc01026802b095fd5fd63498d77b75acc64507b4c8f3e23",
+    "Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip": "7a1e8250250bfd6c407c4d843bf2a12a6dae4403607c9589d7faff43b333b82a",
+    "Console_CIEL_Projet_Complet_0.6.0.zip": "86b69ee6df4e16e4270af907190ede6e0ef75a7ccd29c6953bf680ab2fcc0a5d"
+  },
+  "notes": [
+    "Profil et solde en haut à gauche, mises à jour et photos vérifiées sans doublon de texte dans la barre.",
+    "Les quatre jeux coûtent 200 points ; achat à199 refusé, à200 réussi avec les points de quatre vrais défis.",
+    "Les anciens jeux achetés restent possédés sans débit supplémentaire.",
+    "Les six repères et prompts de missions terminées sont masqués après succès et reprise, puis restaurés au rejeu.",
+    "L’ascenseur reste interactif ; bilan du chapitre disponible depuis Pause.",
+    "Données isolées ; la fixture600points sert uniquement à la géométrie des quatre cartes possédées.",
+    "Touches et appareils manette simulés ; matériel physique non testé.",
+    "Pack Windows compilé exécuté avec Godot Linux, Windows natif à vérifier sur un PC Windows.",
+    "Corruption ConfigFile volontaire uniquement dans les copies de test."
+  ],
+  "static_audit": {
+    "files": 818,
+    "uids": 72,
+    "res_references": 194,
+    "errors": [],
+    "native_resource_assertions": 203
+  }
+}
