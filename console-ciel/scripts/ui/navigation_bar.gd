@@ -147,6 +147,7 @@ func update_player(profile: Dictionary, avatar_spec: Dictionary, frame_spec: Dic
 	profile_avatar.variant = int(avatar_spec.get('variant', {'H': 0, 'O': 2, 'F': 1, 'R': 2}.get(avatar_spec.get('symbol', 'H'), 0)))
 	profile_avatar.frame = profile.get('equipped', {}).get('frame', 'frame_default')
 	profile_avatar.frame_spec = frame_spec.duplicate(true)
+	profile_avatar.set_local_image(str(profile.get('avatar_image', '')))
 	profile_avatar.queue_redraw()
 
 func apply_appearance(settings: Dictionary, palette: Dictionary) -> void:
