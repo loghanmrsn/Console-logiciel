@@ -1,4 +1,34 @@
-# Livraison courante 0.6.1 — confort visuel et tarifs
+# Livraison courante 0.6.1 — Raspberry Pi 4 ARM64
+
+[Logiciel Raspberry Pi prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip) et [projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip). La cible confirmée est **Raspberry Pi 4, système 64 bits** ; utiliser Raspberry Pi OS avec bureau, architecture **aarch64**, de préférence Bookworm ou Trixie à jour.
+
+Extraire entièrement le paquet Raspberry Pi et lancer `bash ./Lancer_Console_CIEL.sh` dans son dossier. Dans le projet complet, le lanceur et **console-ciel.arm64** se trouvent dans `console-ciel/builds/linux-arm64-raspberry-pi-0.6.1/`. Godot n’est pas nécessaire pour jouer ; les ressources sont intégrées dans le binaire. `Installer_raccourci.sh` ajoute facultativement l’application au menu du bureau. [Notice Linux](../builds/README_LINUX.md), [guide Raspberry Pi](RASPBERRY_PI.md) et [contenu du projet complet](ARCHIVE_COMPLETE.md).
+
+Le jeu conserve les fonctionnalités de la livraison Windows **0.6.1** : profil, avatar et points en haut à gauche ; deux chapitres et six missions ; ascenseur ; panneau de missions ; repères masqués après réussite sauvegardée ; jeux Test à **200 points chacun** ; profils et photos locales, clavier, thèmes, couleurs et crédits. Aucun profil personnel, achat ou solde de test n’est ajouté. La livraison Windows et ses anciennes archives sont conservées.
+
+## Vérifications de la livraison Raspberry Pi
+
+Le [rapport ARM64](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.verification.json) décrit l’exécutable **ELF / AArch64**, les exigences de bibliothèques, son pack intégré, les CRC et les empreintes des fichiers. Le modèle officiel requiert des symboles jusqu’à **GLIBC 2.28**. Le lanceur sélectionne **gl_compatibility / opengl3_es** et utilise la session graphique X11 ou Wayland de l’utilisateur. Le [rapport du projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.verification.json) inventorie les sources et la livraison courante.
+
+Vérifications exécutées le **14 octobre 2026**, avec données isolées :
+
+| Périmètre | Résultat |
+|---|---|
+| Pack ARM64 compilé, exécuté avec Godot Linux x86_64 | **6 218 assertions, zéro échec**, 11 suites dont 8 contrats de plateforme |
+| Rendu réel X11 / OpenGL ES 3.2, Mesa 25.0.7 llvmpipe | **58 contrôles, zéro échec**, 8 captures temporaires |
+| Lanceur et raccourci utilisateur | **17 tests, zéro échec** |
+| Vérification et assemblage des paquets Linux | **47 assertions, zéro échec** |
+| Contrats des presets, en lecture seule | **13 contrôles, zéro échec** |
+| Régression des outils de packaging Windows | **27 contrôles, zéro échec** |
+| Ressources intégrées et archive portable | **203 empreintes MD5 contrôlées**, dont 43 SVG ; CRC du ZIP vérifiés |
+
+[Résumé Raspberry Pi et portée des tests](../tests/raspberry_pi_0.6.1_results/summary.json). Le ZIP portable mesure **27 026 535 octets** ; l’exécutable ELF ARM64 mesure **65 476 296 octets**. SHA-256 du ZIP : `96ea7e0c50e5015c7eb13188ccb38f24a14865587813f045f833192a7e7eddde`.
+
+Les contrôles de l’export ARM64 et les essais des ressources embarquées avec **Godot Linux x86_64** sont consignés séparément : un test du pack avec ce moteur ne signifie pas que le binaire ARM64 a été exécuté sur le Pi. Les résultats Windows précédents ci-dessous restent propres à leur livraison ; ils ne sont pas des tests natifs Raspberry Pi.
+
+Aucun Pi physique n’est disponible dans l’environnement cloud. Le rendu réel décrit ci-dessus est effectué sous Linux x86_64 avec un pilote graphique logiciel et une sortie audio Dummy ; il ne valide pas le son perçu ou le GPU du Pi. Le lancement ARM64 natif, le rendu matériel, les performances, le son, le plein écran et la manette réelle restent à essayer sur le **Pi 4**. Le mapping du contrôleur de la console doit être mesuré avec le test des commandes ; aucun FPS matériel n’est annoncé comme mesuré. Le lanceur conserve les données utilisateur et ne crée ni autostart, ni service système, ni commande d’arrêt.
+
+# Livraison Windows conservée 0.6.1 — confort visuel et tarifs
 
 [Projet complet](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip) et [Windows prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip). Décompresser tout le ZIP Windows et ouvrir **Console_CIEL.exe**. Dans le projet complet, il se trouve sous `console-ciel/builds/windows-x86_64-confort-0.6.1/`. [Guide de l’archive](ARCHIVE_COMPLETE.md).
 
