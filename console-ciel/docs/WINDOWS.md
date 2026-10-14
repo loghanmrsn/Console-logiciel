@@ -1,10 +1,10 @@
-# Version portable Windows x86_64 — 0.6.0
+# Version portable Windows x86_64 — 0.6.1
 
-**[Télécharger Windows 0.6.0 — chapitre 2](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
+**[Télécharger Windows 0.6.1 — confort visuel](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
 
-La version **0.6.0** ajoute le chapitre 2 de l’enquête : l’ascenseur du bureau, accessible après les trois premières missions, mène à la salle réseau. Trois nouveaux défis couvrent RJ45, IPv4 et protection Wi-Fi ; le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des deux chapitres](ENQUETE.md). La bibliothèque, les achats Test, les profils, les styles et couleurs de 0.5.0 sont conservés. [Guide de la bibliothèque et de l’apparence](BIBLIOTHEQUE_ET_THEMES.md). [Rapport du paquet Windows](../builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.verification.json).
+La version **0.6.1** place le profil, son avatar et ses points en haut à gauche, conserve quatre onglets centrés en bas, porte les quatre emplacements Test à **200 points chacun** et masque les repères des missions terminées après sauvegarde. Le chapitre 2 de l’enquête, ajouté en **0.6.0**, reste disponible : l’ascenseur du bureau, accessible après les trois premières missions, mène à la salle réseau. Trois nouveaux défis couvrent RJ45, IPv4 et protection Wi-Fi ; le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des deux chapitres](ENQUETE.md). La bibliothèque, les achats Test, les profils, les styles et couleurs de 0.5.0 sont conservés. [Guide de la bibliothèque et de l’apparence](BIBLIOTHEQUE_ET_THEMES.md). [Rapport du paquet Windows](../builds/Console_CIEL_Windows_x86_64_confort_0.6.1.verification.json).
 
-Le [projet complet 0.6.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.0.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-chapitre-2-0.6.0/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
+Le [projet complet 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-confort-0.6.1/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
 
 ## Lancer sur votre PC
 
@@ -20,9 +20,9 @@ Le moteur est fixé à **4.6.3.stable.official.7d41c59c4**, édition standard, r
 
 Au premier lancement, créer un profil avec le clavier virtuel ou physique. L’éditeur conserve les minuscules, **⇧**, **123**, **#+=** et **ABC**. Pour les photos, déposer des PNG, JPEG ou WebP dans **images_profil/** voisin de l’EXE, puis **Profil → Modifier → Mes images → Actualiser les images**. Le [guide des profils](PROFILS_ET_CLAVIER.md) précise les limites et le remplacement d’une image absente par l’avatar classique.
 
-L’enquête pédagogique est gratuite : **50 points par première réussite**, six missions réparties en deux chapitres, **300 points au maximum par profil**. **Test 1 / 2 / 3 / 4** coûtent **20 / 30 / 40 / 50 points**. Les vrais jeux n’étant pas prêts, ces achats ouvrent seulement une page **jeu en préparation** ; leur ouverture ne rapporte aucun point. Un achat payant est refusé à solde nul ou insuffisant. Un article possédé n’est pas acheté deux fois. Solde et inventaire sont sauvegardés ensemble, séparément pour chaque profil.
+L’enquête pédagogique est gratuite : **50 points par première réussite**, six missions réparties en deux chapitres, **300 points au maximum par profil**. **Test 1 / 2 / 3 / 4** coûtent **200 points chacun**, soit **800 au total**. Sans autre dépense, quatre premières réussites financent un jeu ; terminer les six missions puis acheter un Test laisse 100 points. Les autres jeux attendent de futurs défis ou un solde déjà présent dans un ancien profil ; rejouer ne redonne aucun point. Les jeux déjà acquis restent achetés sans supplément. Les vrais jeux n’étant pas prêts, ces achats ouvrent seulement une page **jeu en préparation** ; leur ouverture ne rapporte aucun point. Un achat payant est refusé à solde nul ou insuffisant. Un article possédé n’est pas acheté deux fois. Solde et inventaire sont sauvegardés ensemble, séparément pour chaque profil.
 
-**Boutique → Jeux** présente ces emplacements ; **Mes achats** retrouve les acquisitions du joueur. Les cosmétiques existants restent disponibles. Les cartes de profil affichent les points, objectifs et jeux acquis.
+**Boutique → Jeux** présente ces emplacements ; **Mes achats** retrouve les acquisitions du joueur. Les cosmétiques existants restent disponibles. Les cartes de profil affichent les points, objectifs et jeux acquis. Le profil actif reste visible dans l’en-tête en haut à gauche, y compris pendant l’enquête ; la barre du bas affiche uniquement les quatre onglets centrés.
 
 ## Affichage, apparence et crédits
 
@@ -31,6 +31,8 @@ La fenêtre est redimensionnable, **1280 × 720** par défaut, minimum **800 × 
 **Paramètres → Apparence** propose gratuitement **Thème du profil, Brume, Sable, Sauge, Nuit, Aurore**. Choisir séparément la couleur du fond et des boutons, ou **Personnaliser** pour une couleur RGB. L’aperçu est immédiat ; **Appliquer** enregistre, **Annuler** restaure. Les anciens fichiers de réglages sont compatibles. Grand texte, animations et transparence réduites restent dans Accessibilité.
 
 **Crédits** est la dernière catégorie des paramètres ; un bloc de crédits figure aussi au bas de chaque catégorie. **À propos** conserve l’aide, la version et les chemins des données.
+
+Après une réussite sauvegardée, le repère et le bouton d’interaction de la mission terminée disparaissent. Le meuble réparé reste visible dans le décor ; l’ascenseur reste interactif pour changer de chapitre. **Pause → Bilan du chapitre** permet de revoir un chapitre terminé. Reprendre une sauvegarde conserve les repères masqués ; une nouvelle partie les rétablit pour les missions à refaire, sans nouvelle récompense.
 
 ## Commandes et fermeture
 
@@ -67,7 +69,7 @@ Le ZIP ne contient aucun profil prérempli ni sauvegarde personnelle. Une mise �
 Installer Godot standard **4.6.3 stable** et les [modèles d’export officiels correspondants](https://github.com/godotengine/godot-builds/releases/tag/4.6.3-stable). Depuis `console-ciel/`, dans PowerShell :
 
 ```powershell
-.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip -OutputDirectory windows-x86_64-chapitre-2-0.6.0
+.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_confort_0.6.1.zip -OutputDirectory windows-x86_64-confort-0.6.1
 ```
 
 Adapter le chemin du moteur. Le script cible PowerShell **5.1 ou supérieur**, vérifie la version exacte, importe les ressources et exporte avec **Windows Desktop x86_64** dans un dossier provisoire. Il vérifie le PE x86_64, ajoute aide, licences et images_profil, puis assemble l’archive. Un échec conserve la livraison précédente. Le preset Pi n’est pas modifié.
@@ -76,17 +78,19 @@ Le script PowerShell a été analysé et testé historiquement avec PowerShell 7
 
 ## Vérifications et recette Windows
 
-Le [rapport Windows 0.6.0](../builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_0.6.0.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
+Le [rapport Windows 0.6.1](../builds/Console_CIEL_Windows_x86_64_confort_0.6.1.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_0.6.1.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
 
-La recette **0.6.0** a passé **9 568 assertions source** (14 suites), **65 assertions de persistance** sur trois processus, **694 contrôles de rendu X11** avec 12 captures, **4 351 assertions du pack compilé**, **18 contrats Windows** et **27 contrôles de packaging**, tous avec zéro échec. Le pack contient **203 ressources contrôlées**, dont **43 SVG**. [Résumé de recette](../tests/chapitre_2_0.6.0_results/summary.json), [captures](screenshots/chapitre_2_0.6.0/) et [taille/empreinte du téléchargement](../builds/README_WINDOWS.md).
+Recette **0.6.1 du 14 octobre 2026** : **11 844 assertions source** dans 16 suites, **65 assertions de persistance** sur trois processus, **58 contrôles avec rendu X11** et 8 captures, **6 547 assertions du pack compilé**, **18 contrats Windows** et **27 contrôles de packaging**, zéro échec. Le pack contient **203 ressources contrôlées**, dont **43 SVG**. L’audit statique vérifie **818 fichiers, 72 UID et 194 références**, sans erreur ; le chargement natif sous Godot Linux passe **203 contrôles**, sans échec. [Résumé courant](../tests/confort_0.6.1_results/summary.json), [8 captures](screenshots/confort_0.6.1/) et [avant/après du repère de porte](DELIVERY.md).
+
+La recette historique **0.6.0** a passé **9 568 assertions source** (14 suites), **65 assertions de persistance** sur trois processus, **694 contrôles de rendu X11** avec 12 captures, **4 351 assertions du pack compilé**, **18 contrats Windows** et **27 contrôles de packaging**, tous avec zéro échec. Le pack contient **203 ressources contrôlées**, dont **43 SVG**. [Résumé de recette](../tests/chapitre_2_0.6.0_results/summary.json), [captures](screenshots/chapitre_2_0.6.0/) et [taille/empreinte du téléchargement](../builds/README_WINDOWS.md).
 
 Tester un pack embarqué avec le moteur Linux vérifie ses ressources et sa logique ; cela ne lance pas l’EXE Windows. Le double-clic, le rendu, le son et les périphériques USB sous Windows restent à essayer sur votre PC :
 
-1. Extraire, lancer, créer deux profils, ajouter une photo et saisir minuscules, majuscules et chiffres.
-2. Avec zéro point, vérifier qu’un jeu payant ne peut pas être acheté. Afficher et masquer le tableau de missions par son bouton, T et le bouton de face haut ; en pause ou pendant un défi, vérifier que les actions ne traversent pas les dialogues.
-3. Terminer les trois missions du chapitre 1 : l’ascenseur en bas du bureau reste bloqué avant et devient accessible après. Lire le bilan de 150 points, monter, puis terminer RJ45, IPv4 et Wi-Fi. Le second bilan doit afficher 300 nouveaux points cumulés pour un profil neuf sans achat.
-4. Fermer et reprendre entre les missions et à l’étage. Vérifier le chapitre restauré et un ancien profil déjà terminé au chapitre 1 ; rejouer les six missions sans gain supplémentaire.
-5. Acheter un emplacement Test, retrouver sa carte à l’accueil, ouvrir la page de préparation et vérifier l’absence de récompense. Changer de profil pour contrôler la séparation des achats.
+1. Extraire, lancer, créer deux profils, ajouter une photo et saisir minuscules, majuscules et chiffres. Vérifier l’avatar, le pseudo et les points en haut à gauche sur chaque écran avec profil actif ; vérifier les quatre onglets centrés sans pseudo ni solde dans la barre.
+2. Vérifier que les quatre prix sont de **200 points** dans la boutique et les deux dispositions de l’accueil. Avec zéro ou 199 points, un achat doit être refusé ; avec 200, un achat laisse zéro point. Afficher et masquer le tableau de missions par son bouton, T et le bouton de face haut ; en pause ou pendant un défi, vérifier que les actions ne traversent pas les dialogues.
+3. Après chaque mission sauvegardée, vérifier que son repère et son bouton d’interaction disparaissent, tandis que son meuble reste visible et réparé. Terminer les trois missions du chapitre 1 : l’ascenseur en bas du bureau reste bloqué avant et devient accessible après. Lire le bilan de 150 points, monter, puis terminer RJ45, IPv4 et Wi-Fi. Le second bilan doit afficher 300 nouveaux points cumulés pour un profil neuf sans achat. Vérifier **Pause → Bilan du chapitre** après chaque chapitre terminé et les trajets d’ascenseur dans les deux sens ; avant la fin d’un chapitre, ce bouton de bilan n’est pas disponible.
+4. Fermer et reprendre entre les missions et à l’étage. Les repères des missions terminées doivent rester masqués. Vérifier le chapitre restauré et un ancien profil déjà terminé au chapitre 1. Commencer une nouvelle partie : les repères des missions à refaire redeviennent disponibles ; rejouer les six missions sans gain supplémentaire.
+5. Avec les 300 points du profil neuf, acheter un emplacement Test, vérifier le solde de 100 et le refus d’un second achat à 200. Retrouver sa carte à l’accueil et ouvrir la page de préparation sans gain. Un Test déjà acquis à l’ancien prix reste possédé sans débit supplémentaire. Changer de profil pour contrôler la séparation des achats.
 6. Choisir les deux dispositions d’accueil, parcourir le carrousel au clavier ou à la manette.
 7. Tester les styles, une couleur du fond et une couleur des boutons ; Annuler, puis Appliquer. Retrouver les réglages après relance et consulter Crédits.
 8. Vérifier fenêtre et plein écran, texte normal et grand texte à **1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480**.
@@ -94,6 +98,7 @@ Tester un pack embarqué avec le moteur Linux vérifie ses ressources et sa logi
 
 ## Livraisons conservées
 
+- [Windows 0.6.0 — chapitre 2](../builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip), [résultats historiques](../tests/chapitre_2_0.6.0_results/summary.json).
 - [Windows 0.5.0 — bibliothèque et thèmes](../builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip), [guide](BIBLIOTHEQUE_ET_THEMES.md).
 - [Windows 0.4.2 — profils et clavier](../builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip), [guide](PROFILS_ET_CLAVIER.md).
 - [Windows 0.4.1 — navigation translucide](../builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), [captures et recette](NAVIGATION_TRANSLUCIDE.md).
