@@ -20,8 +20,8 @@ func resources(folder: String) -> Array:
  return result
 func run():
  await process_frame
- check(ProjectSettings.get_setting('application/config/version')=='0.5.0','Version embarquée')
- var all=resources('res://assets/art');check(all.size()==36,'36 SVG dans le pack')
+ check(ProjectSettings.get_setting('application/config/version')=='0.6.0','Version embarquée')
+ var all=resources('res://assets/art');check(all.size()==43,'43 SVG originaux dans le pack, dont le nouvel étage et l’ascenseur')
  for path in all:
   var asset=ResourceLoader.load(path)
   check(asset is Texture2D and asset.get_width()>0 and asset.get_height()>0,'Image embarquée '+path)
