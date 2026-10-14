@@ -43,6 +43,8 @@ func _complete_validated_mission(id: String, authorization_token: String) -> Dic
 	var profile: Dictionary = AppState.profile.duplicate(true)
 	if not profile.progress.started:
 		return SaveService._fail("Commencez l'enquête avant de valider une mission.")
+	if profile.progress.room_id != found.room_id:
+		return SaveService._fail("La mission appartient à un autre étage de l’enquête.")
 	if id in profile.progress.completed_missions:
 		return SaveService._ok({"mission_id": id, "reward": 0, "already_completed": true})
 	var reward := 0
