@@ -111,7 +111,12 @@ func validate_catalog(value: Variant) -> Dictionary:
 			return _fail("Un identifiant du catalogue est invalide.")
 		if seen.has(entry.id) or entry.id == GameLibrary.EDUCATIONAL_ID or entry.get("type") not in ["avatar", "theme", "frame", "game"]:
 			return _fail("Article dupliqué ou type inconnu dans le catalogue.")
-		if not _is_integer(entry.get("price"), 0, 100) or (int(entry.price) != 0 and int(entry.price) < 20):
+		# Les jeux peuvent coûter davantage que les cosmétiques ; les deux
+		# catégories conservent un prix gratuit explicite, sans conversion
+		# d'un nombre invalide ou supérieur au plafond du portefeuille.
+		var minimum_paid_price := 200 if entry.type == "game" else 20
+		var maximum_price := MAX_POINTS if entry.type == "game" else 100
+		if not _is_integer(entry.get("price"), 0, maximum_price) or (int(entry.price) != 0 and int(entry.price) < minimum_paid_price):
 			return _fail("Prix invalide dans le catalogue.")
 		if not entry.get("name") is String or entry.name.strip_edges().is_empty() or not entry.get("description") is String:
 			return _fail("Un texte du catalogue est invalide.")
