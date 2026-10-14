@@ -1,107 +1,119 @@
-# Installation et mise à jour sur Raspberry Pi
+# Console CIEL 0.6.1 sur Raspberry Pi 4
 
-Cible prévue : **Raspberry Pi 5, 4 Go**, Raspberry Pi OS **64 bits**, session graphique **labwc** de l'utilisateur. L'écran et le contrôleur définitifs restent à valider. Le projet utilise Godot standard **4.6.3.stable.official.7d41c59c4**, GDScript, rendu **Compatibility** ; les modèles d'export doivent être **4.6.3 stable**.
+La cible confirmée est un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**. Le paquet utilise un exécutable Linux **ARM64 / aarch64**, Godot standard **4.6.3.stable.official.7d41c59c4** et le rendu **Compatibility**, OpenGL ES 3. Le jeu, ses deux chapitres, les photos locales et les sauvegardes fonctionnent hors ligne ; Godot n’a pas besoin d’être installé pour jouer.
 
-Les modèles ne sont pas présents dans l'environnement actuel : aucun binaire ARM64 autonome n'y a été produit. Ces commandes décrivent l'installation à effectuer après un export réussi. Ne pas copier l'exécutable Godot de développement x86_64 sur le Pi.
+[Télécharger le logiciel Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip) · [Télécharger le projet complet avec les sources](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip).
 
-## Produire les fichiers de livraison
+Utiliser de préférence une installation à jour de **Raspberry Pi OS Bookworm ou Trixie 64 bits avec bureau**. `uname -m` doit indiquer **aarch64**. Le modèle officiel ARM64 requiert des symboles jusqu’à **GLIBC 2.28** ; Bookworm et Trixie satisfont cette version. Il attend aussi une session graphique et les pilotes du système. La configuration définitive de l’écran et de la manette reste à mesurer sur le Pi.
 
-Installer les modèles officiels correspondants, puis lancer depuis le projet :
+## Télécharger et lancer
+
+1. Depuis le bureau du Pi, télécharger le ZIP Raspberry Pi et **extraire tout son contenu** dans un dossier utilisateur, par exemple `~/Applications/Console_CIEL_0.6.1/`.
+2. Ouvrir un terminal dans le dossier extrait qui contient `console-ciel.arm64` et `Lancer_Console_CIEL.sh`.
+3. Lancer :
+
+```sh
+bash ./Lancer_Console_CIEL.sh
+# Ou démarrer en plein écran :
+bash ./Lancer_Console_CIEL.sh --fullscreen
+```
+
+Le script et l’exécutable doivent rester dans le même dossier. Garder également `LIRE_MOI.txt`, `images_profil/`, `assets/LICENSES.md` et `assets/licenses/`. Les ressources du jeu sont intégrées dans **console-ciel.arm64**, sans `.pck` séparé. Le lanceur sélectionne le rendu **gl_compatibility / opengl3_es** et laisse Godot choisir le pilote de fenêtre X11 ou Wayland selon la session.
+
+Dans le **projet complet Raspberry Pi**, le dossier à ouvrir est `console-ciel/builds/linux-arm64-raspberry-pi-0.6.1/`. Dans **Code → Download ZIP** sur GitHub, extraire également le ZIP Raspberry Pi placé dans `console-ciel/builds/`.
+
+Pour ajouter un raccourci au menu des applications, depuis le même dossier :
+
+```sh
+bash ./Installer_raccourci.sh
+```
+
+Cet ajout facultatif crée uniquement `console-ciel.desktop` dans le dossier des applications de l’utilisateur, généralement `~/.local/share/applications/`. Le raccourci pointe vers le dossier extrait ; garder ce dossier ou réinstaller le raccourci après l’avoir déplacé.
+
+Le lancement direct reste possible après avoir rendu le fichier exécutable :
+
+```sh
+chmod u+x ./console-ciel.arm64
+./console-ciel.arm64 --rendering-method gl_compatibility --rendering-driver opengl3_es
+```
+
+Le réglage **Paramètres → Affichage → Plein écran** est conservé à la relance. Lancer sous le compte utilisateur du bureau. Aucun lancement en root, service système, autostart ou arrêt du système n’est ajouté.
+
+## Même jeu que la livraison Windows 0.6.1
+
+- Profil, avatar et points en haut à gauche ; quatre onglets centrés dans la barre inférieure.
+- Deux chapitres et six missions ; ascenseur accessible en bas du bureau après les trois premières réussites.
+- Tableau de missions à droite, repliable avec **T** ou le **bouton de face haut** de la manette.
+- Repères et bouton d’interaction masqués après réussite sauvegardée ; meubles réparés et ascenseur conservés. **Pause → Bilan du chapitre** permet de revoir le bilan.
+- **Test 1 à Test 4 coûtent 200 points chacun** et restent des emplacements de jeux en préparation. Une mission rapporte 50 points une seule fois, soit 300 points au maximum par profil ; un achat conserve débit et inventaire ensemble.
+- Profils, clavier AZERTY minuscule / **⇧** / **123**, thèmes et couleurs, réglages et crédits conservés.
+
+[Parcours de l’enquête](ENQUETE.md), [profil et clavier](PROFILS_ET_CLAVIER.md), [bibliothèque et tarifs](BIBLIOTHEQUE_ET_THEMES.md). La [livraison Windows 0.6.1](../builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip) reste disponible séparément.
+
+## Commandes et manette
+
+| Action | Clavier | Manette Godot standard |
+|---|---|---|
+| Parcourir les menus | Flèches | Croix / joystick gauche |
+| Valider | Entrée | Bouton de face bas |
+| Retour | Échap | Bouton de face droit |
+| Marcher | Flèches ou ZQSD | Croix / joystick gauche |
+| Interagir | Espace | Bouton de face bas |
+| Déplier / replier les missions | T | Bouton de face haut : Triangle / Y / X selon le modèle |
+| Pause | P | Start / Menu |
+
+Dans **Paramètres → Commandes → Test des commandes**, vérifier les boutons et axes réellement reçus avant d’adapter `data/controller_mapping.json` pour un contrôleur fabriqué. Les valeurs de test virtuelles ne prouvent pas le mapping USB physique. Le retrait de la manette suspend l’enquête ; la reconnexion nécessite une reprise explicite.
+
+## Photos locales
+
+Ajouter les fichiers PNG, JPEG ou WebP dans **images_profil/**, à côté de **console-ciel.arm64**, puis ouvrir **Profil → Personnaliser → Mes images → Actualiser les images**. En édition Godot, le dossier est `console-ciel/images_profil/`. Les photos personnelles ne sont pas incluses dans les paquets distribués.
+
+## Données, mise à jour et retour arrière
+
+Les profils et réglages sont séparés du binaire : **`~/.local/share/console-ciel/`** par défaut. Un `XDG_DATA_HOME` personnalisé change ce chemin ; le garder identique pour retrouver les mêmes joueurs. **Paramètres → À propos** affiche le chemin effectif. Le dossier contient `profiles/`, `settings.cfg`, `session.json` et les copies précédentes utilisées pour la récupération.
+
+Les données Windows sont dans `%APPDATA%\console-ciel\` et ne se synchronisent pas automatiquement avec le Pi. L’installation Linux ne copie pas de profils ni de points de démonstration dans le compte utilisateur.
+
+Pour mettre à jour, fermer normalement l’application, conserver une copie du dossier de données et extraire la nouvelle livraison dans **un nouveau dossier**, en gardant la précédente. Copier également vos images personnelles si vous souhaitez les retrouver dans ce nouveau dossier. L’emplacement du binaire peut changer sans changer les sauvegardes utilisateur. Réinstaller le raccourci facultatif depuis la nouvelle livraison.
+
+Pour revenir à une version installée auparavant, fermer l’application puis lancer son dossier conservé. Une future version peut changer le format des données : garder les données récentes avant de restaurer une sauvegarde antérieure. La livraison 0.6.1 conserve le schéma de profils 1, les anciens achats et les réussites des deux chapitres.
+
+## Journaux et affichage
+
+Le journal habituel est sous **`user://logs/godot.log`**, donc généralement `~/.local/share/console-ciel/logs/godot.log`. Le chemin effectif est indiqué dans **Paramètres → À propos**. Pour choisir un journal de lancement :
+
+```sh
+mkdir -p "$HOME/.local/state/console-ciel"
+bash ./Lancer_Console_CIEL.sh --log-file "$HOME/.local/state/console-ciel/run.log"
+```
+
+Le lanceur transmet les arguments supplémentaires au binaire. Le rendu Compatibility utilise **OpenGL ES 3**, pas Vulkan. Selon la session bureau et les pilotes, on peut choisir explicitement la fenêtre pour diagnostiquer un échec graphique :
+
+```sh
+bash ./Lancer_Console_CIEL.sh --display-driver wayland
+bash ./Lancer_Console_CIEL.sh --display-driver x11
+```
+
+Lire les erreurs du moteur en plus du code de sortie. Le diagnostic **F3** appartient à l’exécution debug de développement ; ses FPS ne sont pas une mesure acquise pour le paquet release ou pour le Pi.
+
+## Refaire l’export
+
+Installer les modèles officiels **4.6.3 stable**, puis lancer depuis `console-ciel/` :
 
 ```sh
 tools/export.sh arm64
 ```
 
-Le preset **Linux ARM64 Raspberry Pi** produit `builds/linux-arm64/console-ciel.arm64`. Le pack est intégré dans cet exécutable (`embed_pck=true`) ; aucun `.pck` séparé n'est requis par ce preset. Copier aussi `assets/LICENSES.md`, `assets/licenses/` et la documentation utile. Si le preset est changé pour séparer le pack, son `.pck` doit être livré à côté du binaire du même export. [Détail des modèles et presets](EXPORT.md).
+Le preset **Linux ARM64 Raspberry Pi** produit `builds/linux-arm64/console-ciel.arm64`, avec pack intégré. Pour une livraison complète, l’exécutable doit être accompagné du lanceur, de la notice, du dossier d’images et des licences, comme dans le paquet publié. Le script d’export seul ne crée pas ce ZIP portable. [Guide des exports](EXPORT.md).
 
-## Installer une version sans remplacer la précédente
+## Portée des vérifications
 
-Dans la session utilisateur du Pi, vérifier l'architecture avec `uname -m` : elle doit être `aarch64`. Exemple de disposition retenue :
+Le [rapport ARM64](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.verification.json) détaille le binaire, les ressources, l’archive et leurs empreintes ; le [rapport du projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.verification.json) inventorie les sources et les fichiers livrés. [Notice du paquet Linux](../builds/README_LINUX.md) et [bilan de livraison](DELIVERY.md).
 
-```text
-~/Applications/console-ciel/
-  releases/
-    0.3.0/
-      console-ciel.arm64
-      assets/LICENSES.md
-      assets/licenses/
-      docs/
-  current -> releases/0.3.0
-```
+La recette de ce paquet passe **6 218 assertions sur les ressources compilées** avec Godot Linux x86_64, **58 contrôles avec rendu X11 / OpenGL ES réel**, **17 tests des lanceurs**, **47 assertions des outils Linux** et **13 contrôles des presets**, zéro échec. Les **203 ressources intégrées**, dont 43 SVG, leurs empreintes MD5 et les CRC du ZIP sont vérifiés. [Résumé Raspberry Pi](../tests/raspberry_pi_0.6.1_results/summary.json).
 
-Copier les fichiers de l'export dans un nouveau dossier de version. Si ce dossier existe déjà, choisir un autre nom de livraison au lieu d'écraser son contenu. Ces commandes sont des opérations manuelles à réaliser sur le Pi ; elles n'ont pas été exécutées par le projet sur la machine de développement :
+L’export ARM64 et l’exécution de ses ressources avec un moteur Linux x86_64 vérifient des aspects différents. Un chargement du pack sous x86_64 ne constitue pas un lancement natif du binaire ARM64. Aucun Raspberry Pi physique n’est disponible dans l’environnement cloud ; le rendu matériel, le son, le plein écran, la manette réelle et les performances restent à essayer sur votre Pi 4.
 
-```sh
-set -e
-mkdir -p "$HOME/Applications/console-ciel/releases"
-mkdir "$HOME/Applications/console-ciel/releases/0.3.0"
-# Après copie du binaire et des fichiers associés :
-chmod +x "$HOME/Applications/console-ciel/releases/0.3.0/console-ciel.arm64"
-```
+Avant la présentation, jouer les deux chapitres, reprendre après fermeture, tester le tableau de missions, le refus d’achat sous 200 points et la conservation d’un achat. Vérifier l’écran final, le son et la déconnexion / reconnexion de votre manette. Les tests Linux de la version Windows restent historiques et n’attestent pas à eux seuls du fonctionnement sur le Pi.
 
-Essayer d'abord cette version explicitement, depuis le bureau ouvert :
-
-```sh
-mkdir -p "$HOME/.local/state/console-ciel"
-"$HOME/Applications/console-ciel/releases/0.3.0/console-ciel.arm64" \
-  --fullscreen --log-file "$HOME/.local/state/console-ciel/run.log"
-```
-
-Le renderer Compatibility requiert un pilote OpenGL/OpenGL ES fonctionnel. Si le rendu échoue sous labwc, examiner le journal puis essayer, selon les pilotes disponibles, `--display-driver wayland --rendering-driver opengl3_es` ou `--display-driver x11` pour XWayland. Ne pas modifier automatiquement les réglages système pour masquer un échec. Ces variantes et le plein écran doivent être vérifiés sur le Pi.
-
-Après vérification et fermeture de l'application, placer le lien vers la version validée :
-
-```sh
-ln -sfnT releases/0.3.0 "$HOME/Applications/console-ciel/current"
-```
-
-Le chemin stable à transmettre au lanceur est alors `~/Applications/console-ciel/current/console-ciel.arm64`. Le shell ou la configuration du lanceur doit développer `~`, ou employer un chemin absolu.
-
-## Interface avec le lanceur automatique distinct
-
-Aucun pack d'autostart n'a été trouvé dans ce dépôt : seuls les outils d'export, de paquet source et de démonstration y sont présents. Le lanceur annoncé dans le projet reste un livrable distinct. **Aucun deuxième mécanisme d'autostart n'est créé.**
-
-L'interface attendue est une exécution dans la **session graphique de l'utilisateur**, après ouverture du bureau :
-
-```sh
-"$HOME/Applications/console-ciel/current/console-ciel.arm64" \
-  --fullscreen --log-file "$HOME/.local/state/console-ciel/run.log"
-```
-
-Le lanceur peut ajouter ses propres journaux, sans modifier le dossier des sauvegardes. Ne pas lancer Godot en root, ne pas ajouter d'autorisation sudo générale et ne pas créer un service système concurrent. La vérification complète du lanceur nécessite ses fichiers réels, qui ne sont pas livrés ici.
-
-## Sauvegardes, mise à jour et retour arrière
-
-Les profils et réglages sont dans `~/.local/share/console-ciel/`, indépendamment de l'emplacement de l'exécutable. Le dossier contient `profiles/`, `settings.cfg`, `session.json` et les copies précédentes. Un `XDG_DATA_HOME` personnalisé change ce chemin ; le garder identique entre relances destinées aux mêmes joueurs. Le mode de démonstration utilise sa propre racine et ne doit pas devenir le dossier des vrais profils.
-
-Avant une mise à jour, fermer normalement l'application et sauvegarder ce dossier utilisateur. Exemple de copie datée, réalisée manuellement sous le compte utilisateur :
-
-```sh
-set -e
-mkdir -p "$HOME/Backups/console-ciel"
-backup_dir="$HOME/Backups/console-ciel/avant-0.3.0"
-test ! -e "$backup_dir" && test ! -L "$backup_dir"
-cp -aT -- "$HOME/.local/share/console-ciel" "$backup_dir"
-```
-
-Choisir un nom de copie inexistant pour préserver la sauvegarde précédente. Installer le nouvel export dans un autre dossier de `releases/`, le lancer explicitement, vérifier sélection du profil, reprise, achat, équipement et fermeture, puis modifier seulement `current`. Ne pas supprimer ni copier des données utilisateur dans le dossier du binaire.
-
-Pour revenir à une version précédente encore présente : fermer l'application, remettre `current` vers son dossier, puis relancer. Exemple :
-
-```sh
-ln -sfnT releases/0.2.0 "$HOME/Applications/console-ciel/current"
-```
-
-Ce lien suppose que la version précédente est réellement installée. La version 0.3.0 conserve le schéma de profils 1 et la version d'enquête 1 de la 0.2.0. Pour une future migration incompatible, ne pas laisser un ancien programme écrire les nouveaux documents : utiliser une copie de données dédiée ou restaurer la sauvegarde préalable **après avoir archivé les données plus récentes**, afin de ne pas perdre les changements des joueurs.
-
-## Journaux et diagnostic
-
-Avec `--log-file`, le journal de lancement est `~/.local/state/console-ciel/run.log`. Sans cette option, le journal Godot habituel est dans `user://logs/`, sous le dossier des données de l'application. Lire les erreurs du moteur en plus du code de sortie.
-
-Le diagnostic **F3** est disponible pendant le développement debug : version logiciel et Godot, résolution, renderer, FPS réellement observés, identifiant du profil actif, contrôleur et dernière erreur de stockage. Les FPS headless ne constituent pas une mesure de performance du Pi. Le test des commandes affiche les boutons et axes bruts ; enregistrer les valeurs réellement observées pour le futur USB HID avant d'adapter le mapping configurable.
-
-## Arrêt et recette matérielle
-
-**Retour au menu** conserve l'application ouverte. **Quitter** sauvegarde puis ferme l'application. **Arrêt système non configuré** reste indisponible : PlatformService ne lance aucune commande d'arrêt. La coupure électrique du montage n'est pas pilotée par cette application.
-
-Avant la soutenance sur Pi : jouer les trois missions, reprendre après chacune, acheter puis équiper un cosmétique, fermer et relancer, changer de profil, retirer/rebrancher la manette, vérifier son au volume zéro et normal, tester 1280 × 720, 1024 × 600 et 800 × 480 en texte normal/grand, vérifier le plein écran labwc et mesurer menu/enquête. Aucun résultat matériel ou objectif de 60 FPS n'est annoncé comme acquis. [Recette et problèmes connus](KNOWN_ISSUES.md).
+**Quitter** sauvegarde puis ferme le logiciel. **Arrêt système non configuré** reste indisponible : fermer l’application, arrêter Raspberry Pi OS normalement, puis couper l’alimentation du montage. [Recette et problèmes connus](KNOWN_ISSUES.md).
