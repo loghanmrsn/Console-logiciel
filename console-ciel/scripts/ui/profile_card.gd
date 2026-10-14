@@ -50,7 +50,7 @@ func configure(profile: Dictionary, item: Dictionary, recent: bool) -> void:
 	statistics.add_theme_constant_override('separation', 10)
 	column.add_child(statistics)
 	_add_statistic(statistics, str(profile.wallet.points), 'points', 'profile_points_' + str(profile.id))
-	_add_statistic(statistics, '%s / 3' % profile.progress.completed_missions.size(), 'objectifs', 'profile_progress_' + str(profile.id))
+	_add_statistic(statistics, '%d / %d' % [profile.progress.completed_missions.size(), RewardService.missions.size()], 'objectifs', 'profile_progress_' + str(profile.id))
 	var games = 0
 	for owned_id in profile.get('owned_items', []):
 		if ShopService.item(str(owned_id)).get('type', '') == 'game':
