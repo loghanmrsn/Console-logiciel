@@ -1,5 +1,7 @@
 extends Node
 
+const GameLibrary := preload("res://scripts/services/game_library.gd")
+
 signal catalog_loaded(items: Array)
 var catalog: Array = []
 
@@ -34,8 +36,10 @@ func purchase(id: String) -> Dictionary:
 		return SaveService._fail("Article inconnu.")
 	if not SaveService._is_integer(product.get("price"), 0, 100):
 		return SaveService._fail("Prix d'article invalide.")
-	if product.get("type") not in ["avatar", "theme", "frame"]:
+	if product.get("type") not in ["avatar", "theme", "frame", "game"]:
 		return SaveService._fail("Type d'article invalide.")
+	if product.type == "game" and not GameLibrary.is_valid_game_scene(product.get("scene")):
+		return SaveService._fail("Ce jeu n'est pas disponible dans les fichiers locaux livrés.")
 	var profile: Dictionary = AppState.profile.duplicate(true)
 	var validation := SaveService.validate_profile(profile)
 	if not validation.ok:
@@ -58,6 +62,8 @@ func equip(id: String) -> Dictionary:
 	var product := item(id)
 	if product.is_empty():
 		return SaveService._fail("Article inconnu.")
+	if product.get("type") == "game":
+		return SaveService._fail("Un jeu se lance depuis la bibliothèque ; il ne peut pas être équipé.")
 	var profile: Dictionary = AppState.profile.duplicate(true)
 	if id not in profile.owned_items:
 		return SaveService._fail("Cet article n'est pas possédé.")
