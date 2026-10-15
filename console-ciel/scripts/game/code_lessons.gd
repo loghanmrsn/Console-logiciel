@@ -1,0 +1,19 @@
+extends RefCounted
+## Trois livres locaux, chacun en trois petites leçons. Aucun code n’est exécuté.
+const BOOKS := [
+	{"id": "python", "title": "Python", "subtitle": "Faire agir un programme", "color": "688fa3", "symbol": "Py", "pages": [
+		{"title": "1 · Donner des instructions", "body": "Python est un langage de programmation. Un programme est une suite d’instructions, lues généralement de haut en bas.\n\nLes noms sont sensibles aux majuscules : print et Print sont différents. Un commentaire commence par # ; il sert à expliquer le code.", "example": "# Mon premier message\nprint(\"Bonjour CIEL\")"},
+		{"title": "2 · Texte, variables et blocs", "body": "Un texte se place entre guillemets droits simples ou doubles. Une variable garde une valeur : nom = \"CIEL\".\n\nLes parenthèses servent à appeler une fonction. L’indentation regroupe les instructions dans les blocs, par exemple après if ou for. Gardez une indentation régulière.", "example": "nom = \"CIEL\"\nprint(nom)"},
+		{"title": "3 · Réussir le défi Python", "body": "La fonction print affiche un message. Écrivez son nom en minuscules, puis le texte entre parenthèses et guillemets.\n\nAu poste Python, la réponse manquante est print. Vous pouvez aussi recopier la ligne complète ci-dessous dans le clavier du défi.", "example": "print(\"Bonjour CIEL\")"}
+	]},
+	{"id": "html", "title": "HTML", "subtitle": "Structurer une page", "color": "b49363", "symbol": "</>", "pages": [
+		{"title": "1 · Des balises pour structurer", "body": "HTML est un langage de balisage : il décrit la structure d’une page. Une balise se place entre < et >.\n\nLa plupart des éléments ont une balise ouvrante, du contenu et une balise fermante avec /. Les éléments peuvent être imbriqués ; fermez-les dans l’ordre inverse de leur ouverture.", "example": "<p>Un paragraphe.</p>"},
+		{"title": "2 · Les éléments essentiels", "body": "h1 désigne un titre principal ; h2 à h6 indiquent d’autres niveaux de titres. p contient un paragraphe. a crée un lien avec l’attribut href. img insère une image et n’a pas de balise fermante.\n\nLes attributs complètent une balise. CSS règle la présentation ; HTML décrit d’abord le sens et la structure.", "example": "<h1>Mon titre</h1>\n<p>Mon texte.</p>"},
+		{"title": "3 · Réussir le défi HTML", "body": "Pour un titre de premier niveau, utilisez h1. La balise <h1> ouvre le titre et </h1> le ferme.\n\nAu poste HTML, tapez h1 pour compléter les deux emplacements, ou recopiez l’exemple complet ci-dessous. N’oubliez pas / dans la balise fermante.", "example": "<h1>Bonjour CIEL</h1>"}
+	]},
+	{"id": "markdown", "title": "Markdown", "subtitle": "Mettre un texte en forme", "color": "9580aa", "symbol": "#", "pages": [
+		{"title": "1 · Écrire un document lisible", "body": "Markdown est une syntaxe légère pour mettre du texte en forme. Le fichier reste lisible même sans afficher sa mise en forme. On l’utilise souvent pour les README et les notes.\n\nLaissez une ligne vide entre les paragraphes. Des symboles simples indiquent les titres, les listes ou les liens.", "example": "Un premier paragraphe.\n\nUn autre paragraphe."},
+		{"title": "2 · Les symboles utiles", "body": "# suivi d’un espace crée un titre de premier niveau. ## indique le niveau suivant. Un tiret suivi d’un espace commence un élément de liste.\n\nDeux étoiles autour d’un texte le mettent en gras. Un lien s’écrit [texte](adresse). Des accents graves entourent un petit morceau de code.", "example": "## Un sous-titre\n- Un élément\n**Un mot en gras**"},
+		{"title": "3 · Réussir le défi Markdown", "body": "Pour écrire le titre demandé, commencez par #, puis un espace et le texte. Un tiret ou une étoile ne remplace pas le symbole du titre.\n\nAu poste Markdown, la réponse manquante est #. Vous pouvez aussi recopier toute la ligne ci-dessous. Le clavier propose # dans sa page de symboles.", "example": "# Bonjour CIEL"}
+	]}
+]
