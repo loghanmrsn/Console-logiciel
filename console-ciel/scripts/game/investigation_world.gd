@@ -26,6 +26,14 @@ const CHAPTER_TWO_CHECKPOINTS := {
 	"security": Vector2(803, 248),
 	"exit": Vector2(532, 381)
 }
+const CHAPTER_THREE_CHECKPOINTS := {
+	"entrance": Vector2(158, 405),
+	"elevator": Vector2(158, 405),
+	"python": Vector2(220, 294),
+	"html": Vector2(500, 294),
+	"markdown": Vector2(780, 294),
+	"exit": Vector2(500, 350)
+}
 const DOOR_RECT := Rect2(619, 276, 20, 112)
 
 var player: CharacterBody2D
@@ -42,6 +50,9 @@ var elevator_unlocked := false
 var network_restored := false
 var addressing_restored := false
 var security_restored := false
+var python_restored := false
+var html_restored := false
+var markdown_restored := false
 var _targets: Array[Node2D] = []
 var _target: Node2D
 var _controls_enabled := true
@@ -66,6 +77,9 @@ var _elevator_sprite: Sprite2D
 var _network_sprite: Sprite2D
 var _addressing_sprite: Sprite2D
 var _security_sprite: Sprite2D
+var _python_sprite: Sprite2D
+var _html_sprite: Sprite2D
+var _markdown_sprite: Sprite2D
 
 func _ready() -> void:
 	camera = Camera2D.new()
@@ -74,7 +88,7 @@ func _ready() -> void:
 	camera.position_smoothing_enabled = false
 	camera.enabled = true
 	add_child(camera)
-	_build_room(2 if _pending_progress.get("room_id", "room_01") == "room_02" else 1)
+	_build_room(_chapter_for_room(str(_pending_progress.get("room_id", "room_01"))))
 	get_viewport().size_changed.connect(_fit_camera)
 	var settings := get_node_or_null("/root/SettingsService")
 	if settings != null:
@@ -106,12 +120,16 @@ func _build_room(chapter: int) -> void:
 	_network_sprite = null
 	_addressing_sprite = null
 	_security_sprite = null
+	_python_sprite = null
+	_html_sprite = null
+	_markdown_sprite = null
+	_elevator_sprite = null
 	door_body = null
 	door_shape = null
 	chapter_id = chapter
-	room_id = "room_02" if chapter == 2 else "room_01"
+	room_id = "room_0%d" % chapter
 	_room_root = Node2D.new()
-	_room_root.name = "ChapterTwoRoom" if chapter == 2 else "ChapterOneRoom"
+	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom"][chapter - 1]
 	add_child(_room_root)
 	_props=Node2D.new()
 	_props.name='RoomObjects'
@@ -124,11 +142,13 @@ func _build_room(chapter: int) -> void:
 	_add_obstacle(Rect2(956, 50, 20, 426), "EastWall")
 	if chapter == 1:
 		_build_workshop()
-	else:
+	elif chapter == 2:
 		_build_network_room()
+	else:
+		_build_code_room()
 	player = PlayerScript.new()
 	player.name = "Player"
-	player.position = CHAPTER_TWO_CHECKPOINTS.elevator if chapter == 2 else CHECKPOINTS.entrance
+	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
 	player.controls_enabled = _controls_enabled
 	_restored_once = false
@@ -175,10 +195,40 @@ func _build_network_room() -> void:
 	var elevator_body := _add_obstacle(Rect2(88, 435, 112, 35), "Elevator", false)
 	_elevator_sprite = _sprite(elevator_body, 'elevator_ready', Rect2(84, 389, 120, 87))
 	_elevator_sprite.name = "ElevatorArt"
-	_add_target("elevator", "Ascenseur · retour au bureau", Vector2(158, 400), 92)
+	_add_target("elevator", "Ascenseur · choix des étages", Vector2(158, 400), 92)
 	_add_target("network", "Baie réseau · liaison Ethernet", Vector2(292, 221), 100)
 	_add_target("addressing", "Poste réseau · adresse IP", Vector2(532, 332), 100)
 	_add_target("security", "Borne Wi-Fi · sécurisation", Vector2(803, 244), 100)
+
+func _build_code_room() -> void:
+	# Three separate stations share a clear central aisle. The low resources
+	# corner leaves a continuous route from the elevator to every terminal.
+	for prop in Art.CODE_PROPS:
+		var body := _add_obstacle(prop[1], prop[0], false)
+		_sprite(body, prop[2], prop[3])
+		match prop[0]:
+			"PythonDesk": _python_sprite = _sprite(body, "code_python", Rect2(156, 104, 126, 89))
+			"HtmlDesk": _html_sprite = _sprite(body, "code_html", Rect2(436, 104, 126, 89))
+			"MarkdownDesk": _markdown_sprite = _sprite(body, "code_markdown", Rect2(716, 104, 126, 89))
+	var elevator_body := _add_obstacle(Rect2(88, 435, 112, 35), "Elevator", false)
+	_elevator_sprite = _sprite(elevator_body, "elevator_ready", Rect2(84, 389, 120, 87))
+	_elevator_sprite.name = "ElevatorArt"
+	_add_target("elevator", "Ascenseur · choix des étages", Vector2(158, 400), 92)
+	_add_target("python", "Poste Python · afficher un message", Vector2(220, 260), 100)
+	_add_target("html", "Poste HTML · une première balise", Vector2(500, 260), 100)
+	_add_target("markdown", "Poste Markdown · créer un titre", Vector2(780, 260), 100)
+
+func _chapter_for_room(id: String) -> int:
+	match id:
+		"room_02": return 2
+		"room_03": return 3
+		_: return 1
+
+func _chapter_checkpoints() -> Dictionary:
+	match chapter_id:
+		2: return CHAPTER_TWO_CHECKPOINTS
+		3: return CHAPTER_THREE_CHECKPOINTS
+		_: return CHECKPOINTS
 
 func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
 	var body := StaticBody2D.new()
@@ -212,6 +262,12 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 func _refresh_art() -> void:
 	if is_instance_valid(_elevator_sprite):
 		_elevator_sprite.texture = Art.TEXTURES.elevator_ready if elevator_unlocked else Art.TEXTURES.elevator_locked
+	if chapter_id == 3:
+		_props.modulate = Color.WHITE
+		if is_instance_valid(_python_sprite): _python_sprite.modulate = Color("b9d9bc") if python_restored else Color.WHITE
+		if is_instance_valid(_html_sprite): _html_sprite.modulate = Color("b9d9bc") if html_restored else Color.WHITE
+		if is_instance_valid(_markdown_sprite): _markdown_sprite.modulate = Color("b9d9bc") if markdown_restored else Color.WHITE
+		return
 	if chapter_id == 2:
 		_props.modulate = Color.WHITE
 		if is_instance_valid(_network_sprite): _network_sprite.modulate = Color("b9d9bc") if network_restored else Color.WHITE
@@ -276,7 +332,7 @@ func set_controls_enabled(enabled: bool) -> void:
 			player.velocity = Vector2.ZERO
 
 func get_player_position() -> Vector2:
-	return player.position if is_instance_valid(player) else CHECKPOINTS.entrance
+	return player.position if is_instance_valid(player) else _chapter_checkpoints().entrance
 
 func get_interactable(id: String) -> Node2D:
 	for target in _targets:
@@ -290,7 +346,7 @@ func restore_checkpoint() -> void:
 	var checkpoint := str(_pending_progress.get("checkpoint_id", "entrance"))
 	if chapter_id == 1 and checkpoint in ["computer", "exit", "elevator"] and not door_open:
 		checkpoint = "entrance"
-	var checkpoints: Dictionary = CHAPTER_TWO_CHECKPOINTS if chapter_id == 2 else CHECKPOINTS
+	var checkpoints := _chapter_checkpoints()
 	player.position = checkpoints.get(checkpoint, checkpoints.entrance)
 	player.velocity = Vector2.ZERO
 	_update_camera_position()
@@ -300,7 +356,7 @@ func restore_progress(progress: Dictionary) -> void:
 	_pending_progress = progress.duplicate(true)
 	if not is_instance_valid(player):
 		return
-	var desired_chapter := 2 if progress.get("room_id", "room_01") == "room_02" else 1
+	var desired_chapter := _chapter_for_room(str(progress.get("room_id", "room_01")))
 	if chapter_id != desired_chapter:
 		_build_room(desired_chapter)
 	var completed: Array = progress.get("completed_missions", [])
@@ -311,6 +367,9 @@ func restore_progress(progress: Dictionary) -> void:
 	network_restored = completed.has("network")
 	addressing_restored = completed.has("addressing")
 	security_restored = completed.has("security")
+	python_restored = completed.has("python")
+	html_restored = completed.has("html")
+	markdown_restored = completed.has("markdown")
 	if is_instance_valid(door_body):
 		door_body.collision_layer = 0 if door_open else 1
 		door_shape.set_deferred("disabled", door_open)
@@ -429,6 +488,15 @@ func interact_nearest() -> void:
 		interaction_requested.emit(_target.interaction_id)
 
 func _draw() -> void:
+	if chapter_id == 3:
+		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO)
+		draw_texture(Art.TEXTURES.code_walls, Vector2.ZERO)
+		draw_string(ThemeDB.fallback_font, Vector2(66, 73), "CHAPITRE 3 · ATELIER CODE", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("#5A736B"))
+		_draw_code_label("PYTHON", python_restored, Vector2(220, 249), Color("#60889e"))
+		_draw_code_label("HTML", html_restored, Vector2(500, 249), Color("#a4875f"))
+		_draw_code_label("MARKDOWN", markdown_restored, Vector2(780, 249), Color("#8f7ca2"))
+		draw_string(ThemeDB.fallback_font, Vector2(448, 381), "COIN RESSOURCES", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("#5A736B"))
+		return
 	if chapter_id == 2:
 		draw_texture(Art.TEXTURES.network_floor, Vector2.ZERO)
 		draw_texture(Art.TEXTURES.network_walls, Vector2.ZERO)
@@ -441,3 +509,10 @@ func _draw() -> void:
 	# Small diegetic signage is decorative; interaction text belongs to the HUD.
 	draw_string(ThemeDB.fallback_font,Vector2(66,73),'ATELIER · CIEL',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
 	draw_string(ThemeDB.fallback_font,Vector2(676,73),'BUREAU',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
+
+func _draw_code_label(language: String, completed: bool, at: Vector2, color: Color) -> void:
+	var label := language + (" · VALIDÉ" if completed else "")
+	var font := ThemeDB.fallback_font
+	var font_size := 13 if _large_text else 12
+	var width := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	draw_string(font, at - Vector2(width * 0.5, 0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color("#4f765f") if completed else color)
