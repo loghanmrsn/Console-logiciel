@@ -8,11 +8,17 @@ const SCHEMA_VERSION := 1
 const INVESTIGATION_VERSION := 1
 const CHAPTER_ONE_IDS := ["lighting", "lock", "computer"]
 const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
-const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS
+const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
+const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS
 const CHAPTER_TWO_SOLUTIONS := {
 	"network": {"observations": ["switch", "link", "cable"], "diagnosis": "cable_unplugged", "repair": "reconnect_rj45"},
 	"addressing": {"observations": ["workstation", "gateway", "allocation"], "diagnosis": "wrong_subnet", "repair": "align_subnet"},
 	"security": {"observations": ["wifi", "compatibility", "passphrase"], "diagnosis": "open_wifi", "repair": "enable_encryption"}
+}
+const CHAPTER_THREE_SOLUTIONS := {
+	"python": {"answer": "print", "choices": ["print", "input", "for"], "template": "____(\"Bonjour CIEL\")"},
+	"html": {"answer": "h1", "choices": ["p", "h1", "img"], "template": "<____>Bonjour CIEL</____>"},
+	"markdown": {"answer": "hash", "choices": ["star", "dash", "hash"], "template": "____ Bonjour CIEL"}
 }
 const LEGACY_MIGRATION_NOTICE := "La progression du prototype contenait des interactions simulées. Elle a été remise au début pour jouer les vrais défis. Vos points, achats et récompenses déjà attribuées sont conservés : ils ne seront pas gagnés une seconde fois."
 const DEFAULT_ITEMS := ["avatar_default", "theme_brume", "frame_default"]
@@ -174,8 +180,8 @@ func validate_rules(value: Variant) -> Dictionary:
 			return _fail("Une règle de mission est invalide.")
 		if not mission.get("name") is String or mission.name.is_empty() or not mission.get("title") is String or mission.title.is_empty() or not mission.get("description") is String or not mission.get("success_explanation") is String:
 			return _fail("Un texte de mission est invalide.")
-		var expected_chapter := 1 if mission.id in CHAPTER_ONE_IDS else 2
-		if not _is_integer(mission.get("chapter"), expected_chapter, expected_chapter) or mission.get("room_id") != ("room_01" if expected_chapter == 1 else "room_02"):
+		var expected_chapter := 1 if mission.id in CHAPTER_ONE_IDS else (2 if mission.id in CHAPTER_TWO_IDS else 3)
+		if not _is_integer(mission.get("chapter"), expected_chapter, expected_chapter) or not mission.get("room_id") is String or mission.room_id != "room_%02d" % expected_chapter:
 			return _fail("Le chapitre ou la salle d’une mission est incohérent.")
 		if not _valid_id_list(mission.get("prerequisites"), ids):
 			return _fail("Un prérequis est inconnu, dupliqué ou cyclique.")
@@ -194,7 +200,7 @@ func validate_rules(value: Variant) -> Dictionary:
 				seen.append(observation.id)
 		if not mission.get("solution") is Dictionary:
 			return _fail("Une solution pédagogique est absente.")
-		var option_keys: Array = ["connections"] if mission.id == "lighting" else (["causes", "corrections"] if mission.id == "computer" else ["diagnoses", "repairs"])
+		var option_keys: Array = [] if mission.id in CHAPTER_THREE_IDS else (["connections"] if mission.id == "lighting" else (["causes", "corrections"] if mission.id == "computer" else ["diagnoses", "repairs"]))
 		for key in option_keys:
 			if not mission.get(key) is Array or mission[key].is_empty():
 				return _fail("Les choix d'une simulation sont absents.")
@@ -214,11 +220,28 @@ func validate_rules(value: Variant) -> Dictionary:
 		elif mission.id == "computer":
 			if mission.prerequisites != ["lock"] or _option_ids(mission, "observations") != ["pc", "display", "no_signal"] or not _valid_id_list(mission.solution.get("checks"), _option_ids(mission, "checks")) or not mission.solution.get("cause") is String or mission.solution.get("cause") != "video_disconnected" or not mission.solution.get("correction") is String or mission.solution.get("correction") != "reconnect_video" or "video_disconnected" not in _option_ids(mission, "causes") or "reconnect_video" not in _option_ids(mission, "corrections") or mission.solution.checks.size() != 2 or "power" not in mission.solution.checks or "video" not in mission.solution.checks:
 				return _fail("Les observations ou choix de l'ordinateur sont incohérents.")
-		else:
+		elif mission.id in CHAPTER_TWO_IDS:
 			var expected: Dictionary = CHAPTER_TWO_SOLUTIONS[mission.id]
 			var prerequisite: String = MISSION_IDS[MISSION_IDS.find(mission.id) - 1]
-			if mission.prerequisites != [prerequisite] or _option_ids(mission, "observations") != expected.observations or not mission.checks.is_empty() or mission.solution.get("diagnosis") != expected.diagnosis or mission.solution.get("repair") != expected.repair or expected.diagnosis not in _option_ids(mission, "diagnoses") or expected.repair not in _option_ids(mission, "repairs"):
+			if mission.prerequisites != [prerequisite] or _option_ids(mission, "observations") != expected.observations or not mission.checks.is_empty() or not mission.solution.get("diagnosis") is String or mission.solution.diagnosis != expected.diagnosis or not mission.solution.get("repair") is String or mission.solution.repair != expected.repair or expected.diagnosis not in _option_ids(mission, "diagnoses") or expected.repair not in _option_ids(mission, "repairs"):
 				return _fail("Les observations ou choix du chapitre réseau sont incohérents.")
+		else:
+			var expected: Dictionary = CHAPTER_THREE_SOLUTIONS[mission.id]
+			var prerequisite: String = MISSION_IDS[MISSION_IDS.find(mission.id) - 1]
+			if mission.prerequisites != [prerequisite] or int(mission.reward) != 50 or not mission.observations.is_empty() or not mission.checks.is_empty():
+				return _fail("L’ordre ou la récompense du chapitre code est incohérent.")
+			if not mission.get("code") is Dictionary or not mission.code.get("prompt") is String or mission.code.prompt.strip_edges().is_empty() or not mission.code.get("template") is String or mission.code.template != expected.template or not mission.code.get("choices") is Array or not mission.solution.get("answer") is String or mission.solution.answer != expected.answer:
+				return _fail("L’exercice de code ou sa solution est invalide.")
+			var choice_ids: Array = []
+			for choice in mission.code.choices:
+				if not choice is Dictionary or not choice.get("id") is String or not is_safe_id(choice.id) or choice.id in choice_ids or not choice.get("label") is String or choice.label.is_empty() or not choice.get("feedback") is String or choice.feedback.is_empty():
+					return _fail("Un choix ou une explication du chapitre code est invalide.")
+				var expected_label: String = "#" if choice.id == "hash" else ("*" if choice.id == "star" else ("-" if choice.id == "dash" else choice.id))
+				if choice.label != expected_label:
+					return _fail("Le texte d’un choix de code ne correspond pas à sa syntaxe.")
+				choice_ids.append(choice.id)
+			if choice_ids != expected.choices:
+				return _fail("Les choix du chapitre code sont inconnus ou incomplets.")
 		if mission.id == "lighting" and not mission.prerequisites.is_empty():
 			return _fail("L'éclairage doit être la première mission disponible.")
 		total += int(mission.reward)
@@ -237,7 +260,7 @@ func empty_investigation_progress() -> Dictionary:
 		"investigation_version": INVESTIGATION_VERSION,
 		"started": false, "room_id": "room_01", "checkpoint_id": "entrance",
 		"completed_missions": [], "active_mission": "", "clues": [],
-		"observations": {"lighting": [], "lock": [], "computer": [], "network": [], "addressing": [], "security": []},
+		"observations": {"lighting": [], "lock": [], "computer": [], "network": [], "addressing": [], "security": [], "python": [], "html": [], "markdown": []},
 		"checks": {"computer": []}, "run_reward_points": 0,
 		"legacy_migration_notice": false
 	}
@@ -321,7 +344,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not document.get("progress") is Dictionary:
 		return _fail("La progression est invalide.")
 	var progress: Dictionary = document.progress
-	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit"] + MISSION_IDS or not progress.get("completed_missions") is Array:
+	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit"] + MISSION_IDS or not progress.get("completed_missions") is Array:
 		return _fail("La progression contient une scène ou un point de reprise invalide.")
 	var completed: Array = []
 	for id in progress.completed_missions:
@@ -337,7 +360,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if migrated:
 		# Seul le schéma connu du prototype peut être remis au début.
 		# Une version absente dans une progression enrichie signale une corruption.
-		if progress.room_id != "room_01" or progress.checkpoint_id not in ["entrance", "lighting", "lock", "computer", "exit"] or not _valid_id_list(completed, CHAPTER_ONE_IDS):
+		if progress.room_id != "room_01" or progress.checkpoint_id not in ["entrance", "lighting", "lock", "computer", "exit"] or not _valid_id_list(completed, CHAPTER_ONE_IDS) or not _valid_id_list(rewarded, CHAPTER_ONE_IDS):
 			return _fail("La progression du prototype contient un chapitre inconnu. Le fichier est conservé.")
 		var legacy_keys := ["started", "room_id", "checkpoint_id", "completed_missions"]
 		for key in progress:
@@ -351,16 +374,23 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	else:
 		if not _is_integer(progress.get("investigation_version"), INVESTIGATION_VERSION, INVESTIGATION_VERSION):
 			return _fail("Version de progression d'enquête inconnue. Le fichier est conservé.")
-		# Les versions 0.4/0.5 ont déjà de vrais défis : enrichir sans les remettre à zéro.
-		# Reconnaître exactement les trois anciennes clés ; un document partiel reste invalide.
-		if progress.get("observations") is Dictionary and progress.observations.size() == CHAPTER_ONE_IDS.size():
-			var legacy_observations := true
-			for id in CHAPTER_ONE_IDS:
-				legacy_observations = legacy_observations and progress.observations.has(id)
-			if legacy_observations:
-				for id in CHAPTER_TWO_IDS:
+		# Les versions précédentes ont déjà de vrais défis : enrichir sans remise à zéro.
+		# Seuls les ensembles exacts de trois ou six anciennes clés sont reconnus.
+		var legacy_ids: Array = []
+		if progress.get("observations") is Dictionary:
+			var saved_ids: Array = progress.observations.keys()
+			if saved_ids.size() == CHAPTER_ONE_IDS.size() and _valid_id_list(saved_ids, CHAPTER_ONE_IDS):
+				legacy_ids = CHAPTER_ONE_IDS.duplicate()
+			elif saved_ids.size() == CHAPTER_ONE_IDS.size() + CHAPTER_TWO_IDS.size() and _valid_id_list(saved_ids, CHAPTER_ONE_IDS + CHAPTER_TWO_IDS):
+				legacy_ids = (CHAPTER_ONE_IDS + CHAPTER_TWO_IDS).duplicate()
+		if not legacy_ids.is_empty():
+			var legacy_rooms: Array = ["room_01"] if legacy_ids.size() == 3 else ["room_01", "room_02"]
+			if not _valid_id_list(completed, legacy_ids) or not _valid_id_list(rewarded, legacy_ids) or progress.room_id not in legacy_rooms or progress.get("active_mission", "") not in [""] + legacy_ids or progress.checkpoint_id not in ["entrance", "elevator", "exit"] + legacy_ids:
+				return _fail("La progression ancienne contient un chapitre non pris en charge par sa version. Le fichier est conservé.")
+			for id in MISSION_IDS:
+				if id not in legacy_ids:
 					progress.observations[id] = []
-				expanded = true
+			expanded = true
 		if not progress.get("active_mission") is String or (not progress.active_mission.is_empty() and (progress.active_mission not in _mission_ids or progress.active_mission in completed)):
 			return _fail("La mission en cours est invalide.")
 		if not progress.get("legacy_migration_notice") is bool:
@@ -408,14 +438,19 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		var chapter_one_complete := true
 		for id in CHAPTER_ONE_IDS:
 			chapter_one_complete = chapter_one_complete and id in completed
+		var chapter_two_complete := chapter_one_complete
+		for id in CHAPTER_TWO_IDS:
+			chapter_two_complete = chapter_two_complete and id in completed
 		if progress.room_id == "room_02" and (not progress.started or not chapter_one_complete or progress.checkpoint_id == "entrance"):
 			return _fail("L’étage réseau n’est pas accessible avant les trois objectifs du premier chapitre.")
+		if progress.room_id == "room_03" and (not progress.started or not chapter_two_complete or progress.checkpoint_id == "entrance"):
+			return _fail("L’atelier code n’est pas accessible avant les trois objectifs de l’étage réseau.")
 		if progress.checkpoint_id == "elevator" and not chapter_one_complete:
 			return _fail("L’ascenseur reste verrouillé avant les trois objectifs du premier chapitre.")
 		if progress.checkpoint_id in _mission_ids and (progress.checkpoint_id not in completed or _mission_by_id[progress.checkpoint_id].room_id != progress.room_id):
 			return _fail("Le point de reprise correspond à une mission non terminée ou à un autre étage.")
 		if progress.checkpoint_id == "exit":
-			var chapter_ids: Array = CHAPTER_ONE_IDS if progress.room_id == "room_01" else CHAPTER_TWO_IDS
+			var chapter_ids: Array = CHAPTER_ONE_IDS if progress.room_id == "room_01" else (CHAPTER_TWO_IDS if progress.room_id == "room_02" else CHAPTER_THREE_IDS)
 			for id in chapter_ids:
 				if id not in completed:
 					return _fail("La conclusion de ce chapitre n’est pas encore accessible.")
