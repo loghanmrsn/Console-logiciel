@@ -55,11 +55,11 @@ func _run() -> void:
 	_finish()
 
 func _test_rules_and_initial_gates() -> void:
-	_check(rewards.missions.size() == 9, "Neuf missions livrées, sans modifier la version d’enquête")
+	_check(rewards.missions.size() == 12, "Douze missions livrées, sans modifier la version d’enquête")
 	var reward_total := 0
 	for definition in rewards.missions:
 		reward_total += int(definition.reward)
-	_check(reward_total == 450, "Plafond de neuf récompenses pédagogiques : 450 points")
+	_check(reward_total == 600, "Plafond de douze récompenses pédagogiques : 600 points")
 	_check(investigation.current_chapter() == 1, "Profil neuf dans le premier chapitre")
 	_check(_ids(investigation.chapter_missions()) == ["lighting", "lock", "computer"], "Trois objectifs du chapitre courant")
 	_check(_ids(investigation.chapter_missions(2)) == ["network", "addressing", "security"], "Trois objectifs du deuxième chapitre dans l’ordre")
@@ -208,7 +208,7 @@ func _test_legacy_expansion() -> void:
 	legacy.display_name = created.data.display_name
 	legacy.avatar_image = "portrait_local.png"
 	legacy.progress.checkpoint_id = "exit"
-	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS:
+	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS + saves.CHAPTER_FOUR_IDS:
 		legacy.progress.observations.erase(id)
 	var original := JSON.stringify(legacy, "\t")
 	state.clear_profile()
@@ -218,7 +218,7 @@ func _test_legacy_expansion() -> void:
 		return
 	_check(read.migration_required and FileAccess.get_file_as_string(_profile_path(legacy.id)) == original, "Lecture reconnaît l’enrichissement sans écrire sur l’original")
 	var expected: Dictionary = legacy.duplicate(true)
-	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS:
+	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS + saves.CHAPTER_FOUR_IDS:
 		expected.progress.observations[id] = []
 	_check(read.data == expected, "Migration ajoute seulement six listes : identité, avatar local, missions, indices, récompenses, points, achats et checkpoint restent fidèles")
 	saves.simulate_write_failure = true
@@ -241,7 +241,7 @@ func _test_six_mission_migration() -> void:
 	legacy.id = created.data.id
 	legacy.display_name = created.data.display_name
 	legacy.avatar_image = "reseau_local.png"
-	for id in saves.CHAPTER_THREE_IDS:
+	for id in saves.CHAPTER_THREE_IDS + saves.CHAPTER_FOUR_IDS:
 		legacy.progress.observations.erase(id)
 	var original := JSON.stringify(legacy, "\t")
 	state.clear_profile()
@@ -250,7 +250,7 @@ func _test_six_mission_migration() -> void:
 	if not _ok(read, "Sauvegarde 0.6.1 reconnue sans rejouer ses six missions"):
 		return
 	var expected: Dictionary = legacy.duplicate(true)
-	for id in saves.CHAPTER_THREE_IDS:
+	for id in saves.CHAPTER_THREE_IDS + saves.CHAPTER_FOUR_IDS:
 		expected.progress.observations[id] = []
 	_check(read.migration_required and read.data == expected and FileAccess.get_file_as_string(_profile_path(legacy.id)) == original, "Lecture ajoute uniquement les trois listes du code sans écrire le document original")
 	saves.simulate_write_failure = true
@@ -321,7 +321,7 @@ func _test_profiles_and_replay() -> void:
 		_complete(id, 0)
 	_check(state.profile.wallet.points == 280 and state.profile.progress.run_reward_points == 0 and investigation.conclusion(2).data.run_reward_points == 0, "Aucune des six missions ne rapporte une seconde récompense au rejeu")
 	_ok(profiles.reset_progress(), "Réinitialiser la progression depuis les paramètres")
-	_check(not state.profile.progress.started and investigation.current_chapter() == 1 and state.profile.progress.observations.size() == 9 and state.profile.progress.completed_missions.is_empty(), "Réinitialisation remet les neuf listes et les trois chapitres au début")
+	_check(not state.profile.progress.started and investigation.current_chapter() == 1 and state.profile.progress.observations.size() == 12 and state.profile.progress.completed_missions.is_empty(), "Réinitialisation remet les douze listes et les quatre chapitres au début")
 	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("avatar_orbit"), "Réinitialisation conserve les données économiques")
 	_check(not investigation.enter_chapter(2).ok and not investigation.conclusion(2).ok, "Après réinitialisation, ascenseur et bilan redeviennent verrouillés")
 
