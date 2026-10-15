@@ -216,13 +216,13 @@ func _test_elevator_blocked(completed: int) -> void:
 	_check(not investigation.can_use_elevator(), "Ascenseur métier verrouillé après %d mission(s)" % completed)
 	await _approach("elevator")
 	await _key(KEY_SPACE)
-	_check(app.demo.overlay_kind == "dialog" and _find("elevator_travel") == null, "L’ascenseur explique le verrouillage sans proposer de changement d’étage : %d/3" % completed)
+	_check(app.demo.overlay_kind == "elevator" and (_find("elevator_up") as Button).disabled, "L’ascenseur explique le verrouillage sans proposer de changement d’étage : %d/3" % completed)
 	_check(state.profile == before and saves.read_profile(first_id).data == before, "Examiner l’ascenseur bloqué ne modifie ni la salle ni les points")
 	var tracker := _find("mission_tracker")
 	var expanded: bool = tracker.is_expanded() if tracker != null else false
 	await _key(KEY_T)
 	await _joy(JOY_BUTTON_Y)
-	_check(tracker != null and tracker.is_expanded() == expanded and app.demo.overlay_kind == "dialog", "Le dialogue d’ascenseur n’est pas traversé par les raccourcis du panneau")
+	_check(tracker != null and tracker.is_expanded() == expanded and app.demo.overlay_kind == "elevator", "Le dialogue d’ascenseur n’est pas traversé par les raccourcis du panneau")
 	await _key(KEY_ESCAPE)
 
 
@@ -269,18 +269,19 @@ func _test_elevator_path() -> void:
 
 func _travel(chapter: int, with_errors: bool = false) -> void:
 	var before: Dictionary = state.profile.duplicate(true)
+	var direction := "elevator_up" if chapter > app.demo.world.chapter_id else "elevator_down"
 	await _approach("elevator")
 	await _key(KEY_SPACE)
-	_check(app.demo.overlay_kind == "elevator" and _find("elevator_travel") != null, "Un ascenseur débloqué propose le déplacement vers le chapitre %d" % chapter)
+	_check(app.demo.overlay_kind == "elevator" and _find(direction) != null, "Un ascenseur débloqué propose le déplacement vers le chapitre %d" % chapter)
 	_check(state.profile == before, "L’ouverture de l’ascenseur attend une confirmation avant de déplacer le joueur")
 	if with_errors:
 		saves.simulate_write_failure = true
-		await _activate("elevator_travel")
+		await _activate(direction)
 		saves.simulate_write_failure = false
 		_check(state.profile == before and saves.read_profile(first_id).data == before and app.demo.world.chapter_id != chapter and app.demo.overlay_kind == "dialog", "Un échec de sauvegarde d’ascenseur conserve le monde et la progression précédents")
 		await _activate("dialog_continue")
 		_check(app.demo.overlay_kind == "elevator", "Le dialogue d’échec permet de réessayer le déplacement")
-	await _activate("elevator_travel", true)
+	await _activate(direction, true)
 	await _physics_frames(4)
 	await _frames(5)
 	_check(state.profile.progress.room_id == "room_0%d" % chapter and investigation.current_chapter() == chapter and app.demo.world.chapter_id == chapter, "La salle affichée, le service et la sauvegarde changent de chapitre ensemble")
