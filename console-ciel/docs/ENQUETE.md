@@ -1,8 +1,8 @@
-# Enquête CIEL — deux chapitres
+# Enquête CIEL — trois chapitres
 
-Le joueur commence dans un local technique où une préparation pédagogique a été interrompue. Il rétablit l’éclairage, ouvre le bureau et remet le signal vidéo de l’ordinateur. Après ces trois réussites, l’ascenseur **en bas de la deuxième pièce, le bureau**, se déverrouille et mène à la salle réseau du **chapitre 2**. L’étage propose trois nouvelles missions, avec les mêmes observations, diagnostics, erreurs expliquées et sauvegardes que le premier chapitre.
+Le joueur commence dans un local technique où une préparation pédagogique a été interrompue. Il rétablit l’éclairage, ouvre le bureau et remet le signal vidéo de l’ordinateur. Après ces trois réussites, l’ascenseur **en bas de la deuxième pièce, le bureau**, se déverrouille et mène à la salle réseau du **chapitre 2**. Après les trois missions réseau, l’ascenseur donne accès à l’atelier du code du **chapitre 3** : Python, HTML et Markdown. Les chapitres précédents sont conservés ; les nouveaux exercices de code proposent des choix simples, des erreurs expliquées et les mêmes sauvegardes.
 
-Tout se joue hors ligne dans une simulation fictive. Aucun câble réel, terminal, accès Internet ou réglage réseau du PC n’est utilisé ni modifié.
+Tout se joue hors ligne dans une simulation fictive. Aucun câble réel, terminal, accès Internet ou réglage réseau du PC n’est utilisé ni modifié. Les exercices de code sont des choix pédagogiques : aucun interpréteur Python ni code saisi par le joueur n’est exécuté.
 
 ## Exploration et tableau de missions
 
@@ -40,7 +40,7 @@ Le câble vidéo virtuel est débranché. Choisir **Câble vidéo débranché**,
 
 L’ascenseur est visible en bas du bureau. Il reste verrouillé tant qu’une des trois missions du chapitre 1 n’est pas terminée ; l’interaction explique le prérequis sans permettre de monter.
 
-Après le bilan du premier chapitre, reprendre l’exploration, rejoindre l’ascenseur et utiliser **Espace** ou le **bouton de face bas**, puis choisir **Monter au chapitre 2**. Le passage sauvegardé mène à la salle réseau. L’ascenseur de l’étage permet aussi de **Revenir au chapitre 1** sans perdre les réussites des deux chapitres. Une reprise restaure le chapitre et la salle atteints ; une transition dont la sauvegarde échoue ne doit pas changer de salle.
+Après le bilan du premier chapitre, reprendre l’exploration, rejoindre l’ascenseur et utiliser **Espace** ou le **bouton de face bas**, puis choisir **Étage 1 · Chapitre 2 · La salle réseau**. Le passage sauvegardé mène à la salle réseau. L’ascenseur de l’étage permet aussi de revenir au **Rez-de-chaussée · Chapitre 1 · Le bureau** sans perdre les réussites. Après les trois missions réseau, un nouveau choix mène au chapitre 3 ; les étages déjà ouverts restent accessibles. Une reprise restaure le chapitre et la salle atteints ; une transition dont la sauvegarde échoue ne doit pas changer de salle.
 
 ## Chapitre 2 — la salle réseau
 
@@ -64,36 +64,57 @@ Le point d’accès fictif annonce un **réseau ouvert sans chiffrement**. Les a
 
 Choisir **Wi-Fi sans chiffrement**, puis **Activer WPA2/WPA3 et une phrase unique**. Masquer seulement le nom du réseau ne chiffre pas les échanges ; réutiliser le mot de passe administrateur confond deux accès différents. La réussite clôt le chapitre 2 et affiche son bilan pédagogique.
 
+## Chapitre 3 — L’atelier du code
+
+Les trois postes se débloquent dans l’ordre **Python → HTML → Markdown**. Chaque exercice présente une consigne et un petit exemple à compléter, avec des choix utilisables au clavier ou à la manette. Les réponses incorrectes donnent une explication et permettent de réessayer.
+
+### Python : afficher un message
+
+Le poste demande d’afficher un message à l’écran. En Python, la fonction **`print()`** sert à afficher du texte ; les guillemets délimitent le message. Choisir **`print`** pour compléter l’instruction présentée, puis valider la correction proposée. Les parenthèses et les guillemets de l’exemple ne sont pas une commande du système : le jeu valide seulement le choix pédagogique.
+
+### HTML : reconnaître une balise de titre
+
+Le deuxième poste présente un titre principal de page. La balise **`<h1>`** ouvre ce titre et **`</h1>`** le ferme. Choisir **`h1`** pour entourer le texte dans l’exemple. Une balise de paragraphe ou d’image ne répond pas à la consigne du titre principal. Le poste simule le résultat sans ouvrir de navigateur ni charger de page externe.
+
+### Markdown : écrire un titre
+
+Le dernier poste demande un titre de premier niveau. En Markdown, il commence par **`#` suivi d’une espace**, par exemple `# Bonjour CIEL`. Choisir le symbole **`#`**, placé avant l’espace de l’exemple, puis valider. Un tiret commence une liste ; une étoile peut aussi commencer une liste : elle ne crée pas le titre demandé.
+
+L’ascenseur présente les trois destinations : **Rez-de-chaussée · Chapitre 1 · Le bureau**, **Étage 1 · Chapitre 2 · La salle réseau**, et **Étage 2 · Chapitre 3 · L’atelier du code**. La destination actuelle et les destinations encore verrouillées sont indiquées et indisponibles.
+
+La réussite du dernier poste affiche le bilan du chapitre 3. Les repères des trois postes terminés disparaissent, leur décor reste visible et l’ascenseur permet de revenir aux étages débloqués. **Pause → Bilan du chapitre** retrouve le bilan de chaque chapitre terminé.
+
 ## Progression, points et anciens profils
 
-Les six missions rapportent chacune **50 points à leur première réussite**, soit **150 par chapitre** et **300 au maximum par profil**. Les identifiants de récompense empêchent de recevoir de nouveau ces points en rejouant. Les achats et l’équipement restent conservés lorsqu’une nouvelle partie remet les missions à leur état initial.
+Les neuf missions rapportent chacune **50 points à leur première réussite**, soit **150 par chapitre** et **450 au maximum par profil**. Les identifiants de récompense empêchent de recevoir de nouveau ces points en rejouant. Les achats et l’équipement restent conservés lorsqu’une nouvelle partie remet les missions à leur état initial.
 
-Les missions, observations, indices, salle atteinte, checkpoint et gains de la partie sont enregistrés dans le profil actif. Les deux bilans séparent les **nouveaux points gagnés dans cette partie**, cumulés entre les chapitres, du **solde total**, qui peut aussi refléter des achats ou des parties précédentes. Un profil neuf ayant terminé les six missions sans achat atteint 300 nouveaux points et un solde de 300.
+Les missions, observations, indices, salle atteinte, checkpoint et gains de la partie sont enregistrés dans le profil actif. Les trois bilans séparent les **nouveaux points gagnés dans cette partie**, cumulés entre les chapitres, du **solde total**, qui peut aussi refléter des achats ou des parties précédentes. Un profil neuf ayant terminé les neuf missions sans achat atteint 450 nouveaux points et un solde de 450.
 
-Les profils créés avant 0.6.0 sont complétés avec les trois objectifs de l’étage sans perdre leurs anciennes réussites, observations, points, achats ou récompenses. Le schéma de sauvegarde reste en version 1. Si le chapitre 1 est déjà terminé, l’ascenseur est disponible à la reprise ; les nouvelles récompenses du chapitre 2 restent à gagner. Chaque profil conserve sa progression propre. Une fois le chapitre courant terminé, **Pause → Bilan du chapitre** permet de consulter de nouveau ses explications sans réactiver les repères des missions achevées.
+Les anciens profils reçoivent les objectifs manquants des étages sans perdre leurs anciennes réussites, observations, points, achats ou récompenses. Le schéma de sauvegarde reste en version 1. Un profil ayant déjà terminé le chapitre 2 peut reprendre et accéder au chapitre 3 par l’ascenseur ; ses trois nouvelles récompenses restent à gagner. Chaque profil conserve sa progression propre. Une transition dont la sauvegarde échoue ne change pas de salle. Une fois le chapitre courant terminé, **Pause → Bilan du chapitre** permet de consulter de nouveau ses explications sans réactiver les repères des missions achevées.
 
-Les quatre emplacements Test de la boutique coûtent **200 points chacun** depuis 0.6.1. Sans autre dépense, quatre premières réussites permettent un achat ; après six réussites et cet achat, il reste 100 points. Le plafond de 300 points reste inchangé : acquérir les autres jeux demande de futurs défis ou un solde déjà présent dans un ancien profil. Les anciens achats restent possédés sans supplément.
+Les quatre emplacements Test de la boutique coûtent **200 points chacun**, soit 800 au total. Sans autre dépense, quatre premières réussites permettent un achat ; après neuf réussites, deux achats laissent **50 points**. Un troisième achat est refusé avec ce solde. Les anciens achats restent possédés sans supplément et rejouer ne redonne pas de points.
 
 ## Parcours manuel de validation
 
-1. Créer un profil neuf et commencer. Vérifier le profil, l’avatar et les points en haut à gauche. Déplier et replier le panneau par son bouton, **T**, puis le bouton de face haut. Vérifier sa lisibilité et les trois objectifs du chapitre 1.
+1. Créer un profil neuf et commencer. Vérifier le profil, l’avatar et les points en haut à gauche. Déplier et replier le panneau par son bouton, **T**, puis le bouton de face haut. Vérifier ses trois objectifs du chapitre 1.
 2. Avant chaque réussite, essayer l’objet suivant. L’indice explique le prérequis ; la porte du bureau et l’ascenseur restent bloqués jusqu’aux réussites requises.
-3. Soumettre un circuit incomplet, constater l’explication, puis fermer la boucle correcte. Après sauvegarde, vérifier que le repère et le bouton d’interaction de l’éclairage disparaissent et que le meuble reste visible. Quitter au menu et reprendre : lumière et premier objectif doivent être conservés, sans retour du repère.
-4. Consulter la serrure, essayer une hypothèse erronée, puis réparer la liaison de commande. Dans le bureau, observer l’ordinateur, vérifier alimentation et câble, puis corriger la liaison vidéo. Vérifier après chaque réussite la disparition du repère et du bouton de la mission achevée, avec son décor réparé toujours visible.
-5. Lire le bilan du chapitre 1 : trois objectifs terminés et **150 nouveaux points** pour ce profil neuf. Consulter aussi **Pause → Bilan du chapitre** ; avant la troisième réussite, ce bouton doit être absent. Reprendre l’exploration et monter par l’ascenseur en bas du bureau, qui reste interactif.
-6. À l’étage, vérifier que le panneau montre les missions réseau. Essayer l’adressage ou le Wi-Fi trop tôt : leur prérequis bloque la mission. Consulter les trois observations réseau, essayer un diagnostic erroné, puis reconnecter le câble RJ45 virtuel.
-7. Corriger l’adresse du poste selon le plan **192.168.10.42/24**, puis activer le chiffrement Wi-Fi et la phrase unique. Lire le second bilan : **300 nouveaux points cumulés** sans achat et six missions terminées. Les trois repères réseau sont masqués et leurs équipements réparés restent visibles. Vérifier le bilan en pause et redescendre par l’ascenseur, puis remonter.
-8. Fermer et relancer entre les missions et après la montée. **Continuer** doit restaurer le bon étage, les observations, les objectifs et les points, avec les repères des missions terminées toujours masqués. Un ancien profil ayant terminé le chapitre 1 doit accéder à l’ascenseur tout en conservant ses achats.
-9. Commencer une nouvelle partie : les repères des missions à refaire doivent réapparaître. Rejouer les six missions : nouveaux gains à zéro, récompenses et solde conservés. Acheter un emplacement Test à **200 points** avec les 300 points du premier profil laisse 100 ; le second achat est refusé. Comparer avec un second profil neuf et reprendre un ancien achat sans supplément pour vérifier la séparation et la conservation des profils.
-10. Essayer Échap et P avant, pendant et après les défis. Un dialogue ne doit pas permettre d’interagir derrière lui ; le déplacement reprend après fermeture et reste arrêté en pause. Vérifier le panneau en **1280 × 720, 1024 × 600 et 800 × 480**, texte normal et grand, puis les commandes sans souris.
+3. Soumettre un circuit incomplet, lire l’explication, puis fermer la boucle correcte. Après sauvegarde, vérifier la disparition du repère et du bouton d’interaction de l’éclairage, avec le meuble toujours visible. Quitter et reprendre : lumière et objectif doivent être conservés.
+4. Consulter la serrure, essayer une hypothèse erronée, puis réparer la liaison de commande. Dans le bureau, observer l’ordinateur, vérifier alimentation et câble, puis corriger la liaison vidéo. Vérifier après chaque réussite le décor réparé et le repère masqué.
+5. Lire le bilan du chapitre 1 : trois objectifs terminés et **150 nouveaux points** pour ce profil neuf. **Pause → Bilan du chapitre** doit être disponible seulement après la troisième réussite. Monter par l’ascenseur en bas du bureau.
+6. Dans la salle réseau, essayer l’adressage ou le Wi-Fi trop tôt. Consulter les observations, essayer un diagnostic erroné, puis reconnecter le câble RJ45. Corriger l’adresse selon le plan **192.168.10.42/24**, puis protéger le Wi-Fi avec WPA2/WPA3 et la phrase unique. Lire le bilan de **300 nouveaux points cumulés** sans achat.
+7. Vérifier que le chapitre 3 reste inaccessible avant les trois réussites réseau. Rejoindre ensuite l’atelier du code par l’ascenseur. Le panneau doit présenter Python, HTML et Markdown ; chaque poste suivant reste bloqué tant que son prérequis manque.
+8. Pour chacun des trois exercices, lire la consigne et soumettre d’abord une mauvaise réponse : explication, mission non terminée et aucun point ajouté. Choisir ensuite **`print`**, **`h1`**, puis **`#`** selon le poste et valider. Après sauvegarde, vérifier le repère masqué et le décor visible. Le troisième bilan affiche **450 nouveaux points cumulés**, neuf missions terminées, sans achat.
+9. Vérifier les choix d’ascenseur pour revenir aux chapitres 1 et 2 puis au chapitre 3. Fermer entre les missions et après une transition : **Continuer** restaure le bon étage, les observations, objectifs et points. Tester aussi un ancien profil ayant terminé le chapitre 2 : ses achats et points sont conservés, le chapitre 3 reste à jouer.
+10. Avec le profil neuf à 450 points, acheter deux emplacements Test à **200 points** chacun : le solde devient 50 et un troisième achat est refusé. Comparer avec un second profil et reprendre un ancien achat sans supplément. Commencer une nouvelle partie : les repères reviennent ; rejouer les neuf missions ne redonne aucune récompense.
+11. Essayer Échap et P avant, pendant et après les défis. Les dialogues empêchent d’interagir derrière eux ; la pause suspend le déplacement. Vérifier le panneau et les choix du code en **1280 × 720, 1024 × 600 et 800 × 480**, texte normal et grand, puis les commandes sans souris.
 
-Les tests automatisés utilisent des dossiers temporaires pour les erreurs d’écriture et la migration. Ne pas corrompre les vrais profils pour reproduire ces cas. L’exécution native, le son et une manette USB physique sous Windows restent à essayer sur le PC destinataire.
+Les tests automatisés utilisent des dossiers temporaires pour les erreurs d’écriture et la migration. Ne pas corrompre les vrais profils pour reproduire ces cas. L’exécution native, le son et une manette USB physique restent à essayer sur les appareils destinataires. [Recette et résultats de la livraison courante](DELIVERY.md).
 
-## Captures et recette 0.6.1
+## Captures et recette historique 0.6.1
 
 La commande de porte montre le changement demandé : [avant réussite avec repère](screenshots/confort_0.6.1/door_before_success_marker.png), puis [après réussite sans repère ni bouton d’interaction](screenshots/confort_0.6.1/door_after_success_no_marker.png). Le meuble reste dans le décor. Les captures montrent aussi le [chapitre terminé sans repères de missions](screenshots/confort_0.6.1/chapter_completed_no_mission_marker.png) et l’[ascenseur disponible](screenshots/confort_0.6.1/elevator_available_after_missions.png).
 
-La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source** dans 16 suites, **65 de persistance** entre trois processus, **58 contrôles de rendu réel X11** avec 8 captures et **6 547 assertions du pack compilé**, sans échec. Les suites ciblées comptent 137 contrôles des repères terminés et 235 des achats ; le rejeu ne réattribue aucun point. [Résumé courant](../tests/confort_0.6.1_results/summary.json) et [liens des huit captures](DELIVERY.md). Les événements de manette sont virtuels et le son utilise le pilote Dummy ; le pack compilé est testé avec le moteur Linux et le lancement natif Windows reste à vérifier.
+La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source** dans 16 suites, **65 de persistance** entre trois processus, **58 contrôles de rendu réel X11** avec 8 captures et **6 547 assertions du pack compilé**, sans échec. Les suites ciblées comptent 137 contrôles des repères terminés et 235 des achats ; le rejeu ne réattribue aucun point. [Résumé historique 0.6.1](../tests/confort_0.6.1_results/summary.json) et [liens des huit captures](DELIVERY.md). Les événements de manette sont virtuels et le son utilise le pilote Dummy ; le pack compilé est testé avec le moteur Linux et le lancement natif Windows reste à vérifier.
 
 ## Captures et recette historique 0.6.0
 
