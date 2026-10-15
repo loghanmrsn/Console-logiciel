@@ -148,7 +148,7 @@ func _test_purchases() -> void:
 		if index == 1:
 			# This saved fixture exists only in this test's isolated storage. It
 			# exercises all four purchased cards without creating fake rewards
-			# in the product or pretending the six missions can fund 800 points.
+			# in the product or pretending the nine missions can fund 800 points.
 			var fixture: Dictionary = state.profile.duplicate(true)
 			fixture.wallet.points = 600
 			var written: Dictionary = saves.write_profile(fixture)
