@@ -147,19 +147,31 @@ func _test_third_chapter() -> void:
 		_test_authorization_attacks(id)
 		_check(not rewards._complete_validated_mission(id, "").ok and not rewards._complete_validated_mission(id, "forged").ok, "Jeton vide ou inventé ne peut acheter une réussite : " + id)
 		_check(state.profile == opened, "Les refus ne modifient ni points, ni mission, ni indices : " + id)
+		var token: String = {"python": "print", "html": "h1", "markdown": "#"}[id]
+		var full: String = str(definition.code.template).replace("____", token)
+		for invalid_text in ["", "  ", "unknown", "hash", "## Bonjour CIEL", "print('forged')", "a".repeat(65), "<script>alert(1)</script>"]:
+			_check(not investigation.submit_code_text(id, invalid_text).ok, "Saisie incorrecte ou trop longue refusée : " + id)
+		var accepted: Array[String] = [token, full, "  " + token + "  "]
+		if id == "python": accepted.append(full.replace('"', "'"))
+		if id == "html": accepted.append("<h1>"); accepted.append("H1")
+		for typed in accepted:
+			saves.simulate_write_failure = true
+			var attempted: Dictionary = investigation.submit_code_text(id, typed)
+			saves.simulate_write_failure = false
+			_check(not attempted.ok and attempted.error.contains("Échec d'écriture simulé") and state.profile == opened, "Texte correct validé mais transaction échouée sans changement : " + id + "/" + typed)
 		var saved_disk := _disk(profile_id)
 		saves.simulate_write_failure = true
 		_check(not investigation.submit_code(id, ANSWERS[id]).ok, "Échec d’écriture de réussite annoncé : " + id)
 		saves.simulate_write_failure = false
 		_check(state.profile == opened and _disk(profile_id) == saved_disk and investigation._authorizations.is_empty(), "Échec atomique sans récompense ni jeton résiduel : " + id)
-		var success: Dictionary = investigation.submit_code(id, ANSWERS[id])
+		var success: Dictionary = investigation.submit_code_text(id, token)
 		_check(success.ok and success.data.reward == 50 and success.data.explanation == definition.success_explanation, "Réponse correcte rapporte exactement 50 et son explication : " + id)
 		_check(state.profile.wallet.points == opened.wallet.points + 50 and state.profile.progress.run_reward_points == opened.progress.run_reward_points + 50, "Portefeuille et gain de partie incrémentés ensemble : " + id)
 		_check(state.profile.progress.completed_missions.has(id) and state.profile.rewarded_missions.has(id) and state.profile.progress.clues.has(definition.clue.id), "Réussite, jeton durable et indice sauvegardés ensemble : " + id)
 		_check(state.profile.progress.checkpoint_id == id and state.profile.progress.active_mission.is_empty(), "Checkpoint code actualisé et mission active fermée : " + id)
 		var solved: Dictionary = state.profile.duplicate(true)
 		for repeat in range(2):
-			var repeated: Dictionary = investigation.submit_code(id, ANSWERS[id])
+			var repeated: Dictionary = investigation.submit_code_text(id, full)
 			_check(repeated.ok and repeated.data.reward == 0 and state.profile == solved, "Validation répétée sans second gain : " + id)
 		_reload(profile_id)
 		_check(state.profile == solved and saves.read_profile(profile_id).data == solved, "Réussite et checkpoint persistent exactement : " + id)
