@@ -37,6 +37,14 @@ func _run() -> void:
 	await _check_layout(false)
 	await _create_fixture(true)
 	await _check_layout(true)
+	editor.max_length = 64
+	keyboard.configure(editor, 64)
+	editor.text = ""
+	for character in '<h1>Bonjour CIEL</h1>': keyboard._insert(character)
+	_check(editor.text == '<h1>Bonjour CIEL</h1>' and editor.text.length() > 16, 'Le clavier accepte une ligne de code dépassant la limite du pseudo quand configuré pour les défis')
+	editor.text = "a".repeat(64)
+	editor.caret_column = 64
+	_check(not keyboard._insert('b') and editor.text.length() == 64, 'La limite du champ code reste appliquée sans tronquer le texte')
 	fixture.queue_free()
 	await process_frame
 	root.get_node('ControllerService').debug_clear_devices()
