@@ -9,7 +9,10 @@ const SHORT_NAMES := {
 	"computer": "Diagnostiquer le poste",
 	"network": "Rétablir le réseau",
 	"addressing": "Corriger l’adresse IPv4",
-	"security": "Protéger le Wi-Fi"
+	"security": "Protéger le Wi-Fi",
+	"python": "Afficher un message en Python",
+	"html": "Écrire un titre HTML",
+	"markdown": "Créer un titre Markdown"
 }
 const NEXT_STEPS := {
 	"lighting": "Examinez le tableau électrique.",
@@ -17,16 +20,22 @@ const NEXT_STEPS := {
 	"computer": "Examinez le poste dans le bureau.",
 	"network": "Examinez le commutateur réseau.",
 	"addressing": "Vérifiez l’adresse du poste.",
-	"security": "Examinez le point d’accès Wi-Fi."
+	"security": "Examinez le point d’accès Wi-Fi.",
+	"python": "Examinez le poste Python.",
+	"html": "Examinez le poste HTML.",
+	"markdown": "Examinez le tableau Markdown."
 }
-const COMPACT_NAMES := {"lighting": "Éclairage", "lock": "Porte", "computer": "Ordinateur", "network": "Réseau", "addressing": "Adresse IPv4", "security": "Wi-Fi"}
+const COMPACT_NAMES := {"lighting": "Éclairage", "lock": "Porte", "computer": "Ordinateur", "network": "Réseau", "addressing": "Adresse IPv4", "security": "Wi-Fi", "python": "Python", "html": "HTML", "markdown": "Markdown"}
 const COMPACT_NEXT_STEPS := {
 	"lighting": "Examinez le tableau électrique.",
 	"lock": "Examinez la porte.",
 	"computer": "Examinez l’ordinateur.",
 	"network": "Examinez le commutateur.",
 	"addressing": "Vérifiez l’adresse du poste.",
-	"security": "Examinez le point Wi-Fi."
+	"security": "Examinez le point Wi-Fi.",
+	"python": "Examinez le poste Python.",
+	"html": "Examinez le poste HTML.",
+	"markdown": "Examinez le tableau Markdown."
 }
 
 var panel_expanded := true
@@ -159,7 +168,12 @@ func refresh() -> void:
 	var hints: Dictionary = COMPACT_NEXT_STEPS if _compact else NEXT_STEPS
 	var next_text := str(hints.get(next_id, ""))
 	if definitions.size() > 0 and completed == definitions.size():
-		next_text = ("Prenez l’ascenseur en bas du bureau." if not _compact else "Ascenseur · en bas du bureau") if chapter == 1 else ("Toutes les missions de cet étage sont terminées." if not _compact else "Missions terminées · bravo !")
+		if chapter == 1:
+			next_text = "Prenez l’ascenseur en bas du bureau." if not _compact else "Ascenseur · en bas du bureau"
+		elif chapter == 2:
+			next_text = "Prenez l’ascenseur vers le chapitre 3 : l’atelier du code." if not _compact else "Chapitre 3 · ascenseur"
+		else:
+			next_text = "Les trois chapitres sont terminés. Bravo !" if not _compact else "Enquête terminée · bravo !"
 	elif next_text.is_empty():
 		next_text = "Terminez la mission précédente." if not first_locked.is_empty() else "Commencez l’enquête depuis l’accueil."
 	next_step_label = _label(mission_list, next_text, "mission_next_step", true)
