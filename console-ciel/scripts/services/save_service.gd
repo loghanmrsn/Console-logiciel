@@ -9,11 +9,17 @@ const INVESTIGATION_VERSION := 1
 const CHAPTER_ONE_IDS := ["lighting", "lock", "computer"]
 const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
 const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
-const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS
+const CHAPTER_FOUR_IDS := ["firewall", "ip_conflict", "subnet_mask"]
+const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS + CHAPTER_FOUR_IDS
 const CHAPTER_TWO_SOLUTIONS := {
 	"network": {"observations": ["switch", "link", "cable"], "diagnosis": "cable_unplugged", "repair": "reconnect_rj45"},
 	"addressing": {"observations": ["workstation", "gateway", "allocation"], "diagnosis": "wrong_subnet", "repair": "align_subnet"},
 	"security": {"observations": ["wifi", "compatibility", "passphrase"], "diagnosis": "open_wifi", "repair": "enable_encryption"}
+}
+const CHAPTER_FOUR_SOLUTIONS := {
+	"firewall": {"observations": ["service", "traffic", "rules"], "diagnosis": "rule_missing", "repair": "allow_https_only"},
+	"ip_conflict": {"observations": ["terminal", "printer", "plan"], "diagnosis": "duplicate_ip", "repair": "apply_unique_ip"},
+	"subnet_mask": {"observations": ["address", "gateway", "subnet_plan"], "diagnosis": "mask_too_small", "repair": "set_mask_26"}
 }
 const CHAPTER_THREE_SOLUTIONS := {
 	"python": {"answer": "print", "choices": ["print", "input", "for"], "template": "____(\"Bonjour CIEL\")"},
@@ -180,7 +186,7 @@ func validate_rules(value: Variant) -> Dictionary:
 			return _fail("Une règle de mission est invalide.")
 		if not mission.get("name") is String or mission.name.is_empty() or not mission.get("title") is String or mission.title.is_empty() or not mission.get("description") is String or not mission.get("success_explanation") is String:
 			return _fail("Un texte de mission est invalide.")
-		var expected_chapter := 1 if mission.id in CHAPTER_ONE_IDS else (2 if mission.id in CHAPTER_TWO_IDS else 3)
+		var expected_chapter := 1 if mission.id in CHAPTER_ONE_IDS else (2 if mission.id in CHAPTER_TWO_IDS else (3 if mission.id in CHAPTER_THREE_IDS else 4))
 		if not _is_integer(mission.get("chapter"), expected_chapter, expected_chapter) or not mission.get("room_id") is String or mission.room_id != "room_%02d" % expected_chapter:
 			return _fail("Le chapitre ou la salle d’une mission est incohérent.")
 		if not _valid_id_list(mission.get("prerequisites"), ids):
@@ -220,8 +226,8 @@ func validate_rules(value: Variant) -> Dictionary:
 		elif mission.id == "computer":
 			if mission.prerequisites != ["lock"] or _option_ids(mission, "observations") != ["pc", "display", "no_signal"] or not _valid_id_list(mission.solution.get("checks"), _option_ids(mission, "checks")) or not mission.solution.get("cause") is String or mission.solution.get("cause") != "video_disconnected" or not mission.solution.get("correction") is String or mission.solution.get("correction") != "reconnect_video" or "video_disconnected" not in _option_ids(mission, "causes") or "reconnect_video" not in _option_ids(mission, "corrections") or mission.solution.checks.size() != 2 or "power" not in mission.solution.checks or "video" not in mission.solution.checks:
 				return _fail("Les observations ou choix de l'ordinateur sont incohérents.")
-		elif mission.id in CHAPTER_TWO_IDS:
-			var expected: Dictionary = CHAPTER_TWO_SOLUTIONS[mission.id]
+		elif mission.id in CHAPTER_TWO_IDS + CHAPTER_FOUR_IDS:
+			var expected: Dictionary = CHAPTER_TWO_SOLUTIONS[mission.id] if mission.id in CHAPTER_TWO_IDS else CHAPTER_FOUR_SOLUTIONS[mission.id]
 			var prerequisite: String = MISSION_IDS[MISSION_IDS.find(mission.id) - 1]
 			if mission.prerequisites != [prerequisite] or _option_ids(mission, "observations") != expected.observations or not mission.checks.is_empty() or not mission.solution.get("diagnosis") is String or mission.solution.diagnosis != expected.diagnosis or not mission.solution.get("repair") is String or mission.solution.repair != expected.repair or expected.diagnosis not in _option_ids(mission, "diagnoses") or expected.repair not in _option_ids(mission, "repairs"):
 				return _fail("Les observations ou choix du chapitre réseau sont incohérents.")
@@ -260,7 +266,7 @@ func empty_investigation_progress() -> Dictionary:
 		"investigation_version": INVESTIGATION_VERSION,
 		"started": false, "room_id": "room_01", "checkpoint_id": "entrance",
 		"completed_missions": [], "active_mission": "", "clues": [],
-		"observations": {"lighting": [], "lock": [], "computer": [], "network": [], "addressing": [], "security": [], "python": [], "html": [], "markdown": []},
+		"observations": {"lighting": [], "lock": [], "computer": [], "network": [], "addressing": [], "security": [], "python": [], "html": [], "markdown": [], "firewall": [], "ip_conflict": [], "subnet_mask": []},
 		"checks": {"computer": []}, "run_reward_points": 0,
 		"legacy_migration_notice": false
 	}
@@ -344,7 +350,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not document.get("progress") is Dictionary:
 		return _fail("La progression est invalide.")
 	var progress: Dictionary = document.progress
-	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit"] + MISSION_IDS or not progress.get("completed_missions") is Array:
+	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03", "room_04"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit"] + MISSION_IDS or not progress.get("completed_missions") is Array:
 		return _fail("La progression contient une scène ou un point de reprise invalide.")
 	var completed: Array = []
 	for id in progress.completed_missions:
@@ -375,7 +381,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		if not _is_integer(progress.get("investigation_version"), INVESTIGATION_VERSION, INVESTIGATION_VERSION):
 			return _fail("Version de progression d'enquête inconnue. Le fichier est conservé.")
 		# Les versions précédentes ont déjà de vrais défis : enrichir sans remise à zéro.
-		# Seuls les ensembles exacts de trois ou six anciennes clés sont reconnus.
+		# Seuls les ensembles exacts de trois, six ou neuf anciennes clés sont reconnus.
 		var legacy_ids: Array = []
 		if progress.get("observations") is Dictionary:
 			var saved_ids: Array = progress.observations.keys()
@@ -383,8 +389,10 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 				legacy_ids = CHAPTER_ONE_IDS.duplicate()
 			elif saved_ids.size() == CHAPTER_ONE_IDS.size() + CHAPTER_TWO_IDS.size() and _valid_id_list(saved_ids, CHAPTER_ONE_IDS + CHAPTER_TWO_IDS):
 				legacy_ids = (CHAPTER_ONE_IDS + CHAPTER_TWO_IDS).duplicate()
+			elif saved_ids.size() == 9 and _valid_id_list(saved_ids, CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS):
+				legacy_ids = (CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS).duplicate()
 		if not legacy_ids.is_empty():
-			var legacy_rooms: Array = ["room_01"] if legacy_ids.size() == 3 else ["room_01", "room_02"]
+			var legacy_rooms: Array = ["room_01", "room_02", "room_03"].slice(0, legacy_ids.size() / 3)
 			if not _valid_id_list(completed, legacy_ids) or not _valid_id_list(rewarded, legacy_ids) or progress.room_id not in legacy_rooms or progress.get("active_mission", "") not in [""] + legacy_ids or progress.checkpoint_id not in ["entrance", "elevator", "exit"] + legacy_ids:
 				return _fail("La progression ancienne contient un chapitre non pris en charge par sa version. Le fichier est conservé.")
 			for id in MISSION_IDS:
@@ -441,6 +449,11 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		var chapter_two_complete := chapter_one_complete
 		for id in CHAPTER_TWO_IDS:
 			chapter_two_complete = chapter_two_complete and id in completed
+		var chapter_three_complete := chapter_two_complete
+		for id in CHAPTER_THREE_IDS:
+			chapter_three_complete = chapter_three_complete and id in completed
+		if progress.room_id == "room_04" and (not progress.started or not chapter_three_complete or progress.checkpoint_id == "entrance"):
+			return _fail("Le laboratoire réseau nécessite les neuf missions des chapitres précédents.")
 		if progress.room_id == "room_02" and (not progress.started or not chapter_one_complete or progress.checkpoint_id == "entrance"):
 			return _fail("L’étage réseau n’est pas accessible avant les trois objectifs du premier chapitre.")
 		if progress.room_id == "room_03" and (not progress.started or not chapter_two_complete or progress.checkpoint_id == "entrance"):
@@ -450,7 +463,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		if progress.checkpoint_id in _mission_ids and (progress.checkpoint_id not in completed or _mission_by_id[progress.checkpoint_id].room_id != progress.room_id):
 			return _fail("Le point de reprise correspond à une mission non terminée ou à un autre étage.")
 		if progress.checkpoint_id == "exit":
-			var chapter_ids: Array = CHAPTER_ONE_IDS if progress.room_id == "room_01" else (CHAPTER_TWO_IDS if progress.room_id == "room_02" else CHAPTER_THREE_IDS)
+			var chapter_ids: Array = CHAPTER_ONE_IDS if progress.room_id == "room_01" else (CHAPTER_TWO_IDS if progress.room_id == "room_02" else (CHAPTER_THREE_IDS if progress.room_id == "room_03" else CHAPTER_FOUR_IDS))
 			for id in chapter_ids:
 				if id not in completed:
 					return _fail("La conclusion de ce chapitre n’est pas encore accessible.")
