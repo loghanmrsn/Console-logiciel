@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.7.1 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.8.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -80,7 +80,7 @@ Les repères et boutons des missions terminées disparaissent après réussite
 et sauvegarde ; les meubles réparés restent visibles, l’ascenseur accessible.
 Pause > Bilan du chapitre retrouve le bilan d’un chapitre déjà terminé.
 
-Chaque première réussite donne 50 points : 150 par chapitre, 450 au maximum
+Chaque première réussite donne 50 points : 150 par chapitre, 600 au maximum
 par profil. Rejouer ne redonne pas les récompenses. L’enquête reste gratuite.
 Les exercices sont fictifs et hors ligne ; ils ne modifient pas le réseau,
 le câblage ou la configuration réelle de votre Raspberry Pi.
@@ -89,9 +89,9 @@ Test 1 à Test 4 coûtent 200 points chacun. Ils affichent seulement
 « jeu en préparation », en attendant les vrais jeux ; les ouvrir ne donne
 aucun point. Les achats antérieurs restent acquis. Un achat est refusé sous
 200 points ; un article possédé n’est pas facturé deux fois. Une erreur de
-sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 450
-points permet deux achats sans autre dépense, avec 50 points restants ;
-un troisième achat est alors refusé. Rejouer ne redonne aucun point.
+sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 600
+points permet trois achats sans autre dépense, avec 0 point restant ;
+un quatrième achat est alors refusé. Rejouer ne redonne aucun point.
 
 Deux présentations de l’accueil sont dans Paramètres > Affichage : enquête
 à gauche et quatre jeux à droite, ou couvertures égales avec défilement.
@@ -121,7 +121,7 @@ Utilisez ensuite l’arrêt normal de Raspberry Pi OS avant de couper le courant
 Les contrôles de l’archive, de l’ELF ARM64, des ressources compilées et des
 lanceurs sont consignés dans le rapport de livraison sur GitHub.
 Ils ne constituent pas un essai natif sur votre Raspberry Pi 4.
-À vérifier sur le matériel : premier lancement, neuf missions et ascenseur,
+À vérifier sur le matériel : premier lancement, douze missions et ascenseur,
 reprise, achats et profils, clavier/photo, tableau de missions, plein écran,
 son, manette USB et contrôleur fabriqué, fluidité en 1280 × 720 et petit écran.
 Aucun résultat de FPS, son ou mapping matériel n’est annoncé comme acquis.
@@ -137,3 +137,11 @@ Le clavier apparaît dans Python, HTML et Markdown. Tapez print, h1 ou #,
 ou la ligne complète de l’exemple. ⇧ change la casse ; 123 et #+= donnent
 accès aux chiffres et symboles. Valider vérifie ; Annuler revient à la pièce.
 Le clavier physique reste disponible. Limite : 64 caractères par réponse.
+
+LIVRES ET LABORATOIRE RÉSEAU
+Au chapitre 3, approchez le coin ressources puis interagissez (Espace / face bas).
+Trois livres, chacun en trois leçons, expliquent Python, HTML et Markdown.
+Fermer le livre revient au choix ; Échap revient ensuite à la pièce.
+Le chapitre 4 s’ouvre après les neuf premières missions : pare-feu, conflit IPv4, masque /26.
+Chaque première réussite donne 50 points : 600 au maximum par profil.
+Ascenseur : Descendre d’étage, Monter d’étage, Retour au menu. Échap : rester.
