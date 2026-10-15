@@ -13,15 +13,17 @@ func resources(folder: String) -> Array:
  var result=[];var directory=DirAccess.open(folder)
  if directory==null:return result
  for child in directory.get_files():
-  if child.ends_with('.svg'):result.append(folder.path_join(child))
-  elif child.ends_with('.svg.import'):result.append(folder.path_join(child.trim_suffix('.import')))
-  elif child.ends_with('.svg.remap'):result.append(folder.path_join(child.trim_suffix('.remap')))
+  var path=''
+  if child.ends_with('.svg'):path=folder.path_join(child)
+  elif child.ends_with('.svg.import'):path=folder.path_join(child.trim_suffix('.import'))
+  elif child.ends_with('.svg.remap'):path=folder.path_join(child.trim_suffix('.remap'))
+  if not path.is_empty() and path not in result:result.append(path)
  for child in directory.get_directories():result.append_array(resources(folder.path_join(child)))
  return result
 func run():
  await process_frame
- check(ProjectSettings.get_setting('application/config/version')=='0.6.1','Version embarquée')
- var all=resources('res://assets/art');check(all.size()==43,'43 SVG originaux dans le pack, dont le nouvel étage et l’ascenseur')
+ check(ProjectSettings.get_setting('application/config/version')=='0.7.0','Version embarquée')
+ var all=resources('res://assets/art');check(all.size()==48,'48 SVG originaux dans le pack, dont les trois chapitres et l’ascenseur')
  for path in all:
   var asset=ResourceLoader.load(path)
   check(asset is Texture2D and asset.get_width()>0 and asset.get_height()>0,'Image embarquée '+path)
