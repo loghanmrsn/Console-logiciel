@@ -128,7 +128,7 @@ func _run() -> void:
 		service.states[id] = "completed"
 	tracker.refresh()
 	await _frames()
-	_check(tracker.progress_bar.value == 3 and tracker.next_step_label.text.contains("terminées") and not tracker.next_step_label.text.contains("ascenseur"), "Le bilan du deuxième chapitre ne propose pas un étage inexistant")
+	_check(tracker.progress_bar.value == 3 and tracker.next_step_label.text.to_lower().contains("ascenseur") and tracker.next_step_label.text.to_lower().contains("chapitre 3"), "Le deuxième chapitre terminé guide vers l’ascenseur du nouveau chapitre code")
 	root.remove_child(stage)
 	stage.queue_free()
 	await _frames()
