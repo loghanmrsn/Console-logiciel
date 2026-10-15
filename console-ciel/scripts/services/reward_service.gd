@@ -29,6 +29,13 @@ func _complete_validated_mission(id: String, authorization_token: String) -> Dic
 		return authorized
 	if authorized.data.profile_id != AppState.profile.id or authorized.data.profile_snapshot != AppState.profile:
 		return SaveService._fail("Le profil a changé pendant la validation. Recommencez cette tentative.")
+	if not authorized.data.get("evidence") is Dictionary or not authorized.data.get("progress") is Dictionary or authorized.data.progress != AppState.profile.progress:
+		return SaveService._fail("La preuve de résolution ou la progression autorisée est invalide.")
+	# Recontrôler la solution réelle avant de modifier les points ou la progression.
+	# Un jeton consommé ne suffit jamais à affirmer qu’un exercice a été résolu.
+	var checked := InvestigationService._validate_solution(id, authorized.data.evidence)
+	if not checked.ok:
+		return checked
 	if missions.is_empty():
 		var loaded := load_rules()
 		if not loaded.ok:
