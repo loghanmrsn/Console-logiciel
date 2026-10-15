@@ -1,3 +1,33 @@
+# Enquête éducative — quatre chapitres
+
+L’enquête propose douze missions, réparties en quatre chapitres de trois défis. Chaque première réussite rapporte 50 points ; le total maximal est de 600 points par profil. Un rejeu conserve les récompenses sans les attribuer à nouveau.
+
+## Les livres du chapitre 3
+
+Approchez la petite bibliothèque du **coin ressources**, en bas au milieu de l’atelier code, puis appuyez sur **Espace / bouton de face bas**. Trois couvertures ouvrent les livres **Python**, **HTML** et **Markdown**. Chaque livre contient trois courtes leçons : principes, règles de syntaxe et exemple résolu. Les exemples sont du texte local affiché tel quel.
+
+La couverture sélectionnée s’anime et les pages se déploient à l’ouverture. Les flèches, Entrée et les boutons de la manette permettent de parcourir les pages ; la souris reste utilisable. **Fermer le livre** revient aux couvertures. **Échap / face droit** ferme d’abord le livre, puis le choix des livres. La lecture suspend les déplacements et ne modifie ni points ni progression. Elle reste accessible après les missions. Le réglage « Réduire les animations » désactive ces mouvements.
+
+Les réponses des défis restent saisissables au clavier à l’écran (⇧, 123, symboles, Effacer, Valider) ou au clavier physique : `print`, `h1` et `#`, ou leurs exemples complets. La limite est de 64 caractères par réponse. Les touches P, T et Espace appartiennent au texte lorsque le champ est actif.
+
+## Chapitre 4 — laboratoire réseau
+
+Accessible après les neuf missions précédentes, cet étage propose trois diagnostics guidés :
+
+| Mission | Notion et résultat attendu |
+|---|---|
+| Pare-feu | Autoriser seulement le poste 192.168.30.20 vers le serveur 192.168.30.10 en TCP 443 (HTTPS), en conservant les autres règles. |
+| Conflit IPv4 | Repérer l’adresse .42 partagée par l’imprimante et le terminal ; appliquer .43/24 au terminal selon le plan fourni. |
+| Masque réseau | Remplacer le /30 incorrect par 255.255.255.192 (/26) : le poste 192.168.40.70 et la passerelle .65 appartiennent à 192.168.40.64/26. |
+
+Consultez les trois observations de chaque mission, puis choisissez le diagnostic et la correction. Les mauvaises réponses expliquent l’erreur sans retirer de points. Le service revalide les preuves avant une écriture unique de la réussite et de sa récompense. Aucun réglage réseau réel n’est modifié.
+
+## Ascenseur et reprise
+
+Le panneau présente exactement trois boutons : **Descendre d’étage**, **Monter d’étage**, **Retour au menu**. La montée nécessite les trois missions du chapitre courant ; la descente permet de revisiter les étages accessibles. Au rez-de-chaussée, la descente est désactivée ; au chapitre 4, la montée est désactivée. **Échap / face droit** ferme le panneau et laisse le joueur dans la pièce.
+
+Un changement d’étage enregistre d’abord le profil, puis affiche la nouvelle pièce. Si l’écriture échoue, le monde et la sauvegarde restent à l’étage précédent. Continuer reprend l’étage et le point enregistrés. Les profils des anciennes versions à trois, six ou neuf missions sont enrichis sans remise à zéro ; le document d’origine est gardé dans sa sauvegarde .bak lors de la migration.
+
 # Enquête CIEL — trois chapitres
 
 Le joueur commence dans un local technique où une préparation pédagogique a été interrompue. Il rétablit l’éclairage, ouvre le bureau et remet le signal vidéo de l’ordinateur. Après ces trois réussites, l’ascenseur **en bas de la deuxième pièce, le bureau**, se déverrouille et mène à la salle réseau du **chapitre 2**. Après les trois missions réseau, l’ascenseur donne accès à l’atelier du code du **chapitre 3** : Python, HTML et Markdown. Les chapitres précédents sont conservés ; les nouveaux exercices de code proposent une saisie simple au clavier à l’écran, des erreurs expliquées et les mêmes sauvegardes.
