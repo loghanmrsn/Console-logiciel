@@ -1,4 +1,45 @@
-# Livraison courante 0.6.1 — Raspberry Pi 4 ARM64
+# Livraison courante 0.7.0 — chapitre 3, atelier du code
+
+| Plateforme | Logiciel prêt à lancer | Projet complet avec sources |
+|---|---|---|
+| Windows x86_64 | [ZIP Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_code_0.7.0.zip) | [Projet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.0.zip) |
+| Raspberry Pi 4 ARM64 | [ZIP Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.0.zip) | [Projet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.0.zip) |
+
+Sous Windows, **Extraire tout**, puis ouvrir **Console_CIEL.exe**. Sur Raspberry Pi OS **64 bits avec bureau**, extraire tout le ZIP, ouvrir un terminal dans son dossier et lancer `bash ./Lancer_Console_CIEL.sh`. Godot n’est pas nécessaire pour jouer. Dans les projets complets, les dossiers jouables sont respectivement `console-ciel/builds/windows-x86_64-code-0.7.0/` et `console-ciel/builds/linux-arm64-raspberry-pi-0.7.0/`. [Installation Windows](WINDOWS.md) · [Installation Raspberry Pi](RASPBERRY_PI.md) · [Contenu des archives complètes](ARCHIVE_COMPLETE.md).
+
+Après les trois missions réseau du chapitre 2, l’ascenseur ouvre le **chapitre 3**, consacré à trois notions simples : **`print()` en Python**, **la balise de titre HTML `<h1>`**, et **`# ` pour un titre Markdown**. Les postes présentent une consigne, des réponses au choix et des erreurs expliquées. Aucun interpréteur ni code utilisateur n’est exécuté. L’ascenseur permet de revenir aux étages débloqués ; les trois chapitres ont leur tableau de missions et leur bilan. [Parcours et réponses](ENQUETE.md).
+
+Les neuf missions rapportent **50 points une seule fois chacune**, soit **450 au maximum par profil**. Sans autre dépense, deux jeux Test à 200 points laissent 50 points. Les Test restent des jeux en préparation. Rejouer ne redonne pas de points ; les anciens profils conservent leurs réussites, points, achats et équipement, puis reçoivent les missions manquantes. Les profils et photos personnelles ne sont pas distribués. La présentation des README est conservée pour les prochaines mises à jour, avec les liens Windows, Linux, puis le descriptif.
+
+## Vérifications 0.7.0
+
+Recette exécutée le **15 octobre 2026**, avec des données isolées :
+
+| Périmètre | Résultat |
+|---|---|
+| Sources, 23 suites | **13 512 assertions, zéro échec** |
+| Persistance entre trois processus Godot | **65 assertions, zéro échec** |
+| Migration comparée au validateur réel 0.6.1 | **259 anciens profils valides migrés sans perte** |
+| Rendu réel X11 / OpenGL ES 3.2, Mesa 25.0.7 llvmpipe | **395 contrôles, zéro échec**, 9 captures |
+| Pack Windows exécuté avec Godot Linux x86_64, 8 suites | **1 409 assertions, zéro échec** |
+| Pack ARM64 exécuté avec Godot Linux x86_64, 8 suites | **1 409 assertions, zéro échec** |
+| Ressources intégrées, par paquet | **213 empreintes MD5 intactes**, dont **48 SVG** |
+| Outils de packaging Windows / Linux | **27 / 47 contrôles, zéro échec** |
+
+[Résumé détaillé de la recette 0.7.0](../tests/chapitre_3_0.7.0_results/summary.json). Les 259 profils de migration sont des cas comparés entre les validateurs ; ce nombre est distinct des assertions des suites.
+
+Captures réelles : [arrivée dans l’atelier du code](screenshots/chapitre_3_0.7.0/chapter_3_arrival.png), [exercice Python](screenshots/chapitre_3_0.7.0/chapter_3_python_challenge.png), [bilan du chapitre 3](screenshots/chapitre_3_0.7.0/chapter_3_conclusion.png) et [800 × 480 avec grand texte](screenshots/chapitre_3_0.7.0/chapter_3_800x480_large.png).
+
+| Paquet portable | Taille | SHA-256 |
+|---|---:|---|
+| [Windows x86_64](../builds/Console_CIEL_Windows_x86_64_code_0.7.0.verification.json) | 36 640 581 octets | `af33ad5f04e19b933d8dcd637e485c2de426c001fbf063f8b6bd6091b71e0034` |
+| [Raspberry Pi ARM64](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.0.verification.json) | 27 046 296 octets | `397473a3bac24c742911c833935fdd8321dc90bff7a63f76a43b120ec966bd21` |
+
+Les rapports liés décrivent le contenu et les empreintes des paquets. Les résultats historiques ci-dessous restent propres à leurs versions.
+
+Les ressources compilées peuvent être exécutées avec le moteur Linux x86_64 pour contrôler leur logique ; cela ne constitue pas un lancement natif de l’EXE Windows ni du binaire ARM64. Le lancement sur Windows et Raspberry Pi 4, le GPU du Pi, le son et une manette physique restent à essayer sur les appareils destinataires. Le lanceur Raspberry Pi conserve Compatibility / OpenGL ES 3 ; aucun autostart, service ou arrêt système n’est ajouté.
+
+# Livraison historique 0.6.1 — Raspberry Pi 4 ARM64
 
 [Logiciel Raspberry Pi prêt à lancer](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip) et [projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip). La cible confirmée est **Raspberry Pi 4, système 64 bits** ; utiliser Raspberry Pi OS avec bureau, architecture **aarch64**, de préférence Bookworm ou Trixie à jour.
 
