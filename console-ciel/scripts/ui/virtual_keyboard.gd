@@ -10,6 +10,8 @@ signal cancelled
 signal layout_changed
 
 var editor: LineEdit
+var input_limit := NAME_LIMIT
+var navigate_to_editor := false
 var input_mode := 'letters'
 # 0 = minuscules, 1 = prochaine lettre en majuscule, 2 = verrouillage.
 var shift_state := 0
@@ -22,8 +24,9 @@ var _first_buttons: Dictionary = {}
 var _configured := false
 
 
-func configure(line_edit: LineEdit) -> void:
+func configure(line_edit: LineEdit, maximum_length: int = NAME_LIMIT) -> void:
 	editor = line_edit
+	input_limit = clampi(maximum_length, 1, 256)
 	# Cliquer une touche ne doit pas supprimer la sélection du pseudo.
 	editor.deselect_on_focus_loss_enabled = false
 	if _configured:
@@ -234,6 +237,21 @@ func _wire_keys() -> void:
 				var next_row: Array = rows[next_index]
 				var column := mini(next_row.size() - 1, int((float(index) + 0.5) / row.size() * next_row.size()))
 				button.set_focus_neighbor(side, button.get_path_to(next_row[column]))
+	if navigate_to_editor and is_instance_valid(editor):
+		for button in rows[0]:
+			button.focus_neighbor_top = button.get_path_to(editor)
+		for button in rows.back():
+			button.focus_neighbor_bottom = button.get_path_to(editor)
+		editor.focus_neighbor_bottom = editor.get_path_to(_first_buttons[input_mode])
+		editor.focus_neighbor_top = editor.get_path_to(rows.back().back())
+		keys[0].focus_previous = keys[0].get_path_to(editor)
+		keys.back().focus_next = keys.back().get_path_to(editor)
+		editor.focus_next = editor.get_path_to(keys[0])
+		editor.focus_previous = editor.get_path_to(keys.back())
+
+
+func wire_navigation() -> void:
+	_wire_keys()
 
 
 func _insert(value: String) -> bool:
@@ -242,7 +260,7 @@ func _insert(value: String) -> bool:
 	var start := editor.get_selection_from_column() if editor.has_selection() else editor.caret_column
 	var end := editor.get_selection_to_column() if editor.has_selection() else start
 	var replacing := editor.has_selection()
-	var limit := mini(NAME_LIMIT, editor.max_length) if editor.max_length > 0 else NAME_LIMIT
+	var limit := mini(input_limit, editor.max_length) if editor.max_length > 0 else input_limit
 	# Valider la longueur avant de toucher à la sélection : une insertion
 	# refusée conserve le texte, la sélection et la position du curseur.
 	if editor.text.length() - (end - start) + value.length() > limit:
