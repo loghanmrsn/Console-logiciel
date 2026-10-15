@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
+<rect x="44" y="50" width="912" height="426" fill="#d5dfe0"/>
+<path d="M44 98H956M44 146H956M44 194H956M44 242H956M44 290H956M44 338H956M44 386H956M44 434H956M92 50V476M140 50V476M188 50V476M236 50V476M284 50V476M332 50V476M380 50V476M428 50V476M476 50V476M524 50V476M572 50V476M620 50V476M668 50V476M716 50V476M764 50V476M812 50V476M860 50V476M908 50V476" fill="none" stroke="#e8ede9" stroke-width="2"/>
+<rect x="107" y="94" width="226" height="150" rx="18" fill="#c7d9e0"/>
+<rect x="387" y="94" width="226" height="150" rx="18" fill="#dfe0c9"/>
+<rect x="667" y="94" width="226" height="150" rx="18" fill="#d9d2e2"/>
+<path d="M220 264V350H780V264M500 264V350" fill="none" stroke="#bccdcd" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M220 264V350H780V264M500 264V350" fill="none" stroke="#edf1e9" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 9"/>
+<rect x="80" y="369" width="130" height="88" rx="10" fill="#b7c6bc"/>
+<path d="M90 377V447M102 377V447M114 377V447M126 377V447M138 377V447M150 377V447M162 377V447M174 377V447M186 377V447M198 377V447" stroke="#acbeb2"/>
+<rect x="462" y="387" width="133" height="79" rx="12" fill="#d9d5c5"/>
+<rect x="730" y="373" width="172" height="90" rx="12" fill="#c7d6ce"/>
+<rect x="390" y="61" width="220" height="14" rx="7" fill="#c5d1ca"/>
+<rect x="399" y="65" width="202" height="6" rx="3" fill="#f3efd7"/>
+</svg>
