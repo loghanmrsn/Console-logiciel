@@ -28,6 +28,11 @@ const TEXTURES={
 	'network_rack':preload('res://assets/art/world/network_rack.svg'),
 	'network_terminal':preload('res://assets/art/world/network_terminal.svg'),
 	'wifi_station':preload('res://assets/art/world/wifi_station.svg'),
+	'code_floor':preload('res://assets/art/world/code_floor.svg'),
+	'code_walls':preload('res://assets/art/world/code_walls.svg'),
+	'code_python':preload('res://assets/art/world/code_python.svg'),
+	'code_html':preload('res://assets/art/world/code_html.svg'),
+	'code_markdown':preload('res://assets/art/world/code_markdown.svg'),
 }
 const PROPS=[
  ['ElectricalCabinet',Rect2(76,102,90,60),'electrical_off',Rect2(66,83,110,90)],
@@ -45,6 +50,14 @@ const NETWORK_PROPS=[
  ['NetworkStorage',Rect2(735,394,118,62),'cabinet',Rect2(727,373,134,95)],
  ['NetworkPlant',Rect2(882,130,28,26),'plant',Rect2(870,101,54,62)],
  ['NetworkChair',Rect2(635,249,44,42),'chair',Rect2(627,232,60,74)]
+]
+const CODE_PROPS=[
+ ['PythonDesk',Rect2(134,141,172,80),'desk',Rect2(120,117,200,122)],
+ ['HtmlDesk',Rect2(414,141,172,80),'desk',Rect2(400,117,200,122)],
+ ['MarkdownDesk',Rect2(694,141,172,80),'desk',Rect2(680,117,200,122)],
+ ['CodeStorage',Rect2(760,403,114,45),'cabinet',Rect2(751,384,132,79)],
+ ['CodeResources',Rect2(500,411,64,52),'shelf',Rect2(490,397,84,77)],
+ ['CodePlant',Rect2(888,118,26,20),'plant',Rect2(876,90,50,55)]
 ]
 const EXTRAS=[
  ['light',Rect2(274,61,172,28)],
