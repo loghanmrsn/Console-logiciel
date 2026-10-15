@@ -107,21 +107,25 @@ func _test_locked_floor() -> void:
 	var before: Dictionary = state.profile.duplicate(true)
 	await _approach("elevator")
 	await _key(KEY_SPACE)
-	var code := _find("elevator_chapter_3") as Button
+	var code := _find("elevator_up") as Button
 	_check(app.demo.overlay_kind == "elevator" and code != null and code.disabled, "La destination code est visible mais verrouillée avant la fin du réseau")
-	_check(_find("elevator_travel") != null and not (_find("elevator_travel") as Button).disabled, "Le retour à un étage déjà débloqué reste disponible")
+	_check(_find("elevator_down") != null and not (_find("elevator_down") as Button).disabled, "Le retour à un étage déjà débloqué reste disponible")
 	_check(state.profile == before and saves.read_profile(profile_id).data == before, "Consulter les destinations n’altère pas le profil")
 	await _capture("elevator_locked")
 	await _key(KEY_ESCAPE)
 
 
 func _travel(chapter: int, with_failure: bool = false) -> void:
+	if absi(chapter - app.demo.world.chapter_id) > 1:
+		while app.demo.world.chapter_id != chapter:
+			var step: int = app.demo.world.chapter_id + (1 if chapter > app.demo.world.chapter_id else -1)
+			await _travel(step, with_failure)
+		return
 	var before: Dictionary = state.profile.duplicate(true)
 	await _approach("elevator")
 	await _key(KEY_SPACE)
-	var historical := 1 if app.demo.world.chapter_id == 2 else 2
-	var button := "elevator_travel" if chapter == historical else "elevator_chapter_%d" % chapter
-	_check(app.demo.overlay_kind == "elevator", "L’ascenseur propose ses trois destinations")
+	var button := "elevator_up" if chapter > app.demo.world.chapter_id else "elevator_down"
+	_check(app.demo.overlay_kind == "elevator", "L’ascenseur propose monter, descendre et le menu")
 	if with_failure:
 		await _capture("elevator_unlocked")
 	if with_failure:
@@ -345,7 +349,7 @@ func _complete_service(id: String) -> void:
 
 func _approach(id: String) -> void:
 	var world = app.demo.world
-	var points: Dictionary = world.CHAPTER_THREE_CHECKPOINTS if world.chapter_id == 3 else (world.CHAPTER_TWO_CHECKPOINTS if world.chapter_id == 2 else world.CHECKPOINTS)
+	var points: Dictionary = world.CHAPTER_FOUR_CHECKPOINTS if world.chapter_id == 4 else (world.CHAPTER_THREE_CHECKPOINTS if world.chapter_id == 3 else (world.CHAPTER_TWO_CHECKPOINTS if world.chapter_id == 2 else world.CHECKPOINTS))
 	_check(points.has(id), "Checkpoint de proximité pour " + id)
 	if not points.has(id):
 		return
