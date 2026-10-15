@@ -4,6 +4,7 @@ extends VBoxContainer
 
 const GlassButton = preload("res://scripts/ui/translucent_button.gd")
 const CircuitDiagram = preload("res://scripts/game/circuit_diagram.gd")
+const Keyboard = preload("res://scripts/ui/virtual_keyboard.gd")
 
 signal close_requested
 signal mission_completed(result: Dictionary)
@@ -23,7 +24,8 @@ var diagnosis_selector: OptionButton
 var repair_selector: OptionButton
 var cause_selector: OptionButton
 var correction_selector: OptionButton
-var code_selector: OptionButton
+var code_edit: LineEdit
+var code_keyboard: VBoxContainer
 var code_preview: Label
 var circuit: Control
 var _service: Node
@@ -55,6 +57,9 @@ func configure(id: String) -> void:
 	check_details.clear()
 	_choice_details.clear()
 	_navigation_signature = ""
+	code_edit = null
+	code_keyboard = null
+	code_preview = null
 	if _service == null:
 		_text("Service d’enquête indisponible.")
 		_close_button()
@@ -63,7 +68,8 @@ func configure(id: String) -> void:
 	var title := _text(str(definition.get("title", definition.get("name", "Défi pédagogique"))))
 	title.name = "challenge_title"
 	title.add_theme_font_size_override("font_size",get_theme_default_font_size()+8)
-	_text(str(definition.get("description", "")))
+	if mission_id not in ["python", "html", "markdown"]:
+		_text(str(definition.get("description", "")))
 	if mission_id == "lighting":
 		_build_lighting()
 	elif mission_id == "lock":
@@ -77,7 +83,8 @@ func configure(id: String) -> void:
 	feedback_label = _text("")
 	feedback_label.name = "challenge_feedback"
 	feedback_label.hide()
-	_close_button()
+	if not is_instance_valid(code_keyboard):
+		_close_button()
 	var start: Dictionary = _service.begin_mission(id)
 	_available = bool(start.get("ok", false))
 	if not bool(start.get("ok", false)):
@@ -187,7 +194,7 @@ func _build_diagnostic() -> void:
 
 func _build_code() -> void:
 	var code: Dictionary = definition.get("code", {})
-	_text("Chapitre 3 · L’atelier du code")
+	add_theme_constant_override("separation", 5)
 	_text(str(code.get("prompt", "Choisissez le mot ou le symbole qui complète ce code.")))
 	code_preview = _text(str(code.get("template", "")))
 	code_preview.name = mission_id + "_code_preview"
@@ -198,26 +205,57 @@ func _build_code() -> void:
 	code_preview.add_theme_font_override("font", monospace)
 	_sync_code_appearance()
 	code_preview.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
-	code_preview.custom_minimum_size.y = 54
+	code_preview.custom_minimum_size.y = 30
 	code_preview.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_text("Complétez les pointillés, puis validez votre réponse. Flèches et Entrée / face bas restent disponibles.")
-	code_selector = _selector(mission_id + "_answer", "Choisir le code manquant", code.get("choices", []), false)
-	code_selector.item_selected.connect(func(_index: int) -> void: _update_code_preview())
-	submit_button = _action("Valider le code", mission_id + "_validate", _submit_code)
+	code_edit = LineEdit.new()
+	code_edit.name = mission_id + "_answer"
+	code_edit.placeholder_text = "Mot / symbole manquant, ou exemple complet"
+	code_edit.max_length = 64
+	code_edit.custom_minimum_size.y = 40
+	code_edit.virtual_keyboard_enabled = false
+	code_edit.focus_entered.connect(func() -> void: _begin_code_edit.call_deferred())
+	code_edit.text_changed.connect(func(_text: String) -> void:
+		_update_code_preview()
+		if is_instance_valid(feedback_label): feedback_label.hide()
+		_update_submit_state())
+	code_edit.text_submitted.connect(func(_text: String) -> void: _submit_code())
+	add_child(code_edit)
+	code_keyboard = Keyboard.new()
+	code_keyboard.name = mission_id + "_keyboard"
+	add_child(code_keyboard)
+	code_keyboard.navigate_to_editor = true
+	code_keyboard.configure(code_edit, 64)
+	code_keyboard.submitted.connect(_submit_code)
+	code_keyboard.cancelled.connect(func() -> void: close_requested.emit())
+	code_keyboard.layout_changed.connect(func() -> void: navigation_changed.emit())
+	submit_button = code_keyboard.get_node("actions/key_Valider")
+	submit_button.name = mission_id + "_validate"
 	submit_button.theme_type_variation = "PrimaryButton"
+	code_keyboard.get_node("actions/key_Annuler").name = "challenge_close"
+	code_edit.gui_input.connect(func(event: InputEvent) -> void:
+		if event.is_action_pressed("ui_down") or (event is InputEventJoypadButton and event.is_action_pressed("ui_accept")):
+			code_keyboard.focus_first_key()
+			code_edit.accept_event())
+	if mission_id == "markdown": code_keyboard._set_mode("symbols")
+
+func _begin_code_edit() -> void:
+	# Revenir depuis une touche à la manette peut focaliser le LineEdit sans
+	# activer son édition. Le texte physique doit rester utilisable aussitôt.
+	if is_instance_valid(code_edit) and code_edit.has_focus() and code_edit.editable:
+		code_edit.edit()
 
 func _sync_code_appearance() -> void:
 	if is_instance_valid(code_preview):
 		code_preview.add_theme_font_size_override("font_size", get_theme_font_size("font_size", "Label") + 2)
 
 func _update_code_preview() -> void:
-	if not is_instance_valid(code_preview) or not is_instance_valid(code_selector):
+	if not is_instance_valid(code_preview) or not is_instance_valid(code_edit):
 		return
 	var template := str(definition.get("code", {}).get("template", ""))
-	var replacement := "____"
-	if code_selector.selected > 0:
-		replacement = code_selector.get_item_text(code_selector.selected)
-	code_preview.text = template.replace("____", replacement)
+	var value := code_edit.text.strip_edges()
+	var full_line := (mission_id == "python" and value.contains("(")) or (mission_id == "html" and value.contains(">") and value.contains("</")) or (mission_id == "markdown" and value.contains(" "))
+	if mission_id == "html" and value.to_lower() == "<h1>": value = value.substr(1, 2)
+	code_preview.text = value if full_line else template.replace("____", value if not value.is_empty() else "____")
 
 func _selector(key: String, placeholder: String, choices: Array, explain_choice: bool = true) -> OptionButton:
 	var selector := OptionButton.new()
@@ -323,14 +361,18 @@ func _update_submit_state() -> void:
 		correction_selector.disabled = not verified
 		submit_button.disabled = _busy or _finished or not verified or _selection(cause_selector).is_empty() or _selection(correction_selector).is_empty()
 	elif mission_id in ["python", "html", "markdown"]:
-		code_selector.disabled = not _available or _busy or _finished
-		submit_button.disabled = not _available or _busy or _finished or _selection(code_selector).is_empty()
+		code_edit.editable = _available and not _busy and not _finished
+		for button in code_keyboard.find_children("*", "BaseButton", true, false):
+			button.disabled = not code_edit.editable
+		submit_button.disabled = not code_edit.editable or code_edit.text.strip_edges().is_empty()
 	else:
 		submit_button.disabled = not _available or _busy or _finished
 	var states: Array = []
 	for child in get_children():
 		if child is BaseButton:
 			states.append([str(child.name), child.disabled])
+	if is_instance_valid(code_keyboard):
+		states.append(["code_submit", submit_button.disabled])
 	var next_signature := JSON.stringify(states)
 	if next_signature != _navigation_signature:
 		_navigation_signature = next_signature
@@ -370,10 +412,10 @@ func _submit_diagnostic() -> void:
 	_finish_submission(_service.submit_diagnostic(mission_id, _selection(diagnosis_selector), _selection(repair_selector)))
 
 func _submit_code() -> void:
-	if _busy or _finished:
+	if _busy or _finished or not _available or not is_instance_valid(code_edit) or code_edit.text.strip_edges().is_empty():
 		return
 	_busy = true
-	_finish_submission(_service.submit_code(mission_id, _selection(code_selector)))
+	_finish_submission(_service.submit_code_text(mission_id, code_edit.text))
 
 func _finish_submission(result: Dictionary) -> void:
 	_busy = false
