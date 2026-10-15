@@ -186,13 +186,14 @@ func _solve_code(id: String) -> void:
 	await _approach(id)
 	await _key(KEY_SPACE)
 	_check(app.demo.overlay_kind == "challenge", "Le poste ouvre l’exercice " + id)
-	var selector := _find(id + "_answer") as OptionButton
+	var editor := _find(id + "_answer") as LineEdit
+	var keyboard = app.demo.challenge.code_keyboard
 	var preview := _find(id + "_code_preview") as Label
 	var submit := _find(id + "_validate") as Button
-	_check(selector != null and preview != null and submit != null, "Choix, aperçu texte et validation natifs : " + id)
-	if selector == null or preview == null or submit == null:
+	_check(editor != null and preview != null and submit != null and keyboard != null and keyboard.is_visible_in_tree(), "Champ de saisie, clavier visible, aperçu et validation natifs : " + id)
+	if editor == null or preview == null or submit == null:
 		return
-	_check(selector.selected == 0 and submit.disabled and preview.text == investigation.mission(id).code.template, "Sans choix, aperçu incomplet et validation désactivée : " + id)
+	_check(editor.text.is_empty() and submit.disabled and preview.text == investigation.mission(id).code.template, "Sans texte, aperçu incomplet et validation désactivée : " + id)
 	_check(preview.get_class() == "Label", "Le code est un texte littéral, sans interprétation HTML ou Markdown : " + id)
 	await _check_modal_layout(id + " sans réponse")
 	var before: Dictionary = state.profile.duplicate(true)
@@ -201,23 +202,44 @@ func _solve_code(id: String) -> void:
 	await _key(KEY_T)
 	await _joy(JOY_BUTTON_Y)
 	_check(tracker.is_expanded() == expanded and app.demo.overlay_kind == "challenge", "Les raccourcis de missions restent suspendus pendant le choix code")
-	var wrong := ""
-	for index in range(1, selector.item_count):
-		if str(selector.get_item_metadata(index)) != ANSWERS[id]:
-			wrong = str(selector.get_item_metadata(index))
-			break
+	editor.grab_focus()
+	await _frames(3)
+	await _joy(JOY_BUTTON_DPAD_DOWN)
+	var expected_first := "[" if id == "markdown" else "a"
+	_check(root.gui_get_focus_owner() is Button and root.gui_get_focus_owner().text == expected_first, "La croix bas rejoint le clavier depuis le champ : " + id)
+	await _joy(JOY_BUTTON_DPAD_RIGHT)
+	_check(root.gui_get_focus_owner() is Button and root.gui_get_focus_owner().text == ("]" if id == "markdown" else "z"), "La croix droite suit la rangée du clavier : " + id)
+	await _joy(JOY_BUTTON_DPAD_UP)
+	_check(root.gui_get_focus_owner() == editor, "La croix haut revient au champ de réponse : " + id)
+	await _physical_text(editor, "p t e")
+	_check(editor.text == "p t e" and app.demo.overlay_kind == "challenge" and tracker.is_expanded() == expanded, "P, T et espace sont saisis sans pause ni changement des missions : " + id + "/" + editor.text + "/" + app.demo.overlay_kind + "/" + str(tracker.is_expanded()) + "/" + str(expanded))
+	var wrong: String = {"python": "input", "html": "p", "markdown": "*"}[id]
 	await _choose(id + "_answer", wrong)
 	await _activate(id + "_validate")
 	_check(app.demo.overlay_kind == "challenge" and state.profile == before and not app.demo.challenge.feedback_label.text.is_empty(), "La mauvaise réponse explique l’erreur sans modifier la sauvegarde : " + id)
 	await _check_modal_layout(id + " erreur")
 	await _choose(id + "_answer", ANSWERS[id], id != "python")
 	_check(preview.text == PREVIEWS[id], "Aperçu exact conservant les guillemets, balises ou dièse : " + id)
-	_check(not submit.disabled, "Une réponse choisie autorise la validation : " + id)
+	_check(not submit.disabled, "Une réponse saisie autorise la validation : " + id)
+	if id == "python":
+		var draft := editor.text
+		var original_modal: Vector2 = app.demo._modal_panel.size
+		controllers.debug_connection_changed(0, false)
+		await _frames(7)
+		_check(app.demo.overlay_kind == "controller_pause", "Débrancher la manette suspend la saisie du code")
+		controllers.debug_connection_changed(0, true)
+		await _frames(4)
+		await _activate("controller_resume")
+		_check(app.demo.overlay_kind == "challenge" and editor.text == draft and keyboard.is_visible_in_tree(), "La reprise explicite restaure le clavier et le texte saisi")
+		_check(app.demo._modal_panel.size.x >= original_modal.x - 1 and app.demo._modal_scroll.get_global_rect().grow(1).encloses(keyboard.get_global_rect()), "La reprise restaure la largeur du panneau et affiche toutes les touches du clavier")
+
 	await _capture("chapter_3_" + id + "_challenge")
 	saves.simulate_write_failure = true
 	await _activate(id + "_validate")
 	saves.simulate_write_failure = false
 	_check(app.demo.overlay_kind == "challenge" and state.profile == before and saves.read_profile(profile_id).data == before, "Échec de sauvegarde : exercice encore ouvert sans réussite ni points : " + id)
+	await _physical_text(editor, PREVIEWS[id])
+	_check(editor.text == PREVIEWS[id] and preview.text == PREVIEWS[id], "La ligne complète se saisit aussi au clavier physique : " + id)
 	await _activate(id + "_validate", true)
 	_check(state.profile.progress.completed_missions.has(id) and state.profile.wallet.points == before.wallet.points + 50, "Le bouton natif valide une vraie solution et 50 points : " + id)
 	_check(state.profile.progress.checkpoint_id == id and saves.read_profile(profile_id).data == state.profile, "La réussite enregistre son checkpoint : " + id)
@@ -345,39 +367,54 @@ func _walk_axis(code: Key, distance: float) -> void:
 
 
 func _choose(id: String, metadata: String, joy: bool = false) -> void:
-	var option := _find(id) as OptionButton
-	_check(option != null and not option.disabled, "Sélecteur natif disponible : " + id)
-	if option == null or option.disabled:
+	var editor := _find(id) as LineEdit
+	_check(editor != null and editor.editable, "Saisie native disponible : " + id)
+	if editor == null or not editor.editable:
 		return
-	var target := -1
-	for index in range(option.item_count):
-		if str(option.get_item_metadata(index)) == metadata:
-			target = index
-	_check(target >= 0, "Réponse proposée par le sélecteur : " + metadata)
-	if target < 0:
-		return
-	option.grab_focus()
-	await _frames(5)
-	if joy:
-		await _joy(JOY_BUTTON_A)
-	else:
-		await _key(KEY_ENTER)
-	var popup := option.get_popup()
-	_check(popup.visible, "Liste native réellement ouverte : " + id)
-	for attempt in range(option.item_count + 2):
-		if not popup.visible or popup.get_focused_item() == target:
-			break
-		if joy:
-			await _joy(JOY_BUTTON_DPAD_DOWN)
-		else:
-			await _key(KEY_DOWN)
-	if popup.visible:
-		if joy:
-			await _joy(JOY_BUTTON_A)
-		else:
-			await _key(KEY_ENTER)
+	var keyboard = app.demo.challenge.code_keyboard
+	var value := "#" if metadata == "hash" else metadata
+	editor.grab_focus()
+	editor.select_all()
+	await _frames(3)
+	for character in value:
+		if character.to_lower() in "azertyuiopqsdfghjklmwxcvbn":
+			if keyboard.input_mode != "letters": await _activate("key_123", joy)
+			if character == character.to_upper() and keyboard.shift_state == 0: await _activate("key_Shift", joy)
+			elif character == character.to_lower() and keyboard.shift_state > 0: await _activate("key_Shift", joy)
+		var key: BaseButton = _character_key(keyboard, character)
+		for attempt in range(3):
+			if key != null: break
+			await _activate("key_123" if keyboard.input_mode == "letters" else ("key_Symbols" if keyboard.input_mode == "numbers" else "key_Numbers"), joy)
+			key = _character_key(keyboard, character)
+		_check(key != null, "Caractère proposé par le clavier à l’écran : " + character)
+		if key == null: return
+		await _activate(str(key.name), joy)
+		_check(Rect2(Vector2.ZERO, Vector2(root.size)).grow(1).encloses(editor.get_global_rect()), "La réponse reste visible pendant la saisie virtuelle : " + id)
+	_check(editor.text == value, "Réponse réellement tapée à l’écran : " + id)
+
+
+func _character_key(keyboard: Node, character: String) -> BaseButton:
+	for node in keyboard.find_children("*", "BaseButton", true, false):
+		if node.is_visible_in_tree() and node.text == character: return node
+	return null
+
+
+func _physical_text(editor: LineEdit, value: String) -> void:
+	editor.grab_focus()
+	editor.select_all()
+	await _frames(3)
+	for character in value:
+		var event := InputEventKey.new()
+		event.keycode = character.to_upper().unicode_at(0)
+		event.unicode = character.unicode_at(0)
+		event.pressed = true
+		Input.parse_input_event(event)
+		await _frames(1)
+		event = event.duplicate()
+		event.pressed = false
+		Input.parse_input_event(event)
+		await _frames(1)
 	await _frames(4)
-	_check(option.selected == target, "Réponse choisie au clavier ou à la manette : " + id)
 
 
 func _activate(id: String, joy: bool = false) -> bool:
@@ -471,7 +508,7 @@ func _physics_frames(count: int) -> void:
 
 
 func _capture(id: String) -> void:
-	if not captures:
+	if not captures or not id.ends_with("_challenge"):
 		return
 	await _frames(4)
 	await RenderingServer.frame_post_draw
