@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "investigation_version": 1,
-  "mission_reward_max": 300,
+  "mission_reward_max": 450,
   "missions": [
     {
       "id": "lighting",
@@ -439,6 +439,138 @@
         "text": "Bilan de l’étage : la liaison physique est rétablie, le poste suit le plan IPv4 et le Wi-Fi utilise un chiffrement compatible avec une phrase unique. Trois vérifications complémentaires ont remis le local en service."
       },
       "success_explanation": "Un réseau ouvert manque de chiffrement Wi-Fi. WPA2/WPA3 et une phrase longue, unique et gardée privée améliorent cette protection. Le mot de passe d’administration reste distinct ; masquer le nom du réseau ne remplace pas le chiffrement."
+    },
+    {
+      "id": "python",
+      "name": "Afficher un message en Python",
+      "title": "Afficher un message en Python",
+      "description": "Compléter une instruction Python avec le mot qui affiche un message.",
+      "chapter": 3,
+      "room_id": "room_03",
+      "prerequisites": [
+        "security"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [],
+      "checks": [],
+      "code": {
+        "prompt": "Quel mot permet d’afficher « Bonjour CIEL » en Python ?",
+        "template": "____(\"Bonjour CIEL\")",
+        "choices": [
+          {
+            "id": "print",
+            "label": "print",
+            "feedback": "Oui : print affiche le texte placé entre parenthèses."
+          },
+          {
+            "id": "input",
+            "label": "input",
+            "feedback": "input sert à demander une saisie. Pour afficher ce message, choisis print."
+          },
+          {
+            "id": "for",
+            "label": "for",
+            "feedback": "for sert à répéter des actions. Pour afficher un message, choisis print."
+          }
+        ]
+      },
+      "solution": {
+        "answer": "print"
+      },
+      "clue": {
+        "id": "html_note",
+        "text": "Le premier message est prêt. Le poste HTML attend maintenant le nom de la balise qui donne un titre à une page."
+      },
+      "success_explanation": "En Python, print(\"Bonjour CIEL\") affiche le texte Bonjour CIEL. Les guillemets délimitent ce texte et les parenthèses entourent ce que l’on veut afficher."
+    },
+    {
+      "id": "html",
+      "name": "Créer un titre en HTML",
+      "title": "Créer un titre en HTML",
+      "description": "Reconnaître une balise HTML pour écrire le titre principal d’une page.",
+      "chapter": 3,
+      "room_id": "room_03",
+      "prerequisites": [
+        "python"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [],
+      "checks": [],
+      "code": {
+        "prompt": "Quelle balise HTML permet de créer un titre principal ?",
+        "template": "<____>Bonjour CIEL</____>",
+        "choices": [
+          {
+            "id": "p",
+            "label": "p",
+            "feedback": "La balise p crée un paragraphe. Pour le titre principal, choisis h1."
+          },
+          {
+            "id": "h1",
+            "label": "h1",
+            "feedback": "Oui : h1 indique un titre de premier niveau, avec une balise ouvrante et une balise fermante."
+          },
+          {
+            "id": "img",
+            "label": "img",
+            "feedback": "La balise img sert à insérer une image. Pour le titre principal, choisis h1."
+          }
+        ]
+      },
+      "solution": {
+        "answer": "h1"
+      },
+      "clue": {
+        "id": "markdown_note",
+        "text": "Le titre HTML est prêt. Sur le dernier poste, un seul symbole suffit à commencer un titre Markdown."
+      },
+      "success_explanation": "En HTML, <h1>Bonjour CIEL</h1> crée un titre de premier niveau. La balise <h1> l’ouvre et </h1> le ferme ; le texte du titre se trouve entre les deux."
+    },
+    {
+      "id": "markdown",
+      "name": "Écrire un titre en Markdown",
+      "title": "Écrire un titre en Markdown",
+      "description": "Choisir le symbole le plus simple pour créer un titre Markdown.",
+      "chapter": 3,
+      "room_id": "room_03",
+      "prerequisites": [
+        "html"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [],
+      "checks": [],
+      "code": {
+        "prompt": "Quel symbole faut-il placer avant l’espace pour écrire un titre de premier niveau en Markdown ?",
+        "template": "____ Bonjour CIEL",
+        "choices": [
+          {
+            "id": "star",
+            "label": "*",
+            "feedback": "Une étoile peut commencer une liste. Pour un titre de premier niveau, utilise # suivi d’un espace."
+          },
+          {
+            "id": "dash",
+            "label": "-",
+            "feedback": "Un tiret peut commencer une liste. Pour ce titre de premier niveau, choisis #."
+          },
+          {
+            "id": "hash",
+            "label": "#",
+            "feedback": "Oui : # suivi d’un espace commence un titre de premier niveau en Markdown."
+          }
+        ]
+      },
+      "solution": {
+        "answer": "hash"
+      },
+      "clue": {
+        "id": "code_message",
+        "text": "Atelier code terminé ! Tu as affiché un message avec Python, créé un titre en HTML et écrit un titre en Markdown. Trois petites syntaxes, trois façons de présenter la même idée : Bonjour CIEL."
+      },
+      "success_explanation": "En Markdown, # Bonjour CIEL crée un titre de premier niveau. Le symbole # est suivi d’un espace, puis du texte du titre."
     }
   ]
 }
