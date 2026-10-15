@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.6.1 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.7.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -70,13 +70,17 @@ Débrancher une manette suspend le jeu ; reconnecter ne reprend pas tout seul.
 ENQUÊTE, BIBLIOTHÈQUE ET BOUTIQUE
 Chapitre 1 : électricité, commande de serrure et diagnostic vidéo.
 Après les trois missions, l’ascenseur en bas du bureau mène au chapitre 2 :
-RJ45, IPv4 et Wi-Fi. L’ascenseur permet ensuite de revenir au chapitre 1.
+RJ45, IPv4 et Wi-Fi. Après ces trois réussites réseau, il mène au chapitre 3 :
+Python (print), HTML (titre h1), Markdown (# suivi d’une espace). Lire
+la consigne, choisir la bonne réponse, puis valider. Les erreurs sont
+expliquées sans gain de points. L’ascenseur dessert les étages débloqués.
+Aucun interpréteur Python, navigateur ou code utilisateur n’est exécuté.
 Le tableau de missions à droite est repliable avec T ou la face haut.
 Les repères et boutons des missions terminées disparaissent après réussite
 et sauvegarde ; les meubles réparés restent visibles, l’ascenseur accessible.
 Pause > Bilan du chapitre retrouve le bilan d’un chapitre déjà terminé.
 
-Chaque première réussite donne 50 points : 150 par chapitre, 300 au maximum
+Chaque première réussite donne 50 points : 150 par chapitre, 450 au maximum
 par profil. Rejouer ne redonne pas les récompenses. L’enquête reste gratuite.
 Les exercices sont fictifs et hors ligne ; ils ne modifient pas le réseau,
 le câblage ou la configuration réelle de votre Raspberry Pi.
@@ -85,9 +89,9 @@ Test 1 à Test 4 coûtent 200 points chacun. Ils affichent seulement
 « jeu en préparation », en attendant les vrais jeux ; les ouvrir ne donne
 aucun point. Les achats antérieurs restent acquis. Un achat est refusé sous
 200 points ; un article possédé n’est pas facturé deux fois. Une erreur de
-sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 300
-points permet un achat sans autre dépense ; les autres jeux attendent de
-nouveaux défis ou des points déjà présents dans un ancien profil.
+sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 450
+points permet deux achats sans autre dépense, avec 50 points restants ;
+un troisième achat est alors refusé. Rejouer ne redonne aucun point.
 
 Deux présentations de l’accueil sont dans Paramètres > Affichage : enquête
 à gauche et quatre jeux à droite, ou couvertures égales avec défilement.
@@ -117,7 +121,7 @@ Utilisez ensuite l’arrêt normal de Raspberry Pi OS avant de couper le courant
 Les contrôles de l’archive, de l’ELF ARM64, des ressources compilées et des
 lanceurs sont consignés dans le rapport de livraison sur GitHub.
 Ils ne constituent pas un essai natif sur votre Raspberry Pi 4.
-À vérifier sur le matériel : premier lancement, six missions et ascenseur,
+À vérifier sur le matériel : premier lancement, neuf missions et ascenseur,
 reprise, achats et profils, clavier/photo, tableau de missions, plein écran,
 son, manette USB et contrôleur fabriqué, fluidité en 1280 × 720 et petit écran.
 Aucun résultat de FPS, son ou mapping matériel n’est annoncé comme acquis.
