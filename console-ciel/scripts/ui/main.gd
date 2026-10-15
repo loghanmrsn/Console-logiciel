@@ -880,7 +880,7 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
 	var definition=entry.duplicate(true)
 	if educational:
-		definition.description='Deux chapitres · jusqu’à 300 points.'
+		definition.description='Trois chapitres · jusqu’à 450 points.'
 		definition.action_label='Continuer' if AppState.profile.progress.started else 'Commencer'
 	var card=GameCard.new()
 	card.size_flags_horizontal=Control.SIZE_EXPAND_FILL if host is GridContainer else Control.SIZE_FILL
@@ -1100,7 +1100,7 @@ func _product_action(id: String) -> void:
 	elif AppState.profile.wallet.points<item.price:
 		var maximum=0
 		for mission in RewardService.missions: maximum+=mission.reward
-		_confirm('Points insuffisants','Résolvez les missions des deux chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
+		_confirm('Points insuffisants','Résolvez les missions des trois chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
 	else:
 		_confirm('Acheter « '+item.name+' » ?','Prix : %d points virtuels. Nouveau solde : %d points. Aucun argent réel.' % [item.price,AppState.profile.wallet.points-item.price],'Acheter',func():
 			if _result(ShopService.purchase(id),'✓ Achat réussi et enregistré',func(): _product_action(id)): _show_screen('shop'))
@@ -1207,11 +1207,14 @@ func _appearance_settings(host: Node) -> void:
 	for item in ShopService.catalog:
 		if item.type=='theme' and item.id in AppState.profile.owned_items:
 			var id:String=item.id
-			_button(host,item.name,func():
+			var selected=draft_settings.get('appearance_style','profile')=='profile' and draft_settings.get('profile_theme',AppState.profile.equipped.theme)==id
+			var button=_button(host,('✓ ' if selected else '')+item.name,func():
 				draft_settings.profile_theme=id
 				draft_settings.appearance_style='profile'
 				SettingsService.preview(draft_settings)
-				_show_screen('settings'),'theme_'+id).custom_minimum_size.y=38
+				_show_screen('settings'),'theme_'+id)
+			button.custom_minimum_size.y=38
+			button.theme_type_variation='NavigationSelected' if selected else 'Button'
 	_label(host,'Les styles gratuits ci-dessus n’utilisent pas vos points. Les cosmétiques du profil restent dans la boutique.',13,true)
 
 func _color_setting(host: Node,title: String,key: String,choices: Array) -> void:
@@ -1339,7 +1342,7 @@ func _help() -> void:
 	var credits=_panel(content)
 	_label(credits,'Crédits & licences',24)
 	_label(credits,'Logiciel : Loghan\nConstruction et assemblage : binôme, nom à compléter\nFormes et illustrations originales : CC0 1.0\nSons originaux : CC0 1.0\nMoteur Godot et police intégrée : licences fournies dans assets/LICENSES.md et assets/licenses/.')
-	_label(credits,'Deux chapitres et six défis : éclairage, commande de porte, vidéo, liaison réseau, adressage IPv4 et Wi-Fi. L’ascenseur du bureau s’ouvre après les trois premières missions. Simulations locales uniquement ; aucun réglage du PC ou d’un réseau réel n’est modifié.',0,true)
+	_label(credits,'Trois chapitres et neuf défis : éclairage, commande de porte, vidéo, réseau, IPv4, Wi-Fi, Python, HTML et Markdown. L’ascenseur ouvre chaque nouvel étage après les trois missions précédentes. Ces exercices sont des simulations locales : ils n’exécutent aucun code et ne modifient aucun réglage du système.',0,true)
 	_label(credits,'Points virtuels uniquement. Pas de compte, de serveur, de paiement ni d’indicateur de batterie simulé.',0,true)
 
 func _controls() -> void:
