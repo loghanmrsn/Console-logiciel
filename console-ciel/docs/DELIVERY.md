@@ -1,4 +1,18 @@
-# Livraison 0.7.1 — clavier des défis de code
+# Livraison 0.8.0 — livres et laboratoire réseau
+
+Le coin ressources du chapitre 3 ouvre trois livres : **Python, HTML et Markdown**. Chaque livre contient trois leçons et un exemple qui permet de répondre au défi. Les couvertures et l’ouverture sont animées ; la réduction des animations est respectée. La lecture fonctionne à la souris, au clavier et à la manette, reste disponible après les missions et ne change aucun point.
+
+Le **chapitre 4**, accessible après les neuf premières réussites, présente trois diagnostics : **pare-feu HTTPS ciblé, conflit d’adresses IPv4 et masque /26**. L’enquête comporte maintenant **douze missions, jusqu’à 600 points par profil**. L’ascenseur présente exactement **Descendre d’étage, Monter d’étage et Retour au menu**. Échap / face droit permet de rester dans la pièce. Les anciennes sauvegardes, achats et récompenses sont conservés.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.8.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.zip).
+
+Recette du 15 octobre 2026 : **3 983 assertions source dans onze suites**, **2 321 assertions par pack compilé** chargé par Godot Linux x86_64 et **293 contrôles de rendu réel X11 / OpenGL ES 3.2**, sans échec. Les **217 ressources intégrées** de chaque paquet, dont 48 SVG, leurs empreintes MD5 et les CRC des ZIP sont vérifiés. [Résumé détaillé](../tests/livres_reseau_0.8.0_results/summary.json).
+
+Onze captures réelles montrent notamment la [bibliothèque](screenshots/livres_reseau_0.8.0/bibliotheque_challenge.png), le [livre HTML](screenshots/livres_reseau_0.8.0/livre_html_challenge.png), la [bibliothèque compacte](screenshots/livres_reseau_0.8.0/bibliotheque_compacte_challenge.png), le [laboratoire](screenshots/livres_reseau_0.8.0/laboratoire_challenge.png) et les [trois boutons de l’ascenseur](screenshots/livres_reseau_0.8.0/ascenseur_challenge.png).
+
+Le rendu utilise Mesa llvmpipe sur Linux x86_64, des événements de manette simulés et une sortie audio Dummy. Les pilotes de test externes exercent le contenu compilé des exports ; ce contrôle ne lance pas les binaires Windows ou ARM64 sur leur matériel cible. Le lancement natif Windows / Pi 4, leur rendu matériel, le son perçu et la manette physique restent à vérifier sur les appareils.
+
+# Historique — livraison 0.7.1 — clavier des défis de code
 
 Le clavier à l’écran apparaît directement dans les exercices Python, HTML et Markdown. Il propose les minuscules, **⇧**, **123**, **#+=**, Espace, Effacer, Valider et Annuler. Le joueur tape le mot ou symbole manquant (`print`, `h1`, `#`) ou l’exemple complet. Le champ accepte 64 caractères ; le pseudo reste limité à 16. Le clavier physique et la navigation à la manette sont conservés, avec passage entre les touches et le champ de saisie. Une déconnexion conserve le texte et demande une reprise explicite.
 
@@ -6,7 +20,7 @@ Le clavier à l’écran apparaît directement dans les exercices Python, HTML e
 
 Les neuf missions et les récompenses restent à 50 points chacune, 450 au maximum par profil. Les réponses sont comparées à des exemples pédagogiques ; aucun code saisi n’est exécuté. Les sauvegardes et achats existants sont conservés. La présentation des README reste identique, avec les nouveaux liens.
 
-Recette du 15 octobre 2026 : **3 272 assertions source** dans huit suites, **1 882 assertions par pack** Windows et ARM64 chargé par Godot Linux x86_64, et **610 contrôles de rendu X11 / OpenGL ES 3.2 Mesa llvmpipe**, sans échec. Les ressources et CRC des deux paquets sont vérifiés. [Résumé courant](../tests/clavier_code_0.7.1_results/summary.json).
+Recette du 15 octobre 2026 : **3 272 assertions source** dans huit suites, **1 882 assertions par pack** Windows et ARM64 chargé par Godot Linux x86_64, et **610 contrôles de rendu X11 / OpenGL ES 3.2 Mesa llvmpipe**, sans échec. Les ressources et CRC des deux paquets sont vérifiés. [Résumé 0.7.1](../tests/clavier_code_0.7.1_results/summary.json).
 
 Les captures réelles montrent le clavier dans [Python](screenshots/clavier_code_0.7.1/chapter_3_python_challenge.png), [HTML](screenshots/clavier_code_0.7.1/chapter_3_html_challenge.png) et [Markdown](screenshots/clavier_code_0.7.1/chapter_3_markdown_challenge.png), dont les deux derniers en 800 × 480 avec texte agrandi. Les exports Windows et ARM64, leurs ressources chargées par Godot Linux x86_64 et le rendu X11 sont des contrôles distincts. Le lancement natif sur Windows et sur le Raspberry Pi, le son perçu et la manette physique restent à vérifier sur les appareils cibles.
 
