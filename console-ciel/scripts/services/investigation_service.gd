@@ -5,6 +5,7 @@ extends Node
 signal mission_changed(mission_id: String, state: String)
 
 var _authorizations: Dictionary = {}
+const CODE_TEXT_LIMIT := 64
 
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
@@ -241,6 +242,39 @@ func submit_code(id: String, answer: String) -> Dictionary:
 	if id not in SaveService.CHAPTER_THREE_IDS:
 		return SaveService._fail("Ce défi ne fait pas partie de l’atelier code.")
 	return _finish_validated(id, {"answer": answer})
+
+func submit_code_text(id: String, text: String) -> Dictionary:
+	if id not in SaveService.CHAPTER_THREE_IDS:
+		return SaveService._fail("Ce défi ne fait pas partie de l’atelier code.")
+	var ready := _ready_for(id)
+	if not ready.ok:
+		return ready
+	if text.length() > CODE_TEXT_LIMIT:
+		return SaveService._fail("La réponse doit rester courte : 64 caractères au maximum.")
+	var value := text.strip_edges()
+	if value.is_empty():
+		return SaveService._fail("Saisis le mot ou le symbole manquant avant de valider.")
+	var definition: Dictionary = ready.data
+	var label := ""
+	for choice in definition.code.choices:
+		if choice.id == definition.solution.answer:
+			label = choice.label
+	var example: String = str(definition.code.template).replace("____", label)
+	var normalized := value
+	if id == "html":
+		normalized = value.replace("<H1>", "<h1>").replace("</H1>", "</h1>")
+		if value.to_lower() == "h1": normalized = "h1"
+	var accepted: Array[String] = [label, example]
+	if id == "python": accepted.append(example.replace('"', "'"))
+	if id == "html": accepted.append("<h1>")
+	if normalized in accepted:
+		# Comparaison de texte uniquement : les règles existantes revalident la
+		# réponse canonique avant l’écriture de la mission et de sa récompense.
+		return submit_code(id, definition.solution.answer)
+	for choice in definition.code.choices:
+		if value == choice.label:
+			return SaveService._fail(choice.feedback)
+	return SaveService._fail("Vérifie la syntaxe : tape le mot ou symbole manquant, ou recopie la ligne complète de l’exemple.")
 
 func _validate_code(id: String, answer: String) -> Dictionary:
 	var ready := _ready_for(id)
