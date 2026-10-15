@@ -10,7 +10,7 @@ func _run():
 	await process_frame
 	check(Engine.get_version_info().string=='4.6.3-stable (official)','Version exacte Godot')
 	check(ProjectSettings.get_setting('application/run/main_scene')=='res://scenes/main.tscn','Scene principale')
-	check(ProjectSettings.get_setting('application/config/version')=='0.7.0','Version du logiciel')
+	check(ProjectSettings.get_setting('application/config/version')=='0.7.1','Version du logiciel')
 	check(ProjectSettings.get_setting('display/window/size/window_width_override')==1280 and ProjectSettings.get_setting('display/window/size/window_height_override')==720,'Fenêtre initiale 1280x720')
 	check(ProjectSettings.get_setting('display/window/size/resizable')==true and ProjectSettings.get_setting('display/window/size/mode')==0,'Fenêtre redimensionnable par défaut')
 	check(ProjectSettings.get_setting('rendering/renderer/rendering_method')=='gl_compatibility','Compatibility')
@@ -24,7 +24,7 @@ func _run():
 	var presets=ConfigFile.new();check(presets.load('res://export_presets.cfg')==OK,'Presets lisibles')
 	check(presets.get_value('preset.2','name')=='Windows Desktop x86_64' and presets.get_value('preset.2','platform')=='Windows Desktop','Cible Windows dédiée')
 	check(presets.get_value('preset.2.options','binary_format/architecture')=='x86_64','Architecture Windows x86_64')
-	check(presets.get_value('preset.2.options','application/file_version')=='0.7.0' and presets.get_value('preset.2.options','application/product_version')=='0.7.0','Métadonnées Windows 0.7.0')
+	check(presets.get_value('preset.2.options','application/file_version')=='0.7.1' and presets.get_value('preset.2.options','application/product_version')=='0.7.1','Métadonnées Windows 0.7.1')
 	check(presets.get_value('preset.2','export_path')=='builds/windows-x86_64/Console_CIEL.exe','Destination Windows')
 	check(presets.get_value('preset.2.options','binary_format/embed_pck')==true and presets.get_value('preset.2.options','codesign/enable')==false,'Pack intégré et pas de signature annoncée')
 	check(presets.get_value('preset.1','name')=='Linux ARM64 Raspberry Pi' and presets.get_value('preset.1.options','binary_format/architecture')=='arm64','Cible Pi préservée')
