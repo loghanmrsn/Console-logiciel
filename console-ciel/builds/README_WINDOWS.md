@@ -1,29 +1,22 @@
-# Console CIEL 0.6.1 — Windows x86_64
+# Console CIEL 0.7.0 — Windows x86_64
 
-[Télécharger Windows 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.7.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_code_0.7.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
-Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS ; son fichier dépasse la limite de 100 Mio pour un fichier Git ordinaire.
+Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-confort-0.6.1/Console_CIEL.exe`.
+Le [projet complet Windows 0.7.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-code-0.7.0/Console_CIEL.exe`.
 
-## Ajustements 0.6.1
+## Chapitre 3 — atelier du code
 
-- Profil, avatar et points en haut à gauche, y compris pendant l’enquête ; quatre onglets centrés dans la barre du bas.
-- **Test 1 à Test 4 : 200 points chacun**, soit 800 au total. Les anciens achats restent acquis sans supplément ; ces jeux ouvrent seulement une page de préparation.
-- Repère et bouton d’interaction masqués après réussite sauvegardée d’une mission. Les meubles réparés restent visibles et l’ascenseur reste interactif dans les deux sens.
-- **Pause → Bilan du chapitre** permet de revoir un chapitre terminé.
+Après RJ45, IPv4 et Wi-Fi, l’ascenseur donne accès à trois exercices simples : **Python (`print`)**, **HTML (`h1`)**, puis **Markdown (`# `)**. Les réponses sont des choix guidés avec explications ; aucun code utilisateur n’est exécuté. Les étages déjà ouverts restent accessibles. [Parcours de l’enquête](../docs/ENQUETE.md).
 
-Les six missions rapportent toujours 50 points une seule fois chacune, **300 au maximum par profil**. Quatre réussites sans dépense préalable financent un jeu ; les six réussites suivies de cet achat laissent 100 points. Les autres jeux attendent de futurs défis ou un solde déjà présent dans un ancien profil ; rejouer ne redonne aucun point. [Guide de la bibliothèque](../docs/BIBLIOTHEQUE_ET_THEMES.md) et [parcours de l’enquête](../docs/ENQUETE.md).
+Les neuf missions rapportent **50 points à leur première réussite**, soit **450 au maximum par profil**. Deux achats Test à 200 points laissent 50 points, sans autre dépense. Ces Test restent des jeux en préparation. Les anciens profils et achats sont conservés ; rejouer ne redonne aucun point. Le profil en haut à gauche, les repères masqués après réussite, les thèmes et le clavier restent disponibles. [Bibliothèque](../docs/BIBLIOTHEQUE_ET_THEMES.md).
 
 ## Rapports et essai sur votre PC
 
-[Rapport Windows 0.6.1](Console_CIEL_Windows_x86_64_confort_0.6.1.verification.json) et [rapport du projet complet 0.6.1](Console_CIEL_Projet_Complet_0.6.1.verification.json) : contenu et empreintes des archives courantes. Les résultats historiques 0.6.0 ci-dessous sont conservés séparément.
+Le [rapport Windows 0.7.0](Console_CIEL_Windows_x86_64_code_0.7.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.7.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
-Vérifications **0.6.1 du 14 octobre 2026** : **11 844 assertions source** dans 16 suites, **65 de persistance** entre trois processus, **58 contrôles avec rendu X11** et 8 captures, **6 547 assertions du pack compilé**, **18 contrats Windows** et **27 contrôles de packaging**, zéro échec. Les **203 ressources intégrées**, dont **43 SVG**, et les CRC du ZIP ont été contrôlés. Audit statique : **818 fichiers, 72 UID, 194 références**, zéro erreur ; chargement natif des ressources sous Godot Linux : **203 contrôles, zéro échec**. [Résumé courant](../tests/confort_0.6.1_results/summary.json) et [liens des huit captures réelles](../docs/DELIVERY.md).
-
-ZIP Windows : **36 442 313 octets** ; EXE : **105 241 656 octets**. SHA-256 du ZIP : `bcceba1c337c69db48cfe5e236856246ecd9b97759f1111b079efd8f9de0ba37`.
-
-Les tests de logique et de pack embarqué s’exécutent avec Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. Le [guide Windows](../docs/WINDOWS.md) inclut le profil en haut à gauche, les quatre prix, la disparition des repères, le bilan en pause, la reprise et les deux trajets d’ascenseur. Les anciens ZIP **0.6.0 et antérieurs** sont conservés.
+Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
 # Historique — Windows x86_64 0.6.0
 
