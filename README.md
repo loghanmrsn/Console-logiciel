@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.7.1** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.8.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_clavier_0.7.1.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.1.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.8.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -30,31 +30,34 @@ Pour ajouter un raccourci au menu du bureau : `bash ./Installer_raccourci.sh`. G
 
 ## Présentation du logiciel
 
-Console CIEL permet d’apprendre en explorant un atelier, une salle réseau et un espace consacré au code. Le joueur résout des pannes simulées, gagne des points et personnalise son profil. Tout fonctionne localement, sans compte en ligne ni paiement réel.
+Console CIEL permet d’apprendre en explorant un atelier, une salle réseau et un espace consacré au code et un laboratoire réseau. Le joueur résout des pannes simulées, gagne des points et personnalise son profil. Tout fonctionne localement, sans compte en ligne ni paiement réel.
 
 ![Accueil de Console CIEL : enquête à gauche, bibliothèque à droite et navigation en bas.](console-ciel/docs/screenshots/chapitre_3_0.7.0/home_three_chapters.png)
 
 ### L’enquête éducative
 
-L’enquête comprend **trois chapitres et neuf missions** :
+L’enquête comprend **quatre chapitres et douze missions** :
 
 | Chapitre | Missions |
 |---|---|
 | **1 — Atelier et bureau** | Rétablir l’éclairage, réparer la commande de la porte et diagnostiquer l’affichage de l’ordinateur. |
 | **2 — Salle réseau** | Rétablir une liaison RJ45, configurer l’adressage IPv4 et sécuriser le Wi-Fi. |
 | **3 — L’atelier du code** | Afficher un message en Python, choisir une balise de titre HTML et écrire un titre Markdown. |
+| **4 — Laboratoire réseau** | Configurer un pare-feu, résoudre un conflit IPv4 et choisir un masque de sous-réseau /26. |
 
-L’ascenseur, situé en bas du bureau, devient accessible après les trois premières missions. Le chapitre 3 se débloque après les trois missions réseau ; l’ascenseur permet de revenir aux étages déjà accessibles. Le clavier à l’écran apparaît dans les trois exercices de code : saisissez le mot ou symbole manquant, ou l’exemple complet, puis validez.
+L’ascenseur, situé en bas du bureau, devient accessible après les trois premières missions. Le chapitre 3 se débloque après les trois missions réseau ; le chapitre 4 se débloque après les défis Python, HTML et Markdown. L’ascenseur propose **Descendre d’étage, Monter d’étage et Retour au menu** ; Échap permet de rester dans la pièce. Le clavier à l’écran apparaît dans les trois exercices de code : saisissez le mot ou symbole manquant, ou l’exemple complet, puis validez.
+
+Au **coin ressources du chapitre 3**, trois livres interactifs expliquent Python, HTML et Markdown en trois petites leçons chacun. La sélection et l’ouverture sont animées ; les exemples donnent aussi les réponses aux défis. Les livres restent consultables après les missions et respectent le réglage de réduction des animations.
 
 Un **tableau de missions à droite de l’écran** affiche les objectifs du chapitre. Il se déplie ou se replie avec **T** ou le **bouton de face haut** de la manette. Les repères des missions disparaissent après leur réussite ; le bilan reste accessible depuis le menu Pause.
 
 ### Les points et la boutique
 
-Chaque mission rapporte **50 points à sa première réussite**, soit **450 points au maximum par profil**. Rejouer une mission ne rapporte pas de nouveaux points.
+Chaque mission rapporte **50 points à sa première réussite**, soit **600 points au maximum par profil**. Rejouer une mission ne rapporte pas de nouveaux points.
 
 La boutique propose des avatars, des cadres, des thèmes et quatre emplacements de jeux : **Test 1, Test 2, Test 3 et Test 4**, à **200 points chacun**. Ces quatre jeux sont encore en préparation.
 
-Les achats sont conservés dans le profil et apparaissent dans sa bibliothèque ou son inventaire. Un solde insuffisant empêche l’achat ; un article déjà possédé n’est pas facturé une seconde fois. Sans autre dépense, les missions actuelles permettent d’acheter deux jeux.
+Les achats sont conservés dans le profil et apparaissent dans sa bibliothèque ou son inventaire. Un solde insuffisant empêche l’achat ; un article déjà possédé n’est pas facturé une seconde fois. Sans autre dépense, les missions actuelles permettent d’acheter trois jeux.
 
 ### Les profils et les avatars
 
@@ -101,7 +104,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.1.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
