@@ -1,11 +1,11 @@
-# Archives complètes Console CIEL 0.7.1
+# Archives complètes Console CIEL 0.8.0
 
 Chaque ZIP réunit les sources, ressources, documentation, outils, tests et le logiciel de sa plateforme, sous **console-ciel/**. Choisir l’archive correspondant à son appareil :
 
 | Plateforme | Projet complet | Logiciel après extraction |
 |---|---|---|
-| Windows x86_64 | [Projet complet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.1.zip) | `console-ciel/builds/windows-x86_64-clavier-0.7.1/Console_CIEL.exe` |
-| Raspberry Pi 4 ARM64 | [Projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.zip) | `console-ciel/builds/linux-arm64-raspberry-pi-0.7.1/Lancer_Console_CIEL.sh` |
+| Windows x86_64 | [Projet complet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip) | `console-ciel/builds/windows-x86_64-livres-reseau-0.8.0/Console_CIEL.exe` |
+| Raspberry Pi 4 ARM64 | [Projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.zip) | `console-ciel/builds/linux-arm64-raspberry-pi-0.8.0/Lancer_Console_CIEL.sh` |
 
 Après extraction complète :
 
@@ -13,9 +13,9 @@ Après extraction complète :
 - **Jouer sur le Pi 4 64 bits avec bureau** : ouvrir un terminal dans le dossier indiqué, puis lancer `bash ./Lancer_Console_CIEL.sh`. Le véritable exécutable est **console-ciel.arm64**. Godot n’est pas nécessaire pour jouer sur les deux plateformes.
 - **Ouvrir les sources** : importer `console-ciel/project.godot` dans Godot standard **4.6.3.stable.official.7d41c59c4**, rendu Compatibility.
 - **Ajouter des photos** : utiliser **images_profil/** à côté du programme ; en édition Godot, utiliser `console-ciel/images_profil/`. Puis **Profil → Modifier → Mes images → Actualiser les images**.
-- **Consulter l’inventaire** : `CONTENU_ARCHIVE.json` donne les chemins, tailles et SHA-256 des fichiers inclus. Les rapports externes [Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.7.1.verification.json) et [Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.verification.json) donnent les empreintes finales des ZIP.
+- **Consulter l’inventaire** : `CONTENU_ARCHIVE.json` donne les chemins, tailles et SHA-256 des fichiers inclus. Les rapports externes [Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.8.0.verification.json) et [Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.verification.json) donnent les empreintes finales des ZIP.
 
-Le contenu jouable **0.7.1** est identique : trois chapitres, neuf missions, dont Python, HTML et Markdown dans l’atelier du code. Les récompenses uniques atteignent 450 points ; chaque jeu Test coûte 200 points et reste un jeu en préparation. Le profil, les thèmes, les photos, le tableau de missions et les repères masqués sont conservés. [Guide Windows](WINDOWS.md), [guide Raspberry Pi](RASPBERRY_PI.md), [enquête](ENQUETE.md) et [bibliothèque](BIBLIOTHEQUE_ET_THEMES.md).
+Le contenu jouable **0.8.0** est identique : quatre chapitres, douze missions, dont Python, HTML et Markdown dans l’atelier du code. Les récompenses uniques atteignent 600 points ; chaque jeu Test coûte 200 points et reste un jeu en préparation. Le profil, les thèmes, les photos, le tableau de missions et les repères masqués sont conservés. [Guide Windows](WINDOWS.md), [guide Raspberry Pi](RASPBERRY_PI.md), [enquête](ENQUETE.md) et [bibliothèque](BIBLIOTHEQUE_ET_THEMES.md).
 
 Chaque archive complète inclut seulement le **binaire courant de sa plateforme**. Les autres ZIP et les anciennes livraisons restent conservés séparément sur GitHub, sans être imbriqués dans les nouvelles archives. Les caches, modèles Godot téléchargeables, secrets et données personnelles sont exclus. Les sauvegardes des joueurs ne sont pas distribuées. Les licences des ressources et des polices intégrées au moteur restent incluses.
 
@@ -26,17 +26,17 @@ Pour refaire l’assemblage après avoir préparé et vérifié la livraison, de
 python3 - <<'PYTHON'
 from pathlib import Path
 from tools.package_complete import create_archive
-create_archive(Path('.'), Path('builds/Console_CIEL_Projet_Complet_Windows_0.7.1.zip'),
-               'builds/windows-x86_64-clavier-0.7.1', current_windows_only=True)
+create_archive(Path('.'), Path('builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip'),
+               'builds/windows-x86_64-livres-reseau-0.8.0', current_windows_only=True)
 PYTHON
 
 # Raspberry Pi :
 python3 tools/package_linux_complete.py \
-  --linux-directory builds/linux-arm64-raspberry-pi-0.7.1 \
-  --output builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.zip
+  --linux-directory builds/linux-arm64-raspberry-pi-0.8.0 \
+  --output builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.zip
 ```
 
-Ces outils vérifient l’archive ; ils ne reconstruisent pas les binaires. Les rapports [Windows portable](../builds/Console_CIEL_Windows_x86_64_clavier_0.7.1.verification.json) et [ARM64 portable](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.1.verification.json) décrivent séparément les exports. [Résultats et portée des vérifications](DELIVERY.md). Le lancement natif, l’affichage, le son et la manette restent à essayer sur les appareils destinataires.
+Ces outils vérifient l’archive ; ils ne reconstruisent pas les binaires. Les rapports [Windows portable](../builds/Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.verification.json) et [ARM64 portable](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.8.0.verification.json) décrivent séparément les exports. [Résultats et portée des vérifications](DELIVERY.md). Le lancement natif, l’affichage, le son et la manette restent à essayer sur les appareils destinataires.
 
 # Livraison Windows conservée — archive complète 0.6.1
 
@@ -67,3 +67,5 @@ Le programme vérifie les CRC, les SHA-256 des entrées et leur correspondance a
 La recette **0.6.1** compte **11 844 assertions source**, **65 de persistance**, **58 contrôles de rendu X11** avec 8 captures, **6 547 assertions du pack compilé**, **18 contrats Windows** et **27 contrôles de packaging**, zéro échec. [Résumé courant](../tests/confort_0.6.1_results/summary.json) et [liens des huit captures réelles](DELIVERY.md). Les résultats historiques restent inclus avec leurs versions et dates.
 
 L’export Windows utilise les modèles officiels. Les essais du pack compilé et les captures sont effectués sous Linux ; le double-clic Windows reste à tester sur un PC Windows.
+
+La version 0.8.0 ajoute les trois livres animés du coin ressources (chapitre 3) et le chapitre 4 : pare-feu, conflit IPv4 et masque /26. L’ascenseur propose Descendre d’étage, Monter d’étage et Retour au menu ; Échap reste dans la pièce. Les anciennes sauvegardes sont conservées.
