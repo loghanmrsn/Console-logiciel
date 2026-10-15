@@ -199,8 +199,9 @@ func refresh() -> void:
 		if not _restored or changed:
 			_restored = true
 			world.restore_checkpoint()
-			var final_mission := 'security' if InvestigationService.current_chapter() == 2 else 'computer'
-			if final_mission in AppState.profile.progress.completed_missions:
+			var chapter_missions: Array = InvestigationService.chapter_missions()
+			var final_mission := str(chapter_missions.back().id) if not chapter_missions.is_empty() else ''
+			if not final_mission.is_empty() and final_mission in AppState.profile.progress.completed_missions:
 				_show_conclusion.call_deferred()
 	_sync_controls()
 	if _controller_waiting:
@@ -348,11 +349,11 @@ func _interaction_requested(id: String) -> void:
 		return
 	var state: String = InvestigationService.mission_state(id)
 	if state == 'locked':
-		var blocked := {'lock': 'Rétablissez d’abord l’éclairage pour lire les observations de la serrure.', 'computer': 'Débloquez la porte du bureau pour accéder à l’ordinateur.', 'network': 'Terminez le rez-de-chaussée puis prenez l’ascenseur.', 'addressing': 'Rétablissez la liaison Ethernet avant de vérifier l’adresse du poste.', 'security': 'Corrigez l’adresse IP du poste avant de protéger la connexion Wi-Fi.'}
+		var blocked := {'lock': 'Rétablissez d’abord l’éclairage pour lire les observations de la serrure.', 'computer': 'Débloquez la porte du bureau pour accéder à l’ordinateur.', 'network': 'Terminez le rez-de-chaussée puis prenez l’ascenseur.', 'addressing': 'Rétablissez la liaison Ethernet avant de vérifier l’adresse du poste.', 'security': 'Corrigez l’adresse IP du poste avant de protéger la connexion Wi-Fi.', 'python': 'Terminez les trois missions de la salle réseau, puis prenez l’ascenseur vers l’atelier du code.', 'html': 'Complétez d’abord la mission Python pour découvrir les balises HTML.', 'markdown': 'Complétez d’abord le titre HTML pour découvrir son équivalent en Markdown.'}
 		_show_dialog('Un préalable manque', str(blocked.get(id, 'Terminez la mission précédente.')), _close_overlay)
 		return
 	if state == 'completed':
-		if id in ['computer', 'security']: _show_conclusion()
+		if id in ['computer', 'security', 'markdown']: _show_conclusion()
 		else:
 			var definition: Dictionary = InvestigationService.mission(id)
 			_show_dialog('Équipement rétabli', str(definition.get('success_explanation', 'Cette mission est terminée et sa récompense a déjà été enregistrée.')), _close_overlay)
@@ -380,20 +381,37 @@ func _mission_completed(result: Dictionary) -> void:
 	var clue_text: String = str(data.get('clue', {}).get('text', ''))
 	if not clue_text.is_empty(): explanation += '\n\n' + clue_text
 	var reward_text := '%d points nouvellement gagnés.' % reward if reward > 0 else 'Déjà récompensée : aucun point ajouté pour cette mission rejouée.'
-	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security'] else _close_overlay
+	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown'] else _close_overlay
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
 
 func _show_elevator() -> void:
 	if not InvestigationService.can_use_elevator():
 		_show_dialog('Ascenseur verrouillé', 'L’accès à l’étage sera disponible après les trois missions du rez-de-chaussée : éclairage, porte et ordinateur. Consultez le panneau Missions avec T ou le bouton du haut de la manette.', _close_overlay)
 		return
-	var destination := 1 if InvestigationService.current_chapter() == 2 else 2
+	var chapter := InvestigationService.current_chapter()
+	var historical_destination := 1 if chapter == 2 else 2
 	_open_overlay('elevator')
 	_label(modal_content, 'Ascenseur · CIEL', 26)
-	_label(modal_content, 'Étage 1 · Chapitre 2' if destination == 2 else 'Rez-de-chaussée · Chapitre 1', 22)
-	_label(modal_content, 'La salle réseau vous attend : rétablissez une liaison Ethernet, corrigez une adresse IP et protégez un point d’accès Wi-Fi.' if destination == 2 else 'Retournez dans le bureau. Vos missions terminées et votre progression dans les deux chapitres sont conservées.')
-	var travel := _button(modal_content, 'Monter au chapitre 2' if destination == 2 else 'Revenir au chapitre 1', func(): _travel_to_chapter(destination), 'elevator_travel')
-	travel.theme_type_variation = 'PrimaryButton'
+	_label(modal_content, 'Choisissez votre destination. Les missions terminées et vos points sont conservés.')
+	var destinations := {
+		1: 'Rez-de-chaussée · Chapitre 1 · Le bureau',
+		2: 'Étage 1 · Chapitre 2 · La salle réseau',
+		3: 'Étage 2 · Chapitre 3 · L’atelier du code'
+	}
+	for destination in [1, 2, 3]:
+		var key := 'elevator_travel' if destination == historical_destination else 'elevator_chapter_%d' % destination
+		var accessible: bool = InvestigationService.can_enter_chapter(destination)
+		var caption := str(destinations[destination])
+		if destination == chapter:
+			caption += ' · Vous êtes ici'
+		elif not accessible:
+			caption += ' · Verrouillé'
+		var travel := _button(modal_content, caption, func(): _travel_to_chapter(destination), key)
+		travel.disabled = destination == chapter or not accessible
+		if destination == 3 and accessible and chapter != 3:
+			travel.theme_type_variation = 'PrimaryButton'
+	if not InvestigationService.can_enter_chapter(3):
+		_label(modal_content, 'Pour ouvrir l’atelier du code, terminez les trois missions du chapitre 2 : réseau, adresse IPv4 et Wi-Fi.')
 	_button(modal_content, 'Rester dans la pièce', _close_overlay, 'elevator_cancel')
 	_wire_modal()
 
@@ -413,7 +431,8 @@ func _travel_to_chapter(destination: int) -> void:
 		_room.modulate = Color(.76, .83, .80)
 		var arrival := create_tween()
 		arrival.tween_property(_room, 'modulate', Color.WHITE, .24)
-	notification_requested.emit('Chapitre 2 · Bienvenue dans la salle réseau.' if destination == 2 else 'Chapitre 1 · Retour au bureau.')
+	var arrivals := {1: 'Chapitre 1 · Retour au bureau.', 2: 'Chapitre 2 · Bienvenue dans la salle réseau.', 3: 'Chapitre 3 · Bienvenue dans l’atelier du code.'}
+	notification_requested.emit(str(arrivals.get(destination, 'Bienvenue dans la pièce.')))
 
 func request_pause() -> void:
 	if not is_visible_in_tree() or not overlay_kind.is_empty(): return
@@ -564,15 +583,27 @@ func _show_conclusion() -> void:
 		return
 	_open_overlay('conclusion')
 	var chapter := InvestigationService.current_chapter()
-	_label(modal_content, 'Chapitre %d terminé · %s' % [chapter, 'Bureau fictif' if chapter == 1 else 'Salle réseau'], 22)
-	_label(modal_content, 'Le message retrouvé' if chapter == 1 else 'Un réseau rétabli et protégé', 28)
+	var room_names := {1: 'Bureau fictif', 2: 'Salle réseau', 3: 'Atelier du code'}
+	var titles := {1: 'Le message retrouvé', 2: 'Un réseau rétabli et protégé', 3: 'Vos premières lignes de code'}
+	_label(modal_content, 'Chapitre %d terminé · %s' % [chapter, str(room_names.get(chapter, 'CIEL'))], 22)
+	_label(modal_content, str(titles.get(chapter, 'Enquête terminée')), 28)
 	_label(modal_content, str(result.data.message))
 	_label(modal_content, 'Bilan de l’enquête', 24)
-	_label(modal_content, '✓ Éclairage : un circuit doit former une boucle fermée.\n✓ Serrure : une alimentation correcte ne garantit pas la transmission de la commande.\n✓ Ordinateur : observer et vérifier permet de distinguer une panne du poste d’une liaison vidéo débranchée.' if chapter == 1 else '✓ Ethernet : un lien réseau nécessite une liaison physique correctement connectée.\n✓ IPv4 : le poste et sa passerelle doivent partager un réseau cohérent.\n✓ Wi-Fi : utilisez un chiffrement adapté pour protéger l’accès au réseau.')
+	var recaps := {
+		1: '✓ Éclairage : un circuit doit former une boucle fermée.\n✓ Serrure : une alimentation correcte ne garantit pas la transmission de la commande.\n✓ Ordinateur : observer et vérifier permet de distinguer une panne du poste d’une liaison vidéo débranchée.',
+		2: '✓ Ethernet : un lien réseau nécessite une liaison physique correctement connectée.\n✓ IPv4 : le poste et sa passerelle doivent partager un réseau cohérent.\n✓ Wi-Fi : utilisez un chiffrement adapté pour protéger l’accès au réseau.',
+		3: '✓ Python : print("Bonjour CIEL") affiche un message.\n✓ HTML : <h1>Bonjour CIEL</h1> définit un titre principal avec une balise ouvrante et une balise fermante.\n✓ Markdown : # Bonjour CIEL crée un titre ; un espace suit le symbole #.'
+	}
+	_label(modal_content, str(recaps.get(chapter, 'Les missions de cet étage sont terminées.')))
 	var progress: Dictionary = AppState.profile.get('progress', {})
 	_label(modal_content, '%d points nouvellement gagnés pendant cette partie.\nSolde total du profil : %d points.' % [int(progress.get('run_reward_points', 0)), int(AppState.profile.get('wallet', {}).get('points', 0))], 22)
 	_label(modal_content, 'Simulations pédagogiques fictives. Aucune intervention sur le matériel ou le système hôte.')
-	_label(modal_content, 'L’ascenseur en bas du bureau est maintenant déverrouillé. Revenez dans la pièce pour monter au chapitre 2.' if chapter == 1 else 'Vous pouvez rester à cet étage et consulter vos équipements, ou reprendre l’ascenseur pour revisiter le bureau.')
+	var next_steps := {
+		1: 'L’ascenseur en bas du bureau est maintenant déverrouillé. Revenez dans la pièce pour monter au chapitre 2.',
+		2: 'Le chapitre 3 est maintenant accessible. Revenez dans la pièce, puis prenez l’ascenseur vers l’atelier du code : Python, HTML et Markdown vous attendent.',
+		3: 'Bravo ! Les trois chapitres sont terminés. Vous pouvez rester dans l’atelier du code ou reprendre l’ascenseur pour revisiter les autres étages.'
+	}
+	_label(modal_content, str(next_steps.get(chapter, 'Revenez dans la pièce pour continuer.')))
 	var stay := _button(modal_content, 'Revenir dans la pièce', _close_overlay, 'conclusion_stay')
 	stay.theme_type_variation = 'PrimaryButton'
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'conclusion_menu')
