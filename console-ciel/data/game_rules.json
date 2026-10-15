@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "investigation_version": 1,
-  "mission_reward_max": 450,
+  "mission_reward_max": 600,
   "missions": [
     {
       "id": "lighting",
@@ -571,6 +571,228 @@
         "text": "Atelier code terminé ! Tu as affiché un message avec Python, créé un titre en HTML et écrit un titre en Markdown. Trois petites syntaxes, trois façons de présenter la même idée : Bonjour CIEL."
       },
       "success_explanation": "En Markdown, # Bonjour CIEL crée un titre de premier niveau. Le symbole # est suivi d’un espace, puis du texte du titre."
+    },
+    {
+      "id": "firewall",
+      "name": "Configurer le pare-feu",
+      "title": "Configurer le pare-feu",
+      "description": "Autoriser le service utile en conservant la protection du réseau.",
+      "chapter": 4,
+      "room_id": "room_04",
+      "prerequisites": [
+        "markdown"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "service",
+          "title": "Service demandé",
+          "text": "Le poste 192.168.30.20 doit consulter le site pédagogique du serveur 192.168.30.10 en HTTPS : TCP, port 443. Le serveur est allumé et le site fonctionne localement."
+        },
+        {
+          "id": "traffic",
+          "title": "Journal du pare-feu",
+          "text": "Le journal indique : source 192.168.30.20 → destination 192.168.30.10, TCP 443, BLOQUÉ. Les liaisons et les adresses IP sont correctes."
+        },
+        {
+          "id": "rules",
+          "title": "Règles actuelles",
+          "text": "Aucune règle n’autorise ce flux. La politique bloque les connexions non autorisées. Une règle précise peut autoriser ce service sans ouvrir tous les ports."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "rule_missing",
+          "label": "Règle HTTPS manquante",
+          "feedback": "Le journal confirme que le flux HTTPS attendu est bloqué faute de règle."
+        },
+        {
+          "id": "server_off",
+          "label": "Serveur éteint",
+          "feedback": "Le site fonctionne sur le serveur. Le journal montre un blocage du pare-feu."
+        },
+        {
+          "id": "bad_cable",
+          "label": "Câble débranché",
+          "feedback": "Les liaisons sont actives ; le trafic arrive bien au pare-feu."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "disable_firewall",
+          "label": "Désactiver tout le pare-feu",
+          "feedback": "Cela supprime la protection. Il suffit d’autoriser le flux HTTPS nécessaire."
+        },
+        {
+          "id": "allow_https_only",
+          "label": "Autoriser ce poste vers ce serveur en TCP 443",
+          "feedback": "Cette règle ciblée autorise le service attendu et garde le blocage des autres flux."
+        },
+        {
+          "id": "open_all",
+          "label": "Autoriser tous les ports pour tous",
+          "feedback": "Une ouverture générale dépasse le besoin. Précisez source, destination, protocole et port."
+        }
+      ],
+      "solution": {
+        "diagnosis": "rule_missing",
+        "repair": "allow_https_only"
+      },
+      "success_explanation": "Un pare-feu filtre les flux selon des règles : source, destination, protocole et port. Ici, on autorise seulement 192.168.30.20 vers 192.168.30.10 en TCP 443 (HTTPS). Les autres flux restent soumis aux règles existantes.",
+      "clue": {
+        "id": "firewall_note",
+        "text": "Le site est accessible. Deux équipements annoncent maintenant la même adresse IPv4 : examine leur configuration."
+      }
+    },
+    {
+      "id": "ip_conflict",
+      "name": "Résoudre un conflit IPv4",
+      "title": "Résoudre un conflit IPv4",
+      "description": "Trouver deux adresses identiques et appliquer le plan du réseau.",
+      "chapter": 4,
+      "room_id": "room_04",
+      "prerequisites": [
+        "firewall"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "terminal",
+          "title": "Adresse du terminal",
+          "text": "Le terminal utilise 192.168.30.42/24, passerelle 192.168.30.1. Sa connexion devient instable lorsque l’imprimante est allumée."
+        },
+        {
+          "id": "printer",
+          "title": "Adresse de l’imprimante",
+          "text": "L’imprimante utilise aussi 192.168.30.42/24. Le journal signale deux équipements différents pour cette même adresse."
+        },
+        {
+          "id": "plan",
+          "title": "Plan d’adressage",
+          "text": "192.168.30.42 est réservée à l’imprimante. Le terminal doit utiliser 192.168.30.43, libre et réservée à ce poste, avec /24 et la passerelle 192.168.30.1."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "wrong_dns",
+          "label": "Serveur DNS en panne",
+          "feedback": "Le journal montre deux appareils avec la même adresse locale. Changer le DNS ne résout pas ce conflit."
+        },
+        {
+          "id": "duplicate_ip",
+          "label": "Deux appareils partagent la même IPv4",
+          "feedback": "Sur ce réseau local, chaque appareil doit avoir une adresse IPv4 distincte."
+        },
+        {
+          "id": "gateway_off",
+          "label": "Passerelle hors tension",
+          "feedback": "Aucun indice ne signale une passerelle éteinte ; les adresses dupliquées expliquent les symptômes."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "apply_unique_ip",
+          "label": "Donner 192.168.30.43/24 au terminal",
+          "feedback": "Le terminal suit le plan, utilise une adresse libre et garde la passerelle 192.168.30.1."
+        },
+        {
+          "id": "same_ip",
+          "label": "Garder la même adresse sur les deux",
+          "feedback": "Le conflit reste présent tant que les deux appareils partagent cette adresse."
+        },
+        {
+          "id": "random_ip",
+          "label": "Choisir une adresse au hasard",
+          "feedback": "Il faut suivre le plan pour éviter un autre conflit ou un mauvais réseau."
+        }
+      ],
+      "solution": {
+        "diagnosis": "duplicate_ip",
+        "repair": "apply_unique_ip"
+      },
+      "success_explanation": "Deux équipements du même réseau local ne doivent pas partager la même adresse IPv4. Le terminal reçoit 192.168.30.43/24, libre et réservée ; l’imprimante garde .42. Le masque et la passerelle restent cohérents.",
+      "clue": {
+        "id": "ip_conflict_note",
+        "text": "Le conflit est résolu. Dans le laboratoire voisin, vérifiez le masque du poste pour retrouver sa passerelle."
+      }
+    },
+    {
+      "id": "subnet_mask",
+      "name": "Choisir le masque réseau",
+      "title": "Choisir le masque réseau",
+      "description": "Comprendre un sous-réseau /26 à partir d’un exemple guidé.",
+      "chapter": 4,
+      "room_id": "room_04",
+      "prerequisites": [
+        "ip_conflict"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "address",
+          "title": "Configuration du poste",
+          "text": "Le poste utilise 192.168.40.70 avec le masque 255.255.255.252 (/30). Ce masque place .70 dans le réseau .68/30, dont les hôtes utilisables sont .69 et .70."
+        },
+        {
+          "id": "gateway",
+          "title": "Passerelle prévue",
+          "text": "La passerelle est 192.168.40.65. Elle est extérieure au petit sous-réseau .68/30 du poste ; elle ne peut donc pas être sa passerelle directement joignable avec cette configuration."
+        },
+        {
+          "id": "subnet_plan",
+          "title": "Plan du laboratoire",
+          "text": "Le laboratoire utilise 192.168.40.64/26 : masque 255.255.255.192, hôtes de .65 à .126, diffusion .127. Le poste .70 et la passerelle .65 appartiennent tous deux à ce réseau."
+        }
+      ],
+      "checks": [],
+      "diagnoses": [
+        {
+          "id": "bad_ip",
+          "label": "Adresse .70 interdite",
+          "feedback": "Avec le plan /26, .70 est une adresse d’hôte valide. C’est le masque /30 du poste qui ne suit pas ce plan."
+        },
+        {
+          "id": "mask_too_small",
+          "label": "Masque /30 au lieu de /26",
+          "feedback": "Le masque /30 crée ici un réseau trop petit : il sépare .70 de la passerelle .65."
+        },
+        {
+          "id": "dns_mask",
+          "label": "Le DNS définit le masque",
+          "feedback": "Le DNS associe des noms à des adresses ; il ne détermine pas le sous-réseau du poste."
+        }
+      ],
+      "repairs": [
+        {
+          "id": "set_mask_24",
+          "label": "Mettre /24 au hasard",
+          "feedback": "Un /24 regrouperait davantage d’adresses mais ne respecte pas le plan demandé /26."
+        },
+        {
+          "id": "use_broadcast",
+          "label": "Utiliser .127 comme adresse du poste",
+          "feedback": "Dans ce /26, .127 est la diffusion et ne s’attribue pas à un hôte."
+        },
+        {
+          "id": "set_mask_26",
+          "label": "Appliquer 255.255.255.192 (/26)",
+          "feedback": "Le poste .70 et la passerelle .65 partagent alors le réseau 192.168.40.64/26 prévu."
+        }
+      ],
+      "solution": {
+        "diagnosis": "mask_too_small",
+        "repair": "set_mask_26"
+      },
+      "success_explanation": "Un masque détermine la partie réseau d’une IPv4. /26 correspond à 255.255.255.192, avec des blocs de 64 adresses. Dans 192.168.40.64/26 : réseau .64, hôtes .65 à .126, diffusion .127. Le poste .70 et sa passerelle .65 sont dans ce même sous-réseau.",
+      "clue": {
+        "id": "subnet_mask_note",
+        "text": "Laboratoire terminé ! Vous savez autoriser un flux précis, éviter les doublons IPv4 et reconnaître un masque /26. Les quatre chapitres de l’enquête sont terminés."
+      }
     }
   ]
 }
