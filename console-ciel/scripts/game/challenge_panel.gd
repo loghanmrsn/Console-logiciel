@@ -76,7 +76,7 @@ func configure(id: String) -> void:
 		_build_lock()
 	elif mission_id == "computer":
 		_build_computer()
-	elif mission_id in ["network", "addressing", "security"]:
+	elif mission_id in ["network", "addressing", "security", "firewall", "ip_conflict", "subnet_mask"]:
 		_build_diagnostic()
 	elif mission_id in ["python", "html", "markdown"]:
 		_build_code()
@@ -183,7 +183,7 @@ func _build_computer() -> void:
 	submit_button = _action("Vérifier et corriger l’ordinateur", "computer_validate", _submit_computer)
 
 func _build_diagnostic() -> void:
-	_text("Chapitre 2 · Simulation réseau locale. Les choix concernent uniquement les équipements fictifs de cette pièce.")
+	_text("Chapitre %d · Observez les équipements, puis appliquez la correction dans cette simulation réseau." % int(definition.get("chapter", 2)))
 	_observations()
 	_text("2 · Comparez les indices et identifiez la cause de la panne.")
 	diagnosis_selector = _selector(mission_id + "_diagnosis", "Choisir un diagnostic", definition.get("diagnoses", []))
@@ -350,7 +350,7 @@ func _update_submit_state() -> void:
 		return
 	var seen: Array = _stored_observations()
 	var observed_all := _available and seen.size() >= observation_buttons.size()
-	if mission_id in ["lock", "network", "addressing", "security"]:
+	if mission_id in ["lock", "network", "addressing", "security", "firewall", "ip_conflict", "subnet_mask"]:
 		diagnosis_selector.disabled = not observed_all
 		repair_selector.disabled = not observed_all
 		submit_button.disabled = _busy or _finished or not observed_all or _selection(diagnosis_selector).is_empty() or _selection(repair_selector).is_empty()
