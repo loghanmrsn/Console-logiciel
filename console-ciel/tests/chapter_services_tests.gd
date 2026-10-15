@@ -30,7 +30,7 @@ func _run() -> void:
 	saves.root_path = test_root
 	state.clear_profile()
 	print("Racine temporaire : ", ProjectSettings.globalize_path(test_root))
-	if not _ok(shop.load_catalog(), "Catalogue chargé") or not _ok(rewards.load_rules(), "Six défis chargés"):
+	if not _ok(shop.load_catalog(), "Catalogue chargé") or not _ok(rewards.load_rules(), "Neuf défis chargés"):
 		_finish()
 		return
 	var first: Dictionary = profiles.create_profile("Étage A")
@@ -49,23 +49,24 @@ func _run() -> void:
 	_test_transition()
 	_test_second_chapter()
 	_test_legacy_expansion()
+	_test_six_mission_migration()
 	_test_invalid_documents()
 	_test_profiles_and_replay()
 	_finish()
 
 func _test_rules_and_initial_gates() -> void:
-	_check(rewards.missions.size() == 6, "Six missions livrées, sans modifier la version d’enquête")
+	_check(rewards.missions.size() == 9, "Neuf missions livrées, sans modifier la version d’enquête")
 	var reward_total := 0
 	for definition in rewards.missions:
 		reward_total += int(definition.reward)
-	_check(reward_total == 300, "Plafond de six récompenses pédagogiques : 300 points")
+	_check(reward_total == 450, "Plafond de neuf récompenses pédagogiques : 450 points")
 	_check(investigation.current_chapter() == 1, "Profil neuf dans le premier chapitre")
 	_check(_ids(investigation.chapter_missions()) == ["lighting", "lock", "computer"], "Trois objectifs du chapitre courant")
 	_check(_ids(investigation.chapter_missions(2)) == ["network", "addressing", "security"], "Trois objectifs du deuxième chapitre dans l’ordre")
 	_check(investigation.chapter_missions(99).is_empty(), "Chapitre inconnu sans missions")
 	_check(not investigation.can_use_elevator(), "Ascenseur inaccessible avant de commencer")
 	_check(not investigation.enter_chapter(2).ok, "Pas de changement d’étage sans enquête")
-	_check(not investigation.enter_chapter(0).ok and not investigation.enter_chapter(3).ok, "Étages inconnus refusés")
+	_check(not investigation.enter_chapter(0).ok and not investigation.enter_chapter(99).ok, "Étages inconnus refusés")
 	_check(not investigation.conclusion(2).ok and not investigation.conclusion(99).ok, "Pas de bilan anticipé ou inconnu")
 	_ok(profiles.start_game(), "Commencer l’enquête")
 	for id in saves.CHAPTER_TWO_IDS:
@@ -109,7 +110,7 @@ func _test_first_chapter() -> void:
 	exit_document.progress.checkpoint_id = "exit"
 	_check(saves.validate_profile(exit_document).ok, "Ancien point de reprise exit reste valide après les trois premières missions")
 	_reload(first_id, "Reprendre le premier chapitre terminé")
-	_check(state.profile == chapter_one_snapshot, "Les six définitions ne changent pas une progression récente valide")
+	_check(state.profile == chapter_one_snapshot, "Les neuf définitions ne changent pas une progression récente valide")
 
 func _test_transition() -> void:
 	var before: Dictionary = state.profile.duplicate(true)
@@ -207,7 +208,7 @@ func _test_legacy_expansion() -> void:
 	legacy.display_name = created.data.display_name
 	legacy.avatar_image = "portrait_local.png"
 	legacy.progress.checkpoint_id = "exit"
-	for id in saves.CHAPTER_TWO_IDS:
+	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS:
 		legacy.progress.observations.erase(id)
 	var original := JSON.stringify(legacy, "\t")
 	state.clear_profile()
@@ -217,9 +218,9 @@ func _test_legacy_expansion() -> void:
 		return
 	_check(read.migration_required and FileAccess.get_file_as_string(_profile_path(legacy.id)) == original, "Lecture reconnaît l’enrichissement sans écrire sur l’original")
 	var expected: Dictionary = legacy.duplicate(true)
-	for id in saves.CHAPTER_TWO_IDS:
+	for id in saves.CHAPTER_TWO_IDS + saves.CHAPTER_THREE_IDS:
 		expected.progress.observations[id] = []
-	_check(read.data == expected, "Migration ajoute seulement trois listes : identité, avatar local, missions, indices, récompenses, points, achats et checkpoint restent fidèles")
+	_check(read.data == expected, "Migration ajoute seulement six listes : identité, avatar local, missions, indices, récompenses, points, achats et checkpoint restent fidèles")
 	saves.simulate_write_failure = true
 	_check(not profiles.select_profile(legacy.id).ok, "Échec de persistance de l’enrichissement signalé")
 	saves.simulate_write_failure = false
@@ -232,13 +233,42 @@ func _test_legacy_expansion() -> void:
 	_check(state.profile.progress.completed_missions == saves.CHAPTER_ONE_IDS and state.profile.wallet.points == 130 and state.profile.owned_items.has("avatar_orbit"), "Nouveau chapitre conserve fidèlement les acquis de l’ancienne sauvegarde")
 	_reload(first_id, "Revenir au profil principal après la copie ancienne")
 
+func _test_six_mission_migration() -> void:
+	var created: Dictionary = profiles.create_profile("Ancien réseau")
+	if not _ok(created, "Profil isolé pour une sauvegarde 0.6.1 à six missions"):
+		return
+	var legacy: Dictionary = completed_snapshot.duplicate(true)
+	legacy.id = created.data.id
+	legacy.display_name = created.data.display_name
+	legacy.avatar_image = "reseau_local.png"
+	for id in saves.CHAPTER_THREE_IDS:
+		legacy.progress.observations.erase(id)
+	var original := JSON.stringify(legacy, "\t")
+	state.clear_profile()
+	_check(_write_raw(_profile_path(legacy.id), original), "Ancienne sauvegarde à six listes écrite dans la racine isolée")
+	var read: Dictionary = saves.read_profile(legacy.id)
+	if not _ok(read, "Sauvegarde 0.6.1 reconnue sans rejouer ses six missions"):
+		return
+	var expected: Dictionary = legacy.duplicate(true)
+	for id in saves.CHAPTER_THREE_IDS:
+		expected.progress.observations[id] = []
+	_check(read.migration_required and read.data == expected and FileAccess.get_file_as_string(_profile_path(legacy.id)) == original, "Lecture ajoute uniquement les trois listes du code sans écrire le document original")
+	saves.simulate_write_failure = true
+	_check(not profiles.select_profile(legacy.id).ok, "Échec de migration 0.6.1 signalé")
+	saves.simulate_write_failure = false
+	_check(state.profile.is_empty() and FileAccess.get_file_as_string(_profile_path(legacy.id)) == original, "Migration 0.6.1 échouée conserve document et profil non chargé")
+	_ok(profiles.select_profile(legacy.id), "Migration compatible du profil ayant fini les deux chapitres")
+	_check(state.profile == expected and FileAccess.get_file_as_string(_profile_path(legacy.id) + ".bak") == original, "Les six missions, preuves, points, achats, avatar et reprise réseau restent identiques, avec sauvegarde originale intégrale")
+	_check(not saves.read_profile(legacy.id).migration_required and investigation.current_chapter() == 2, "La sauvegarde enrichie ne remigre pas et reprend son chapitre 2")
+	_reload(first_id, "Restaurer le profil principal après la migration 0.6.1")
+
 func _test_invalid_documents() -> void:
 	var valid: Dictionary = completed_snapshot.duplicate(true)
 	_check(saves.validate_profile(valid).ok, "Document complet à six missions valide")
 	for mutation in ["room", "early_floor", "wrong_checkpoint", "early_elevator", "early_exit", "future_active", "missing_observation", "extra_observation", "foreign_choice", "missing_security", "reward_total"]:
 		var invalid: Dictionary = valid.duplicate(true)
 		match mutation:
-			"room": invalid.progress.room_id = "room_03"
+			"room": invalid.progress.room_id = "room_99"
 			"early_floor":
 				invalid = _fresh_started(valid)
 				invalid.progress.room_id = "room_02"
@@ -291,7 +321,7 @@ func _test_profiles_and_replay() -> void:
 		_complete(id, 0)
 	_check(state.profile.wallet.points == 280 and state.profile.progress.run_reward_points == 0 and investigation.conclusion(2).data.run_reward_points == 0, "Aucune des six missions ne rapporte une seconde récompense au rejeu")
 	_ok(profiles.reset_progress(), "Réinitialiser la progression depuis les paramètres")
-	_check(not state.profile.progress.started and investigation.current_chapter() == 1 and state.profile.progress.observations.size() == 6 and state.profile.progress.completed_missions.is_empty(), "Réinitialisation remet les six listes et les deux chapitres au début")
+	_check(not state.profile.progress.started and investigation.current_chapter() == 1 and state.profile.progress.observations.size() == 9 and state.profile.progress.completed_missions.is_empty(), "Réinitialisation remet les neuf listes et les trois chapitres au début")
 	_check(state.profile.wallet.points == 280 and state.profile.rewarded_missions.size() == 6 and state.profile.owned_items.has("avatar_orbit"), "Réinitialisation conserve les données économiques")
 	_check(not investigation.enter_chapter(2).ok and not investigation.conclusion(2).ok, "Après réinitialisation, ascenseur et bilan redeviennent verrouillés")
 
