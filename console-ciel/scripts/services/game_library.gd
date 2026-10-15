@@ -6,7 +6,7 @@ const EDUCATIONAL_ID := "game_enquete"
 const GAMES_DIRECTORY := "res://scenes/games/"
 const EDUCATIONAL_GAME := {
 	"id": EDUCATIONAL_ID, "type": "game", "name": "L’enquête CIEL",
-	"description": "Deux chapitres, six défis. Explorez, comprenez et gagnez des points.",
+	"description": "Trois chapitres, neuf défis. Explorez, comprenez et gagnez des points.",
 	"price": 0, "color": "#527FA3", "scene": "res://scenes/investigation_world.tscn",
 	"educational": true
 }
