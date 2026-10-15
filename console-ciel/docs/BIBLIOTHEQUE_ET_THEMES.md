@@ -1,6 +1,6 @@
-# Bibliothèque, boutique et apparence — mise à jour 0.6.1
+# Bibliothèque, boutique et apparence — mise à jour 0.7.0
 
-La version courante **0.6.1** place le profil, son avatar et ses points en haut à gauche ; les quatre onglets sont centrés dans la barre inférieure. **Test 1 à Test 4 coûtent 200 points chacun**, soit **800 pour les quatre**. Les acquisitions précédentes restent possédées sans supplément. Les six missions de l’enquête, disponibles depuis 0.6.0, rapportent toujours **300 points au maximum par profil**. [Parcours des deux chapitres et tableau de missions](ENQUETE.md).
+La version courante **0.7.0** place le profil, son avatar et ses points en haut à gauche ; les quatre onglets sont centrés dans la barre inférieure. **Test 1 à Test 4 coûtent 200 points chacun**, soit **800 pour les quatre**. Les acquisitions précédentes restent possédées sans supplément. Les neuf missions de l’enquête rapportent **450 points au maximum par profil** ; le chapitre 3 aborde Python, HTML et Markdown. [Parcours des trois chapitres et tableau de missions](ENQUETE.md).
 
 La version **0.5.0** organise l’accueil autour de votre bibliothèque, refait les cartes de la boutique et du profil et ajoute les styles de la console dans les paramètres. Tout fonctionne localement, avec les profils et les points existants.
 
@@ -25,9 +25,9 @@ Les vrais jeux ne sont pas encore prêts. À la demande de l’utilisateur, la b
 | Test 4 | 200 points |
 | Les quatre | 800 points |
 
-Chaque mission pédagogique réussie pour la première fois rapporte **50 points**, soit **150 par chapitre** et **300 au maximum par profil** sur les six missions. Sans autre dépense, quatre réussites permettent d’acheter un jeu à 200 points ; après six réussites puis cet achat, il reste 100 points. Les autres jeux attendent de futurs défis ou un solde déjà présent dans un ancien profil. Rejouer une mission, recommencer l’enquête ou ouvrir un emplacement Test ne redonne pas ces récompenses.
+Chaque mission pédagogique réussie pour la première fois rapporte **50 points**, soit **150 par chapitre** et **450 au maximum par profil** sur les neuf missions. Sans autre dépense, quatre réussites permettent d’acheter un jeu à 200 points ; après neuf réussites puis deux achats, il reste 50 points. Un troisième achat est alors refusé. Les autres achats attendent de futurs défis ou un solde déjà présent dans un ancien profil. Rejouer une mission, recommencer l’enquête ou ouvrir un emplacement Test ne redonne pas ces récompenses.
 
-À leur introduction en **0.5.0**, les emplacements coûtaient **20, 30, 40 et 50 points**, soit 140 au total ; cette tarification décrit les anciennes livraisons. Un jeu acquis à ces prix reste acquis en 0.6.1 sans nouveau débit.
+À leur introduction en **0.5.0**, les emplacements coûtaient **20, 30, 40 et 50 points**, soit 140 au total ; cette tarification décrit les anciennes livraisons. Un jeu acquis à ces prix reste acquis sans nouveau débit.
 
 Dans **Boutique**, le solde apparaît au-dessus des cartes. Le filtre **Jeux** présente les emplacements ; **Mes achats** affiche les articles du profil actif. Acheter un jeu le débloque dans l’accueil et permet d’ouvrir sa page de préparation. Les avatars, thèmes de profil et cadres restent proposés dans leurs catégories.
 
@@ -50,14 +50,19 @@ Les fichiers de paramètres antérieurs restent acceptés : les nouveaux champs 
 
 Les cartes de profils présentent le portrait, les points, la progression de l’enquête et les jeux achetés. Le profil actif est aussi visible dans l’en-tête en haut à gauche, y compris pendant l’enquête ; la barre inférieure conserve quatre onglets centrés sans répéter le pseudo ni le solde. **Modifier** conserve l’éditeur de portrait et le clavier AZERTY : lettres minuscules, **⇧** pour une majuscule, double appui pour verrouiller, **123**, **#+=** et **ABC**.
 
-Ajoutez des PNG, JPEG ou WebP dans **images_profil/** à côté de `Console_CIEL.exe`, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. En édition Godot, utilisez `console-ciel/images_profil/`. Les images restent locales ; une photo absente fait apparaître l’avatar classique sans effacer les données. [Détails des profils, limites des images et clavier](PROFILS_ET_CLAVIER.md).
+Ajoutez des PNG, JPEG ou WebP dans **images_profil/** à côté de `Console_CIEL.exe` sous Windows ou de `console-ciel.arm64` sur Raspberry Pi, puis ouvrez **Profil → Modifier → Mes images → Actualiser les images**. En édition Godot, utilisez `console-ciel/images_profil/`. Les images restent locales ; une photo absente fait apparaître l’avatar classique sans effacer les données. [Détails des profils, limites des images et clavier](PROFILS_ET_CLAVIER.md).
 
 ## Télécharger la version courante et vérifier
 
-- [Windows 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip) : **Extraire tout**, puis lancer `Console_CIEL.exe`.
-- [Projet complet 0.6.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip) : l’EXE est dans `console-ciel/builds/windows-x86_64-confort-0.6.1/`.
+- [Windows 0.7.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_code_0.7.0.zip) : **Extraire tout**, puis lancer `Console_CIEL.exe`.
+- [Raspberry Pi 0.7.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.0.zip) : extraire tout, puis lancer `bash ./Lancer_Console_CIEL.sh` dans le dossier extrait, depuis le bureau.
+- Projets complets avec sources : [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.0.zip).
 
-La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source**, dont **235 pour les achats**, **1 912 pour l’en-tête du profil** et **477 pour la bibliothèque**, sans échec. Le rendu réel X11 a passé **58 contrôles** et produit 8 captures ; le pack compilé a passé **6 547 assertions** avec Godot Linux. [Résumé courant](../tests/confort_0.6.1_results/summary.json).
+Les résultats et la portée des contrôles de la livraison courante sont consignés dans [DELIVERY.md](DELIVERY.md). Les recettes et captures ci-dessous sont conservées pour leur version.
+
+## Recette historique 0.6.1
+
+La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source**, dont **235 pour les achats**, **1 912 pour l’en-tête du profil** et **477 pour la bibliothèque**, sans échec. Le rendu réel X11 a passé **58 contrôles** et produit 8 captures ; le pack compilé a passé **6 547 assertions** avec Godot Linux. [Résumé historique 0.6.1](../tests/confort_0.6.1_results/summary.json).
 
 Captures : [profil à gauche et tarifs à l’accueil](screenshots/confort_0.6.1/home_profile_left_prices_200_1280x720.png), [boutique à 200 points](screenshots/confort_0.6.1/shop_prices_200_1280x720.png), [grand texte en 800 × 480](screenshots/confort_0.6.1/home_profile_left_800x480_large.png), [style Nuit en 800 × 480](screenshots/confort_0.6.1/home_profile_left_800x480_nuit.png) et [les huit captures de la livraison](DELIVERY.md).
 
@@ -71,11 +76,11 @@ Les suites ciblées de la livraison **0.5.0** exécutées sur le projet source c
 
 La recette source complète compte **8 438 assertions**, sans échec. Le rendu X11 a passé **501 contrôles** et produit **17 captures réelles** des deux dispositions, de la boutique, des profils et des paramètres. Le pack Windows compilé a passé **3 242 assertions**, sa configuration **18 contrôles**. [Résultats](../tests/bibliotheque_0.5.0_results/summary.json) et [captures](screenshots/bibliotheque_0.5.0/).
 
-## Vérifier les ajustements 0.6.1
+## Vérifier la bibliothèque courante
 
 1. Vérifier avatar, pseudo et points en haut à gauche sur les écrans avec profil actif, en petit écran et en grand texte ; vérifier les quatre onglets centrés en bas.
 2. Vérifier les quatre prix de **200 points** dans Boutique et dans les deux dispositions d’accueil. Un solde de 0 ou 199 doit refuser l’achat ; un solde de 200 permet un seul achat et devient nul.
 3. Reprendre un profil ayant déjà acheté un Test dans une ancienne version : le jeu reste acquis, aucun complément n’est débité.
-4. Terminer les six missions avec un profil neuf, sans achat : le solde est de 300. Acheter un Test laisse 100 points ; un autre achat à 200 est refusé. Rejouer n’ajoute aucun point.
+4. Terminer les neuf missions avec un profil neuf, sans achat : le solde est de 450. Acheter deux Test laisse 50 points ; un troisième achat à 200 est refusé. Rejouer n’ajoute aucun point.
 
-Le [guide Windows](WINDOWS.md) complète ce parcours avec les repères de mission, l’ascenseur, la reprise et le bilan en pause. Les résultats 0.5.0 ci-dessus restent historiques et ne remplacent pas la recette de 0.6.1.
+Le [guide Windows](WINDOWS.md) complète ce parcours avec les repères de mission, l’ascenseur, la reprise et le bilan en pause. Les résultats 0.5.0 et 0.6.1 ci-dessus restent historiques et ne remplacent pas la recette courante.
