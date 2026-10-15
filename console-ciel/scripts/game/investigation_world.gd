@@ -32,7 +32,12 @@ const CHAPTER_THREE_CHECKPOINTS := {
 	"python": Vector2(220, 294),
 	"html": Vector2(500, 294),
 	"markdown": Vector2(780, 294),
-	"exit": Vector2(500, 350)
+	"exit": Vector2(500, 350), "books": Vector2(532, 375)
+}
+const CHAPTER_FOUR_CHECKPOINTS := {
+	"entrance": Vector2(158, 405), "elevator": Vector2(158, 405),
+	"firewall": Vector2(220, 294), "ip_conflict": Vector2(500, 294),
+	"subnet_mask": Vector2(780, 294), "exit": Vector2(500, 350)
 }
 const DOOR_RECT := Rect2(619, 276, 20, 112)
 
@@ -80,6 +85,7 @@ var _security_sprite: Sprite2D
 var _python_sprite: Sprite2D
 var _html_sprite: Sprite2D
 var _markdown_sprite: Sprite2D
+var _lab_screens: Dictionary = {}
 
 func _ready() -> void:
 	camera = Camera2D.new()
@@ -107,6 +113,7 @@ func _build_room(chapter: int) -> void:
 		remove_child(_room_root)
 		_room_root.queue_free()
 	_targets.clear()
+	_lab_screens.clear()
 	_target = null
 	target_id = ""
 	_obstacle_rects.clear()
@@ -129,7 +136,7 @@ func _build_room(chapter: int) -> void:
 	chapter_id = chapter
 	room_id = "room_0%d" % chapter
 	_room_root = Node2D.new()
-	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom"][chapter - 1]
+	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom", "ChapterFourRoom"][chapter - 1]
 	add_child(_room_root)
 	_props=Node2D.new()
 	_props.name='RoomObjects'
@@ -144,8 +151,10 @@ func _build_room(chapter: int) -> void:
 		_build_workshop()
 	elif chapter == 2:
 		_build_network_room()
-	else:
+	elif chapter == 3:
 		_build_code_room()
+	else:
+		_build_lab_room()
 	player = PlayerScript.new()
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
@@ -217,17 +226,54 @@ func _build_code_room() -> void:
 	_add_target("python", "Poste Python · afficher un message", Vector2(220, 260), 100)
 	_add_target("html", "Poste HTML · une première balise", Vector2(500, 260), 100)
 	_add_target("markdown", "Poste Markdown · créer un titre", Vector2(780, 260), 100)
+	_add_target("books", "Coin ressources · lire les trois livres", Vector2(532, 394), 82)
+
+class LabGlyph extends Node2D:
+	var kind := 0
+	func _draw() -> void:
+		var ink := Color("5c837d")
+		draw_rect(Rect2(-44, -21, 88, 40), Color("d1dfd8"))
+		if kind == 0:
+			var shield := PackedVector2Array([Vector2(-13,-14),Vector2(13,-14),Vector2(13,3),Vector2(0,15),Vector2(-13,3)])
+			draw_colored_polygon(shield, ink)
+			draw_line(Vector2(-6,0),Vector2(-1,6),Color("edf1df"),3,true)
+			draw_line(Vector2(-1,6),Vector2(7,-5),Color("edf1df"),3,true)
+		else:
+			draw_string(ThemeDB.fallback_font,Vector2(-30,4),"IPv4" if kind == 1 else "/26",HORIZONTAL_ALIGNMENT_LEFT,-1,19,ink)
+
+func _build_lab_room() -> void:
+	var ids := ["firewall", "ip_conflict", "subnet_mask"]
+	for index in range(3):
+		var x := 220.0 + index * 280.0
+		var desk := _add_obstacle(Rect2(x - 86, 141, 172, 80), "LabDesk%d" % index, false)
+		_sprite(desk, "desk", Rect2(x - 100, 117, 200, 122))
+		_lab_screens[ids[index]] = _sprite(desk, "network_terminal", Rect2(x - 64, 104, 126, 89))
+		var glyph := LabGlyph.new()
+		glyph.kind = index
+		glyph.position = Vector2(x, 138)
+		glyph.z_index = 6
+		_room_root.add_child(glyph)
+		_add_target(ids[index], ["Pare-feu · autoriser HTTPS", "Adresses IP · résoudre un conflit", "Masque réseau · découvrir /26"][index], Vector2(x, 260), 100)
+	var storage := _add_obstacle(Rect2(760,403,114,45), "LabStorage", false)
+	_sprite(storage, "cabinet", Rect2(751,384,132,79))
+	var rack := _add_obstacle(Rect2(500,411,64,52), "LabResources", false)
+	_sprite(rack, "network_rack", Rect2(490,380,84,94))
+	var elevator_body := _add_obstacle(Rect2(88,435,112,35), "Elevator", false)
+	_elevator_sprite = _sprite(elevator_body, "elevator_ready", Rect2(84,389,120,87))
+	_add_target("elevator", "Ascenseur · choix des étages", Vector2(158,400),92)
 
 func _chapter_for_room(id: String) -> int:
 	match id:
 		"room_02": return 2
 		"room_03": return 3
+		"room_04": return 4
 		_: return 1
 
 func _chapter_checkpoints() -> Dictionary:
 	match chapter_id:
 		2: return CHAPTER_TWO_CHECKPOINTS
 		3: return CHAPTER_THREE_CHECKPOINTS
+		4: return CHAPTER_FOUR_CHECKPOINTS
 		_: return CHECKPOINTS
 
 func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
@@ -262,6 +308,11 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 func _refresh_art() -> void:
 	if is_instance_valid(_elevator_sprite):
 		_elevator_sprite.texture = Art.TEXTURES.elevator_ready if elevator_unlocked else Art.TEXTURES.elevator_locked
+	if chapter_id == 4:
+		_props.modulate = Color.WHITE
+		for id in _lab_screens:
+			_lab_screens[id].modulate = Color("b9d9bc") if _pending_progress.get("completed_missions", []).has(id) else Color.WHITE
+		return
 	if chapter_id == 3:
 		_props.modulate = Color.WHITE
 		if is_instance_valid(_python_sprite): _python_sprite.modulate = Color("b9d9bc") if python_restored else Color.WHITE
@@ -386,7 +437,7 @@ func restore_progress(progress: Dictionary) -> void:
 func _is_target_available(target: Node2D) -> bool:
 	# Mission equipment remains part of the room after repair, but its marker
 	# and interaction stop. The elevator is travel, never a completed mission.
-	return target.interaction_id == "elevator" or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
+	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
 func _refresh_target_availability() -> void:
 	for target in _targets:
@@ -488,6 +539,14 @@ func interact_nearest() -> void:
 		interaction_requested.emit(_target.interaction_id)
 
 func _draw() -> void:
+	if chapter_id == 4:
+		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO, Color("c7dce4"))
+		draw_texture(Art.TEXTURES.code_walls, Vector2.ZERO)
+		draw_string(ThemeDB.fallback_font,Vector2(66,73),"CHAPITRE 4 · LABORATOIRE RÉSEAU",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("5a736b"))
+		var ids := ["firewall", "ip_conflict", "subnet_mask"]
+		for index in range(3):
+			_draw_code_label(["PARE-FEU", "ADRESSES IP", "MASQUE /26"][index], _pending_progress.get("completed_missions", []).has(ids[index]), Vector2(220 + index * 280,249), Color("5b7d90"))
+		return
 	if chapter_id == 3:
 		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO)
 		draw_texture(Art.TEXTURES.code_walls, Vector2.ZERO)
