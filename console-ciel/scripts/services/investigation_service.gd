@@ -9,11 +9,11 @@ var _authorizations: Dictionary = {}
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
 		return 1
-	return 2 if AppState.profile.progress.room_id == "room_02" else 1
+	return {"room_01": 1, "room_02": 2, "room_03": 3}.get(AppState.profile.progress.room_id, 1)
 
 func chapter_missions(chapter: int = 0) -> Array:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2]:
+	if selected not in [1, 2, 3]:
 		return []
 	if RewardService.missions.is_empty() and not RewardService.load_rules().ok:
 		return []
@@ -37,8 +37,16 @@ func _chapter_complete(chapter: int) -> bool:
 func can_use_elevator() -> bool:
 	return _chapter_complete(1)
 
+func can_enter_chapter(chapter: int) -> bool:
+	if chapter not in [1, 2, 3] or AppState.profile.is_empty() or not AppState.profile.progress.started:
+		return false
+	for previous in range(1, chapter):
+		if not _chapter_complete(previous):
+			return false
+	return true
+
 func enter_chapter(chapter: int) -> Dictionary:
-	if chapter not in [1, 2]:
+	if chapter not in [1, 2, 3]:
 		return SaveService._fail("Cet étage n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
@@ -49,8 +57,10 @@ func enter_chapter(chapter: int) -> Dictionary:
 		return SaveService._fail("Sélectionnez ce profil pour enregistrer sa migration avant de changer d’étage.")
 	if not can_use_elevator():
 		return SaveService._fail("L’ascenseur se déverrouille après les trois missions du premier chapitre.")
+	if not can_enter_chapter(chapter):
+		return SaveService._fail("Termine les trois missions de l’étage réseau pour rejoindre l’atelier code.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	progress.room_id = "room_01" if chapter == 1 else "room_02"
+	progress.room_id = "room_%02d" % chapter
 	progress.checkpoint_id = "elevator"
 	progress.active_mission = ""
 	var saved := _save_progress(progress)
@@ -227,6 +237,22 @@ func submit_diagnostic(id: String, diagnosis: String, repair: String) -> Diction
 		return SaveService._fail("Ce défi ne fait pas partie des diagnostics de l’étage réseau.")
 	return _finish_validated(id, {"diagnosis": diagnosis, "repair": repair})
 
+func submit_code(id: String, answer: String) -> Dictionary:
+	if id not in SaveService.CHAPTER_THREE_IDS:
+		return SaveService._fail("Ce défi ne fait pas partie de l’atelier code.")
+	return _finish_validated(id, {"answer": answer})
+
+func _validate_code(id: String, answer: String) -> Dictionary:
+	var ready := _ready_for(id)
+	if not ready.ok:
+		return ready
+	var definition: Dictionary = ready.data
+	if answer != definition.solution.answer:
+		return SaveService._fail(_feedback(definition.code.choices, answer))
+	# Les choix sont comparés à une solution pédagogique locale.
+	# Aucun texte saisi n’est exécuté comme programme ou interprété comme balisage.
+	return SaveService._ok()
+
 func _validate_diagnostic(id: String, diagnosis: String, repair: String) -> Dictionary:
 	var ready := _ready_for(id)
 	if not ready.ok:
@@ -261,9 +287,8 @@ func _validate_computer(checks: Array, cause: String, correction: String) -> Dic
 		return SaveService._fail(_feedback(definition.corrections, correction))
 	return SaveService._ok()
 
-func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
-	# Même cet intermédiaire revalide une solution concrète ; un appel direct
-	# avec un état fabriqué ne peut pas attribuer une réussite.
+func _validate_solution(id: String, evidence: Dictionary) -> Dictionary:
+	# Contrôle commun, effectué à la soumission puis lors de la récompense.
 	var checked: Dictionary
 	match id:
 		"lighting":
@@ -282,8 +307,18 @@ func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
 			if not evidence.get("checks") is Array or not evidence.get("cause") is String or not evidence.get("correction") is String:
 				return SaveService._fail("Les vérifications, la cause et la correction sont absentes.")
 			checked = _validate_computer(evidence.checks, evidence.cause, evidence.correction)
+		"python", "html", "markdown":
+			if not evidence.get("answer") is String:
+				return SaveService._fail("La réponse au défi de code est absente.")
+			checked = _validate_code(id, evidence.answer)
 		_:
 			return SaveService._fail("Mission inconnue.")
+	return checked
+
+func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
+	# Même cet intermédiaire revalide une solution concrète ; un appel direct
+	# avec un état fabriqué ne peut pas attribuer une réussite.
+	var checked := _validate_solution(id, evidence)
 	if not checked.ok:
 		return checked
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
@@ -293,7 +328,7 @@ func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
 	# Autorisation éphémère créée uniquement après les validations ci-dessus.
 	# La récompense consomme cette preuve, puis écrit le document complet une seule fois.
 	var token := Crypto.new().generate_random_bytes(16).hex_encode()
-	_authorizations[token] = {"mission_id": id, "profile_id": AppState.profile.id, "profile_snapshot": AppState.profile.duplicate(true), "progress": progress.duplicate(true)}
+	_authorizations[token] = {"mission_id": id, "profile_id": AppState.profile.id, "profile_snapshot": AppState.profile.duplicate(true), "progress": progress.duplicate(true), "evidence": evidence.duplicate(true)}
 	var result := RewardService._complete_validated_mission(id, token)
 	_authorizations.erase(token)
 	if result.ok:
@@ -303,10 +338,18 @@ func _finish_validated(id: String, evidence: Dictionary) -> Dictionary:
 	return result
 
 func _take_authorization(id: String, token: String) -> Dictionary:
-	if token.is_empty() or not _authorizations.has(token) or _authorizations[token].mission_id != id:
+	if token.is_empty() or not _authorizations.has(token):
 		return SaveService._fail("Validation métier absente : résous le défi avant de demander sa récompense.")
+	var pending: Variant = _authorizations[token]
+	if not pending is Dictionary or not pending.get("mission_id") is String:
+		_authorizations.erase(token)
+		return SaveService._fail("La preuve de résolution est invalide.")
+	if pending.mission_id != id:
+		return SaveService._fail("La preuve de résolution appartient à une autre mission.")
 	var authorization: Dictionary = _authorizations[token].duplicate(true)
 	_authorizations.erase(token)
+	if not authorization.get("profile_id") is String or not authorization.get("profile_snapshot") is Dictionary or not authorization.get("progress") is Dictionary or not authorization.get("evidence") is Dictionary:
+		return SaveService._fail("La preuve de résolution est incomplète.")
 	return SaveService._ok(authorization)
 
 func acknowledge_migration() -> Dictionary:
@@ -320,7 +363,7 @@ func acknowledge_migration() -> Dictionary:
 
 func conclusion(chapter: int = 0) -> Dictionary:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2]:
+	if selected not in [1, 2, 3]:
 		return SaveService._fail("Ce chapitre n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
