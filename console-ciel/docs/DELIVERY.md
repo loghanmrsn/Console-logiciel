@@ -1,4 +1,16 @@
-# Livraison courante 0.7.0 — chapitre 3, atelier du code
+# Livraison 0.7.1 — clavier des défis de code
+
+Le clavier à l’écran apparaît directement dans les exercices Python, HTML et Markdown. Il propose les minuscules, **⇧**, **123**, **#+=**, Espace, Effacer, Valider et Annuler. Le joueur tape le mot ou symbole manquant (`print`, `h1`, `#`) ou l’exemple complet. Le champ accepte 64 caractères ; le pseudo reste limité à 16. Le clavier physique et la navigation à la manette sont conservés, avec passage entre les touches et le champ de saisie. Une déconnexion conserve le texte et demande une reprise explicite.
+
+[Télécharger Windows 0.7.1](../builds/Console_CIEL_Windows_x86_64_clavier_0.7.1.zip) · [Télécharger Raspberry Pi 0.7.1](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.1.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.7.1.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.zip).
+
+Les neuf missions et les récompenses restent à 50 points chacune, 450 au maximum par profil. Les réponses sont comparées à des exemples pédagogiques ; aucun code saisi n’est exécuté. Les sauvegardes et achats existants sont conservés. La présentation des README reste identique, avec les nouveaux liens.
+
+Recette du 15 octobre 2026 : **3 272 assertions source** dans huit suites, **1 882 assertions par pack** Windows et ARM64 chargé par Godot Linux x86_64, et **610 contrôles de rendu X11 / OpenGL ES 3.2 Mesa llvmpipe**, sans échec. Les ressources et CRC des deux paquets sont vérifiés. [Résumé courant](../tests/clavier_code_0.7.1_results/summary.json).
+
+Les captures réelles montrent le clavier dans [Python](screenshots/clavier_code_0.7.1/chapter_3_python_challenge.png), [HTML](screenshots/clavier_code_0.7.1/chapter_3_html_challenge.png) et [Markdown](screenshots/clavier_code_0.7.1/chapter_3_markdown_challenge.png), dont les deux derniers en 800 × 480 avec texte agrandi. Les exports Windows et ARM64, leurs ressources chargées par Godot Linux x86_64 et le rendu X11 sont des contrôles distincts. Le lancement natif sur Windows et sur le Raspberry Pi, le son perçu et la manette physique restent à vérifier sur les appareils cibles.
+
+# Historique — livraison 0.7.0 — chapitre 3, atelier du code
 
 | Plateforme | Logiciel prêt à lancer | Projet complet avec sources |
 |---|---|---|
