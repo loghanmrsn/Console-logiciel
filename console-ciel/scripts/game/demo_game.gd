@@ -319,6 +319,11 @@ func _input(event: InputEvent) -> void:
 	# La confirmation globale possède la navigation, y compris Start/P.
 	if get_tree().get_first_node_in_group('blocking_confirmation')!=null: return
 	if not is_visible_in_tree() or event.is_echo(): return
+	# Les lettres P/T et l’espace appartiennent au texte saisi dans un défi,
+	# même pendant le verrou de transition ; Échap garde son rôle de retour.
+	var typing: Control = get_viewport().gui_get_focus_owner()
+	if event is InputEventKey and typing is LineEdit and modal_content.is_ancestor_of(typing) and not event.is_action("ui_cancel"):
+		return
 	if event.is_action_pressed('game_missions'):
 		if not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
 			if not _missions_held:
@@ -530,6 +535,7 @@ func _resume_controller() -> void:
 		_pending_focus_key = previous_focus_key
 		if is_instance_valid(previous_focus) and previous_focus.is_inside_tree() and previous_focus.is_visible_in_tree(): previous_focus.grab_focus()
 		SceneRouter.lock_until_release()
+		_fit_modal.call_deferred()
 		_wire_modal()
 	if _controller_deferred_conclusion:
 		_controller_deferred_conclusion = false
@@ -712,6 +718,8 @@ func _wire_modal() -> void:
 		control.focus_neighbor_left = control.get_path_to(previous)
 		control.focus_neighbor_right = control.get_path_to(next)
 		if not control.focus_entered.is_connected(_ensure_modal_focus): control.focus_entered.connect(_ensure_modal_focus)
+	if is_instance_valid(challenge) and is_instance_valid(challenge.code_keyboard):
+		challenge.code_keyboard.wire_navigation()
 	var owner: Control = get_viewport().gui_get_focus_owner()
 	if not targets.is_empty() and (not is_instance_valid(owner) or not modal_content.is_ancestor_of(owner) or owner.focus_mode != Control.FOCUS_ALL):
 		var target: Control = targets[0]
