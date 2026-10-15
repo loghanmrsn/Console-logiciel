@@ -1,8 +1,8 @@
 # Enquête CIEL — trois chapitres
 
-Le joueur commence dans un local technique où une préparation pédagogique a été interrompue. Il rétablit l’éclairage, ouvre le bureau et remet le signal vidéo de l’ordinateur. Après ces trois réussites, l’ascenseur **en bas de la deuxième pièce, le bureau**, se déverrouille et mène à la salle réseau du **chapitre 2**. Après les trois missions réseau, l’ascenseur donne accès à l’atelier du code du **chapitre 3** : Python, HTML et Markdown. Les chapitres précédents sont conservés ; les nouveaux exercices de code proposent des choix simples, des erreurs expliquées et les mêmes sauvegardes.
+Le joueur commence dans un local technique où une préparation pédagogique a été interrompue. Il rétablit l’éclairage, ouvre le bureau et remet le signal vidéo de l’ordinateur. Après ces trois réussites, l’ascenseur **en bas de la deuxième pièce, le bureau**, se déverrouille et mène à la salle réseau du **chapitre 2**. Après les trois missions réseau, l’ascenseur donne accès à l’atelier du code du **chapitre 3** : Python, HTML et Markdown. Les chapitres précédents sont conservés ; les nouveaux exercices de code proposent une saisie simple au clavier à l’écran, des erreurs expliquées et les mêmes sauvegardes.
 
-Tout se joue hors ligne dans une simulation fictive. Aucun câble réel, terminal, accès Internet ou réglage réseau du PC n’est utilisé ni modifié. Les exercices de code sont des choix pédagogiques : aucun interpréteur Python ni code saisi par le joueur n’est exécuté.
+Tout se joue hors ligne dans une simulation fictive. Aucun câble réel, terminal, accès Internet ou réglage réseau du PC n’est utilisé ni modifié. Les exercices de code sont des simulations pédagogiques : aucun interpréteur Python ni code saisi par le joueur n’est exécuté.
 
 ## Exploration et tableau de missions
 
@@ -66,19 +66,22 @@ Choisir **Wi-Fi sans chiffrement**, puis **Activer WPA2/WPA3 et une phrase uniqu
 
 ## Chapitre 3 — L’atelier du code
 
+Le clavier AZERTY apparaît dès l’ouverture de chaque exercice. Tapez le mot ou symbole manquant, ou recopiez la ligne complète : `print("Bonjour CIEL")`, `<h1>Bonjour CIEL</h1>` ou `# Bonjour CIEL`. La saisie accepte 64 caractères ; le pseudo garde sa limite de 16. **⇧**, **123**, **#+=**, **Espace** et **Effacer** sont disponibles. **Valider** vérifie la réponse ; **Annuler** revient dans la pièce. Le clavier physique reste utilisable. Les touches P, T et Espace tapent du texte lorsque le champ est actif.
+
+
 Les trois postes se débloquent dans l’ordre **Python → HTML → Markdown**. Chaque exercice présente une consigne et un petit exemple à compléter, avec des choix utilisables au clavier ou à la manette. Les réponses incorrectes donnent une explication et permettent de réessayer.
 
 ### Python : afficher un message
 
-Le poste demande d’afficher un message à l’écran. En Python, la fonction **`print()`** sert à afficher du texte ; les guillemets délimitent le message. Choisir **`print`** pour compléter l’instruction présentée, puis valider la correction proposée. Les parenthèses et les guillemets de l’exemple ne sont pas une commande du système : le jeu valide seulement le choix pédagogique.
+Le poste demande d’afficher un message à l’écran. En Python, la fonction **`print()`** sert à afficher du texte ; les guillemets délimitent le message. Saisir **`print`** pour compléter l’instruction présentée, puis valider la correction proposée. Les parenthèses et les guillemets de l’exemple ne sont pas une commande du système : le jeu valide seulement le choix pédagogique.
 
 ### HTML : reconnaître une balise de titre
 
-Le deuxième poste présente un titre principal de page. La balise **`<h1>`** ouvre ce titre et **`</h1>`** le ferme. Choisir **`h1`** pour entourer le texte dans l’exemple. Une balise de paragraphe ou d’image ne répond pas à la consigne du titre principal. Le poste simule le résultat sans ouvrir de navigateur ni charger de page externe.
+Le deuxième poste présente un titre principal de page. La balise **`<h1>`** ouvre ce titre et **`</h1>`** le ferme. Saisir **`h1`** pour entourer le texte dans l’exemple. Une balise de paragraphe ou d’image ne répond pas à la consigne du titre principal. Le poste simule le résultat sans ouvrir de navigateur ni charger de page externe.
 
 ### Markdown : écrire un titre
 
-Le dernier poste demande un titre de premier niveau. En Markdown, il commence par **`#` suivi d’une espace**, par exemple `# Bonjour CIEL`. Choisir le symbole **`#`**, placé avant l’espace de l’exemple, puis valider. Un tiret commence une liste ; une étoile peut aussi commencer une liste : elle ne crée pas le titre demandé.
+Le dernier poste demande un titre de premier niveau. En Markdown, il commence par **`#` suivi d’une espace**, par exemple `# Bonjour CIEL`. Saisir le symbole **`#`**, placé avant l’espace de l’exemple, puis valider. Un tiret commence une liste ; une étoile peut aussi commencer une liste : elle ne crée pas le titre demandé.
 
 L’ascenseur présente les trois destinations : **Rez-de-chaussée · Chapitre 1 · Le bureau**, **Étage 1 · Chapitre 2 · La salle réseau**, et **Étage 2 · Chapitre 3 · L’atelier du code**. La destination actuelle et les destinations encore verrouillées sont indiquées et indisponibles.
 
