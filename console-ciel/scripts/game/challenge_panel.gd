@@ -23,6 +23,8 @@ var diagnosis_selector: OptionButton
 var repair_selector: OptionButton
 var cause_selector: OptionButton
 var correction_selector: OptionButton
+var code_selector: OptionButton
+var code_preview: Label
 var circuit: Control
 var _service: Node
 var _busy: bool = false
@@ -30,6 +32,9 @@ var _finished: bool = false
 var _available: bool = false
 var _choice_details: Dictionary = {}
 var _navigation_signature: String = ""
+
+func _ready() -> void:
+	theme_changed.connect(_sync_code_appearance)
 
 func configure(id: String) -> void:
 	mission_id = id
@@ -67,6 +72,8 @@ func configure(id: String) -> void:
 		_build_computer()
 	elif mission_id in ["network", "addressing", "security"]:
 		_build_diagnostic()
+	elif mission_id in ["python", "html", "markdown"]:
+		_build_code()
 	feedback_label = _text("")
 	feedback_label.name = "challenge_feedback"
 	feedback_label.hide()
@@ -178,7 +185,41 @@ func _build_diagnostic() -> void:
 	submit_button = _action("Vérifier diagnostic et correction", mission_id + "_validate", _submit_diagnostic)
 	submit_button.theme_type_variation = "PrimaryButton"
 
-func _selector(key: String, placeholder: String, choices: Array) -> OptionButton:
+func _build_code() -> void:
+	var code: Dictionary = definition.get("code", {})
+	_text("Chapitre 3 · L’atelier du code")
+	_text(str(code.get("prompt", "Choisissez le mot ou le symbole qui complète ce code.")))
+	code_preview = _text(str(code.get("template", "")))
+	code_preview.name = mission_id + "_code_preview"
+	# A plain Label preserves <h1>, quotes and # as literal text. The exercises
+	# never execute Python, render HTML or interpret Markdown from a response.
+	var monospace := SystemFont.new()
+	monospace.font_names = PackedStringArray(["DejaVu Sans Mono", "Consolas", "Liberation Mono", "monospace"])
+	code_preview.add_theme_font_override("font", monospace)
+	_sync_code_appearance()
+	code_preview.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	code_preview.custom_minimum_size.y = 54
+	code_preview.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_text("Complétez les pointillés, puis validez votre réponse. Flèches et Entrée / face bas restent disponibles.")
+	code_selector = _selector(mission_id + "_answer", "Choisir le code manquant", code.get("choices", []), false)
+	code_selector.item_selected.connect(func(_index: int) -> void: _update_code_preview())
+	submit_button = _action("Valider le code", mission_id + "_validate", _submit_code)
+	submit_button.theme_type_variation = "PrimaryButton"
+
+func _sync_code_appearance() -> void:
+	if is_instance_valid(code_preview):
+		code_preview.add_theme_font_size_override("font_size", get_theme_font_size("font_size", "Label") + 2)
+
+func _update_code_preview() -> void:
+	if not is_instance_valid(code_preview) or not is_instance_valid(code_selector):
+		return
+	var template := str(definition.get("code", {}).get("template", ""))
+	var replacement := "____"
+	if code_selector.selected > 0:
+		replacement = code_selector.get_item_text(code_selector.selected)
+	code_preview.text = template.replace("____", replacement)
+
+func _selector(key: String, placeholder: String, choices: Array, explain_choice: bool = true) -> OptionButton:
 	var selector := OptionButton.new()
 	selector.name = key
 	selector.custom_minimum_size.y = 48
@@ -195,7 +236,7 @@ func _selector(key: String, placeholder: String, choices: Array) -> OptionButton
 	details.hide()
 	_choice_details[key] = details
 	selector.item_selected.connect(func(index: int) -> void:
-		if index > 0 and index <= choices.size():
+		if explain_choice and index > 0 and index <= choices.size():
 			var item: Dictionary = choices[index - 1]
 			details.text = str(item.get("feedback", ""))
 			details.visible = not details.text.is_empty()
@@ -281,6 +322,9 @@ func _update_submit_state() -> void:
 		cause_selector.disabled = not verified
 		correction_selector.disabled = not verified
 		submit_button.disabled = _busy or _finished or not verified or _selection(cause_selector).is_empty() or _selection(correction_selector).is_empty()
+	elif mission_id in ["python", "html", "markdown"]:
+		code_selector.disabled = not _available or _busy or _finished
+		submit_button.disabled = not _available or _busy or _finished or _selection(code_selector).is_empty()
 	else:
 		submit_button.disabled = not _available or _busy or _finished
 	var states: Array = []
@@ -324,6 +368,12 @@ func _submit_diagnostic() -> void:
 		return
 	_busy = true
 	_finish_submission(_service.submit_diagnostic(mission_id, _selection(diagnosis_selector), _selection(repair_selector)))
+
+func _submit_code() -> void:
+	if _busy or _finished:
+		return
+	_busy = true
+	_finish_submission(_service.submit_code(mission_id, _selection(code_selector)))
 
 func _finish_submission(result: Dictionary) -> void:
 	_busy = false
