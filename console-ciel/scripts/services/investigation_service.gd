@@ -10,11 +10,11 @@ const CODE_TEXT_LIMIT := 64
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
 		return 1
-	return {"room_01": 1, "room_02": 2, "room_03": 3}.get(AppState.profile.progress.room_id, 1)
+	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4}.get(AppState.profile.progress.room_id, 1)
 
 func chapter_missions(chapter: int = 0) -> Array:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2, 3]:
+	if selected not in [1, 2, 3, 4]:
 		return []
 	if RewardService.missions.is_empty() and not RewardService.load_rules().ok:
 		return []
@@ -39,7 +39,7 @@ func can_use_elevator() -> bool:
 	return _chapter_complete(1)
 
 func can_enter_chapter(chapter: int) -> bool:
-	if chapter not in [1, 2, 3] or AppState.profile.is_empty() or not AppState.profile.progress.started:
+	if chapter not in [1, 2, 3, 4] or AppState.profile.is_empty() or not AppState.profile.progress.started:
 		return false
 	for previous in range(1, chapter):
 		if not _chapter_complete(previous):
@@ -47,7 +47,7 @@ func can_enter_chapter(chapter: int) -> bool:
 	return true
 
 func enter_chapter(chapter: int) -> Dictionary:
-	if chapter not in [1, 2, 3]:
+	if chapter not in [1, 2, 3, 4]:
 		return SaveService._fail("Cet étage n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
@@ -59,7 +59,7 @@ func enter_chapter(chapter: int) -> Dictionary:
 	if not can_use_elevator():
 		return SaveService._fail("L’ascenseur se déverrouille après les trois missions du premier chapitre.")
 	if not can_enter_chapter(chapter):
-		return SaveService._fail("Termine les trois missions de l’étage réseau pour rejoindre l’atelier code.")
+		return SaveService._fail("Termine les trois missions du chapitre précédent pour monter à cet étage.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
 	progress.room_id = "room_%02d" % chapter
 	progress.checkpoint_id = "elevator"
@@ -234,7 +234,7 @@ func _validate_lock(diagnosis: String, repair: String) -> Dictionary:
 	return SaveService._ok()
 
 func submit_diagnostic(id: String, diagnosis: String, repair: String) -> Dictionary:
-	if id not in SaveService.CHAPTER_TWO_IDS:
+	if id not in SaveService.CHAPTER_TWO_IDS + SaveService.CHAPTER_FOUR_IDS:
 		return SaveService._fail("Ce défi ne fait pas partie des diagnostics de l’étage réseau.")
 	return _finish_validated(id, {"diagnosis": diagnosis, "repair": repair})
 
@@ -333,7 +333,7 @@ func _validate_solution(id: String, evidence: Dictionary) -> Dictionary:
 			if not evidence.get("diagnosis") is String or not evidence.get("repair") is String:
 				return SaveService._fail("Le diagnostic et la réparation sont absents.")
 			checked = _validate_lock(evidence.diagnosis, evidence.repair)
-		"network", "addressing", "security":
+		"network", "addressing", "security", "firewall", "ip_conflict", "subnet_mask":
 			if not evidence.get("diagnosis") is String or not evidence.get("repair") is String:
 				return SaveService._fail("Le diagnostic et la réparation sont absents.")
 			checked = _validate_diagnostic(id, evidence.diagnosis, evidence.repair)
@@ -397,7 +397,7 @@ func acknowledge_migration() -> Dictionary:
 
 func conclusion(chapter: int = 0) -> Dictionary:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2, 3]:
+	if selected not in [1, 2, 3, 4]:
 		return SaveService._fail("Ce chapitre n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
