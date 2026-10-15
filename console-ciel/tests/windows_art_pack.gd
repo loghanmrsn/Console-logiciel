@@ -22,7 +22,7 @@ func resources(folder: String) -> Array:
  return result
 func run():
  await process_frame
- check(ProjectSettings.get_setting('application/config/version')=='0.7.0','Version embarquée')
+ check(ProjectSettings.get_setting('application/config/version')=='0.7.1','Version embarquée')
  var all=resources('res://assets/art');check(all.size()==48,'48 SVG originaux dans le pack, dont les trois chapitres et l’ascenseur')
  for path in all:
   var asset=ResourceLoader.load(path)
