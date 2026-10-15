@@ -1,6 +1,6 @@
 # Limites connues et vérifications avant démonstration
 
-La version 0.6.1 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
+La version 0.7.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
 
 | Point | État et conséquence | Vérification à effectuer |
 |---|---|---|
@@ -22,7 +22,7 @@ La version 0.6.1 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La rec
 
 1. Créer deux profils sans souris et vérifier l'absence de données communes.
 2. Avec le premier, modifier puis annuler un paramètre ; l'appliquer et vérifier après relance.
-3. Jouer les six défis dans les deux chapitres, soumettre une mauvaise réponse avant chaque correction, revenir au menu et reprendre après chaque mission. Vérifier l’ascenseur, le panneau de missions et la disparition des repères après réussite sauvegardée.
+3. Jouer les neuf défis dans les trois chapitres, soumettre une mauvaise réponse avant chaque correction, revenir au menu et reprendre après chaque mission. Vérifier l’accès au chapitre 3 seulement après les trois missions réseau, l’ascenseur entre les étages ouverts, le panneau de missions et la disparition des repères après réussite sauvegardée. Les exercices Python, HTML et Markdown doivent expliquer une mauvaise réponse sans attribuer de points.
 4. Débrancher la manette active en jeu : pause et message, clavier disponible, reconnexion sans déplacement automatique, reprise explicite.
 5. Acheter et équiper un cosmétique ; tester aussi le refus d’achat d’un jeu Test sous 200 points, puis un achat avec un solde suffisant. Fermer normalement et retrouver mission, solde, achat, équipement et paramètres.
 6. Rejouer : aucune récompense supplémentaire. Tester plusieurs validations rapides et vérifier que les dialogues ne se superposent pas.
