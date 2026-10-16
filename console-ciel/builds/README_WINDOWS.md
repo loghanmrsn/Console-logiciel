@@ -1,22 +1,24 @@
-# Console CIEL 0.8.0 — Windows x86_64
+# Console CIEL 0.9.0 — Windows x86_64
 
-[Télécharger Windows 0.8.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.9.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.8.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-livres-reseau-0.8.0/Console_CIEL.exe`.
+Le [projet complet Windows 0.9.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.9.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-labyrinthe-0.9.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
 Après RJ45, IPv4 et Wi-Fi, l’ascenseur donne accès à trois exercices simples : **Python (`print`)**, **HTML (`h1`)**, puis **Markdown (`# `)**. Les réponses se saisissent avec le clavier virtuel ou physique, avec explications ; aucun code utilisateur n’est exécuté. Les étages déjà ouverts restent accessibles. [Parcours de l’enquête](../docs/ENQUETE.md).
 
-Les douze missions rapportent **50 points à leur première réussite**, soit **600 au maximum par profil**. Trois achats Test à 200 points laissent 0 point, sans autre dépense. Ces Test restent des jeux en préparation. Les anciens profils et achats sont conservés ; rejouer ne redonne aucun point. Le profil en haut à gauche, les repères masqués après réussite, les thèmes et le clavier restent disponibles. [Bibliothèque](../docs/BIBLIOTHEQUE_ET_THEMES.md).
+Les treize missions rapportent **50 points à leur première réussite**, soit **650 au maximum par profil**. Trois achats Test à 200 points laissent 50 points, sans autre dépense. Ces Test restent des jeux en préparation. Les anciens profils et achats sont conservés ; rejouer ne redonne aucun point. Le profil en haut à gauche, les repères masqués après réussite, les thèmes et le clavier restent disponibles. [Bibliothèque](../docs/BIBLIOTHEQUE_ET_THEMES.md).
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.8.0](Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.8.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.9.0](Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.9.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
+
+La version 0.9.0 ajoute le **chapitre 5** : portable → **Y aller** → labyrinthe avec inscriptions murales et terminal simulé. Une seule mission est affichée **???** ; le clavier virtuel apparaît pour les identifiants, les mots de passe et les commandes. Les quatre premiers chapitres conservent trois missions chacun. La connexion et la reprise sont sauvegardées. Aucune commande n’est exécutée sur le système hôte.
 
 # Historique — Windows x86_64 0.6.0
 
@@ -60,4 +62,4 @@ Les essais du pack exécutent ses ressources avec Godot **Linux**, depuis des do
 
 Livraisons conservées : [0.5.0](Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip), [0.4.2](Console_CIEL_Windows_x86_64_profils_0.4.2.zip), [0.4.1](Console_CIEL_Windows_x86_64_navigation_0.4.1.zip), [0.4.0](Console_CIEL_Windows_x86_64_refonte_0.4.0.zip).
 
-La version 0.8.0 ajoute les trois livres animés du coin ressources (chapitre 3) et le chapitre 4 : pare-feu, conflit IPv4 et masque /26. L’ascenseur propose Descendre d’étage, Monter d’étage et Retour au menu ; Échap reste dans la pièce. Les anciennes sauvegardes sont conservées.
+La version 0.9.0 ajoute les trois livres animés du coin ressources (chapitre 3) et le chapitre 4 : pare-feu, conflit IPv4 et masque /26. L’ascenseur propose Descendre d’étage, Monter d’étage et Retour au menu ; Échap reste dans la pièce. Les anciennes sauvegardes sont conservées.
