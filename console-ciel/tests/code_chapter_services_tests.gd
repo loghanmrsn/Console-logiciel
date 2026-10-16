@@ -56,12 +56,12 @@ func _run() -> void:
 
 
 func _test_rules_and_gates() -> void:
-	_check(rewards.missions.size() == 12 and saves.MISSION_IDS.size() == 12, "Douze missions livrées sans dupliquer les identifiants")
+	_check(rewards.missions.size() == 13 and saves.MISSION_IDS.size() == 13, "Treize missions livrées sans dupliquer les identifiants")
 	var rules: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/game_rules.json"))
 	var total := 0
 	for definition in rewards.missions:
 		total += int(definition.reward)
-	_check(total == 600 and int(rules.mission_reward_max) == 600, "Plafond de douze récompenses de 50 : 600 points")
+	_check(total == 650 and int(rules.mission_reward_max) == 650, "Plafond de treize récompenses de 50 : 650 points")
 	_check(not investigation.can_enter_chapter(1) and not investigation.can_enter_chapter(3), "Aucun étage jouable avant le démarrage")
 	_check(not investigation.enter_chapter(3).ok and not investigation.enter_chapter(4).ok, "Pas de trajet avant enquête ou vers un étage inconnu")
 	_ok(profiles.start_game(), "Démarrage de l’enquête")
@@ -221,7 +221,7 @@ func _test_migrations() -> void:
 		legacy.id = created.data.id
 		legacy.display_name = created.data.display_name
 		legacy.avatar_image = "portrait_local.png"
-		for id in THIRD + saves.CHAPTER_FOUR_IDS + (SECOND if old_count == 3 else []):
+		for id in THIRD + saves.CHAPTER_FOUR_IDS + saves.CHAPTER_FIVE_IDS + (SECOND if old_count == 3 else []):
 			legacy.progress.observations.erase(id)
 		var original := JSON.stringify(legacy, "\t")
 		state.clear_profile()
@@ -230,7 +230,7 @@ func _test_migrations() -> void:
 		if not _ok(loaded, "Document ancien reconnu : " + str(old_count)):
 			continue
 		var expected: Dictionary = legacy.duplicate(true)
-		for id in THIRD + saves.CHAPTER_FOUR_IDS + (SECOND if old_count == 3 else []):
+		for id in THIRD + saves.CHAPTER_FOUR_IDS + saves.CHAPTER_FIVE_IDS + (SECOND if old_count == 3 else []):
 			expected.progress.observations[id] = []
 		_check(loaded.migration_required and loaded.data == expected and _disk(legacy.id) == original, "Lecture enrichit les observations, sans écrire ni changer identité, avatar, points, achats ou progression")
 		saves.simulate_write_failure = true
@@ -281,7 +281,7 @@ func _test_replay_and_profile_isolation() -> void:
 			_complete(id, 0)
 	_check(state.profile.wallet.points == 430 and state.profile.progress.run_reward_points == 0 and state.profile.progress.completed_missions.size() == 9, "Rejouer les neuf solutions ne produit aucun gain supplémentaire")
 	_ok(profiles.reset_progress(), "Réinitialisation de progression")
-	_check(not state.profile.progress.started and state.profile.progress.observations.size() == 12 and state.profile.rewarded_missions.size() == 9 and state.profile.wallet.points == 430, "Réinitialisation restaure douze listes sans retirer les acquis économiques")
+	_check(not state.profile.progress.started and state.profile.progress.observations.size() == 13 and state.profile.rewarded_missions.size() == 9 and state.profile.wallet.points == 430, "Réinitialisation restaure treize listes sans retirer les acquis économiques")
 
 
 func _complete(id: String, expected_reward: int = 50) -> void:
