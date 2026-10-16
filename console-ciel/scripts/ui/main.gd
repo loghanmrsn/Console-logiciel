@@ -880,7 +880,7 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
 	var definition=entry.duplicate(true)
 	if educational:
-		definition.description='Quatre chapitres · jusqu’à 600 points.'
+		definition.description='Cinq chapitres · jusqu’à 650 points.'
 		definition.action_label='Continuer' if AppState.profile.progress.started else 'Commencer'
 	var card=GameCard.new()
 	card.size_flags_horizontal=Control.SIZE_EXPAND_FILL if host is GridContainer else Control.SIZE_FILL
@@ -1100,7 +1100,7 @@ func _product_action(id: String) -> void:
 	elif AppState.profile.wallet.points<item.price:
 		var maximum=0
 		for mission in RewardService.missions: maximum+=mission.reward
-		_confirm('Points insuffisants','Résolvez les missions des quatre chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
+		_confirm('Points insuffisants','Résolvez les missions des cinq chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
 	else:
 		_confirm('Acheter « '+item.name+' » ?','Prix : %d points virtuels. Nouveau solde : %d points. Aucun argent réel.' % [item.price,AppState.profile.wallet.points-item.price],'Acheter',func():
 			if _result(ShopService.purchase(id),'✓ Achat réussi et enregistré',func(): _product_action(id)): _show_screen('shop'))
