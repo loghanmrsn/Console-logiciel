@@ -10,7 +10,10 @@ const CODE_TEXT_LIMIT := 64
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
 		return 1
-	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4, "room_05": 5, "maze_05": 5, "courtyard": 0, "building_02": 0}.get(AppState.profile.progress.room_id, 1)
+	var room_id := str(AppState.profile.progress.room_id)
+	if room_id == "courtyard" or room_id in SaveService.HOTEL_ROOMS:
+		return 0
+	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4, "room_05": 5, "maze_05": 5}.get(room_id, 1)
 
 func chapter_missions(chapter: int = 0) -> Array:
 	var selected := current_chapter() if chapter == 0 else chapter
