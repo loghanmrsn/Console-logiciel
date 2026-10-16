@@ -31,7 +31,7 @@ func _courtyard() -> void:
 	for y in [510,680,850]:
 		var at := Vector2(900,y)
 		draw_polyline(PackedVector2Array([at+Vector2(-18,15),at,at+Vector2(18,15)]),Color("75988d"),5,true)
-	_text("L’IMMEUBLE D’EN FACE",Vector2(900,460),27,true)
+	_text("L’HÔTEL CIEL · EN FACE",Vector2(900,460),27,true)
 
 func _facades() -> void:
 	for rect in [Rect2(100,80,1600,250),Rect2(100,1090,1600,160)]:
@@ -40,7 +40,7 @@ func _facades() -> void:
 			if abs(x-900)>140:
 				draw_rect(Rect2(x,rect.position.y+45,96,70),Color("718d93"))
 				draw_rect(Rect2(x+6,rect.position.y+51,84,58),Color("b7d4d8"))
-	_text("BÂTIMENT B · NOUVELLE EXPLORATION",Vector2(900,220),26,true)
+	_text("HÔTEL CIEL · ★ ★ ★ ★ ★",Vector2(900,220),26,true)
 	_text("BÂTIMENT A · CONSOLE CIEL",Vector2(900,1210),24,true)
 	_door(Vector2(900,330),"ENTRER",true)
 	_door(Vector2(900,1090),"RETOUR",false)
