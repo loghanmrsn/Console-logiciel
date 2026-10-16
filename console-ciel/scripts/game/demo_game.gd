@@ -4,6 +4,10 @@ extends Control
 const GlassButton = preload('res://scripts/ui/translucent_button.gd')
 const WorldScene = preload('res://scenes/investigation_world.tscn')
 const Challenge = preload('res://scripts/game/challenge_panel.gd')
+const CampusMap = preload("res://scripts/game/campus_map.gd")
+var campus_map: PanelContainer
+var _zone_hint: Label
+var _map_held := false
 const MissionTracker = preload('res://scripts/game/mission_tracker.gd')
 
 const LessonLibrary = preload("res://scripts/game/lesson_library.gd")
@@ -131,6 +135,19 @@ func _build() -> void:
 	mission_tracker.configure(InvestigationService)
 	add_child(mission_tracker)
 	mission_tracker.expanded_changed.connect(func(expanded: bool): _objectives_expanded = expanded)
+	campus_map = CampusMap.new()
+	campus_map.world = world
+	add_child(campus_map)
+	_zone_hint = Label.new()
+	_zone_hint.name = "campus_wayfinding"
+	_zone_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_zone_hint.add_theme_font_size_override("font_size",16)
+	_zone_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_zone_hint.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	_zone_hint.offset_left = -355
+	_zone_hint.offset_right = -12
+	_zone_hint.offset_top = 14
+	add_child(_zone_hint)
 	# Retained aliases keep the pause menu and keyboard tests on the same board.
 	_objective_panel = mission_tracker.panel
 	_objective_toggle = mission_tracker.toggle_button
@@ -297,11 +314,17 @@ func _release_focus_modes() -> void:
 
 func _sync_controls() -> void:
 	var enabled := is_visible_in_tree() and not paused and overlay_kind.is_empty()
-	if not enabled: _missions_held = false
+	if not enabled:
+		_missions_held = false
+		_map_held = false
 	if is_instance_valid(world): world.set_controls_enabled(enabled)
 	if is_instance_valid(mission_tracker):
-		mission_tracker.visible = enabled
+		mission_tracker.visible = enabled and InvestigationService.current_chapter() != 0
 		mission_tracker.set_input_enabled(enabled)
+	if is_instance_valid(campus_map): campus_map.visible = enabled and world.room_id == "building_02"
+	if is_instance_valid(_zone_hint):
+		_zone_hint.visible = enabled and world.chapter_id == 0
+		_zone_hint.text = "COUR · Rejoignez la porte d’en face ↑" if world.room_id == "courtyard" else "BÂTIMENT B · Exploration libre\nCarte : → · Déplacement : ZQSD / joystick"
 
 func _sync_overlay_theme() -> void:
 	if _overlay == null: return
@@ -318,6 +341,8 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not ControllerService.accepts_event(event): return
+	if event is InputEventKey and event.keycode == KEY_RIGHT and not event.pressed:
+		_map_held = false
 	if event.is_action_released('game_missions'):
 		_missions_held = false
 		return
@@ -328,6 +353,12 @@ func _input(event: InputEvent) -> void:
 	# même pendant le verrou de transition ; Échap garde son rôle de retour.
 	var typing: Control = get_viewport().gui_get_focus_owner()
 	if event is InputEventKey and typing is LineEdit and modal_content.is_ancestor_of(typing) and not event.is_action("ui_cancel"):
+		return
+	if event is InputEventKey and event.keycode == KEY_RIGHT and event.pressed and world.room_id == "building_02" and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
+		if not _map_held:
+			_map_held = true
+			campus_map.toggle_map()
+		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed('game_missions'):
 		if not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
@@ -354,6 +385,9 @@ func _interact() -> void:
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if id in ["building_exit", "courtyard_first", "courtyard_second", "campus_leave"]:
+		_show_zone_door(id)
+		return
 	if id == 'laptop' and InvestigationService.current_chapter() == 5:
 		_show_laptop()
 		return
@@ -580,7 +614,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal': _close_overlay()
+		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door': _close_overlay()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
 
@@ -635,8 +669,10 @@ func _show_conclusion() -> void:
 		2: 'Le chapitre 3 est maintenant accessible. Revenez dans la pièce, puis prenez l’ascenseur vers l’atelier du code : Python, HTML et Markdown vous attendent.',
 		3: 'Le chapitre 4 est maintenant accessible. Consultez les livres au coin ressources, ou prenez l’ascenseur vers le laboratoire réseau.',
 		4: 'Le cinquième chapitre est maintenant accessible. Prenez l’ascenseur : un portable vous attend au palier.',
-		5: 'Bravo ! Le défi mystère est terminé. Revenez au palier par l’entrée du labyrinthe pour retrouver l’ascenseur.'
+		5: 'Bravo ! Revenez au palier par l’entrée du labyrinthe. Descendez ensuite un étage à la fois jusqu’au premier niveau (rez-de-chaussée), puis prenez la porte de sortie, en bas à gauche. Traversez la cour pour rejoindre l’immeuble d’en face.'
 	}
+	if 'maze' in AppState.profile.progress.completed_missions and chapter < 5:
+		next_steps[chapter] = 'Prenez la porte de sortie en bas à gauche pour rejoindre l’immeuble d’en face.' if chapter == 1 else 'Descendez un étage à la fois jusqu’au premier niveau (rez-de-chaussée), puis sortez par la porte en bas à gauche.'
 	_label(modal_content, str(next_steps.get(chapter, 'Revenez dans la pièce pour continuer.')))
 	var stay := _button(modal_content, 'Revenir dans la pièce', _close_overlay, 'conclusion_stay')
 	stay.theme_type_variation = 'PrimaryButton'
@@ -831,3 +867,29 @@ func _show_terminal() -> void:
 	terminal_panel.mission_completed.connect(_mission_completed)
 	terminal_panel.navigation_changed.connect(_wire_modal)
 	_wire_modal()
+
+func _show_zone_door(id: String) -> void:
+	if id == "building_exit" and "maze" not in AppState.profile.progress.completed_missions:
+		_show_dialog("Sortie fermée", "Terminez le chapitre 5, puis revenez ici par l’ascenseur pour poursuivre l’histoire.", _close_overlay)
+		return
+	var destinations := {"building_exit": "courtyard", "courtyard_first": "room_01", "courtyard_second": "building_02", "campus_leave": "courtyard"}
+	if not destinations.has(id): return
+	var destination: String = destinations[id]
+	_open_overlay("zone_door")
+	_label(modal_content, {"room_01": "Premier bâtiment", "building_02": "L’immeuble d’en face", "courtyard": "Sortir dans la cour"}[destination],26)
+	_label(modal_content,"Un grand bâtiment vous attend de l’autre côté de la cour." if id == "building_exit" else ("Explorez les galeries et les seize salles. Les prochaines missions seront ajoutées plus tard. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick." if destination == "building_02" else "Vous retrouverez cette porte pour revenir. Votre progression est conservée."))
+	_button(modal_content,"Entrer" if destination != "courtyard" else "Sortir",func(): _switch_zone(destination,id),"zone_go")
+	_button(modal_content,"Rester ici",_close_overlay,"zone_stay")
+	_wire_modal()
+
+func _switch_zone(destination: String, door_id: String) -> void:
+	if _busy: return
+	_busy = true
+	var result: Dictionary = InvestigationService.travel_zone(destination)
+	_busy = false
+	if not result.ok:
+		_show_dialog("Passage non enregistré",str(result.error),func(): _show_zone_door(door_id))
+		return
+	world.restore_progress(AppState.profile.progress)
+	world.restore_checkpoint()
+	_close_overlay()
