@@ -94,6 +94,7 @@ func _ready() -> void:
 	SceneRouter.screen_requested.connect(_show_screen)
 	SettingsService.settings_changed.connect(func(_value): _apply_theme())
 	AppState.profile_changed.connect(_profile_updated)
+	AppState.objectives_changed.connect(func(_progress): _responsive.call_deferred())
 	ControllerService.controller_connection_changed.connect(_controller_connection)
 	get_viewport().size_changed.connect(_responsive)
 	get_tree().auto_accept_quit=false
@@ -315,7 +316,7 @@ func _responsive() -> void:
 	var margin=12 if compact else 28
 	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
 	if footer!=null and screen=='game':
-		footer.text='Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause'
+		footer.text=('ZQSD / joystick : marcher · → : carte · Espace : interagir · P : pause' if is_instance_valid(demo) and demo.world != null and demo.world.room_id == 'building_02' else 'Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause')
 	if footer!=null and screen in ['home','shop','profiles','help']:
 		footer.text='Flèches / joystick · Entrée / face bas : valider · Échap : retour'
 	var horizontal=maxi(margin,int((size.x-1400)/2))
@@ -909,6 +910,8 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	return card
 
 func _investigation_progress_text() -> String:
+	if InvestigationService.current_chapter() == 0:
+		return "Nouveau bâtiment · exploration libre" if AppState.profile.progress.room_id == "building_02" else "Cour · vers l’immeuble d’en face"
 	var missions: Array = InvestigationService.chapter_missions()
 	var completed: Array = AppState.profile.get('progress',{}).get('completed_missions',[])
 	var count := 0
@@ -1050,6 +1053,7 @@ func _game() -> void:
 	demo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	demo.custom_minimum_size.y=maxf(170,scroll.size.y)
 	if demo.has_method('refresh'): demo.refresh()
+	_responsive()
 
 func _shop() -> void:
 	_label(content,'La boutique CIEL',28)
