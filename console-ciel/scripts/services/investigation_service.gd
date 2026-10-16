@@ -10,11 +10,11 @@ const CODE_TEXT_LIMIT := 64
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
 		return 1
-	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4}.get(AppState.profile.progress.room_id, 1)
+	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4, "room_05": 5, "maze_05": 5}.get(AppState.profile.progress.room_id, 1)
 
 func chapter_missions(chapter: int = 0) -> Array:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2, 3, 4]:
+	if selected not in [1, 2, 3, 4, 5]:
 		return []
 	if RewardService.missions.is_empty() and not RewardService.load_rules().ok:
 		return []
@@ -28,7 +28,7 @@ func _chapter_complete(chapter: int) -> bool:
 	if AppState.profile.is_empty() or not AppState.profile.progress.started:
 		return false
 	var definitions := chapter_missions(chapter)
-	if definitions.size() != 3:
+	if definitions.size() != (1 if chapter == 5 else 3):
 		return false
 	for definition in definitions:
 		if definition.id not in AppState.profile.progress.completed_missions:
@@ -39,7 +39,7 @@ func can_use_elevator() -> bool:
 	return _chapter_complete(1)
 
 func can_enter_chapter(chapter: int) -> bool:
-	if chapter not in [1, 2, 3, 4] or AppState.profile.is_empty() or not AppState.profile.progress.started:
+	if chapter not in [1, 2, 3, 4, 5] or AppState.profile.is_empty() or not AppState.profile.progress.started:
 		return false
 	for previous in range(1, chapter):
 		if not _chapter_complete(previous):
@@ -47,7 +47,7 @@ func can_enter_chapter(chapter: int) -> bool:
 	return true
 
 func enter_chapter(chapter: int) -> Dictionary:
-	if chapter not in [1, 2, 3, 4]:
+	if chapter not in [1, 2, 3, 4, 5]:
 		return SaveService._fail("Cet étage n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
@@ -85,7 +85,7 @@ func mission_state(id: String) -> String:
 	var progress: Dictionary = AppState.profile.progress
 	if id in progress.completed_missions:
 		return "completed"
-	if progress.room_id != definition.room_id:
+	if progress.room_id != definition.room_id and not (id == "maze" and progress.room_id == "room_05"):
 		return "locked"
 	for prerequisite in definition.prerequisites:
 		if prerequisite not in progress.completed_missions:
@@ -138,6 +138,7 @@ func begin_mission(id: String) -> Dictionary:
 	return SaveService._ok({"mission_id": id, "state": "in_progress", "already_completed": false})
 
 func observe(id: String, observation_id: String) -> Dictionary:
+	if id == "maze": return SaveService._fail("La session du terminal nécessite une authentification.")
 	var ready := _ready_for(id)
 	if not ready.ok:
 		return ready
@@ -341,6 +342,10 @@ func _validate_solution(id: String, evidence: Dictionary) -> Dictionary:
 			if not evidence.get("checks") is Array or not evidence.get("cause") is String or not evidence.get("correction") is String:
 				return SaveService._fail("Les vérifications, la cause et la correction sont absentes.")
 			checked = _validate_computer(evidence.checks, evidence.cause, evidence.correction)
+		"maze":
+			if not evidence.get("command") is String or not evidence.get("password") is String:
+				return SaveService._fail("Authentification de la session absente.")
+			checked = _validate_maze(evidence.command, evidence.password)
 		"python", "html", "markdown":
 			if not evidence.get("answer") is String:
 				return SaveService._fail("La réponse au défi de code est absente.")
@@ -397,7 +402,7 @@ func acknowledge_migration() -> Dictionary:
 
 func conclusion(chapter: int = 0) -> Dictionary:
 	var selected := current_chapter() if chapter == 0 else chapter
-	if selected not in [1, 2, 3, 4]:
+	if selected not in [1, 2, 3, 4, 5]:
 		return SaveService._fail("Ce chapitre n’existe pas dans l’enquête.")
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
@@ -410,3 +415,70 @@ func conclusion(chapter: int = 0) -> Dictionary:
 		return SaveService._fail("Termine les trois objectifs du chapitre %s pour lire son bilan." % selected)
 	var definitions := chapter_missions(selected)
 	return SaveService._ok({"chapter": selected, "message": definitions.back().clue.text, "run_reward_points": int(AppState.profile.progress.run_reward_points), "wallet_points": int(AppState.profile.wallet.points), "missions": definitions})
+
+# Le terminal est un automate local : aucune chaîne n’est passée à un shell.
+const ELEVATION_COMMANDS := ["sudo", "sudo -i", "sudo -s", "su -", "s-"]
+
+func enter_maze() -> Dictionary:
+	if AppState.profile.is_empty() or not can_enter_chapter(5):
+		return SaveService._fail("Le cinquième chapitre n’est pas accessible.")
+	var checked := SaveService.validate_profile(AppState.profile)
+	if not checked.ok or checked.get("migration_required", false): return SaveService._fail("Rechargez un profil valide avant d’entrer.")
+	if AppState.profile.progress.room_id != "room_05": return SaveService._fail("Utilisez le portable du palier.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.room_id = "maze_05"
+	progress.checkpoint_id = "maze_entry"
+	progress.active_mission = ""
+	return _save_progress(progress)
+
+func leave_maze() -> Dictionary:
+	if AppState.profile.is_empty() or AppState.profile.progress.room_id != "maze_05": return SaveService._fail("Vous n’êtes pas dans le labyrinthe.")
+	return enter_chapter(5)
+
+func terminal_connected() -> bool:
+	return not AppState.profile.is_empty() and "login" in AppState.profile.progress.observations.get("maze", [])
+
+func terminal_login(user: String, password: String) -> Dictionary:
+	var ready := _ready_for("maze")
+	if not ready.ok: return ready
+	if user != "admin" or password != "admin": return SaveService._fail("Identifiant ou mot de passe incorrect.")
+	if terminal_connected(): return SaveService._ok({"connected": true})
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.observations.maze = ["login"]
+	progress.active_mission = "maze"
+	progress.checkpoint_id = "maze_terminal"
+	var saved := _save_progress(progress)
+	if not saved.ok: return saved
+	return SaveService._ok({"connected": true})
+
+func terminal_command(text: String, password: String = "") -> Dictionary:
+	var ready := _ready_for("maze")
+	if not ready.ok: return ready
+	if not terminal_connected(): return SaveService._fail("Ouvrez une session avant de saisir une commande.")
+	if text.length() > CODE_TEXT_LIMIT: return SaveService._fail("Commande trop longue.")
+	var command := " ".join(text.strip_edges().split(" ", false))
+	if command in ELEVATION_COMMANDS:
+		if password.is_empty(): return SaveService._ok({"needs_password": true, "command": command})
+		return _finish_validated("maze", {"command": command, "password": password})
+	var privileged: bool = "maze" in AppState.profile.progress.completed_missions
+	var replies := {
+		"whoami": "root — session privilégiée, uid=0" if privileged else "admin — session utilisateur, uid=1000",
+		"id": "uid=0(root) gid=0(root)" if privileged else "uid=1000(admin) gid=1000(admin)",
+		"pwd": "/root" if privileged else "/home/admin",
+		"ls": "notes.txt  serveur-ciel  archives",
+		"help": "Commandes de consultation : ls, pwd, whoami, id. Des mémos sont affichés dans les couloirs.",
+		"clear": "", "cls": "cls est une commande Windows. Le serveur CIEL utilise Linux.",
+		"dir": "dir est ici une piste Windows. Aucun changement de droits.",
+		"ipconfig": "ipconfig concerne Windows. Le serveur CIEL utilise Linux.",
+		"runas": "runas appartient à Windows ; ce terminal utilise Linux."
+	}
+	if command not in replies: return SaveService._fail("Commande inconnue dans ce terminal.")
+	return SaveService._ok({"output": replies[command]})
+
+func _validate_maze(command: String, password: String) -> Dictionary:
+	var ready := _ready_for("maze")
+	if not ready.ok: return ready
+	if not terminal_connected(): return SaveService._fail("Aucune session authentifiée.")
+	if command not in ELEVATION_COMMANDS: return SaveService._fail("Cette commande ne change pas les droits.")
+	if password != "admin": return SaveService._fail("Échec de l’authentification des privilèges.")
+	return SaveService._ok()
