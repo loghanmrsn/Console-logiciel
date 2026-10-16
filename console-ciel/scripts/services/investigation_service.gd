@@ -10,7 +10,7 @@ const CODE_TEXT_LIMIT := 64
 func current_chapter() -> int:
 	if AppState.profile.is_empty():
 		return 1
-	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4, "room_05": 5, "maze_05": 5}.get(AppState.profile.progress.room_id, 1)
+	return {"room_01": 1, "room_02": 2, "room_03": 3, "room_04": 4, "room_05": 5, "maze_05": 5, "courtyard": 0, "building_02": 0}.get(AppState.profile.progress.room_id, 1)
 
 func chapter_missions(chapter: int = 0) -> Array:
 	var selected := current_chapter() if chapter == 0 else chapter
@@ -56,6 +56,8 @@ func enter_chapter(chapter: int) -> Dictionary:
 		return validation
 	if validation.get("migration_required", false):
 		return SaveService._fail("Sélectionnez ce profil pour enregistrer sa migration avant de changer d’étage.")
+	if current_chapter() == 0:
+		return SaveService._fail("Revenez au premier bâtiment par sa porte pour utiliser l’ascenseur.")
 	if not can_use_elevator():
 		return SaveService._fail("L’ascenseur se déverrouille après les trois missions du premier chapitre.")
 	if not can_enter_chapter(chapter):
@@ -482,3 +484,22 @@ func _validate_maze(command: String, password: String) -> Dictionary:
 	if command not in ELEVATION_COMMANDS: return SaveService._fail("Cette commande ne change pas les droits.")
 	if password != "admin": return SaveService._fail("Échec de l’authentification des privilèges.")
 	return SaveService._ok()
+
+## Source and destination are checked together, then saved before any world swap.
+func travel_zone(destination: String) -> Dictionary:
+	if AppState.profile.is_empty(): return SaveService._fail("Aucun profil actif.")
+	var valid := SaveService.validate_profile(AppState.profile)
+	if not valid.ok: return valid
+	if valid.get("migration_required", false): return SaveService._fail("Sélectionnez d’abord ce profil pour enregistrer sa migration.")
+	if not _chapter_complete(5): return SaveService._fail("Terminez le défi du chapitre 5, puis redescendez au premier niveau.")
+	var source := str(AppState.profile.progress.room_id)
+	var routes := {"room_01>courtyard": "from_first", "courtyard>room_01": "building_exit", "courtyard>building_02": "new_entrance", "building_02>courtyard": "from_second"}
+	var route := source + ">" + destination
+	if not routes.has(route): return SaveService._fail("Rejoignez la porte de ce passage. L’ascenseur descend un étage à la fois.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.room_id = destination
+	progress.checkpoint_id = routes[route]
+	progress.active_mission = ""
+	var saved := _save_progress(progress)
+	if not saved.ok: return saved
+	return SaveService._ok({"room_id": destination, "checkpoint_id": progress.checkpoint_id})
