@@ -54,7 +54,7 @@ func _run() -> void:
 	await _activate("conclusion_stay")
 	await _approach("elevator")
 	await _key(KEY_SPACE)
-	_check((_find("elevator_up") as Button).disabled and not (_find("elevator_down") as Button).disabled, "Dernier étage : montée désactivée et descente disponible")
+	_check(not (_find("elevator_up") as Button).disabled and not (_find("elevator_down") as Button).disabled, "Chapitre 4 terminé : montée au chapitre 5 et descente disponibles")
 	await _key(KEY_ESCAPE)
 	await _travel(3)
 	await _test_books(true)
