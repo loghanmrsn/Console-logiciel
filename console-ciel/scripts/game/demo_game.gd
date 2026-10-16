@@ -8,6 +8,8 @@ const MissionTracker = preload('res://scripts/game/mission_tracker.gd')
 
 const LessonLibrary = preload("res://scripts/game/lesson_library.gd")
 var lesson_library: VBoxContainer
+const MazeTerminal = preload("res://scripts/game/terminal_panel.gd")
+var terminal_panel: VBoxContainer
 
 signal menu_requested
 signal settings_requested
@@ -352,6 +354,20 @@ func _interact() -> void:
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if id == 'laptop' and InvestigationService.current_chapter() == 5:
+		_show_laptop()
+		return
+	if id == 'maze_return':
+		_show_maze_return()
+		return
+	if id == 'maze_terminal':
+		_show_terminal()
+		return
+	if id.begins_with('maze_note_'):
+		var index := int(id.trim_prefix('maze_note_'))
+		var notes: Array = world.MazeLayout.NOTES
+		if index >= 0 and index < notes.size(): _show_dialog(str(notes[index].title),str(notes[index].text),_close_overlay)
+		return
 	if id == 'books' and InvestigationService.current_chapter() == 3:
 		_show_library()
 		return
@@ -364,7 +380,7 @@ func _interaction_requested(id: String) -> void:
 		_show_dialog('Un préalable manque', str(blocked.get(id, 'Terminez la mission précédente.')), _close_overlay)
 		return
 	if state == 'completed':
-		if id in ['computer', 'security', 'markdown', 'subnet_mask']: _show_conclusion()
+		if id in ['computer', 'security', 'markdown', 'subnet_mask', 'maze']: _show_conclusion()
 		else:
 			var definition: Dictionary = InvestigationService.mission(id)
 			_show_dialog('Équipement rétabli', str(definition.get('success_explanation', 'Cette mission est terminée et sa récompense a déjà été enregistrée.')), _close_overlay)
@@ -392,7 +408,7 @@ func _mission_completed(result: Dictionary) -> void:
 	var clue_text: String = str(data.get('clue', {}).get('text', ''))
 	if not clue_text.is_empty(): explanation += '\n\n' + clue_text
 	var reward_text := '%d points nouvellement gagnés.' % reward if reward > 0 else 'Déjà récompensée : aucun point ajouté pour cette mission rejouée.'
-	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown', 'subnet_mask'] else _close_overlay
+	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown', 'subnet_mask', 'maze'] else _close_overlay
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
 
 func _show_library() -> void:
@@ -411,16 +427,16 @@ func _show_elevator() -> void:
 	var chapter := InvestigationService.current_chapter()
 	_label(modal_content, 'Ascenseur · CIEL', 26)
 	_label(modal_content, 'Chapitre %d · %s' % [chapter, 'Rez-de-chaussée' if chapter == 1 else 'Étage %d' % (chapter - 1)])
-	_label(modal_content, 'Descendez pour revisiter un étage, ou montez après avoir terminé les trois missions. Vos points et votre progression sont conservés.')
+	_label(modal_content, 'Descendez pour revisiter un étage, ou montez après avoir terminé les objectifs du chapitre. Vos points et votre progression sont conservés.')
 	var down := _button(modal_content, 'Descendre d’étage', func(): _travel_to_chapter(chapter - 1), 'elevator_down')
 	down.disabled = chapter <= 1 or not InvestigationService.can_use_elevator()
 	var up := _button(modal_content, 'Monter d’étage', func(): _travel_to_chapter(chapter + 1), 'elevator_up')
-	up.disabled = chapter >= 4 or not InvestigationService.can_enter_chapter(chapter + 1)
+	up.disabled = chapter >= 5 or not InvestigationService.can_enter_chapter(chapter + 1)
 	if not up.disabled: up.theme_type_variation = 'PrimaryButton'
-	if chapter == 4:
+	if chapter == 5:
 		_label(modal_content, 'Vous êtes au dernier étage de l’enquête.')
 	elif up.disabled:
-		_label(modal_content, 'Montée verrouillée : terminez les trois missions de ce chapitre.')
+		_label(modal_content, 'Montée verrouillée : terminez les objectifs de ce chapitre.')
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'elevator_menu')
 	_label(modal_content, 'Échap / bouton de face droit : rester dans la pièce.', 16)
 	_wire_modal()
@@ -441,7 +457,7 @@ func _travel_to_chapter(destination: int) -> void:
 		_room.modulate = Color(.76, .83, .80)
 		var arrival := create_tween()
 		arrival.tween_property(_room, 'modulate', Color.WHITE, .24)
-	var arrivals := {1: 'Chapitre 1 · Retour au bureau.', 2: 'Chapitre 2 · Bienvenue dans la salle réseau.', 3: 'Chapitre 3 · Bienvenue dans l’atelier du code.', 4: 'Chapitre 4 · Bienvenue au laboratoire réseau.'}
+	var arrivals := {1: 'Chapitre 1 · Retour au bureau.', 2: 'Chapitre 2 · Bienvenue dans la salle réseau.', 3: 'Chapitre 3 · Bienvenue dans l’atelier du code.', 4: 'Chapitre 4 · Bienvenue au laboratoire réseau.', 5: 'Chapitre 5 · Un portable vous attend.'}
 	notification_requested.emit(str(arrivals.get(destination, 'Bienvenue dans la pièce.')))
 
 func request_pause() -> void:
@@ -564,7 +580,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator': _close_overlay()
+		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal': _close_overlay()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
 
@@ -597,8 +613,8 @@ func _show_conclusion() -> void:
 		return
 	_open_overlay('conclusion')
 	var chapter := InvestigationService.current_chapter()
-	var room_names := {1: 'Bureau fictif', 2: 'Salle réseau', 3: 'Atelier du code', 4: 'Laboratoire réseau'}
-	var titles := {1: 'Le message retrouvé', 2: 'Un réseau rétabli et protégé', 3: 'Vos premières lignes de code', 4: 'Un réseau bien configuré'}
+	var room_names := {1: 'Bureau fictif', 2: 'Salle réseau', 3: 'Atelier du code', 4: 'Laboratoire réseau', 5: 'Le labyrinthe'}
+	var titles := {1: 'Le message retrouvé', 2: 'Un réseau rétabli et protégé', 3: 'Vos premières lignes de code', 4: 'Un réseau bien configuré', 5: 'Session privilégiée obtenue'}
 	_label(modal_content, 'Chapitre %d terminé · %s' % [chapter, str(room_names.get(chapter, 'CIEL'))], 22)
 	_label(modal_content, str(titles.get(chapter, 'Enquête terminée')), 28)
 	_label(modal_content, str(result.data.message))
@@ -609,6 +625,7 @@ func _show_conclusion() -> void:
 		3: '✓ Python : print("Bonjour CIEL") affiche un message.\n✓ HTML : <h1>Bonjour CIEL</h1> définit un titre principal avec une balise ouvrante et une balise fermante.\n✓ Markdown : # Bonjour CIEL crée un titre ; un espace suit le symbole #.'
 	}
 	recaps[4] = '✓ Pare-feu : autoriser seulement le flux nécessaire.\n✓ IPv4 : une adresse distincte par appareil sur ce réseau.\n✓ Masque : /26 = 255.255.255.192 ; dans .64/26, les hôtes vont de .65 à .126.'
+	recaps[5] = '✓ Vous avez trouvé le terminal central et authentifié une connexion.\n✓ Une session utilisateur et une session privilégiée ont des droits différents.\n✓ Les commandes Linux et Windows ne sont pas interchangeables.'
 	_label(modal_content, str(recaps.get(chapter, 'Les missions de cet étage sont terminées.')))
 	var progress: Dictionary = AppState.profile.get('progress', {})
 	_label(modal_content, '%d points nouvellement gagnés pendant cette partie.\nSolde total du profil : %d points.' % [int(progress.get('run_reward_points', 0)), int(AppState.profile.get('wallet', {}).get('points', 0))], 22)
@@ -617,7 +634,8 @@ func _show_conclusion() -> void:
 		1: 'L’ascenseur en bas du bureau est maintenant déverrouillé. Revenez dans la pièce pour monter au chapitre 2.',
 		2: 'Le chapitre 3 est maintenant accessible. Revenez dans la pièce, puis prenez l’ascenseur vers l’atelier du code : Python, HTML et Markdown vous attendent.',
 		3: 'Le chapitre 4 est maintenant accessible. Consultez les livres au coin ressources, ou prenez l’ascenseur vers le laboratoire réseau.',
-		4: 'Bravo ! Les quatre chapitres sont terminés. Vous pouvez revisiter les étages et relire les livres de l’atelier du code.'
+		4: 'Le cinquième chapitre est maintenant accessible. Prenez l’ascenseur : un portable vous attend au palier.',
+		5: 'Bravo ! Le défi mystère est terminé. Revenez au palier par l’entrée du labyrinthe pour retrouver l’ascenseur.'
 	}
 	_label(modal_content, str(next_steps.get(chapter, 'Revenez dans la pièce pour continuer.')))
 	var stay := _button(modal_content, 'Revenir dans la pièce', _close_overlay, 'conclusion_stay')
@@ -658,6 +676,7 @@ func _open_overlay(kind: String) -> void:
 		modal_content.remove_child(child)
 		child.queue_free()
 	challenge = null
+	terminal_panel = null
 	overlay_kind = kind
 	paused = true
 	_overlay.show()
@@ -670,7 +689,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -728,6 +747,8 @@ func _wire_modal() -> void:
 		control.focus_neighbor_left = control.get_path_to(previous)
 		control.focus_neighbor_right = control.get_path_to(next)
 		if not control.focus_entered.is_connected(_ensure_modal_focus): control.focus_entered.connect(_ensure_modal_focus)
+	if overlay_kind == "terminal" and is_instance_valid(terminal_panel) and is_instance_valid(terminal_panel.code_keyboard):
+		terminal_panel.code_keyboard.wire_navigation()
 	if is_instance_valid(challenge) and is_instance_valid(challenge.code_keyboard):
 		challenge.code_keyboard.wire_navigation()
 	var owner: Control = get_viewport().gui_get_focus_owner()
@@ -768,3 +789,45 @@ func _button(host: Node, text: String, action: Callable, key: String) -> Button:
 	button.pressed.connect(action)
 	host.add_child(button)
 	return button
+
+func _show_laptop() -> void:
+	_open_overlay('laptop')
+	_label(modal_content,'Ordinateur portable',26)
+	_label(modal_content,'Un passage vers un environnement inconnu est disponible.')
+	var go := _button(modal_content,'Y aller',func(): _switch_maze(true),'maze_go')
+	go.theme_type_variation = 'PrimaryButton'
+	_button(modal_content,'Rester ici',_close_overlay,'maze_stay')
+	_wire_modal()
+
+func _show_maze_return() -> void:
+	_open_overlay('maze_return')
+	_label(modal_content,'Retour au palier',26)
+	_label(modal_content,'Votre progression enregistrée sera conservée.')
+	_button(modal_content,'Revenir au palier',func(): _switch_maze(false),'maze_leave')
+	_button(modal_content,'Continuer à explorer',_close_overlay,'maze_keep_exploring')
+	_wire_modal()
+
+func _switch_maze(entering: bool) -> void:
+	if _busy: return
+	_busy = true
+	var result: Dictionary = InvestigationService.enter_maze() if entering else InvestigationService.leave_maze()
+	_busy = false
+	if not result.ok:
+		_show_dialog('Déplacement non enregistré',str(result.error),_show_laptop if entering else _show_maze_return)
+		return
+	world.restore_progress(AppState.profile.progress)
+	world.restore_checkpoint()
+	_close_overlay()
+
+func _show_terminal() -> void:
+	var ready: Dictionary = InvestigationService.begin_mission('maze')
+	if not ready.ok:
+		_show_dialog('Terminal indisponible',str(ready.error),_close_overlay)
+		return
+	_open_overlay('terminal')
+	terminal_panel = MazeTerminal.new()
+	modal_content.add_child(terminal_panel)
+	terminal_panel.close_requested.connect(_close_overlay)
+	terminal_panel.mission_completed.connect(_mission_completed)
+	terminal_panel.navigation_changed.connect(_wire_modal)
+	_wire_modal()
