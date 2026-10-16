@@ -11,6 +11,15 @@ const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
 const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
 const CHAPTER_FOUR_IDS := ["firewall", "ip_conflict", "subnet_mask"]
 const CHAPTER_FIVE_IDS := ["maze"]
+const HOTEL_VERSION := 1
+const HOTEL_ROOMS := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206"]
+const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
+const HOTEL_CHECKPOINTS := {
+	"new_entrance": "building_02", "hall_it": "building_02", "hall_stairs": "building_02",
+	"it_entrance": "hotel_it", "stairs_from_hall": "hotel_stairs_1", "stairs_from_floor2": "hotel_stairs_1",
+	"floor2_stairs": "hotel_floor_2", "floor2_room206": "hotel_floor_2",
+	"room206_entry": "hotel_room_206", "room206_bed": "hotel_room_206"
+}
 const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS + CHAPTER_FOUR_IDS + CHAPTER_FIVE_IDS
 const CHAPTER_TWO_SOLUTIONS := {
 	"network": {"observations": ["switch", "link", "cable"], "diagnosis": "cable_unplugged", "repair": "reconnect_rj45"},
@@ -265,6 +274,12 @@ func validate_rules(value: Variant) -> Dictionary:
 		return _fail("Le plafond de récompenses ou la liste des missions est incohérent.")
 	return _ok(normalized)
 
+func empty_hotel_progress() -> Dictionary:
+	return {
+		"version": HOTEL_VERSION, "reserved": false, "repair_observations": [],
+		"repaired": false, "luggage_placed": false, "bed_state": "standing"
+	}
+
 func empty_investigation_progress() -> Dictionary:
 	return {
 		"investigation_version": INVESTIGATION_VERSION,
@@ -272,7 +287,7 @@ func empty_investigation_progress() -> Dictionary:
 		"completed_missions": [], "active_mission": "", "clues": [],
 		"observations": {"lighting": [], "lock": [], "computer": [], "network": [], "addressing": [], "security": [], "python": [], "html": [], "markdown": [], "firewall": [], "ip_conflict": [], "subnet_mask": [], "maze": []},
 		"checks": {"computer": []}, "run_reward_points": 0,
-		"legacy_migration_notice": false
+		"legacy_migration_notice": false, "hotel": empty_hotel_progress()
 	}
 
 func _ensure_definitions() -> Dictionary:
@@ -301,6 +316,43 @@ func _ensure_definitions() -> Dictionary:
 	_catalog_by_id = items
 	_mission_ids = missions
 	_mission_by_id = mission_definitions
+	return _ok()
+
+func _validate_hotel_progress(progress: Dictionary, completed: Array) -> Dictionary:
+	var hotel: Variant = progress.get("hotel")
+	var keys := empty_hotel_progress().keys()
+	if not hotel is Dictionary or hotel.size() != keys.size() or not _valid_id_list(hotel.keys(), keys):
+		return _fail("La progression de l’hôtel est absente, partielle ou inconnue.")
+	if not _is_integer(hotel.get("version"), HOTEL_VERSION, HOTEL_VERSION):
+		return _fail("La version de progression de l’hôtel est inconnue.")
+	for field in ["reserved", "repaired", "luggage_placed"]:
+		if not hotel.get(field) is bool:
+			return _fail("Une étape de l’hôtel est invalide.")
+	if not _valid_id_list(hotel.get("repair_observations"), HOTEL_REPAIR_IDS) or not hotel.get("bed_state") is String or hotel.bed_state not in ["standing", "sitting", "rested"]:
+		return _fail("Les observations ou l’état du lit sont invalides.")
+	var advanced: bool = hotel.reserved or not hotel.repair_observations.is_empty() or hotel.repaired or hotel.luggage_placed or hotel.bed_state != "standing"
+	if advanced and (not progress.started or "maze" not in completed):
+		return _fail("Terminez le chapitre 5 avant de commencer le séjour à l’hôtel.")
+	if not hotel.reserved and (not hotel.repair_observations.is_empty() or hotel.repaired or hotel.luggage_placed or hotel.bed_state != "standing"):
+		return _fail("Réservez la chambre avant de commencer les étapes de l’hôtel.")
+	if hotel.repaired and hotel.repair_observations.size() != HOTEL_REPAIR_IDS.size():
+		return _fail("La panne réparée doit posséder ses quatre observations.")
+	if (hotel.luggage_placed or hotel.bed_state != "standing") and not hotel.repaired:
+		return _fail("Réparez la panne avant de rejoindre la chambre.")
+	if hotel.bed_state != "standing" and not hotel.luggage_placed:
+		return _fail("Posez les affaires avant de vous installer sur le lit.")
+	if progress.room_id == "hotel_it" and not hotel.reserved:
+		return _fail("Le local informatique s’ouvre après la réservation.")
+	if progress.room_id in ["hotel_stairs_1", "hotel_floor_2", "hotel_room_206"] and not hotel.repaired:
+		return _fail("L’escalier reste fermé pendant la panne informatique.")
+	if progress.checkpoint_id == "hall_it" and not hotel.reserved:
+		return _fail("Ce retour du local nécessite une réservation.")
+	if progress.checkpoint_id == "hall_stairs" and not hotel.repaired:
+		return _fail("Ce retour d’escalier nécessite la réparation.")
+	if hotel.bed_state == "sitting" and (progress.room_id != "hotel_room_206" or progress.checkpoint_id != "room206_bed"):
+		return _fail("Le repos assis se poursuit dans la chambre, sur le lit.")
+	if progress.checkpoint_id == "room206_bed" and hotel.bed_state == "standing":
+		return _fail("Ce point de reprise nécessite de s’installer sur le lit.")
 	return _ok()
 
 func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
@@ -354,7 +406,9 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not document.get("progress") is Dictionary:
 		return _fail("La progression est invalide.")
 	var progress: Dictionary = document.progress
-	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03", "room_04", "room_05", "maze_05", "courtyard", "building_02"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit", "maze_entry", "maze_terminal", "building_exit", "from_first", "from_second", "new_entrance"] + MISSION_IDS or not progress.get("completed_missions") is Array:
+	var allowed_rooms := ["room_01", "room_02", "room_03", "room_04", "room_05", "maze_05", "courtyard"] + HOTEL_ROOMS
+	var allowed_checkpoints := ["entrance", "elevator", "exit", "maze_entry", "maze_terminal", "building_exit", "from_first", "from_second"] + HOTEL_CHECKPOINTS.keys() + MISSION_IDS
+	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.room_id not in allowed_rooms or progress.get("checkpoint_id") not in allowed_checkpoints or not progress.get("completed_missions") is Array:
 		return _fail("La progression contient une scène ou un point de reprise invalide.")
 	var completed: Array = []
 	for id in progress.completed_missions:
@@ -464,7 +518,8 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		# Travel adds no mission, reward or schema reset. Only a completed mystery
 		# permits crossing the two buildings; checkpoints belong to one zone.
 		var travel_checkpoints := {"building_exit": "room_01", "from_first": "courtyard", "from_second": "courtyard", "new_entrance": "building_02"}
-		if progress.room_id in ["courtyard", "building_02"] or progress.checkpoint_id in travel_checkpoints:
+		travel_checkpoints.merge(HOTEL_CHECKPOINTS)
+		if progress.room_id in ["courtyard"] + HOTEL_ROOMS or progress.checkpoint_id in travel_checkpoints:
 			if not progress.started or not chapter_four_complete or "maze" not in completed:
 				return _fail("Terminez le chapitre 5 avant de quitter le premier bâtiment.")
 			if travel_checkpoints.get(progress.checkpoint_id, "") != progress.room_id or not progress.active_mission.is_empty():
@@ -502,6 +557,17 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 			for id in _mission_ids:
 				if not progress.observations[id].is_empty():
 					return _fail("Une enquête non commencée contient des observations.")
+	# Only the complete, otherwise valid pre-hotel document is extended. A new
+	# room without its hotel state is corrupt, rather than a legacy migration.
+	if not progress.has("hotel"):
+		if progress.room_id in HOTEL_ROOMS.slice(1) or (progress.checkpoint_id in HOTEL_CHECKPOINTS and progress.checkpoint_id != "new_entrance"):
+			return _fail("La sauvegarde de cette salle ne contient pas son état d’hôtel.")
+		progress["hotel"] = empty_hotel_progress()
+		expanded = true
+	var hotel_validation := _validate_hotel_progress(progress, completed)
+	if not hotel_validation.ok:
+		return hotel_validation
+	progress.hotel.version = HOTEL_VERSION
 	document.schema_version = SCHEMA_VERSION
 	document.wallet.points = int(document.wallet.points)
 	document.progress.investigation_version = INVESTIGATION_VERSION
