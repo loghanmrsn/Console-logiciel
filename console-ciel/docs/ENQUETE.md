@@ -174,3 +174,15 @@ Utilisateur **admin**, mot de passe **admin**, puis **sudo -i** ou **su -** et d
 La réussite rapporte **50 points une seule fois**. Les treize missions totalisent 650 points sans achat. Rejouer conserve monnaie et inventaire sans redonner les récompenses. La session de la nouvelle partie est réinitialisée.
 
 </details>
+
+## Après le chapitre 5 — cour et second bâtiment (0.10.0)
+
+Une fois le mystère réussi, revenez à l’entrée du labyrinthe, utilisez le portail pour retrouver le palier et prenez l’ascenseur. Choisissez **Descendre d’étage** quatre fois pour revenir au premier niveau de l’enquête, le rez-de-chaussée. Ce niveau possède une **porte de sortie en bas à gauche**. Elle reste fermée tant que le chapitre 5 n’est pas terminé.
+
+Interagissez avec la porte, puis choisissez **Sortir**. Le personnage arrive dans une cour bordée de deux façades ; les flèches au sol indiquent la porte de **l’immeuble d’en face**. Traversez la cour, interagissez avec cette porte et choisissez **Entrer**. Les mêmes portes permettent de revenir au premier bâtiment.
+
+Le second bâtiment est une zone d’exploration de **6 400 × 4 200 pixels**, environ **52 fois la surface** de la première pièce. Seize salles ouvertes sur des galeries entourent un grand atrium. La caméra suit le personnage en restant dans les limites du plan. Les futures missions et le prochain chapitre seront créés plus tard : aucun défi, achat, point ou récompense supplémentaire n’est créé ici.
+
+Une carte native apparaît **en haut à gauche**, sous le bouton Pause. Elle reprend les murs et les portes du plan réel, indique votre position par un point bleu et la sortie par un repère doré. **Un appui sur la flèche droite → affiche ou masque la carte** ; maintenir la touche n’entraîne pas de répétition. Dans ce bâtiment seulement, cette touche ne déplace pas le personnage : utilisez **D**, les autres touches **ZQSD**, ou le joystick. La croix directionnelle de la manette reste disponible pour marcher. Le bouton **Carte** permet aussi de la replier à la souris. La flèche conserve son usage de navigation dans les menus et le fonctionnement des anciens étages.
+
+Chaque passage est validé puis enregistré avant le changement de décor. Un échec d’écriture laisse le joueur dans la zone précédente et permet de réessayer. **Continuer** reprend au seuil d’entrée de la zone sauvegardée, sans réafficher le bilan du chapitre 5 dans le second bâtiment. Les anciens profils, points, achats et observations sont conservés. **Nouvelle partie** remet le parcours au premier chapitre sans redonner les récompenses déjà obtenues.
