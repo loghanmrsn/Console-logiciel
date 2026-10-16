@@ -10,6 +10,8 @@ const PlayerScript = preload("res://scripts/game/player.gd")
 const InteractableScript = preload("res://scripts/game/interactable.gd")
 const MazeLayout = preload("res://scripts/game/maze_layout.gd")
 const MazeVisual = preload("res://scripts/game/maze_visual.gd")
+const CampusLayout = preload("res://scripts/game/campus_layout.gd")
+const CampusVisual = preload("res://scripts/game/campus_visual.gd")
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
 const CHECKPOINTS := {
@@ -53,6 +55,8 @@ var door_open := false
 var computer_repaired := false
 var chapter_id := 1
 var room_id := "room_01"
+var campus_zone := ""
+var campus_visual: Node2D
 var maze_active := false
 var maze_visual: Node2D
 var elevator_unlocked := false
@@ -139,15 +143,18 @@ func _build_room(chapter: int) -> void:
 	door_shape = null
 	chapter_id = chapter
 	maze_active = chapter == 5 and str(_pending_progress.get("room_id", "")) == "maze_05"
-	room_id = "maze_05" if maze_active else "room_0%d" % chapter
+	campus_zone = str(_pending_progress.get("room_id", "")) if chapter == 0 else ""
+	room_id = campus_zone if chapter == 0 else ("maze_05" if maze_active else "room_0%d" % chapter)
 	_room_root = Node2D.new()
-	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom", "ChapterFourRoom", "ChapterFiveRoom"][chapter - 1]
+	_room_root.name = "CampusZone" if chapter == 0 else ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom", "ChapterFourRoom", "ChapterFiveRoom"][chapter - 1]
 	add_child(_room_root)
 	_props=Node2D.new()
 	_props.name='RoomObjects'
 	_props.y_sort_enabled=true
 	_room_root.add_child(_props)
-	if maze_active:
+	if chapter == 0:
+		_build_campus()
+	elif maze_active:
 		_build_maze()
 	else:
 		# Perimeter and office partition. The doorway is a real, separate body.
@@ -169,6 +176,7 @@ func _build_room(chapter: int) -> void:
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
+	player.reserve_map_arrow = campus_zone == "building_02"
 	player.controls_enabled = _controls_enabled
 	_restored_once = false
 	_was_repaired = false
@@ -191,6 +199,7 @@ func _build_workshop() -> void:
 	_reader_sprite=_sprite(_room_root,'reader_off',Rect2(568,289,30,49))
 	_light_sprite=_sprite(_room_root,'light',Rect2(274,61,172,28))
 	_note=_sprite(_room_root,'note',Rect2(447,194,70,48))
+	_add_target("building_exit", "Porte de sortie · cour", Vector2(150, 444), 65)
 	_add_target("lighting", "Tableau électrique fictif", Vector2(120, 192), 104)
 	_add_target("lock", "Commande de la porte", Vector2(582, 340), 104)
 	_add_target("computer", "Ordinateur du bureau", Vector2(825, 247), 104)
@@ -274,6 +283,7 @@ func _build_lab_room() -> void:
 
 func _chapter_for_room(id: String) -> int:
 	match id:
+		"courtyard", "building_02": return 0
 		"room_02": return 2
 		"room_03": return 3
 		"room_04": return 4
@@ -282,11 +292,12 @@ func _chapter_for_room(id: String) -> int:
 
 func _chapter_checkpoints() -> Dictionary:
 	match chapter_id:
+		0: return CampusLayout.checkpoints(campus_zone)
 		2: return CHAPTER_TWO_CHECKPOINTS
 		3: return CHAPTER_THREE_CHECKPOINTS
 		4: return CHAPTER_FOUR_CHECKPOINTS
 		5: return MazeLayout.checkpoints() if maze_active else {"entrance": Vector2(158,405), "elevator": Vector2(158,405), "laptop": Vector2(500,295)}
-		_: return CHECKPOINTS
+		_: return CHECKPOINTS.merged({"building_exit": Vector2(150, 419)})
 
 func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
 	var body := StaticBody2D.new()
@@ -374,7 +385,7 @@ func _fit_camera() -> void:
 	var available := get_viewport_rect().size
 	# On compact screens, retain an 18 px character instead of shrinking the
 	# complete room into a short strip. The cropped axes follow the player.
-	var fit := .92 if maze_active else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
+	var fit := .92 if maze_active or chapter_id == 0 else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
 
@@ -382,7 +393,7 @@ func _update_camera_position() -> void:
 	if not is_inside_tree() or not is_instance_valid(camera) or not is_instance_valid(player):
 		return
 	var half_visible: Vector2 = get_viewport_rect().size / camera.zoom * 0.5
-	var extent := MazeLayout.extent() if maze_active else WORLD_SIZE
+	var extent := world_extent()
 	var center := extent * .5
 	if half_visible.x < extent.x * .5:
 		center.x = clampf(player.position.x, half_visible.x, extent.x - half_visible.x)
@@ -424,7 +435,7 @@ func restore_progress(progress: Dictionary) -> void:
 	if not is_instance_valid(player):
 		return
 	var desired_chapter := _chapter_for_room(str(progress.get("room_id", "room_01")))
-	if chapter_id != desired_chapter or (desired_chapter == 5 and room_id != str(progress.get("room_id", "room_05"))):
+	if room_id != str(progress.get("room_id", "room_01")):
 		_build_room(desired_chapter)
 	var completed: Array = progress.get("completed_missions", [])
 	lighting_restored = completed.has("lighting")
@@ -556,6 +567,7 @@ func interact_nearest() -> void:
 		interaction_requested.emit(_target.interaction_id)
 
 func _draw() -> void:
+	if chapter_id == 0: return
 	if chapter_id == 5:
 		if maze_active: return
 		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO, Color("e8e1d3"))
@@ -592,6 +604,12 @@ func _draw() -> void:
 	# Small diegetic signage is decorative; interaction text belongs to the HUD.
 	draw_string(ThemeDB.fallback_font,Vector2(66,73),'ATELIER · CIEL',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
 	draw_string(ThemeDB.fallback_font,Vector2(676,73),'BUREAU',HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color('#5A736B'))
+	# The visible threshold aligns with the exit interaction; the perimeter
+	# remains solid until the player explicitly uses the door.
+	draw_rect(Rect2(96,460,108,26),Color("6c8b83"))
+	draw_rect(Rect2(103,465,94,16),Color("c8dfd4"))
+	draw_line(Vector2(150,465),Vector2(150,481),Color("6c8b83"),3)
+	draw_string(ThemeDB.fallback_font,Vector2(117,456),"SORTIE",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("52756e"))
 
 func _draw_code_label(language: String, completed: bool, at: Vector2, color: Color) -> void:
 	var label := language + (" · VALIDÉ" if completed else "")
@@ -643,3 +661,25 @@ func _build_maze() -> void:
 	_add_target("maze_return","Retour au palier",MazeLayout.at(MazeLayout.START),64)
 	for index in range(MazeLayout.NOTES.size()):
 		_add_target("maze_note_%d" % index,"Lire l’inscription murale",MazeLayout.at(MazeLayout.NOTES[index].cell),65)
+
+func world_extent() -> Vector2:
+	if chapter_id == 0: return CampusLayout.extent(campus_zone)
+	return MazeLayout.extent() if maze_active else WORLD_SIZE
+
+func _build_campus() -> void:
+	campus_visual = CampusVisual.new()
+	campus_visual.zone = campus_zone
+	_room_root.add_child(campus_visual)
+	_room_root.move_child(campus_visual, 0)
+	var index := 0
+	for rect in CampusLayout.walls(campus_zone):
+		_add_obstacle(rect,"CampusWall%d" % index)
+		index += 1
+	if campus_zone == "building_02":
+		for rect in CampusLayout.furniture():
+			_add_obstacle(rect,"CampusFurniture%d" % index)
+			index += 1
+		_add_target("campus_leave","Porte · retour dans la cour",Vector2(3200,4050),100)
+	else:
+		_add_target("courtyard_first","Porte · premier bâtiment",Vector2(900,1060),100)
+		_add_target("courtyard_second","Porte · immeuble d’en face",Vector2(900,370),100)
