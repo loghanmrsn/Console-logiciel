@@ -1,5 +1,6 @@
 extends "res://tests/code_chapter_ui_tests.gd"
 const Campus = preload("res://scripts/game/campus_layout.gd")
+const Hotel = preload("res://scripts/game/hotel_layout.gd")
 const FOURTH := ["firewall","ip_conflict","subnet_mask"]
 
 func _run() -> void:
@@ -63,12 +64,15 @@ func _run() -> void:
 	await _capture("grand_batiment_entree_challenge")
 	await _test_map_input()
 	await _test_floor_plan()
+	# The hotel replaces the provisional empty rooms. Walk around its fountain
+	# and reception rather than walking through the new solid furniture.
+	await _walk_axis(KEY_Q,500)
 	await _walk_axis(KEY_UP,1850)
 	_check(app.demo.world.player.position.y < 2200 and app.demo.world.camera.position.y < 2700,"La caméra suit la marche jusqu’au grand atrium")
 	await _capture("grand_atrium_challenge")
-	await _walk_axis(KEY_Q,2340)
-	await _walk_axis(KEY_UP,650)
-	_check(app.demo.world.player.position.distance_to(Vector2(860,1500)) < 40,"Une salle éloignée est accessible par son ouverture réelle")
+	await _walk_axis(KEY_UP,450)
+	await _walk_axis(KEY_Q,1840)
+	_check(app.demo.world.player.position.distance_to(Vector2(860,1700)) < 60,"Le salon éloigné est accessible à pied par les galeries de l’hôtel")
 	await _capture("salle_aile_ouest_challenge")
 	await _test_compact_map()
 	# Camera corners are a separate boundary check, after the full walked route.
@@ -157,7 +161,7 @@ func _test_map_input() -> void:
 	panel.toggle_button.pressed.emit()
 
 func _test_floor_plan() -> void:
-	_check(Campus.rooms().size() == 16,"Seize salles prêtes à explorer")
+	_check(Hotel.rooms("building_02").size() >= 6,"Le grand hall, l’atrium, les salons, le local et les escaliers ont des espaces distincts")
 	# Flood-fill the actual physics graph: rays stop links across thin walls.
 	var reachable := {}
 	var pending: Array[Vector2i] = [Vector2i(31,39)]
@@ -175,9 +179,20 @@ func _test_floor_plan() -> void:
 			if not app.demo.world.get_world_2d().direct_space_state.intersect_ray(ray).is_empty(): continue
 			reachable[next] = true
 			pending.append(next)
-	for room in Campus.rooms():
-		var center := Vector2i((room.get_center()-Vector2(50,50))/100)
-		_check(reachable.has(center),"Le plan physique relie chaque salle à l’entrée : " + str(center))
+	for room in Hotel.rooms("building_02"):
+		var connected := false
+		for cell in reachable:
+			if room.has_point(Vector2(cell)*100+Vector2(50,50)):
+				connected = true
+				break
+		_check(connected,"Le plan physique relie les espaces de l’hôtel à son entrée : " + str(room))
+	for target in Hotel.interactions("building_02"):
+		var connected := false
+		for cell in reachable:
+			if (Vector2(cell)*100+Vector2(50,50)).distance_to(target.at) < target.radius:
+				connected = true
+				break
+		_check(connected,"Les passages et la réception restent accessibles : " + str(target.id))
 	_check(reachable.size()>1800,"Le grand bâtiment possède un vaste espace réellement connecté")
 
 func _test_compact_map() -> void:
@@ -201,7 +216,7 @@ func _resume_new_area() -> void:
 	await _activate("pause_menu")
 	await _frames(10)
 	_check(app.screen == "home","Retour au menu")
-	_check(app._investigation_progress_text() == "Nouveau bâtiment · exploration libre","L’accueil indique la zone, sans faux chapitre zéro")
+	_check("Hôtel" in app._investigation_progress_text() and not "chapitre 0" in app._investigation_progress_text().to_lower(),"L’accueil indique l’hôtel, sans faux chapitre zéro")
 	await _activate("continue_game")
 	await _frames(10)
 	_check(app.demo.world.room_id == "building_02" and app.demo.overlay_kind.is_empty(),"Continuer reprend le nouveau bâtiment sans bilan du chapitre 5")
