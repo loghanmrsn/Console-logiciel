@@ -12,6 +12,8 @@ const MazeLayout = preload("res://scripts/game/maze_layout.gd")
 const MazeVisual = preload("res://scripts/game/maze_visual.gd")
 const CampusLayout = preload("res://scripts/game/campus_layout.gd")
 const CampusVisual = preload("res://scripts/game/campus_visual.gd")
+const HotelLayout = preload("res://scripts/game/hotel_layout.gd")
+const HotelVisual = preload("res://scripts/game/hotel_visual.gd")
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
 const CHECKPOINTS := {
@@ -57,6 +59,8 @@ var chapter_id := 1
 var room_id := "room_01"
 var campus_zone := ""
 var campus_visual: Node2D
+var hotel_visual: Node2D
+var _bed_pose := "standing"
 var maze_active := false
 var maze_visual: Node2D
 var elevator_unlocked := false
@@ -139,6 +143,8 @@ func _build_room(chapter: int) -> void:
 	_html_sprite = null
 	_markdown_sprite = null
 	_elevator_sprite = null
+	hotel_visual = null
+	_bed_pose = "standing"
 	door_body = null
 	door_shape = null
 	chapter_id = chapter
@@ -153,7 +159,8 @@ func _build_room(chapter: int) -> void:
 	_props.y_sort_enabled=true
 	_room_root.add_child(_props)
 	if chapter == 0:
-		_build_campus()
+		if HotelLayout.is_zone(campus_zone): _build_hotel()
+		else: _build_campus()
 	elif maze_active:
 		_build_maze()
 	else:
@@ -176,7 +183,7 @@ func _build_room(chapter: int) -> void:
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
-	player.reserve_map_arrow = campus_zone == "building_02"
+	player.reserve_map_arrow = HotelLayout.is_zone(campus_zone)
 	player.controls_enabled = _controls_enabled
 	_restored_once = false
 	_was_repaired = false
@@ -282,6 +289,7 @@ func _build_lab_room() -> void:
 	_add_target("elevator", "Ascenseur · choix des étages", Vector2(158,400),92)
 
 func _chapter_for_room(id: String) -> int:
+	if HotelLayout.is_zone(id): return 0
 	match id:
 		"courtyard", "building_02": return 0
 		"room_02": return 2
@@ -292,7 +300,7 @@ func _chapter_for_room(id: String) -> int:
 
 func _chapter_checkpoints() -> Dictionary:
 	match chapter_id:
-		0: return CampusLayout.checkpoints(campus_zone)
+		0: return HotelLayout.checkpoints(campus_zone) if HotelLayout.is_zone(campus_zone) else CampusLayout.checkpoints(campus_zone)
 		2: return CHAPTER_TWO_CHECKPOINTS
 		3: return CHAPTER_THREE_CHECKPOINTS
 		4: return CHAPTER_FOUR_CHECKPOINTS
@@ -329,6 +337,11 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 	return visual
 
 func _refresh_art() -> void:
+	if is_instance_valid(hotel_visual):
+		hotel_visual.state = _pending_progress.get("hotel", {}).duplicate(true)
+		set_bed_pose(str(hotel_visual.state.get("bed_state", "standing")))
+		hotel_visual.queue_redraw()
+		return
 	if is_instance_valid(_elevator_sprite):
 		_elevator_sprite.texture = Art.TEXTURES.elevator_ready if elevator_unlocked else Art.TEXTURES.elevator_locked
 	if chapter_id == 5:
@@ -405,7 +418,7 @@ func _update_camera_position() -> void:
 func set_controls_enabled(enabled: bool) -> void:
 	_controls_enabled = enabled
 	if is_instance_valid(player):
-		player.controls_enabled = enabled
+		player.controls_enabled = enabled and not _hotel_seated()
 		if not enabled:
 			player.velocity = Vector2.ZERO
 
@@ -426,6 +439,8 @@ func restore_checkpoint() -> void:
 		checkpoint = "entrance"
 	var checkpoints := _chapter_checkpoints()
 	player.position = checkpoints.get(checkpoint, checkpoints.entrance)
+	if room_id == "hotel_room_206" and str(_pending_progress.get("hotel", {}).get("bed_state", "standing")) == "sitting":
+		player.position = HotelLayout.BED_SEAT
 	player.velocity = Vector2.ZERO
 	_update_camera_position()
 	_update_target()
@@ -456,6 +471,8 @@ func restore_progress(progress: Dictionary) -> void:
 	if not _restored_once:
 		restore_checkpoint()
 		_restored_once = true
+	if is_instance_valid(hotel_visual):
+		set_bed_pose(str(_pending_progress.get("hotel", {}).get("bed_state", "standing")))
 	_sync_appearance()
 	_fit_camera()
 	queue_redraw()
@@ -465,6 +482,8 @@ func _is_target_available(target: Node2D) -> bool:
 	# Mission equipment remains part of the room after repair, but its marker
 	# and interaction stop. The elevator is travel, never a completed mission.
 	if target.interaction_id == "maze_terminal": return not _pending_progress.get("completed_missions", []).has("maze")
+	if target.interaction_id == "hotel_luggage": return not bool(_pending_progress.get("hotel", {}).get("luggage_placed", false))
+	if target.interaction_id == "hotel_repair": return not bool(_pending_progress.get("hotel", {}).get("repaired", false))
 	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
 func _refresh_target_availability() -> void:
@@ -663,8 +682,44 @@ func _build_maze() -> void:
 		_add_target("maze_note_%d" % index,"Lire l’inscription murale",MazeLayout.at(MazeLayout.NOTES[index].cell),65)
 
 func world_extent() -> Vector2:
-	if chapter_id == 0: return CampusLayout.extent(campus_zone)
+	if chapter_id == 0:
+		return HotelLayout.extent(campus_zone) if HotelLayout.is_zone(campus_zone) else CampusLayout.extent(campus_zone)
 	return MazeLayout.extent() if maze_active else WORLD_SIZE
+
+func _build_hotel() -> void:
+	hotel_visual = HotelVisual.new()
+	hotel_visual.name = "HotelScenery"
+	hotel_visual.zone = campus_zone
+	_room_root.add_child(hotel_visual)
+	_room_root.move_child(hotel_visual, 0)
+	var index := 0
+	for rect in HotelLayout.walls(campus_zone):
+		_add_obstacle(rect, "HotelWall%d" % index)
+		index += 1
+	for rect in HotelLayout.furniture(campus_zone):
+		_add_obstacle(rect, "HotelFurniture%d" % index)
+		index += 1
+	for spec in HotelLayout.interactions(campus_zone):
+		_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
+
+func _hotel_seated() -> bool:
+	return room_id == "hotel_room_206" and _bed_pose == "sitting"
+
+func set_bed_pose(pose: String) -> void:
+	if not is_instance_valid(player): return
+	var was_seated := _hotel_seated()
+	_bed_pose = pose if room_id == "hotel_room_206" else "standing"
+	if _hotel_seated():
+		player.position = HotelLayout.BED_SEAT
+		player.velocity = Vector2.ZERO
+	elif was_seated:
+		player.position = HotelLayout.checkpoints("hotel_room_206").room206_bed
+	if is_instance_valid(player.sprite): player.sprite.visible = not _hotel_seated()
+	player.controls_enabled = _controls_enabled and not _hotel_seated()
+	if is_instance_valid(hotel_visual):
+		hotel_visual.bed_pose = _bed_pose
+		hotel_visual.queue_redraw()
+	_update_camera_position()
 
 func _build_campus() -> void:
 	campus_visual = CampusVisual.new()
