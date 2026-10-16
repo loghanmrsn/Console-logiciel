@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.9.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.10.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -155,3 +155,13 @@ Il s’agit d’un serveur fictif : aucune commande n’est exécutée sur votre
 Le portail de l’entrée ramène au palier. Continuer reprend la session enregistrée.
 Les quatre premiers chapitres gardent trois missions chacun ; le cinquième en a une.
 Chaque première réussite donne 50 points : 650 au maximum par profil.
+
+APRÈS LE CHAPITRE 5 — SECOND BÂTIMENT
+Revenez au palier, puis descendez un étage à la fois jusqu’au premier niveau
+(rez-de-chaussée). La porte de sortie est en bas à gauche. Traversez la cour
+jusqu’à la porte de l’immeuble d’en face et choisissez Entrer. Le grand bâtiment
+comprend seize salles et des galeries libres. Carte en haut à gauche : la touche
+flèche droite → l’affiche ou la masque. Déplacement : ZQSD ou joystick.
+Le bouton Carte fonctionne aussi à la souris. Les prochaines missions viendront
+plus tard : aucune nouvelle récompense. Les passages sont sauvegardés ; Continuer
+reprend au seuil de la zone. Revenez par les mêmes portes pour retrouver l’atelier.
