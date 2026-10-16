@@ -14,6 +14,8 @@ const LessonLibrary = preload("res://scripts/game/lesson_library.gd")
 var lesson_library: VBoxContainer
 const MazeTerminal = preload("res://scripts/game/terminal_panel.gd")
 var terminal_panel: VBoxContainer
+const HotelStory = preload("res://scripts/game/hotel_story_ui.gd")
+var hotel_story: Control
 
 signal menu_requested
 signal settings_requested
@@ -135,6 +137,9 @@ func _build() -> void:
 	mission_tracker.configure(InvestigationService)
 	add_child(mission_tracker)
 	mission_tracker.expanded_changed.connect(func(expanded: bool): _objectives_expanded = expanded)
+	hotel_story = HotelStory.new()
+	hotel_story.configure(self)
+	add_child(hotel_story)
 	campus_map = CampusMap.new()
 	campus_map.world = world
 	add_child(campus_map)
@@ -215,6 +220,9 @@ func refresh() -> void:
 	_sync_overlay_theme()
 	if not AppState.profile.is_empty():
 		var changed: bool = _last_profile_id != str(AppState.profile.id)
+		if changed and not _last_profile_id.is_empty() and not overlay_kind.is_empty():
+			_discard_controller_context()
+			_close_overlay()
 		_last_profile_id = str(AppState.profile.id)
 		world.restore_progress(AppState.profile.progress)
 		_update_objectives()
@@ -225,6 +233,9 @@ func refresh() -> void:
 			var final_mission := str(chapter_missions.back().id) if not chapter_missions.is_empty() else ''
 			if not final_mission.is_empty() and final_mission in AppState.profile.progress.completed_missions:
 				_show_conclusion.call_deferred()
+	if is_instance_valid(hotel_story):
+		hotel_story.refresh()
+		hotel_story.restore_seated_overlay.call_deferred()
 	_sync_controls()
 	if _controller_waiting:
 		_show_controller_pause()
@@ -239,6 +250,8 @@ func _progress_changed(progress: Dictionary) -> void:
 	_sync_overlay_theme()
 	world.restore_progress(progress)
 	_update_objectives()
+	if is_instance_valid(hotel_story): hotel_story.refresh()
+	_sync_controls()
 
 func _current_mission() -> String:
 	for mission in InvestigationService.chapter_missions():
@@ -246,6 +259,10 @@ func _current_mission() -> String:
 	return ''
 
 func _toggle_objectives() -> void:
+	if is_instance_valid(hotel_story) and HotelService.is_hotel_zone():
+		hotel_story.toggle_objectives()
+		_sync_controls()
+		return
 	if mission_tracker == null: return
 	# Pause owns the input lock, but its explicit action can change the board.
 	mission_tracker.set_input_enabled(true)
@@ -282,6 +299,7 @@ func _settings_changed(_value: Dictionary) -> void:
 	if is_inside_tree():
 		_sync_overlay_theme()
 		_update_objectives()
+		if is_instance_valid(hotel_story): hotel_story.refresh()
 		_target_label.add_theme_font_size_override('font_size',22 if SettingsService.current.get('large_text',false) else 18)
 		_resize_viewport.call_deferred()
 		if not overlay_kind.is_empty(): _fit_modal.call_deferred(); _wire_modal.call_deferred()
@@ -295,9 +313,13 @@ func _visibility_changed() -> void:
 	elif not overlay_kind.is_empty() and _disabled_controls.is_empty():
 		_disable_focus(get_tree().root)
 	_sync_controls()
+	if is_instance_valid(hotel_story):
+		hotel_story.suspend_clock()
+		if is_visible_in_tree(): hotel_story.restore_seated_overlay.call_deferred()
 	if _controller_waiting and is_visible_in_tree(): _show_controller_pause.call_deferred()
 
 func _exit_tree() -> void:
+	if is_instance_valid(hotel_story): hotel_story.suspend_clock()
 	_release_focus_modes()
 
 func _notification(what: int) -> void:
@@ -317,14 +339,15 @@ func _sync_controls() -> void:
 	if not enabled:
 		_missions_held = false
 		_map_held = false
-	if is_instance_valid(world): world.set_controls_enabled(enabled)
+	if is_instance_valid(world): world.set_controls_enabled(enabled and (not is_instance_valid(hotel_story) or hotel_story.can_move()))
 	if is_instance_valid(mission_tracker):
 		mission_tracker.visible = enabled and InvestigationService.current_chapter() != 0
 		mission_tracker.set_input_enabled(enabled)
-	if is_instance_valid(campus_map): campus_map.visible = enabled and world.room_id == "building_02"
+	if is_instance_valid(campus_map): campus_map.visible = enabled and HotelService.is_hotel_zone(str(world.room_id))
+	if is_instance_valid(hotel_story): hotel_story.sync_visibility()
 	if is_instance_valid(_zone_hint):
-		_zone_hint.visible = enabled and world.chapter_id == 0
-		_zone_hint.text = "COUR · Rejoignez la porte d’en face ↑" if world.room_id == "courtyard" else "BÂTIMENT B · Exploration libre\nCarte : → · Déplacement : ZQSD / joystick"
+		_zone_hint.visible = enabled and world.room_id == "courtyard"
+		_zone_hint.text = "COUR · Rejoignez la porte d’en face ↑"
 
 func _sync_overlay_theme() -> void:
 	if _overlay == null: return
@@ -354,7 +377,7 @@ func _input(event: InputEvent) -> void:
 	var typing: Control = get_viewport().gui_get_focus_owner()
 	if event is InputEventKey and typing is LineEdit and modal_content.is_ancestor_of(typing) and not event.is_action("ui_cancel"):
 		return
-	if event is InputEventKey and event.keycode == KEY_RIGHT and event.pressed and world.room_id == "building_02" and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
+	if event is InputEventKey and event.keycode == KEY_RIGHT and event.pressed and HotelService.is_hotel_zone(str(world.room_id)) and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
 		if not _map_held:
 			_map_held = true
 			campus_map.toggle_map()
@@ -374,17 +397,19 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('pause'):
 		get_viewport().set_input_as_handled()
 		if overlay_kind == 'pause': resume()
-		elif overlay_kind.is_empty(): request_pause()
+		elif overlay_kind.is_empty() or (is_instance_valid(hotel_story) and hotel_story.can_pause_bed()): request_pause()
 	elif event.is_action_pressed('ui_cancel') and not overlay_kind.is_empty():
 		get_viewport().set_input_as_handled()
 		handle_back()
 
 func _interact() -> void:
 	if paused or _busy or not overlay_kind.is_empty() or not SceneRouter.gameplay_allowed(): return
+	if is_instance_valid(hotel_story) and not hotel_story.can_move(): return
 	world.interact_nearest()
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if is_instance_valid(hotel_story) and hotel_story.handle_target(id): return
 	if id in ["building_exit", "courtyard_first", "courtyard_second", "campus_leave"]:
 		_show_zone_door(id)
 		return
@@ -495,16 +520,18 @@ func _travel_to_chapter(destination: int) -> void:
 	notification_requested.emit(str(arrivals.get(destination, 'Bienvenue dans la pièce.')))
 
 func request_pause() -> void:
-	if not is_visible_in_tree() or not overlay_kind.is_empty(): return
+	if not is_visible_in_tree(): return
+	if not overlay_kind.is_empty() and not (is_instance_valid(hotel_story) and hotel_story.can_pause_bed()): return
 	_open_overlay('pause')
 	_label(modal_content, 'Pause', 26)
 	_label(modal_content, 'Les déplacements et interactions sont suspendus.')
 	var resume_button=_button(modal_content, 'Reprendre', resume, 'pause_resume')
 	resume_button.theme_type_variation='PrimaryButton'
-	_button(modal_content, 'Masquer les objectifs' if _objectives_expanded else 'Afficher les objectifs', func():
+	var expanded: bool = hotel_story.objectives_expanded if is_instance_valid(hotel_story) and HotelService.is_hotel_zone() else _objectives_expanded
+	_button(modal_content, 'Masquer les objectifs' if expanded else 'Afficher les objectifs', func():
 		_toggle_objectives()
 		resume(), 'pause_objectives')
-	if InvestigationService.conclusion().ok:
+	if InvestigationService.current_chapter() != 0 and InvestigationService.conclusion().ok:
 		_button(modal_content, 'Bilan du chapitre', _show_conclusion, 'pause_conclusion')
 	_button(modal_content, 'Paramètres', func(): settings_requested.emit(), 'pause_settings')
 	_button(modal_content, 'Aide aux commandes', func(): help_requested.emit(), 'pause_help')
@@ -607,6 +634,12 @@ func _discard_controller_context() -> void:
 	_controller_deferred_conclusion = false
 
 func handle_back() -> void:
+	if is_instance_valid(hotel_story) and hotel_story.can_pause_bed():
+		request_pause()
+		return
+	if overlay_kind.begins_with('hotel_'):
+		if overlay_kind != 'hotel_night': _close_overlay()
+		return
 	match overlay_kind:
 		'controller_pause': return
 		'': request_pause()
@@ -725,7 +758,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -753,6 +786,7 @@ func _close_overlay() -> void:
 	paused = false
 	SceneRouter.lock_until_release()
 	call_deferred('_restore_original_focus')
+	if is_instance_valid(hotel_story): hotel_story.restore_seated_overlay.call_deferred()
 
 func _restore_original_focus() -> void:
 	if not is_inside_tree() or not is_visible_in_tree() or not overlay_kind.is_empty(): return
@@ -877,7 +911,7 @@ func _show_zone_door(id: String) -> void:
 	var destination: String = destinations[id]
 	_open_overlay("zone_door")
 	_label(modal_content, {"room_01": "Premier bâtiment", "building_02": "L’immeuble d’en face", "courtyard": "Sortir dans la cour"}[destination],26)
-	_label(modal_content,"Un grand bâtiment vous attend de l’autre côté de la cour." if id == "building_exit" else ("Explorez les galeries et les seize salles. Les prochaines missions seront ajoutées plus tard. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick." if destination == "building_02" else "Vous retrouverez cette porte pour revenir. Votre progression est conservée."))
+	_label(modal_content,"Un grand bâtiment vous attend de l’autre côté de la cour." if id == "building_exit" else ("Bienvenue à l’Hôtel CIEL. Rejoignez la réception pour réserver votre chambre. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick." if destination == "building_02" else "Vous retrouverez cette porte pour revenir. Votre progression est conservée."))
 	_button(modal_content,"Entrer" if destination != "courtyard" else "Sortir",func(): _switch_zone(destination,id),"zone_go")
 	_button(modal_content,"Rester ici",_close_overlay,"zone_stay")
 	_wire_modal()
