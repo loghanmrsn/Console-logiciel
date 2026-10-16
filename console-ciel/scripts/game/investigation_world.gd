@@ -8,6 +8,8 @@ signal target_changed(id: String, label: String)
 const Art=preload('res://scripts/game/room_art.gd')
 const PlayerScript = preload("res://scripts/game/player.gd")
 const InteractableScript = preload("res://scripts/game/interactable.gd")
+const MazeLayout = preload("res://scripts/game/maze_layout.gd")
+const MazeVisual = preload("res://scripts/game/maze_visual.gd")
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
 const CHECKPOINTS := {
@@ -51,6 +53,8 @@ var door_open := false
 var computer_repaired := false
 var chapter_id := 1
 var room_id := "room_01"
+var maze_active := false
+var maze_visual: Node2D
 var elevator_unlocked := false
 var network_restored := false
 var addressing_restored := false
@@ -134,27 +138,33 @@ func _build_room(chapter: int) -> void:
 	door_body = null
 	door_shape = null
 	chapter_id = chapter
-	room_id = "room_0%d" % chapter
+	maze_active = chapter == 5 and str(_pending_progress.get("room_id", "")) == "maze_05"
+	room_id = "maze_05" if maze_active else "room_0%d" % chapter
 	_room_root = Node2D.new()
-	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom", "ChapterFourRoom"][chapter - 1]
+	_room_root.name = ["ChapterOneRoom", "ChapterTwoRoom", "ChapterThreeRoom", "ChapterFourRoom", "ChapterFiveRoom"][chapter - 1]
 	add_child(_room_root)
 	_props=Node2D.new()
 	_props.name='RoomObjects'
 	_props.y_sort_enabled=true
 	_room_root.add_child(_props)
-	# Perimeter and office partition. The doorway is a real, separate body.
-	_add_obstacle(Rect2(24, 30, 952, 20), "NorthWall")
-	_add_obstacle(Rect2(24, 476, 952, 20), "SouthWall")
-	_add_obstacle(Rect2(24, 50, 20, 426), "WestWall")
-	_add_obstacle(Rect2(956, 50, 20, 426), "EastWall")
-	if chapter == 1:
-		_build_workshop()
-	elif chapter == 2:
-		_build_network_room()
-	elif chapter == 3:
-		_build_code_room()
+	if maze_active:
+		_build_maze()
 	else:
-		_build_lab_room()
+		# Perimeter and office partition. The doorway is a real, separate body.
+		_add_obstacle(Rect2(24, 30, 952, 20), "NorthWall")
+		_add_obstacle(Rect2(24, 476, 952, 20), "SouthWall")
+		_add_obstacle(Rect2(24, 50, 20, 426), "WestWall")
+		_add_obstacle(Rect2(956, 50, 20, 426), "EastWall")
+		if chapter == 1:
+			_build_workshop()
+		elif chapter == 2:
+			_build_network_room()
+		elif chapter == 3:
+			_build_code_room()
+		elif chapter == 4:
+			_build_lab_room()
+		else:
+			_build_fifth_hub()
 	player = PlayerScript.new()
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
@@ -267,6 +277,7 @@ func _chapter_for_room(id: String) -> int:
 		"room_02": return 2
 		"room_03": return 3
 		"room_04": return 4
+		"room_05", "maze_05": return 5
 		_: return 1
 
 func _chapter_checkpoints() -> Dictionary:
@@ -274,6 +285,7 @@ func _chapter_checkpoints() -> Dictionary:
 		2: return CHAPTER_TWO_CHECKPOINTS
 		3: return CHAPTER_THREE_CHECKPOINTS
 		4: return CHAPTER_FOUR_CHECKPOINTS
+		5: return MazeLayout.checkpoints() if maze_active else {"entrance": Vector2(158,405), "elevator": Vector2(158,405), "laptop": Vector2(500,295)}
 		_: return CHECKPOINTS
 
 func _add_obstacle(rect: Rect2, node_name: String, wall := true) -> StaticBody2D:
@@ -308,6 +320,9 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 func _refresh_art() -> void:
 	if is_instance_valid(_elevator_sprite):
 		_elevator_sprite.texture = Art.TEXTURES.elevator_ready if elevator_unlocked else Art.TEXTURES.elevator_locked
+	if chapter_id == 5:
+		if is_instance_valid(maze_visual): maze_visual.completed = _pending_progress.get("completed_missions", []).has("maze")
+		return
 	if chapter_id == 4:
 		_props.modulate = Color.WHITE
 		for id in _lab_screens:
@@ -359,7 +374,7 @@ func _fit_camera() -> void:
 	var available := get_viewport_rect().size
 	# On compact screens, retain an 18 px character instead of shrinking the
 	# complete room into a short strip. The cropped axes follow the player.
-	var fit := maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
+	var fit := .92 if maze_active else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
 
@@ -367,11 +382,12 @@ func _update_camera_position() -> void:
 	if not is_inside_tree() or not is_instance_valid(camera) or not is_instance_valid(player):
 		return
 	var half_visible: Vector2 = get_viewport_rect().size / camera.zoom * 0.5
-	var center := WORLD_SIZE * 0.5
-	if half_visible.x < WORLD_SIZE.x * 0.5:
-		center.x = clampf(player.position.x, half_visible.x, WORLD_SIZE.x - half_visible.x)
-	if half_visible.y < WORLD_SIZE.y * 0.5:
-		center.y = clampf(player.position.y, half_visible.y, WORLD_SIZE.y - half_visible.y)
+	var extent := MazeLayout.extent() if maze_active else WORLD_SIZE
+	var center := extent * .5
+	if half_visible.x < extent.x * .5:
+		center.x = clampf(player.position.x, half_visible.x, extent.x - half_visible.x)
+	if half_visible.y < extent.y * .5:
+		center.y = clampf(player.position.y, half_visible.y, extent.y - half_visible.y)
 	# No permanent background animation or camera smoothing is needed.
 	camera.position = center
 
@@ -408,7 +424,7 @@ func restore_progress(progress: Dictionary) -> void:
 	if not is_instance_valid(player):
 		return
 	var desired_chapter := _chapter_for_room(str(progress.get("room_id", "room_01")))
-	if chapter_id != desired_chapter:
+	if chapter_id != desired_chapter or (desired_chapter == 5 and room_id != str(progress.get("room_id", "room_05"))):
 		_build_room(desired_chapter)
 	var completed: Array = progress.get("completed_missions", [])
 	lighting_restored = completed.has("lighting")
@@ -437,6 +453,7 @@ func restore_progress(progress: Dictionary) -> void:
 func _is_target_available(target: Node2D) -> bool:
 	# Mission equipment remains part of the room after repair, but its marker
 	# and interaction stop. The elevator is travel, never a completed mission.
+	if target.interaction_id == "maze_terminal": return not _pending_progress.get("completed_missions", []).has("maze")
 	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
 func _refresh_target_availability() -> void:
@@ -539,6 +556,13 @@ func interact_nearest() -> void:
 		interaction_requested.emit(_target.interaction_id)
 
 func _draw() -> void:
+	if chapter_id == 5:
+		if maze_active: return
+		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO, Color("e8e1d3"))
+		draw_texture(Art.TEXTURES.code_walls, Vector2.ZERO)
+		draw_string(ThemeDB.fallback_font, Vector2(66,73), "CHAPITRE 5 · LE PALIER", HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("5a736b"))
+		draw_string(ThemeDB.fallback_font, Vector2(426,326), "UN PORTABLE VOUS ATTEND", HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("71817c"))
+		return
 	if chapter_id == 4:
 		draw_texture(Art.TEXTURES.code_floor, Vector2.ZERO, Color("c7dce4"))
 		draw_texture(Art.TEXTURES.code_walls, Vector2.ZERO)
@@ -575,3 +599,47 @@ func _draw_code_label(language: String, completed: bool, at: Vector2, color: Col
 	var font_size := 13 if _large_text else 12
 	var width := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 	draw_string(font, at - Vector2(width * 0.5, 0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color("#4f765f") if completed else color)
+
+class LaptopArt extends Node2D:
+	func _draw() -> void:
+		draw_rect(Rect2(-43,-28,86,52),Color("526c70"))
+		draw_rect(Rect2(-37,-22,74,39),Color("b8d2ca"))
+		draw_string(ThemeDB.fallback_font,Vector2(-13,3),">_",HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("527775"))
+		draw_colored_polygon(PackedVector2Array([Vector2(-43,24),Vector2(43,24),Vector2(53,40),Vector2(-53,40)]),Color("8ba3a3"))
+		draw_rect(Rect2(-11,29,22,6),Color("cfddd5"))
+
+func _build_fifth_hub() -> void:
+	var desk := _add_obstacle(Rect2(430,202,140,63), "PortableDesk", false)
+	_sprite(desk, "desk", Rect2(414,177,172,112))
+	var laptop := LaptopArt.new()
+	laptop.position = Vector2(500,199)
+	laptop.z_index = 5
+	_room_root.add_child(laptop)
+	_add_target("laptop", "Ordinateur portable", Vector2(500,278),98)
+	var elevator_body := _add_obstacle(Rect2(88,435,112,35),"Elevator",false)
+	_elevator_sprite = _sprite(elevator_body,"elevator_ready",Rect2(84,389,120,87))
+	_add_target("elevator","Ascenseur · choix des étages",Vector2(158,400),92)
+	var storage := _add_obstacle(Rect2(760,403,114,45),"HallStorage",false)
+	_sprite(storage,"cabinet",Rect2(751,384,132,79))
+
+func _build_maze() -> void:
+	maze_visual = MazeVisual.new()
+	_room_root.add_child(maze_visual)
+	_room_root.move_child(maze_visual,0)
+	# Une collision par segment horizontal, alignée sur les murs visibles.
+	for y in range(MazeLayout.GRID.size()):
+		var x := 0
+		while x < MazeLayout.GRID[y].length():
+			if MazeLayout.GRID[y][x] != "#":
+				x += 1
+				continue
+			var first := x
+			while x < MazeLayout.GRID[y].length() and MazeLayout.GRID[y][x] == "#": x += 1
+			_add_obstacle(Rect2(first * MazeLayout.TILE,y * MazeLayout.TILE,(x-first) * MazeLayout.TILE,MazeLayout.TILE),"MazeWall_%d_%d" % [y,first])
+	var center: Vector2 = MazeLayout.at(MazeLayout.CENTER)
+	var body := _add_obstacle(Rect2(center + Vector2(-34,-43),Vector2(68,18)),"CentralTerminal",false)
+	_sprite(body,"network_terminal",Rect2(center + Vector2(-38,-66),Vector2(76,54)))
+	_add_target("maze_terminal","Terminal du serveur",center + Vector2(0,15),72)
+	_add_target("maze_return","Retour au palier",MazeLayout.at(MazeLayout.START),64)
+	for index in range(MazeLayout.NOTES.size()):
+		_add_target("maze_note_%d" % index,"Lire l’inscription murale",MazeLayout.at(MazeLayout.NOTES[index].cell),65)
