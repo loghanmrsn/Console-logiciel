@@ -2,6 +2,7 @@ extends CharacterBody2D
 ## Feet collide, body draws above them; four directional walk / idle states.
 const SPEED := 190.0
 var controls_enabled := true
+var reserve_map_arrow := false
 var facing := Vector2.DOWN
 var accent := Color("527fa3")
 var sprite: AnimatedSprite2D
@@ -26,7 +27,7 @@ func _physics_process(_delta: float) -> void:
  var router=get_node_or_null('/root/SceneRouter')
  if not controls_enabled or not is_visible_in_tree() or (router!=null and not router.gameplay_allowed()):
   velocity=Vector2.ZERO;_update_animation(false);return
- var direction=Input.get_vector('game_left','game_right','game_up','game_down')
+ var direction=Input.get_vector('game_left','game_walk_right' if reserve_map_arrow else 'game_right','game_up','game_down')
  if direction.length_squared()>.001:
   facing=direction.normalized()
   _direction=('right' if facing.x>0 else 'left') if absf(facing.x)>absf(facing.y) else ('down' if facing.y>0 else 'up')
