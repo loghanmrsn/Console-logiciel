@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "investigation_version": 1,
-  "mission_reward_max": 600,
+  "mission_reward_max": 650,
   "missions": [
     {
       "id": "lighting",
@@ -793,6 +793,36 @@
         "id": "subnet_mask_note",
         "text": "Laboratoire terminé ! Vous savez autoriser un flux précis, éviter les doublons IPv4 et reconnaître un masque /26. Les quatre chapitres de l’enquête sont terminés."
       }
+    },
+    {
+      "id": "maze",
+      "name": "???",
+      "title": "???",
+      "description": "???",
+      "chapter": 5,
+      "room_id": "maze_05",
+      "prerequisites": [
+        "subnet_mask"
+      ],
+      "initial_state": "locked",
+      "reward": 50,
+      "observations": [
+        {
+          "id": "login",
+          "title": "Session du terminal",
+          "text": "Une connexion a été authentifiée sur le serveur simulé."
+        }
+      ],
+      "checks": [],
+      "solution": {
+        "user": "admin",
+        "password": "admin"
+      },
+      "clue": {
+        "id": "maze_access",
+        "text": "Vous avez atteint le terminal central et ouvert une session privilégiée. Le défi mystère est terminé."
+      },
+      "success_explanation": "Connexion et privilèges sont distincts. Le compte admin ouvre une session utilisateur. sudo -i ou su - et une nouvelle authentification donnent ici une session root simulée. Les commandes et identifiants ne concernent que le serveur fictif du jeu."
     }
   ]
 }
