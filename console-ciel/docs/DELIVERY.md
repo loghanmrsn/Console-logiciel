@@ -1,4 +1,20 @@
-# Livraison 0.8.0 — livres et laboratoire réseau
+# Livraison 0.9.0 — chapitre 5, défi mystère
+
+Après les douze premières réussites, l’ascenseur ouvre le **chapitre 5**. Son palier contient un portable et le bouton **Y aller** : il mène à un labyrinthe fixe de **31 × 23 cases**, avec des impasses, une pièce centrale et huit inscriptions murales. La caméra suit le personnage. Le tableau ne révèle pas le but : **???**, avec **une seule mission** et un compteur **0 / 1**.
+
+Le terminal central propose un clavier virtuel pour les identifiants, les mots de passe masqués et les commandes. La connexion ouvre une session utilisateur ; une authentification distincte permet d’obtenir les droits complets de la simulation. Les mémos Linux / Windows mêlent indices utiles et pistes inadaptées. Les textes sont reconnus localement, sans exécuter de commande sur le système hôte.
+
+Les anciens profils, achats et points sont conservés. Continuer reprend le palier ou le labyrinthe, et la session enregistrée après connexion. Le portail d’entrée ramène au palier. Une réussite donne 50 points une seule fois : **treize missions et 650 points au maximum par profil**. Le clavier, les livres des étages précédents et la présentation des README restent conservés.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.9.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.9.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.9.0.zip).
+
+Recette du **16 octobre 2026** : **5 640 assertions source dans treize suites**, **3 978 assertions par pack compilé** chargé par Godot Linux x86_64 et **1 483 contrôles de rendu réel X11 / OpenGL ES 3.2**, sans échec. Les 335 cases de circulation sont accessibles et sans collision invisible ; le parcours de l’entrée au terminal est effectué avec les vrais déplacements. Les échecs d’écriture, la migration à treize observations, les mots de passe erronés, le rejeu et la séparation des profils sont testés. [Résumé détaillé](../tests/labyrinthe_0.9.0_results/summary.json).
+
+Les **223 ressources intégrées** de chaque export, dont 48 SVG, sont contrôlées par MD5, ainsi que les CRC des ZIP. Dix captures réelles montrent notamment le [palier](screenshots/labyrinthe_0.9.0/chapitre_5_palier_challenge.png), le [labyrinthe](screenshots/labyrinthe_0.9.0/entree_labyrinthe_challenge.png), les [inscriptions](screenshots/labyrinthe_0.9.0/inscription_0_challenge.png), la [connexion](screenshots/labyrinthe_0.9.0/connexion_challenge.png) et le [clavier en 800 × 480 avec texte agrandi](screenshots/labyrinthe_0.9.0/elevation_challenge.png).
+
+Le rendu utilise Mesa llvmpipe sur Linux x86_64, une sortie audio Dummy et une manette simulée par événements. Les pilotes de test externes exercent les ressources des exports ; ils ne lancent pas les binaires Windows ou ARM64 sur leur matériel cible. Le lancement natif Windows / Pi 4, leur GPU, le son perçu et la manette physique restent à vérifier sur ces appareils.
+
+# Historique — livraison 0.8.0 — livres et laboratoire réseau
 
 Le coin ressources du chapitre 3 ouvre trois livres : **Python, HTML et Markdown**. Chaque livre contient trois leçons et un exemple qui permet de répondre au défi. Les couvertures et l’ouverture sont animées ; la réduction des animations est respectée. La lecture fonctionne à la souris, au clavier et à la manette, reste disponible après les missions et ne change aucun point.
 
