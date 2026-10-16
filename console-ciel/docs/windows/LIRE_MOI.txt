@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.8.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.9.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -139,7 +139,7 @@ réparé. L’ascenseur reste interactif pour changer de chapitre.
 Pause > Bilan du chapitre permet de consulter le bilan d’un chapitre déjà terminé.
 
 Chaque mission rapporte 50 points à sa première réussite seulement :
-150 par chapitre, 600 au maximum par profil. Chaque bilan conserve les
+150 pour chacun des quatre premiers chapitres, 50 pour le cinquième ; 650 au maximum par profil. Chaque bilan conserve les
 nouveaux gains cumulés de la partie et les sépare du solde total du profil.
 Rejouer ne redonne pas ces récompenses ; l’enquête reste gratuite.
 Les activités sont fictives, hors ligne : aucun câblage secteur, terminal,
@@ -157,7 +157,7 @@ ces emplacements ouvrent seulement une page « jeu en préparation ».
 Les ouvrir ne rapporte aucun point. Les cartes de l’accueil montrent les
 jeux achetés ; les profils affichent aussi leur nombre de jeux acquis.
 Quatre premières réussites permettent un achat à 200 points sans autre
-dépense ; les douze réussites donnent 600 points. Trois achats à 200 points
+dépense ; les treize réussites donnent 650 points. Trois achats à 200 points
 laissent 0 point et un quatrième achat est refusé. Les autres achats
 attendent de futurs défis ou un solde déjà présent dans un ancien profil.
 Rejouer ne permet pas de récupérer de nouveaux points.
@@ -170,8 +170,8 @@ laisse points et inventaire inchangés. Chaque profil a ses achats et son solde.
 Les cosmétiques gratuits restent gratuits. Aucun compte ni paiement réel.
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
-Version 0.8.0 : chapitre 3 consacré à Python, HTML et Markdown, douze missions
-et 600 points au maximum par profil. Profil en haut à gauche, jeux à 200
+Version 0.9.0 : chapitre 3 consacré à Python, HTML et Markdown, treize missions
+et 650 points au maximum par profil. Profil en haut à gauche, jeux à 200
 points chacun, repères masqués et tableau de missions sont conservés.
 Bibliothèque, boutique et profils, styles/couleurs et crédits sont conservés.
 Les images locales, le clavier à plusieurs pages et la barre translucide sont
@@ -190,7 +190,7 @@ tableau de missions par T et bouton de face haut, reprise au bon étage,
 ancien profil et anciens achats conservés, rejeu sans nouveau gain, puis achat,
 repère et bouton d’interaction masqués pour chaque mission terminée après
 retour dans la salle et après relance, puis présents au début d’une nouvelle
-partie ; décor réparé conservé et ascenseur utilisable entre les quatre chapitres,
+partie ; décor réparé conservé et ascenseur utilisable entre les cinq chapitres,
 Pause > Bilan du chapitre accessible seulement lorsque le chapitre courant est terminé,
 page de préparation sans gain et changement de profil,
 les deux dispositions d’accueil, aperçu/Annuler/Appliquer des couleurs,
@@ -218,5 +218,15 @@ Au chapitre 3, approchez le coin ressources puis interagissez (Espace / face bas
 Trois livres, chacun en trois leçons, expliquent Python, HTML et Markdown.
 Fermer le livre revient au choix ; Échap revient ensuite à la pièce.
 Le chapitre 4 s’ouvre après les neuf premières missions : pare-feu, conflit IPv4, masque /26.
-Chaque première réussite donne 50 points : 600 au maximum par profil.
+Chaque première réussite donne 50 points : 650 au maximum par profil.
 Ascenseur : Descendre d’étage, Monter d’étage, Retour au menu. Échap : rester.
+
+CHAPITRE 5 — DÉFI MYSTÈRE
+Après les douze premières réussites, montez au chapitre 5 puis approchez le portable.
+Interagir, puis Y aller ouvre un labyrinthe. Lisez les inscriptions sur les murs.
+Une seule mission apparaît dans le panneau : ???. Le terminal central propose
+un clavier virtuel pour les identifiants, le mot de passe et les commandes.
+Il s’agit d’un serveur fictif : aucune commande n’est exécutée sur votre appareil.
+Le portail de l’entrée ramène au palier. Continuer reprend la session enregistrée.
+Les quatre premiers chapitres gardent trois missions chacun ; le cinquième en a une.
+Chaque première réussite donne 50 points : 650 au maximum par profil.
