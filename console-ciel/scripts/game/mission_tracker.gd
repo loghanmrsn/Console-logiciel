@@ -169,7 +169,7 @@ func refresh() -> void:
 	var next_text := str(hints.get(next_id, ""))
 	if definitions.size() > 0 and completed == definitions.size():
 		if chapter == 1:
-			next_text = "Prenez l’ascenseur en bas du bureau." if not _compact else "Ascenseur · en bas du bureau"
+			next_text = ("Porte de sortie · en bas à gauche" if _exit_unlocked() else ("Prenez l’ascenseur en bas du bureau." if not _compact else "Ascenseur · en bas du bureau"))
 		elif chapter == 2:
 			next_text = "Prenez l’ascenseur vers le chapitre 3 : l’atelier du code." if not _compact else "Chapitre 3 · ascenseur"
 		elif chapter == 3:
@@ -177,11 +177,12 @@ func refresh() -> void:
 		elif chapter == 4:
 			next_text = "Chapitre 5 · ascenseur"
 		else:
-			next_text = "Défi mystère terminé. Bravo !" if not _compact else "Enquête terminée · bravo !"
+			next_text = "Revenez au palier, puis descendez jusqu’au premier niveau. Porte de sortie en bas à gauche." if not _compact else "Descendez au premier niveau · porte de sortie"
 	elif next_text.is_empty():
 		next_text = "Terminez la mission précédente." if not first_locked.is_empty() else "Commencez l’enquête depuis l’accueil."
+	if _exit_unlocked() and chapter in [2,3,4]: next_text = "Descendez au premier niveau · porte de sortie"
 	next_step_label = _label(mission_list, next_text, "mission_next_step", true)
-	next_step_label.visible = chapter != 5
+	next_step_label.visible = chapter != 5 or completed == definitions.size()
 	_body.visible = panel_expanded
 	_appearance_changed()
 	_fit.call_deferred()
@@ -302,3 +303,7 @@ func _fit() -> void:
 	var fixed_height := panel.get_theme_stylebox("panel").get_minimum_size().y + chapter_label.get_combined_minimum_size().y + toggle_button.get_combined_minimum_size().y + progress_bar.get_combined_minimum_size().y + _column.get_theme_constant("separation") * 3
 	_body.custom_minimum_size.y = minf(mission_list.get_combined_minimum_size().y, maxf(0, available_height - fixed_height)) if panel_expanded else 0
 	panel.size = Vector2(width, 0)
+
+func _exit_unlocked() -> bool:
+	var app := get_node_or_null("/root/AppState")
+	return app != null and not app.profile.is_empty() and "maze" in app.profile.progress.completed_missions
