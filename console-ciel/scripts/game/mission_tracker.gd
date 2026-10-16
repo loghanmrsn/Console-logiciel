@@ -12,7 +12,7 @@ const SHORT_NAMES := {
 	"security": "Protéger le Wi-Fi",
 	"python": "Afficher un message en Python",
 	"html": "Écrire un titre HTML",
-	"markdown": "Créer un titre Markdown", "firewall": "Configurer le pare-feu", "ip_conflict": "Résoudre un conflit IPv4", "subnet_mask": "Choisir le masque réseau"
+	"markdown": "Créer un titre Markdown", "firewall": "Configurer le pare-feu", "ip_conflict": "Résoudre un conflit IPv4", "subnet_mask": "Choisir le masque réseau", "maze": "???"
 }
 const NEXT_STEPS := {
 	"lighting": "Examinez le tableau électrique.",
@@ -23,9 +23,9 @@ const NEXT_STEPS := {
 	"security": "Examinez le point d’accès Wi-Fi.",
 	"python": "Examinez le poste Python.",
 	"html": "Examinez le poste HTML.",
-	"markdown": "Examinez le tableau Markdown.", "firewall": "Examinez le poste pare-feu.", "ip_conflict": "Comparez les adresses IP.", "subnet_mask": "Consultez le plan du réseau."
+	"markdown": "Examinez le tableau Markdown.", "firewall": "Examinez le poste pare-feu.", "ip_conflict": "Comparez les adresses IP.", "subnet_mask": "Consultez le plan du réseau.", "maze": "???"
 }
-const COMPACT_NAMES := {"lighting": "Éclairage", "lock": "Porte", "computer": "Ordinateur", "network": "Réseau", "addressing": "Adresse IPv4", "security": "Wi-Fi", "python": "Python", "html": "HTML", "markdown": "Markdown", "firewall": "Pare-feu", "ip_conflict": "Conflit IPv4", "subnet_mask": "Masque /26"}
+const COMPACT_NAMES := {"lighting": "Éclairage", "lock": "Porte", "computer": "Ordinateur", "network": "Réseau", "addressing": "Adresse IPv4", "security": "Wi-Fi", "python": "Python", "html": "HTML", "markdown": "Markdown", "firewall": "Pare-feu", "ip_conflict": "Conflit IPv4", "subnet_mask": "Masque /26", "maze": "???"}
 const COMPACT_NEXT_STEPS := {
 	"lighting": "Examinez le tableau électrique.",
 	"lock": "Examinez la porte.",
@@ -35,7 +35,7 @@ const COMPACT_NEXT_STEPS := {
 	"security": "Examinez le point Wi-Fi.",
 	"python": "Examinez le poste Python.",
 	"html": "Examinez le poste HTML.",
-	"markdown": "Examinez le tableau Markdown.", "firewall": "Examinez le poste pare-feu.", "ip_conflict": "Comparez les adresses IP.", "subnet_mask": "Consultez le plan du réseau."
+	"markdown": "Examinez le tableau Markdown.", "firewall": "Examinez le poste pare-feu.", "ip_conflict": "Comparez les adresses IP.", "subnet_mask": "Consultez le plan du réseau.", "maze": "???"
 }
 
 var panel_expanded := true
@@ -174,11 +174,14 @@ func refresh() -> void:
 			next_text = "Prenez l’ascenseur vers le chapitre 3 : l’atelier du code." if not _compact else "Chapitre 3 · ascenseur"
 		elif chapter == 3:
 			next_text = "Livres au coin ressources · Chapitre 4 par l’ascenseur"
+		elif chapter == 4:
+			next_text = "Chapitre 5 · ascenseur"
 		else:
-			next_text = "Les quatre chapitres sont terminés. Bravo !" if not _compact else "Enquête terminée · bravo !"
+			next_text = "Défi mystère terminé. Bravo !" if not _compact else "Enquête terminée · bravo !"
 	elif next_text.is_empty():
 		next_text = "Terminez la mission précédente." if not first_locked.is_empty() else "Commencez l’enquête depuis l’accueil."
 	next_step_label = _label(mission_list, next_text, "mission_next_step", true)
+	next_step_label.visible = chapter != 5
 	_body.visible = panel_expanded
 	_appearance_changed()
 	_fit.call_deferred()
