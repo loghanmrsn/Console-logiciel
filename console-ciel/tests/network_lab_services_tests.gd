@@ -21,7 +21,7 @@ func _run() -> void:
 		return
 	profile_id = str(created.data.id)
 	_ok(profiles.start_game(), "Nouvelle enquête")
-	_check(rewards.missions.size() == 12 and _ids(investigation.chapter_missions(4)) == FOURTH, "Douze missions et trois nouveaux diagnostics ordonnés")
+	_check(rewards.missions.size() == 13 and _ids(investigation.chapter_missions(4)) == FOURTH, "Treize missions et trois nouveaux diagnostics ordonnés")
 	_check(not investigation.enter_chapter(4).ok and not investigation.submit_diagnostic("firewall", "rule_missing", "allow_https_only").ok, "Le chapitre 4 ne peut pas être sauté")
 	for chapter in [1, 2, 3]:
 		if chapter > 1: _ok(investigation.enter_chapter(chapter), "Préparer étage précédent")
@@ -80,7 +80,7 @@ func _run() -> void:
 func _test_legacy_nine() -> void:
 	var modern: Dictionary = state.profile.duplicate(true)
 	var legacy: Dictionary = modern.duplicate(true)
-	for id in FOURTH: legacy.progress.observations.erase(id)
+	for id in FOURTH + saves.CHAPTER_FIVE_IDS: legacy.progress.observations.erase(id)
 	var raw := JSON.stringify(legacy, "\t")
 	_check(_write_raw(_path(profile_id), raw), "Profil 0.7.1 à neuf clés préparé")
 	state.clear_profile()
