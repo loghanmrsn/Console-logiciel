@@ -1,6 +1,6 @@
-# Enquête éducative — quatre chapitres
+# Enquête éducative — cinq chapitres
 
-L’enquête propose douze missions, réparties en quatre chapitres de trois défis. Chaque première réussite rapporte 50 points ; le total maximal est de 600 points par profil. Un rejeu conserve les récompenses sans les attribuer à nouveau.
+L’enquête propose treize missions : trois défis dans chacun des quatre premiers chapitres et une épreuve mystère dans le cinquième. Chaque première réussite rapporte 50 points ; le total maximal est de 650 points par profil. Un rejeu conserve les récompenses sans les attribuer à nouveau.
 
 ## Les livres du chapitre 3
 
@@ -24,9 +24,9 @@ Consultez les trois observations de chaque mission, puis choisissez le diagnosti
 
 ## Ascenseur et reprise
 
-Le panneau présente exactement trois boutons : **Descendre d’étage**, **Monter d’étage**, **Retour au menu**. La montée nécessite les trois missions du chapitre courant ; la descente permet de revisiter les étages accessibles. Au rez-de-chaussée, la descente est désactivée ; au chapitre 4, la montée est désactivée. **Échap / face droit** ferme le panneau et laisse le joueur dans la pièce.
+Le panneau présente exactement trois boutons : **Descendre d’étage**, **Monter d’étage**, **Retour au menu**. La montée nécessite les trois missions du chapitre courant ; la descente permet de revisiter les étages accessibles. Au rez-de-chaussée, la descente est désactivée ; au chapitre 5, la montée est désactivée. **Échap / face droit** ferme le panneau et laisse le joueur dans la pièce.
 
-Un changement d’étage enregistre d’abord le profil, puis affiche la nouvelle pièce. Si l’écriture échoue, le monde et la sauvegarde restent à l’étage précédent. Continuer reprend l’étage et le point enregistrés. Les profils des anciennes versions à trois, six ou neuf missions sont enrichis sans remise à zéro ; le document d’origine est gardé dans sa sauvegarde .bak lors de la migration.
+Un changement d’étage enregistre d’abord le profil, puis affiche la nouvelle pièce. Si l’écriture échoue, le monde et la sauvegarde restent à l’étage précédent. Continuer reprend l’étage et le point enregistrés. Les profils des anciennes versions à trois, six, neuf ou douze missions sont enrichis sans remise à zéro ; le document d’origine est gardé dans sa sauvegarde .bak lors de la migration.
 
 # Enquête CIEL — trois chapitres
 
@@ -156,3 +156,21 @@ La recette **0.6.1 du 14 octobre 2026** a passé **11 844 assertions source** da
 [Ascenseur déverrouillé au bureau](screenshots/chapitre_2_0.6.0/chapter_1_elevator_unlocked.png), [panneau déplié](screenshots/chapitre_2_0.6.0/chapter_2_1280x720_normal_expanded.png), [panneau replié en grand texte](screenshots/chapitre_2_0.6.0/chapter_2_1280x720_large_folded.png) et [les 12 captures](screenshots/chapitre_2_0.6.0/).
 
 La recette sous Godot Linux du **14 octobre 2026** a passé **9 568 assertions source**, **65 de persistance** entre trois processus et **694 contrôles avec rendu X11**, sans échec. Les contrôles ciblés couvrent les prérequis, les six missions, les récompenses uniques, la migration des anciens profils, les erreurs de sauvegarde, les transitions d’ascenseur et les commandes du panneau. [Résumé de la recette](../tests/chapitre_2_0.6.0_results/summary.json). Les périphériques manette sont virtuels et le son des captures utilise le pilote Dummy ; le PC Windows et la console physique restent à vérifier séparément.
+## Chapitre 5 — défi mystère
+
+Après les douze premières missions, montez au palier du chapitre 5. Approchez le portable et choisissez **Y aller**. Le personnage arrive à l’entrée d’un labyrinthe fixe de 31 × 23 cases, avec des impasses et une pièce centrale. La caméra suit le joueur ; elle n’affiche pas tout le plan. Les murs visibles et les collisions utilisent la même grille.
+
+Huit inscriptions sont réparties dans les embranchements. Approchez une plaque et interagissez pour lire sa version agrandie. Elles mêlent des indices et des mémos Linux / Windows. Les lire ne valide aucune sous-mission et ne donne aucun point. Le panneau conserve uniquement **???**, avec un compteur de **0 / 1**.
+
+Le terminal central utilise une saisie successive : identifiant, mot de passe, commande, puis authentification des privilèges. Son clavier virtuel reste visible, avec ⇧, 123, symboles, Espace, Effacer et Valider. Le clavier physique reste utilisable ; les mots de passe sont masqués. Une connexion seule ne termine pas l’épreuve. Les commandes sont reconnues par une simulation de texte locale, sans shell, réseau ni exécution système.
+
+Le portail à l’entrée ramène au palier et à l’ascenseur. Fermer le terminal permet de continuer à explorer. Continuer reprend le labyrinthe ; après une connexion enregistrée, le personnage reprend devant le terminal. Une déconnexion de manette conserve la saisie et exige une reprise explicite. Les erreurs de sauvegarde conservent le dernier état enregistré.
+
+<details>
+<summary>Solution de référence pour vérifier le défi</summary>
+
+Utilisateur **admin**, mot de passe **admin**, puis **sudo -i** ou **su -** et de nouveau **admin**. Le serveur fictif accepte aussi **sudo**, **sudo -s** et l’abréviation de jeu **s-** ; sudo seul et s- sont des raccourcis pédagogiques propres à cette simulation. `whoami` et `id` permettent d’observer la différence entre admin (uid 1000) et root (uid 0). `dir`, `ipconfig`, `cls` et `runas` ne donnent aucun droit sur ce terminal Linux simulé.
+
+La réussite rapporte **50 points une seule fois**. Les treize missions totalisent 650 points sans achat. Rejouer conserve monnaie et inventaire sans redonner les récompenses. La session de la nouvelle partie est réinitialisée.
+
+</details>
