@@ -1,4 +1,24 @@
-# Livraison 0.10.0 — cour et nouveau bâtiment
+# Livraison 0.11.0 — hôtel et chambre 206
+
+Après le chapitre 5, le joueur retrouve l’hôtel d’en face : **grand hall de 6 400 × 4 200**, réception cinq étoiles, marbre, dorures, salons et escaliers arrondis. La réservation attribue la **chambre 206**, puis une panne du système de réservation survient. Le local informatique voisin reste au même niveau que le hall.
+
+Le diagnostic demande quatre observations : serveur alimenté, réseau actif, disque plein et service arrêté. La solution simulée consiste à **archiver les anciens journaux puis relancer le service**. Les choix erronés et les échecs de sauvegarde permettent de réessayer sans progresser partiellement. Aucune commande système ni réservation réelle n’est effectuée.
+
+Après réparation, les escaliers mènent au **palier du premier étage**, dont l’accès aux pièces est physiquement fermé, puis au **deuxième étage**. Le panneau affiche automatiquement **Rendez-vous chambre 206**. Dans la chambre, le joueur pose ses bagages et choisit **Dormir** ou **Se poser sur le lit**. Assis, il reste bloqué sur le lit ; toutes les dix secondes actives, **Dormir / Continuer à attendre** sont proposés à nouveau, jusqu’au sommeil. Le passage de la nuit mène au matin, où s’arrête cette partie du récit.
+
+La carte suit la zone actuelle et affiche les passages et le joueur. **→** l’affiche ou la masque ; **ZQSD, joystick et croix directionnelle** permettent de marcher. Les reprises conservent les étapes du séjour, y compris la position assise. La pause, les paramètres, l’aide et la déconnexion de manette suspendent l’attente. Les anciens profils, points et achats restent conservés ; le plafond de l’enquête reste à **treize récompenses et 650 points**. Le parcours de l’hôtel ne coûte ni ne rapporte de points. [Guide détaillé](HOTEL.md).
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_hotel_0.11.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.11.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.11.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.11.0.zip).
+
+Recette du **16 octobre 2026** : **6 805 assertions source dans dix-sept suites**, **5 143 assertions par pack compilé** chargé par Godot Linux x86_64 et **407 contrôles de rendu réel X11 / OpenGL ES 3.2**, sans échec. Les attentes utilisent de vraies périodes de dix secondes ; les choix sont testés au clavier, par événements de manette et par clics souris natifs. Le parcours physique, la fermeture du premier étage, les erreurs d’écriture, trois choix d’attente, les deux branches du lit et les reprises sont vérifiés. Une revue indépendante ajoute 169 assertions sur les interruptions nocturnes. [Résumé détaillé](../tests/hotel_0.11.0_results/summary.json).
+
+Audit statique complémentaire : **1 001 fichiers**, **94 UID uniques**, **241 références de ressources** et **255 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **249 assertions réussies**. Les scripts shell passent `bash -n` ; ShellCheck n’est pas installé.
+
+Chaque export contient **237 ressources intégrées**, dont **48 SVG**, contrôlées par MD5 ; les CRC des ZIP sont vérifiés. Les 13 captures réelles montrent notamment le [hall](screenshots/hotel_0.11.0/hotel_hall_cinq_etoiles_challenge.png), le [diagnostic](screenshots/hotel_0.11.0/hotel_diagnostic_challenge.png), le [palier fermé](screenshots/hotel_0.11.0/hotel_palier_etage_1_challenge.png), l’[objectif de l’étage 2](screenshots/hotel_0.11.0/hotel_etage_2_objectif_challenge.png), les [choix du lit](screenshots/hotel_0.11.0/hotel_lit_premiers_choix_challenge.png) et le [matin](screenshots/hotel_0.11.0/hotel_matin_challenge.png).
+
+Le rendu utilise Mesa llvmpipe sur Linux x86_64, une sortie audio Dummy et une manette simulée par événements. Les pilotes de test externes exercent les ressources des exports ; ils ne lancent pas les exécutables Windows ou ARM64 sur leur matériel cible. Le lancement natif Windows / Pi 4, leur GPU, le son perçu et une manette physique restent à vérifier sur ces appareils. Les trente-quatre archives précédentes sont conservées sans modification. La présentation des README reste identique, avec Windows puis Linux/Raspberry Pi puis le descriptif.
+
+# Historique — livraison 0.10.0 — cour et nouveau bâtiment
 
 Après la réussite du chapitre 5, le joueur revient au palier et **descend un étage à la fois jusqu’au premier niveau**, le rez-de-chaussée. Une **porte en bas à gauche** de la première pièce permet de sortir dans une cour. Le chemin au sol mène à la porte de l’immeuble d’en face. Les portes permettent aussi de revenir au bâtiment initial.
 
