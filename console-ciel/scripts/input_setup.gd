@@ -31,6 +31,7 @@ static func configure(deadzone: float = 0.25) -> Dictionary:
 		if joy.has("axis"):
 			events.append(_axis(int(joy.axis), float(joy.direction)))
 		_set_action(action, events, deadzone)
+	_configure_walk_right(deadzone)
 	_set_action("ui_focus_next", [_key(KEY_TAB)], deadzone)
 	var previous := _key(KEY_TAB)
 	previous.shift_pressed = true
@@ -44,7 +45,7 @@ static func bind_controller(device: int) -> void:
 	controller_device = device if device >= 0 else NO_CONTROLLER_DEVICE
 	# InputMap filtering also protects Input.get_vector() and native Control input.
 	# Consuming an event alone would leave Godot's action state already updated.
-	for action in JOY_ACTIONS:
+	for action in JOY_ACTIONS + ["game_walk_right"]:
 		if not InputMap.has_action(action):
 			continue
 		var events := InputMap.action_get_events(action)
@@ -56,7 +57,7 @@ static func bind_controller(device: int) -> void:
 		Input.action_release(action)
 
 static func set_deadzone(value: float) -> void:
-	for action in ["ui_up", "ui_down", "ui_left", "ui_right", "game_up", "game_down", "game_left", "game_right"]:
+	for action in ["ui_up", "ui_down", "ui_left", "ui_right", "game_up", "game_down", "game_left", "game_right", "game_walk_right"]:
 		if InputMap.has_action(action):
 			InputMap.action_set_deadzone(action, clampf(value, 0.1, 0.6))
 
@@ -136,3 +137,12 @@ static func _axis(index: int, value: float) -> InputEventJoypadMotion:
 	event.axis = index
 	event.axis_value = value
 	return event
+
+# Derive this alias from the measured right-hand action, rather than adding a
+# new mandatory entry to existing custom controller mappings.
+static func _configure_walk_right(deadzone: float) -> void:
+	var events: Array = []
+	for event in InputMap.action_get_events("game_right"):
+		if event is InputEventKey and event.keycode == KEY_RIGHT: continue
+		events.append(event.duplicate())
+	_set_action("game_walk_right", events, deadzone)
