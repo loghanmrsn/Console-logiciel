@@ -1,10 +1,10 @@
-# Version portable Windows x86_64 — 0.10.0
+# Version portable Windows x86_64 — 0.11.0
 
-**[Télécharger Windows 0.10.0 — chapitre 3, code](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
+**[Télécharger Windows 0.11.0 — hôtel et chambre 206](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_hotel_0.11.0.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
 
-La version **0.10.0** propose le clavier à l’écran dans les exercices du chapitre 3 : **Python (`print`)**, **HTML (`h1`)** et **Markdown (`# `)**. Après les trois missions réseau du chapitre 2, l’ascenseur conduit à l’atelier du code ; les étages ouverts restent accessibles. Les réponses se saisissent au clavier à l’écran ou physique, avec erreurs expliquées, sans exécution de code utilisateur. Le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des cinq chapitres](ENQUETE.md). Le profil en haut à gauche, les achats, les styles et les repères masqués après réussite sont conservés. [Guide de la bibliothèque](BIBLIOTHEQUE_ET_THEMES.md). [Rapport Windows](../builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.verification.json).
+La version **0.11.0** propose le clavier à l’écran dans les exercices du chapitre 3 : **Python (`print`)**, **HTML (`h1`)** et **Markdown (`# `)**. Après les trois missions réseau du chapitre 2, l’ascenseur conduit à l’atelier du code ; les étages ouverts restent accessibles. Les réponses se saisissent au clavier à l’écran ou physique, avec erreurs expliquées, sans exécution de code utilisateur. Le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des cinq chapitres](ENQUETE.md). Le profil en haut à gauche, les achats, les styles et les repères masqués après réussite sont conservés. [Guide de la bibliothèque](BIBLIOTHEQUE_ET_THEMES.md). [Rapport Windows](../builds/Console_CIEL_Windows_x86_64_hotel_0.11.0.verification.json).
 
-Le [projet complet 0.10.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.10.0.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-batiment-0.10.0/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
+Le [projet complet 0.11.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.11.0.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-hotel-0.11.0/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
 
 ## Lancer sur votre PC
 
@@ -69,7 +69,7 @@ Le ZIP ne contient aucun profil prérempli ni sauvegarde personnelle. Une mise �
 Installer Godot standard **4.6.3 stable** et les [modèles d’export officiels correspondants](https://github.com/godotengine/godot-builds/releases/tag/4.6.3-stable). Depuis `console-ciel/`, dans PowerShell :
 
 ```powershell
-.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_batiment_0.10.0.zip -OutputDirectory windows-x86_64-batiment-0.10.0
+.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_hotel_0.11.0.zip -OutputDirectory windows-x86_64-hotel-0.11.0
 ```
 
 Adapter le chemin du moteur. Le script cible PowerShell **5.1 ou supérieur**, vérifie la version exacte, importe les ressources et exporte avec **Windows Desktop x86_64** dans un dossier provisoire. Il vérifie le PE x86_64, ajoute aide, licences et images_profil, puis assemble l’archive. Un échec conserve la livraison précédente. Le preset Pi n’est pas modifié.
@@ -78,7 +78,7 @@ Le script PowerShell a été analysé et testé historiquement avec PowerShell 7
 
 ## Vérifications et recette Windows
 
-Le [rapport Windows 0.10.0](../builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_Windows_0.10.0.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
+Le [rapport Windows 0.11.0](../builds/Console_CIEL_Windows_x86_64_hotel_0.11.0.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_Windows_0.11.0.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
 
 La [livraison courante](DELIVERY.md) rassemble les résultats source, persistance, rendu réel et packs exportés. Les chiffres historiques ci-dessous décrivent uniquement leurs versions.
 
@@ -107,8 +107,10 @@ Tester un pack embarqué avec le moteur Linux vérifie ses ressources et sa logi
 
 Les anciens exécutables 0.3.0/0.3.1 n’étaient pas inclus dans les sources reçues. Les rapports historiques sont conservés sans les présenter comme des essais du binaire courant. Les performances Pi et le contrôleur fabriqué restent dans les [limites connues](KNOWN_ISSUES.md).
 
-La version 0.10.0 ajoute les trois livres animés du coin ressources (chapitre 3) et le chapitre 4 : pare-feu, conflit IPv4 et masque /26. L’ascenseur propose Descendre d’étage, Monter d’étage et Retour au menu ; Échap reste dans la pièce. Les anciennes sauvegardes sont conservées.
+Les trois livres animés du coin ressources (chapitre 3) et le chapitre 4 restent disponibles : pare-feu, conflit IPv4 et masque /26. L’ascenseur propose Descendre d’étage, Monter d’étage et Retour au menu ; Échap reste dans la pièce. Les anciennes sauvegardes sont conservées.
 
 Le **chapitre 5** reste disponible : portable → **Y aller** → labyrinthe avec inscriptions murales et terminal simulé. Une seule mission est affichée **???** ; le clavier virtuel apparaît pour les identifiants, les mots de passe et les commandes. Les quatre premiers chapitres conservent trois missions chacun. La connexion et la reprise sont sauvegardées. Aucune commande n’est exécutée sur le système hôte.
 
-La version **0.10.0** prolonge l’exploration après le chapitre 5 : descente jusqu’au premier niveau, porte de sortie en bas à gauche, cour et immeuble d’en face. Ce second bâtiment de **6 400 × 4 200** contient seize salles reliées par des galeries. La carte en haut à gauche affiche la position et la sortie ; **→** l’affiche ou la masque, **D / ZQSD ou le joystick** restent disponibles pour marcher. Les futurs défis seront ajoutés plus tard ; le plafond reste à **treize missions et 650 points**. Les portes enregistrent les zones avant chaque déplacement.
+La version **0.11.0** prolonge l’exploration après le chapitre 5 : descente jusqu’au premier niveau, porte de sortie en bas à gauche, cour et immeuble d’en face. Le second bâtiment devient un hôtel doté d’un grand hall de **6 400 × 4 200** et de salles dédiées au parcours de la chambre 206. La carte en haut à gauche affiche la position et la sortie ; **→** l’affiche ou la masque, **D / ZQSD ou le joystick** restent disponibles pour marcher. La réparation de l’hôtel prolonge le récit ; le plafond des récompenses de l’enquête reste à **treize missions et 650 points**. Les portes enregistrent les zones avant chaque déplacement.
+
+La version **0.11.0** ajoute le parcours de l’hôtel : réservation, panne informatique, escaliers et chambre **206**. [Guide de l’hôtel](HOTEL.md).
