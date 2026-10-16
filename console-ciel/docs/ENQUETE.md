@@ -1,5 +1,7 @@
 # Enquête éducative — cinq chapitres
 
+Après les cinq chapitres, le récit continue dans **l’hôtel d’en face** : réception, panne informatique, escaliers et chambre 206. Consultez le [guide de l’hôtel 0.11.0](HOTEL.md) pour ce nouveau parcours.
+
 L’enquête propose treize missions : trois défis dans chacun des quatre premiers chapitres et une épreuve mystère dans le cinquième. Chaque première réussite rapporte 50 points ; le total maximal est de 650 points par profil. Un rejeu conserve les récompenses sans les attribuer à nouveau.
 
 ## Les livres du chapitre 3
