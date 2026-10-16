@@ -354,7 +354,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not document.get("progress") is Dictionary:
 		return _fail("La progression est invalide.")
 	var progress: Dictionary = document.progress
-	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03", "room_04", "room_05", "maze_05"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit", "maze_entry", "maze_terminal"] + MISSION_IDS or not progress.get("completed_missions") is Array:
+	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.get("room_id") not in ["room_01", "room_02", "room_03", "room_04", "room_05", "maze_05", "courtyard", "building_02"] or progress.get("checkpoint_id") not in ["entrance", "elevator", "exit", "maze_entry", "maze_terminal", "building_exit", "from_first", "from_second", "new_entrance"] + MISSION_IDS or not progress.get("completed_missions") is Array:
 		return _fail("La progression contient une scène ou un point de reprise invalide.")
 	var completed: Array = []
 	for id in progress.completed_missions:
@@ -461,6 +461,14 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		var chapter_four_complete := chapter_three_complete
 		for id in CHAPTER_FOUR_IDS:
 			chapter_four_complete = chapter_four_complete and id in completed
+		# Travel adds no mission, reward or schema reset. Only a completed mystery
+		# permits crossing the two buildings; checkpoints belong to one zone.
+		var travel_checkpoints := {"building_exit": "room_01", "from_first": "courtyard", "from_second": "courtyard", "new_entrance": "building_02"}
+		if progress.room_id in ["courtyard", "building_02"] or progress.checkpoint_id in travel_checkpoints:
+			if not progress.started or not chapter_four_complete or "maze" not in completed:
+				return _fail("Terminez le chapitre 5 avant de quitter le premier bâtiment.")
+			if travel_checkpoints.get(progress.checkpoint_id, "") != progress.room_id or not progress.active_mission.is_empty():
+				return _fail("Ce point de passage appartient à une autre zone.")
 		if progress.room_id in ["room_05", "maze_05"] and (not progress.started or not chapter_four_complete):
 			return _fail("Ce chapitre nécessite les douze missions précédentes.")
 		if progress.room_id == "room_05" and progress.checkpoint_id != "elevator":
