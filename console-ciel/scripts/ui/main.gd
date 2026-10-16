@@ -17,6 +17,7 @@ const AppearancePalette=preload('res://scripts/ui/appearance_palette.gd')
 const InputSetup=preload('res://scripts/input_setup.gd')
 const InputMonitor=preload('res://scripts/ui/input_monitor.gd')
 const Demo=preload('res://scripts/game/demo_game.gd')
+const HotelLayout=preload('res://scripts/game/hotel_layout.gd')
 const JoyNavigation=preload('res://scripts/ui/joy_navigation.gd')
 const Startup=preload('res://scenes/startup.tscn')
 const Diagnostics=preload('res://scripts/ui/diagnostics_panel.gd')
@@ -316,7 +317,7 @@ func _responsive() -> void:
 	var margin=12 if compact else 28
 	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
 	if footer!=null and screen=='game':
-		footer.text=('ZQSD / joystick : marcher · → : carte · Espace : interagir · P : pause' if is_instance_valid(demo) and demo.world != null and demo.world.room_id == 'building_02' else 'Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause')
+		footer.text=('ZQSD / joystick : marcher · → : carte · Espace : interagir · P : pause' if is_instance_valid(demo) and demo.world != null and HotelLayout.is_zone(demo.world.room_id) else 'Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause')
 	if footer!=null and screen in ['home','shop','profiles','help']:
 		footer.text='Flèches / joystick · Entrée / face bas : valider · Échap : retour'
 	var horizontal=maxi(margin,int((size.x-1400)/2))
@@ -911,7 +912,16 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 
 func _investigation_progress_text() -> String:
 	if InvestigationService.current_chapter() == 0:
-		return "Nouveau bâtiment · exploration libre" if AppState.profile.progress.room_id == "building_02" else "Cour · vers l’immeuble d’en face"
+		var room_id: String = AppState.profile.progress.room_id
+		if room_id == "courtyard": return "Cour · vers l’hôtel d’en face"
+		var hotel: Dictionary = HotelService.state()
+		if hotel.bed_state == "rested": return "Hôtel · le lendemain matin"
+		if hotel.bed_state == "sitting": return "Chambre 206 · installé sur le lit"
+		if room_id == "hotel_room_206": return "Chambre 206 · déposez vos affaires" if not hotel.luggage_placed else "Chambre 206 · une nuit de repos"
+		if room_id == "hotel_floor_2": return "Hôtel · rendez-vous chambre 206"
+		if room_id == "hotel_stairs_1": return "Hôtel · palier du premier étage"
+		if not hotel.reserved: return "Hôtel · réservez à la réception"
+		return "Hôtel · réparez le système de réservation" if not hotel.repaired else "Hôtel · rejoignez le deuxième étage"
 	var missions: Array = InvestigationService.chapter_missions()
 	var completed: Array = AppState.profile.get('progress',{}).get('completed_missions',[])
 	var count := 0
@@ -1339,14 +1349,14 @@ func _help() -> void:
 	_title('Tout commence par une commande','Console CIEL · un projet pédagogique porté par deux élèves.')
 	var panel=_panel(content)
 	_label(panel,'Au clavier',24)
-	_label(panel,'Flèches : navigation et déplacement\nEntrée : valider · Échap : retour\nP : pause de l’enquête · T : afficher / masquer les missions\nQ / E : catégories (hors saisie)\nZQSD : déplacement · Espace : interagir')
+	_label(panel,'Flèches : navigation et déplacement\nEntrée : valider · Échap : retour\nP : pause de l’enquête · T : afficher / masquer les missions\nQ / E : catégories (hors saisie)\nZQSD : déplacement · Espace : interagir\nHôtel : → affiche / masque la carte ; D ou joystick pour marcher à droite.')
 	_label(panel,'À la manette',24)
 	_label(panel,'Croix ou joystick gauche : naviguer / se déplacer\nBouton de face bas : valider / interagir\nBouton de face droit : retour\nBouton de face haut (Triangle / Y / X) : afficher / masquer les missions\nStart / Menu : pause · LB / RB : catégories\nLes noms varient selon la manette. Le test montre les entrées réellement reçues.')
 	_button(panel,'Test des commandes',func(): controls_origin='help'; _show_screen('controls'),'help_controls')
 	var credits=_panel(content)
 	_label(credits,'Crédits & licences',24)
 	_label(credits,'Logiciel : Loghan\nConstruction et assemblage : binôme, nom à compléter\nFormes et illustrations originales : CC0 1.0\nSons originaux : CC0 1.0\nMoteur Godot et police intégrée : licences fournies dans assets/LICENSES.md et assets/licenses/.')
-	_label(credits,'Trois chapitres et neuf défis : éclairage, commande de porte, vidéo, réseau, IPv4, Wi-Fi, Python, HTML et Markdown. L’ascenseur ouvre chaque nouvel étage après les trois missions précédentes. Ces exercices sont des simulations locales : ils n’exécutent aucun code et ne modifient aucun réglage du système.',0,true)
+	_label(credits,'Cinq chapitres et treize défis : atelier, réseau, code, laboratoire réseau et labyrinthe. L’hôtel prolonge le récit après le chapitre 5 : réservation, panne informatique, escaliers et chambre 206. Ces exercices sont des simulations locales : ils n’exécutent aucun code et ne modifient aucun réglage du système.',0,true)
 	_label(credits,'Points virtuels uniquement. Pas de compte, de serveur, de paiement ni d’indicateur de batterie simulé.',0,true)
 
 func _controls() -> void:
