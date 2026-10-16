@@ -1,4 +1,22 @@
-# Livraison 0.9.0 — chapitre 5, défi mystère
+# Livraison 0.10.0 — cour et nouveau bâtiment
+
+Après la réussite du chapitre 5, le joueur revient au palier et **descend un étage à la fois jusqu’au premier niveau**, le rez-de-chaussée. Une **porte en bas à gauche** de la première pièce permet de sortir dans une cour. Le chemin au sol mène à la porte de l’immeuble d’en face. Les portes permettent aussi de revenir au bâtiment initial.
+
+Ce nouveau bâtiment de **6 400 × 4 200** représente environ 52 fois la surface de la première pièce. Il comprend un grand atrium, des galeries et **seize salles accessibles**. Une **carte en haut à gauche** utilise le même plan que les collisions ; elle affiche votre position et la sortie. **Un appui sur → affiche ou masque la carte** sans répétition lors d’un maintien ; **D, ZQSD, joystick et croix directionnelle** permettent de marcher. Dans les menus et anciens étages, les flèches conservent leurs rôles.
+
+Les prochains niveaux seront créés plus tard. Aucune nouvelle mission ni récompense n’est ajoutée : **treize missions, jusqu’à 650 points par profil**. Les anciens profils, achats et observations restent conservés. Les passages sont enregistrés avant chaque changement de décor ; en cas d’échec, la zone précédente reste active. Continuer reprend au seuil de la zone sauvegardée.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.10.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.10.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.10.0.zip).
+
+Recette du **16 octobre 2026** : **5 950 assertions source dans quinze suites**, **4 288 assertions par pack compilé** chargé par Godot Linux x86_64 et **200 contrôles de rendu réel X11 / OpenGL ES 3.2**, sans échec. Le parcours est effectué à pied jusqu’à une salle éloignée ; le graphe physique vérifie la connexion des seize salles. Les accès anticipés, échecs d’écriture sur les quatre portes, reprises, retours, touches maintenues et manette inactive sont vérifiés. [Résumé détaillé](../tests/campus_0.10.0_results/summary.json).
+
+L’audit statique vérifie **961 fichiers, 88 UID et 229 références de ressources**, sans erreur.
+
+Chaque export contient **229 ressources intégrées**, dont **48 SVG**, contrôlées par MD5 ; les CRC des ZIP sont vérifiés. Onze captures montrent notamment la [sortie](screenshots/campus_0.10.0/premier_niveau_sortie_challenge.png), la [cour](screenshots/campus_0.10.0/cour_immeuble_face_challenge.png), le [grand atrium avec carte](screenshots/campus_0.10.0/grand_atrium_challenge.png) et la [carte en 800 × 480](screenshots/campus_0.10.0/carte_compacte_challenge.png).
+
+Le rendu utilise Mesa llvmpipe sur Linux x86_64, une sortie audio Dummy et une manette simulée par événements. Les pilotes de test externes exercent les ressources des exports ; ils ne lancent pas les exécutables Windows ou ARM64 sur leur matériel cible. Le lancement natif Windows / Pi 4, leur GPU, le son perçu et une manette physique restent à vérifier sur ces appareils. Les trente archives précédentes sont conservées sans modification.
+
+# Historique — livraison 0.9.0 — chapitre 5, défi mystère
 
 Après les douze premières réussites, l’ascenseur ouvre le **chapitre 5**. Son palier contient un portable et le bouton **Y aller** : il mène à un labyrinthe fixe de **31 × 23 cases**, avec des impasses, une pièce centrale et huit inscriptions murales. La caméra suit le personnage. Le tableau ne révèle pas le but : **???**, avec **une seule mission** et un compteur **0 / 1**.
 
