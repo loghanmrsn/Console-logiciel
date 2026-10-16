@@ -1,10 +1,10 @@
-# Console CIEL 0.9.0 — Windows x86_64
+# Console CIEL 0.10.0 — Windows x86_64
 
-[Télécharger Windows 0.9.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.10.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.9.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.9.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-labyrinthe-0.9.0/Console_CIEL.exe`.
+Le [projet complet Windows 0.10.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.10.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-batiment-0.10.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
@@ -14,11 +14,13 @@ Les treize missions rapportent **50 points à leur première réussite**, soit *
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.9.0](Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.9.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.10.0](Console_CIEL_Windows_x86_64_batiment_0.10.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.10.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
-La version 0.9.0 ajoute le **chapitre 5** : portable → **Y aller** → labyrinthe avec inscriptions murales et terminal simulé. Une seule mission est affichée **???** ; le clavier virtuel apparaît pour les identifiants, les mots de passe et les commandes. Les quatre premiers chapitres conservent trois missions chacun. La connexion et la reprise sont sauvegardées. Aucune commande n’est exécutée sur le système hôte.
+Le **chapitre 5** reste disponible : portable → **Y aller** → labyrinthe avec inscriptions murales et terminal simulé. Une seule mission est affichée **???** ; le clavier virtuel apparaît pour les identifiants, les mots de passe et les commandes. Les quatre premiers chapitres conservent trois missions chacun. La connexion et la reprise sont sauvegardées. Aucune commande n’est exécutée sur le système hôte.
+
+La version **0.10.0** prolonge l’exploration après le chapitre 5 : descente jusqu’au premier niveau, porte de sortie en bas à gauche, cour et immeuble d’en face. Ce second bâtiment de **6 400 × 4 200** contient seize salles reliées par des galeries. La carte en haut à gauche affiche la position et la sortie ; **→** l’affiche ou la masque, **D / ZQSD ou le joystick** restent disponibles pour marcher. Les futurs défis seront ajoutés plus tard ; le plafond reste à **treize missions et 650 points**. Les portes enregistrent les zones avant chaque déplacement.
 
 # Historique — Windows x86_64 0.6.0
 
