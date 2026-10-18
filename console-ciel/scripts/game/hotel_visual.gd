@@ -14,13 +14,16 @@ var bed_pose := "standing"
 func _draw() -> void:
 	var bounds := Layout.extent(zone)
 	draw_rect(Rect2(Vector2.ZERO, bounds), IVORY)
-	_marble(bounds)
+	if zone != "ctf_bus_stop": _marble(bounds)
 	match zone:
 		"building_02": _hall()
 		"hotel_it": _maintenance()
 		"hotel_stairs_1": _landing()
 		"hotel_floor_2": _corridor()
 		"hotel_room_206": _bedroom()
+		"hotel_breakfast": _breakfast()
+		"ctf_bus_stop": _ctf_exterior()
+		"ctf_lobby": _ctf_lobby()
 	for wall in Layout.walls(zone): _wall(wall)
 	for spec in Layout.furniture_specs(zone): _furniture(str(spec.kind), spec.rect)
 	match zone:
@@ -30,8 +33,13 @@ func _draw() -> void:
 		"hotel_floor_2": _room_doors()
 		"hotel_room_206":
 			_door(Vector2(600, 936), "206")
-			if bool(state.get("luggage_placed", false)): _suitcase(Vector2(305, 618))
+			if bool(state.get("luggage_placed", false)):
+				_suitcase(Vector2(275, 618))
+				if int(state.get("morning_stage", 0)) < 6: _backpack(Vector2(363, 622))
 			if bed_pose == "sitting": _seated_guest(Layout.BED_SEAT)
+		"hotel_breakfast": _door(Vector2(700, 986), "RETOUR AU HALL")
+		"ctf_bus_stop": _ctf_facade()
+		"ctf_lobby": _door(Vector2(900, 1236), "ARRÊT DU BUS")
 
 func _marble(bounds: Vector2) -> void:
 	for x in range(64, int(bounds.x - 40), 160):
@@ -84,6 +92,10 @@ func _hall_signage() -> void:
 	_text("MONTER", Vector2(4040, 3510), 18, INK, true)
 	_text("ARRIVÉES", Vector2(4340, 3510), 18, INK, true)
 	_text("Réception ←", Vector2(3740, 3710), 20, INK)
+	_rounded(Rect2(4626, 3374, 24, 252), VELVET, 4)
+	draw_line(Vector2(4638, 3384), Vector2(4638, 3616), GOLD, 3)
+	_text("PETIT DÉJEUNER", Vector2(5350, 3010), 30, INK, true)
+	_text("SALLE DU RESTAURANT →", Vector2(4950, 3520), 19, INK, true)
 
 func _maintenance() -> void:
 	draw_rect(Rect2(95, 100, 1210, 540), Color("d8e0da"))
@@ -144,6 +156,111 @@ func _bedroom() -> void:
 	if bed_pose == "rested":
 		draw_colored_polygon(PackedVector2Array([Vector2(510, 174), Vector2(924, 174), Vector2(1115, 735), Vector2(715, 735)]), Color(1.0, 0.94, 0.70, 0.13))
 
+func _breakfast() -> void:
+	_rug(Rect2(480, 300, 420, 360), Color("dfcfad"))
+	for x in [230, 620, 1080]: _window(Rect2(x, 78, 240, 65))
+	_text("LE PETIT DÉJEUNER", Vector2(800, 850), 28, INK, true)
+	_text("BUFFET", Vector2(510, 268), 20, INK, true)
+	_text("CAFÉ", Vector2(1250, 354), 20, INK, true)
+	_text("Votre table", Vector2(690, 650), 18, INK, true)
+
+func _breakfast_table(rect: Rect2) -> void:
+	_rounded(rect, Color("af9572"), 20)
+	_rounded(rect.grow(-10), Color("fff9ea"), 15)
+	for x in [rect.position.x + 60, rect.end.x - 60]:
+		var plate := Vector2(x, rect.get_center().y)
+		draw_circle(plate, 27, Color("e0d7c2"))
+		draw_circle(plate, 22, Color("fcf8ed"))
+		draw_arc(plate + Vector2(-3, 0), 12, PI * .2, PI * 1.65, 20, Color("c69a5e"), 9, true)
+		draw_line(plate + Vector2(-36, -19), plate + Vector2(-36, 21), GOLD, 3)
+		draw_line(plate + Vector2(36, -19), plate + Vector2(36, 21), GOLD, 3)
+	# The chair is decoration below the tabletop, leaving a clear approach.
+	_rounded(Rect2(rect.get_center().x - 36, rect.end.y + 22, 72, 28), VELVET, 10)
+	if int(state.get("morning_stage", 0)) >= 5 and rect.position.x == 550:
+		_cup(rect.position + Vector2(140, 35))
+
+func _buffet(rect: Rect2) -> void:
+	_rounded(rect, Color("a28c6a"), 10)
+	_rounded(Rect2(rect.position + Vector2(-5, -5), rect.size + Vector2(10, 12)), Color("e9dfc9"), 9)
+	for index in range(7):
+		var center := rect.position + Vector2(50 + index * 96, 42)
+		_rounded(Rect2(center - Vector2(34, 25), Vector2(68, 50)), Color("9aa7a1"), 7)
+		_rounded(Rect2(center - Vector2(28, 19), Vector2(56, 38)), Color("d4af71") if index % 2 == 0 else Color("a9b77b"), 6)
+
+func _coffee_machine(rect: Rect2) -> void:
+	_rounded(rect, Color("aa9270"), 8)
+	var machine := Rect2(rect.position + Vector2(45, -45), Vector2(110, 112))
+	_rounded(machine, INK, 10)
+	_rounded(machine.grow(-8), Color("5d7677"), 7)
+	var repaired := int(state.get("morning_stage", 0)) >= 4
+	_rounded(Rect2(machine.position + Vector2(15, 12), Vector2(80, 28)), Color("b9d5be") if repaired else Color("caae7f"), 4)
+	_text("PRÊTE" if repaired else "CONNEXION", machine.position + Vector2(55, 31), 11, INK, true)
+	for index in range(3):
+		draw_circle(machine.position + Vector2(26 + index * 29, 55), 6, [Color("cf6159"), Color("80a47b"), Color("926d4e")][index])
+	draw_rect(Rect2(machine.position + Vector2(45, 69), Vector2(20, 14)), Color("d1c6ac"))
+	_cup(machine.position + Vector2(55, 96))
+
+func _cup(at: Vector2) -> void:
+	draw_circle(at + Vector2(0, 5), 17, Color("e1d7c3"))
+	draw_arc(at + Vector2(13, -1), 7, -PI * .5, PI * .5, 12, IVORY, 4, true)
+	_rounded(Rect2(at - Vector2(11, 11), Vector2(22, 23)), Color("faf7e9"), 6)
+	draw_circle(at - Vector2(0, 7), 8, Color("684e38"))
+
+func _ctf_exterior() -> void:
+	draw_rect(Rect2(Vector2.ZERO, Layout.extent(zone)), Color("dbe5df"))
+	draw_rect(Rect2(64, 340, 1672, 660), Color("e7e6dc"))
+	for x in range(100, 1700, 100): draw_line(Vector2(x, 350), Vector2(x, 1000), Color("d7d9ce"), 1)
+	for y in range(400, 1000, 100): draw_line(Vector2(64, y), Vector2(1736, y), Color("d7d9ce"), 1)
+	draw_rect(Rect2(64, 1000, 1672, 236), Color("68777c"))
+	draw_line(Vector2(64, 998), Vector2(1736, 998), Color("c5b58a"), 9)
+	for x in range(100, 1700, 200): draw_line(Vector2(x, 1175), Vector2(x + 110, 1175), Color("eee4c8"), 5)
+	_bus(Vector2(1230, 1050))
+	_text("ARRÊT · SUDO HACK", Vector2(1350, 800), 24, INK, true)
+	_text("ACCUEIL DES PARTICIPANTS ↑", Vector2(900, 680), 23, INK, true)
+
+func _ctf_facade() -> void:
+	draw_rect(Rect2(100, 80, 1600, 250), Color("435362"))
+	for x in range(170, 1640, 170):
+		if abs(x - 900) > 130:
+			_rounded(Rect2(x, 120, 104, 104), Color("698a91"), 5)
+			draw_line(Vector2(x + 52, 122), Vector2(x + 52, 222), Color("bdd1c7"), 4)
+	_text("sudo hack", Vector2(900, 185), 43, Color("eddfad"), true)
+	_text("CAPTURE THE FLAG", Vector2(900, 226), 19, Color("dfebe1"), true)
+	_rounded(Rect2(820, 254, 160, 78), VELVET, 5)
+	draw_line(Vector2(900, 258), Vector2(900, 330), GOLD, 3)
+	_text("ENTRÉE", Vector2(900, 408), 20, INK, true)
+
+func _bus_shelter(rect: Rect2) -> void:
+	_rounded(rect.grow(10), Color("8ca4a2"), 8)
+	_rounded(rect.grow(-3), Color("cadbd3"), 5)
+	for x in [rect.position.x + 8, rect.end.x - 12]: draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y), INK, 7)
+	_rounded(Rect2(rect.position + Vector2(-15, -18), Vector2(rect.size.x + 30, 30)), VELVET, 9)
+	_rounded(Rect2(rect.position + Vector2(25, 95), Vector2(rect.size.x - 50, 30)), Color("947c60"), 5)
+	_text("BUS", rect.position + Vector2(150, 54), 22, INK, true)
+
+func _bus(at: Vector2) -> void:
+	_rounded(Rect2(at - Vector2(185, 40), Vector2(370, 100)), VELVET, 17)
+	for x in [-150, -75, 0, 75]: _rounded(Rect2(at + Vector2(x, -29), Vector2(62, 42)), Color("a7c6c3"), 5)
+	for x in [-115, 115]: draw_circle(at + Vector2(x, 62), 22, INK)
+	_text("SUDO HACK", at + Vector2(0, 42), 17, IVORY, true)
+
+func _ctf_lobby() -> void:
+	_rug(Rect2(620, 440, 560, 680), Color("d4d4dc"))
+	_text("sudo hack", Vector2(900, 180), 49, INK, true)
+	_text("ACCUEIL DU CTF", Vector2(900, 230), 22, INK, true)
+	_text("Bienvenue aux participants", Vector2(900, 485), 27, INK, true)
+	_text("La suite des épreuves arrive bientôt.", Vector2(900, 535), 21, INK, true)
+	for x in [340, 1460]: _window(Rect2(x - 100, 90, 200, 130))
+
+func _backpack(at: Vector2) -> void:
+	# The laptop is visible in the open top, making the CTF bag identifiable.
+	draw_arc(at - Vector2(0, 15), 15, PI, TAU, 16, INK, 5, true)
+	_rounded(Rect2(at - Vector2(24, 18), Vector2(48, 55)), VELVET, 11)
+	_rounded(Rect2(at + Vector2(-15, -25), Vector2(30, 25)), Color("b5cdd0"), 3)
+	draw_line(at + Vector2(-11, -18), at + Vector2(11, -18), Color("6d969d"), 3)
+	_rounded(Rect2(at + Vector2(-19, 7), Vector2(38, 23)), Color("557b7c"), 6)
+	draw_line(at + Vector2(-14, 10), at + Vector2(14, 10), GOLD, 2)
+
 func _wall(rect: Rect2) -> void:
 	draw_rect(Rect2(rect.position + Vector2(5, 7), rect.size), Color("c6c0b2"))
 	draw_rect(rect, Color("b9b8aa"))
@@ -152,11 +269,15 @@ func _wall(rect: Rect2) -> void:
 func _furniture(kind: String, rect: Rect2) -> void:
 	_rounded(Rect2(rect.position + Vector2(6, 9), rect.size), Color("c1bda9"), 12)
 	match kind:
-		"reception":
+		"reception", "ctf_reception":
 			_rounded(rect, Color("5c4c44"), 18)
 			draw_rect(Rect2(rect.position + Vector2(12, 18), rect.size - Vector2(24, 33)), VELVET)
 			for x in range(int(rect.position.x + 38), int(rect.end.x - 25), 48): draw_line(Vector2(x, rect.position.y + 22), Vector2(x, rect.end.y - 22), GOLD, 2)
 			_rounded(Rect2(rect.position + Vector2(-8, -10), Vector2(rect.size.x + 16, 28)), Color("d8c7a8"), 9)
+		"breakfast_table": _breakfast_table(rect)
+		"buffet": _buffet(rect)
+		"coffee_machine": _coffee_machine(rect)
+		"bus_shelter": _bus_shelter(rect)
 		"fountain":
 			var center := rect.get_center()
 			draw_circle(center, 170, GOLD)
