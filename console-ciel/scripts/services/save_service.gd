@@ -11,14 +11,18 @@ const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
 const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
 const CHAPTER_FOUR_IDS := ["firewall", "ip_conflict", "subnet_mask"]
 const CHAPTER_FIVE_IDS := ["maze"]
-const HOTEL_VERSION := 1
-const HOTEL_ROOMS := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206"]
+const HOTEL_VERSION := 2
+const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
+const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
+const HOTEL_ROOMS := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
 const HOTEL_CHECKPOINTS := {
 	"new_entrance": "building_02", "hall_it": "building_02", "hall_stairs": "building_02",
 	"it_entrance": "hotel_it", "stairs_from_hall": "hotel_stairs_1", "stairs_from_floor2": "hotel_stairs_1",
 	"floor2_stairs": "hotel_floor_2", "floor2_room206": "hotel_floor_2",
-	"room206_entry": "hotel_room_206", "room206_bed": "hotel_room_206"
+	"room206_entry": "hotel_room_206", "room206_bed": "hotel_room_206",
+	"hall_breakfast": "building_02", "breakfast_entry": "hotel_breakfast", "breakfast_table": "hotel_breakfast",
+	"ctf_arrival": "ctf_bus_stop", "ctf_door": "ctf_bus_stop", "ctf_entry": "ctf_lobby"
 }
 const MISSION_IDS := CHAPTER_ONE_IDS + CHAPTER_TWO_IDS + CHAPTER_THREE_IDS + CHAPTER_FOUR_IDS + CHAPTER_FIVE_IDS
 const CHAPTER_TWO_SOLUTIONS := {
@@ -277,7 +281,8 @@ func validate_rules(value: Variant) -> Dictionary:
 func empty_hotel_progress() -> Dictionary:
 	return {
 		"version": HOTEL_VERSION, "reserved": false, "repair_observations": [],
-		"repaired": false, "luggage_placed": false, "bed_state": "standing"
+		"repaired": false, "luggage_placed": false, "bed_state": "standing",
+		"morning_stage": 0, "coffee_connections": {}
 	}
 
 func empty_investigation_progress() -> Dictionary:
@@ -318,7 +323,7 @@ func _ensure_definitions() -> Dictionary:
 	_mission_by_id = mission_definitions
 	return _ok()
 
-func _validate_hotel_progress(progress: Dictionary, completed: Array) -> Dictionary:
+func _validate_hotel_progress(progress: Dictionary, completed: Array, rewarded: Array) -> Dictionary:
 	var hotel: Variant = progress.get("hotel")
 	var keys := empty_hotel_progress().keys()
 	if not hotel is Dictionary or hotel.size() != keys.size() or not _valid_id_list(hotel.keys(), keys):
@@ -353,6 +358,35 @@ func _validate_hotel_progress(progress: Dictionary, completed: Array) -> Diction
 		return _fail("Le repos assis se poursuit dans la chambre, sur le lit.")
 	if progress.checkpoint_id == "room206_bed" and hotel.bed_state == "standing":
 		return _fail("Ce point de reprise nécessite de s’installer sur le lit.")
+	if not _is_integer(hotel.get("morning_stage"), 0, 8):
+		return _fail("L’étape de la matinée est invalide.")
+	var stage := int(hotel.morning_stage)
+	if (stage > 0) != (hotel.bed_state == "rested"):
+		return _fail("La matinée commence seulement après la nuit passée.")
+	if not hotel.get("coffee_connections") is Dictionary or hotel.coffee_connections.size() > COFFEE_WIRES.size():
+		return _fail("Les connexions de la machine à café sont invalides.")
+	for terminal in hotel.coffee_connections:
+		if not terminal is String or not COFFEE_WIRES.has(terminal) or not hotel.coffee_connections[terminal] is String or hotel.coffee_connections[terminal] != COFFEE_WIRES[terminal]:
+			return _fail("Un fil de la machine à café est inconnu ou mal raccordé.")
+	var connections: int = hotel.coffee_connections.size()
+	if (stage < 3 and connections != 0) or (stage == 3 and connections == 3) or (stage >= 4 and connections != 3):
+		return _fail("La réparation de la machine ne correspond pas à l’étape de la matinée.")
+	if stage >= 2 and "hotel_ground_floor" not in rewarded:
+		return _fail("L’arrivée au rez-de-chaussée doit posséder son reçu de récompense.")
+	if stage >= 6 and "hotel_backpack" not in rewarded:
+		return _fail("Le sac récupéré doit posséder son reçu de récompense.")
+	if progress.room_id == "hotel_breakfast" and stage < 2:
+		return _fail("Rejoignez d’abord le rez-de-chaussée pour prendre le petit déjeuner.")
+	if progress.checkpoint_id == "hall_breakfast" and stage < 2:
+		return _fail("Ce retour de la salle de petit déjeuner est encore inaccessible.")
+	if progress.checkpoint_id == "breakfast_table" and stage < 3:
+		return _fail("Le joueur n’est pas encore installé à sa table.")
+	if progress.room_id == "ctf_bus_stop" and stage < 7:
+		return _fail("Prenez le bus avec votre sac pour rejoindre le CTF.")
+	if progress.room_id == "ctf_lobby" and stage != 8:
+		return _fail("Entrez par la porte du bâtiment Sudo Hack.")
+	if (stage == 7 and progress.room_id != "ctf_bus_stop") or (stage == 8 and progress.room_id not in ["ctf_bus_stop", "ctf_lobby"]):
+		return _fail("Le voyage vers le CTF doit conserver son lieu d’arrivée.")
 	return _ok()
 
 func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
@@ -400,7 +434,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return _fail("La liste des récompenses est invalide.")
 	var rewarded: Array = []
 	for id in document.rewarded_missions:
-		if not id is String or id not in _mission_ids or id in rewarded:
+		if not id is String or id not in _mission_ids + HOTEL_REWARD_IDS or id in rewarded:
 			return _fail("La liste des récompenses contient une mission inconnue ou dupliquée.")
 		rewarded.append(id)
 	if not document.get("progress") is Dictionary:
@@ -564,10 +598,23 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 			return _fail("La sauvegarde de cette salle ne contient pas son état d’hôtel.")
 		progress["hotel"] = empty_hotel_progress()
 		expanded = true
-	var hotel_validation := _validate_hotel_progress(progress, completed)
+	# L’ancien séjour 0.11.0 possède exactement six champs. Une extension
+	# partielle n’est jamais traitée comme une ancienne sauvegarde valide.
+	if progress.hotel is Dictionary and _is_integer(progress.hotel.get("version"), 1, 1):
+		var legacy_keys := ["version", "reserved", "repair_observations", "repaired", "luggage_placed", "bed_state"]
+		if progress.hotel.size() != legacy_keys.size() or not _valid_id_list(progress.hotel.keys(), legacy_keys) or not progress.hotel.get("bed_state") is String:
+			return _fail("L’ancienne progression de l’hôtel est partielle ou inconnue.")
+		if progress.room_id in ["hotel_breakfast", "ctf_bus_stop", "ctf_lobby"] or progress.checkpoint_id in ["hall_breakfast", "breakfast_entry", "breakfast_table", "ctf_arrival", "ctf_door", "ctf_entry"]:
+			return _fail("Une ancienne sauvegarde ne peut contenir une étape de la matinée.")
+		progress.hotel.version = HOTEL_VERSION
+		progress.hotel["morning_stage"] = 1 if progress.hotel.get("bed_state") == "rested" else 0
+		progress.hotel["coffee_connections"] = {}
+		expanded = true
+	var hotel_validation := _validate_hotel_progress(progress, completed, rewarded)
 	if not hotel_validation.ok:
 		return hotel_validation
 	progress.hotel.version = HOTEL_VERSION
+	progress.hotel.morning_stage = int(progress.hotel.morning_stage)
 	document.schema_version = SCHEMA_VERSION
 	document.wallet.points = int(document.wallet.points)
 	document.progress.investigation_version = INVESTIGATION_VERSION
