@@ -1,5 +1,5 @@
 extends Node2D
-## Original vector scenery: quiet courtyards, a large atrium and sixteen rooms.
+## Original vector scenery for the courtyard and the hotel bus stop.
 const Layout = preload("res://scripts/game/campus_layout.gd")
 var zone := "courtyard"
 
@@ -15,6 +15,7 @@ func _draw() -> void:
 	if zone == "courtyard":
 		_facades()
 		_gardens()
+		_bus_stop()
 	else:
 		for i in Layout.rooms().size():
 			var room: Rect2 = Layout.rooms()[i]
@@ -87,3 +88,16 @@ func _gardens() -> void:
 			draw_circle(at+Vector2(7,10),48,Color("a0b59a"))
 			draw_circle(at,46,Color("7e9d82"))
 			draw_arc(at,30,PI,TAU,16,Color("a9bf9f"),3,true)
+
+func _bus_stop() -> void:
+	# Kept in the broad east walkway, clear of both garden collision rectangles.
+	var at := Vector2(1180, 840)
+	draw_rect(Rect2(at + Vector2(-7, -62), Vector2(14, 126)), Color("607d7b"))
+	draw_circle(at - Vector2(0, 72), 32, Color("e6d5aa"))
+	draw_circle(at - Vector2(0, 72), 26, Color("4d787d"))
+	var font := ThemeDB.fallback_font
+	draw_string(font, at + Vector2(-23, -65), "BUS", HORIZONTAL_ALIGNMENT_LEFT, -1, 19, Color("f5eed9"))
+	draw_rect(Rect2(at + Vector2(-45, -23), Vector2(90, 52)), Color("f5efdf"))
+	_text("sudo hack", at + Vector2(0, -2), 14, true)
+	_text("CTF", at + Vector2(0, 20), 13, true)
+	_text("ARRÊT DE BUS", Vector2(1130, 961), 18, true)
