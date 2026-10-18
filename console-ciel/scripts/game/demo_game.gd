@@ -212,6 +212,9 @@ func _build() -> void:
 	modal_content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	modal_content.add_theme_constant_override('separation', 12)
 	_modal_scroll.add_child(modal_content)
+	modal_content.minimum_size_changed.connect(func():
+		# The coffee panel changes height as instructions and feedback wrap.
+		if overlay_kind == "hotel_coffee": _fit_modal.call_deferred())
 	_overlay.hide()
 	_resize_viewport.call_deferred()
 
@@ -259,7 +262,7 @@ func _current_mission() -> String:
 	return ''
 
 func _toggle_objectives() -> void:
-	if is_instance_valid(hotel_story) and HotelService.is_hotel_zone():
+	if is_instance_valid(hotel_story) and hotel_story.is_hotel_zone():
 		hotel_story.toggle_objectives()
 		_sync_controls()
 		return
@@ -346,8 +349,8 @@ func _sync_controls() -> void:
 	if is_instance_valid(campus_map): campus_map.visible = enabled and HotelService.is_hotel_zone(str(world.room_id))
 	if is_instance_valid(hotel_story): hotel_story.sync_visibility()
 	if is_instance_valid(_zone_hint):
-		_zone_hint.visible = enabled and world.room_id == "courtyard"
-		_zone_hint.text = "COUR · Rejoignez la porte d’en face ↑"
+		_zone_hint.visible = enabled and world.room_id == "courtyard" and (not is_instance_valid(hotel_story) or not hotel_story.is_hotel_zone())
+		_zone_hint.text = "COUR · Arrêt de bus vers Sudo Hack →" if int(HotelService.state().get("morning_stage", 0)) >= 6 else "COUR · Rejoignez la porte d’en face ↑"
 
 func _sync_overlay_theme() -> void:
 	if _overlay == null: return
@@ -527,7 +530,7 @@ func request_pause() -> void:
 	_label(modal_content, 'Les déplacements et interactions sont suspendus.')
 	var resume_button=_button(modal_content, 'Reprendre', resume, 'pause_resume')
 	resume_button.theme_type_variation='PrimaryButton'
-	var expanded: bool = hotel_story.objectives_expanded if is_instance_valid(hotel_story) and HotelService.is_hotel_zone() else _objectives_expanded
+	var expanded: bool = hotel_story.objectives_expanded if is_instance_valid(hotel_story) and hotel_story.is_hotel_zone() else _objectives_expanded
 	_button(modal_content, 'Masquer les objectifs' if expanded else 'Afficher les objectifs', func():
 		_toggle_objectives()
 		resume(), 'pause_objectives')
@@ -758,7 +761,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -910,8 +913,14 @@ func _show_zone_door(id: String) -> void:
 	if not destinations.has(id): return
 	var destination: String = destinations[id]
 	_open_overlay("zone_door")
-	_label(modal_content, {"room_01": "Premier bâtiment", "building_02": "L’immeuble d’en face", "courtyard": "Sortir dans la cour"}[destination],26)
-	_label(modal_content,"Un grand bâtiment vous attend de l’autre côté de la cour." if id == "building_exit" else ("Bienvenue à l’Hôtel CIEL. Rejoignez la réception pour réserver votre chambre. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick." if destination == "building_02" else "Vous retrouverez cette porte pour revenir. Votre progression est conservée."))
+	var titles := {"room_01": "Premier bâtiment", "building_02": "Hôtel CIEL", "courtyard": "Sortir dans la cour"}
+	_label(modal_content, str(titles[destination]), 26)
+	var description := "Vous retrouverez cette porte pour revenir. Votre progression est conservée."
+	if id == "building_exit":
+		description = "Un grand bâtiment vous attend de l’autre côté de la cour."
+	elif destination == "building_02":
+		description = "Retrouvez le hall, les escaliers et la salle du petit déjeuner." if int(HotelService.state().get("morning_stage", 0)) > 0 else "Bienvenue à l’Hôtel CIEL. Rejoignez la réception pour réserver votre chambre. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick."
+	_label(modal_content, description)
 	_button(modal_content,"Entrer" if destination != "courtyard" else "Sortir",func(): _switch_zone(destination,id),"zone_go")
 	_button(modal_content,"Rester ici",_close_overlay,"zone_stay")
 	_wire_modal()
