@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.11.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.12.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -80,8 +80,7 @@ Les repères et boutons des missions terminées disparaissent après réussite
 et sauvegarde ; les meubles réparés restent visibles, l’ascenseur accessible.
 Pause > Bilan du chapitre retrouve le bilan d’un chapitre déjà terminé.
 
-Chaque première réussite donne 50 points : 150 pour chacun des quatre premiers chapitres, 50 pour le cinquième ; 650 au maximum
-par profil. Rejouer ne redonne pas les récompenses. L’enquête reste gratuite.
+Chaque première réussite donne 50 points : 150 pour chacun des quatre premiers chapitres, 50 pour le cinquième ; 650 pour l’enquête. Rejouer ne redonne pas les récompenses. L’enquête reste gratuite.
 Les exercices sont fictifs et hors ligne ; ils ne modifient pas le réseau,
 le câblage ou la configuration réelle de votre Raspberry Pi.
 
@@ -89,8 +88,8 @@ Test 1 à Test 4 coûtent 200 points chacun. Ils affichent seulement
 « jeu en préparation », en attendant les vrais jeux ; les ouvrir ne donne
 aucun point. Les achats antérieurs restent acquis. Un achat est refusé sous
 200 points ; un article possédé n’est pas facturé deux fois. Une erreur de
-sauvegarde laisse points et inventaire inchangés. Le plafond actuel de 650
-points permet trois achats sans autre dépense, avec 50 points restants ;
+sauvegarde laisse points et inventaire inchangés. Le total de 750 points, avec les deux objectifs du matin, permet trois achats
+sans autre dépense, avec 150 points restants ;
 un quatrième achat est alors refusé. Rejouer ne redonne aucun point.
 
 Deux présentations de l’accueil sont dans Paramètres > Affichage : enquête
@@ -124,6 +123,8 @@ Ils ne constituent pas un essai natif sur votre Raspberry Pi 4.
 À vérifier sur le matériel : premier lancement, treize missions et ascenseur,
 reprise, achats et profils, clavier/photo, tableau de missions, plein écran,
 son, manette USB et contrôleur fabriqué, fluidité en 1280 × 720 et petit écran.
+Vérifiez aussi le parcours du matin, les paires de fils, la reprise, le sac,
+les deux récompenses uniques et le trajet en bus jusqu’au hall sudo hack.
 Aucun résultat de FPS, son ou mapping matériel n’est annoncé comme acquis.
 
 CRÉDITS ET LICENCES
@@ -143,7 +144,7 @@ Au chapitre 3, approchez le coin ressources puis interagissez (Espace / face bas
 Trois livres, chacun en trois leçons, expliquent Python, HTML et Markdown.
 Fermer le livre revient au choix ; Échap revient ensuite à la pièce.
 Le chapitre 4 s’ouvre après les neuf premières missions : pare-feu, conflit IPv4, masque /26.
-Chaque première réussite donne 50 points : 650 au maximum par profil.
+Chaque première réussite donne 50 points : 650 pour l’enquête.
 Ascenseur : Descendre d’étage, Monter d’étage, Retour au menu. Échap : rester.
 
 CHAPITRE 5 — DÉFI MYSTÈRE
@@ -154,7 +155,7 @@ un clavier virtuel pour les identifiants, le mot de passe et les commandes.
 Il s’agit d’un serveur fictif : aucune commande n’est exécutée sur votre appareil.
 Le portail de l’entrée ramène au palier. Continuer reprend la session enregistrée.
 Les quatre premiers chapitres gardent trois missions chacun ; le cinquième en a une.
-Chaque première réussite donne 50 points : 650 au maximum par profil.
+Chaque première réussite donne 50 points : 650 pour l’enquête.
 
 APRÈS LE CHAPITRE 5 — L’HÔTEL
 Revenez au palier du labyrinthe et descendez jusqu’au premier niveau.
@@ -169,4 +170,23 @@ assis. Après dix secondes, Dormir ou Continuer à attendre sont proposés à no
 Il reste assis jusqu’à choisir de dormir. Pause, menu et reprise conservent cet état.
 Carte en haut à gauche : flèche droite → pour afficher/masquer. Marcher : ZQSD
 ou joystick. Réservation fictive, sans paiement ; réparation simulée localement.
-Le parcours de l’hôtel n’ajoute pas de points aux 650 possibles dans l’enquête.
+La réservation, la panne du serveur et la nuit ne donnent pas de points.
+
+APRÈS LA NUIT — PETIT DÉJEUNER ET CTF SUDO HACK
+Au réveil, descendez les escaliers jusqu’au rez-de-chaussée : 50 points à la
+première réussite. Entrez dans la salle du petit déjeuner et asseyez-vous à
+table. Vous avez oublié votre café ; approchez la machine en panne et ouvrez
+son panneau de six fils. En haut : A, B, C ; en bas : 1, 2, 3. Reliez les
+couleurs identiques : A–3 rouge, B–2 vert, C–1 marron. La sélection brille ;
+un nouvel appui la retire. Les trois paires reliées réparent la machine.
+Prenez le café, puis retournez dans la chambre 206 récupérer le sac à dos
+avec l’ordinateur : 50 points à la première récupération. Redescendez, sortez
+de l’hôtel et interagissez avec l’arrêt de bus. Le trajet mène à un autre
+arrêt devant le bâtiment du CTF sudo hack. Entrez dans son hall ; les cinq
+défis seront ajoutés plus tard.
+
+L’enquête conserve 650 points ; ces deux objectifs du matin ajoutent 100
+points, soit 750 au maximum par profil. Le café et le bus ne rapportent pas
+de points. Rejouer ou Nouvelle partie ne réattribue jamais une récompense
+déjà reçue. La progression et le portefeuille sont enregistrés ensemble.
+La manipulation des fils est une simulation ; aucun appareil réel n’est utilisé.
