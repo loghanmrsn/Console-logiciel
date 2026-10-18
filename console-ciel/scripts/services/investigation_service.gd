@@ -496,6 +496,13 @@ func travel_zone(destination: String) -> Dictionary:
 	if valid.get("migration_required", false): return SaveService._fail("Sélectionnez d’abord ce profil pour enregistrer sa migration.")
 	if not _chapter_complete(5): return SaveService._fail("Terminez le défi du chapitre 5, puis redescendez au premier niveau.")
 	var source := str(AppState.profile.progress.room_id)
+	# Morning travel shares the hotel transaction, including its backpack gate.
+	# Keep this entry point safe for callers other than the current game screen.
+	if int(HotelService.state().get("morning_stage", 0)) > 0:
+		if source + ">" + destination in ["building_02>courtyard", "courtyard>building_02"]:
+			return HotelService.travel(destination)
+		if source == "courtyard" and destination == "room_01":
+			return SaveService._fail("Votre rendez-vous est au CTF sudo hack. Rejoignez l’arrêt de bus après avoir récupéré votre sac.")
 	var routes := {"room_01>courtyard": "from_first", "courtyard>room_01": "building_exit", "courtyard>building_02": "new_entrance", "building_02>courtyard": "from_second"}
 	var route := source + ">" + destination
 	if not routes.has(route): return SaveService._fail("Rejoignez la porte de ce passage. L’ascenseur descend un étage à la fois.")
