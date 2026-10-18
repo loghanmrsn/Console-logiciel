@@ -882,7 +882,7 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
 	var definition=entry.duplicate(true)
 	if educational:
-		definition.description='Cinq chapitres · jusqu’à 650 points.'
+		definition.description='Cinq chapitres et séjour à l’hôtel · jusqu’à 750 points.'
 		definition.action_label='Continuer' if AppState.profile.progress.started else 'Commencer'
 	var card=GameCard.new()
 	card.size_flags_horizontal=Control.SIZE_EXPAND_FILL if host is GridContainer else Control.SIZE_FILL
@@ -913,8 +913,17 @@ func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 func _investigation_progress_text() -> String:
 	if InvestigationService.current_chapter() == 0:
 		var room_id: String = AppState.profile.progress.room_id
-		if room_id == "courtyard": return "Cour · vers l’hôtel d’en face"
 		var hotel: Dictionary = HotelService.state()
+		match int(hotel.get("morning_stage", 0)):
+			1: return "Hôtel · descendez au rez-de-chaussée"
+			2: return "Hôtel · rejoignez la salle du petit-déjeuner"
+			3: return "Petit-déjeuner · réparez la machine à café"
+			4: return "Petit-déjeuner · prenez votre café"
+			5: return "Chambre 206 · récupérez votre sac"
+			6: return "CTF sudo hack · rejoignez l’arrêt de bus"
+			7: return "CTF sudo hack · entrez dans le bâtiment"
+			8: return "CTF sudo hack · rendez-vous à l’accueil"
+		if room_id == "courtyard": return "Cour · vers l’hôtel d’en face"
 		if hotel.bed_state == "rested": return "Hôtel · le lendemain matin"
 		if hotel.bed_state == "sitting": return "Chambre 206 · installé sur le lit"
 		if room_id == "hotel_room_206": return "Chambre 206 · déposez vos affaires" if not hotel.luggage_placed else "Chambre 206 · une nuit de repos"
