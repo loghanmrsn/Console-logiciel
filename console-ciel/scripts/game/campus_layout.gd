@@ -1,5 +1,5 @@
 extends RefCounted
-## Shared world/map geometry. No chapter-six objectives exist yet.
+## Shared courtyard geometry and interactions for the hotel and bus route.
 const BUILDING_SIZE := Vector2(6400, 4200)
 const COURTYARD_SIZE := Vector2(1800, 1300)
 const ROOM_SIZE := Vector2(1120, 660)
@@ -38,3 +38,10 @@ static func furniture() -> Array[Rect2]:
 		result.append(Rect2(room.position+Vector2(100,100),Vector2(200,70)))
 		result.append(Rect2(room.position+Vector2(900,100),Vector2(70,70)))
 	return result
+
+static func interactions(zone: String) -> Array[Dictionary]:
+	if zone != "courtyard": return []
+	return [
+		{"id": "courtyard_first", "label": "Porte · premier bâtiment", "at": Vector2(900, 1060), "radius": 100.0},
+		{"id": "courtyard_second", "label": "Porte · hôtel CIEL", "at": Vector2(900, 370), "radius": 100.0},
+		{"id": "campus_bus", "label": "Arrêt de bus · rejoindre sudo hack", "at": Vector2(1140, 900), "radius": 90.0}]
