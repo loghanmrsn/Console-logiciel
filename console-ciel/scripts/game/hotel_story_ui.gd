@@ -1,7 +1,8 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206"]
+const HOTEL_ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
 const WAIT_SECONDS := 10.0
 
 
@@ -23,6 +24,12 @@ var _night_remaining := 0.0
 var _night_duration := 1.2
 var _action_busy := false
 var _objective_fit_scheduled := false
+var _ground_arrival_scheduled := false
+var _last_morning_stage := -1
+var _coffee_selection := ""
+var _coffee_feedback := ""
+var coffee_panel: Control
+var _coffee_status: Label
 
 func configure(host: Control) -> void:
 	game = host
@@ -63,7 +70,10 @@ func _ready() -> void:
 	refresh()
 
 func is_hotel_zone() -> bool:
-	return not AppState.profile.is_empty() and str(AppState.profile.get("progress", {}).get("room_id", "")) in HOTEL_ZONES
+	if AppState.profile.is_empty():
+		return false
+	var room := str(AppState.profile.get("progress", {}).get("room_id", ""))
+	return room in HOTEL_ZONES or (room == "courtyard" and int(HotelService.state().get("morning_stage", 0)) > 0)
 
 func is_sitting() -> bool:
 	return is_hotel_zone() and str(HotelService.state().get("bed_state", "standing")) == "sitting"
@@ -83,8 +93,16 @@ func refresh() -> void:
 	_profile_id = current_profile
 	_room_id = current_room
 	var state: Dictionary = HotelService.state()
-	objective_title.text = "HÔTEL CIEL · " + ({"hotel_stairs_1": "PALIER 1", "hotel_floor_2": "ÉTAGE 2", "hotel_room_206": "CHAMBRE 206"}.get(current_room, "RÉCEPTION"))
-	if not state.get("reserved", false):
+	objective_title.text = "HÔTEL CIEL · " + ({"hotel_stairs_1": "PALIER 1", "hotel_floor_2": "ÉTAGE 2", "hotel_room_206": "CHAMBRE 206", "hotel_breakfast": "PETIT DÉJEUNER", "courtyard": "ARRÊT DE BUS"}.get(current_room, "RÉCEPTION"))
+	if current_room in ["ctf_bus_stop", "ctf_lobby"]:
+		objective_title.text = "SUDO HACK · " + ("ARRIVÉE" if current_room == "ctf_bus_stop" else "ACCUEIL")
+	var morning_stage := int(state.get("morning_stage", 0))
+	if morning_stage > 0 and morning_stage != _last_morning_stage:
+		objectives_expanded = true
+	_last_morning_stage = morning_stage
+	if morning_stage > 0:
+		objective_text.text = _morning_objective(morning_stage, current_room)
+	elif not state.get("reserved", false):
 		objective_text.text = "Réservez votre chambre à la réception."
 	elif not state.get("repaired", false):
 		objective_text.text = "Panne informatique · Rejoignez le local technique à côté de la réception."
@@ -97,13 +115,43 @@ func refresh() -> void:
 	elif state.get("bed_state", "standing") == "sitting":
 		objective_text.text = "Installé sur le lit · Prenez le temps de vous reposer."
 	elif state.get("bed_state", "standing") == "rested":
-		objective_text.text = "Une nouvelle journée commence. La suite du séjour arrivera plus tard."
+		objective_text.text = "Rejoignez le rez-de-chaussée par les escaliers · 50 points."
 	else:
 		objective_text.text = "Vos affaires sont posées. Installez-vous sur le lit."
 	objective_text.visible = objectives_expanded
 	_fit_objectives()
 	_schedule_objective_fit()
 	sync_visibility()
+	if current_room == "building_02" and morning_stage == 1 and not _ground_arrival_scheduled:
+		_ground_arrival_scheduled = true
+		_ensure_ground_arrival.call_deferred()
+
+func _morning_objective(stage: int, room: String) -> String:
+	match stage:
+		1: return "Descendez au rez-de-chaussée par les escaliers · " + _reward_text("hotel_ground_floor") + "."
+		2: return "Prenez la porte du petit déjeuner dans le hall, puis installez-vous à une table."
+		3: return "Votre café manque ! Réparez la machine en reliant les trois fils de même couleur."
+		4: return "La machine fonctionne. Prenez votre café."
+		5: return "Retournez chambre 206 à l’étage 2 pour récupérer votre sac et votre ordinateur · " + _reward_text("hotel_backpack") + "."
+		6: return "Sortez de l’hôtel, puis rejoignez l’arrêt de bus pour le CTF Sudo Hack." if room != "courtyard" else "Prenez le bus vers le CTF Sudo Hack."
+		7: return "Vous êtes arrivé. Entrez dans le bâtiment du CTF Sudo Hack."
+		8: return "Bienvenue au CTF Sudo Hack. Les cinq missions seront ajoutées dans une prochaine mise à jour."
+	return ""
+
+func _reward_text(id: String) -> String:
+	return "récompense déjà obtenue (+0 point)" if id in AppState.profile.get("rewarded_missions", []) else "50 points"
+
+func _ensure_ground_arrival() -> void:
+	_ground_arrival_scheduled = false
+	if not is_inside_tree() or str(AppState.profile.get("progress", {}).get("room_id", "")) != "building_02" or int(HotelService.state().get("morning_stage", 0)) != 1:
+		return
+	var result: Dictionary = HotelService.arrive_ground_floor()
+	if not result.ok:
+		_show_error("Arrivée non enregistrée", result, _ensure_ground_arrival)
+		return
+	if game.overlay_kind == "hotel_error":
+		game._close_overlay()
+	_notify_reward(result, "Rez-de-chaussée rejoint")
 
 func toggle_objectives() -> void:
 	objectives_expanded = not objectives_expanded
@@ -159,6 +207,11 @@ func _reset_context() -> void:
 	_diagnosis = ""
 	_repair = ""
 	_feedback = ""
+	_last_morning_stage = -1
+	_coffee_selection = ""
+	_coffee_feedback = ""
+	coffee_panel = null
+	_coffee_status = null
 	objectives_expanded = true
 	if is_instance_valid(game) and is_instance_valid(game._room):
 		game._room.modulate = Color.WHITE
@@ -203,13 +256,24 @@ func can_pause_bed() -> bool:
 	return is_sitting() and game.overlay_kind in ["hotel_bed_waiting", "hotel_bed_choices"]
 
 func handle_target(id: String) -> bool:
-	if not id.begins_with("hotel_"):
+	if not id.begins_with("hotel_") and id not in ["campus_bus", "ctf_enter", "ctf_leave"]:
 		return false
 	match id:
 		"hotel_reception": _show_reception()
 		"hotel_repair": _show_repair()
 		"hotel_luggage": _show_luggage()
 		"hotel_bed": _show_bed()
+		"hotel_breakfast_door": _show_travel("hotel_breakfast", "Salle du petit déjeuner", "Le buffet et les tables se trouvent derrière cette porte.")
+		"hotel_breakfast_return": _show_travel("building_02", "Revenir dans le hall", "Retrouvez les escaliers et la sortie de l’hôtel.")
+		"hotel_breakfast_table": _show_breakfast()
+		"hotel_coffee_machine":
+			_coffee_selection = ""
+			_coffee_feedback = ""
+			_show_coffee()
+		"hotel_backpack": _show_backpack()
+		"campus_bus": _show_bus()
+		"ctf_enter": _show_travel("ctf_lobby", "CTF Sudo Hack", "Entrez avec votre sac et votre ordinateur. Les épreuves de la compétition seront ajoutées plus tard.")
+		"ctf_leave": _show_travel("ctf_bus_stop", "Sortir du bâtiment", "Retrouvez l’arrêt de bus devant le bâtiment Sudo Hack.")
 		"hotel_it_door": _show_travel("hotel_it", "Local informatique", "Le local technique est juste à côté du hall.")
 		"hotel_it_return": _show_travel("building_02", "Revenir à la réception", "Retrouvez le hall et les escaliers.")
 		"hotel_stairs_up":
@@ -218,7 +282,7 @@ func handle_target(id: String) -> bool:
 		"hotel_stairs_down":
 			var second := str(AppState.profile.progress.room_id) == "hotel_floor_2"
 			_show_travel("hotel_stairs_1" if second else "building_02", "Descendre l’escalier", "Rejoignez le palier inférieur par l’escalier voisin.")
-		"hotel_room206": _show_travel("hotel_room_206", "Chambre 206", "Votre chambre vous attend. Vous pourrez y déposer vos affaires.")
+		"hotel_room206": _show_travel("hotel_room_206", "Chambre 206", "Votre sac et votre ordinateur vous attendent dans la chambre." if int(HotelService.state().get("morning_stage", 0)) == 5 else "Retrouvez votre chambre 206.")
 		"hotel_room206_exit": _show_travel("hotel_floor_2", "Quitter la chambre", "Retrouvez le couloir du deuxième étage.")
 		_: return false
 	return true
@@ -313,6 +377,7 @@ func _show_travel(destination: String, title: String, description: String) -> vo
 
 func _travel(destination: String, title: String, description: String) -> void:
 	if _action_busy: return
+	var ground_arrival := destination == "building_02" and int(HotelService.state().get("morning_stage", 0)) == 1
 	_action_busy = true
 	var result: Dictionary = HotelService.travel(destination)
 	_action_busy = false
@@ -322,8 +387,10 @@ func _travel(destination: String, title: String, description: String) -> void:
 	game.world.restore_progress(AppState.profile.progress)
 	game.world.restore_checkpoint()
 	game._close_overlay()
+	if ground_arrival:
+		_notify_reward(result, "Rez-de-chaussée rejoint")
 	if destination == "hotel_floor_2":
-		game.notification_requested.emit("Étage 2 · Rendez-vous chambre 206")
+		game.notification_requested.emit("Étage 2 · Récupérez votre sac chambre 206" if int(HotelService.state().get("morning_stage", 0)) == 5 else "Étage 2 · Rendez-vous chambre 206")
 
 func _show_luggage() -> void:
 	game._open_overlay("hotel_luggage")
@@ -355,7 +422,7 @@ func _show_bed() -> void:
 		game._label(game.modal_content, "Déposez d’abord vos affaires sur le porte-bagages.")
 		game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_bed_close")
 	elif state.get("bed_state", "standing") == "rested":
-		game._label(game.modal_content, "Vous avez passé une nuit paisible. La suite du séjour sera ajoutée plus tard.")
+		game._label(game.modal_content, "Vous avez passé une nuit paisible. " + _morning_objective(int(state.get("morning_stage", 1)), str(AppState.profile.progress.room_id)))
 		game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_bed_close")
 	else:
 		game._label(game.modal_content, "Vous pouvez dormir tout de suite ou simplement vous poser. Une fois installé, vous resterez sur le lit jusqu’à choisir de dormir.")
@@ -426,10 +493,145 @@ func _tick_night(elapsed_seconds: float) -> void:
 		game._room.modulate = Color.WHITE
 		game._open_overlay("hotel_morning")
 		game._label(game.modal_content, "Au matin · Chambre 206", 28)
-		game._label(game.modal_content, "Vous avez passé la nuit à l’hôtel. Le service informatique fonctionne et votre séjour peut continuer. Les prochaines aventures seront ajoutées plus tard.")
+		game._label(game.modal_content, "Une nouvelle journée commence. " + _morning_objective(1, "hotel_room_206") + " Le petit déjeuner vous attend.")
 		game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_morning_continue")
 		game._button(game.modal_content, "Retour au menu", game._return_to_menu, "hotel_morning_menu")
 		game._wire_modal()
+
+func _show_breakfast() -> void:
+	game._open_overlay("hotel_breakfast")
+	game._label(game.modal_content, "Petit déjeuner · Votre table", 27)
+	if int(HotelService.state().get("morning_stage", 0)) == 2:
+		game._label(game.modal_content, "Le buffet est prêt. Installez-vous un instant à cette table.")
+		game._button(game.modal_content, "M’asseoir à la table", _sit_for_breakfast, "hotel_breakfast_sit")
+	else:
+		game._label(game.modal_content, _morning_objective(int(HotelService.state().get("morning_stage", 0)), "hotel_breakfast"))
+	game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_breakfast_close")
+	game._wire_modal()
+
+func _sit_for_breakfast() -> void:
+	var result: Dictionary = HotelService.sit_for_breakfast()
+	if not result.ok:
+		_show_error("Petit déjeuner non enregistré", result, _show_breakfast)
+		return
+	game._show_dialog("Il manque votre café…", "À peine assis, vous réalisez que vous avez oublié votre café. La machine ne démarre plus : le panneau de connexion est débranché. Levez-vous et rejoignez la machine pour relier ses trois fils.", game._close_overlay)
+
+func _show_coffee() -> void:
+	game._open_overlay("hotel_coffee")
+	game._label(game.modal_content, "Machine à café · Panneau de connexion", 27)
+	var state: Dictionary = HotelService.state()
+	var stage := int(state.get("morning_stage", 0))
+	if stage < 3:
+		game._label(game.modal_content, "Installez-vous d’abord à la table du petit déjeuner.")
+	elif stage == 3:
+		game._label(game.modal_content, "Vue rapprochée · Reliez une borne A, B ou C à une borne 1, 2 ou 3 de même couleur. Appuyez à nouveau sur une borne sélectionnée pour retirer sa sélection.", 17)
+		coffee_panel = CoffeeWiringPanel.new()
+		game.modal_content.add_child(coffee_panel)
+		coffee_panel.terminal_pressed.connect(_select_coffee_terminal)
+		_coffee_status = game._label(game.modal_content, "", 17)
+		_coffee_status.name = "hotel_coffee_feedback"
+		_refresh_coffee_panel()
+	elif stage == 4:
+		game._label(game.modal_content, "✓ Les trois fils sont reliés : la machine fonctionne à nouveau. Vous pouvez préparer votre café.")
+		coffee_panel = CoffeeWiringPanel.new()
+		game.modal_content.add_child(coffee_panel)
+		coffee_panel.refresh(state.get("coffee_connections", {}), "")
+		game._button(game.modal_content, "Prendre mon café", _take_coffee, "hotel_coffee_take")
+	else:
+		game._label(game.modal_content, "Vous avez pris votre café. Votre sac et votre ordinateur vous attendent dans la chambre 206.")
+	game._button(game.modal_content, "Revenir dans la salle", game._close_overlay, "hotel_coffee_close")
+	game._wire_modal()
+
+func _select_coffee_terminal(id: String) -> void:
+	if _action_busy or int(HotelService.state().get("morning_stage", 0)) != 3:
+		return
+	var connections: Dictionary = HotelService.state().get("coffee_connections", {})
+	if connections.has(id) or id in connections.values():
+		return
+	if _coffee_selection == id:
+		_coffee_selection = ""
+		_coffee_feedback = "Sélection retirée. Choisissez une borne."
+	elif _coffee_selection.is_empty() or ((_coffee_selection in ["A", "B", "C"]) == (id in ["A", "B", "C"])):
+		_coffee_selection = id
+		_coffee_feedback = "%s sélectionnée · Choisissez la même couleur en face." % id
+	else:
+		var top := _coffee_selection if _coffee_selection in ["A", "B", "C"] else id
+		var bottom := id if id in ["1", "2", "3"] else _coffee_selection
+		_action_busy = true
+		var result: Dictionary = HotelService.connect_coffee_wire(top, bottom)
+		_action_busy = false
+		if not result.ok:
+			# An incorrect pair and an unavailable save both preserve the last
+			# validated connections and the currently highlighted first wire.
+			_coffee_feedback = str(result.get("error", "Ces fils ne peuvent pas être reliés. Réessayez."))
+		else:
+			_coffee_selection = ""
+			_coffee_feedback = "✓ Bornes %s et %s reliées." % [top, bottom]
+			if int(HotelService.state().get("morning_stage", 0)) == 4:
+				game._pending_focus_key = "hotel_coffee_take"
+				_show_coffee()
+				return
+	_refresh_coffee_panel()
+	game._wire_modal()
+
+func _refresh_coffee_panel() -> void:
+	if not is_instance_valid(coffee_panel):
+		return
+	var connections: Dictionary = HotelService.state().get("coffee_connections", {})
+	coffee_panel.refresh(connections, _coffee_selection)
+	if is_instance_valid(_coffee_status):
+		_coffee_status.text = "%d / 3 connexions · " % connections.size() + (_coffee_feedback if not _coffee_feedback.is_empty() else "Choisissez une borne : son fil s’illuminera.")
+
+func _take_coffee() -> void:
+	var result: Dictionary = HotelService.take_coffee()
+	if not result.ok:
+		_show_error("Café non enregistré", result, _show_coffee)
+		return
+	game._show_dialog("Votre café est prêt", "Vous prenez votre café. Il est temps de préparer le CTF Sudo Hack : remontez dans la chambre 206 pour récupérer le sac à dos contenant votre ordinateur.", game._close_overlay)
+
+func _show_backpack() -> void:
+	game._open_overlay("hotel_backpack")
+	game._label(game.modal_content, "Chambre 206 · Votre sac à dos", 27)
+	var stage := int(HotelService.state().get("morning_stage", 0))
+	if stage == 5:
+		game._label(game.modal_content, "Votre ordinateur est dans votre sac. Prenez-le pour participer au CTF Sudo Hack · " + _reward_text("hotel_backpack") + ".")
+		game._button(game.modal_content, "Récupérer mon sac et mon ordinateur", _collect_backpack, "hotel_backpack_take")
+	elif stage < 5:
+		game._label(game.modal_content, "Votre sac est en sécurité. " + _morning_objective(stage, "hotel_room_206"))
+	else:
+		game._label(game.modal_content, "Vous avez déjà votre sac et votre ordinateur. Rejoignez l’arrêt de bus devant l’hôtel.")
+	game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_backpack_close")
+	game._wire_modal()
+
+func _collect_backpack() -> void:
+	var result: Dictionary = HotelService.collect_backpack()
+	if not result.ok:
+		_show_error("Sac non enregistré", result, _show_backpack)
+		return
+	game._close_overlay()
+	_notify_reward(result, "Sac et ordinateur récupérés")
+
+func _show_bus() -> void:
+	game._open_overlay("hotel_bus")
+	game._label(game.modal_content, "Arrêt de bus · Sudo Hack", 27)
+	game._label(game.modal_content, "Le bus vous dépose devant le bâtiment du CTF Sudo Hack. Votre sac et votre ordinateur doivent être avec vous.")
+	game._button(game.modal_content, "Prendre le bus", _board_bus, "hotel_bus_board")
+	game._button(game.modal_content, "Rester ici", game._close_overlay, "hotel_bus_close")
+	game._wire_modal()
+
+func _board_bus() -> void:
+	var result: Dictionary = HotelService.board_bus()
+	if not result.ok:
+		_show_error("Trajet non enregistré", result, _show_bus)
+		return
+	game.world.restore_progress(AppState.profile.progress)
+	game.world.restore_checkpoint()
+	game._close_overlay()
+	game.notification_requested.emit("Sudo Hack · Entrez dans le bâtiment du CTF")
+
+func _notify_reward(result: Dictionary, message: String) -> void:
+	var reward := int(result.get("reward", 0))
+	game.notification_requested.emit("%s · +%d points%s" % [message, reward, " (récompense déjà obtenue)" if reward == 0 else ""])
 
 func _show_error(title: String, result: Dictionary, retry: Callable) -> void:
 	game._open_overlay("hotel_error")
