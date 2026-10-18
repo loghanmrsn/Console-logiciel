@@ -2,7 +2,7 @@ extends RefCounted
 ## Hotel geometry is shared by scenery, collisions, the map and route tests.
 ## A destination is a saved room, never a reward-bearing investigation chapter.
 
-const ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206"]
+const ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HALL_SIZE := Vector2(6400, 4200)
 const BED_SEAT := Vector2(840, 420)
 
@@ -15,6 +15,8 @@ static func extent(zone: String) -> Vector2:
 		"hotel_stairs_1": return Vector2(1600, 1100)
 		"hotel_floor_2": return Vector2(2400, 1300)
 		"hotel_room_206": return Vector2(1200, 1000)
+		"hotel_breakfast": return Vector2(1600, 1050)
+		"ctf_bus_stop", "ctf_lobby": return Vector2(1800, 1300)
 		_: return HALL_SIZE
 
 static func title(zone: String) -> String:
@@ -23,6 +25,9 @@ static func title(zone: String) -> String:
 		"hotel_stairs_1": return "Étage 1 · palier des escaliers"
 		"hotel_floor_2": return "Étage 2 · chambres"
 		"hotel_room_206": return "Chambre 206"
+		"hotel_breakfast": return "Petit déjeuner · rez-de-chaussée"
+		"ctf_bus_stop": return "sudo hack · arrêt du bus"
+		"ctf_lobby": return "sudo hack · accueil du CTF"
 		_: return "Hôtel CIEL · grand hall"
 
 static func checkpoints(zone: String) -> Dictionary:
@@ -31,7 +36,10 @@ static func checkpoints(zone: String) -> Dictionary:
 		"hotel_stairs_1": return {"entrance": Vector2(500, 820), "stairs_from_hall": Vector2(500, 820), "stairs_from_floor2": Vector2(1020, 820)}
 		"hotel_floor_2": return {"entrance": Vector2(470, 1130), "floor2_stairs": Vector2(470, 1130), "floor2_room206": Vector2(1670, 790)}
 		"hotel_room_206": return {"entrance": Vector2(600, 860), "room206_entry": Vector2(600, 860), "room206_bed": Vector2(840, 560)}
-		_: return {"entrance": Vector2(3200, 4000), "new_entrance": Vector2(3200, 4000), "hall_it": Vector2(2390, 3500), "hall_stairs": Vector2(4040, 3710)}
+		"hotel_breakfast": return {"entrance": Vector2(700, 880), "breakfast_entry": Vector2(700, 880), "breakfast_table": Vector2(690, 580)}
+		"ctf_bus_stop": return {"entrance": Vector2(900, 930), "ctf_arrival": Vector2(900, 930), "ctf_door": Vector2(900, 430)}
+		"ctf_lobby": return {"entrance": Vector2(900, 1100), "ctf_entry": Vector2(900, 1100)}
+		_: return {"entrance": Vector2(3200, 4000), "new_entrance": Vector2(3200, 4000), "hall_it": Vector2(2390, 3500), "hall_stairs": Vector2(4040, 3710), "hall_breakfast": Vector2(4660, 3500)}
 
 static func interactions(zone: String) -> Array[Dictionary]:
 	match zone:
@@ -47,12 +55,20 @@ static func interactions(zone: String) -> Array[Dictionary]:
 		"hotel_room_206": return [
 			_target("hotel_room206_exit", "Porte · retour dans le couloir", Vector2(600, 900), 85),
 			_target("hotel_luggage", "Porte-bagages · poser ses affaires", Vector2(300, 730), 90),
-			_target("hotel_bed", "Lit · se reposer", Vector2(840, 560), 90)]
+			_target("hotel_bed", "Lit · se reposer", Vector2(840, 560), 90),
+			_target("hotel_backpack", "Sac à dos · ordinateur pour sudo hack", Vector2(300, 730), 90)]
+		"hotel_breakfast": return [
+			_target("hotel_breakfast_return", "Porte · retour au hall", Vector2(700, 930), 85),
+			_target("hotel_breakfast_table", "Petit déjeuner · s’asseoir à la table", Vector2(690, 580), 85),
+			_target("hotel_coffee_machine", "Machine à café · panneau de connexion", Vector2(1250, 310), 85)]
+		"ctf_bus_stop": return [_target("ctf_enter", "sudo hack · entrer dans le bâtiment du CTF", Vector2(900, 360), 90)]
+		"ctf_lobby": return [_target("ctf_leave", "Porte · retour à l’arrêt du bus", Vector2(900, 1150), 90)]
 		_: return [
 			_target("campus_leave", "Porte · retour dans la cour", Vector2(3200, 4050), 100),
 			_target("hotel_reception", "Réception · réservation de chambre", Vector2(3200, 3610), 110),
 			_target("hotel_it_door", "Local informatique · porte de service", Vector2(2290, 3500), 95),
-			_target("hotel_stairs_up", "Escalier · monter au premier palier", Vector2(4040, 3610), 100)]
+			_target("hotel_stairs_up", "Escalier · monter au premier palier", Vector2(4040, 3610), 100),
+			_target("hotel_breakfast_door", "Porte · salle du petit déjeuner", Vector2(4580, 3500), 95)]
 
 static func _target(id: String, label: String, at: Vector2, radius: float) -> Dictionary:
 	return {"id": id, "label": label, "at": at, "radius": radius}
@@ -66,9 +82,13 @@ static func walls(zone: String) -> Array[Rect2]:
 		"building_02":
 			# The adjoining maintenance room has one clear door on the hall side.
 			result.append_array([Rect2(1450, 2800, 800, 24), Rect2(1450, 2800, 24, 920), Rect2(1450, 3696, 800, 24), Rect2(2226, 2824, 24, 550), Rect2(2226, 3626, 24, 70)])
+			# The restaurant has an adjoining foyer with a broad, visible west door.
+			result.append_array([Rect2(4626, 2800, 1500, 24), Rect2(6102, 2800, 24, 920), Rect2(4626, 3696, 1500, 24), Rect2(4626, 2824, 24, 550), Rect2(4626, 3626, 24, 70)])
 			# Open colonnades frame four quiet lounges without closing the galleries.
 			for x in [1850, 4500]:
 				for y in [550, 2000]: result.append(Rect2(x, y, 28, 900))
+		"ctf_bus_stop":
+			result.append(Rect2(100, 80, 1600, 250))
 		"hotel_stairs_1":
 			# The first floor is a landing only. A solid partition and grille keep
 			# the rest of this floor inaccessible, even when walking around stairs.
@@ -103,6 +123,12 @@ static func furniture_specs(zone: String) -> Array[Dictionary]:
 					result.append(_prop("armchair", Rect2(x + 440, y + 440, 180, 160)))
 			for x in [2250, 4150]:
 				for y in [800, 1500, 2200]: result.append(_prop("column", Rect2(x - 52, y - 52, 104, 104)))
+		"hotel_breakfast":
+			result.append_array([_prop("breakfast_table", Rect2(550, 350, 280, 150)), _prop("breakfast_table", Rect2(190, 350, 230, 150)), _prop("breakfast_table", Rect2(960, 640, 270, 150)), _prop("buffet", Rect2(160, 130, 700, 100)), _prop("coffee_machine", Rect2(1150, 180, 200, 100)), _prop("planter", Rect2(1380, 760, 90, 90))])
+		"ctf_bus_stop":
+			result.append_array([_prop("bus_shelter", Rect2(1240, 560, 300, 160)), _prop("planter", Rect2(270, 520, 90, 90)), _prop("planter", Rect2(270, 790, 90, 90))])
+		"ctf_lobby":
+			result.append_array([_prop("ctf_reception", Rect2(700, 260, 400, 140)), _prop("sofa", Rect2(220, 620, 350, 120)), _prop("sofa", Rect2(1230, 620, 350, 120)), _prop("planter", Rect2(260, 360, 90, 90)), _prop("planter", Rect2(1450, 360, 90, 90))])
 		"hotel_it":
 			result.append_array([_prop("server", Rect2(200, 180, 180, 250)), _prop("server", Rect2(440, 180, 180, 250)), _prop("repair", Rect2(690, 260, 220, 120)), _prop("storage", Rect2(1080, 180, 150, 360))])
 		"hotel_stairs_1":
@@ -123,4 +149,7 @@ static func rooms(zone: String) -> Array[Rect2]:
 		"hotel_stairs_1": return [Rect2(80, 215, 1440, 785)]
 		"hotel_floor_2": return [Rect2(80, 675, 2240, 540)]
 		"hotel_room_206": return [Rect2(80, 80, 1040, 840)]
+		"hotel_breakfast": return [Rect2(80, 80, 1440, 890)]
+		"ctf_bus_stop": return [Rect2(100, 350, 1600, 850)]
+		"ctf_lobby": return [Rect2(80, 80, 1640, 1140)]
 	return []
