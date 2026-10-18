@@ -1,4 +1,24 @@
-# Livraison 0.11.0 — hôtel et chambre 206
+# Livraison 0.12.0 — petit déjeuner et départ vers Sudo Hack
+
+Après la nuit dans la chambre 206, le panneau demande de **descendre au rez-de-chaussée** par les deux volées d’escalier. L’arrivée rapporte **50 points**, une seule fois par profil. Une porte du hall mène à la **salle du petit déjeuner**. En s’installant à table, le joueur découvre qu’il a oublié son café et que la machine nécessite une réparation.
+
+L’interaction avec la machine ouvre un **panneau de connexion agrandi**, avec les bornes **A, B, C en haut et 1, 2, 3 en bas**. Choisir une borne illumine son fil ; appuyer à nouveau annule la sélection. Les paires de même couleur sont **A–3 rouge, B–2 vert, C–1 marron**. Les mauvaises paires sont expliquées sans effacer les raccords corrects. Trois connexions réussies remettent la machine en service ; le joueur peut alors prendre son café. Les lettres, chiffres et noms de couleurs permettent de jouer sans se fier uniquement aux couleurs.
+
+La mission suivante demande de **récupérer le sac à dos et l’ordinateur dans la chambre 206**. Elle rapporte **50 points** uniques. Il faut ensuite redescendre, sortir de l’hôtel et interagir avec **l’arrêt de bus dans la cour**. Le trajet mène à un autre arrêt devant le bâtiment du **CTF Sudo Hack**. Son accueil est accessible ; les cinq prochaines missions attendent les consignes de l’utilisateur et ne sont pas inventées dans cette livraison. [Guide du séjour](HOTEL.md).
+
+Les deux récompenses et leur étape sont enregistrées dans la même écriture que la progression. Une panne d’écriture conserve l’état précédent. Recharger, refaire le trajet ou recommencer une partie ne redonne pas les points déjà reçus. Le maximum passe à **750 points uniques par profil** : les treize défis éducatifs conservent leurs 650 points et les deux étapes matinales ajoutent 100 points. Le café ne donne pas de récompense supplémentaire. Les sauvegardes 0.11.0 migrent sans perdre leur position ni leurs achats, y compris après une nuit déjà passée hors de l’hôtel.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_matin_ctf_0.12.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.12.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.12.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.12.0.zip).
+
+Recette finalisée le **18 octobre 2026** : **8 845 assertions dans 23 suites source**, puis **6 230 assertions sur chacun des deux packs compilés**, sans échec. La capture réelle X11 / OpenGL ES 3.2 ajoute **348 contrôles** et **11 captures**. Le parcours physique vérifie **235 cas et 4 120 segments de déplacement avec collisions**, dans les zones du séjour, du petit déjeuner et du CTF. Clavier, clics souris et événements de manette, erreurs de sauvegarde, reprises du câblage partiel et anciens chapitres sont couverts. [Résumé détaillé](../tests/morning_0.12.0_results/summary.json).
+
+Audit statique : **1 030 fichiers**, **97 UID uniques**, **247 références de ressources** et **268 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **255 assertions réussies**. Les scripts shell passent `bash -n` ; ShellCheck n’est pas installé.
+
+Chaque export contient **239 ressources intégrées**, dont **48 SVG**, vérifiées par MD5 ; les CRC des quatre ZIP sont contrôlés. Le rendu réel permet d’examiner le [fil sélectionné](screenshots/morning_0.12.0/morning_cafe_fil_selectionne_challenge.png), le [panneau compact](screenshots/morning_0.12.0/morning_cafe_compact_challenge.png), les [trois liaisons terminées](screenshots/morning_0.12.0/morning_cafe_machine_reparee_challenge.png) et l’[arrivée au CTF](screenshots/morning_0.12.0/morning_hall_sudo_hack_challenge.png).
+
+Le rendu et les packs sont exécutés par Godot sur Linux x86_64 avec Mesa llvmpipe et audio Dummy. Les tests du pack ARM64 ne constituent pas un lancement de l’exécutable sur un Raspberry Pi ; les essais natifs Windows, Pi 4, GPU matériel, son et manette physique restent à réaliser. Les **38 anciennes archives** sont préservées sans modification. Les README gardent leurs rubriques et leur ordre : Windows, Linux/Raspberry Pi, puis descriptif.
+
+# Historique — livraison 0.11.0 — hôtel et chambre 206
 
 Après le chapitre 5, le joueur retrouve l’hôtel d’en face : **grand hall de 6 400 × 4 200**, réception cinq étoiles, marbre, dorures, salons et escaliers arrondis. La réservation attribue la **chambre 206**, puis une panne du système de réservation survient. Le local informatique voisin reste au même niveau que le hall.
 
