@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.11.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.12.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -139,7 +139,7 @@ réparé. L’ascenseur reste interactif pour changer de chapitre.
 Pause > Bilan du chapitre permet de consulter le bilan d’un chapitre déjà terminé.
 
 Chaque mission rapporte 50 points à sa première réussite seulement :
-150 pour chacun des quatre premiers chapitres, 50 pour le cinquième ; 650 au maximum par profil. Chaque bilan conserve les
+150 pour chacun des quatre premiers chapitres, 50 pour le cinquième ; 650 pour l’enquête. Chaque bilan conserve les
 nouveaux gains cumulés de la partie et les sépare du solde total du profil.
 Rejouer ne redonne pas ces récompenses ; l’enquête reste gratuite.
 Les activités sont fictives, hors ligne : aucun câblage secteur, terminal,
@@ -157,8 +157,9 @@ ces emplacements ouvrent seulement une page « jeu en préparation ».
 Les ouvrir ne rapporte aucun point. Les cartes de l’accueil montrent les
 jeux achetés ; les profils affichent aussi leur nombre de jeux acquis.
 Quatre premières réussites permettent un achat à 200 points sans autre
-dépense ; les treize réussites donnent 650 points. Trois achats à 200 points
-laissent 0 point et un quatrième achat est refusé. Les autres achats
+dépense ; les treize réussites donnent 650 points et les deux objectifs du
+matin ajoutent 100 points. Trois achats à 200 points laissent 150 points
+et un quatrième achat est refusé. Les autres achats
 attendent de futurs défis ou un solde déjà présent dans un ancien profil.
 Rejouer ne permet pas de récupérer de nouveaux points.
 Boutique > Mes achats retrouve les acquisitions du joueur actif.
@@ -170,8 +171,9 @@ laisse points et inventaire inchangés. Chaque profil a ses achats et son solde.
 Les cosmétiques gratuits restent gratuits. Aucun compte ni paiement réel.
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
-Version 0.11.0 : chapitre 3 consacré à Python, HTML et Markdown, treize missions
-et 650 points au maximum par profil. Profil en haut à gauche, jeux à 200
+Version 0.12.0 : chapitre 3 consacré à Python, HTML et Markdown, treize missions
+et 650 points pour l’enquête, plus les deux objectifs du matin à 50 points
+chacun. Profil en haut à gauche, jeux à 200
 points chacun, repères masqués et tableau de missions sont conservés.
 Bibliothèque, boutique et profils, styles/couleurs et crédits sont conservés.
 Les images locales, le clavier à plusieurs pages et la barre translucide sont
@@ -196,7 +198,8 @@ page de préparation sans gain et changement de profil,
 les deux dispositions d’accueil, aperçu/Annuler/Appliquer des couleurs,
 Crédits, fermeture et relance avec points, achats et réglages conservés.
 Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480,
-en texte normal et grand texte. Vérifier aussi retrait/reconnexion USB.
+en texte normal et grand texte. Vérifier aussi retrait/reconnexion USB, le parcours du matin, les paires de fils,
+le sac, les deux récompenses uniques et le bus jusqu’au hall sudo hack.
 Windows 10/11 x86_64 avec pilote graphique compatible OpenGL 3.3 conseillé.
 L'application n'est pas signée par le projet. Aucun certificat n'est fourni.
 Ne désactivez pas l'antivirus pour la tester ; suivez les règles de votre PC.
@@ -218,7 +221,7 @@ Au chapitre 3, approchez le coin ressources puis interagissez (Espace / face bas
 Trois livres, chacun en trois leçons, expliquent Python, HTML et Markdown.
 Fermer le livre revient au choix ; Échap revient ensuite à la pièce.
 Le chapitre 4 s’ouvre après les neuf premières missions : pare-feu, conflit IPv4, masque /26.
-Chaque première réussite donne 50 points : 650 au maximum par profil.
+Chaque première réussite donne 50 points : 650 pour l’enquête.
 Ascenseur : Descendre d’étage, Monter d’étage, Retour au menu. Échap : rester.
 
 CHAPITRE 5 — DÉFI MYSTÈRE
@@ -229,7 +232,7 @@ un clavier virtuel pour les identifiants, le mot de passe et les commandes.
 Il s’agit d’un serveur fictif : aucune commande n’est exécutée sur votre appareil.
 Le portail de l’entrée ramène au palier. Continuer reprend la session enregistrée.
 Les quatre premiers chapitres gardent trois missions chacun ; le cinquième en a une.
-Chaque première réussite donne 50 points : 650 au maximum par profil.
+Chaque première réussite donne 50 points : 650 pour l’enquête.
 
 APRÈS LE CHAPITRE 5 — L’HÔTEL
 Revenez au palier du labyrinthe et descendez jusqu’au premier niveau.
@@ -244,4 +247,23 @@ assis. Après dix secondes, Dormir ou Continuer à attendre sont proposés à no
 Il reste assis jusqu’à choisir de dormir. Pause, menu et reprise conservent cet état.
 Carte en haut à gauche : flèche droite → pour afficher/masquer. Marcher : ZQSD
 ou joystick. Réservation fictive, sans paiement ; réparation simulée localement.
-Le parcours de l’hôtel n’ajoute pas de points aux 650 possibles dans l’enquête.
+La réservation, la panne du serveur et la nuit ne donnent pas de points.
+
+APRÈS LA NUIT — PETIT DÉJEUNER ET CTF SUDO HACK
+Au réveil, descendez les escaliers jusqu’au rez-de-chaussée : 50 points à la
+première réussite. Entrez dans la salle du petit déjeuner et asseyez-vous à
+table. Vous avez oublié votre café ; approchez la machine en panne et ouvrez
+son panneau de six fils. En haut : A, B, C ; en bas : 1, 2, 3. Reliez les
+couleurs identiques : A–3 rouge, B–2 vert, C–1 marron. La sélection brille ;
+un nouvel appui la retire. Les trois paires reliées réparent la machine.
+Prenez le café, puis retournez dans la chambre 206 récupérer le sac à dos
+avec l’ordinateur : 50 points à la première récupération. Redescendez, sortez
+de l’hôtel et interagissez avec l’arrêt de bus. Le trajet mène à un autre
+arrêt devant le bâtiment du CTF sudo hack. Entrez dans son hall ; les cinq
+défis seront ajoutés plus tard.
+
+L’enquête conserve 650 points ; ces deux objectifs du matin ajoutent 100
+points, soit 750 au maximum par profil. Le café et le bus ne rapportent pas
+de points. Rejouer ou Nouvelle partie ne réattribue jamais une récompense
+déjà reçue. La progression et le portefeuille sont enregistrés ensemble.
+La manipulation des fils est une simulation ; aucun appareil réel n’est utilisé.
