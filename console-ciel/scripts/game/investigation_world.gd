@@ -484,6 +484,13 @@ func _is_target_available(target: Node2D) -> bool:
 	if target.interaction_id == "maze_terminal": return not _pending_progress.get("completed_missions", []).has("maze")
 	if target.interaction_id == "hotel_luggage": return not bool(_pending_progress.get("hotel", {}).get("luggage_placed", false))
 	if target.interaction_id == "hotel_repair": return not bool(_pending_progress.get("hotel", {}).get("repaired", false))
+	var morning_stage := int(_pending_progress.get("hotel", {}).get("morning_stage", 0))
+	match target.interaction_id:
+		"hotel_breakfast_table": return morning_stage == 2
+		"hotel_coffee_machine": return morning_stage in [3, 4]
+		"hotel_backpack": return morning_stage == 5
+		"campus_bus": return morning_stage >= 6
+
 	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
 func _refresh_target_availability() -> void:
@@ -736,5 +743,5 @@ func _build_campus() -> void:
 			index += 1
 		_add_target("campus_leave","Porte · retour dans la cour",Vector2(3200,4050),100)
 	else:
-		_add_target("courtyard_first","Porte · premier bâtiment",Vector2(900,1060),100)
-		_add_target("courtyard_second","Porte · immeuble d’en face",Vector2(900,370),100)
+		for spec in CampusLayout.interactions(campus_zone):
+			_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
