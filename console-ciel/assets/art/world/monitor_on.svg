@@ -1,1 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="85" height="61" viewBox="0 0 85 61"><rect x="2" y="2" width="81" height="47" rx="5" fill="#637D78"/><rect x="6" y="5" width="73" height="36" rx="3" fill="#D5DFD5"/><rect x="9" y="8" width="67" height="30" rx="2" fill="#BBD7C9"/><rect x="38" y="46" width="8" height="7" rx="1" fill="#78908B"/><rect x="27" y="52" width="30" height="5" rx="3" fill="#B7C7BE"/><rect x="13" y="12" width="23" height="19" rx="2" fill="#E8EFDE"/><rect x="40" y="12" width="30" height="3" rx="1" fill="#77A496"/><rect x="40" y="20" width="22" height="2" rx="1" fill="#8BB3A1"/><rect x="40" y="27" width="27" height="2" rx="1" fill="#8BB3A1"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="85" height="61" viewBox="0 0 85 61">
+  <defs>
+    <linearGradient id="material0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6d8a84" />
+      <stop offset=".52" stop-color="#637D78" />
+      <stop offset="1" stop-color="#586f6b" />
+    </linearGradient>
+    <linearGradient id="material1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf5ea" />
+      <stop offset=".52" stop-color="#D5DFD5" />
+      <stop offset="1" stop-color="#bec6be" />
+    </linearGradient>
+    <linearGradient id="material2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ceeddd" />
+      <stop offset=".52" stop-color="#BBD7C9" />
+      <stop offset="1" stop-color="#a6bfb3" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="81" height="47" rx="5" fill="url(#material0)" />
+  <rect x="6" y="5" width="73" height="36" rx="3" fill="url(#material1)" />
+  <rect x="9" y="8" width="67" height="30" rx="2" fill="url(#material2)" />
+  <rect x="38" y="46" width="8" height="7" rx="1" fill="#78908B" />
+  <rect x="27" y="52" width="30" height="5" rx="3" fill="#B7C7BE" />
+  <rect x="13" y="12" width="23" height="19" rx="2" fill="#E8EFDE" />
+  <rect x="40" y="12" width="30" height="3" rx="1" fill="#77A496" />
+  <rect x="40" y="20" width="22" height="2" rx="1" fill="#8BB3A1" />
+  <rect x="40" y="27" width="27" height="2" rx="1" fill="#8BB3A1" />
+</svg>
