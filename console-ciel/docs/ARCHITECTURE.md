@@ -87,3 +87,7 @@ Le test des commandes présente nom, GUID, identifiant et état actif des périp
 La préparation de soutenance passe par `tools/run_demo.sh` et une racine de données distincte, suivie par un manifeste. Aucune commande de crédit ou outil de triche n'apparaît dans les menus exportés. [Procédure de démonstration](DEMONSTRATION.md).
 
 Le modèle reste local et scolaire, sans cryptographie anti-triche ni garantie contre toutes les coupures électriques. Le raccordement matériel final relève du mapping USB HID, de l'export ARM64 et des essais dans la session graphique du Raspberry Pi.
+
+## Présentation des épreuves de l’hôtel — 0.14.0
+
+`HotelDiagnosticPanel` compose le bandeau illustré, les cartes d’observations et les choix du diagnostic, puis émet ses signaux. HotelStoryUI conserve seulement les choix provisoires et l’indice consulté, appelle HotelService puis reconstruit la présentation depuis l’état sauvegardé. CoffeeWiringPanel conserve la sélection provisoire et dessine les fils ; la validation des paires reste dans le service. HotelLayout fournit les trois emprises supplémentaires ; InvestigationWorld leur applique le même corps physique et le même tri de profondeur qu’aux meubles existants. [Rendu et contrôles](HOTEL_VISUAL.md).
