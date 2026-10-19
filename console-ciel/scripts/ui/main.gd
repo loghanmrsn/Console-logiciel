@@ -305,6 +305,9 @@ func _update_header() -> void:
 	header_profile.tooltip_text=header_profile.text
 	header_points.text='%d pts' % AppState.profile.wallet.points if active else ''
 	header_points.tooltip_text='%d points disponibles' % AppState.profile.wallet.points if active else ''
+	if active and int(PenaltyService.state().debt) > 0:
+		header_points.text += ' · dette %d' % int(PenaltyService.state().debt)
+		header_points.tooltip_text += ' · %d points à rembourser' % int(PenaltyService.state().debt)
 
 func _responsive() -> void:
 	if shell==null: return
@@ -597,6 +600,9 @@ func _profile_overview() -> void:
 	row.add_child(identity)
 	_label(identity,AppState.profile.display_name,24)
 	_label(identity,'%d points · %d jeux acquis · %d / %d défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size(),RewardService.missions.size()],14,true)
+	var penalties := PenaltyService.state()
+	if int(penalties.count) > 0:
+		_label(identity,'%d pénalité(s) · %d points payés · %d points de dette'%[int(penalties.count),int(penalties.paid),int(penalties.debt)],14,true)
 	var edit=_button(row,'Personnaliser',func():_open_editor(AppState.profile.id),'profile_personalize')
 	edit.size_flags_horizontal=Control.SIZE_SHRINK_END
 	edit.custom_minimum_size.x=200
@@ -1361,6 +1367,7 @@ func _help() -> void:
 	_label(panel,'Flèches : navigation et déplacement\nEntrée : valider · Échap : retour\nP : pause de l’enquête · T : afficher / masquer les missions\nQ / E : catégories (hors saisie)\nZQSD : déplacement · Espace : interagir\nHôtel : → affiche / masque la carte ; D ou joystick pour marcher à droite.')
 	_label(panel,'À la manette',24)
 	_label(panel,'Croix ou joystick gauche : naviguer / se déplacer\nBouton de face bas : valider / interagir\nBouton de face droit : retour\nBouton de face haut (Triangle / Y / X) : afficher / masquer les missions\nStart / Menu : pause · LB / RB : catégories\nLes noms varient selon la manette. Le test montre les entrées réellement reçues.')
+	_label(panel,'Passage piéton : attendez le feu vert. Traverser au rouge sans choc coûte 200 points. Un choc ramène au trottoir de départ avec les missions conservées. Le reste à payer devient une dette, remboursée par les prochaines récompenses.',0,true)
 	_button(panel,'Test des commandes',func(): controls_origin='help'; _show_screen('controls'),'help_controls')
 	var credits=_panel(content)
 	_label(credits,'Crédits & licences',24)
