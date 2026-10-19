@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.14.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.15.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_hotel_visuel_0.14.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.14.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.15.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -60,7 +60,9 @@ Entre les deux bâtiments, empruntez le **passage piéton** : attendez le **feu 
 
 Les épreuves de l’hôtel bénéficient de décors plus détaillés, dans les mêmes tons doux : baies de serveurs, onduleur, chariot de maintenance, buffet et machine à café. Le diagnostic regroupe les quatre indices en cartes, et le câblage présente des connecteurs et des fils plus lisibles. Les nouveaux meubles possèdent leurs collisions ; les règles et les récompenses restent identiques.
 
-La **carte en haut à gauche** affiche votre position dans l’hôtel. **→** l’affiche ou la masque ; **ZQSD ou le joystick** permettent de marcher. Les passages et la progression de l’hôtel sont sauvegardés.
+Six **PNJ avec lesquels discuter** accompagnent l’enquête : une technicienne dans la première salle, un responsable au dernier étage, une personne au buffet, l’accueil devant l’hôtel, un agent au passage piéton et un agent au palier fermé du premier étage de l’hôtel. Approchez-vous et utilisez **Espace ou le bouton de face bas**. Les dialogues ont plusieurs pages, un portrait et des conseils adaptés à votre progression ; **Échap ou le bouton de face droit** permet de les fermer.
+
+La **carte en haut à gauche** affiche votre position et les PNJ dans l’hôtel. **→** l’affiche ou la masque ; **ZQSD ou le joystick** permettent de marcher. Les passages et la progression de l’hôtel sont sauvegardés.
 
 Un **tableau de missions à droite de l’écran** affiche les objectifs du chapitre. Il se déplie ou se replie avec **T** ou le **bouton de face haut** de la manette. Les repères des missions disparaissent après leur réussite ; le bilan reste accessible depuis le menu Pause.
 
@@ -119,7 +121,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.14.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.14.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.15.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.15.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
