@@ -73,3 +73,7 @@ La cour dispose maintenant d’un passage piéton et de feux. Attendez le vert ;
 ## Présentation des épreuves — 0.14.0
 
 Le local informatique et la salle du petit déjeuner gardent leurs tons ivoire, bois, vert doux et doré. Les serveurs, grilles de ventilation, voyants, clavier et écran du poste sont plus détaillés. Un onduleur, un chariot et un meuble à tasses complètent les salles avec leurs propres collisions. Le diagnostic regroupe les observations en cartes et conserve la consultation de chaque indice. Le câblage agrandi présente un cadre doré, des embouts et des courbes distinctes pour les trois fils. Après le café, la tasse quitte la machine et apparaît à votre table. Les conditions de réussite, sauvegardes, récompenses et repères masqués sont conservés. [Présentation et tests](HOTEL_VISUAL.md).
+
+## Personnages — 0.15.0
+
+Camille accueille le joueur devant la porte de l’hôtel. Lucie donne des conseils près du buffet, selon l’état du café. Alex rappelle que seul le palier du premier étage est ouvert et indique les deux escaliers. Nora présente l’enquête dans le premier bâtiment ; Idris attend au dernier étage, et Sam explique la traversée dans la cour. [Toutes les rencontres](PNJ.md).
