@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.13.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.14.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -171,7 +171,7 @@ laisse points et inventaire inchangés. Chaque profil a ses achats et son solde.
 Les cosmétiques gratuits restent gratuits. Aucun compte ni paiement réel.
 
 LIMITES ET TESTS À FAIRE SUR VOTRE PC
-Version 0.13.0 : chapitre 3 consacré à Python, HTML et Markdown, treize missions
+Version 0.14.0 : chapitre 3 consacré à Python, HTML et Markdown, treize missions
 et 650 points pour l’enquête, plus les deux objectifs du matin à 50 points
 chacun. Profil en haut à gauche, jeux à 200
 points chacun, repères masqués et tableau de missions sont conservés.
@@ -281,3 +281,14 @@ Les points disponibles paient la pénalité ; le reste devient une dette
 visible en haut de l’écran et dans le profil. Les récompenses suivantes
 remboursent la dette avant d’ajouter des points. Nouvelle partie conserve
 la dette et les pénalités. Le total de 750 points est avant ces déductions.
+
+ÉPREUVES DE L’HÔTEL — 0.14.0
+Les deux épreuves existantes gardent leur direction artistique. Les baies
+de serveurs, le poste de contrôle, le buffet et la machine à café sont
+plus détaillés. Un onduleur, un chariot et un meuble à tasses sont solides.
+Le diagnostic présente quatre cartes d’indices, un suivi des observations
+et trois parties : examiner, diagnostiquer, intervenir. Cliquer sur un
+indice déjà examiné permet de relire son résultat. Le câblage conserve
+les six boutons, la sélection réversible et les mêmes paires de couleurs,
+avec un cadre doré, des connecteurs et des fils plus lisibles.
+La progression, les points, les pénalités et les sauvegardes sont conservés.
