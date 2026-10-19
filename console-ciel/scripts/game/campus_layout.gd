@@ -1,4 +1,5 @@
 extends RefCounted
+const Road = preload("res://scripts/game/road_layout.gd")
 ## Shared courtyard geometry and interactions for the hotel and bus route.
 const BUILDING_SIZE := Vector2(6400, 4200)
 const COURTYARD_SIZE := Vector2(1800, 1300)
@@ -25,7 +26,10 @@ static func walls(zone: String) -> Array[Rect2]:
 	var size := extent(zone)
 	var result: Array[Rect2] = [Rect2(40,40,size.x-80,24), Rect2(40,size.y-64,size.x-80,24), Rect2(40,64,24,size.y-128), Rect2(size.x-64,64,24,size.y-128)]
 	if zone == "courtyard":
-		result.append_array([Rect2(100,80,1600,250), Rect2(100,1090,1600,160), Rect2(190,450,330,400), Rect2(1280,450,330,400)])
+		result.append_array([Rect2(100,80,1600,250), Rect2(100,1090,1600,160)])
+		result.append_array(Road.gardens())
+		result.append_array(Road.barriers())
+		result.append_array(Road.furniture())
 	else:
 		for room in rooms():
 			# Every room opens onto a continuous network of broad galleries.
