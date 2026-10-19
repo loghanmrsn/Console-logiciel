@@ -97,3 +97,11 @@ Le modèle reste local et scolaire, sans cryptographie anti-triche ni garantie c
 `NpcCatalog` regroupe les six emplacements, leurs approches libres et leurs dialogues contextuels. Il lit une copie de la progression, sans appeler les services de sauvegarde ou de récompenses. `InvestigationWorld` construit les pieds solides et le modèle `NpcVisual` sous le même parent trié que le joueur. Le modèle est dessiné une fois avec des primitives dans la palette existante, et partagé avec le portrait de la discussion.
 
 `DemoGame` route les identifiants `npc_` avant les épreuves et refuse ceux d’un autre lieu. Le composant natif `NpcDialoguePanel` présente le nom, le rôle et les pages ; ses signaux reprennent le focus, le défilement et la fermeture des autres fenêtres. Le verrou de dialogue suspend le joueur et la circulation. La carte utilise le même catalogue pour ses repères. Aucun champ de sauvegarde, nouvelle mission ou ressource externe n’est ajouté. [Emplacements et recette](PNJ.md).
+
+## PNJ et fluidité — 0.16.0
+
+`NpcVisual` dessine des couches de vêtements, six coiffures et des visages plus détaillés. Le modèle est partagé avec les portraits rapprochés ; seul un bref geste d’attention utilise un tween, sans boucle d’animation permanente. Le regard est quantifié pour éviter de redessiner à chaque petit déplacement. `NpcSpeechMarker` hérite du repère spatial commun et fait apparaître le nom depuis une bulle discrète.
+
+La portée et le score d’un PNJ sont calculés depuis ses pieds. Le rayon de visibilité exclut uniquement son propre corps, ce qui permet de parler depuis plusieurs côtés tout en gardant les murs et le mobilier opaques. Les emprises physiques, les points de reprise et les missions ne changent pas.
+
+`NpcDialoguePanel` garde un en-tête et une rangée d’actions fixes. Seul le texte possède une zone de défilement native ; sa hauteur est mesurée depuis la plus longue page, puis limitée à la place disponible. Les pages changent sans reconstruire la fenêtre. Espace avance le texte, les boutons gardent leur navigation et une fermeture directe est disponible. Les fondus sont courts, sans bloquer la pagination, et respectent la réduction des animations. Une fermeture possède un numéro de transition : une déconnexion de manette l’annule et conserve le panneau, la page et les commandes à la reprise. [Commandes et recette](PNJ.md).
