@@ -19,6 +19,8 @@ var terminal_panel: VBoxContainer
 const HotelStory = preload("res://scripts/game/hotel_story_ui.gd")
 const NpcCatalog = preload("res://scripts/game/npc_catalog.gd")
 const NpcDialogue = preload("res://scripts/ui/npc_dialogue_panel.gd")
+var _npc_closing := false
+var _npc_close_serial := 0
 var hotel_story: Control
 
 signal menu_requested
@@ -405,6 +407,11 @@ func _input(event: InputEvent) -> void:
 		if event.is_action('ui_accept') or event.is_action('game_interact') or event.is_action('ui_cancel') or event.is_action('pause'):
 			get_viewport().set_input_as_handled()
 		return
+	if overlay_kind == "npc" and event is InputEventKey and event.is_action_pressed("game_interact"):
+		var dialogue := modal_content.get_node_or_null("npc_dialogue_panel")
+		if is_instance_valid(dialogue) and not _npc_closing: dialogue.advance()
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed('pause'):
 		get_viewport().set_input_as_handled()
 		if overlay_kind == 'pause': resume()
@@ -558,6 +565,8 @@ func resume() -> void:
 	if overlay_kind == 'pause': _close_overlay()
 
 func controller_lost(message: String) -> void:
+	_npc_close_serial += 1
+	_npc_closing = false
 	_controller_message = message if not message.is_empty() else 'La manette active a été déconnectée. Le clavier reste utilisable. Reprenez explicitement lorsque vous êtes prêt.'
 	_controller_waiting = true
 	paused = true
@@ -663,7 +672,8 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'npc': _close_overlay()
+		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door': _close_overlay()
+		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
 
@@ -752,12 +762,28 @@ func _show_npc(id: String) -> void:
 	_open_overlay("npc")
 	var panel := NpcDialogue.new()
 	panel.configure(character, NpcCatalog.pages(id, AppState.profile.get("progress", {})))
-	panel.close_requested.connect(_close_overlay)
+	panel.close_requested.connect(_close_npc_dialogue)
 	panel.navigation_changed.connect(func():
-		_fit_modal.call_deferred()
+		_pending_focus_key = "npc_next"
 		_wire_modal())
 	modal_content.add_child(panel)
+	_pending_focus_key = "npc_next"
 	_wire_modal()
+
+func _close_npc_dialogue() -> void:
+	if overlay_kind != "npc" or _npc_closing: return
+	var panel := modal_content.get_node_or_null("npc_dialogue_panel")
+	if not is_instance_valid(panel): return
+	_npc_closing = true
+	_npc_close_serial += 1
+	var serial := _npc_close_serial
+	panel.fade_out()
+	if not SettingsService.current.get("reduce_motion", false):
+		await get_tree().create_timer(NpcDialogue.CLOSE_SECONDS).timeout
+	if serial != _npc_close_serial: return
+	if is_inside_tree() and overlay_kind == "npc" and not _controller_waiting:
+		_close_overlay()
+	else: _npc_closing = false
 
 func _show_dialog(title: String, text: String, accepted: Callable) -> void:
 	_open_overlay('dialog')
@@ -767,6 +793,8 @@ func _show_dialog(title: String, text: String, accepted: Callable) -> void:
 	_wire_modal()
 
 func _open_overlay(kind: String) -> void:
+	_npc_close_serial += 1
+	_npc_closing = false
 	if overlay_kind.is_empty():
 		_original_focus = get_viewport().gui_get_focus_owner()
 		_disable_focus(get_tree().root)
@@ -804,6 +832,8 @@ func _disable_focus(node: Node) -> void:
 	for child in node.get_children(): _disable_focus(child)
 
 func _close_overlay() -> void:
+	_npc_close_serial += 1
+	_npc_closing = false
 	_modal_serial += 1
 	for child in modal_content.get_children():
 		modal_content.remove_child(child)
