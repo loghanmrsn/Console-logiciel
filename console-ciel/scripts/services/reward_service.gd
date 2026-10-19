@@ -55,11 +55,12 @@ func _complete_validated_mission(id: String, authorization_token: String) -> Dic
 	if id in profile.progress.completed_missions:
 		return SaveService._ok({"mission_id": id, "reward": 0, "already_completed": true})
 	var reward := 0
+	var settlement := {"debt_repaid": 0, "credited_points": 0}
 	if id not in profile.rewarded_missions:
 		reward = int(found.reward)
 		if int(profile.wallet.points) > SaveService.MAX_POINTS - reward:
 			return SaveService._fail("Le portefeuille a atteint sa limite.")
-		profile.wallet.points = int(profile.wallet.points) + reward
+		settlement = PenaltyService.credit_reward(profile, reward)
 		profile.rewarded_missions.append(id)
 	profile.progress = authorized.data.progress.duplicate(true)
 	profile.progress.completed_missions.append(id)
@@ -71,4 +72,4 @@ func _complete_validated_mission(id: String, authorization_token: String) -> Dic
 	if not saved.ok:
 		return saved
 	AppState.commit_profile(saved.data)
-	return SaveService._ok({"mission_id": id, "reward": reward, "already_completed": false})
+	return SaveService._ok({"mission_id": id, "reward": reward, "already_completed": false, "debt_repaid": settlement.debt_repaid, "credited_points": settlement.credited_points})
