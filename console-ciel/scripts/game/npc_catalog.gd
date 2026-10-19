@@ -5,37 +5,37 @@ const CHARACTERS := [
 		"id": "npc_workshop", "zone": "room_01", "name": "Nora",
 		"role": "Technicienne CIEL",
 		"at": Vector2(202, 300), "approach": Vector2(202, 340),
-		"coat": "749b90", "skin": "dfbca0", "hair": "665248", "accessory": "badge"
+		"coat": "749b90", "skin": "dfbca0", "hair": "665248", "accessory": "badge", "hairstyle": "bob"
 	},
 	{
 		"id": "npc_top_floor", "zone": "room_05", "name": "Idris",
 		"role": "Responsable de l’atelier",
 		"at": Vector2(700, 275), "approach": Vector2(700, 315),
-		"coat": "728ca2", "skin": "bd8b6c", "hair": "4f4643", "accessory": "glasses"
+		"coat": "728ca2", "skin": "bd8b6c", "hair": "4f4643", "accessory": "glasses", "hairstyle": "curls"
 	},
 	{
 		"id": "npc_buffet", "zone": "hotel_breakfast", "name": "Lucie",
 		"role": "Équipe du petit déjeuner",
 		"at": Vector2(885, 330), "approach": Vector2(885, 375),
-		"coat": "aa9675", "skin": "ebcbb1", "hair": "8b6c51", "accessory": "apron"
+		"coat": "aa9675", "skin": "ebcbb1", "hair": "8b6c51", "accessory": "apron", "hairstyle": "bun"
 	},
 	{
 		"id": "npc_hotel_door", "zone": "courtyard", "name": "Camille",
 		"role": "Accueil de l’Hôtel CIEL",
 		"at": Vector2(1130, 412), "approach": Vector2(1130, 458),
-		"coat": "798d83", "skin": "c89e82", "hair": "554b43", "accessory": "tie"
+		"coat": "798d83", "skin": "c89e82", "hair": "554b43", "accessory": "tie", "hairstyle": "side_part"
 	},
 	{
 		"id": "npc_crossing", "zone": "courtyard", "name": "Sam",
 		"role": "Agent de circulation",
 		"at": Vector2(654, 963), "approach": Vector2(654, 1008),
-		"coat": "b7ab77", "skin": "d3ae8c", "hair": "645447", "accessory": "vest"
+		"coat": "b7ab77", "skin": "d3ae8c", "hair": "645447", "accessory": "vest", "hairstyle": "cap"
 	},
 	{
 		"id": "npc_closed_floor", "zone": "hotel_stairs_1", "name": "Alex",
 		"role": "Agent d’étage",
 		"at": Vector2(775, 780), "approach": Vector2(775, 825),
-		"coat": "92839d", "skin": "d6b296", "hair": "5b4b42", "accessory": "badge"
+		"coat": "92839d", "skin": "d6b296", "hair": "5b4b42", "accessory": "badge", "hairstyle": "short"
 	}
 ]
 
