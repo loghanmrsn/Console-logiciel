@@ -15,6 +15,8 @@ const CampusVisual = preload("res://scripts/game/campus_visual.gd")
 const HotelLayout = preload("res://scripts/game/hotel_layout.gd")
 const HotelVisual = preload("res://scripts/game/hotel_visual.gd")
 const RoadTraffic = preload("res://scripts/game/road_traffic.gd")
+const NpcCatalog = preload("res://scripts/game/npc_catalog.gd")
+const NpcVisual = preload("res://scripts/game/npc_visual.gd")
 signal traffic_notice(message: String)
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
@@ -189,6 +191,7 @@ func _build_room(chapter: int) -> void:
 			_build_lab_room()
 		else:
 			_build_fifth_hub()
+	_build_characters()
 	player = PlayerScript.new()
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
@@ -201,6 +204,21 @@ func _build_room(chapter: int) -> void:
 	_restored_once = false
 	_was_repaired = false
 	target_changed.emit("", "")
+
+func _build_characters() -> void:
+	for spec in NpcCatalog.for_zone(room_id):
+		# A small foot collider leaves room to pass. Art shares the body's depth.
+		var footprint := Rect2(spec.at - Vector2(12, 16), Vector2(24, 16))
+		var body := _add_obstacle(footprint, str(spec.id), false)
+		var visual := NpcVisual.new()
+		visual.name = "CharacterArt"
+		visual.configure(spec)
+		visual.scale = Vector2(.78, .78)
+		body.add_child(visual)
+		_add_target(str(spec.id), "Parler à %s · %s" % [spec.name, spec.role], spec.approach, 68)
+		var target := get_interactable(str(spec.id))
+		target.dialogue_marker = true
+		target.marker_offset = spec.at - spec.approach + Vector2(16, -58)
 
 func _build_workshop() -> void:
 	_add_obstacle(Rect2(619, 50, 20, 226), "OfficeWallNorth")
