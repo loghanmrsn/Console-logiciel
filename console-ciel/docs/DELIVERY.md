@@ -1,4 +1,24 @@
-# Livraison 0.13.0 — objets, collisions et passage piéton
+# Livraison 0.14.0 — épreuves de l’hôtel enrichies
+
+Les **deux épreuves actuelles du deuxième bâtiment** gardent leur direction artistique : ivoire, bois, vert doux, doré et formes arrondies. Le local informatique présente des baies détaillées, des grilles, des rails, un poste de contrôle et des voyants liés à l’état sauvegardé. Un onduleur et un chariot de maintenance complètent la pièce. Le petit déjeuner gagne des rideaux, du linge de table, des verres, des couverts et des plateaux plus détaillés. Un meuble à tasses complète la machine à café ; les **trois nouveaux meubles sont solides**, triés avec le personnage et représentés sur la carte.
+
+Le diagnostic possède un **composant de présentation dédié**, avec une illustration du serveur, le suivi des quatre observations, leurs cartes et les parties diagnostic/intervention. Réexaminer une carte affiche son propre détail. Le câblage garde les six boutons, les noms des couleurs et les mêmes paires ; il présente un cadre doré, des vis, des embouts et des câbles aux courbes distinctes. La tasse quitte la machine après la prise du café et apparaît à la table. Les repères restent masqués après réussite. [Présentation détaillée](HOTEL_VISUAL.md).
+
+Les règles du séjour, les conditions de réussite, les points, les achats et les pénalités sont conservés. Les services possèdent toujours la validation et les écritures ; les nouveaux composants présentent leurs résultats. Les sauvegardes antérieures restent compatibles et les cinq futures épreuves du CTF attendent les consignes de l’utilisateur.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_hotel_visuel_0.14.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.14.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.14.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.14.0.zip).
+
+Recette finalisée le **19 octobre 2026** : **10 080 assertions dans 27 suites source**, puis **7 465 assertions dans 19 suites sur chacun des deux packs exportés**, zéro échec. Le contrôle physique parcourt les **quinze lieux**, avec **706 contrôles**, **386 corps solides** et **35 841 segments de déplacement**. La collision des trois nouveaux meubles est aussi vérifiée avec la forme physique du personnage dans la scène. Les essais couvrent le séjour jusqu’au café, les cartes consultées à nouveau, les choix erronés, l’écriture refusée, la reprise des fils, les contrôles natifs et les anciens chapitres. [Résumé détaillé](../tests/hotel_visual_0.14.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **299 contrôles et 13 captures**, dont les vues en **800 × 480 avec grand texte** et en **thème nuit**. Exemples : [local informatique](screenshots/hotel_visual_0.14.0/hotel_visuel_local_informatique_challenge.png), [cartes du diagnostic](screenshots/hotel_visual_0.14.0/hotel_visuel_indices_challenge.png), [machine et tasses](screenshots/hotel_visual_0.14.0/hotel_visuel_machine_et_tasses_challenge.png), [câblage terminé](screenshots/hotel_visual_0.14.0/morning_cafe_machine_reparee_challenge.png) et [câblage compact](screenshots/hotel_visual_0.14.0/morning_cafe_compact_challenge.png).
+
+L’audit statique vérifie **1120 fichiers**, **106 UID**, **262 références** et **305 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **275 contrôles réussis**.
+
+Les deux exports contiennent **249 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles d’export officiels sont contrôlés par SHA-512 ; les CRC et SHA-256 des quatre archives sont vérifiés. Les **46 anciennes archives** et la présentation des README sont conservées.
+
+Le rendu et les packs sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Cela ne constitue pas un lancement natif des exécutables Windows ou ARM64 : PC Windows, Pi 4, GPU matériel, son et manette physique restent à essayer sur leurs appareils.
+
+# Historique — livraison 0.13.0 — objets, collisions et passage piéton
 
 Les objets ont été revus dans les **quinze lieux existants** : cinq étages, labyrinthe, cour et huit zones de l’hôtel et du CTF. Les modèles conservent le style du projet, avec des matériaux et des détails affinés. Les meubles de l’hôtel, les chaises, les bancs et le panneau du bus se placent devant ou derrière le personnage selon sa position. Les colonnes et la fontaine utilisent des formes rondes ; les plantes bloquent au niveau du pot. La commande de porte et le battant ouvert du premier étage sont solides. Les écrans du laboratoire et le portable suivent leur bureau.
 
