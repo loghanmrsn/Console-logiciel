@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="85" height="61" viewBox="0 0 85 61"><rect x="3" y="1" width="79" height="45" rx="5" fill="#627f79"/><rect x="7" y="5" width="71" height="36" rx="3" fill="#d1dfd8"/><rect x="13" y="11" width="28" height="5" rx="2" fill="#8cafa0"/><path d="M14 24h47M14 31h36" stroke="#8caaa0" stroke-width="3" stroke-linecap="round"/><circle cx="67" cy="29" r="4" fill="#cda87e"/><rect x="36" y="46" width="12" height="8" fill="#8da89a"/><rect x="27" y="53" width="31" height="5" rx="2" fill="#b6c8b8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="85" height="61" viewBox="0 0 85 61">
+  <defs>
+    <linearGradient id="material0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c8c85" />
+      <stop offset=".52" stop-color="#627f79" />
+      <stop offset="1" stop-color="#57716c" />
+    </linearGradient>
+    <linearGradient id="material1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6f5ee" />
+      <stop offset=".52" stop-color="#d1dfd8" />
+      <stop offset="1" stop-color="#bac6c0" />
+    </linearGradient>
+  </defs>
+  <rect x="3" y="1" width="79" height="45" rx="5" fill="url(#material0)" />
+  <rect x="7" y="5" width="71" height="36" rx="3" fill="url(#material1)" />
+  <rect x="13" y="11" width="28" height="5" rx="2" fill="#8cafa0" />
+  <path d="M14 24h47M14 31h36" stroke="#8caaa0" stroke-width="3" stroke-linecap="round" />
+  <circle cx="67" cy="29" r="4" fill="#cda87e" />
+  <rect x="36" y="46" width="12" height="8" fill="#8da89a" />
+  <rect x="27" y="53" width="31" height="5" rx="2" fill="#b6c8b8" />
+</svg>
