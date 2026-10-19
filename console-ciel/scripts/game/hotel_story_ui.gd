@@ -631,7 +631,7 @@ func _board_bus() -> void:
 
 func _notify_reward(result: Dictionary, message: String) -> void:
 	var reward := int(result.get("reward", 0))
-	game.notification_requested.emit("%s · +%d points%s" % [message, reward, " (récompense déjà obtenue)" if reward == 0 else ""])
+	game.notification_requested.emit(PenaltyService.reward_message(message, result) + (" (récompense déjà obtenue)" if reward == 0 else ""))
 
 func _show_error(title: String, result: Dictionary, retry: Callable) -> void:
 	game._open_overlay("hotel_error")
