@@ -17,6 +17,8 @@ var lesson_library: VBoxContainer
 const MazeTerminal = preload("res://scripts/game/terminal_panel.gd")
 var terminal_panel: VBoxContainer
 const HotelStory = preload("res://scripts/game/hotel_story_ui.gd")
+const NpcCatalog = preload("res://scripts/game/npc_catalog.gd")
+const NpcDialogue = preload("res://scripts/ui/npc_dialogue_panel.gd")
 var hotel_story: Control
 
 signal menu_requested
@@ -418,6 +420,9 @@ func _interact() -> void:
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if id.begins_with("npc_"):
+		_show_npc(id)
+		return
 	if is_instance_valid(hotel_story) and hotel_story.handle_target(id): return
 	if id in ["building_exit", "courtyard_first", "courtyard_second", "campus_leave"]:
 		_show_zone_door(id)
@@ -658,7 +663,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door': _close_overlay()
+		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'npc': _close_overlay()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
 
@@ -740,6 +745,19 @@ func _replay() -> void:
 	world.restore_progress(AppState.profile.progress)
 	world.restore_checkpoint()
 	_close_overlay()
+
+func _show_npc(id: String) -> void:
+	var character := NpcCatalog.find(id)
+	if character.is_empty() or str(character.zone) != str(world.room_id): return
+	_open_overlay("npc")
+	var panel := NpcDialogue.new()
+	panel.configure(character, NpcCatalog.pages(id, AppState.profile.get("progress", {})))
+	panel.close_requested.connect(_close_overlay)
+	panel.navigation_changed.connect(func():
+		_fit_modal.call_deferred()
+		_wire_modal())
+	modal_content.add_child(panel)
+	_wire_modal()
 
 func _show_dialog(title: String, text: String, accepted: Callable) -> void:
 	_open_overlay('dialog')
