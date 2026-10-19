@@ -101,8 +101,18 @@ static func walls(zone: String) -> Array[Rect2]:
 
 static func furniture(zone: String) -> Array[Rect2]:
 	var result: Array[Rect2] = []
-	for spec in furniture_specs(zone): result.append(spec.rect)
+	for spec in furniture_specs(zone):
+		result.append(footprint(spec))
 	return result
+
+## Ground contact is distinct from leaves, lamps and shadows above the floor.
+static func footprint(spec: Dictionary) -> Rect2:
+	var rect: Rect2 = spec.rect
+	if spec.kind == "planter": return Rect2(rect.get_center() - Vector2(24, 6), Vector2(48, 42))
+	return rect
+
+static func chair_rect(table: Rect2) -> Rect2:
+	return Rect2(table.get_center().x - 36, table.end.y + 22, 72, 28)
 
 static func furniture_specs(zone: String) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
@@ -137,6 +147,8 @@ static func furniture_specs(zone: String) -> Array[Dictionary]:
 			result.append_array([_prop("stairs_down", Rect2(350, 700, 240, 250)), _prop("planter", Rect2(2110, 910, 90, 90)), _prop("sofa", Rect2(1850, 1090, 380, 100))])
 		"hotel_room_206":
 			result.append_array([_prop("bed", Rect2(730, 240, 260, 260)), _prop("nightstand", Rect2(660, 265, 58, 75)), _prop("nightstand", Rect2(1002, 265, 58, 75)), _prop("luggage", Rect2(200, 600, 210, 80)), _prop("desk", Rect2(160, 180, 260, 100)), _prop("armchair", Rect2(260, 360, 150, 140)), _prop("storage", Rect2(92, 770, 250, 70)), _prop("planter", Rect2(1020, 750, 80, 80))])
+	for spec in result.duplicate():
+		if spec.kind == "breakfast_table": result.append(_prop("breakfast_chair", chair_rect(spec.rect)))
 	return result
 
 static func _prop(kind: String, rect: Rect2) -> Dictionary:
