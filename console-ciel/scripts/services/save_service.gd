@@ -413,6 +413,9 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return _fail("Le nom de l'image de profil locale est invalide.")
 	if not document.get("wallet") is Dictionary or not _is_integer(document.wallet.get("points"), 0, MAX_POINTS):
 		return _fail("Le solde du profil est invalide.")
+	# This optional extension leaves untouched older profiles unchanged.
+	if document.has("penalties") and not PenaltyService.validate_record(document.penalties):
+		return _fail("Le compteur ou la dette de pénalités est invalide.")
 	if not document.get("owned_items") is Array or not document.get("equipped") is Dictionary:
 		return _fail("L'inventaire ou l'équipement du profil est invalide.")
 	var owned: Array = []
@@ -617,6 +620,8 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	progress.hotel.morning_stage = int(progress.hotel.morning_stage)
 	document.schema_version = SCHEMA_VERSION
 	document.wallet.points = int(document.wallet.points)
+	if document.has("penalties"):
+		for field in ["version", "count", "debt", "paid"]: document.penalties[field] = int(document.penalties[field])
 	document.progress.investigation_version = INVESTIGATION_VERSION
 	document.progress.run_reward_points = int(document.progress.run_reward_points)
 	var response := _ok(document)
