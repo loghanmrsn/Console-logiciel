@@ -1,10 +1,10 @@
-# Console CIEL 0.14.0 — Windows x86_64
+# Console CIEL 0.15.0 — Windows x86_64
 
-[Télécharger Windows 0.14.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_hotel_visuel_0.14.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.15.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.14.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.14.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-hotel-visuel-0.14.0/Console_CIEL.exe`.
+Le [projet complet Windows 0.15.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.15.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-pnj-0.15.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
@@ -14,7 +14,7 @@ Les treize missions de l’enquête rapportent **50 points à leur première ré
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.14.0](Console_CIEL_Windows_x86_64_hotel_visuel_0.14.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.14.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.15.0](Console_CIEL_Windows_x86_64_pnj_0.15.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.15.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
@@ -72,4 +72,6 @@ La version 0.9.0 ajoute les trois livres animés du coin ressources (chapitre 3)
 
 Les modèles et collisions revus dans la version 0.13.0 sont conservés. Le personnage passe devant ou derrière les objets selon sa position. Dans la cour, un passage piéton, des feux et des voitures lentes encadrent la traversée : départ au vert sans frais ; traversée achevée au rouge sans choc, **200 points** ; collision, retour au trottoir de départ en gardant la progression. Les points disponibles paient la pénalité, puis une dette conserve le reste et se rembourse sur les prochains gains. [Règles et vérifications](../docs/TRAFFIC.md).
 
-La version **0.14.0** enrichit les deux épreuves existantes de l’hôtel : local informatique, cartes du diagnostic, buffet, machine à café et panneau de câblage. Les trois nouveaux meubles ont leur collision. La direction artistique, la progression, les points et les pénalités restent ceux du projet. [Détails du rendu et des contrôles](../docs/HOTEL_VISUAL.md).
+La version **0.14.0** a enrichi les deux épreuves existantes de l’hôtel : local informatique, cartes du diagnostic, buffet, machine à café et panneau de câblage. Les trois nouveaux meubles ont leur collision. La direction artistique, la progression, les points et les pénalités restent ceux du projet. [Détails du rendu et des contrôles](../docs/HOTEL_VISUAL.md).
+
+La version **0.15.0** ajoute six personnages solides et des discussions à plusieurs pages : première salle, dernier étage, buffet, entrée de l’hôtel, passage piéton et palier fermé du premier étage de l’hôtel. Les explications suivent la progression sans modifier les missions ni les points. **Espace / face bas** ouvre la discussion ; **Échap / face droite** la ferme. [Rencontres et commandes](../docs/PNJ.md).
