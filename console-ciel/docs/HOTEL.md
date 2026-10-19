@@ -52,7 +52,7 @@ Le prochain objectif vous ramène à la **chambre 206**, au deuxième étage, po
 
 À l’extérieur, approchez l’arrêt de bus et interagissez pour prendre le bus. Vous arrivez à un autre arrêt, devant le bâtiment du CTF **sudo hack**. Entrez par sa porte pour découvrir son hall d’accueil.
 
-Ce hall termine le parcours disponible dans la version **0.13.0**. Les **cinq missions du CTF seront ajoutées plus tard** ; aucun défi ni terminal supplémentaire n’est encore proposé. Le trajet en bus et l’entrée du bâtiment ne rapportent pas de points.
+Ce hall termine le parcours disponible dans la version **0.14.0**. Les **cinq missions du CTF seront ajoutées plus tard** ; aucun défi ni terminal supplémentaire n’est encore proposé. Le trajet en bus et l’entrée du bâtiment ne rapportent pas de points.
 
 ## Récompenses du matin
 
@@ -69,3 +69,7 @@ Les interactions utilisent **Espace / bouton de face bas**. Les opérations sont
 ## Traverser entre les bâtiments
 
 La cour dispose maintenant d’un passage piéton et de feux. Attendez le vert ; les véhicules sont lents et s’arrêtent avant le passage. Une traversée commencée au rouge et terminée sans collision coûte 200 points. Un choc ramène au trottoir de départ, sans modifier l’histoire ni ajouter une pénalité. Le reste du trajet vers la réception, puis le bus après le séjour, est conservé. [Règles du passage et des pénalités](TRAFFIC.md).
+
+## Présentation des épreuves — 0.14.0
+
+Le local informatique et la salle du petit déjeuner gardent leurs tons ivoire, bois, vert doux et doré. Les serveurs, grilles de ventilation, voyants, clavier et écran du poste sont plus détaillés. Un onduleur, un chariot et un meuble à tasses complètent les salles avec leurs propres collisions. Le diagnostic regroupe les observations en cartes et conserve la consultation de chaque indice. Le câblage agrandi présente un cadre doré, des embouts et des courbes distinctes pour les trois fils. Après le café, la tasse quitte la machine et apparaît à votre table. Les conditions de réussite, sauvegardes, récompenses et repères masqués sont conservés. [Présentation et tests](HOTEL_VISUAL.md).
