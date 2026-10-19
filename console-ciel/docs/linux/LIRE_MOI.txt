@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.12.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.13.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -190,3 +190,17 @@ points, soit 750 au maximum par profil. Le café et le bus ne rapportent pas
 de points. Rejouer ou Nouvelle partie ne réattribue jamais une récompense
 déjà reçue. La progression et le portefeuille sont enregistrés ensemble.
 La manipulation des fils est une simulation ; aucun appareil réel n’est utilisé.
+
+OBJETS ET TRAVERSÉE — 0.13.0
+Les modèles, collisions et passages ont été revus dans chaque lieu existant.
+Le personnage se place devant ou derrière les meubles selon sa position.
+Dans la cour, les voitures roulent lentement. Attendre le feu piéton VERT
+pour traverser. Une entrée au vert reste protégée jusqu’au trottoir opposé.
+Traversée commencée au ROUGE et achevée sans choc : pénalité de 200 points.
+Demi-tour vers le même trottoir : aucune pénalité.
+Collision : retour au départ de cette traversée, sans perte de progression
+ni pénalité supplémentaire. La pause arrête la circulation et le feu.
+Les points disponibles paient la pénalité ; le reste devient une dette
+visible en haut de l’écran et dans le profil. Les récompenses suivantes
+remboursent la dette avant d’ajouter des points. Nouvelle partie conserve
+la dette et les pénalités. Le total de 750 points est avant ces déductions.
