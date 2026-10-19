@@ -14,6 +14,8 @@ const CampusLayout = preload("res://scripts/game/campus_layout.gd")
 const CampusVisual = preload("res://scripts/game/campus_visual.gd")
 const HotelLayout = preload("res://scripts/game/hotel_layout.gd")
 const HotelVisual = preload("res://scripts/game/hotel_visual.gd")
+const RoadTraffic = preload("res://scripts/game/road_traffic.gd")
+signal traffic_notice(message: String)
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
 const CHECKPOINTS := {
@@ -50,6 +52,8 @@ const DOOR_RECT := Rect2(619, 276, 20, 112)
 var player: CharacterBody2D
 var door_body: StaticBody2D
 var door_shape: CollisionShape2D
+var _open_door_body: StaticBody2D
+var _open_door_shape: CollisionShape2D
 var camera: Camera2D
 var target_id := ""
 var lighting_restored := false
@@ -60,6 +64,8 @@ var room_id := "room_01"
 var campus_zone := ""
 var campus_visual: Node2D
 var hotel_visual: Node2D
+var _hotel_props: Array[Node2D] = []
+var traffic: Node2D
 var _bed_pose := "standing"
 var maze_active := false
 var maze_visual: Node2D
@@ -144,9 +150,13 @@ func _build_room(chapter: int) -> void:
 	_markdown_sprite = null
 	_elevator_sprite = null
 	hotel_visual = null
+	traffic = null
+	_hotel_props.clear()
 	_bed_pose = "standing"
 	door_body = null
 	door_shape = null
+	_open_door_body = null
+	_open_door_shape = null
 	chapter_id = chapter
 	maze_active = chapter == 5 and str(_pending_progress.get("room_id", "")) == "maze_05"
 	campus_zone = str(_pending_progress.get("room_id", "")) if chapter == 0 else ""
@@ -184,6 +194,9 @@ func _build_room(chapter: int) -> void:
 	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
 	player.reserve_map_arrow = HotelLayout.is_zone(campus_zone)
+	if is_instance_valid(traffic):
+		traffic.player = player
+		traffic.reset_for_spawn(player.position)
 	player.controls_enabled = _controls_enabled
 	_restored_once = false
 	_was_repaired = false
@@ -195,7 +208,9 @@ func _build_workshop() -> void:
 	door_body = _add_obstacle(DOOR_RECT, "OfficeDoor", false)
 	door_shape = door_body.get_child(0)
 	_closed_door=_sprite(door_body,'door_closed',Rect2(616,276,28,120))
-	_open_door=_sprite(door_body,'door_open',Rect2(639,272,120,28))
+	_open_door_body = _add_obstacle(Rect2(639, 272, 120, 28), "OfficeDoorOpenLeaf", false)
+	_open_door_shape = _open_door_body.get_child(0)
+	_open_door=_sprite(_open_door_body,'door_open',Rect2(639,272,120,28))
 	for prop in Art.PROPS:
 		var body=_add_obstacle(prop[1],prop[0],false)
 		var visual=_sprite(body,prop[2],prop[3])
@@ -203,7 +218,8 @@ func _build_workshop() -> void:
 		if prop[0]=='ComputerDesk':
 			_monitor_sprite=_sprite(body,'monitor_off',Rect2(781,127,85,61))
 			_sprite(body,'tower',Rect2(879,145,36,68))
-	_reader_sprite=_sprite(_room_root,'reader_off',Rect2(568,289,30,49))
+	var control_body := _add_obstacle(Rect2(574, 308, 18, 20), "DoorControl", false)
+	_reader_sprite=_sprite(control_body,'reader_off',Rect2(568,289,30,49))
 	_light_sprite=_sprite(_room_root,'light',Rect2(274,61,172,28))
 	_note=_sprite(_room_root,'note',Rect2(447,194,70,48))
 	_add_target("building_exit", "Porte de sortie · cour", Vector2(150, 444), 65)
@@ -276,9 +292,8 @@ func _build_lab_room() -> void:
 		_lab_screens[ids[index]] = _sprite(desk, "network_terminal", Rect2(x - 64, 104, 126, 89))
 		var glyph := LabGlyph.new()
 		glyph.kind = index
-		glyph.position = Vector2(x, 138)
-		glyph.z_index = 6
-		_room_root.add_child(glyph)
+		glyph.position = Vector2(x, 138) - desk.position
+		desk.add_child(glyph)
 		_add_target(ids[index], ["Pare-feu · autoriser HTTPS", "Adresses IP · résoudre un conflit", "Masque réseau · découvrir /26"][index], Vector2(x, 260), 100)
 	var storage := _add_obstacle(Rect2(760,403,114,45), "LabStorage", false)
 	_sprite(storage, "cabinet", Rect2(751,384,132,79))
@@ -339,6 +354,9 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 func _refresh_art() -> void:
 	if is_instance_valid(hotel_visual):
 		hotel_visual.state = _pending_progress.get("hotel", {}).duplicate(true)
+		for visual in _hotel_props:
+			visual.state = hotel_visual.state
+			visual.queue_redraw()
 		set_bed_pose(str(hotel_visual.state.get("bed_state", "standing")))
 		hotel_visual.queue_redraw()
 		return
@@ -417,6 +435,7 @@ func _update_camera_position() -> void:
 
 func set_controls_enabled(enabled: bool) -> void:
 	_controls_enabled = enabled
+	if is_instance_valid(traffic): traffic.enabled = enabled
 	if is_instance_valid(player):
 		player.controls_enabled = enabled and not _hotel_seated()
 		if not enabled:
@@ -442,6 +461,7 @@ func restore_checkpoint() -> void:
 	if room_id == "hotel_room_206" and str(_pending_progress.get("hotel", {}).get("bed_state", "standing")) == "sitting":
 		player.position = HotelLayout.BED_SEAT
 	player.velocity = Vector2.ZERO
+	if is_instance_valid(traffic): traffic.reset_for_spawn(player.position)
 	_update_camera_position()
 	_update_target()
 
@@ -466,6 +486,8 @@ func restore_progress(progress: Dictionary) -> void:
 	if is_instance_valid(door_body):
 		door_body.collision_layer = 0 if door_open else 1
 		door_shape.set_deferred("disabled", door_open)
+		_open_door_body.collision_layer = 1 if door_open else 0
+		_open_door_shape.set_deferred("disabled", not door_open)
 	_refresh_art()
 	_refresh_target_availability()
 	if not _restored_once:
@@ -656,9 +678,8 @@ func _build_fifth_hub() -> void:
 	var desk := _add_obstacle(Rect2(430,202,140,63), "PortableDesk", false)
 	_sprite(desk, "desk", Rect2(414,177,172,112))
 	var laptop := LaptopArt.new()
-	laptop.position = Vector2(500,199)
-	laptop.z_index = 5
-	_room_root.add_child(laptop)
+	laptop.position = Vector2(500,199) - desk.position
+	desk.add_child(laptop)
 	_add_target("laptop", "Ordinateur portable", Vector2(500,278),98)
 	var elevator_body := _add_obstacle(Rect2(88,435,112,35),"Elevator",false)
 	_elevator_sprite = _sprite(elevator_body,"elevator_ready",Rect2(84,389,120,87))
@@ -703,8 +724,20 @@ func _build_hotel() -> void:
 	for rect in HotelLayout.walls(campus_zone):
 		_add_obstacle(rect, "HotelWall%d" % index)
 		index += 1
-	for rect in HotelLayout.furniture(campus_zone):
-		_add_obstacle(rect, "HotelFurniture%d" % index)
+	for spec in HotelLayout.furniture_specs(campus_zone):
+		var rect: Rect2 = HotelLayout.footprint(spec)
+		var body := _add_obstacle(rect, "HotelFurniture%d" % index, false)
+		if spec.kind in ["fountain", "column"]:
+			var circle := CircleShape2D.new()
+			circle.radius = rect.size.x * .5
+			body.get_child(0).shape = circle
+			body.get_child(0).position = Vector2(0, -rect.size.y * .5)
+		var visual := HotelVisual.new()
+		visual.zone = campus_zone
+		visual.furniture_only = spec
+		visual.furniture_anchor = body.position
+		body.add_child(visual)
+		_hotel_props.append(visual)
 		index += 1
 	for spec in HotelLayout.interactions(campus_zone):
 		_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
@@ -726,6 +759,9 @@ func set_bed_pose(pose: String) -> void:
 	if is_instance_valid(hotel_visual):
 		hotel_visual.bed_pose = _bed_pose
 		hotel_visual.queue_redraw()
+		for visual in _hotel_props:
+			visual.bed_pose = _bed_pose
+			visual.queue_redraw()
 	_update_camera_position()
 
 func _build_campus() -> void:
@@ -735,7 +771,15 @@ func _build_campus() -> void:
 	_room_root.move_child(campus_visual, 0)
 	var index := 0
 	for rect in CampusLayout.walls(campus_zone):
-		_add_obstacle(rect,"CampusWall%d" % index)
+		var street_prop := campus_zone == "courtyard" and rect in RoadTraffic.Layout.furniture()
+		var body := _add_obstacle(rect,"CampusWall%d" % index, not street_prop)
+		if street_prop:
+			for spec in RoadTraffic.Layout.furniture_specs():
+				if spec.rect != rect or spec.kind == "signal": continue
+				var visual := CampusVisual.new()
+				visual.furniture_only = spec
+				visual.furniture_anchor = body.position
+				body.add_child(visual)
 		index += 1
 	if campus_zone == "building_02":
 		for rect in CampusLayout.furniture():
@@ -743,5 +787,8 @@ func _build_campus() -> void:
 			index += 1
 		_add_target("campus_leave","Porte · retour dans la cour",Vector2(3200,4050),100)
 	else:
+		traffic = RoadTraffic.new()
+		_props.add_child(traffic)
+		traffic.notice.connect(func(message: String): traffic_notice.emit(message))
 		for spec in CampusLayout.interactions(campus_zone):
 			_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
