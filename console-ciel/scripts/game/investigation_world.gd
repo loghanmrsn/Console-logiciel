@@ -17,6 +17,7 @@ const HotelVisual = preload("res://scripts/game/hotel_visual.gd")
 const RoadTraffic = preload("res://scripts/game/road_traffic.gd")
 const NpcCatalog = preload("res://scripts/game/npc_catalog.gd")
 const NpcVisual = preload("res://scripts/game/npc_visual.gd")
+const NpcMarker = preload("res://scripts/game/npc_speech_marker.gd")
 signal traffic_notice(message: String)
 const WORLD_SIZE := Vector2(1000, 520)
 const MINIMUM_CAMERA_ZOOM := 0.70
@@ -79,6 +80,7 @@ var python_restored := false
 var html_restored := false
 var markdown_restored := false
 var _targets: Array[Node2D] = []
+var _characters: Dictionary = {}
 var _target: Node2D
 var _controls_enabled := true
 var _restored_once := false
@@ -133,6 +135,7 @@ func _build_room(chapter: int) -> void:
 		remove_child(_room_root)
 		_room_root.queue_free()
 	_targets.clear()
+	_characters.clear()
 	_lab_screens.clear()
 	_target = null
 	target_id = ""
@@ -215,10 +218,12 @@ func _build_characters() -> void:
 		visual.configure(spec)
 		visual.scale = Vector2(.78, .78)
 		body.add_child(visual)
+		_characters[str(spec.id)] = visual
 		_add_target(str(spec.id), "Parler à %s · %s" % [spec.name, spec.role], spec.approach, 68)
 		var target := get_interactable(str(spec.id))
 		target.dialogue_marker = true
-		target.marker_offset = spec.at - spec.approach + Vector2(16, -58)
+		target.speaker_name = str(spec.name)
+		target.marker_offset = spec.at - spec.approach + Vector2(14, -62)
 
 func _build_workshop() -> void:
 	_add_obstacle(Rect2(619, 50, 20, 226), "OfficeWallNorth")
@@ -418,7 +423,7 @@ func _refresh_art() -> void:
 	_was_repaired=computer_repaired
 
 func _add_target(id: String, label_text: String, at: Vector2, radius: float) -> void:
-	var target := InteractableScript.new()
+	var target := NpcMarker.new() if id.begins_with("npc_") else InteractableScript.new()
 	target.name = id.capitalize() + "Interaction"
 	target.interaction_id = id
 	target.label = label_text
@@ -579,19 +584,31 @@ func _physics_process(_delta: float) -> void:
 		_update_camera_position()
 		if _controls_enabled:
 			_update_target()
+		if _characters.has(target_id):
+			var visual: Node2D = _characters[target_id]
+			visual.look_toward(player.global_position - visual.global_position)
+
+func _interaction_position(target: Node2D) -> Vector2:
+	if _characters.has(target.interaction_id):
+		return _characters[target.interaction_id].global_position - Vector2(0, 8)
+	return target.global_position
 
 func _can_reach(target: Node2D, margin := 0.0) -> bool:
 	if not _is_target_available(target):
 		return false
-	if player.global_position.distance_to(target.global_position) > target.interaction_radius + margin:
+	var at := _interaction_position(target)
+	if player.global_position.distance_to(at) > target.interaction_radius + margin:
 		return false
 	# In particular, an unopened door prevents interacting with the computer
 	# through the partition. Other furniture also blocks the line of sight.
-	var query := PhysicsRayQueryParameters2D.create(player.global_position, target.global_position, 1, [player.get_rid()])
+	var excluded: Array[RID] = [player.get_rid()]
+	if _characters.has(target.interaction_id):
+		excluded.append(_characters[target.interaction_id].get_parent().get_rid())
+	var query := PhysicsRayQueryParameters2D.create(player.global_position, at, 1, excluded)
 	return get_world_2d().direct_space_state.intersect_ray(query).is_empty()
 
 func _target_score(target: Node2D) -> float:
-	var toward := target.global_position - player.global_position
+	var toward := _interaction_position(target) - player.global_position
 	var direction_cost: float = (1.0 - player.facing.dot(toward.normalized())) * 12.0
 	return toward.length() + direction_cost
 
@@ -620,6 +637,8 @@ func _update_target() -> void:
 	target_id = "" if chosen == null else chosen.interaction_id
 	if chosen != null:
 		chosen.highlighted = true
+	for id in _characters:
+		_characters[id].set_attention(id == target_id)
 	target_changed.emit(target_id, "" if chosen == null else chosen.label)
 
 func interact_nearest() -> void:
