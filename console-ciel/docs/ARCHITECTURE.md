@@ -11,11 +11,14 @@ Godot 4.6.3 stable, GDScript, rendu Compatibility. `scenes/main.tscn` lance l'in
 | ProfileService | Création, sélection, édition, suppression, nouvelle partie et réinitialisation |
 | InvestigationService | Prérequis, observations, indices, diagnostic réel des trois défis et transitions de mission |
 | RewardService | Règles configurables et transaction cohérente d'une récompense attribuée une seule fois |
+| PenaltyService | Débit de 200 points par traversée au rouge, dette persistante et remboursement dans les transactions de récompense |
 | ShopService | Catalogue, achats et équipement ; règles métier avant écriture |
 | SettingsService | Réglages communs, aperçu réversible, audio, accessibilité et affichage |
 | SceneRouter | Navigation, mémorisation du focus et attente du relâchement des entrées |
 | ControllerService | Sélection d'une manette active, filtrage des événements et état de connexion |
 | PlatformService | Détection de plateforme ; arrêt système explicitement non configuré |
+
+Depuis la version 0.13.0, le champ optionnel `penalties` du profil contient `version`, `count`, `debt`, `paid` et `last_event`. SaveService vérifie notamment `count × 200 = paid + debt`. Le dernier identifiant de traversée évite un double enregistrement immédiat. PenaltyService prépare le débit sur une copie, enregistre puis publie le profil ; son calcul de remboursement ne modifie que la transaction détachée de RewardService ou HotelService. Nouvelle partie conserve ces données économiques.
 
 L'enquête complète l'architecture existante avec sa validation métier. Elle ne crée ni second gestionnaire de profils, ni second portefeuille, ni second répertoire de sauvegarde. L'interface transmet les choix ; le service vérifie les réponses et prérequis, puis la réussite utilise la transaction de récompense existante. Un clic d'interface ne peut pas attribuer arbitrairement une mission ou des points.
 
@@ -46,6 +49,8 @@ La nouvelle partie remet l'enquête à son point initial, mais conserve le porte
 ## Exploration et interface
 
 La salle, le joueur et les objets interactifs sont séparés de l'écran de défi. Le personnage utilise le moteur de collisions Godot ; murs, mobilier et porte fermée sont des obstacles. Le choix de l'objet proche prend en compte la distance et l'orientation avec une stabilité de cible. Sur petit écran, le zoom minimal de 0,70 conserve un personnage d'environ 18 pixels : la caméra suit les portions hors cadre et reste limitée aux murs, au lieu de réduire toute la salle jusqu'à rendre le personnage trop petit.
+
+Les modèles des meubles sont enfants de leur corps physique, ancrés au sol dans le groupe trié par profondeur avec le joueur. HotelLayout distingue l'emprise du pot des feuilles et définit les chaises séparément ; fontaine et colonnes utilisent CircleShape2D. RoadLayout centralise route, passage, arrêts des voitures, garde-corps et emprises des objets de rue. RoadTraffic gère le cycle du feu, les Area2D des voitures, le contrôle continu des contacts et l'état d'une traversée. TrafficHud présente les règles ; InvestigationWorld transmet les notifications à l'interface. Le contrôleur de circulation s'arrête avec les contrôles du monde ou SceneRouter et ne modifie les points qu'en appelant PenaltyService. [Règles et tests du passage](TRAFFIC.md).
 
 Les dialogues, défis, pause et conclusion suspendent les contrôles d'exploration. Les actions de jeu restent distinctes des actions UI. SceneRouter attend le relâchement des touches et boutons après une transition, afin que l'appui d'ouverture n'effectue pas une deuxième action dans l'écran suivant. La fermeture restaure les contrôles et le focus appropriés.
 
