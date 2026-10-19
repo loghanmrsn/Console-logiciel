@@ -1,4 +1,24 @@
-# Livraison 0.12.0 — petit déjeuner et départ vers Sudo Hack
+# Livraison 0.13.0 — objets, collisions et passage piéton
+
+Les objets ont été revus dans les **quinze lieux existants** : cinq étages, labyrinthe, cour et huit zones de l’hôtel et du CTF. Les modèles conservent le style du projet, avec des matériaux et des détails affinés. Les meubles de l’hôtel, les chaises, les bancs et le panneau du bus se placent devant ou derrière le personnage selon sa position. Les colonnes et la fontaine utilisent des formes rondes ; les plantes bloquent au niveau du pot. La commande de porte et le battant ouvert du premier étage sont solides. Les écrans du laboratoire et le portable suivent leur bureau.
+
+La cour dispose d’un **passage piéton avec feux et quatre voitures lentes**. Les véhicules s’arrêtent avant le passage au vert et attendent la fin d’une traversée déjà engagée. Un départ au rouge suivi d’une traversée complète sans choc coûte **200 points**. Un demi-tour reste gratuit. Une collision renvoie au **départ de cette traversée**, sans perte de progression ni pénalité supplémentaire. Les voitures et le feu s’arrêtent en pause ou pendant un dialogue.
+
+Les points disponibles paient la pénalité ; le reste devient une **dette enregistrée dans le profil**, visible dans l’en-tête et le détail du profil. Les gains suivants remboursent cette dette en priorité, dans la même écriture que leur récompense. Nouvelle partie conserve pénalités, dette, achats et reçus. Une erreur d’écriture ne produit aucun débit partiel et permet de retenter la traversée. Les anciens profils restent compatibles. [Règles complètes](TRAFFIC.md).
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_trafic_0.13.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.13.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.13.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.13.0.zip).
+
+Recette finalisée le **19 octobre 2026** : **9 827 assertions dans 26 suites source**, puis **7 212 assertions dans 18 suites sur chacun des deux packs exportés**, zéro échec. Le parcours physique vérifie **700 contrôles**, **383 objets solides** et **35 895 segments de déplacement** dans les quinze lieux. Les essais couvrent les anciennes missions, les contrôles et sauvegardes, la traversée réelle au clavier, le vert protégé, le rouge sans choc, les collisions depuis les deux trottoirs, la pause, les erreurs d’écriture, la dette et son remboursement. [Résumé détaillé](../tests/traffic_0.13.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **213 contrôles** et **21 captures**. Exemples : [passage au vert](screenshots/traffic_0.13.0/traffic_passage_vert_challenge.png), [dette affichée](screenshots/traffic_0.13.0/traffic_dette_150_challenge.png), [format compact](screenshots/traffic_0.13.0/traffic_compact_challenge.png), [chambre 206](screenshots/traffic_0.13.0/objects_hotel_room_206_challenge.png) et [salle du petit déjeuner](screenshots/traffic_0.13.0/objects_hotel_breakfast_challenge.png).
+
+L’audit statique vérifie **1088 fichiers**, **104 UID**, **258 références** et **286 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **271 contrôles réussis**.
+
+Les deux exports contiennent **247 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles d’export officiels sont contrôlés par SHA-512 ; les CRC et SHA-256 des quatre archives sont vérifiés. Les **42 anciennes archives** sont préservées. Les README gardent leur présentation : Windows, Linux/Raspberry Pi, puis descriptif.
+
+Le rendu et les packs sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Cela ne constitue pas un lancement natif des exécutables Windows ou ARM64 : le Pi 4, le PC Windows, le GPU matériel, le son et la manette physique restent à essayer sur leurs appareils. La suite du CTF et le prochain travail graphique du bâtiment 2 restent à définir avec l’utilisateur.
+
+# Historique — livraison 0.12.0 — petit déjeuner et départ vers Sudo Hack
 
 Après la nuit dans la chambre 206, le panneau demande de **descendre au rez-de-chaussée** par les deux volées d’escalier. L’arrivée rapporte **50 points**, une seule fois par profil. Une porte du hall mène à la **salle du petit déjeuner**. En s’installant à table, le joueur découvre qu’il a oublié son café et que la machine nécessite une réparation.
 
