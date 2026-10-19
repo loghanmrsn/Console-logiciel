@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.13.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.14.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -204,3 +204,14 @@ Les points disponibles paient la pénalité ; le reste devient une dette
 visible en haut de l’écran et dans le profil. Les récompenses suivantes
 remboursent la dette avant d’ajouter des points. Nouvelle partie conserve
 la dette et les pénalités. Le total de 750 points est avant ces déductions.
+
+ÉPREUVES DE L’HÔTEL — 0.14.0
+Les deux épreuves existantes gardent leur direction artistique. Les baies
+de serveurs, le poste de contrôle, le buffet et la machine à café sont
+plus détaillés. Un onduleur, un chariot et un meuble à tasses sont solides.
+Le diagnostic présente quatre cartes d’indices, un suivi des observations
+et trois parties : examiner, diagnostiquer, intervenir. Cliquer sur un
+indice déjà examiné permet de relire son résultat. Le câblage conserve
+les six boutons, la sélection réversible et les mêmes paires de couleurs,
+avec un cadre doré, des connecteurs et des fils plus lisibles.
+La progression, les points, les pénalités et les sauvegardes sont conservés.
