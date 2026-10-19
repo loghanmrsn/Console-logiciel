@@ -10,8 +10,20 @@ const VELVET := Color("345a61")
 var zone := "building_02"
 var state: Dictionary = {}
 var bed_pose := "standing"
+var furniture_only: Dictionary = {}
+var furniture_anchor := Vector2.ZERO
 
 func _draw() -> void:
+	if not furniture_only.is_empty():
+		# The parent body sorts at its feet beside the player. Keep the existing
+		# world coordinates so scenery and physical footprints share one plan.
+		draw_set_transform(-furniture_anchor)
+		_furniture(str(furniture_only.kind), furniture_only.rect)
+		if furniture_only.kind == "luggage" and bool(state.get("luggage_placed", false)):
+			_suitcase(Vector2(275, 618))
+			if int(state.get("morning_stage", 0)) < 6: _backpack(Vector2(363, 622))
+		if furniture_only.kind == "bed" and bed_pose == "sitting": _seated_guest(Layout.BED_SEAT)
+		return
 	var bounds := Layout.extent(zone)
 	draw_rect(Rect2(Vector2.ZERO, bounds), IVORY)
 	if zone != "ctf_bus_stop": _marble(bounds)
@@ -25,7 +37,6 @@ func _draw() -> void:
 		"ctf_bus_stop": _ctf_exterior()
 		"ctf_lobby": _ctf_lobby()
 	for wall in Layout.walls(zone): _wall(wall)
-	for spec in Layout.furniture_specs(zone): _furniture(str(spec.kind), spec.rect)
 	match zone:
 		"building_02": _hall_signage()
 		"hotel_it": _door(Vector2(700, 836), "RETOUR AU HALL")
@@ -33,10 +44,6 @@ func _draw() -> void:
 		"hotel_floor_2": _room_doors()
 		"hotel_room_206":
 			_door(Vector2(600, 936), "206")
-			if bool(state.get("luggage_placed", false)):
-				_suitcase(Vector2(275, 618))
-				if int(state.get("morning_stage", 0)) < 6: _backpack(Vector2(363, 622))
-			if bed_pose == "sitting": _seated_guest(Layout.BED_SEAT)
 		"hotel_breakfast": _door(Vector2(700, 986), "RETOUR AU HALL")
 		"ctf_bus_stop": _ctf_facade()
 		"ctf_lobby": _door(Vector2(900, 1236), "ARRÊT DU BUS")
@@ -174,8 +181,7 @@ func _breakfast_table(rect: Rect2) -> void:
 		draw_arc(plate + Vector2(-3, 0), 12, PI * .2, PI * 1.65, 20, Color("c69a5e"), 9, true)
 		draw_line(plate + Vector2(-36, -19), plate + Vector2(-36, 21), GOLD, 3)
 		draw_line(plate + Vector2(36, -19), plate + Vector2(36, 21), GOLD, 3)
-	# The chair is decoration below the tabletop, leaving a clear approach.
-	_rounded(Rect2(rect.get_center().x - 36, rect.end.y + 22, 72, 28), VELVET, 10)
+	# Chairs are separate depth-sorted models with their own ground collision.
 	if int(state.get("morning_stage", 0)) >= 5 and rect.position.x == 550:
 		_cup(rect.position + Vector2(140, 35))
 
@@ -275,14 +281,18 @@ func _furniture(kind: String, rect: Rect2) -> void:
 			for x in range(int(rect.position.x + 38), int(rect.end.x - 25), 48): draw_line(Vector2(x, rect.position.y + 22), Vector2(x, rect.end.y - 22), GOLD, 2)
 			_rounded(Rect2(rect.position + Vector2(-8, -10), Vector2(rect.size.x + 16, 28)), Color("d8c7a8"), 9)
 		"breakfast_table": _breakfast_table(rect)
+		"breakfast_chair":
+			_rounded(rect, VELVET, 10)
+			_rounded(rect.grow(-5), Color("55777a"), 6)
 		"buffet": _buffet(rect)
 		"coffee_machine": _coffee_machine(rect)
 		"bus_shelter": _bus_shelter(rect)
 		"fountain":
 			var center := rect.get_center()
-			draw_circle(center, 170, GOLD)
-			draw_circle(center, 155, Color("77999a"))
-			draw_circle(center, 135, Color("b0d2cc"))
+			var radius := rect.size.x * .5
+			draw_circle(center, radius, GOLD)
+			draw_circle(center, radius - 15, Color("77999a"))
+			draw_circle(center, radius - 35, Color("b0d2cc"))
 			draw_arc(center, 108, 0, TAU, 64, Color("e1e9d7"), 3, true)
 			draw_arc(center, 76, 0, TAU, 48, Color("d6e4d5"), 3, true)
 			draw_circle(center, 36, Color("e0d8bc"))
@@ -318,6 +328,10 @@ func _furniture(kind: String, rect: Rect2) -> void:
 			_rounded(rect, Color("ac9575"), 8)
 			_rounded(Rect2(rect.position + Vector2(25, 18), Vector2(100, 65)), Color("eee6d3"), 3)
 			draw_circle(rect.end - Vector2(45, 46), 17, GOLD)
+	# A restrained bevel gives every solid model a readable upper/front edge.
+	if kind not in ["fountain", "column", "planter", "stairs_up", "stairs_down"]:
+		draw_line(rect.position + Vector2(10, 4), Vector2(rect.end.x - 10, rect.position.y + 4), Color(1, 1, 1, .28), 2, true)
+		draw_line(Vector2(rect.position.x + 10, rect.end.y - 4), rect.end - Vector2(10, 4), Color(0.12, .15, .15, .18), 3, true)
 
 func _spiral(rect: Rect2, ascending: bool) -> void:
 	var center := rect.get_center() - Vector2(0, 24)
