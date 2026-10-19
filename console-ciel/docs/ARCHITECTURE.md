@@ -91,3 +91,9 @@ Le modèle reste local et scolaire, sans cryptographie anti-triche ni garantie c
 ## Présentation des épreuves de l’hôtel — 0.14.0
 
 `HotelDiagnosticPanel` compose le bandeau illustré, les cartes d’observations et les choix du diagnostic, puis émet ses signaux. HotelStoryUI conserve seulement les choix provisoires et l’indice consulté, appelle HotelService puis reconstruit la présentation depuis l’état sauvegardé. CoffeeWiringPanel conserve la sélection provisoire et dessine les fils ; la validation des paires reste dans le service. HotelLayout fournit les trois emprises supplémentaires ; InvestigationWorld leur applique le même corps physique et le même tri de profondeur qu’aux meubles existants. [Rendu et contrôles](HOTEL_VISUAL.md).
+
+## Rencontres — 0.15.0
+
+`NpcCatalog` regroupe les six emplacements, leurs approches libres et leurs dialogues contextuels. Il lit une copie de la progression, sans appeler les services de sauvegarde ou de récompenses. `InvestigationWorld` construit les pieds solides et le modèle `NpcVisual` sous le même parent trié que le joueur. Le modèle est dessiné une fois avec des primitives dans la palette existante, et partagé avec le portrait de la discussion.
+
+`DemoGame` route les identifiants `npc_` avant les épreuves et refuse ceux d’un autre lieu. Le composant natif `NpcDialoguePanel` présente le nom, le rôle et les pages ; ses signaux reprennent le focus, le défilement et la fermeture des autres fenêtres. Le verrou de dialogue suspend le joueur et la circulation. La carte utilise le même catalogue pour ses repères. Aucun champ de sauvegarde, nouvelle mission ou ressource externe n’est ajouté. [Emplacements et recette](PNJ.md).
