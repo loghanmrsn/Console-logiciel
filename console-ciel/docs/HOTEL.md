@@ -52,7 +52,7 @@ Le prochain objectif vous ramène à la **chambre 206**, au deuxième étage, po
 
 À l’extérieur, approchez l’arrêt de bus et interagissez pour prendre le bus. Vous arrivez à un autre arrêt, devant le bâtiment du CTF **sudo hack**. Entrez par sa porte pour découvrir son hall d’accueil.
 
-Ce hall termine le parcours disponible dans la version **0.12.0**. Les **cinq missions du CTF seront ajoutées plus tard** ; aucun défi ni terminal supplémentaire n’est encore proposé. Le trajet en bus et l’entrée du bâtiment ne rapportent pas de points.
+Ce hall termine le parcours disponible dans la version **0.13.0**. Les **cinq missions du CTF seront ajoutées plus tard** ; aucun défi ni terminal supplémentaire n’est encore proposé. Le trajet en bus et l’entrée du bâtiment ne rapportent pas de points.
 
 ## Récompenses du matin
 
@@ -65,3 +65,7 @@ Chaque récompense est liée au profil : reprendre une sauvegarde, refaire le tr
 La carte reste en haut à gauche et montre la zone actuelle, votre position et ses passages, y compris dans la salle du petit déjeuner et près du CTF. **Un appui sur →** l’affiche ou la masque. Dans l’hôtel, **D**, les autres touches **ZQSD**, le joystick et la croix directionnelle servent à marcher. Les flèches gardent leur fonction de navigation dans les menus.
 
 Les interactions utilisent **Espace / bouton de face bas**. Les opérations sont enregistrées avant de changer d’état ou de décor. Si l’écriture échoue, le dernier état reste intact et une nouvelle tentative est proposée. Les profils et achats existants sont conservés ; Nouvelle partie réinitialise le récit de l’hôtel en préservant le portefeuille et l’inventaire.
+
+## Traverser entre les bâtiments
+
+La cour dispose maintenant d’un passage piéton et de feux. Attendez le vert ; les véhicules sont lents et s’arrêtent avant le passage. Une traversée commencée au rouge et terminée sans collision coûte 200 points. Un choc ramène au trottoir de départ, sans modifier l’histoire ni ajouter une pénalité. Le reste du trajet vers la réception, puis le bus après le séjour, est conservé. [Règles du passage et des pénalités](TRAFFIC.md).
