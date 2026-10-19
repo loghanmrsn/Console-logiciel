@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="74" viewBox="0 0 60 74"><ellipse cx="30" cy="62" rx="24" ry="7" fill="#344B4A" fill-opacity="0.1451"/><rect x="8" y="7" width="44" height="18" rx="8" fill="#708F8A"/><rect x="10" y="21" width="40" height="31" rx="10" fill="#9FB7AA"/><rect x="24" y="48" width="12" height="12" rx="3" fill="#718A80"/><path d="M30 58 L12 65" fill="none" stroke="#718A80" stroke-width="3" stroke-linecap="round"/><path d="M30 58 L48 65" fill="none" stroke="#718A80" stroke-width="3" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="74" viewBox="0 0 60 74">
+  <defs>
+    <linearGradient id="material0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#afc9bb" />
+      <stop offset=".52" stop-color="#9FB7AA" />
+      <stop offset="1" stop-color="#8ea397" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="30" cy="62" rx="24" ry="7" fill="#344B4A" fill-opacity="0.1451" />
+  <rect x="8" y="7" width="44" height="18" rx="8" fill="#708F8A" />
+  <rect x="10" y="21" width="40" height="31" rx="10" fill="url(#material0)" />
+  <rect x="24" y="48" width="12" height="12" rx="3" fill="#718A80" />
+  <path d="M30 58 L12 65" fill="none" stroke="#718A80" stroke-width="3" stroke-linecap="round" />
+  <path d="M30 58 L48 65" fill="none" stroke="#718A80" stroke-width="3" stroke-linecap="round" />
+</svg>
