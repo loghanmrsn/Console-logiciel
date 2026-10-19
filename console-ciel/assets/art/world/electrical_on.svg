@@ -1,1 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="90" viewBox="0 0 110 90"><ellipse cx="55" cy="80" rx="47" ry="8" fill="#344B4A" fill-opacity="0.1333"/><rect x="10" y="9" width="90" height="62" rx="7" fill="#687D78"/><rect x="10" y="7" width="90" height="55" rx="7" fill="#BBCAC5" stroke="#718783" stroke-width="1.5"/><rect x="17" y="14" width="76" height="42" rx="4" fill="#DEE6DF"/><rect x="24" y="20" width="39" height="28" rx="4" fill="#8B9E9B"/><rect x="29" y="25" width="6" height="15" rx="2" fill="#F3F2E8"/><path d="M30 30 L34 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round"/><rect x="39" y="25" width="6" height="15" rx="2" fill="#F3F2E8"/><path d="M40 30 L44 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round"/><rect x="49" y="25" width="6" height="15" rx="2" fill="#F3F2E8"/><path d="M50 30 L54 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round"/><circle cx="79" cy="28" r="5" fill="#91B49A"/><rect x="72" y="40" width="15" height="6" rx="2" fill="#A6B8B3"/><path d="M98 20 L98 29" fill="none" stroke="#647E80" stroke-width="2" stroke-linecap="round"/><path d="M98 46 L98 54" fill="none" stroke="#647E80" stroke-width="2" stroke-linecap="round"/><path d="M43 50 l-5 7 h7 l-3 6" fill="none" stroke="#657B74" stroke-width="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="90" viewBox="0 0 110 90">
+  <defs>
+    <linearGradient id="material0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#728a84" />
+      <stop offset=".52" stop-color="#687D78" />
+      <stop offset="1" stop-color="#5d6f6b" />
+    </linearGradient>
+    <linearGradient id="material1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ceded9" />
+      <stop offset=".52" stop-color="#BBCAC5" />
+      <stop offset="1" stop-color="#a6b4af" />
+    </linearGradient>
+    <linearGradient id="material2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4fdf5" />
+      <stop offset=".52" stop-color="#DEE6DF" />
+      <stop offset="1" stop-color="#c6cdc6" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="55" cy="80" rx="47" ry="8" fill="#344B4A" fill-opacity="0.1333" />
+  <rect x="10" y="9" width="90" height="62" rx="7" fill="url(#material0)" />
+  <rect x="10" y="7" width="90" height="55" rx="7" fill="url(#material1)" stroke="#718783" stroke-width="1.5" />
+  <rect x="17" y="14" width="76" height="42" rx="4" fill="url(#material2)" />
+  <rect x="24" y="20" width="39" height="28" rx="4" fill="#8B9E9B" />
+  <rect x="29" y="25" width="6" height="15" rx="2" fill="#F3F2E8" />
+  <path d="M30 30 L34 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round" />
+  <rect x="39" y="25" width="6" height="15" rx="2" fill="#F3F2E8" />
+  <path d="M40 30 L44 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round" />
+  <rect x="49" y="25" width="6" height="15" rx="2" fill="#F3F2E8" />
+  <path d="M50 30 L54 30" fill="none" stroke="#768B87" stroke-width="2" stroke-linecap="round" />
+  <circle cx="79" cy="28" r="5" fill="#91B49A" />
+  <rect x="72" y="40" width="15" height="6" rx="2" fill="#A6B8B3" />
+  <path d="M98 20 L98 29" fill="none" stroke="#647E80" stroke-width="2" stroke-linecap="round" />
+  <path d="M98 46 L98 54" fill="none" stroke="#647E80" stroke-width="2" stroke-linecap="round" />
+  <path d="M43 50 l-5 7 h7 l-3 6" fill="none" stroke="#657B74" stroke-width="2" />
+</svg>
