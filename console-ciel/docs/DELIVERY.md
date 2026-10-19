@@ -1,4 +1,22 @@
-# Livraison 0.14.0 — épreuves de l’hôtel enrichies
+# Livraison 0.15.0 — personnages et dialogues
+
+Six **PNJ interactifs** accompagnent le parcours : **Nora** dans la première salle du premier bâtiment, **Idris** au dernier étage, **Lucie** au buffet du matin, **Camille** devant l’hôtel, **Sam** près du passage piéton et **Alex** au palier fermé du premier étage de l’hôtel. Leurs vêtements et accessoires conservent les tons doux et les formes arrondies du projet. Les corps solides et les modèles partagent le tri de profondeur du joueur ; la carte de l’hôtel indique ses personnages. [Emplacements et commandes](PNJ.md).
+
+Chaque discussion présente un portrait, le nom, le rôle, deux pages et les boutons **Suite / Précédent**. **Espace ou face bas** ouvre la rencontre ; **Échap ou face droite** la ferme. Les explications suivent la progression, sans modifier les points, les missions ou les sauvegardes. Idris préserve le secret du chapitre 5. Les déplacements, les voitures et le feu sont suspendus pendant la discussion ; la reprise après déconnexion de la manette conserve la page courante. Le premier étage fermé est celui de l’hôtel : le chapitre réseau du premier bâtiment reste accessible.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.15.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.15.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.15.0.zip).
+
+Recette finalisée le **19 octobre 2026** : **10 393 assertions dans 28 suites source**, puis **7 778 assertions dans 20 suites sur chacun des deux packs exportés**, zéro échec. Le contrôle physique parcourt les **quinze lieux**, avec **724 contrôles**, **392 corps solides** et **35 833 segments de déplacement**. Les approches des six personnages, les portes, les escaliers et les équipements voisins restent accessibles. Les essais couvrent les six discussions, la relecture, les retours clavier/manette, le clic réel, le stockage indisponible, la suspension de circulation, la déconnexion manette, les récompenses intactes et les anciennes épreuves. [Résumé détaillé](../tests/npc_0.15.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **347 contrôles et 13 captures**, dont une vue en **800 × 480 avec grand texte et thème nuit**. Exemples : [Nora dans l’atelier](screenshots/npc_0.15.0/npc_workshop_scene_challenge.png), [discussion avec Nora](screenshots/npc_0.15.0/npc_workshop_dialogue_challenge.png), [buffet](screenshots/npc_0.15.0/npc_buffet_scene_challenge.png), [passage piéton](screenshots/npc_0.15.0/npc_crossing_scene_challenge.png) et [palier fermé](screenshots/npc_0.15.0/npc_closed_floor_scene_challenge.png).
+
+L’audit statique vérifie **1156 fichiers**, **110 UID**, **272 références** et **324 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **283 contrôles réussis**.
+
+Les deux exports contiennent **255 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles d’export officiels sont contrôlés par SHA-512 ; les CRC et SHA-256 des quatre archives sont vérifiés. Les **50 anciennes archives** et la présentation des README sont conservées.
+
+Le rendu et les packs sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Cela ne constitue pas un lancement natif des exécutables Windows ou ARM64 : PC Windows, Pi 4, GPU matériel, son et manette physique restent à essayer sur leurs appareils.
+
+# Historique — livraison 0.14.0 — épreuves de l’hôtel enrichies
 
 Les **deux épreuves actuelles du deuxième bâtiment** gardent leur direction artistique : ivoire, bois, vert doux, doré et formes arrondies. Le local informatique présente des baies détaillées, des grilles, des rails, un poste de contrôle et des voyants liés à l’état sauvegardé. Un onduleur et un chariot de maintenance complètent la pièce. Le petit déjeuner gagne des rideaux, du linge de table, des verres, des couverts et des plateaux plus détaillés. Un meuble à tasses complète la machine à café ; les **trois nouveaux meubles sont solides**, triés avec le personnage et représentés sur la carte.
 
