@@ -16,6 +16,7 @@ var _fit_scheduled := false
 class FloorPlan extends Control:
 	const Plan = preload("res://scripts/game/campus_layout.gd")
 	const HotelPlan = preload("res://scripts/game/hotel_layout.gd")
+	const People = preload("res://scripts/game/npc_catalog.gd")
 	var player_at := Vector2.ZERO
 	var zone := "building_02"
 	func _draw() -> void:
@@ -41,6 +42,9 @@ class FloorPlan extends Control:
 					draw_colored_polygon(PackedVector2Array([marker+Vector2(-4,-flip*3),marker+Vector2(4,-flip*3),marker+Vector2(0,flip*4)]),Color("6d718e"))
 				else:
 					draw_rect(Rect2(marker-Vector2(3,2),Vector2(6,4)),Color("ba873e"))
+		for character in People.for_zone(zone):
+			var marker: Vector2 = origin + character.at * scale_factor
+			draw_circle(marker, 3, Color("856b8c"))
 		var point := origin+player_at.clamp(Vector2.ZERO,extent)*scale_factor
 		draw_circle(point,5,Color("ffffff"))
 		draw_circle(point,3,Color("235f83"))
@@ -77,7 +81,7 @@ func _ready() -> void:
 	column.add_child(canvas)
 	legend = Label.new()
 	legend.name = "campus_map_legend"
-	legend.text = "● Vous   ▪ Porte / accueil\n▲ / ▼ Escaliers"
+	legend.text = "● Vous   ▪ Porte / accueil\n▲ / ▼ Escaliers   ● PNJ"
 	legend.add_theme_font_size_override("font_size",12)
 	legend.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	column.add_child(legend)
