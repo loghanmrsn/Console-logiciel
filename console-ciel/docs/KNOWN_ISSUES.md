@@ -1,6 +1,6 @@
 # Limites connues et vérifications avant démonstration
 
-La version 0.7.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
+La version 0.13.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
 
 | Point | État et conséquence | Vérification à effectuer |
 |---|---|---|
@@ -22,11 +22,12 @@ La version 0.7.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La rec
 
 1. Créer deux profils sans souris et vérifier l'absence de données communes.
 2. Avec le premier, modifier puis annuler un paramètre ; l'appliquer et vérifier après relance.
-3. Jouer les neuf défis dans les trois chapitres, soumettre une mauvaise réponse avant chaque correction, revenir au menu et reprendre après chaque mission. Vérifier l’accès au chapitre 3 seulement après les trois missions réseau, l’ascenseur entre les étages ouverts, le panneau de missions et la disparition des repères après réussite sauvegardée. Les exercices Python, HTML et Markdown doivent expliquer une mauvaise réponse sans attribuer de points.
+3. Jouer les treize défis dans les cinq chapitres, soumettre une mauvaise réponse avant chaque correction, revenir au menu et reprendre après chaque mission. Vérifier l’accès au chapitre 3 seulement après les trois missions réseau, l’ascenseur entre les étages ouverts, le panneau de missions et la disparition des repères après réussite sauvegardée. Les exercices Python, HTML et Markdown doivent expliquer une mauvaise réponse sans attribuer de points.
 4. Débrancher la manette active en jeu : pause et message, clavier disponible, reconnexion sans déplacement automatique, reprise explicite.
 5. Acheter et équiper un cosmétique ; tester aussi le refus d’achat d’un jeu Test sous 200 points, puis un achat avec un solde suffisant. Fermer normalement et retrouver mission, solde, achat, équipement et paramètres.
 6. Rejouer : aucune récompense supplémentaire. Tester plusieurs validations rapides et vérifier que les dialogues ne se superposent pas.
-7. Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480, en texte normal et grand texte ; suivre le focus jusqu'au dernier bouton des écrans défilants.
+7. Dans la cour, vérifier le passage au vert, le rouge sans choc (200 points), un choc depuis chaque trottoir et la conservation des missions. Avec un profil de test à moins de 200 points, vérifier la dette, son affichage et son remboursement sur les prochains gains.
+8. Vérifier 1920 × 1080, 1280 × 720, 1024 × 600 et 800 × 480, en texte normal et grand texte ; suivre le focus jusqu'au dernier bouton des écrans défilants.
 
 Les corruptions et échecs d'écriture sont vérifiés automatiquement dans des copies de test. Une démonstration manuelle de ces cas doit également utiliser une racine isolée. Ne pas endommager les données normales pour montrer la récupération.
 
