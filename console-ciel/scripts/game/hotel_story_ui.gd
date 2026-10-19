@@ -3,6 +3,7 @@ extends Control
 ## HotelService; this component only owns presentation and the seated clock.
 const HOTEL_ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
+const DiagnosticPanel = preload("res://scripts/ui/hotel_diagnostic_panel.gd")
 const WAIT_SECONDS := 10.0
 
 
@@ -19,6 +20,7 @@ var _room_id := ""
 var _diagnosis := ""
 var _repair := ""
 var _feedback := ""
+var _observation := ""
 var _last_wait_second := -1
 var _night_remaining := 0.0
 var _night_duration := 1.2
@@ -207,6 +209,7 @@ func _reset_context() -> void:
 	_diagnosis = ""
 	_repair = ""
 	_feedback = ""
+	_observation = ""
 	_last_morning_stage = -1
 	_coffee_selection = ""
 	_coffee_feedback = ""
@@ -312,38 +315,20 @@ func _reserve_room() -> void:
 func _show_repair() -> void:
 	game._open_overlay("hotel_repair")
 	game._label(game.modal_content, "Local informatique · Diagnostic", 27)
-	if HotelService.state().get("repaired", false):
-		game._label(game.modal_content, "Le service de réservation fonctionne à nouveau. Montez les escaliers vers le deuxième étage, puis rejoignez la chambre 206.")
-		game._button(game.modal_content, "Revenir au local", game._close_overlay, "hotel_repair_close")
-		game._wire_modal()
-		return
-	game._label(game.modal_content, "Examinez les quatre indices, puis choisissez le diagnostic et une réparation adaptée. Les choix erronés vous permettent de réessayer.")
-	var observed: Array = HotelService.state().get("repair_observations", [])
-	for id in HotelService.REPAIR_OBSERVATIONS:
-		var key := str(id)
-		game._button(game.modal_content, ("✓ " if key in observed else "○ ") + str(HotelService.REPAIR_OBSERVATIONS[key].title), func(): _observe_repair(key), "hotel_observe_" + key)
-		if key in observed:
-			game._label(game.modal_content, str(HotelService.REPAIR_OBSERVATIONS[key].text), 16)
-	game._label(game.modal_content, "Quel diagnostic explique les indices ?", 21)
-	for option in [["storage_full", "Le disque est saturé par les journaux"], ["network_link", "Le câble réseau est débranché"], ["power_supply", "Le serveur manque d’alimentation"]]:
-		var value := str(option[0])
-		game._button(game.modal_content, ("✓ " if _diagnosis == value else "○ ") + str(option[1]), func():
-			_diagnosis = value
-			game._pending_focus_key = "hotel_diagnosis_" + value
-			_show_repair(), "hotel_diagnosis_" + value)
-	game._label(game.modal_content, "Quelle intervention faut-il effectuer ?", 21)
-	for option in [["archive_logs_restart", "Archiver les journaux puis relancer le service"], ["reboot_only", "Redémarrer sans libérer d’espace"], ["disable_firewall", "Désactiver le pare-feu"]]:
-		var value := str(option[0])
-		game._button(game.modal_content, ("✓ " if _repair == value else "○ ") + str(option[1]), func():
-			_repair = value
-			game._pending_focus_key = "hotel_fix_" + value
-			_show_repair(), "hotel_fix_" + value)
-	if not _feedback.is_empty():
-		var feedback: Label = game._label(game.modal_content, _feedback)
-		feedback.name = "hotel_repair_feedback"
-	var submit: Button = game._button(game.modal_content, "Vérifier et réparer", _submit_repair, "hotel_repair_submit")
-	submit.disabled = _diagnosis.is_empty() or _repair.is_empty()
-	game._button(game.modal_content, "Revenir au local", game._close_overlay, "hotel_repair_close")
+	var panel := DiagnosticPanel.new()
+	panel.configure(HotelService.state(), _diagnosis, _repair, _feedback, _observation)
+	panel.observation_requested.connect(_observe_repair)
+	panel.diagnosis_selected.connect(func(value: String):
+		_diagnosis = value
+		game._pending_focus_key = "hotel_diagnosis_" + value
+		_show_repair())
+	panel.repair_selected.connect(func(value: String):
+		_repair = value
+		game._pending_focus_key = "hotel_fix_" + value
+		_show_repair())
+	panel.submit_requested.connect(_submit_repair)
+	panel.close_requested.connect(game._close_overlay)
+	game.modal_content.add_child(panel)
 	game._wire_modal()
 
 func _observe_repair(id: String) -> void:
@@ -351,6 +336,7 @@ func _observe_repair(id: String) -> void:
 	if not result.ok:
 		_show_error("Observation non enregistrée", result, _show_repair)
 		return
+	_observation = id
 	game._pending_focus_key = "hotel_observe_" + id
 	_show_repair()
 
