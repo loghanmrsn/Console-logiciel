@@ -1,10 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="126" height="89" viewBox="0 0 126 89">
-<rect x="2" y="2" width="122" height="65" rx="6" fill="#627f79"/>
-<rect x="7" y="7" width="112" height="54" rx="3" fill="#dae7e4"/>
-<path d="M7 11Q7 7 11 7H115Q119 7 119 11V18H7Z" fill="#a9bec4"/>
-<circle cx="14" cy="12" r="2" fill="#e8ede2"/><circle cx="21" cy="12" r="2" fill="#d7dcad"/><circle cx="28" cy="12" r="2" fill="#c1d7c1"/>
-<path d="M17 28L24 34L17 40M31 40H40" fill="none" stroke="#60889e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="49" y="27" width="45" height="4" rx="2" fill="#819fb3"/><rect x="49" y="36" width="55" height="4" rx="2" fill="#cfba83"/>
-<path d="M18 50H34M42 50H74M82 50H104" fill="none" stroke="#afc7bd" stroke-width="3" stroke-linecap="round"/>
-<rect x="55" y="67" width="16" height="12" fill="#8da89a"/><rect x="39" y="78" width="48" height="6" rx="3" fill="#b6c8b8"/>
+  <defs>
+    <linearGradient id="material0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c8c85" />
+      <stop offset=".52" stop-color="#627f79" />
+      <stop offset="1" stop-color="#57716c" />
+    </linearGradient>
+    <linearGradient id="material1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0fefb" />
+      <stop offset=".52" stop-color="#dae7e4" />
+      <stop offset="1" stop-color="#c2cecb" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="122" height="65" rx="6" fill="url(#material0)" />
+  <rect x="7" y="7" width="112" height="54" rx="3" fill="url(#material1)" />
+  <path d="M7 11Q7 7 11 7H115Q119 7 119 11V18H7Z" fill="#a9bec4" />
+  <circle cx="14" cy="12" r="2" fill="#e8ede2" />
+  <circle cx="21" cy="12" r="2" fill="#d7dcad" />
+  <circle cx="28" cy="12" r="2" fill="#c1d7c1" />
+  <path d="M17 28L24 34L17 40M31 40H40" fill="none" stroke="#60889e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="49" y="27" width="45" height="4" rx="2" fill="#819fb3" />
+  <rect x="49" y="36" width="55" height="4" rx="2" fill="#cfba83" />
+  <path d="M18 50H34M42 50H74M82 50H104" fill="none" stroke="#afc7bd" stroke-width="3" stroke-linecap="round" />
+  <rect x="55" y="67" width="16" height="12" fill="#8da89a" />
+  <rect x="39" y="78" width="48" height="6" rx="3" fill="#b6c8b8" />
 </svg>
