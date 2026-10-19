@@ -1,0 +1,2629 @@
+{
+  "version": "0.15.0",
+  "date": "2026-10-19",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_baseline": "78aae081324454b4eb8ffbe5f8bfceb89940ea56",
+  "sources": {
+    "suites": 28,
+    "assertions": 10393,
+    "failures": 0,
+    "results": [
+      {
+        "name": "audit_regressions",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 34,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 2.69,
+        "script_sha256": "f8e958f6c247bc1687f52448810f06e92a0dec874328bcf5569f0c611dc4fbff",
+        "log_sha256": "7d3a9ef96ce163ad8b74d5f9e90408b70d134cef69c13aee79958c2aa2e5a334"
+      },
+      {
+        "name": "campus_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 154,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.93,
+        "script_sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da",
+        "log_sha256": "c461504bb959af7bdca2e055cb6a7721a0e1e98857adf19560e8603afa0346d3"
+      },
+      {
+        "name": "campus_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 151,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 48.29,
+        "script_sha256": "d8ce371bf49d1a5c80e77f096f255e0dffbb625656e9f6b5fa89776e448b8f53",
+        "log_sha256": "1fdc9b32932ef45a2da5d2e3140426b88e72cd184bd1358e6bd4463874fe4782"
+      },
+      {
+        "name": "chapter_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 272,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.65,
+        "script_sha256": "70531b0b6de362b58a914813f9b95e0f47e425e2d20e7010d352af29f7c19abc",
+        "log_sha256": "731992d4f61d7c93377f83159ab07ff8edc51de4b8c117412bc1d6c0173a8aa8"
+      },
+      {
+        "name": "chapter_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 670,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 54.8,
+        "script_sha256": "0529f41b006de1e997eefe11b439e6ce851c8a0a0c04f63d5ffbeb66786cb470",
+        "log_sha256": "82e95b68bb4691035a65f11f2ea962e9dbe0b39420e751b1996c3e29184f524a"
+      },
+      {
+        "name": "code_chapter_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 340,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.64,
+        "script_sha256": "03175238e6c4e04987fe6fb12b344fedea8ebda3fe6ba9dd104d05886e0dac1c",
+        "log_sha256": "a0310cd9eba8050aa961ff2a0b042bb4e4994443c7b60d2cacb30a4e8e5af2b6"
+      },
+      {
+        "name": "code_chapter_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 605,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 33.86,
+        "script_sha256": "e1173b9a00c11c32492c044ead0202e4fda5ce84fb69d161d4822c79a471bff2",
+        "log_sha256": "bfa4f5de465babebca91df7a30e3b50798cd465d2be6008d07cb2ed9f3148843"
+      },
+      {
+        "name": "hotel_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 520,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 1.19,
+        "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+        "log_sha256": "68e24d73cdbc2efcbfd1d451a18f953d473a81be46e4222a61455473c808223c"
+      },
+      {
+        "name": "hotel_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 356,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 134.12,
+        "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+        "log_sha256": "86b29715f6fa37c6c0d13d2858e680d6a0ca24cf2c872432b77afea51e24c61e"
+      },
+      {
+        "name": "hotel_visual_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 247,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 23.33,
+        "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+        "log_sha256": "1286b83d0a38d0e736396ed6a8d59a8a85dc83bf6c1d2296619b89d6fef12f08"
+      },
+      {
+        "name": "investigation_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 189,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.44,
+        "script_sha256": "b6a83af5fb43e91aca5ddda7488fce829dba6db8eface5a8909f8c3dff38ee59",
+        "log_sha256": "f363b3bbac74608ff7b0603e2e3522fd57cd50991e2822701e5981108eb5468b"
+      },
+      {
+        "name": "keyboard_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 786,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 1.1,
+        "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+        "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+      },
+      {
+        "name": "lessons_network_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 249,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 25.75,
+        "script_sha256": "dd2f80e5ad352de8340bde59947df7a15daf83956f7266f5acfbe016f52b389a",
+        "log_sha256": "5666ec4b3a4e946a84088c3ac8fec73d2a03178019e4f7b2e910995b319aff74"
+      },
+      {
+        "name": "library_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 477,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 22.43,
+        "script_sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107",
+        "log_sha256": "943699c5c51f5ebe9ea407b701fa86b3a4ba0395e1525dc019e5144315036f48"
+      },
+      {
+        "name": "maze_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 214,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.72,
+        "script_sha256": "7b88f68d321d2586ca34636498dbd3c55abc7a7baee8dce427614272c312310f",
+        "log_sha256": "79c44a3f6fae789463f3b00c8b893eb22607f789acfcf845b93bba6723aff4b7"
+      },
+      {
+        "name": "maze_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 1443,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 88.18,
+        "script_sha256": "a95cc8fd51b9335f37007ee9ef48c5e5f5f75b4962c7e2f1188f1bea45c86a0f",
+        "log_sha256": "295151911418ff451f42bf7cb763438ebe2dc833c72fc970450399a60c8284eb"
+      },
+      {
+        "name": "mission_tracker_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 182,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 3.9,
+        "script_sha256": "7d4172f58422704a1d92b9d7bdf07180067312f9fc13dc635a9d2ed6bb246596",
+        "log_sha256": "3d9e7ef6c5b0ec41a8596ae2338a28a81175e9b447227820d8ac869f540ea604"
+      },
+      {
+        "name": "morning_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 767,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 1.93,
+        "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+        "log_sha256": "947b76bb342f3da2116a228059d58e62a0f811b72de8d07865e96528f76a7845"
+      },
+      {
+        "name": "morning_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 304,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 26.68,
+        "script_sha256": "acdb7ef3a744b127ae9720a7e044d69bf29da545cf0c53b0dd5c78a69334ca6a",
+        "log_sha256": "36165a5f78ed504ff679f58484f0d7b8b094d06280fda8814d517efad2ce0c9e"
+      },
+      {
+        "name": "network_lab_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 183,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.63,
+        "script_sha256": "18c3a4ceb3c3f6df3f16afb41929e5878aff3009654955d8d79be5dad21b20d2",
+        "log_sha256": "f229daec47b2760673bba2c9a342edb54fbc682b2dd862cd4a0414d2d509e84d"
+      },
+      {
+        "name": "npc_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 295,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 17.76,
+        "script_sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e",
+        "log_sha256": "54637f56f37e95dc16edaabdc8116dd5b2ded021e8c0bb124814122840e54b9f"
+      },
+      {
+        "name": "profile_editor_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 644,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 18.22,
+        "script_sha256": "8c53e2adad7bdce7302e15f1cc8e19050e058df321dccfd4fca8f98325906292",
+        "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+      },
+      {
+        "name": "run_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 190,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.54,
+        "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+        "log_sha256": "3e28494027cd4004d6aeecffb6fe5f5d9e6b9057968c8275ba8c6346bc30b1ca"
+      },
+      {
+        "name": "stability_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 97,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 9.56,
+        "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+        "log_sha256": "8bdbca016201120631389605fb691ed7d54a0a85d6da37b01b29bfd2d6abd397"
+      },
+      {
+        "name": "traffic_services_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 153,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.73,
+        "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+        "log_sha256": "abb6e6ec85e2908a8227842098c1e0670914e2ab4ce05af05def03534f7204a6"
+      },
+      {
+        "name": "traffic_ui_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 129,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 27.23,
+        "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+        "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+      },
+      {
+        "name": "windows_contracts",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 18,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 0.36,
+        "script_sha256": "f25047581d36754b025c6c8a0bff514805102de4c8189fd6cbffd808b90a287a",
+        "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+      },
+      {
+        "name": "world_collision_tests",
+        "ok": true,
+        "exit_code": 0,
+        "completed": true,
+        "assertions": 724,
+        "failures": 0,
+        "engine_errors": [],
+        "seconds": 1.19,
+        "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+        "log_sha256": "618e78478ba3ecb7684d8c86ff6ec61b391fb86824a2afbf748eb593386dd97e"
+      }
+    ]
+  },
+  "compiled_packs": {
+    "suites_per_platform": 20,
+    "assertions_per_platform": 7778,
+    "results": [
+      {
+        "platform": "windows",
+        "name": "hotel_ui_tests",
+        "assertions": 356,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+        "log_sha256": "86b29715f6fa37c6c0d13d2858e680d6a0ca24cf2c872432b77afea51e24c61e"
+      },
+      {
+        "platform": "linux",
+        "name": "hotel_ui_tests",
+        "assertions": 356,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+        "log_sha256": "86b29715f6fa37c6c0d13d2858e680d6a0ca24cf2c872432b77afea51e24c61e"
+      },
+      {
+        "platform": "windows",
+        "name": "maze_ui_tests",
+        "assertions": 1443,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "a95cc8fd51b9335f37007ee9ef48c5e5f5f75b4962c7e2f1188f1bea45c86a0f",
+        "log_sha256": "295151911418ff451f42bf7cb763438ebe2dc833c72fc970450399a60c8284eb"
+      },
+      {
+        "platform": "linux",
+        "name": "maze_ui_tests",
+        "assertions": 1443,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "a95cc8fd51b9335f37007ee9ef48c5e5f5f75b4962c7e2f1188f1bea45c86a0f",
+        "log_sha256": "295151911418ff451f42bf7cb763438ebe2dc833c72fc970450399a60c8284eb"
+      },
+      {
+        "platform": "windows",
+        "name": "campus_ui_tests",
+        "assertions": 151,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "d8ce371bf49d1a5c80e77f096f255e0dffbb625656e9f6b5fa89776e448b8f53",
+        "log_sha256": "1fdc9b32932ef45a2da5d2e3140426b88e72cd184bd1358e6bd4463874fe4782"
+      },
+      {
+        "platform": "linux",
+        "name": "campus_ui_tests",
+        "assertions": 151,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "d8ce371bf49d1a5c80e77f096f255e0dffbb625656e9f6b5fa89776e448b8f53",
+        "log_sha256": "1fdc9b32932ef45a2da5d2e3140426b88e72cd184bd1358e6bd4463874fe4782"
+      },
+      {
+        "platform": "windows",
+        "name": "code_chapter_ui_tests",
+        "assertions": 605,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "e1173b9a00c11c32492c044ead0202e4fda5ce84fb69d161d4822c79a471bff2",
+        "log_sha256": "af65ddd68a6c410fe66adeb8fa5d0d59eec3c0578236d24a375465d21fef23aa"
+      },
+      {
+        "platform": "linux",
+        "name": "code_chapter_ui_tests",
+        "assertions": 605,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "e1173b9a00c11c32492c044ead0202e4fda5ce84fb69d161d4822c79a471bff2",
+        "log_sha256": "2e2ea2410a8cabe6898c4d4b465125d40307684dfb37f6a70551859be782b514"
+      },
+      {
+        "platform": "windows",
+        "name": "traffic_ui_tests",
+        "assertions": 129,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+        "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+      },
+      {
+        "platform": "linux",
+        "name": "traffic_ui_tests",
+        "assertions": 129,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+        "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+      },
+      {
+        "platform": "windows",
+        "name": "morning_ui_tests",
+        "assertions": 304,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "acdb7ef3a744b127ae9720a7e044d69bf29da545cf0c53b0dd5c78a69334ca6a",
+        "log_sha256": "20a04b89d6c5cb170248796c415f7005c1da523143e7312223958099bc34b791"
+      },
+      {
+        "platform": "linux",
+        "name": "morning_ui_tests",
+        "assertions": 304,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "acdb7ef3a744b127ae9720a7e044d69bf29da545cf0c53b0dd5c78a69334ca6a",
+        "log_sha256": "3f7ca1d903cfd3db4f37d8a93153b1250ecd78cdc6b5300b3f62af777acd8fc4"
+      },
+      {
+        "platform": "windows",
+        "name": "lessons_network_ui_tests",
+        "assertions": 249,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "dd2f80e5ad352de8340bde59947df7a15daf83956f7266f5acfbe016f52b389a",
+        "log_sha256": "5666ec4b3a4e946a84088c3ac8fec73d2a03178019e4f7b2e910995b319aff74"
+      },
+      {
+        "platform": "linux",
+        "name": "lessons_network_ui_tests",
+        "assertions": 249,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "dd2f80e5ad352de8340bde59947df7a15daf83956f7266f5acfbe016f52b389a",
+        "log_sha256": "5666ec4b3a4e946a84088c3ac8fec73d2a03178019e4f7b2e910995b319aff74"
+      },
+      {
+        "platform": "windows",
+        "name": "hotel_visual_ui_tests",
+        "assertions": 247,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+        "log_sha256": "1286b83d0a38d0e736396ed6a8d59a8a85dc83bf6c1d2296619b89d6fef12f08"
+      },
+      {
+        "platform": "linux",
+        "name": "hotel_visual_ui_tests",
+        "assertions": 247,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+        "log_sha256": "1286b83d0a38d0e736396ed6a8d59a8a85dc83bf6c1d2296619b89d6fef12f08"
+      },
+      {
+        "platform": "windows",
+        "name": "npc_ui_tests",
+        "assertions": 295,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e",
+        "log_sha256": "54637f56f37e95dc16edaabdc8116dd5b2ded021e8c0bb124814122840e54b9f"
+      },
+      {
+        "platform": "linux",
+        "name": "npc_ui_tests",
+        "assertions": 295,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e",
+        "log_sha256": "54637f56f37e95dc16edaabdc8116dd5b2ded021e8c0bb124814122840e54b9f"
+      },
+      {
+        "platform": "windows",
+        "name": "morning_services_tests",
+        "assertions": 767,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+        "log_sha256": "947b76bb342f3da2116a228059d58e62a0f811b72de8d07865e96528f76a7845"
+      },
+      {
+        "platform": "linux",
+        "name": "morning_services_tests",
+        "assertions": 767,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+        "log_sha256": "947b76bb342f3da2116a228059d58e62a0f811b72de8d07865e96528f76a7845"
+      },
+      {
+        "platform": "windows",
+        "name": "hotel_services_tests",
+        "assertions": 520,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+        "log_sha256": "68e24d73cdbc2efcbfd1d451a18f953d473a81be46e4222a61455473c808223c"
+      },
+      {
+        "platform": "windows",
+        "name": "world_collision_tests",
+        "assertions": 724,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+        "log_sha256": "618e78478ba3ecb7684d8c86ff6ec61b391fb86824a2afbf748eb593386dd97e"
+      },
+      {
+        "platform": "linux",
+        "name": "hotel_services_tests",
+        "assertions": 520,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+        "log_sha256": "68e24d73cdbc2efcbfd1d451a18f953d473a81be46e4222a61455473c808223c"
+      },
+      {
+        "platform": "linux",
+        "name": "world_collision_tests",
+        "assertions": 724,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+        "log_sha256": "618e78478ba3ecb7684d8c86ff6ec61b391fb86824a2afbf748eb593386dd97e"
+      },
+      {
+        "platform": "windows",
+        "name": "keyboard_tests",
+        "assertions": 786,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+        "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+      },
+      {
+        "platform": "linux",
+        "name": "keyboard_tests",
+        "assertions": 786,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+        "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+      },
+      {
+        "platform": "windows",
+        "name": "campus_services_tests",
+        "assertions": 154,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da",
+        "log_sha256": "c461504bb959af7bdca2e055cb6a7721a0e1e98857adf19560e8603afa0346d3"
+      },
+      {
+        "platform": "linux",
+        "name": "campus_services_tests",
+        "assertions": 154,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da",
+        "log_sha256": "c461504bb959af7bdca2e055cb6a7721a0e1e98857adf19560e8603afa0346d3"
+      },
+      {
+        "platform": "windows",
+        "name": "traffic_services_tests",
+        "assertions": 153,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+        "log_sha256": "abb6e6ec85e2908a8227842098c1e0670914e2ab4ce05af05def03534f7204a6"
+      },
+      {
+        "platform": "linux",
+        "name": "traffic_services_tests",
+        "assertions": 153,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+        "log_sha256": "abb6e6ec85e2908a8227842098c1e0670914e2ab4ce05af05def03534f7204a6"
+      },
+      {
+        "platform": "windows",
+        "name": "maze_services_tests",
+        "assertions": 214,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "7b88f68d321d2586ca34636498dbd3c55abc7a7baee8dce427614272c312310f",
+        "log_sha256": "79c44a3f6fae789463f3b00c8b893eb22607f789acfcf845b93bba6723aff4b7"
+      },
+      {
+        "platform": "linux",
+        "name": "maze_services_tests",
+        "assertions": 214,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "7b88f68d321d2586ca34636498dbd3c55abc7a7baee8dce427614272c312310f",
+        "log_sha256": "79c44a3f6fae789463f3b00c8b893eb22607f789acfcf845b93bba6723aff4b7"
+      },
+      {
+        "platform": "windows",
+        "name": "code_chapter_services_tests",
+        "assertions": 340,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "03175238e6c4e04987fe6fb12b344fedea8ebda3fe6ba9dd104d05886e0dac1c",
+        "log_sha256": "53098d613011d289da02a3b01e447034223200b1d31371eb789b0dbe0c2f4b0e"
+      },
+      {
+        "platform": "linux",
+        "name": "code_chapter_services_tests",
+        "assertions": 340,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "03175238e6c4e04987fe6fb12b344fedea8ebda3fe6ba9dd104d05886e0dac1c",
+        "log_sha256": "131222445f769dc870cb2ee35c5c7f307c7ac8b91fbc085c559254f012700045"
+      },
+      {
+        "platform": "windows",
+        "name": "network_lab_services_tests",
+        "assertions": 183,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "18c3a4ceb3c3f6df3f16afb41929e5878aff3009654955d8d79be5dad21b20d2",
+        "log_sha256": "f229daec47b2760673bba2c9a342edb54fbc682b2dd862cd4a0414d2d509e84d"
+      },
+      {
+        "platform": "linux",
+        "name": "network_lab_services_tests",
+        "assertions": 183,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "18c3a4ceb3c3f6df3f16afb41929e5878aff3009654955d8d79be5dad21b20d2",
+        "log_sha256": "f229daec47b2760673bba2c9a342edb54fbc682b2dd862cd4a0414d2d509e84d"
+      },
+      {
+        "platform": "windows",
+        "name": "windows_pack",
+        "assertions": 47,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+        "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+      },
+      {
+        "platform": "windows",
+        "name": "windows_art_pack",
+        "assertions": 111,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "47cfc70f0039dd608ee6d0b50d114810384a2929746edd52f0fead4c2a1927e9",
+        "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+      },
+      {
+        "platform": "linux",
+        "name": "windows_pack",
+        "assertions": 47,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+        "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+      },
+      {
+        "platform": "linux",
+        "name": "windows_art_pack",
+        "assertions": 111,
+        "failures": 0,
+        "exit_code": 0,
+        "engine_errors": [],
+        "ok": true,
+        "script_sha256": "47cfc70f0039dd608ee6d0b50d114810384a2929746edd52f0fead4c2a1927e9",
+        "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+      }
+    ]
+  },
+  "native_render": {
+    "assertions": 347,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_buffet_dialogue_challenge.png",
+        "bytes": 113334,
+        "sha256": "b20a8b816f2898bc2e9cdebe648b943e638ee0799ffd850d9b44286f9c4f2b7e"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_buffet_scene_challenge.png",
+        "bytes": 115066,
+        "sha256": "1f14721095dc003d347416e54b3e7a16bc36d04bb5579c0edd2afd821005efc3"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_closed_floor_dialogue_challenge.png",
+        "bytes": 93502,
+        "sha256": "ffc78274baadd79c267ee6c538fc67227b94b300a9406d6d3bbdbf641c4e6a23"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_closed_floor_scene_challenge.png",
+        "bytes": 98431,
+        "sha256": "ea974e69dba72ac860f8ec4aba58f40ed76d6d9771942ee84e5d0b07b2e1c439"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_compact_nuit_challenge.png",
+        "bytes": 85372,
+        "sha256": "093bf5efcc49777ed333c2bb787237507dce19c71c60ef087b855d29735dd1ec"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_crossing_dialogue_challenge.png",
+        "bytes": 107577,
+        "sha256": "b5cc97c8044bda209b09e1dd34cee39442ceee6bb33abf3748af7ddf11d005f0"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_crossing_scene_challenge.png",
+        "bytes": 90788,
+        "sha256": "fc45ac642a1ac51d6b50d1765af316ac2f81d444eee378401f9d16253f41271b"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_hotel_door_dialogue_challenge.png",
+        "bytes": 98860,
+        "sha256": "62b9a6de1ac9104a59ff22c2b96f6f4ac444eef0bfdf48b038ff243c90fb301b"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_hotel_door_scene_challenge.png",
+        "bytes": 97393,
+        "sha256": "4271d94792d12d388d8afe9f0132afd4f7404c945e5c3bc74e93f8bc7e9a3cd8"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_top_floor_dialogue_challenge.png",
+        "bytes": 105834,
+        "sha256": "62548edf7ad2b3115844db3cacde752c245d3b433c4c94e1de76af1b82f543c7"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_top_floor_scene_challenge.png",
+        "bytes": 106502,
+        "sha256": "16f4dc089838b184b8eb7367e4e4cdbb27f94566ef1922080398c340b3db20f0"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_workshop_dialogue_challenge.png",
+        "bytes": 120611,
+        "sha256": "d7e35ab6663559572a5d6e784c79c42fcad95d8035c4f1ac1ae5f54758fdd60c"
+      },
+      {
+        "file": "docs/screenshots/npc_0.15.0/npc_workshop_scene_challenge.png",
+        "bytes": 130479,
+        "sha256": "757e4b1047ce3c616d692a700a9e283fefae6e92e4b7a9480131123398cd1531"
+      }
+    ],
+    "script_sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e",
+    "log_sha256": "98b8875c54e680f734e872ff86a9747584623312159ede5ecac5fd5d68f924a9"
+  },
+  "world_routes": {
+    "zones": 15,
+    "checks": 724,
+    "active_static_bodies": 392,
+    "real_physics_motion_segments": 35833,
+    "failures": 0,
+    "log_sha256": "618e78478ba3ecb7684d8c86ff6ec61b391fb86824a2afbf748eb593386dd97e",
+    "driver_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb"
+  },
+  "export_inputs": [
+    {
+      "file": "assets/LICENSES.md",
+      "bytes": 2522,
+      "sha256": "26dd936ef7b6af8c363a257e29f6c26a50814a908ba6183c8f19dd6ea6f8beb2"
+    },
+    {
+      "file": "assets/art/character/down_0.svg",
+      "bytes": 1150,
+      "sha256": "12a51ad409d662ed2b2d148ce30e773e4f34e9390c42138df24ec09feb9e1d0d"
+    },
+    {
+      "file": "assets/art/character/down_0.svg.import",
+      "bytes": 1040,
+      "sha256": "d5ace747a93c2cae0cda96bdcbb23987717d6e7c7e7f898fc1a1f5b155fb4e72"
+    },
+    {
+      "file": "assets/art/character/down_1.svg",
+      "bytes": 1150,
+      "sha256": "f54905c1c24d533ea58e518c8ffdc54f1f47e7f3901fead4a2ad467d80da77bd"
+    },
+    {
+      "file": "assets/art/character/down_1.svg.import",
+      "bytes": 1039,
+      "sha256": "fc420b0c3aefaf738d6fb4d1a99c95be827e7fb5c36beb94ed958ff4ab0a98a4"
+    },
+    {
+      "file": "assets/art/character/down_2.svg",
+      "bytes": 1150,
+      "sha256": "dd94b9d4295bad2042a11b1a1aff19cce51beac53578abc06deedab77db7bd49"
+    },
+    {
+      "file": "assets/art/character/down_2.svg.import",
+      "bytes": 1039,
+      "sha256": "e82d8c2bbd516099b7a56c79d1f8ab58450ed9a2acec94d1c9b6507aaf7ecd99"
+    },
+    {
+      "file": "assets/art/character/left_0.svg",
+      "bytes": 1068,
+      "sha256": "e25f6b9b57edb803bc7969c4aa6923a6da8e5f13c76164926df3c1875038f401"
+    },
+    {
+      "file": "assets/art/character/left_0.svg.import",
+      "bytes": 1040,
+      "sha256": "52bc5328acd4a53039141decb20a5c80b5918b24d8b26b52f7a6269af95ca108"
+    },
+    {
+      "file": "assets/art/character/left_1.svg",
+      "bytes": 1068,
+      "sha256": "208f370da35b5273f5d935b61153cbb0fa8eebe739474d8315487b96e75cfce1"
+    },
+    {
+      "file": "assets/art/character/left_1.svg.import",
+      "bytes": 1040,
+      "sha256": "8fe04ffb6aab0e94dde429ccf198a60278b271c2144b9d530149a3ddb941af1a"
+    },
+    {
+      "file": "assets/art/character/left_2.svg",
+      "bytes": 1068,
+      "sha256": "5053c282c5786e76bf4eb7a1c06743cbfd970fa065e1e028d56d2098c6fb9c5a"
+    },
+    {
+      "file": "assets/art/character/left_2.svg.import",
+      "bytes": 1039,
+      "sha256": "1655cd261c10506f36242bd422037ab868c73c5bded74b22951c9af97982be67"
+    },
+    {
+      "file": "assets/art/character/right_0.svg",
+      "bytes": 1068,
+      "sha256": "0f029743915695520592b7e8eaccad63575c529d30bb244153244863c64862a2"
+    },
+    {
+      "file": "assets/art/character/right_0.svg.import",
+      "bytes": 1043,
+      "sha256": "ad1332f96c0592583f8528472c2b3d82bdd89974dca3d8241a11bc275e54c5e0"
+    },
+    {
+      "file": "assets/art/character/right_1.svg",
+      "bytes": 1068,
+      "sha256": "12125c99bceb17bc1f1311983cc7bb238bf16bf790bdb39cb917e494ae529345"
+    },
+    {
+      "file": "assets/art/character/right_1.svg.import",
+      "bytes": 1043,
+      "sha256": "d7ec5c257763d441a606aeb78b78637cfca3658b4e50ae23c1c4f8fdd9569f67"
+    },
+    {
+      "file": "assets/art/character/right_2.svg",
+      "bytes": 1068,
+      "sha256": "4a49783718f13654e401b9b4f0c521450b7ee09e33be4e65e033c3d9d588c74b"
+    },
+    {
+      "file": "assets/art/character/right_2.svg.import",
+      "bytes": 1043,
+      "sha256": "93f44cf29ccd6ad24158571b4cca3e01a7226b7918178e6331455af6ef5f01cf"
+    },
+    {
+      "file": "assets/art/character/up_0.svg",
+      "bytes": 992,
+      "sha256": "035870fe4924272553764db4aeec823ef5841def5d91370cc4d6b7a79bba47df"
+    },
+    {
+      "file": "assets/art/character/up_0.svg.import",
+      "bytes": 1033,
+      "sha256": "a27438e00fca8316d26e624e3ba6d6718a4a64a4fcae64d59bee271964dd6bca"
+    },
+    {
+      "file": "assets/art/character/up_1.svg",
+      "bytes": 992,
+      "sha256": "f694eb0415f70a9adefe47462dc75316b186d482cb1ccd0c0ed93d77c78c50e8"
+    },
+    {
+      "file": "assets/art/character/up_1.svg.import",
+      "bytes": 1034,
+      "sha256": "e72a4ac51085d0b1d884a56bb6dee664dc1dc6d63ff6421926e706aef448a451"
+    },
+    {
+      "file": "assets/art/character/up_2.svg",
+      "bytes": 992,
+      "sha256": "45a81a03707ca0dab74cf7769ba69802ae49cc0488c0ab8fbf1d7aa62fb519ba"
+    },
+    {
+      "file": "assets/art/character/up_2.svg.import",
+      "bytes": 1033,
+      "sha256": "6debadc0744b79b6fcea4acc22a45d4c672530dfbd70362316f940fe0e099496"
+    },
+    {
+      "file": "assets/art/icons/help.svg",
+      "bytes": 325,
+      "sha256": "9ecaee0e9610dd9713dd4d34beaffc076358783ca157a0af7fb8ba06cc52a438"
+    },
+    {
+      "file": "assets/art/icons/help.svg.import",
+      "bytes": 1030,
+      "sha256": "191435663d6a5e7af89ba3588f3a03a1eb0bd5d980f6688843b0325455107a89"
+    },
+    {
+      "file": "assets/art/icons/home.svg",
+      "bytes": 286,
+      "sha256": "b532b5824ed2723da0c17506e1d6e9070e590967d73deb6b1613331a521ad4eb"
+    },
+    {
+      "file": "assets/art/icons/home.svg.import",
+      "bytes": 1030,
+      "sha256": "ee8bec9736d07b6bbc102715ad99bc4e12fc38b32fbe78d8aebaee20f65b53ae"
+    },
+    {
+      "file": "assets/art/icons/profiles.svg",
+      "bytes": 306,
+      "sha256": "8c0575369658fabfbaf4527f7eef5a77c74e09ac1489030d25a368cc5435a80f"
+    },
+    {
+      "file": "assets/art/icons/profiles.svg.import",
+      "bytes": 1042,
+      "sha256": "9f458bb3e3ece6435b42fd43ccd48c4a524a55bc79cc2f1bb5c183a5851f02ca"
+    },
+    {
+      "file": "assets/art/icons/settings.svg",
+      "bytes": 269,
+      "sha256": "b8b0cf60a03e88f11f1422b322ffa04472feb2b3b48d5c355d7c45738ed953bd"
+    },
+    {
+      "file": "assets/art/icons/settings.svg.import",
+      "bytes": 1041,
+      "sha256": "b187d2c9c265c6956817e84a61433cbf2185ae07a28f4da20e0e6e76bf50fe63"
+    },
+    {
+      "file": "assets/art/icons/shop.svg",
+      "bytes": 278,
+      "sha256": "25fd80d0654b6fff0c4f055abb391a0493da3e1f6f7e7411010ec86e87e07d38"
+    },
+    {
+      "file": "assets/art/icons/shop.svg.import",
+      "bytes": 1030,
+      "sha256": "54ceda13772b74b544b283758b4854f52f4d0de2aa2480a60c7ac01e632da147"
+    },
+    {
+      "file": "assets/art/world/cabinet.svg",
+      "bytes": 1379,
+      "sha256": "57e83e1065b2d82e35132ee6b01d4918b221424709c56296b0c9bc74ac20c7e1"
+    },
+    {
+      "file": "assets/art/world/cabinet.svg.import",
+      "bytes": 1038,
+      "sha256": "44009b5b9d476e9d001daee002cab13f1c4297cc517bfa279834dbead8395266"
+    },
+    {
+      "file": "assets/art/world/chair.svg",
+      "bytes": 834,
+      "sha256": "fc8abda24ee9a53fbb6db42d16a1e074d2781c7ff1e6ad5e102e4755e3f7bf54"
+    },
+    {
+      "file": "assets/art/world/chair.svg.import",
+      "bytes": 1033,
+      "sha256": "e7d7c3d140bfc30f00e697ed307f88ba707f46998319fc445642f2446ff799b6"
+    },
+    {
+      "file": "assets/art/world/code_floor.svg",
+      "bytes": 1488,
+      "sha256": "515aa556602f5577c9602403aad72b7c034a13355d66153fdcc7436c6e1efe8b"
+    },
+    {
+      "file": "assets/art/world/code_floor.svg.import",
+      "bytes": 1048,
+      "sha256": "462ba0f2ea30885ad8a78d4e9c2c59dd75ec8dfaaa3257a551dbca31a591d539"
+    },
+    {
+      "file": "assets/art/world/code_html.svg",
+      "bytes": 1482,
+      "sha256": "1cd22331c55159941f20b86d40ad64e866eb5cf92e54026a374d33ff73c9fbfe"
+    },
+    {
+      "file": "assets/art/world/code_html.svg.import",
+      "bytes": 1044,
+      "sha256": "6a645ffc6088cef2f7cb15f54a9954fac74f795bc02b0fc3a053befc2dfab925"
+    },
+    {
+      "file": "assets/art/world/code_markdown.svg",
+      "bytes": 1384,
+      "sha256": "3e9e5ea116a16be5c87934b3597c5b74a481f50c40b1549376651bf8bc9f01a0"
+    },
+    {
+      "file": "assets/art/world/code_markdown.svg.import",
+      "bytes": 1057,
+      "sha256": "2904f1ce04389ab80b8dc0b65d6c394b49c447ca9eca4bf2f24111782a6a63eb"
+    },
+    {
+      "file": "assets/art/world/code_python.svg",
+      "bytes": 1461,
+      "sha256": "ca63d60885b20ad5e96628d7d8b5e7cd564b35b7e07d290bca88efc9c2591189"
+    },
+    {
+      "file": "assets/art/world/code_python.svg.import",
+      "bytes": 1051,
+      "sha256": "a96077dbd68be141fb31cfc5c7bc94320a0df07d54fad632f6ad3f3f0fc1648b"
+    },
+    {
+      "file": "assets/art/world/code_walls.svg",
+      "bytes": 921,
+      "sha256": "ffcb706f8c4321db465344282f8d5b42aaacc4df693d5b9ec496f9fbb7712020"
+    },
+    {
+      "file": "assets/art/world/code_walls.svg.import",
+      "bytes": 1048,
+      "sha256": "ba83866112a23eee549fd1e9b5c64536d1a3c29103cedede10a61968342f88b7"
+    },
+    {
+      "file": "assets/art/world/desk.svg",
+      "bytes": 2850,
+      "sha256": "7d39a6738e75a1aa668d0761ab6b08f5896d11bc657c7b839322ec033ad330ac"
+    },
+    {
+      "file": "assets/art/world/desk.svg.import",
+      "bytes": 1029,
+      "sha256": "459210ae471152486c160e6bc1a6927b6fba8177dd651c0df3179b1e60cae24d"
+    },
+    {
+      "file": "assets/art/world/door_closed.svg",
+      "bytes": 381,
+      "sha256": "caff1d3d38d2d6cea87f9ad8209967582acbc7dd69fec72eb1828577ce315223"
+    },
+    {
+      "file": "assets/art/world/door_closed.svg.import",
+      "bytes": 1051,
+      "sha256": "6b6cba320a7de6758dc472f61a69909f790b231471cce7e8be8f12578d965dbf"
+    },
+    {
+      "file": "assets/art/world/door_open.svg",
+      "bytes": 378,
+      "sha256": "cb8ac1f6409b21424dc338ae247135a64d856e0015e61af52233966677ec696c"
+    },
+    {
+      "file": "assets/art/world/door_open.svg.import",
+      "bytes": 1045,
+      "sha256": "2b1e97b01f2a18d81ec4fc37be2ae5f706fb1fa6a1220e53b87766985965697a"
+    },
+    {
+      "file": "assets/art/world/electrical_off.svg",
+      "bytes": 2118,
+      "sha256": "d79ce6ca78a49061706f3bbb28dd9e811be41d827fdc6cf2e937de5904142c89"
+    },
+    {
+      "file": "assets/art/world/electrical_off.svg.import",
+      "bytes": 1060,
+      "sha256": "35dbde05f4de1067fda6da9ea9af2a680476f228afa001290feb6775d1a0b27f"
+    },
+    {
+      "file": "assets/art/world/electrical_on.svg",
+      "bytes": 2118,
+      "sha256": "bb381e46d14e219fea5f94c10ae434c9977b0fed268eb8120d039b5618e944a5"
+    },
+    {
+      "file": "assets/art/world/electrical_on.svg.import",
+      "bytes": 1056,
+      "sha256": "3ebef7d9b2566530c7e3178e51b401bd0968a2f55d9ee06964b81c49b8b808c6"
+    },
+    {
+      "file": "assets/art/world/elevator_locked.svg",
+      "bytes": 1637,
+      "sha256": "d75282a3197f1245d5d39756b5f4f6cef12d42fdd238ad9ccbc18c2b3e0db210"
+    },
+    {
+      "file": "assets/art/world/elevator_locked.svg.import",
+      "bytes": 1062,
+      "sha256": "13b806c315b942a0a50ec380d56266d2c5ebac8a23823d08abe37cf613b8d121"
+    },
+    {
+      "file": "assets/art/world/elevator_ready.svg",
+      "bytes": 1659,
+      "sha256": "89205bf922df469a2d9b48a7c90c29435b43a659a1816926671cd91e37b4281a"
+    },
+    {
+      "file": "assets/art/world/elevator_ready.svg.import",
+      "bytes": 1060,
+      "sha256": "5b5c37bebac76697f29a5c9844b2dd0a0760df81581d6395b7829dc0d2bfebb3"
+    },
+    {
+      "file": "assets/art/world/floor.svg",
+      "bytes": 26606,
+      "sha256": "0a92fac63a101c718d5cafd206f038629384e2088d567293a5c3fbbfca7503c2"
+    },
+    {
+      "file": "assets/art/world/floor.svg.import",
+      "bytes": 1033,
+      "sha256": "6fb59b81f739403b8f4c9da890d579aa4c0df51fc3cd36adf04beb19920ccb77"
+    },
+    {
+      "file": "assets/art/world/light.svg",
+      "bytes": 316,
+      "sha256": "cf12959b6d5cf8c0b6f20d318fc8b2f20f20a951194152b5990e89b502bfe66d"
+    },
+    {
+      "file": "assets/art/world/light.svg.import",
+      "bytes": 1033,
+      "sha256": "b70f87d60f586416a3e85d97a3a3c10ac5a7c3cf97a27dfd2d136220fcc9bb47"
+    },
+    {
+      "file": "assets/art/world/monitor_off.svg",
+      "bytes": 1358,
+      "sha256": "808f0d7f1a9f7e2a1acb91bac551f2346f07479e9cf21c3b6208682d234c0736"
+    },
+    {
+      "file": "assets/art/world/monitor_off.svg.import",
+      "bytes": 1051,
+      "sha256": "41e67b7d11e05a2614ae20be5a4aae35c20ede69f1798b3c674a264063addfe0"
+    },
+    {
+      "file": "assets/art/world/monitor_on.svg",
+      "bytes": 1439,
+      "sha256": "079270923f450918f76dd03ccd672c60a80415f181291e93aca3ec08d0ef36f6"
+    },
+    {
+      "file": "assets/art/world/monitor_on.svg.import",
+      "bytes": 1048,
+      "sha256": "3058cfbf7386c70af9b7a508769dcab1bbcc2610a029867f49f6a4b5ffdff566"
+    },
+    {
+      "file": "assets/art/world/network_floor.svg",
+      "bytes": 15330,
+      "sha256": "ac8a70f1dc77fb595c32f22c715349b217325e228531d2201c90d8455e63a159"
+    },
+    {
+      "file": "assets/art/world/network_floor.svg.import",
+      "bytes": 1057,
+      "sha256": "d64903e4722fee554bebf07f5e810954bc53349d784090b72f16a78c27f110b2"
+    },
+    {
+      "file": "assets/art/world/network_rack.svg",
+      "bytes": 1919,
+      "sha256": "c20d1b3c46a88a9298d2876391fab50d113b185d62f967f5338d37f9bee12fc0"
+    },
+    {
+      "file": "assets/art/world/network_rack.svg.import",
+      "bytes": 1053,
+      "sha256": "bc428bf325e2d4d10ae0fe05f52b62197aa8a82d8cb79155e68c3232316af4f6"
+    },
+    {
+      "file": "assets/art/world/network_terminal.svg",
+      "bytes": 1061,
+      "sha256": "1892f6deb66b0f84fb21ffa75bed57b1d16225a062809d96ebfed5044d6e4528"
+    },
+    {
+      "file": "assets/art/world/network_terminal.svg.import",
+      "bytes": 1065,
+      "sha256": "36e388404bec290837d50f37df63d8699cb4122a6eba523fc8ed309f577fce9d"
+    },
+    {
+      "file": "assets/art/world/network_walls.svg",
+      "bytes": 1042,
+      "sha256": "2c3ed357c2047a8440c2e2590dfc6a210ff0ba7307d121782f20f883144f8a63"
+    },
+    {
+      "file": "assets/art/world/network_walls.svg.import",
+      "bytes": 1057,
+      "sha256": "58b99795daf129c7eda62f1e9f108e11ae206daf24552445b068aaf95734b88e"
+    },
+    {
+      "file": "assets/art/world/note.svg",
+      "bytes": 622,
+      "sha256": "291d3614aa7c9b234c29822e1d403969ee9de6b1b420f585468b2f799bd2b349"
+    },
+    {
+      "file": "assets/art/world/note.svg.import",
+      "bytes": 1030,
+      "sha256": "e110947d0ec2b89a3344b362375d036281dc276fc31e77421e1de37e5ad962c9"
+    },
+    {
+      "file": "assets/art/world/plant.svg",
+      "bytes": 523,
+      "sha256": "c17b2e5f4a781dd1c788d82086c6f68cb39dc90070b0d2fdf6714f20ea158bd5"
+    },
+    {
+      "file": "assets/art/world/plant.svg.import",
+      "bytes": 1033,
+      "sha256": "70875db5782fdb2ccdd4120d9269722df4205147167ea63ec4789dd1f81642f5"
+    },
+    {
+      "file": "assets/art/world/reader_off.svg",
+      "bytes": 422,
+      "sha256": "a247f5c91b6dd01d498de9d95c0bd5b7c727425fac8bdb9931864ae9eb972312"
+    },
+    {
+      "file": "assets/art/world/reader_off.svg.import",
+      "bytes": 1048,
+      "sha256": "56ba6fe4c34e54a36f112864ebfe42741eea968319b919cc1d3ded0adfca4dec"
+    },
+    {
+      "file": "assets/art/world/reader_on.svg",
+      "bytes": 422,
+      "sha256": "84dd24bd214c939c00a6e5503f7c452077918bacffc58c4d1366af9e701eace1"
+    },
+    {
+      "file": "assets/art/world/reader_on.svg.import",
+      "bytes": 1045,
+      "sha256": "49e33baa14490953c88ad3e4cdd328d14de121ff7dcd4888df70aa61d773b4c4"
+    },
+    {
+      "file": "assets/art/world/shelf.svg",
+      "bytes": 1762,
+      "sha256": "863d5238516a80a455e2ac3854e79f6c4b0e82e84646f7a68ed3966db8a3ea03"
+    },
+    {
+      "file": "assets/art/world/shelf.svg.import",
+      "bytes": 1033,
+      "sha256": "7effeb5a6955684b07960d56690a71a370fcf51da2ca65b8b7c9640a1b6bd366"
+    },
+    {
+      "file": "assets/art/world/tower.svg",
+      "bytes": 609,
+      "sha256": "fc149b0e3ea3a5145eb7843e1c3d87b977dba3dfd41529c6133e84218e398f9b"
+    },
+    {
+      "file": "assets/art/world/tower.svg.import",
+      "bytes": 1033,
+      "sha256": "5b273361a199cc226f341c81dd6234655732a80ed48abc5df6f8f732fd1f220a"
+    },
+    {
+      "file": "assets/art/world/walls.svg",
+      "bytes": 2189,
+      "sha256": "56f442d385500902e977d2b1cc056094f2b9ecbed5f7e68fcaed81d66ae0c97a"
+    },
+    {
+      "file": "assets/art/world/walls.svg.import",
+      "bytes": 1033,
+      "sha256": "680b13aea667aeaae01d4cae230edb3017f0d610f30b428745bf4598540b271a"
+    },
+    {
+      "file": "assets/art/world/wifi_station.svg",
+      "bytes": 1370,
+      "sha256": "e9480e1e606427d48ade7c64440d7ef68d491667e4f3ca472d35d2c492de9605"
+    },
+    {
+      "file": "assets/art/world/wifi_station.svg.import",
+      "bytes": 1054,
+      "sha256": "b3482aaac0f53d3190ac8a8eb5a12c002c4b137c539dc14dc7d9823ba77cc0b0"
+    },
+    {
+      "file": "assets/art/world/workbench.svg",
+      "bytes": 2142,
+      "sha256": "21fbef3270d1f62d50f7bf9e27e0d1acae428e78e1d81c60653968aedffac286"
+    },
+    {
+      "file": "assets/art/world/workbench.svg.import",
+      "bytes": 1045,
+      "sha256": "9de6a1f1cdf8c4ee75b1c2442ce57c6ec063560221f3f8e0b7f20e0c8cdba939"
+    },
+    {
+      "file": "assets/audio/LICENSE.txt",
+      "bytes": 279,
+      "sha256": "331e7b6d263871727a8c083614a1104012c5c2289f243e1760c50bc859dac907"
+    },
+    {
+      "file": "assets/audio/confirm.wav",
+      "bytes": 7100,
+      "sha256": "6342dbf975c4a0bd8312a8e1c880627a9e5388466e805ce8f5b88d3a05fbd2b8"
+    },
+    {
+      "file": "assets/audio/confirm.wav.import",
+      "bytes": 492,
+      "sha256": "4546e4ca2b0290358f92d0281bfb0daa34acd3d01c95dc07754a24d9bb89f3ca"
+    },
+    {
+      "file": "assets/audio/generate_audio.py",
+      "bytes": 1153,
+      "sha256": "dcc090f0e309a111e4436034132f6a81af58afba15c0c2dd13b4369ccb9c8b9c"
+    },
+    {
+      "file": "assets/audio/menu.wav",
+      "bytes": 705644,
+      "sha256": "9c18834a354d03c9890f6d9d5efbfedc985e44dd8f5a104bb14a042c36c8552d"
+    },
+    {
+      "file": "assets/audio/menu.wav.import",
+      "bytes": 483,
+      "sha256": "1e95841bbe7172e867fdb475b63b59f0cb57ab219408582b39c31470cee3e4b0"
+    },
+    {
+      "file": "assets/console.svg",
+      "bytes": 575,
+      "sha256": "84b232995f73cdb9489adf9ed5360bb9879340f34a82886b4f753b32e48b4d7d"
+    },
+    {
+      "file": "assets/console.svg.import",
+      "bytes": 1029,
+      "sha256": "245069c89b63f6086b72628edcd0d5ca61fc79bde54e78055474b2a59ff9a444"
+    },
+    {
+      "file": "assets/licenses/CC0.txt",
+      "bytes": 6407,
+      "sha256": "7243e91b49def43dc7382f37840dafa4edef6dfe982ba9e79d962cb80a0612a4"
+    },
+    {
+      "file": "assets/licenses/GODOT_LICENSE_TEXTS.json",
+      "bytes": 79548,
+      "sha256": "d48c6a837ae047c4bb50e7b35c27561ce7d215acf0df987e038d56e9d93681d0"
+    },
+    {
+      "file": "assets/licenses/GODOT_MIT.txt",
+      "bytes": 1149,
+      "sha256": "b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80"
+    },
+    {
+      "file": "assets/licenses/GODOT_THIRD_PARTY.json",
+      "bytes": 31441,
+      "sha256": "1a0c7909f34bd11b6b53bed1c5ed130e4d160b06caf9deea6ebf9908fef68a87"
+    },
+    {
+      "file": "assets/licenses/OFL-1.1.txt",
+      "bytes": 3910,
+      "sha256": "3092e1d96ed197a6ce12a0d79db784fe4e567ea7e933aa0506e8ebf776a11bf4"
+    },
+    {
+      "file": "data/controller_mapping.json",
+      "bytes": 983,
+      "sha256": "90f9a8f9ef36ee59e6499327ca34562944f6ef574b52e66202468b9446793680"
+    },
+    {
+      "file": "data/game_rules.json",
+      "bytes": 34200,
+      "sha256": "9fd006215517e6cd417cd00926593e027232d417820024667f25e6c1a9723f3c"
+    },
+    {
+      "file": "data/shop_catalog.json",
+      "bytes": 2647,
+      "sha256": "b9a65a93a96b3e9270c5ea9067a0e5b314a9344ccc9ce2d717bb63fc39addae4"
+    },
+    {
+      "file": "default_bus_layout.tres",
+      "bytes": 444,
+      "sha256": "f04aec2825c1d1446ba10631230c2275e45e2fe929f611fa72d052636ab3b6d5"
+    },
+    {
+      "file": "docs/linux/Installer_raccourci.sh",
+      "bytes": 2707,
+      "sha256": "c05604e8dd313fd4c001bbc399ecb19085c91d7af03e02d3c64416a9b11db493"
+    },
+    {
+      "file": "docs/linux/LIRE_MOI.txt",
+      "bytes": 14406,
+      "sha256": "b614690fb18292c74534393621f7afc3146374b8316bd923881f60bf62492408"
+    },
+    {
+      "file": "docs/linux/Lancer_Console_CIEL.sh",
+      "bytes": 1420,
+      "sha256": "4481c00a893338a086a9c4c82c93692c4cdb858d8acab889c57aa84f52815898"
+    },
+    {
+      "file": "docs/windows/LIRE_MOI.txt",
+      "bytes": 19658,
+      "sha256": "bccb8b428fc2f318c304a53e226bfee1d84b8ad03dc0e4c77bf879aa9cfeddc8"
+    },
+    {
+      "file": "export_presets.cfg",
+      "bytes": 2157,
+      "sha256": "4bcb693aa630528999079a6e8e282fe3243d439910bcd12e71560d9dd9ee8447"
+    },
+    {
+      "file": "images_profil/.gdignore",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "images_profil/LIRE_MOI.txt",
+      "bytes": 1062,
+      "sha256": "096f4ecc3d6cbc1cf093625b77eb8c6af8e469ee1521cbbc6c5c49e59652d20e"
+    },
+    {
+      "file": "project.godot",
+      "bytes": 13035,
+      "sha256": "280126799d3d5296e53b7387430024fa219ae2667db222fbf8a0cbd5bcbf6ea0"
+    },
+    {
+      "file": "scenes/demo_game.tscn",
+      "bytes": 297,
+      "sha256": "cf2a05b91ac2e50adfada9e774cc563d8390e045ed96e234a6e291053e5e2102"
+    },
+    {
+      "file": "scenes/games/test_game.tscn",
+      "bytes": 287,
+      "sha256": "1ebb4bbf85cee8e647d97f82c3dbe2164cfeb7b04af201a47438cfd0a5dd28d1"
+    },
+    {
+      "file": "scenes/investigation_world.tscn",
+      "bytes": 205,
+      "sha256": "e559274793b0bec0909e53dcfcb257e1177271b19651636a55828420b3025ae1"
+    },
+    {
+      "file": "scenes/main.tscn",
+      "bytes": 283,
+      "sha256": "67dd0696e67144e1b5be5b6537e6f3ce9ccb409d7b4a65fcd36f27f32036043f"
+    },
+    {
+      "file": "scenes/startup.tscn",
+      "bytes": 628,
+      "sha256": "518442078742d30acc6f7dcc8128acb229dc984c11a81dfb378abd994c137e62"
+    },
+    {
+      "file": "scripts/game/campus_layout.gd",
+      "bytes": 2550,
+      "sha256": "9099e23a137b36174dfdc7ca4bde354d0fb01a731c9750aff0635dd052eb28e0"
+    },
+    {
+      "file": "scripts/game/campus_layout.gd.uid",
+      "bytes": 20,
+      "sha256": "9f1532ac2ad38f85dff4c989d4c5688e247529be8aab178e6a45a47123ba6c24"
+    },
+    {
+      "file": "scripts/game/campus_map.gd",
+      "bytes": 6089,
+      "sha256": "ae51a5ac28bd9d72c6a7c432d565520c729ee6faec96d63c752180084ca891b8"
+    },
+    {
+      "file": "scripts/game/campus_map.gd.uid",
+      "bytes": 20,
+      "sha256": "c397895ac12d672de20a6f8bd7cb070ca57e07eb74fc6098b95d44679e2d5868"
+    },
+    {
+      "file": "scripts/game/campus_visual.gd",
+      "bytes": 6333,
+      "sha256": "9e237d1aef16be5e66b0701633650fbadf7a986a9fcf38e812b020bb7b87cada"
+    },
+    {
+      "file": "scripts/game/campus_visual.gd.uid",
+      "bytes": 20,
+      "sha256": "85c20bd1bc1cedceb22bf3b46c4a5485a6faa90a559b18d384422df0a3c7bccb"
+    },
+    {
+      "file": "scripts/game/challenge_panel.gd",
+      "bytes": 18018,
+      "sha256": "a8af76f8edbf63bf4a007c9d5825f8395c3e4a57fdf57f7f440d48694ae0421e"
+    },
+    {
+      "file": "scripts/game/challenge_panel.gd.uid",
+      "bytes": 20,
+      "sha256": "f703bbd56e8279144115a8869e1636b539250ee335e53cddc7b275e8d3d3e23e"
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gd",
+      "bytes": 3105,
+      "sha256": "1a2c649e597a0276850ab9057927262a655e85c344cf9f504c03ddaf32e11d97"
+    },
+    {
+      "file": "scripts/game/circuit_diagram.gd.uid",
+      "bytes": 20,
+      "sha256": "2594e2d6498019c328ff141301178fb333622e06227fb6880c8cda1dcbaab5b4"
+    },
+    {
+      "file": "scripts/game/code_lessons.gd",
+      "bytes": 3987,
+      "sha256": "951e495364512392e4f74ce4f7d63f752d702d340cbde7ddc5fda8d66ca6dfdf"
+    },
+    {
+      "file": "scripts/game/code_lessons.gd.uid",
+      "bytes": 19,
+      "sha256": "e9591e03f2bab3a51c1ec497e05f6a9cfc673ec4e2807c759433b8bf6755016f"
+    },
+    {
+      "file": "scripts/game/demo_game.gd",
+      "bytes": 45704,
+      "sha256": "a31150ebc70d260356d11b90b66c265265d2ae4c313725ce34eb7daf3473ce40"
+    },
+    {
+      "file": "scripts/game/demo_game.gd.uid",
+      "bytes": 19,
+      "sha256": "488c8e3eaaf8c1e7fdaaa71a9a92f0ee4fe588308887acd092d08ba4a7691ddd"
+    },
+    {
+      "file": "scripts/game/hotel_layout.gd",
+      "bytes": 10469,
+      "sha256": "646bc7dc637fde6a1353d6745f7df5a9722ea587ad5b9bc94ccd32a7615238b6"
+    },
+    {
+      "file": "scripts/game/hotel_layout.gd.uid",
+      "bytes": 20,
+      "sha256": "7b3c7564a88b80db0895a4d73670222c47e1f7e405b7fb72cb03e82da370a9d0"
+    },
+    {
+      "file": "scripts/game/hotel_story_ui.gd",
+      "bytes": 31304,
+      "sha256": "e9ae8f1c806e25866539ef4db377893ca7eee0cb4d150da3b090c4699b22f7f5"
+    },
+    {
+      "file": "scripts/game/hotel_story_ui.gd.uid",
+      "bytes": 20,
+      "sha256": "fb05f387fd5cd9c5f7dfd6713cb45216d82703dcc1464087b76a25ddc450588f"
+    },
+    {
+      "file": "scripts/game/hotel_visual.gd",
+      "bytes": 30185,
+      "sha256": "be30ccbdf1b7fd15d5d724854c438fcdf3959487cba699c88b66f51849acbbb3"
+    },
+    {
+      "file": "scripts/game/hotel_visual.gd.uid",
+      "bytes": 19,
+      "sha256": "3e02f82ecb175ee3295548e3f9f3a362c49595bf87694b63c105a69b89cb352d"
+    },
+    {
+      "file": "scripts/game/interactable.gd",
+      "bytes": 1170,
+      "sha256": "a664134f7db25697097fef1ad7ad9051caf325b6ca69d422eeb4c02057cdfbbb"
+    },
+    {
+      "file": "scripts/game/interactable.gd.uid",
+      "bytes": 19,
+      "sha256": "df95cd7d7549de82d42819e14a24bf3ae2484668415ef5c1a3b791654f3ddcb8"
+    },
+    {
+      "file": "scripts/game/investigation_world.gd",
+      "bytes": 35900,
+      "sha256": "4a4261fe7b435bb5031dbeb3656e6ef5779d67f8fa5757c9af9470738df4fa7c"
+    },
+    {
+      "file": "scripts/game/investigation_world.gd.uid",
+      "bytes": 19,
+      "sha256": "8de6d5857be5603b813529135a193117dac9a293affd51513d952dbba4b05605"
+    },
+    {
+      "file": "scripts/game/lesson_library.gd",
+      "bytes": 7933,
+      "sha256": "89b9190bae5282837cfd3eb5b616e3e04b7cc8e14d70d8624d35062ab7c8b8ab"
+    },
+    {
+      "file": "scripts/game/lesson_library.gd.uid",
+      "bytes": 20,
+      "sha256": "2fb2c4d7e137a77404a81f0b36e7a3f52fdb56abf3b4482b77cd277b2cf034be"
+    },
+    {
+      "file": "scripts/game/maze_layout.gd",
+      "bytes": 3741,
+      "sha256": "2443eca39839c6ec8c8039b243327cd6905b380c0fc406537c6b6dcbe009ac52"
+    },
+    {
+      "file": "scripts/game/maze_layout.gd.uid",
+      "bytes": 20,
+      "sha256": "459547d900f77d97451b182324bcff1ea8e0ea1e75cee3a1c88084ec1e9576dd"
+    },
+    {
+      "file": "scripts/game/maze_visual.gd",
+      "bytes": 1622,
+      "sha256": "630b16aaa6155bff47752b766e19c385a41487eaf671b691ab8d23a87f11a526"
+    },
+    {
+      "file": "scripts/game/maze_visual.gd.uid",
+      "bytes": 20,
+      "sha256": "0fe1ada9ef5b00d46d158c7a86f765aad4d02cdfc0ba1d1ad7f16eb9f5976111"
+    },
+    {
+      "file": "scripts/game/mission_tracker.gd",
+      "bytes": 13213,
+      "sha256": "45aaa7e4f7f7ff3bd8490481e77770dec5b05ce35c8e9fb9a4bb4a8368a7869c"
+    },
+    {
+      "file": "scripts/game/mission_tracker.gd.uid",
+      "bytes": 20,
+      "sha256": "98b2a9ca30630fcf1e6205427a6c2f6f0e4e004de6e668c17501305ecc7ee8d3"
+    },
+    {
+      "file": "scripts/game/npc_catalog.gd",
+      "bytes": 6843,
+      "sha256": "1e24a2ae9658618b04d9edaae0b8bfca5f7eab894223188afd9e1b619b7f2ffb"
+    },
+    {
+      "file": "scripts/game/npc_catalog.gd.uid",
+      "bytes": 20,
+      "sha256": "db09eff91733675e5bc28fe407ba33c5c024f87e219a326122e320983f7e27e3"
+    },
+    {
+      "file": "scripts/game/npc_visual.gd",
+      "bytes": 2871,
+      "sha256": "cf2caedc84e3d07832733dd3bbc976d301b1c156052cb2594301b6af696ed34a"
+    },
+    {
+      "file": "scripts/game/npc_visual.gd.uid",
+      "bytes": 20,
+      "sha256": "f2596c0199dc606fa2a5d7e37d0f3ce214131d4e291b83833539766c3aa2a670"
+    },
+    {
+      "file": "scripts/game/player.gd",
+      "bytes": 2100,
+      "sha256": "80895d87c8f91ba620c28c32377acfab57799367146b0c6a817b12847623a05c"
+    },
+    {
+      "file": "scripts/game/player.gd.uid",
+      "bytes": 20,
+      "sha256": "210a32049a76df9414f236e15a0b42ccd104fa8f4dff723e2f49380ff9aad91a"
+    },
+    {
+      "file": "scripts/game/road_layout.gd",
+      "bytes": 1503,
+      "sha256": "4c57c049d3316a930e09701c37811ce3f0a4ce67f44dca4a9a2839d66d2c8888"
+    },
+    {
+      "file": "scripts/game/road_layout.gd.uid",
+      "bytes": 20,
+      "sha256": "2592e690b2ee3c42ff0883698ac53327d3ce6e3ce7aef76c1d4b066501551446"
+    },
+    {
+      "file": "scripts/game/road_traffic.gd",
+      "bytes": 8417,
+      "sha256": "42ad5963b8f8e92c32fe2934029d57e600e1ff0e72d726671489c9bb2ddef15e"
+    },
+    {
+      "file": "scripts/game/road_traffic.gd.uid",
+      "bytes": 20,
+      "sha256": "963cdbd7639ac4850cb049179fb1f9483e109977b61f6553baf9304d25dc9c31"
+    },
+    {
+      "file": "scripts/game/room_art.gd",
+      "bytes": 4460,
+      "sha256": "dea884bba56e002fb56a5c831bbade62befd3b34fc6426e15b2acaa0555f1945"
+    },
+    {
+      "file": "scripts/game/room_art.gd.uid",
+      "bytes": 19,
+      "sha256": "e11cbd4cbf36c9bff0ed79eb99b743540058275b957b1466439365f5b1f2757e"
+    },
+    {
+      "file": "scripts/game/terminal_panel.gd",
+      "bytes": 4780,
+      "sha256": "726869ff1377d22e0b0e91137bdf6a7245cd441178884a4f7baed8f6be867348"
+    },
+    {
+      "file": "scripts/game/terminal_panel.gd.uid",
+      "bytes": 20,
+      "sha256": "15ed1802acd8fa1b4e72b9d8a51b9ebb8a8429e0e4e6b25bb12dffbb8d45c997"
+    },
+    {
+      "file": "scripts/game/test_game.gd",
+      "bytes": 1542,
+      "sha256": "a14c0026673af40302bf0edc04e69679a162a5d5e98c04f82b05d2e6e8553d64"
+    },
+    {
+      "file": "scripts/game/test_game.gd.uid",
+      "bytes": 19,
+      "sha256": "f9e6ebc4da7f051a3f5a5a0bd55918dff2ae9e70f1ae4a608d9e3ce83e38fbf1"
+    },
+    {
+      "file": "scripts/game/traffic_hud.gd",
+      "bytes": 1228,
+      "sha256": "f81720dd6ca70ad17837e0376d0f207d14f69807cdfb3afae5b6df36b29db674"
+    },
+    {
+      "file": "scripts/game/traffic_hud.gd.uid",
+      "bytes": 20,
+      "sha256": "aef315906da385d662c4470f6e1442719b24669464df5cbac8c18856ea2ca56f"
+    },
+    {
+      "file": "scripts/input_setup.gd",
+      "bytes": 7060,
+      "sha256": "422b6f71fe14d28a241f347af800fb27a183c2fbff78157b0346664f4662095c"
+    },
+    {
+      "file": "scripts/input_setup.gd.uid",
+      "bytes": 19,
+      "sha256": "3de82ec574f97c13558b0130a6b8d0c279ac64c36aa939764761b4d6f152be48"
+    },
+    {
+      "file": "scripts/services/app_state.gd",
+      "bytes": 795,
+      "sha256": "90287d31405c248d052609b675075fec43df0577e09cdc3c06ff53a030e6b306"
+    },
+    {
+      "file": "scripts/services/app_state.gd.uid",
+      "bytes": 20,
+      "sha256": "448e65d2d0471cf8e6e7aa64c24c7a8a0141febbef8362ccf8967a357b711277"
+    },
+    {
+      "file": "scripts/services/controller_service.gd",
+      "bytes": 3138,
+      "sha256": "a2b337e0f03848ab1bbe43a114b31a318b8ea75e8c33cb48bb5fedf3cc98afbe"
+    },
+    {
+      "file": "scripts/services/controller_service.gd.uid",
+      "bytes": 20,
+      "sha256": "5309a57ef44af8fe768f515f9c9fe52e3da5589f01c899b78d586e253a865414"
+    },
+    {
+      "file": "scripts/services/game_library.gd",
+      "bytes": 2655,
+      "sha256": "58fa0b4f784200f6d689818254da451cf7d371c3768e0b8ca061f19b4a85a66a"
+    },
+    {
+      "file": "scripts/services/game_library.gd.uid",
+      "bytes": 20,
+      "sha256": "ac3e81cb645d9ae659a0f8aedf51ec66d4616d92597884c3d52153f2cae286fc"
+    },
+    {
+      "file": "scripts/services/hotel_service.gd",
+      "bytes": 12898,
+      "sha256": "be3989d4f079394b02570d45e8c666a59f8406ae407622de0e2bcb7634e69984"
+    },
+    {
+      "file": "scripts/services/hotel_service.gd.uid",
+      "bytes": 19,
+      "sha256": "8fe18520f435564a283e8958a8a780ab2f9632fd2966e8d3c3a00e3447bbbffa"
+    },
+    {
+      "file": "scripts/services/investigation_service.gd",
+      "bytes": 26392,
+      "sha256": "1da434ee72eb191fd0c205136a7dcb0917cc976ede8af774c2200780929ef185"
+    },
+    {
+      "file": "scripts/services/investigation_service.gd.uid",
+      "bytes": 20,
+      "sha256": "72256d908b7c1a4d578d782075a0b10e2cd5df728f30a4e6af498d65b81bee48"
+    },
+    {
+      "file": "scripts/services/local_avatar_library.gd",
+      "bytes": 8472,
+      "sha256": "e2c743dd8e72421806476e99a4d63160ab41350aac082237899667c885a5b489"
+    },
+    {
+      "file": "scripts/services/local_avatar_library.gd.uid",
+      "bytes": 20,
+      "sha256": "8e9aa42d20f7ed4afbe46351f761a531014579348e0d32bf55f014f592d69e0a"
+    },
+    {
+      "file": "scripts/services/penalty_service.gd",
+      "bytes": 3635,
+      "sha256": "71870f05c1aa77e93619deb0d5bc1a186f56529e47545e571fbba20bd073ff5d"
+    },
+    {
+      "file": "scripts/services/penalty_service.gd.uid",
+      "bytes": 19,
+      "sha256": "5ff52a0cdf6333184ae7d3773ea44d0fcd7736e52c7817c33c5c494c8acc6b30"
+    },
+    {
+      "file": "scripts/services/platform_service.gd",
+      "bytes": 985,
+      "sha256": "5aff06ce8dfdbcfcd811f99555451135c788613932a0af0c177cad0da4594960"
+    },
+    {
+      "file": "scripts/services/platform_service.gd.uid",
+      "bytes": 20,
+      "sha256": "f8822ce383c48b1ac444b583af3277bf4e71beddb637e5a774ce0d8453dcc4a1"
+    },
+    {
+      "file": "scripts/services/profile_service.gd",
+      "bytes": 6895,
+      "sha256": "ffbfa4c8ff1ea8638ff465f1359127deb769fddeb90d4ce22d484217cbdadc52"
+    },
+    {
+      "file": "scripts/services/profile_service.gd.uid",
+      "bytes": 20,
+      "sha256": "25e468a9445faaaf925d5ddf225c28a095eb2383854a10ccbe6dbe577eda9f04"
+    },
+    {
+      "file": "scripts/services/reward_service.gd",
+      "bytes": 3613,
+      "sha256": "7275bfc4611275f5f261e1aab655efc160b8a74e0b1f95a330f7fe9384794451"
+    },
+    {
+      "file": "scripts/services/reward_service.gd.uid",
+      "bytes": 20,
+      "sha256": "f48f799948702905695a462caacc8f9594dcc4468e3a41c391d29f41bfba9f16"
+    },
+    {
+      "file": "scripts/services/save_service.gd",
+      "bytes": 56214,
+      "sha256": "7495c197cf8478958a72e66b92e2a095cd5009fc2d1d2cb56455506f812bf966"
+    },
+    {
+      "file": "scripts/services/save_service.gd.uid",
+      "bytes": 20,
+      "sha256": "f6de3f2320bc79b7cfc8d77632925354710e9a52aa6321e2274b49622491203d"
+    },
+    {
+      "file": "scripts/services/scene_router.gd",
+      "bytes": 1357,
+      "sha256": "98a2b075724e4863c01ac857af77bc95c8667d1a717381f77d54262b1044ba1f"
+    },
+    {
+      "file": "scripts/services/scene_router.gd.uid",
+      "bytes": 20,
+      "sha256": "f43799403ef52bf32963066ecca1a7f75674dba4b96d69f2917b165c40d2af6c"
+    },
+    {
+      "file": "scripts/services/settings_service.gd",
+      "bytes": 12033,
+      "sha256": "f7d1eb20ebe67d8b66ec29c056e7542eff78546754b0fb0518aa020b61b162a6"
+    },
+    {
+      "file": "scripts/services/settings_service.gd.uid",
+      "bytes": 19,
+      "sha256": "d24fcd22b3f694a1ba44ae1602199e992a301438df9534496a2008123b4684f7"
+    },
+    {
+      "file": "scripts/services/shop_service.gd",
+      "bytes": 3540,
+      "sha256": "a494f6a5450f009ea6990280d6ffc515fbfb40172fa2c143d7ea37b4ebf678fd"
+    },
+    {
+      "file": "scripts/services/shop_service.gd.uid",
+      "bytes": 20,
+      "sha256": "41ea140c89faee27f5cfec9786b720e8b92ddb1fe0f0f86d86bb5d60e1e814ce"
+    },
+    {
+      "file": "scripts/ui/appearance_palette.gd",
+      "bytes": 4016,
+      "sha256": "e0867532fcf241d5b659af64cad0c13628ad75ba3b9be91c7084a3fda0c342fd"
+    },
+    {
+      "file": "scripts/ui/appearance_palette.gd.uid",
+      "bytes": 20,
+      "sha256": "987ec280c7ee5ce5853f8da85c7a28c5d8fc67b8f4ef6034797f6dafe2b5960a"
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gd",
+      "bytes": 2522,
+      "sha256": "ba8a1dca8281b888b8cedcf45dd27fe9707988fbe4f7f3d33b6eca47600616c9"
+    },
+    {
+      "file": "scripts/ui/avatar_icon.gd.uid",
+      "bytes": 20,
+      "sha256": "983703d07a394aa95d042b6a53eb04cdaab6bcf9dd98a534a2e06c0985d419f6"
+    },
+    {
+      "file": "scripts/ui/coffee_wiring_panel.gd",
+      "bytes": 6333,
+      "sha256": "e0edbcbc120249ef82d5745d7ae61ddd3a6a0bf7aa547028b0319374db7343dd"
+    },
+    {
+      "file": "scripts/ui/coffee_wiring_panel.gd.uid",
+      "bytes": 20,
+      "sha256": "02cce3e50c67cb2c294b1d3853e178cdffcdec58251127b83413dcab523131d9"
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gd",
+      "bytes": 7737,
+      "sha256": "15a2ffeed5e0ac799fea15a52e9df185ad96fd4bf58607c3d1084d94600b5c19"
+    },
+    {
+      "file": "scripts/ui/confirmation_dialog.gd.uid",
+      "bytes": 20,
+      "sha256": "92695fb4d7d2fa0884e3a5f3f21d122a01e47075a0d20e1b3684ef831b53a36c"
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gd",
+      "bytes": 1445,
+      "sha256": "cbc1e0278f604238a30a0ac2981e115bf0c070da320fec2848e7b1cb90f4ac50"
+    },
+    {
+      "file": "scripts/ui/cosmetic_preview.gd.uid",
+      "bytes": 19,
+      "sha256": "70326e1c6bd6a0f1a934fee08f457a6789473b1f3f7b66903eeb51c789511bf1"
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gd",
+      "bytes": 4118,
+      "sha256": "e8ba7c2befac6c8bdeb873bbeb675db9c6796b559110b38f16ff8233bc06b27a"
+    },
+    {
+      "file": "scripts/ui/diagnostics_panel.gd.uid",
+      "bytes": 19,
+      "sha256": "bf9b43edda7404ebfe089ed6c38c1c2434d919c395c853c861fd6c61e1f44dfa"
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gd",
+      "bytes": 458,
+      "sha256": "b853879f73944da60d9139bf80548af62e445c2e3bcf82d1c1d7e2ca7d530ab3"
+    },
+    {
+      "file": "scripts/ui/enquiry_art.gd.uid",
+      "bytes": 20,
+      "sha256": "28ddce9ccb1c5c0a84dfb1e894434c6205349916455c67bbcd7482265935b37d"
+    },
+    {
+      "file": "scripts/ui/game_card.gd",
+      "bytes": 3519,
+      "sha256": "fb77f845df7e4b878e1c5f0af1a58372a9d46ab4efee75698d1edc421971ba58"
+    },
+    {
+      "file": "scripts/ui/game_card.gd.uid",
+      "bytes": 20,
+      "sha256": "1a9e226868bcab49a3c137953c6e7899ffe6afdc89499770651220521d6ee599"
+    },
+    {
+      "file": "scripts/ui/game_cover.gd",
+      "bytes": 2584,
+      "sha256": "90be4ad366dacfc6a24def160d5a932132ee28d575f014e83274a42ff2269f8c"
+    },
+    {
+      "file": "scripts/ui/game_cover.gd.uid",
+      "bytes": 20,
+      "sha256": "b11d0baab1d8ce620000d4c80b95e790b32cad61d361a983a743fca41002e098"
+    },
+    {
+      "file": "scripts/ui/hotel_diagnostic_panel.gd",
+      "bytes": 7845,
+      "sha256": "6cc16001f5aeac111e811f3817879e00319ba176f1bc721e995e77e5f1b57656"
+    },
+    {
+      "file": "scripts/ui/hotel_diagnostic_panel.gd.uid",
+      "bytes": 20,
+      "sha256": "f862f80510500045134ae6505f8ffd951be2bb7b84664e88ad48a0eee2ee51a5"
+    },
+    {
+      "file": "scripts/ui/input_monitor.gd",
+      "bytes": 5529,
+      "sha256": "49aff9c46d71f555c644a38e9a56fb3f5017b279e68650e1cf750ce24e6b00d1"
+    },
+    {
+      "file": "scripts/ui/input_monitor.gd.uid",
+      "bytes": 20,
+      "sha256": "5762893681505152dd362fbccc15255838aeb4b027d54fba53c63126c461fa18"
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gd",
+      "bytes": 4151,
+      "sha256": "8a736fae12dfd0e59d6a2285a2994367ff43d4c68b0143ba2a021451ac47b56c"
+    },
+    {
+      "file": "scripts/ui/joy_navigation.gd.uid",
+      "bytes": 18,
+      "sha256": "a12995c749725a974f469ac21f6a151c1b06db7a48e1f5d1953edf6b9ccb87ed"
+    },
+    {
+      "file": "scripts/ui/main.gd",
+      "bytes": 78321,
+      "sha256": "ae358ef403abebc06ca43c60002efd7ce046f336813c306b45510d17bdbe423e"
+    },
+    {
+      "file": "scripts/ui/main.gd.uid",
+      "bytes": 20,
+      "sha256": "f2fb7e6f2892f3bbbe2b999f701da6a53a99aa3ce096ca5881f8e3af9568b736"
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gd",
+      "bytes": 8707,
+      "sha256": "5b38d70e903e4e4f29eb490f43e68bfa90b51c219cda000f8700eec205e38117"
+    },
+    {
+      "file": "scripts/ui/navigation_bar.gd.uid",
+      "bytes": 20,
+      "sha256": "3edd779287e3df48185a8f19f1f53f009a10b0c90ffa09f85e3866030cc3cac5"
+    },
+    {
+      "file": "scripts/ui/notification.gd",
+      "bytes": 512,
+      "sha256": "0af51c3b7497af33598e63133b4649e2aad1d083724a1075548d4f46f7e01342"
+    },
+    {
+      "file": "scripts/ui/notification.gd.uid",
+      "bytes": 20,
+      "sha256": "c4aff9afa9dff872f074680c75c4cbf86e3017a5f863be912a894c41c74fb763"
+    },
+    {
+      "file": "scripts/ui/npc_dialogue_panel.gd",
+      "bytes": 3368,
+      "sha256": "0b9fc0a57c669fd08b781287945d4db499348a29814308034348f231f0be4d30"
+    },
+    {
+      "file": "scripts/ui/npc_dialogue_panel.gd.uid",
+      "bytes": 19,
+      "sha256": "e03b07f385bc87697c89ef16e9363fc6227b38fb973c5aa3c13b05fa096a187c"
+    },
+    {
+      "file": "scripts/ui/product_card.gd",
+      "bytes": 3296,
+      "sha256": "56ceec8b3a8934e6466a0e0c36370da05d19d5dc3770ef86661cc400191000af"
+    },
+    {
+      "file": "scripts/ui/product_card.gd.uid",
+      "bytes": 19,
+      "sha256": "87fea1c8f7ee668e914ef8a9a544c217575df050684734c0f35f38a952d7957c"
+    },
+    {
+      "file": "scripts/ui/profile_card.gd",
+      "bytes": 4048,
+      "sha256": "5c1448efd4999b9a57e71b15bbf8840cdbdd78211df9b922c9bb076033a9c79b"
+    },
+    {
+      "file": "scripts/ui/profile_card.gd.uid",
+      "bytes": 20,
+      "sha256": "634a72d95bd3f0e4518fa9bd496578696862c2557006da42f7ea3cfab77298f0"
+    },
+    {
+      "file": "scripts/ui/setting_row.gd",
+      "bytes": 694,
+      "sha256": "dbc830717e71eea77ef7d7bd7064b97d1cf63c4a3de9ef02dd10bf511a9e3d95"
+    },
+    {
+      "file": "scripts/ui/setting_row.gd.uid",
+      "bytes": 20,
+      "sha256": "24061131bba171bd1128c94b23a88247b2801e1e86048f76591d75f34da2c81b"
+    },
+    {
+      "file": "scripts/ui/startup_panel.gd",
+      "bytes": 168,
+      "sha256": "0cb44c70d91a0a1cdea8c14563a5e95b54f20430ce1bdfe4f7e892b7f7dfd941"
+    },
+    {
+      "file": "scripts/ui/startup_panel.gd.uid",
+      "bytes": 20,
+      "sha256": "3deed560fdf227c25475a97d94076aeddea9e0d3d973b681167b480359aed6b5"
+    },
+    {
+      "file": "scripts/ui/theme_factory.gd",
+      "bytes": 8133,
+      "sha256": "7249c0aed1e1730aeeff02b47a7f71da9ce92cfb1241de4c2ab8013a9dc213e9"
+    },
+    {
+      "file": "scripts/ui/theme_factory.gd.uid",
+      "bytes": 20,
+      "sha256": "550e68edbc32ebfb1e7be14e98508fc93faee594721b37448c2000282b75e2b5"
+    },
+    {
+      "file": "scripts/ui/translucent_button.gd",
+      "bytes": 421,
+      "sha256": "ee24597d915c53dc848a46aeb39f6f929a8292b1d8f92b23cef95f9f086ba23a"
+    },
+    {
+      "file": "scripts/ui/translucent_button.gd.uid",
+      "bytes": 20,
+      "sha256": "1c42eafdc792d36313b7f10ed5a4c083a1e8580099318ed3a261c2d5a97b3ef3"
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gd",
+      "bytes": 10657,
+      "sha256": "1b9aa3559447f5b09dbdacbee97092937a97f4500937f16f17a2215f6043f593"
+    },
+    {
+      "file": "scripts/ui/virtual_keyboard.gd.uid",
+      "bytes": 20,
+      "sha256": "d3fd3d938eb26b2027be895cc266a76b1ca4f43ecfc20bc6097c629413f5ede9"
+    },
+    {
+      "file": "themes/console_theme.tres",
+      "bytes": 235,
+      "sha256": "66286fa9bc7cfd9fb51e12b22bf5e0ccf6d58d1468a0ec39a0719bcd6a811af7"
+    }
+  ],
+  "official_export_templates": {
+    "file": "Godot_v4.6.3-stable_export_templates.tpz",
+    "sha512": "da606b61c10157844f8300172df374472665f95015495cb1a7cd132c40ede404faa96cc1016a4b9662db9909ddea69632c4948b2cd11163438dad4808881fb68",
+    "godot": "4.6.3.stable.official.7d41c59c4"
+  },
+  "preserved_archives": [
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_0.4.2.zip",
+      "bytes": 53936263,
+      "sha256": "78e9edaa4277ce9ebf68eea67dcc8f2f9cd0445b2729fce217c2f29d2ace7184"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_0.5.0.zip",
+      "bytes": 55745615,
+      "sha256": "bddc7ef70b41f156ebc01026802b095fd5fd63498d77b75acc64507b4c8f3e23"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_0.6.0.zip",
+      "bytes": 57191889,
+      "sha256": "86b69ee6df4e16e4270af907190ede6e0ef75a7ccd29c6953bf680ab2fcc0a5d"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_0.6.1.zip",
+      "bytes": 58097030,
+      "sha256": "f0d4da5965166259924781f95b1155f92849f231a2f73ae1f3a570cda10ba0ff"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.10.0.zip",
+      "bytes": 53827582,
+      "sha256": "7477d254e85a4a9c72a4e458544bb84062d8aff1aeaf26f50c896d640053b524"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.11.0.zip",
+      "bytes": 55116718,
+      "sha256": "1200d2c5bdf51bc41b76606cd61bdfbec50f56897125de16794cf1ffbc574d40"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.12.0.zip",
+      "bytes": 56323335,
+      "sha256": "55c9f6f52e0b7c47859ee324d1dffb424bd812c98ad7dff0ab4035b4faa24989"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.13.0.zip",
+      "bytes": 58498811,
+      "sha256": "ba417782677e910cb6420ed30347c54f5ba8d5e844d1525184fb2b85132ce1ae"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.14.0.zip",
+      "bytes": 60013163,
+      "sha256": "d3522f8a5dd772886184b201fc6d5b55d09a31cd7d4b85caefb79f71f43e2586"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1.zip",
+      "bytes": 48618144,
+      "sha256": "de230f09d6b6801f56b0258e13811190d2be7dbf67f6423146239294927fa2ca"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.6.1_README_2026-10-15.zip",
+      "bytes": 48662815,
+      "sha256": "6ae0278613c5077d5141d78191ad6c673bfe89d60931938219203c46094c1cd2"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.0.zip",
+      "bytes": 49831502,
+      "sha256": "d89224b9124d788b9d6da229dcd27f2fc04bae4c9d492990b55f82a705fc7922"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.7.1.zip",
+      "bytes": 50245427,
+      "sha256": "0e80ad4674c29a6d9a6b9f06282c45441157d8ac53d0eadf278d0699c92269f9"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.8.0.zip",
+      "bytes": 51811649,
+      "sha256": "690ef1a16d0d745ed0c1cd44fed5a3017d74d840a686b2446749bb9be4668da8"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.9.0.zip",
+      "bytes": 52786797,
+      "sha256": "783b20c385e8449f859de17ed11ac08ec2281b813aa844a34099975e51582e55"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.10.0.zip",
+      "bytes": 63420006,
+      "sha256": "99a39aa6f34a89e9f05209be710da1b981a6513cbd9501890757bd4dfae1680a"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.11.0.zip",
+      "bytes": 64709666,
+      "sha256": "f1fa6612795425c52e1dd9961095260b16a89f2693e9aa1afb7ccb1cc0e70af1"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.12.0.zip",
+      "bytes": 65916282,
+      "sha256": "43e71708d2e2015e80db6fcf84cd3f99bcad92dcbee4dc8a85bd6def5b0c8bf6"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.13.0.zip",
+      "bytes": 68091222,
+      "sha256": "d31341a3079add30202998bdb53734d543181893dcaa7dc3dcbfd3912846f7a5"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.14.0.zip",
+      "bytes": 69605063,
+      "sha256": "29ebf0d67e41cc0b388c3b184daeba944defaba0d196d1cbc291c053b749568e"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.6.1_README_2026-10-15.zip",
+      "bytes": 58255289,
+      "sha256": "f6c978644e16e2ba270b7cd6450f5a6e22d0da61953c4d1d93a6c4841f679029"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.0.zip",
+      "bytes": 59424364,
+      "sha256": "de73a04c3867e68405e1d7ecbdf418b85eb42d1da2ff8fbd271d7c915a093f18"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.7.1.zip",
+      "bytes": 59838440,
+      "sha256": "caca3409ac74ae7d36d8d734ccdef2f21f408cecbbabcc842c1ec26a6fce8ed8"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.8.0.zip",
+      "bytes": 61405524,
+      "sha256": "606f6b8e9b7588adaf74c6d3cd8efeb722ad8eab87b4cd20543754726042633e"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.9.0.zip",
+      "bytes": 62379973,
+      "sha256": "a6870418f985bce2e36a55a5cb3333e16ebdc12979f4ad59c43b87f81032fa91"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.10.0.zip",
+      "bytes": 27105196,
+      "sha256": "782211689c45e73c171d2f9a996488728d1c393ab8a18aa0fac2a28126450e24"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.11.0.zip",
+      "bytes": 27153272,
+      "sha256": "0dc33e64a7a80f8aa2661a61337a1ce8f3bf1865c59ec67602dedc5c0dea827b"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.12.0.zip",
+      "bytes": 27180787,
+      "sha256": "37d5dfa4111ef2b31f686cb460cd1a7b7f5277d61aab584bf6039317c70d4cb4"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.13.0.zip",
+      "bytes": 27218245,
+      "sha256": "cc0d64d06e9d897133503f8bd4f9bb0d55ac0aaf5128cf03ecac7eff01b4583b"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.14.0.zip",
+      "bytes": 27232074,
+      "sha256": "983d4b2edd5c3eb6323131b44b6c3c3f3242283151dfeaab7e19d74a354613c3"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.6.1.zip",
+      "bytes": 27026535,
+      "sha256": "96ea7e0c50e5015c7eb13188ccb38f24a14865587813f045f833192a7e7eddde"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.0.zip",
+      "bytes": 27046296,
+      "sha256": "397473a3bac24c742911c833935fdd8321dc90bff7a63f76a43b120ec966bd21"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.7.1.zip",
+      "bytes": 27050654,
+      "sha256": "24ecc3def2444e87e022983977ce8f7f39faaca1d6a4ee9988c635cb6d1f5a28"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.8.0.zip",
+      "bytes": 27068347,
+      "sha256": "6466d452f44faf207d8b7b9b2c282c8b5f111254d679e671e0c5d4d686b17de6"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.9.0.zip",
+      "bytes": 27087477,
+      "sha256": "3135e6c7beb5b189c355876f85982c5338fd4d2b70a0beb43d8ac51140328b00"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_batiment_0.10.0.zip",
+      "bytes": 36698093,
+      "sha256": "e6f3a6252b9cbf8a7274659ce9546bad5331f7e6263d5da43bd67f6b9072702f"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_bibliotheque_0.5.0.zip",
+      "bytes": 36405957,
+      "sha256": "5d7ce9f0c557021d62477eb824c64742031b27989ed86e8ab9cf02ba2e1ac26e"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_chapitre_2_0.6.0.zip",
+      "bytes": 36441246,
+      "sha256": "7a1e8250250bfd6c407c4d843bf2a12a6dae4403607c9589d7faff43b333b82a"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_clavier_0.7.1.zip",
+      "bytes": 36644940,
+      "sha256": "908cfce778b3ddb0a39b0e837c62454eeeb27e3655a68a6d02cb132f94d1fe2d"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_code_0.7.0.zip",
+      "bytes": 36640581,
+      "sha256": "af33ad5f04e19b933d8dcd637e485c2de426c001fbf063f8b6bd6091b71e0034"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_confort_0.6.1.zip",
+      "bytes": 36442313,
+      "sha256": "bcceba1c337c69db48cfe5e236856246ecd9b97759f1111b079efd8f9de0ba37"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_hotel_0.11.0.zip",
+      "bytes": 36747613,
+      "sha256": "acd49394366d7f759091790c3ab2d604306c27b0e4ac17a07d2c20af296e1305"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_hotel_visuel_0.14.0.zip",
+      "bytes": 36825280,
+      "sha256": "50b48cc04e758e29e0357cfa4d6d39ff6c10d401772413399fbf9c1243ae6c19"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_labyrinthe_0.9.0.zip",
+      "bytes": 36681870,
+      "sha256": "6a9491992ad31bbd23274d9212619ca47ea92622cf25a6389e5053bad015d60d"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_livres_reseau_0.8.0.zip",
+      "bytes": 36663389,
+      "sha256": "4cff65f279d4ea544b58df20644dc47090687de34571d78dc7d663f23f3f617b"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_matin_ctf_0.12.0.zip",
+      "bytes": 36775145,
+      "sha256": "3ab0eac048458e8f21ff48dd990ba43ee5f63351d84d53d0b86dc4de3c76108e"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_navigation_0.4.1.zip",
+      "bytes": 36355753,
+      "sha256": "4d3d82c5ac8bb8f3bd9f22276865dc3cd442cc251d42b5db805c3eee2e34cfdf"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_profils_0.4.2.zip",
+      "bytes": 36377860,
+      "sha256": "93aa056cf352ac5db0519431900d92b099ba5409f9844399de028750122ac99b"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_refonte_0.4.0.zip",
+      "bytes": 36350922,
+      "sha256": "9de8826f47362a44001f258702f9dda3c9059a125fbc64f45d4dfb3842e941d6"
+    },
+    {
+      "file": "console-ciel/builds/Console_CIEL_Windows_x86_64_trafic_0.13.0.zip",
+      "bytes": 36812136,
+      "sha256": "e287886f71014705540e35f41d2dc59f98c5be9c6b143226de3032564c86d999"
+    }
+  ],
+  "test_drivers": [
+    {
+      "file": "tests/appearance_tests.gd",
+      "sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be"
+    },
+    {
+      "file": "tests/audit_regressions.gd",
+      "sha256": "f8e958f6c247bc1687f52448810f06e92a0dec874328bcf5569f0c611dc4fbff"
+    },
+    {
+      "file": "tests/audit_resources.gd",
+      "sha256": "bb78e8a930e4fbfc2f05896a9055928a6f8db8485a3af0d441159c055faf59ec"
+    },
+    {
+      "file": "tests/audit_validation.gd",
+      "sha256": "2f5ab034c9b137bc7dfa5b84add2e7aa9d39515a91fcc3608f2592990722ecbc"
+    },
+    {
+      "file": "tests/campus_services_tests.gd",
+      "sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da"
+    },
+    {
+      "file": "tests/campus_ui_tests.gd",
+      "sha256": "d8ce371bf49d1a5c80e77f096f255e0dffbb625656e9f6b5fa89776e448b8f53"
+    },
+    {
+      "file": "tests/chapter_services_tests.gd",
+      "sha256": "70531b0b6de362b58a914813f9b95e0f47e425e2d20e7010d352af29f7c19abc"
+    },
+    {
+      "file": "tests/chapter_ui_tests.gd",
+      "sha256": "0529f41b006de1e997eefe11b439e6ce851c8a0a0c04f63d5ffbeb66786cb470"
+    },
+    {
+      "file": "tests/close_persistence.gd",
+      "sha256": "c911edfaed13afaf3899bb8e6216351ee664e0cb786f7c2e637b15d6259c19c0"
+    },
+    {
+      "file": "tests/code_chapter_services_tests.gd",
+      "sha256": "03175238e6c4e04987fe6fb12b344fedea8ebda3fe6ba9dd104d05886e0dac1c"
+    },
+    {
+      "file": "tests/code_chapter_ui_tests.gd",
+      "sha256": "e1173b9a00c11c32492c044ead0202e4fda5ce84fb69d161d4822c79a471bff2"
+    },
+    {
+      "file": "tests/completed_marker_tests.gd",
+      "sha256": "9ad5cd45cb26b88c82a31b67b21490544c7e5ea0bd3d397f961d2c0d3ee03bf1"
+    },
+    {
+      "file": "tests/controller_tests.gd",
+      "sha256": "f2306760003b22223587c3d6c9a0057bb01459863f2dc65a1011e17e4e7ffa12"
+    },
+    {
+      "file": "tests/game_purchase_tests.gd",
+      "sha256": "32d5c4dd62886f6120fc7af01d91e9b2b34b2b4018321b6617e59de37e9fc0df"
+    },
+    {
+      "file": "tests/glass_visual.gd",
+      "sha256": "5cab176878e41e21fab0cf78cb8e01ae8ab879f749db07c43a0924c991773da0"
+    },
+    {
+      "file": "tests/hotel_services_tests.gd",
+      "sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2"
+    },
+    {
+      "file": "tests/hotel_ui_tests.gd",
+      "sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5"
+    },
+    {
+      "file": "tests/hotel_visual_ui_tests.gd",
+      "sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837"
+    },
+    {
+      "file": "tests/investigation_tests.gd",
+      "sha256": "b6a83af5fb43e91aca5ddda7488fce829dba6db8eface5a8909f8c3dff38ee59"
+    },
+    {
+      "file": "tests/keyboard_tests.gd",
+      "sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba"
+    },
+    {
+      "file": "tests/lessons_network_ui_tests.gd",
+      "sha256": "dd2f80e5ad352de8340bde59947df7a15daf83956f7266f5acfbe016f52b389a"
+    },
+    {
+      "file": "tests/library_ui_tests.gd",
+      "sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107"
+    },
+    {
+      "file": "tests/local_avatar_tests.gd",
+      "sha256": "67ab1325ff793dfe87d83fcb44280280b110d916ef8e5d1eb99db680791e07e2"
+    },
+    {
+      "file": "tests/maze_services_tests.gd",
+      "sha256": "7b88f68d321d2586ca34636498dbd3c55abc7a7baee8dce427614272c312310f"
+    },
+    {
+      "file": "tests/maze_ui_tests.gd",
+      "sha256": "a95cc8fd51b9335f37007ee9ef48c5e5f5f75b4962c7e2f1188f1bea45c86a0f"
+    },
+    {
+      "file": "tests/mission_tracker_tests.gd",
+      "sha256": "7d4172f58422704a1d92b9d7bdf07180067312f9fc13dc635a9d2ed6bb246596"
+    },
+    {
+      "file": "tests/morning_services_tests.gd",
+      "sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb"
+    },
+    {
+      "file": "tests/morning_ui_tests.gd",
+      "sha256": "acdb7ef3a744b127ae9720a7e044d69bf29da545cf0c53b0dd5c78a69334ca6a"
+    },
+    {
+      "file": "tests/network_lab_services_tests.gd",
+      "sha256": "18c3a4ceb3c3f6df3f16afb41929e5878aff3009654955d8d79be5dad21b20d2"
+    },
+    {
+      "file": "tests/npc_ui_tests.gd",
+      "sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e"
+    },
+    {
+      "file": "tests/process_persistence.gd",
+      "sha256": "f823c3c56f9160dee945bf1d535bf40cb28067063c8e5cd566bc93edbcf612e4"
+    },
+    {
+      "file": "tests/profile_editor_tests.gd",
+      "sha256": "8c53e2adad7bdce7302e15f1cc8e19050e058df321dccfd4fca8f98325906292"
+    },
+    {
+      "file": "tests/profile_header_tests.gd",
+      "sha256": "e426d0ac459467db79d15eb108df3503eb44529e70d6647c9d35574db8fac95e"
+    },
+    {
+      "file": "tests/refonte_navigation.gd",
+      "sha256": "f83fec1d3fe316f0916cc17eb4508f466f9ae5edae87606590fd570c07b6b8d5"
+    },
+    {
+      "file": "tests/refonte_states.gd",
+      "sha256": "94a714152fb2daecf76573916a7dbc376e198ebe6fb5fd036dced6d13883321a"
+    },
+    {
+      "file": "tests/refonte_visual.gd",
+      "sha256": "108c76269cdbf53cf05357d157edc2456a63c480fecb1780d931e46992a818fd"
+    },
+    {
+      "file": "tests/run_tests.gd",
+      "sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384"
+    },
+    {
+      "file": "tests/stability_tests.gd",
+      "sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546"
+    },
+    {
+      "file": "tests/traffic_services_tests.gd",
+      "sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103"
+    },
+    {
+      "file": "tests/traffic_ui_tests.gd",
+      "sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c"
+    },
+    {
+      "file": "tests/ui_smoke.gd",
+      "sha256": "aec4204f9155a2800403edbbf3884e1c294ce1061cd2957ed293f5065f6aa4e5"
+    },
+    {
+      "file": "tests/visual_review.gd",
+      "sha256": "3b2fc061dd7b5f0d04a55f3b55fa03c7a28945447f9aeb1c46298a2926632b99"
+    },
+    {
+      "file": "tests/windows_art_pack.gd",
+      "sha256": "47cfc70f0039dd608ee6d0b50d114810384a2929746edd52f0fead4c2a1927e9"
+    },
+    {
+      "file": "tests/windows_contracts.gd",
+      "sha256": "f25047581d36754b025c6c8a0bff514805102de4c8189fd6cbffd808b90a287a"
+    },
+    {
+      "file": "tests/windows_pack.gd",
+      "sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab"
+    },
+    {
+      "file": "tests/world_collision_tests.gd",
+      "sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb"
+    }
+  ],
+  "features": [
+    "Six personnages originaux dans la palette 2D du projet : Nora, Idris, Lucie, Camille, Sam et Alex.",
+    "Nora explique le contexte et les trois premières réparations dans la première salle ; Idris accompagne le dernier étage et le retour vers la sortie après réussite.",
+    "Lucie adapte ses conseils à la table, la panne, la réparation du café et la récupération du sac. Camille explique la réception, la chambre et le départ en bus.",
+    "Sam reste sur le trottoir et explique le feu, les voitures, la pénalité de 200 points et le retour après collision.",
+    "Alex est au palier fermé de l’hôtel : les escaliers restent accessibles et le chapitre 2 du premier bâtiment reste jouable.",
+    "Les corps physiques des six PNJ partagent le tri de profondeur du joueur. Leurs approches restent libres ; la carte utilise le même catalogue pour leurs repères.",
+    "Portrait, nom, rôle, deux pages, Suite/Précédent, fermeture et retour clavier/manette dans un composant natif de présentation.",
+    "La discussion suspend le joueur, les voitures et le feu. La déconnexion/reconnexion de la manette conserve la même discussion et sa page courante.",
+    "Lecture, relecture, retour Échap/face droite, clic réel, navigation simulée, stockage indisponible, grand texte et thème nuit vérifiés.",
+    "Aucune écriture ou récompense de dialogue. Progression, achats, pénalités et sauvegardes inchangés ; le mystère ne révèle pas sa solution."
+  ],
+  "location_assumption": "Alex annonce la fermeture du premier étage au palier de l’hôtel, seul premier étage déjà fermé. Les missions réseau du premier bâtiment restent accessibles.",
+  "limitations": [
+    "Rendu réel sur Linux x86_64, X11/OpenGL ES 3.2 Mesa llvmpipe, audio Dummy et événements de manette simulés.",
+    "Aucun lancement natif Windows ou ARM64 Raspberry Pi ; essais sur leur matériel, GPU, son perçu et manette physique restent à réaliser.",
+    "Les pilotes externes et leurs parents de test sont copiés récursivement hors du projet ; les ressources du jeu proviennent des packs exportés."
+  ],
+  "static_audit": {
+    "files": 1156,
+    "uids": 110,
+    "resource_references": 272,
+    "markdown_links": 324,
+    "errors": 0,
+    "godot_resource_assertions": 283,
+    "inventory_sha256": "802bc0edcd554cc2aa45bf60c0ef3cd54932c310125e8fe71d1c287bf175fe62",
+    "godot_log_sha256": "71113c4c8a27e5a0abce830d3f8bdfe3fa48f2baaf067d25144ddc2ea0ec6b14"
+  }
+}
