@@ -106,14 +106,26 @@ func _hall_signage() -> void:
 
 func _maintenance() -> void:
 	draw_rect(Rect2(95, 100, 1210, 540), Color("d8e0da"))
+	# Raised-floor seams and protected cable ducts stay decorative and flush.
+	for x in range(110, 1300, 70): draw_line(Vector2(x, 148), Vector2(x, 635), Color("c7d1c9"), 1)
+	for y in range(155, 635, 70): draw_line(Vector2(100, y), Vector2(1300, y), Color("c7d1c9"), 1)
+	_rounded(Rect2(125, 146, 1150, 14), Color("a2b6aa"), 4)
+	draw_line(Vector2(135, 150), Vector2(1265, 150), Color("eaf0e5"), 2)
 	_text("MAINTENANCE · SYSTÈME DE RÉSERVATION", Vector2(700, 128), 24, INK, true)
 	_rug(Rect2(620, 410, 360, 130), Color("acc0b3"))
 	for x in [290, 530]:
 		draw_line(Vector2(x, 450), Vector2(x, 560), Color("7e9d8e"), 5)
 	draw_line(Vector2(290, 560), Vector2(800, 560), Color("7e9d8e"), 5)
 	draw_line(Vector2(800, 560), Vector2(800, 430), Color("7e9d8e"), 5)
+	for at in [Vector2(290, 560), Vector2(530, 560), Vector2(800, 560)]:
+		draw_circle(at, 8, Color("688e80"))
+		draw_circle(at, 3, Color("c0d1b9"))
 	_text("POSTE DE CONTRÔLE", Vector2(800, 603), 17, INK, true)
 	_text("LIAISON DU HALL", Vector2(400, 500), 16, INK, true)
+	_text("ALIMENTATION SECOURUE", Vector2(225, 705), 13, INK, true)
+	_text("MATÉRIEL DE MAINTENANCE", Vector2(1080, 735), 13, INK, true)
+	for y in [690, 730, 770]:
+		draw_line(Vector2(665, y), Vector2(735, y), Color("dfcba0"), 2)
 
 func _landing() -> void:
 	_rug(Rect2(330, 650, 860, 330), VELVET)
@@ -165,15 +177,26 @@ func _bedroom() -> void:
 
 func _breakfast() -> void:
 	_rug(Rect2(480, 300, 420, 360), Color("dfcfad"))
-	for x in [230, 620, 1080]: _window(Rect2(x, 78, 240, 65))
+	for x in [230, 620, 1080]:
+		_window(Rect2(x, 78, 240, 65))
+		for side in [x - 17, x + 238]:
+			_rounded(Rect2(side, 76, 19, 76), Color("78938c"), 4)
+			draw_line(Vector2(side + 6, 80), Vector2(side + 6, 145), Color("a7b8a5"), 2)
+	# The service counter uses the same muted tiles and brass as the hall.
+	for x in range(150, 1370, 64):
+		draw_line(Vector2(x, 155), Vector2(x, 287), Color("e3d9c3"), 1)
+	draw_line(Vector2(150, 290), Vector2(1370, 290), Color("c4ad7d"), 2)
 	_text("LE PETIT DÉJEUNER", Vector2(800, 850), 28, INK, true)
 	_text("BUFFET", Vector2(510, 268), 20, INK, true)
 	_text("CAFÉ", Vector2(1250, 354), 20, INK, true)
+	_text("TASSES", Vector2(1032, 320), 15, INK, true)
 	_text("Votre table", Vector2(690, 650), 18, INK, true)
 
 func _breakfast_table(rect: Rect2) -> void:
 	_rounded(rect, Color("af9572"), 20)
 	_rounded(rect.grow(-10), Color("fff9ea"), 15)
+	_rounded(Rect2(rect.get_center().x - 27, rect.position.y + 10, 54, rect.size.y - 20), Color("c3d1c0"), 5)
+	for x in [rect.get_center().x - 20, rect.get_center().x + 20]: draw_line(Vector2(x, rect.position.y + 17), Vector2(x, rect.end.y - 17), Color("e8eadb"), 1)
 	for x in [rect.position.x + 60, rect.end.x - 60]:
 		var plate := Vector2(x, rect.get_center().y)
 		draw_circle(plate, 27, Color("e0d7c2"))
@@ -181,6 +204,10 @@ func _breakfast_table(rect: Rect2) -> void:
 		draw_arc(plate + Vector2(-3, 0), 12, PI * .2, PI * 1.65, 20, Color("c69a5e"), 9, true)
 		draw_line(plate + Vector2(-36, -19), plate + Vector2(-36, 21), GOLD, 3)
 		draw_line(plate + Vector2(36, -19), plate + Vector2(36, 21), GOLD, 3)
+		for tine in [-4, 0, 4]: draw_line(plate + Vector2(-36 + tine, -22), plate + Vector2(-36 + tine, -12), GOLD, 1)
+		draw_circle(plate + Vector2(25, -44), 10, Color("c2d5cf"))
+		draw_arc(plate + Vector2(25, -44), 7, PI, TAU, 12, Color("f8fbef"), 2, true)
+		draw_colored_polygon(PackedVector2Array([plate + Vector2(-27, 30), plate + Vector2(-7, 30), plate + Vector2(-27, 47)]), Color("d6c9aa"))
 	# Chairs are separate depth-sorted models with their own ground collision.
 	if int(state.get("morning_stage", 0)) >= 5 and rect.position.x == 550:
 		_cup(rect.position + Vector2(140, 35))
@@ -192,25 +219,38 @@ func _buffet(rect: Rect2) -> void:
 		var center := rect.position + Vector2(50 + index * 96, 42)
 		_rounded(Rect2(center - Vector2(34, 25), Vector2(68, 50)), Color("9aa7a1"), 7)
 		_rounded(Rect2(center - Vector2(28, 19), Vector2(56, 38)), Color("d4af71") if index % 2 == 0 else Color("a9b77b"), 6)
+		for offset in [Vector2(-15, -8), Vector2(6, -7), Vector2(-5, 8)]:
+			draw_arc(center + offset, 7, PI * .1, PI * 1.7, 12, Color("eed7a0") if index % 2 == 0 else Color("d8e0b4"), 5, true)
+		draw_line(center - Vector2(29, 21), center + Vector2(29, -21), Color("faf1db"), 2, true)
 
 func _coffee_machine(rect: Rect2) -> void:
 	_rounded(rect, Color("aa9270"), 8)
+	_rounded(Rect2(rect.position + Vector2(5, 7), rect.size - Vector2(10, 16)), Color("d8ccb1"), 6)
 	var machine := Rect2(rect.position + Vector2(45, -45), Vector2(110, 112))
 	_rounded(machine, INK, 10)
 	_rounded(machine.grow(-8), Color("5d7677"), 7)
-	var repaired := int(state.get("morning_stage", 0)) >= 4
+	var stage := int(state.get("morning_stage", 0))
+	var repaired := stage >= 4
+	for x in [machine.position.x + 7, machine.end.x - 7]: draw_line(Vector2(x, machine.position.y + 13), Vector2(x, machine.end.y - 13), Color("bfad80"), 2)
 	_rounded(Rect2(machine.position + Vector2(15, 12), Vector2(80, 28)), Color("b9d5be") if repaired else Color("caae7f"), 4)
-	_text("PRÊTE" if repaired else "CONNEXION", machine.position + Vector2(55, 31), 11, INK, true)
+	_text("CAFÉ SERVI" if stage >= 5 else ("PRÊTE" if repaired else "CONNEXION"), machine.position + Vector2(55, 30), 10, INK, true)
+	var pairs: Dictionary = state.get("coffee_connections", {})
 	for index in range(3):
-		draw_circle(machine.position + Vector2(26 + index * 29, 55), 6, [Color("cf6159"), Color("80a47b"), Color("926d4e")][index])
-	draw_rect(Rect2(machine.position + Vector2(45, 69), Vector2(20, 14)), Color("d1c6ac"))
-	_cup(machine.position + Vector2(55, 96))
+		var at := machine.position + Vector2(26 + index * 29, 55)
+		draw_circle(at, 7, Color("263e47"))
+		draw_circle(at, 4, [Color("cf6159"), Color("80a47b"), Color("926d4e")][index])
+		if pairs.has(["A", "B", "C"][index]): draw_arc(at, 9, PI, TAU, 12, Color("d5c38d"), 2, true)
+	_rounded(Rect2(machine.position + Vector2(32, 68), Vector2(46, 30)), Color("29444b"), 4)
+	draw_rect(Rect2(machine.position + Vector2(45, 68), Vector2(20, 10)), Color("c9bea4"))
+	for x in range(21, 91, 8): draw_line(machine.position + Vector2(x, 105), machine.position + Vector2(x + 4, 105), Color("b5bcac"), 2)
+	if stage < 5: _cup(machine.position + Vector2(55, 95), false)
 
-func _cup(at: Vector2) -> void:
+func _cup(at: Vector2, filled := true) -> void:
 	draw_circle(at + Vector2(0, 5), 17, Color("e1d7c3"))
 	draw_arc(at + Vector2(13, -1), 7, -PI * .5, PI * .5, 12, IVORY, 4, true)
 	_rounded(Rect2(at - Vector2(11, 11), Vector2(22, 23)), Color("faf7e9"), 6)
-	draw_circle(at - Vector2(0, 7), 8, Color("684e38"))
+	draw_circle(at - Vector2(0, 7), 8, Color("684e38") if filled else Color("d6dacf"))
+	draw_arc(at - Vector2(0, 7), 8, PI, TAU, 12, Color("fffdf1"), 2, true)
 
 func _ctf_exterior() -> void:
 	draw_rect(Rect2(Vector2.ZERO, Layout.extent(zone)), Color("dbe5df"))
@@ -286,6 +326,7 @@ func _furniture(kind: String, rect: Rect2) -> void:
 			_rounded(rect.grow(-5), Color("55777a"), 6)
 		"buffet": _buffet(rect)
 		"coffee_machine": _coffee_machine(rect)
+		"cup_station": _cup_station(rect)
 		"bus_shelter": _bus_shelter(rect)
 		"fountain":
 			var center := rect.get_center()
@@ -311,6 +352,8 @@ func _furniture(kind: String, rect: Rect2) -> void:
 			draw_circle(rect.get_center(), 12, Color("b7a27b"))
 		"server": _server(rect)
 		"repair": _repair_desk(rect)
+		"ups": _ups(rect)
+		"maintenance_cart": _maintenance_cart(rect)
 		"storage":
 			_rounded(rect, Color("9c8b70"), 7)
 			draw_line(rect.get_center() - Vector2(0, rect.size.y * .4), rect.get_center() + Vector2(0, rect.size.y * .4), Color("c9bda2"), 3)
@@ -367,18 +410,73 @@ func _plant(rect: Rect2) -> void:
 	draw_circle(center - Vector2(6, 24), rect.size.x * .2, Color("91a787"))
 
 func _server(rect: Rect2) -> void:
-	_rounded(rect, Color("455e62"), 9)
-	for y in range(int(rect.position.y + 18), int(rect.end.y - 20), 48):
-		draw_rect(Rect2(rect.position.x + 15, y, rect.size.x - 30, 35), Color("697f7d"))
-		draw_circle(Vector2(rect.end.x - 27, y + 17), 4, Color("96bc9a") if bool(state.get("repaired", false)) else Color("d59b6d"))
+	_rounded(rect, Color("344c54"), 9)
+	_rounded(rect.grow(-7), Color("506b6c"), 6)
+	for x in [rect.position.x + 11, rect.end.x - 16]:
+		draw_line(Vector2(x, rect.position.y + 17), Vector2(x, rect.end.y - 15), Color("b6a27d"), 3)
+		for y in range(int(rect.position.y + 20), int(rect.end.y - 15), 15): draw_circle(Vector2(x, y), 1.5, Color("263e47"))
+	var repaired := bool(state.get("repaired", false))
+	for index in range(4):
+		var bay := Rect2(rect.position + Vector2(23, 29 + index * 44), Vector2(rect.size.x - 46, 34))
+		_rounded(bay, Color("80918a"), 4)
+		_metal_grille(Rect2(bay.position + Vector2(8, 7), Vector2(62, 20)))
+		_status_led(bay.position + Vector2(bay.size.x - 16, 16), Color("9db99a") if repaired or index < 2 else Color("d2a66c"))
+		_text(["ALIM", "RÉSEAU", "DISQUE", "SERVICE"][index], bay.position + Vector2(80, 21), 8, Color("203e47"))
+	_rounded(Rect2(rect.position + Vector2(22, 215), Vector2(rect.size.x - 44, 20)), Color("243e46"), 3)
+	_text("SERVEUR CIEL", rect.position + Vector2(rect.size.x * .5, 229), 10, Color("ddd3b7"), true)
 
 func _repair_desk(rect: Rect2) -> void:
 	_rounded(rect, Color("a08d6d"), 10)
+	_rounded(Rect2(rect.position + Vector2(5, 6), rect.size - Vector2(10, 16)), Color("cab58e"), 8)
 	_rounded(Rect2(rect.position + Vector2(49, -35), Vector2(122, 84)), INK, 7)
 	_rounded(Rect2(rect.position + Vector2(57, -27), Vector2(106, 66)), Color("a9c5ba"), 3)
-	_text("EN LIGNE" if bool(state.get("repaired", false)) else "ERREUR", rect.position + Vector2(110, 12), 14, INK, true)
+	var repaired := bool(state.get("repaired", false))
+	_text("EN LIGNE" if repaired else "DISQUE PLEIN", rect.position + Vector2(110, -4), 11, INK, true)
+	for index in range(3):
+		var line_rect := Rect2(rect.position + Vector2(68, 7 + index * 8), Vector2(71 if not repaired else 30 + index * 14, 4))
+		draw_rect(line_rect, Color("ac8c60") if not repaired else Color("6f9d87"))
 	draw_rect(Rect2(rect.position + Vector2(45, 68), Vector2(135, 24)), Color("dbddcb"))
 	for x in range(50, 177, 13): draw_line(rect.position + Vector2(x, 73), rect.position + Vector2(x, 86), Color("a8b4a7"), 2)
+	_rounded(Rect2(rect.position + Vector2(190, 70), Vector2(13, 21)), Color("d8decf"), 6)
+	_status_led(rect.position + Vector2(24, 90), Color("94b597") if repaired else Color("c9a875"))
+
+func _ups(rect: Rect2) -> void:
+	_rounded(rect, Color("4d6668"), 9)
+	_rounded(rect.grow(-7), Color("78908b"), 6)
+	_rounded(Rect2(rect.position + Vector2(18, 14), Vector2(74, 26)), Color("b8cdb4"), 4)
+	_text("ONDULEUR", rect.position + Vector2(55, 32), 10, INK, true)
+	for index in range(3): draw_rect(Rect2(rect.position + Vector2(22 + index * 24, 51), Vector2(16, 10)), Color("b4c8a2"))
+	_metal_grille(Rect2(rect.position + Vector2(18, 76), Vector2(58, 22)))
+	_status_led(rect.position + Vector2(87, 86), Color("a6c7a2"))
+
+func _maintenance_cart(rect: Rect2) -> void:
+	_rounded(rect, Color("516c6d"), 7)
+	_rounded(Rect2(rect.position + Vector2(5, 5), Vector2(rect.size.x - 10, 21)), Color("cbb68c"), 4)
+	for y in [33, 56]:
+		_rounded(Rect2(rect.position + Vector2(10, y), Vector2(rect.size.x - 20, 18)), Color("7d9690"), 3)
+		draw_line(rect.position + Vector2(74, y + 7), rect.position + Vector2(106, y + 7), Color("c8c8af"), 3)
+	for x in [18, rect.size.x - 18]: draw_circle(rect.position + Vector2(x, rect.size.y - 8), 6, INK)
+	_rounded(Rect2(rect.position + Vector2(22, 9), Vector2(53, 10)), Color("345a61"), 3)
+	draw_line(rect.position + Vector2(109, 12), rect.position + Vector2(151, 12), Color("8d7355"), 4)
+	draw_line(rect.position + Vector2(143, 9), rect.position + Vector2(153, 16), Color("dce2d2"), 3)
+
+func _cup_station(rect: Rect2) -> void:
+	_rounded(rect, Color("a58e6c"), 8)
+	_rounded(rect.grow(-6), Color("dfd5bc"), 5)
+	for x in [rect.position.x + 35, rect.position.x + 101]:
+		for y in [rect.position.y + 24, rect.position.y + 65]:
+			draw_circle(Vector2(x + 2, y + 4), 14, Color("bfbda8"))
+			draw_circle(Vector2(x, y), 12, Color("fff9e9"))
+			draw_circle(Vector2(x, y), 8, Color("ccdbd0"))
+			draw_arc(Vector2(x + 13, y), 4, -PI * .5, PI * .5, 10, Color("fff9e9"), 3, true)
+
+func _metal_grille(rect: Rect2) -> void:
+	for x in range(int(rect.position.x), int(rect.end.x), 5): draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y), Color("425e60"), 2)
+
+func _status_led(at: Vector2, color: Color) -> void:
+	draw_circle(at, 6, Color("344c51"))
+	draw_circle(at, 3.5, color)
+	draw_circle(at - Vector2(1, 1), 1, color.lightened(.3))
 
 func _bed(rect: Rect2) -> void:
 	_rounded(rect.grow(10), Color("a18a65"), 18)
