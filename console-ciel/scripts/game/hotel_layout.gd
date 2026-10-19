@@ -135,12 +135,14 @@ static func furniture_specs(zone: String) -> Array[Dictionary]:
 				for y in [800, 1500, 2200]: result.append(_prop("column", Rect2(x - 52, y - 52, 104, 104)))
 		"hotel_breakfast":
 			result.append_array([_prop("breakfast_table", Rect2(550, 350, 280, 150)), _prop("breakfast_table", Rect2(190, 350, 230, 150)), _prop("breakfast_table", Rect2(960, 640, 270, 150)), _prop("buffet", Rect2(160, 130, 700, 100)), _prop("coffee_machine", Rect2(1150, 180, 200, 100)), _prop("planter", Rect2(1380, 760, 90, 90))])
+			result.append(_prop("cup_station", Rect2(960, 180, 145, 100)))
 		"ctf_bus_stop":
 			result.append_array([_prop("bus_shelter", Rect2(1240, 560, 300, 160)), _prop("planter", Rect2(270, 520, 90, 90)), _prop("planter", Rect2(270, 790, 90, 90))])
 		"ctf_lobby":
 			result.append_array([_prop("ctf_reception", Rect2(700, 260, 400, 140)), _prop("sofa", Rect2(220, 620, 350, 120)), _prop("sofa", Rect2(1230, 620, 350, 120)), _prop("planter", Rect2(260, 360, 90, 90)), _prop("planter", Rect2(1450, 360, 90, 90))])
 		"hotel_it":
 			result.append_array([_prop("server", Rect2(200, 180, 180, 250)), _prop("server", Rect2(440, 180, 180, 250)), _prop("repair", Rect2(690, 260, 220, 120)), _prop("storage", Rect2(1080, 180, 150, 360))])
+			result.append_array([_prop("ups", Rect2(160, 550, 110, 116)), _prop("maintenance_cart", Rect2(990, 610, 180, 86))])
 		"hotel_stairs_1":
 			result.append_array([_prop("stairs_down", Rect2(380, 270, 240, 350)), _prop("stairs_up", Rect2(900, 270, 240, 350)), _prop("planter", Rect2(180, 840, 90, 90)), _prop("planter", Rect2(1300, 840, 90, 90))])
 		"hotel_floor_2":
