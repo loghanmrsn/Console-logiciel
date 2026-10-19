@@ -1,10 +1,10 @@
-# Version portable Windows x86_64 — 0.15.0
+# Version portable Windows x86_64 — 0.16.0
 
-**[Télécharger Windows 0.15.0 — rencontres et dialogues](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
+**[Télécharger Windows 0.16.0 — personnages et discussions affinés](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.zip)**. Décompresser **tout** le ZIP, puis lancer **Console_CIEL.exe** dans le dossier extrait. Godot ne doit pas être installé sur le PC destinataire.
 
-La version **0.15.0** propose le clavier à l’écran dans les exercices du chapitre 3 : **Python (`print`)**, **HTML (`h1`)** et **Markdown (`# `)**. Après les trois missions réseau du chapitre 2, l’ascenseur conduit à l’atelier du code ; les étages ouverts restent accessibles. Les réponses se saisissent au clavier à l’écran ou physique, avec erreurs expliquées, sans exécution de code utilisateur. Le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des cinq chapitres](ENQUETE.md). Le profil en haut à gauche, les achats, les styles et les repères masqués après réussite sont conservés. [Guide de la bibliothèque](BIBLIOTHEQUE_ET_THEMES.md). [Rapport Windows](../builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.verification.json).
+La version **0.16.0** propose le clavier à l’écran dans les exercices du chapitre 3 : **Python (`print`)**, **HTML (`h1`)** et **Markdown (`# `)**. Après les trois missions réseau du chapitre 2, l’ascenseur conduit à l’atelier du code ; les étages ouverts restent accessibles. Les réponses se saisissent au clavier à l’écran ou physique, avec erreurs expliquées, sans exécution de code utilisateur. Le tableau de missions à droite se déplie ou se replie avec **T** ou le **bouton de face haut**. [Parcours des cinq chapitres](ENQUETE.md). Le profil en haut à gauche, les achats, les styles et les repères masqués après réussite sont conservés. [Guide de la bibliothèque](BIBLIOTHEQUE_ET_THEMES.md). [Rapport Windows](../builds/Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.verification.json).
 
-Le [projet complet 0.15.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.15.0.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-pnj-0.15.0/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
+Le [projet complet 0.16.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.16.0.zip) contient aussi les sources. Dans ce ZIP, le logiciel se trouve dans **console-ciel/builds/windows-x86_64-pnj-fluide-0.16.0/Console_CIEL.exe**. [Contenu du projet complet](ARCHIVE_COMPLETE.md).
 
 ## Lancer sur votre PC
 
@@ -69,7 +69,7 @@ Le ZIP ne contient aucun profil prérempli ni sauvegarde personnelle. Une mise �
 Installer Godot standard **4.6.3 stable** et les [modèles d’export officiels correspondants](https://github.com/godotengine/godot-builds/releases/tag/4.6.3-stable). Depuis `console-ciel/`, dans PowerShell :
 
 ```powershell
-.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_pnj_0.15.0.zip -OutputDirectory windows-x86_64-pnj-0.15.0
+.\tools\export_windows.ps1 -GodotPath 'C:\Outils\Godot_v4.6.3-stable_win64_console.exe' -ArchiveName Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.zip -OutputDirectory windows-x86_64-pnj-fluide-0.16.0
 ```
 
 Adapter le chemin du moteur. Le script cible PowerShell **5.1 ou supérieur**, vérifie la version exacte, importe les ressources et exporte avec **Windows Desktop x86_64** dans un dossier provisoire. Il vérifie le PE x86_64, ajoute aide, licences et images_profil, puis assemble l’archive. Un échec conserve la livraison précédente. Le preset Pi n’est pas modifié.
@@ -78,7 +78,7 @@ Le script PowerShell a été analysé et testé historiquement avec PowerShell 7
 
 ## Vérifications et recette Windows
 
-Le [rapport Windows 0.15.0](../builds/Console_CIEL_Windows_x86_64_pnj_0.15.0.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_Windows_0.15.0.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
+Le [rapport Windows 0.16.0](../builds/Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.verification.json) décrit les fichiers et empreintes du paquet ; le [rapport du projet complet](../builds/Console_CIEL_Projet_Complet_Windows_0.16.0.verification.json) décrit l’archive des sources et du binaire. Les rapports de recette distinguent logique source, captures sous Linux, configuration Windows et pack compilé. Les résultats historiques des versions précédentes sont conservés séparément.
 
 La [livraison courante](DELIVERY.md) rassemble les résultats source, persistance, rendu réel et packs exportés. Les chiffres historiques ci-dessous décrivent uniquement leurs versions.
 
@@ -116,7 +116,7 @@ Le parcours de l’hôtel prolonge l’exploration après le chapitre 5 : descen
 
 Le parcours de l’hôtel comprend : réservation, panne informatique, escaliers et chambre **206**. [Guide de l’hôtel](HOTEL.md).
 
-La version **0.15.0** poursuit le récit après le sommeil. Au réveil, le panneau vous invite à **descendre au rez-de-chaussée** : cette première descente rapporte **50 points**. Entrez dans la salle du petit déjeuner et asseyez-vous à table. Le café oublié vous conduit à la machine en panne. Son panneau présente six fils : **A, B, C** en haut et **1, 2, 3** en bas. Reliez les couleurs identiques : **A–3 rouge, B–2 vert et C–1 marron**. Le fil sélectionné brille ; un nouvel appui le désélectionne. Une fois les trois paires reliées, prenez votre café, remontez dans la **chambre 206** et récupérez le sac à dos contenant l’ordinateur, pour **50 points supplémentaires**. Redescendez, sortez de l’hôtel et rejoignez l’arrêt de bus. Le trajet mène au bâtiment du CTF **sudo hack**, dont le hall attend cinq futurs défis. [Guide détaillé](HOTEL.md).
+La version **0.16.0** poursuit le récit après le sommeil. Au réveil, le panneau vous invite à **descendre au rez-de-chaussée** : cette première descente rapporte **50 points**. Entrez dans la salle du petit déjeuner et asseyez-vous à table. Le café oublié vous conduit à la machine en panne. Son panneau présente six fils : **A, B, C** en haut et **1, 2, 3** en bas. Reliez les couleurs identiques : **A–3 rouge, B–2 vert et C–1 marron**. Le fil sélectionné brille ; un nouvel appui le désélectionne. Une fois les trois paires reliées, prenez votre café, remontez dans la **chambre 206** et récupérez le sac à dos contenant l’ordinateur, pour **50 points supplémentaires**. Redescendez, sortez de l’hôtel et rejoignez l’arrêt de bus. Le trajet mène au bâtiment du CTF **sudo hack**, dont le hall attend cinq futurs défis. [Guide détaillé](HOTEL.md).
 
 Les deux récompenses du matin sont accordées une seule fois par profil, même après Nouvelle partie. La réparation du café et le trajet en bus ne rapportent pas de points. Les cinq défis du CTF ne sont pas encore disponibles.
 
@@ -124,4 +124,6 @@ Les modèles et collisions revus dans la version 0.13.0 sont conservés. Le pers
 
 La version **0.14.0** a enrichi les deux épreuves existantes de l’hôtel : local informatique, cartes du diagnostic, buffet, machine à café et panneau de câblage. Les trois nouveaux meubles ont leur collision. La direction artistique, la progression, les points et les pénalités restent ceux du projet. [Détails du rendu et des contrôles](HOTEL_VISUAL.md).
 
-La version **0.15.0** ajoute six personnages solides et des discussions à plusieurs pages : première salle, dernier étage, buffet, entrée de l’hôtel, passage piéton et palier fermé du premier étage de l’hôtel. Les explications suivent la progression sans modifier les missions ni les points. **Espace / face bas** ouvre la discussion ; **Échap / face droite** la ferme. [Rencontres et commandes](PNJ.md).
+La version **0.15.0** a ajouté six personnages solides et des discussions à plusieurs pages : première salle, dernier étage, buffet, entrée de l’hôtel, passage piéton et palier fermé du premier étage de l’hôtel. Les explications suivent la progression sans modifier les missions ni les points. **Espace / face bas** ouvre la discussion ; **Échap / face droite** la ferme. [Rencontres et commandes](PNJ.md).
+
+La version **0.16.0** affine les six PNJ : coiffures et tenues distinctes, regards, geste d’accueil, portraits rapprochés et bulles portant leur nom. La discussion fonctionne depuis les côtés libres, avec de courts fondus, un portrait et des boutons fixes, un texte défilant et un bouton de fermeture directe. Espace avance aussi les pages ; les obstacles et les sauvegardes sont conservés. [Visuel et commandes](PNJ.md).
