@@ -6,6 +6,8 @@ const WorldScene = preload('res://scenes/investigation_world.tscn')
 const Challenge = preload('res://scripts/game/challenge_panel.gd')
 const CampusMap = preload("res://scripts/game/campus_map.gd")
 var campus_map: PanelContainer
+const TrafficHud = preload("res://scripts/game/traffic_hud.gd")
+var traffic_hud: PanelContainer
 var _zone_hint: Label
 var _map_held := false
 const MissionTracker = preload('res://scripts/game/mission_tracker.gd')
@@ -143,6 +145,10 @@ func _build() -> void:
 	campus_map = CampusMap.new()
 	campus_map.world = world
 	add_child(campus_map)
+	traffic_hud = TrafficHud.new()
+	traffic_hud.world = world
+	add_child(traffic_hud)
+	world.traffic_notice.connect(func(message: String): notification_requested.emit(message))
 	_zone_hint = Label.new()
 	_zone_hint.name = "campus_wayfinding"
 	_zone_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -470,6 +476,8 @@ func _mission_completed(result: Dictionary) -> void:
 	var clue_text: String = str(data.get('clue', {}).get('text', ''))
 	if not clue_text.is_empty(): explanation += '\n\n' + clue_text
 	var reward_text := '%d points nouvellement gagnés.' % reward if reward > 0 else 'Déjà récompensée : aucun point ajouté pour cette mission rejouée.'
+	if int(data.get('debt_repaid', 0)) > 0:
+		reward_text += '\n%d points ont remboursé votre dette ; %d points sont disponibles en plus.' % [int(data.debt_repaid), int(data.credited_points)]
 	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown', 'subnet_mask', 'maze'] else _close_overlay
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
 
