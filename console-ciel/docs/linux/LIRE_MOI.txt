@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.14.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.15.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -215,3 +215,13 @@ indice déjà examiné permet de relire son résultat. Le câblage conserve
 les six boutons, la sélection réversible et les mêmes paires de couleurs,
 avec un cadre doré, des connecteurs et des fils plus lisibles.
 La progression, les points, les pénalités et les sauvegardes sont conservés.
+
+RENCONTRES ET DIALOGUES — 0.15.0
+Six personnages vous accompagnent : Nora à l’atelier, Idris au dernier
+étage, Lucie au buffet, Camille devant l’hôtel, Sam au passage piéton et
+Alex au premier palier de l’hôtel, dont les chambres sont fermées.
+Approchez-vous puis appuyez sur Espace ou la touche basse de la manette.
+Suite et Précédent permettent de lire ou relire leurs conseils.
+Fermer la discussion, Échap ou la touche droite rend les commandes au jeu.
+Le joueur, les voitures et le feu s’arrêtent pendant la discussion.
+Ces rencontres ne modifient ni les points ni les missions sauvegardées.
