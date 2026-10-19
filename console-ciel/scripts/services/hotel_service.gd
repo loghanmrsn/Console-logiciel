@@ -70,13 +70,14 @@ func _save_progress(progress: Dictionary, reward_id: String = "") -> Dictionary:
 	var document: Dictionary = AppState.profile.duplicate(true)
 	document.progress = progress.duplicate(true)
 	var reward := 0
+	var settlement := {"debt_repaid": 0, "credited_points": 0}
 	if not reward_id.is_empty() and reward_id not in document.rewarded_missions:
 		if reward_id not in SaveService.HOTEL_REWARD_IDS:
 			return SaveService._fail("Cette étape de l’hôtel ne possède pas de récompense.")
 		reward = 50
 		if int(document.wallet.points) > SaveService.MAX_POINTS - reward:
 			return SaveService._fail("Le portefeuille a atteint sa limite.")
-		document.wallet.points = int(document.wallet.points) + reward
+		settlement = PenaltyService.credit_reward(document, reward)
 		document.rewarded_missions.append(reward_id)
 	var saved := SaveService.write_profile(document)
 	if not saved.ok:
@@ -86,6 +87,7 @@ func _save_progress(progress: Dictionary, reward_id: String = "") -> Dictionary:
 	state_changed.emit(hotel.duplicate(true))
 	var result := SaveService._ok(hotel)
 	result["reward"] = reward
+	result.merge(settlement)
 	return result
 
 func reserve_room() -> Dictionary:
@@ -163,6 +165,8 @@ func travel(destination: String) -> Dictionary:
 		return saved
 	var result := SaveService._ok({"room_id": destination, "checkpoint_id": progress.checkpoint_id, "reward": saved.reward})
 	result["reward"] = saved.reward
+	result["debt_repaid"] = saved.get("debt_repaid", 0)
+	result["credited_points"] = saved.get("credited_points", 0)
 	return result
 
 func place_luggage() -> Dictionary:
