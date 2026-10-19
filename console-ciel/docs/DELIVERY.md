@@ -1,4 +1,22 @@
-# Livraison 0.15.0 — personnages et dialogues
+# Livraison 0.16.0 — PNJ et discussions plus fluides
+
+Les six PNJ gagnent des **visages, coiffures et tenues plus détaillés**, dans la palette douce du jeu. Leurs accessoires différencient les rôles ; les portraits montrent le même modèle en vue rapprochée. Un regard accompagne l’approche et un bref geste accueille le joueur. Les bulles discrètes s’ouvrent sur le nom à portée. Les six corps solides, leurs emplacements et le tri de profondeur sont conservés. [Personnages et commandes](PNJ.md).
+
+La discussion se déclenche **depuis les côtés libres du PNJ** ; son propre corps ne gêne plus la visibilité, tandis que les murs et le mobilier restent bloquants. Une **bulle arrondie** présente le texte, avec un portrait et des actions qui restent fixes, même sur petit écran. Seul le texte défile. **Espace** avance les pages ; **Suite / Précédent**, **×**, **Échap / face droite** restent disponibles. Les fondus sont courts et les changements immédiats si les animations sont réduites. Un appui maintenu ne rouvre pas la fenêtre. Une déconnexion pendant une fermeture annule la transition et conserve la discussion, la page et les commandes à la reprise.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.16.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.16.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.16.0.zip).
+
+Recette finalisée le **19 octobre 2026** : **10 835 assertions dans 29 suites source**, puis **8 220 assertions dans 21 suites sur chacun des deux packs exportés**, zéro échec. Les six discussions, les quatre côtés d’approche, les obstacles intermédiaires, les boutons, les pages stables, la lecture défilante, Espace, les touches maintenues, la réduction des animations, les sauvegardes intactes et la déconnexion pendant une fermeture sont vérifiés. Le contrôle physique parcourt les **quinze lieux**, avec **724 contrôles**, **392 corps solides** et **35 833 segments de déplacement**. [Résumé détaillé](../tests/npc_polish_0.16.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **490 contrôles et 16 captures**, dont la lecture en **800 × 480 avec grand texte et thème nuit**. Exemples : [portrait et discussion](screenshots/npc_polish_0.16.0/npc_workshop_dialogue_challenge.png), [bulle dans le monde](screenshots/npc_polish_0.16.0/npc_workshop_scene_challenge.png), [agent de circulation](screenshots/npc_polish_0.16.0/npc_crossing_dialogue_challenge.png) et [lecture compacte](screenshots/npc_polish_0.16.0/npc_lecture_compacte_challenge.png).
+
+L’audit statique vérifie **1193 fichiers**, **112 UID**, **275 références** et **339 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **287 contrôles réussis**.
+
+Les deux exports contiennent **257 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles d’export officiels sont contrôlés par SHA-512 ; les CRC et SHA-256 des quatre archives sont vérifiés. Les **54 anciennes archives** et la présentation des README sont conservées. Les dessins nouveaux sont originaux ; aucun fournisseur d’images ou de modèles externe n’est utilisé.
+
+Le rendu et les packs sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Cela ne constitue pas un lancement natif des exécutables Windows ou ARM64 : PC Windows, Pi 4, GPU matériel, son et manette physique restent à essayer sur leurs appareils. La cadence de 60 images/s imposée au pilote des tests animés sert à comparer des temporisations réelles ; elle ne mesure pas les performances du jeu.
+
+# Historique — livraison 0.15.0 — personnages et dialogues
 
 Six **PNJ interactifs** accompagnent le parcours : **Nora** dans la première salle du premier bâtiment, **Idris** au dernier étage, **Lucie** au buffet du matin, **Camille** devant l’hôtel, **Sam** près du passage piéton et **Alex** au palier fermé du premier étage de l’hôtel. Leurs vêtements et accessoires conservent les tons doux et les formes arrondies du projet. Les corps solides et les modèles partagent le tri de profondeur du joueur ; la carte de l’hôtel indique ses personnages. [Emplacements et commandes](PNJ.md).
 
