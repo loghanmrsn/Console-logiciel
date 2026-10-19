@@ -77,3 +77,5 @@ Le local informatique et la salle du petit déjeuner gardent leurs tons ivoire, 
 ## Personnages — 0.15.0
 
 Camille accueille le joueur devant la porte de l’hôtel. Lucie donne des conseils près du buffet, selon l’état du café. Alex rappelle que seul le palier du premier étage est ouvert et indique les deux escaliers. Nora présente l’enquête dans le premier bâtiment ; Idris attend au dernier étage, et Sam explique la traversée dans la cour. [Toutes les rencontres](PNJ.md).
+
+Les six personnages bénéficient du rendu **0.16.0** et des discussions avec portrait et actions fixes. Leurs emplacements, les missions du séjour, les points et les accès restent identiques. [Apparence et interactions](PNJ.md).
