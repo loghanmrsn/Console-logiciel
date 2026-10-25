@@ -303,6 +303,7 @@ func _update_header() -> void:
 		header_avatar.queue_redraw()
 	header_profile.text=AppState.profile.display_name if active else ''
 	header_profile.tooltip_text=header_profile.text
+	if active and ProfileService.is_super_admin(): header_profile.tooltip_text += ' · Super administrateur'
 	header_points.text='%d pts' % AppState.profile.wallet.points if active else ''
 	header_points.tooltip_text='%d points disponibles' % AppState.profile.wallet.points if active else ''
 	if active and int(PenaltyService.state().debt) > 0:
@@ -562,6 +563,7 @@ func _profiles() -> void:
 		_show_fatal("Profils inaccessibles",loaded.error)
 		return
 	_title('Votre profil' if not AppState.profile.is_empty() else 'Qui joue aujourd’hui ?','Une identité, une bibliothèque et une aventure pour chacun.')
+	_button(content,'Dev · Super administrateur',_use_dev_profile,'use_dev_profile')
 	if not AppState.profile.is_empty():
 		_profile_overview()
 	var grid=_grid(content,310,3)
@@ -599,6 +601,8 @@ func _profile_overview() -> void:
 	identity.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	row.add_child(identity)
 	_label(identity,AppState.profile.display_name,24)
+	if ProfileService.is_super_admin():
+		_label(identity,'Super administrateur · défis déjà validés',16).name = 'profile_role'
 	_label(identity,'%d points · %d jeux acquis · %d / %d défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size(),RewardService.missions.size()],14,true)
 	var penalties := PenaltyService.state()
 	if int(penalties.count) > 0:
@@ -618,6 +622,13 @@ func _select_profile(id: String) -> void:
 		if AppState.profile.progress.get('legacy_migration_notice',false):
 			_confirm('Les vrais défis sont disponibles',SaveService.LEGACY_MIGRATION_NOTICE,'Compris',func():
 				_result(InvestigationService.acknowledge_migration()))
+
+func _use_dev_profile() -> void:
+	if _result(ProfileService.use_dev_profile(), '', _use_dev_profile):
+		last_profile_id=AppState.profile.id
+		if is_instance_valid(demo): demo.queue_free(); demo=null
+		_show_screen('home')
+		_notify('Dev · Super administrateur · tous les défis actuels sont validés.')
 
 func _open_editor(id: String) -> void:
 	_pending_created_id=''
@@ -702,6 +713,8 @@ func _open_editor(id: String) -> void:
 	_refresh_editor_preview()
 	if not id.is_empty():
 		_button(content,'Supprimer ce profil',_delete_profile,'delete_profile')
+	else:
+		_button(content,'Utiliser Dev · Super administrateur',_use_dev_profile,'use_dev_profile')
 	_responsive()
 	_editor_layout_changed()
 	if id.is_empty(): editor_keyboard.focus_first_key.call_deferred()
@@ -1033,6 +1046,9 @@ func _navigate(next: String) -> void:
 	_show_screen(next)
 
 func _new_game() -> void:
+	if ProfileService.is_super_admin():
+		_confirm('Réinitialiser le parcours Dev ?','Les défis resteront validés. Vos points, achats et pénalités seront conservés.','Réinitialiser Dev',_start_game)
+		return
 	if AppState.profile.progress.started:
 		_confirm('Nouvelle partie ?','La progression actuelle de l’enquête sera remise à zéro. Vos achats, points et récompenses déjà attribuées seront conservés ; rejouer ne donne pas de points supplémentaires.','Recommencer',_start_game)
 	else: _start_game()
@@ -1355,6 +1371,12 @@ func _cancel_settings() -> void:
 	_show_screen(settings_origin)
 
 func _reset_progress() -> void:
+	if ProfileService.is_super_admin():
+		_confirm('Réinitialiser le parcours Dev ?','Le profil Dev retrouvera le début du bâtiment avec tous les défis validés. Vos points, achats et pénalités seront conservés.','Réinitialiser Dev',func():
+			if _result(ProfileService.reset_progress(),'Parcours Dev réinitialisé'):
+				if is_instance_valid(demo): demo.queue_free(); demo=null
+				settings_origin='home')
+		return
 	_confirm('Réinitialiser l’enquête ?','Seule la progression du jeu sera supprimée. Vos achats, votre solde et les identifiants des récompenses déjà attribuées sont conservés. Rejouer ne permettra pas de regagner ces points.','Réinitialiser',func():
 		if _result(ProfileService.reset_progress(),'Progression réinitialisée'):
 			if is_instance_valid(demo): demo.queue_free(); demo=null
