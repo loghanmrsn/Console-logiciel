@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.16.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.17.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_pnj_fluide_0.16.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_dev_0.17.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.16.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.17.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -80,6 +80,8 @@ Les achats sont conservés dans le profil et apparaissent dans sa bibliothèque 
 
 Chaque joueur dispose de son pseudo, de sa progression, de ses points et de ses achats. Le profil actif et son avatar apparaissent en haut à gauche.
 
+Le bouton **Dev · Super administrateur**, disponible dans **Profil** et lors de la première création, ouvre un profil séparé avec les **13 défis éducatifs et les épreuves de l’hôtel déjà validés**, ainsi que **750 points au départ**. Les étages sont débloqués et le bus vers le CTF reste disponible. Réutiliser Dev conserve sa sauvegarde ; réinitialiser son parcours garde les défis validés, les achats et le solde.
+
 Dans **Profil → Modifier**, il est possible de choisir un avatar ou une photo locale. Pour ajouter ses images :
 
 1. Copier des fichiers **PNG, JPEG ou WebP** dans le dossier **images_profil/**, à côté de l’exécutable.
@@ -121,7 +123,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.16.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.16.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.17.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.zip).
 - **Installation détaillée :** [Windows](docs/WINDOWS.md) · [Raspberry Pi](docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](docs/ENQUETE.md) · [Profils et clavier](docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](docs/ARCHITECTURE.md) · [Tests et livraisons](docs/DELIVERY.md) · [Problèmes connus](docs/KNOWN_ISSUES.md).
