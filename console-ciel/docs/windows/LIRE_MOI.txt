@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.16.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.17.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -306,3 +306,13 @@ Le bouton ×, Échap ou la touche droite de la manette ferme la discussion.
 Les fondus courts et le geste d’accueil respectent les animations réduites.
 Le joueur, les voitures et le feu s’arrêtent pendant la discussion.
 Ces rencontres ne modifient ni les points ni les missions sauvegardées.
+
+PROFIL DEV — 0.17.0
+Dans Profil, ou sous le clavier de première création, choisir
+Dev · Super administrateur. Ce profil séparé possède les treize défis
+validés, l’hôtel réparé, le café terminé et le sac récupéré, avec
+750 points initiaux. Les étages sont accessibles et le bus reste proposé.
+Le rôle est visible sur sa carte et dans la présentation du profil.
+Un nouveau clic retrouve le même compte, sans le recréer ni le créditer.
+Réinitialiser Dev conserve les défis validés, le solde et les achats.
+Les profils de joueurs gardent leur progression et leurs règles normales.
