@@ -1,4 +1,22 @@
-# Livraison 0.16.0 — PNJ et discussions plus fluides
+# Livraison 0.17.0 — Dev super administrateur
+
+Le bouton **Dev · Super administrateur**, présent dans **Profil** et au premier écran de création, ouvre un compte local séparé au nom de **Dev**. Il possède les **treize défis éducatifs validés**, leurs observations, vérifications et indices, ainsi que le séjour réparé, le café terminé et le sac récupéré. Les cinq chapitres sont accessibles ; le bus vers le CTF reste proposé. Les **750 points initiaux** correspondent aux quinze récompenses uniques déjà comptabilisées. [Utiliser Dev](DEV.md).
+
+Le rôle est visible sur la carte du profil et dans sa présentation. Le compte est créé explicitement une seule fois ; le sélectionner à nouveau retrouve sa sauvegarde sans le recréer ou le créditer. Les remises en place conservent les défis validés, les points, les achats, les images et les pénalités. Les autres profils gardent leurs règles normales, y compris un joueur appelé Dev. Un fichier Dev endommagé ou sa sauvegarde précédente n’est jamais remplacé par le preset. Le rôle est un champ facultatif du schéma existant ; les anciens profils restent compatibles.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_dev_0.17.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.17.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.17.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.zip).
+
+Recette du **25 octobre 2026** : **10 913 assertions dans 31 suites source**, puis **8 298 assertions dans 23 suites sur chacun des deux packs exportés**, zéro échec. Création, rôle, validation complète, treize défis, cinq étages, achats, sélection répétée, remise en place, isolation des joueurs, rôles invalides, refus d’écriture et fichier endommagé sont vérifiés. Les anciens chapitres, l’hôtel, la circulation et les PNJ restent couverts. Le contrôle physique parcourt les **quinze lieux** : **724 contrôles**, **392 corps solides** et **35 833 segments**. [Résumé détaillé](../tests/dev_0.17.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **46 contrôles et quatre captures** : [accueil Dev](screenshots/dev_0.17.0/dev_accueil_challenge.png), [rôle et progression](screenshots/dev_0.17.0/dev_profils_challenge.png), [première salle rétablie](screenshots/dev_0.17.0/dev_premiere_salle_challenge.png) et [accès compact](screenshots/dev_0.17.0/dev_compact_challenge.png).
+
+L’audit statique vérifie **1209 fichiers**, **115 UID**, **278 références** et **357 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **293 contrôles réussis**.
+
+Les deux exports contiennent **259 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles officiels sont contrôlés par SHA-512 ; CRC et SHA-256 des quatre archives sont vérifiés. Les **58 anciennes archives** et la présentation des README sont conservées.
+
+Les ressources exportées et le rendu sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Les exécutables Windows et ARM64 Raspberry Pi ne sont pas lancés nativement : les essais sur leurs appareils, le GPU, le son et une manette physique restent à réaliser. Les cinq futurs défis du CTF attendent leurs consignes.
+
+# Historique — livraison 0.16.0 — PNJ et discussions plus fluides
 
 Les six PNJ gagnent des **visages, coiffures et tenues plus détaillés**, dans la palette douce du jeu. Leurs accessoires différencient les rôles ; les portraits montrent le même modèle en vue rapprochée. Un regard accompagne l’approche et un bref geste accueille le joueur. Les bulles discrètes s’ouvrent sur le nom à portée. Les six corps solides, leurs emplacements et le tri de profondeur sont conservés. [Personnages et commandes](PNJ.md).
 
