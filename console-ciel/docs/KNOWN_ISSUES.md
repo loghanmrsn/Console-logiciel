@@ -1,6 +1,6 @@
 # Limites connues et vérifications avant démonstration
 
-La version 0.16.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
+La version 0.17.0 est livrée pour Windows x86_64 et Raspberry Pi 4 ARM64. La recette automatique utilise des données isolées et le moteur Godot installé ; ses résultats sont distingués du lancement sur le matériel cible dans [DELIVERY.md](DELIVERY.md). Les vérifications ci-dessous nécessitent le PC ou le Pi destinataire ; aucune valeur matérielle fictive n’est fournie.
 
 | Point | État et conséquence | Vérification à effectuer |
 |---|---|---|
