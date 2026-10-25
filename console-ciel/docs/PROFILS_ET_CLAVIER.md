@@ -71,3 +71,7 @@ godot --headless --path . --script res://tests/ui_smoke.gd
 L'aide du paquet Windows se trouve dans [windows/LIRE_MOI.txt](windows/LIRE_MOI.txt).
 
 Le pack Windows exporté a passé **751 assertions** (47 métier, 60 ressources/interface, 644 profil/clavier/photos), et sa configuration **18 contrôles**, sans échec. Le ZIP et les 175 ressources embarquées sont vérifiés. [Rapport Windows](../builds/Console_CIEL_Windows_x86_64_profils_0.4.2.verification.json).
+
+## Dev — 0.17.0
+
+Le bouton **Dev · Super administrateur**, présent dans Profil et à la première création, ouvre un compte séparé déjà terminé. Il conserve sa sauvegarde entre les sélections et les autres joueurs restent indépendants. [Progression et fonctionnement](DEV.md).
