@@ -5,6 +5,8 @@ extends Node
 signal storage_error_changed(message: String)
 
 const SCHEMA_VERSION := 1
+const DEV_PROFILE_ID := "dev-super-admin"
+const DEV_PROFILE_NAME := "Dev"
 const INVESTIGATION_VERSION := 1
 const CHAPTER_ONE_IDS := ["lighting", "lock", "computer"]
 const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
@@ -407,6 +409,12 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return name
 	if document.display_name != name.data:
 		return _fail("Le pseudo enregistré contient des espaces extérieurs.")
+	if document.has("role") and (not document.role is String or document.role not in ["player", "super_admin"]):
+		return _fail("Le rôle du profil est invalide.")
+	if document.get("role", "player") == "super_admin" and (document.id != DEV_PROFILE_ID or document.display_name != DEV_PROFILE_NAME):
+		return _fail("Le rôle super administrateur appartient au profil Dev dédié.")
+	if document.id == DEV_PROFILE_ID and document.get("role", "player") != "super_admin":
+		return _fail("Le profil Dev dédié doit conserver son rôle super administrateur.")
 	# Champ facultatif du schéma 1 : une image absente n'invalide jamais le profil.
 	# L'avatar du catalogue reste l'équipement possédé et sert de repli visuel.
 	if document.has("avatar_image") and (not document.avatar_image is String or (not document.avatar_image.is_empty() and not LocalAvatarLibrary.is_safe_filename(document.avatar_image))):
