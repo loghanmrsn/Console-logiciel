@@ -12,7 +12,7 @@ func configure(profile: Dictionary, item: Dictionary, recent: bool) -> void:
 	var heading = HBoxContainer.new()
 	heading.add_theme_constant_override('separation', 8)
 	column.add_child(heading)
-	var kicker = _label('PROFIL JOUEUR', 12, true)
+	var kicker = _label('SUPER ADMINISTRATEUR' if ProfileService.is_super_admin(profile) else 'PROFIL JOUEUR', 12, true)
 	kicker.autowrap_mode = TextServer.AUTOWRAP_OFF
 	kicker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(kicker)
