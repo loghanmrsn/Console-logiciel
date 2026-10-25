@@ -1,11 +1,31 @@
 extends Node
 
 const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
+const DevProfile := preload("res://scripts/services/dev_profile.gd")
 
 signal profiles_changed(profiles: Array)
 var profiles: Array = []
 var issues: Array = []
 var last_profile_id: String = ""
+
+func is_super_admin(profile: Variant = null) -> bool:
+	var record: Variant = AppState.profile if profile == null else profile
+	return record is Dictionary and record.get("role", "player") == "super_admin" and record.get("id", "") == SaveService.DEV_PROFILE_ID and record.get("display_name", "") == SaveService.DEV_PROFILE_NAME
+
+func use_dev_profile() -> Dictionary:
+	var path := SaveService._path("profiles/%s.json" % SaveService.DEV_PROFILE_ID)
+	# Do not replace a previously used Dev account, including a damaged file or
+	# an interrupted write that left only its recoverable backup.
+	if FileAccess.file_exists(path) or FileAccess.file_exists(path + ".bak"):
+		return select_profile(SaveService.DEV_PROFILE_ID)
+	var current := save_active()
+	if not current.ok: return current
+	var preset := DevProfile.build()
+	if not preset.ok: return preset
+	var saved := SaveService.write_profile(preset.data)
+	if not saved.ok: return saved
+	refresh()
+	return select_profile(SaveService.DEV_PROFILE_ID)
 
 func refresh() -> Dictionary:
 	var result := SaveService.list_profiles()
@@ -89,6 +109,8 @@ func update_profile(display_name: String, avatar_id: String, avatar_image: Strin
 	var name := SaveService.validate_display_name(display_name)
 	if not name.ok:
 		return name
+	if is_super_admin() and str(name.data) != SaveService.DEV_PROFILE_NAME:
+		return SaveService._fail("Le profil super administrateur conserve le nom Dev.")
 	var avatar := ShopService.item(avatar_id)
 	if avatar.is_empty() or avatar.type != "avatar" or avatar_id not in AppState.profile.owned_items:
 		return SaveService._fail("Cet avatar n'est pas possédé.")
@@ -136,8 +158,13 @@ func start_game() -> Dictionary:
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
 	var document: Dictionary = AppState.profile.duplicate(true)
-	document.progress = _empty_progress()
-	document.progress.started = true
+	if is_super_admin():
+		var restored := DevProfile.restore_progress(document)
+		if not restored.ok: return restored
+		document = restored.data
+	else:
+		document.progress = _empty_progress()
+		document.progress.started = true
 	var saved := SaveService.write_profile(document)
 	if not saved.ok:
 		return saved
@@ -148,7 +175,11 @@ func reset_progress() -> Dictionary:
 	if AppState.profile.is_empty():
 		return SaveService._fail("Aucun profil actif.")
 	var document: Dictionary = AppState.profile.duplicate(true)
-	document.progress = _empty_progress()
+	if is_super_admin():
+		var restored := DevProfile.restore_progress(document)
+		if not restored.ok: return restored
+		document = restored.data
+	else: document.progress = _empty_progress()
 	var saved := SaveService.write_profile(document)
 	if not saved.ok:
 		return saved
