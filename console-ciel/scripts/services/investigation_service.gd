@@ -501,7 +501,7 @@ func travel_zone(destination: String) -> Dictionary:
 	if int(HotelService.state().get("morning_stage", 0)) > 0:
 		if source + ">" + destination in ["building_02>courtyard", "courtyard>building_02"]:
 			return HotelService.travel(destination)
-		if source == "courtyard" and destination == "room_01":
+		if source == "courtyard" and destination == "room_01" and int(HotelService.state().get("morning_stage", 0)) != 9:
 			return SaveService._fail("Votre rendez-vous est au CTF sudo hack. Rejoignez l’arrêt de bus après avoir récupéré votre sac.")
 	var routes := {"room_01>courtyard": "from_first", "courtyard>room_01": "building_exit", "courtyard>building_02": "new_entrance", "building_02>courtyard": "from_second"}
 	var route := source + ">" + destination
