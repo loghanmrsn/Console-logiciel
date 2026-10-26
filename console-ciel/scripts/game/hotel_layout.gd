@@ -2,6 +2,7 @@ extends RefCounted
 ## Hotel geometry is shared by scenery, collisions, the map and route tests.
 ## A destination is a saved room, never a reward-bearing investigation chapter.
 
+const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HALL_SIZE := Vector2(6400, 4200)
 const BED_SEAT := Vector2(840, 420)
@@ -61,8 +62,13 @@ static func interactions(zone: String) -> Array[Dictionary]:
 			_target("hotel_breakfast_return", "Porte · retour au hall", Vector2(700, 930), 85),
 			_target("hotel_breakfast_table", "Petit déjeuner · s’asseoir à la table", Vector2(690, 580), 85),
 			_target("hotel_coffee_machine", "Machine à café · panneau de connexion", Vector2(1250, 310), 85)]
-		"ctf_bus_stop": return [_target("ctf_enter", "sudo hack · entrer dans le bâtiment du CTF", Vector2(900, 360), 90)]
-		"ctf_lobby": return [_target("ctf_leave", "Porte · retour à l’arrêt du bus", Vector2(900, 1150), 90)]
+		"ctf_bus_stop": return [_target("ctf_enter", "sudo hack · entrer dans le bâtiment du CTF", Vector2(900, 360), 90), _target("ctf_return_bus", "Arrêt de bus · retour en ville", Vector2(1390, 785), 90)]
+		"ctf_lobby":
+			var targets: Array[Dictionary] = [_target("ctf_leave", "Porte · retour à l’arrêt du bus", Vector2(900, 1150), 90)]
+			for index in range(5):
+				var id: String = CtfCatalog.IDS[index]
+				targets.append(_target("ctf_" + id, str(CtfCatalog.CHALLENGES[id].title), ctf_desk(index).get_center() + Vector2(0, 150), 90))
+			return targets
 		_: return [
 			_target("campus_leave", "Porte · retour dans la cour", Vector2(3200, 4050), 100),
 			_target("hotel_reception", "Réception · réservation de chambre", Vector2(3200, 3610), 110),
@@ -139,7 +145,8 @@ static func furniture_specs(zone: String) -> Array[Dictionary]:
 		"ctf_bus_stop":
 			result.append_array([_prop("bus_shelter", Rect2(1240, 560, 300, 160)), _prop("planter", Rect2(270, 520, 90, 90)), _prop("planter", Rect2(270, 790, 90, 90))])
 		"ctf_lobby":
-			result.append_array([_prop("ctf_reception", Rect2(700, 260, 400, 140)), _prop("sofa", Rect2(220, 620, 350, 120)), _prop("sofa", Rect2(1230, 620, 350, 120)), _prop("planter", Rect2(260, 360, 90, 90)), _prop("planter", Rect2(1450, 360, 90, 90))])
+			for index in range(5): result.append(_prop("ctf_desk", ctf_desk(index)))
+			result.append_array([_prop("ctf_reception", Rect2(700, 260, 400, 140)), _prop("sofa", Rect2(200, 980, 350, 120)), _prop("sofa", Rect2(1250, 980, 350, 120)), _prop("planter", Rect2(260, 360, 90, 90)), _prop("planter", Rect2(1450, 360, 90, 90))])
 		"hotel_it":
 			result.append_array([_prop("server", Rect2(200, 180, 180, 250)), _prop("server", Rect2(440, 180, 180, 250)), _prop("repair", Rect2(690, 260, 220, 120)), _prop("storage", Rect2(1080, 180, 150, 360))])
 			result.append_array([_prop("ups", Rect2(160, 550, 110, 116)), _prop("maintenance_cart", Rect2(990, 610, 180, 86))])
@@ -167,3 +174,7 @@ static func rooms(zone: String) -> Array[Rect2]:
 		"ctf_bus_stop": return [Rect2(100, 350, 1600, 850)]
 		"ctf_lobby": return [Rect2(80, 80, 1640, 1140)]
 	return []
+
+static func ctf_desk(index: int) -> Rect2:
+	var centers := [Vector2(360, 490), Vector2(900, 490), Vector2(1440, 490), Vector2(570, 820), Vector2(1230, 820)]
+	return Rect2(centers[index] - Vector2(150, 55), Vector2(300, 110))
