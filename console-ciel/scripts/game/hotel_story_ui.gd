@@ -2,6 +2,8 @@ extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
 const HOTEL_ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
+const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
 const DiagnosticPanel = preload("res://scripts/ui/hotel_diagnostic_panel.gd")
 const WAIT_SECONDS := 10.0
@@ -137,7 +139,11 @@ func _morning_objective(stage: int, room: String) -> String:
 		5: return "Retournez chambre 206 à l’étage 2 pour récupérer votre sac et votre ordinateur · " + _reward_text("hotel_backpack") + "."
 		6: return "Sortez de l’hôtel, puis rejoignez l’arrêt de bus pour le CTF Sudo Hack." if room != "courtyard" else "Prenez le bus vers le CTF Sudo Hack."
 		7: return "Vous êtes arrivé. Entrez dans le bâtiment du CTF Sudo Hack."
-		8: return "Bienvenue au CTF Sudo Hack. Les cinq missions seront ajoutées dans une prochaine mise à jour."
+		8, 9:
+			if room in ["ctf_lobby", "ctf_bus_stop"]:
+				var done: int = CtfService.state().completed.size()
+				return "Sudo Hack · 5 / 5 · Sortez puis prenez le bus de retour vers la ville." if done == 5 else "Sudo Hack · %d / 5 · Rejoignez le poste %d : %s." % [done, done + 1, str(CtfCatalog.CHALLENGES[CtfCatalog.IDS[done]].skill)]
+			return "Sudo Hack terminé · Vous êtes de retour en ville. L'hôtel et les bâtiments restent accessibles."
 	return ""
 
 func _reward_text(id: String) -> String:
@@ -259,7 +265,10 @@ func can_pause_bed() -> bool:
 	return is_sitting() and game.overlay_kind in ["hotel_bed_waiting", "hotel_bed_choices"]
 
 func handle_target(id: String) -> bool:
-	if not id.begins_with("hotel_") and id not in ["campus_bus", "ctf_enter", "ctf_leave"]:
+	if id.trim_prefix("ctf_") in CtfCatalog.IDS:
+		_show_ctf(id.trim_prefix("ctf_"))
+		return true
+	if not id.begins_with("hotel_") and id not in ["campus_bus", "ctf_enter", "ctf_leave", "ctf_return_bus"]:
 		return false
 	match id:
 		"hotel_reception": _show_reception()
@@ -275,7 +284,8 @@ func handle_target(id: String) -> bool:
 			_show_coffee()
 		"hotel_backpack": _show_backpack()
 		"campus_bus": _show_bus()
-		"ctf_enter": _show_travel("ctf_lobby", "CTF Sudo Hack", "Entrez avec votre sac et votre ordinateur. Les épreuves de la compétition seront ajoutées plus tard.")
+		"ctf_enter": _show_travel("ctf_lobby", "CTF Sudo Hack", "Entrez avec votre sac et votre ordinateur. Cinq postes vous attendent. Consultez leurs indices puis saisissez vos réponses.")
+		"ctf_return_bus": _show_return_bus()
 		"ctf_leave": _show_travel("ctf_bus_stop", "Sortir du bâtiment", "Retrouvez l’arrêt de bus devant le bâtiment Sudo Hack.")
 		"hotel_it_door": _show_travel("hotel_it", "Local informatique", "Le local technique est juste à côté du hall.")
 		"hotel_it_return": _show_travel("building_02", "Revenir à la réception", "Retrouvez le hall et les escaliers.")
@@ -626,3 +636,37 @@ func _show_error(title: String, result: Dictionary, retry: Callable) -> void:
 	game._button(game.modal_content, "Réessayer", retry, "hotel_retry")
 	game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_error_close")
 	game._wire_modal()
+
+func _show_ctf(id: String) -> void:
+	if CtfService.mission_state(id) == "locked":
+		game._show_dialog("Poste verrouillé", "Terminez le poste précédent. Le panneau de missions indique celui à rejoindre.", game._close_overlay)
+		return
+	game._open_overlay("ctf_challenge")
+	var panel := CtfPanel.new()
+	panel.mission_id = id
+	game.modal_content.add_child(panel)
+	panel.close_requested.connect(game._close_overlay)
+	panel.navigation_changed.connect(func(): game._fit_modal.call_deferred(); game._wire_modal.call_deferred())
+	panel.mission_completed.connect(func(result: Dictionary):
+		game.notification_requested.emit(PenaltyService.reward_message("Épreuve Sudo Hack validée", result))
+		game._show_dialog("Épreuve validée", str(CtfCatalog.CHALLENGES[id].explanation), game._close_overlay))
+	game._wire_modal()
+
+func _show_return_bus() -> void:
+	game._open_overlay("ctf_bus")
+	game._label(game.modal_content, "Arrêt de bus · retour en ville", 26)
+	game._label(game.modal_content, "Le bus vous ramène sur le trottoir près de l'hôtel CIEL." if CtfService.completed() else "Le trajet de retour sera disponible après les cinq épreuves Sudo Hack.")
+	if CtfService.completed():
+		game._button(game.modal_content, "Revenir en ville", _return_bus, "ctf_bus_return")
+	game._button(game.modal_content, "Rester ici", game._close_overlay, "ctf_bus_close")
+	game._wire_modal()
+
+func _return_bus() -> void:
+	var result: Dictionary = HotelService.return_bus()
+	if not result.ok:
+		_show_error("Retour non enregistré", result, _show_return_bus)
+		return
+	game.world.restore_progress(AppState.profile.progress)
+	game.world.restore_checkpoint()
+	game._close_overlay()
+	game.notification_requested.emit("Retour en ville · Hôtel CIEL")
