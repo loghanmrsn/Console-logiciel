@@ -1,11 +1,11 @@
-# Archives complètes Console CIEL 0.17.0
+# Archives complètes Console CIEL 0.18.0
 
 Chaque ZIP réunit les sources, ressources, documentation, outils, tests et le logiciel de sa plateforme, sous **console-ciel/**. Choisir l’archive correspondant à son appareil :
 
 | Plateforme | Projet complet | Logiciel après extraction |
 |---|---|---|
-| Windows x86_64 | [Projet complet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.17.0.zip) | `console-ciel/builds/windows-x86_64-dev-0.17.0/Console_CIEL.exe` |
-| Raspberry Pi 4 ARM64 | [Projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.zip) | `console-ciel/builds/linux-arm64-raspberry-pi-0.17.0/Lancer_Console_CIEL.sh` |
+| Windows x86_64 | [Projet complet Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.18.0.zip) | `console-ciel/builds/windows-x86_64-ctf-0.18.0/Console_CIEL.exe` |
+| Raspberry Pi 4 ARM64 | [Projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.18.0.zip) | `console-ciel/builds/linux-arm64-raspberry-pi-0.18.0/Lancer_Console_CIEL.sh` |
 
 Après extraction complète :
 
@@ -13,9 +13,9 @@ Après extraction complète :
 - **Jouer sur le Pi 4 64 bits avec bureau** : ouvrir un terminal dans le dossier indiqué, puis lancer `bash ./Lancer_Console_CIEL.sh`. Le véritable exécutable est **console-ciel.arm64**. Godot n’est pas nécessaire pour jouer sur les deux plateformes.
 - **Ouvrir les sources** : importer `console-ciel/project.godot` dans Godot standard **4.6.3.stable.official.7d41c59c4**, rendu Compatibility.
 - **Ajouter des photos** : utiliser **images_profil/** à côté du programme ; en édition Godot, utiliser `console-ciel/images_profil/`. Puis **Profil → Modifier → Mes images → Actualiser les images**.
-- **Consulter l’inventaire** : `CONTENU_ARCHIVE.json` donne les chemins, tailles et SHA-256 des fichiers inclus. Les rapports externes [Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.17.0.verification.json) et [Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.verification.json) donnent les empreintes finales des ZIP.
+- **Consulter l’inventaire** : `CONTENU_ARCHIVE.json` donne les chemins, tailles et SHA-256 des fichiers inclus. Les rapports externes [Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.18.0.verification.json) et [Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.18.0.verification.json) donnent les empreintes finales des ZIP.
 
-Le contenu jouable **0.17.0** est identique : cinq chapitres, treize missions, dont Python, HTML et Markdown dans l’atelier du code. Les treize missions rapportent 650 points, puis les deux récompenses du matin ajoutent 100 points, soit 750 au maximum par profil ; chaque jeu Test coûte 200 points et reste un jeu en préparation. Le profil, les thèmes, les photos, le tableau de missions et les repères masqués sont conservés. Le parcours continue après la nuit : petit déjeuner, machine à café à réparer, sac à dos en chambre 206 et bus vers le hall du CTF **sudo hack**. Ses cinq défis seront ajoutés plus tard. [Guide de l’hôtel](HOTEL.md), [guide Windows](WINDOWS.md), [guide Raspberry Pi](RASPBERRY_PI.md), [enquête](ENQUETE.md) et [bibliothèque](BIBLIOTHEQUE_ET_THEMES.md).
+Le contenu jouable **0.18.0** est identique : cinq chapitres, treize missions, dont Python, HTML et Markdown dans l’atelier du code. Les treize missions rapportent 650 points, puis les deux récompenses du matin ajoutent 100 points, soit 750 au maximum par profil ; chaque jeu Test coûte 200 points et reste un jeu en préparation. Le profil, les thèmes, les photos, le tableau de missions et les repères masqués sont conservés. Le parcours continue après la nuit : petit déjeuner, machine à café à réparer, sac à dos en chambre 206 et bus vers le hall du CTF **sudo hack**. Ses cinq défis seront ajoutés plus tard. [Guide de l’hôtel](HOTEL.md), [guide Windows](WINDOWS.md), [guide Raspberry Pi](RASPBERRY_PI.md), [enquête](ENQUETE.md) et [bibliothèque](BIBLIOTHEQUE_ET_THEMES.md).
 
 Chaque archive complète inclut seulement le **binaire courant de sa plateforme**. Les autres ZIP et les anciennes livraisons restent conservés séparément sur GitHub, sans être imbriqués dans les nouvelles archives. Les caches, modèles Godot téléchargeables, secrets et données personnelles sont exclus. Les sauvegardes des joueurs ne sont pas distribuées. Les licences des ressources et des polices intégrées au moteur restent incluses.
 
@@ -26,17 +26,17 @@ Pour refaire l’assemblage après avoir préparé et vérifié la livraison, de
 python3 - <<'PYTHON'
 from pathlib import Path
 from tools.package_complete import create_archive
-create_archive(Path('.'), Path('builds/Console_CIEL_Projet_Complet_Windows_0.17.0.zip'),
-               'builds/windows-x86_64-dev-0.17.0', current_windows_only=True)
+create_archive(Path('.'), Path('builds/Console_CIEL_Projet_Complet_Windows_0.18.0.zip'),
+               'builds/windows-x86_64-ctf-0.18.0', current_windows_only=True)
 PYTHON
 
 # Raspberry Pi :
 python3 tools/package_linux_complete.py \
-  --linux-directory builds/linux-arm64-raspberry-pi-0.17.0 \
-  --output builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.zip
+  --linux-directory builds/linux-arm64-raspberry-pi-0.18.0 \
+  --output builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.18.0.zip
 ```
 
-Ces outils vérifient l’archive ; ils ne reconstruisent pas les binaires. Les rapports [Windows portable](../builds/Console_CIEL_Windows_x86_64_dev_0.17.0.verification.json) et [ARM64 portable](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.17.0.verification.json) décrivent séparément les exports. [Résultats et portée des vérifications](DELIVERY.md). Le lancement natif, l’affichage, le son et la manette restent à essayer sur les appareils destinataires.
+Ces outils vérifient l’archive ; ils ne reconstruisent pas les binaires. Les rapports [Windows portable](../builds/Console_CIEL_Windows_x86_64_ctf_0.18.0.verification.json) et [ARM64 portable](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.18.0.verification.json) décrivent séparément les exports. [Résultats et portée des vérifications](DELIVERY.md). Le lancement natif, l’affichage, le son et la manette restent à essayer sur les appareils destinataires.
 
 # Livraison Windows conservée — archive complète 0.6.1
 
@@ -84,4 +84,6 @@ La version **0.15.0** a ajouté six personnages solides et des discussions à pl
 
 La version **0.16.0** a affiné les six PNJ : coiffures et tenues distinctes, regards, geste d’accueil, portraits rapprochés et bulles portant leur nom. La discussion fonctionne depuis les côtés libres, avec de courts fondus, un portrait et des boutons fixes, un texte défilant et un bouton de fermeture directe. Espace avance aussi les pages ; les obstacles et les sauvegardes sont conservés. [Visuel et commandes](PNJ.md).
 
-La version **0.17.0** propose le bouton **Dev · Super administrateur** : profil séparé, treize défis et épreuves de l’hôtel validés, étages accessibles et 750 points initiaux. La réutilisation conserve sa sauvegarde et les autres profils restent indépendants. [Utiliser Dev](DEV.md).
+La version **0.18.0** propose le bouton **Dev · Super administrateur** : profil séparé, treize défis, épreuves de l’hôtel et cinq postes du CTF validés, étages accessibles et 1 000 points initiaux. La réutilisation conserve sa sauvegarde et les autres profils restent indépendants. [Utiliser Dev](DEV.md).
+
+Le dossier **solution/** est également inclus à côté de **console-ciel/** dans les deux ZIP complets. Sa fiche donne toutes les bonnes réponses et affiche les captures correspondantes, présentes dans les sources.
