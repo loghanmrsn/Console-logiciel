@@ -56,7 +56,7 @@ Ce hall termine le parcours disponible dans la version **0.14.0**. Les **cinq mi
 
 ## Récompenses du matin
 
-Les treize missions des cinq chapitres gardent leurs **650 points**. Les deux objectifs récompensés du matin ajoutent **100 points**, pour **750 points au maximum gagnés par profil** dans le parcours actuel.
+Les treize missions des cinq chapitres gardent leurs **650 points**. Les deux objectifs récompensés du matin ajoutent **100 points**, pour **750 points avant le CTF**. Les cinq postes Sudo Hack ajoutent **250 points**, soit **1 000 points possibles** sur le parcours complet.
 
 Chaque récompense est liée au profil : reprendre une sauvegarde, refaire le trajet ou choisir Nouvelle partie ne permet pas de la recevoir une deuxième fois. Les points et la progression correspondante sont enregistrés ensemble ; une erreur de sauvegarde ne valide ni l’étape ni son gain.
 
@@ -79,3 +79,5 @@ Le local informatique et la salle du petit déjeuner gardent leurs tons ivoire, 
 Camille accueille le joueur devant la porte de l’hôtel. Lucie donne des conseils près du buffet, selon l’état du café. Alex rappelle que seul le palier du premier étage est ouvert et indique les deux escaliers. Nora présente l’enquête dans le premier bâtiment ; Idris attend au dernier étage, et Sam explique la traversée dans la cour. [Toutes les rencontres](PNJ.md).
 
 Les six personnages bénéficient du rendu **0.16.0** et des discussions avec portrait et actions fixes. Leurs emplacements, les missions du séjour, les points et les accès restent identiques. [Apparence et interactions](PNJ.md).
+
+Les cinq épreuves **Sudo Hack** se jouent dans le hall du CTF. Chaque poste donne 50 points une seule fois. Après le flag final, le bus devant le CTF ramène en ville ; les lieux restent visitables. [Toutes les solutions illustrées](../../solution/README.md).
