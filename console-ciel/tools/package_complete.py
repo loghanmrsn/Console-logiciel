@@ -41,6 +41,35 @@ def excluded(path: Path, project: Path) -> str:
     return ''
 
 
+
+
+def archive_name(project: Path, source: Path) -> str:
+    if source.is_relative_to(project):
+        return 'console-ciel/' + source.relative_to(project).as_posix()
+    return source.relative_to(project.parent).as_posix()
+
+
+def archive_source(project: Path, name: str) -> Path:
+    return project / name.removeprefix('console-ciel/') if name.startswith('console-ciel/') else project.parent / name
+
+
+def add_solution_files(project: Path, files: list[Path], directories: set[Path]) -> None:
+    """Include the repository solution sheet beside console-ciel/ in full ZIPs."""
+    solutions = project.parent / 'solution'
+    if not solutions.exists():
+        return
+    if solutions.is_symlink():
+        raise ValueError('Dossier solution lié interdit.')
+    directories.add(solutions)
+    for source in sorted(solutions.rglob('*')):
+        if source.is_symlink():
+            raise ValueError(f'Lien solution interdit : {source}')
+        if source.is_file() and not excluded(source, project.parent):
+            files.append(source)
+        elif source.is_dir() and not excluded(source, project.parent):
+            directories.add(source)
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open('rb') as stream:
@@ -127,6 +156,7 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
                     raise ValueError(f'Lien source interdit : {source}')
                 else:
                     files.append(source)
+    add_solution_files(project, files, directories)
     files = sorted(set(files))
     output.parent.mkdir(parents=True, exist_ok=True)
     with NamedTemporaryFile(dir=output.parent, suffix='.zip.tmp', delete=False) as temporary:
@@ -135,9 +165,9 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
     try:
         with ZipFile(stage, 'w', compression=ZIP_DEFLATED, compresslevel=6) as archive:
             for folder in sorted(directories):
-                archive.writestr('console-ciel/'+folder.relative_to(project).as_posix()+'/', b'')
+                archive.writestr(archive_name(project, folder)+'/', b'')
             for source in files:
-                name = 'console-ciel/'+source.relative_to(project).as_posix()
+                name = archive_name(project, source)
                 before = sha256(source)
                 archive.write(source, name)
                 records.append({'file': name, 'bytes': source.stat().st_size, 'sha256': before})
@@ -156,7 +186,7 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
                 with archive.open(record['file']) as stream:
                     for chunk in iter(lambda: stream.read(1024 * 1024), b''):
                         digest.update(chunk)
-                source = project / record['file'].removeprefix('console-ciel/')
+                source = archive_source(project, record['file'])
                 if digest.hexdigest() != record['sha256'] or sha256(source) != record['sha256']:
                     raise ValueError(f'Octets différents ou source modifiée pendant l’archivage : {record["file"]}')
             names = set(archive.namelist())
