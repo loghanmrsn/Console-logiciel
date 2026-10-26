@@ -815,7 +815,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'ctf_challenge'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -878,6 +878,8 @@ func _wire_modal() -> void:
 		if not control.focus_entered.is_connected(_ensure_modal_focus): control.focus_entered.connect(_ensure_modal_focus)
 	if overlay_kind == "terminal" and is_instance_valid(terminal_panel) and is_instance_valid(terminal_panel.code_keyboard):
 		terminal_panel.code_keyboard.wire_navigation()
+	var ctf_panel := modal_content.get_node_or_null("ctf_challenge_panel")
+	if is_instance_valid(ctf_panel) and is_instance_valid(ctf_panel.code_keyboard): ctf_panel.code_keyboard.wire_navigation()
 	if is_instance_valid(challenge) and is_instance_valid(challenge.code_keyboard):
 		challenge.code_keyboard.wire_navigation()
 	var owner: Control = get_viewport().gui_get_focus_owner()
