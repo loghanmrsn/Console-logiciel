@@ -109,3 +109,9 @@ La portée et le score d’un PNJ sont calculés depuis ses pieds. Le rayon de v
 ## Profil Dev — 0.17.0
 
 `DevProfile` construit un document complet depuis les missions livrées, sans sélectionner ni écrire de profil. Les observations, indices, vérifications, récompenses et étapes de l’hôtel passent le validateur habituel. `ProfileService.use_dev_profile()` crée le compte dédié à la demande, puis emploie la sélection normale. Un compte existant, une sauvegarde précédente ou un fichier endommagé ne sont pas écrasés. Le rôle facultatif `super_admin` est limité à l’identifiant dédié et au nom Dev ; le pseudo d’un joueur ne confère pas de rôle. Les remises en place conservent les points, les achats, les images et les pénalités. [Utilisation](DEV.md).
+
+## Sudo Hack — 0.18.0
+
+`CtfCatalog` décrit cinq épreuves déterministes et les réponses locales. `CtfService` vérifie le lieu, l’ordre et la réponse, puis enregistre progression et reçu avec la récompense dans une seule écriture ; la dette est remboursée avant le crédit. Aucune commande ne s’exécute sur l’hôte. `CtfChallengePanel` présente les indices et réutilise le clavier AZERTY. `HotelStoryUI` coordonne les fenêtres et le voyage ; `HotelLayout` partage les positions des cinq bureaux entre dessin, collisions, carte et tests.
+
+L’état facultatif `progress.ctf = {version: 1, completed: [...]}` est absent des anciens profils sans créer de migration. Le validateur exige un préfixe ordonné des cinq identifiants et un reçu pour chaque réussite. L’étape de matinée 9 désigne la fin du CTF et autorise les visites en ville ; elle exige les cinq validations. Le retour en bus est enregistré avant le changement de monde. Réinitialiser un joueur efface son parcours mais conserve les reçus, donc rejouer ne redistribue pas les points. Dev reconstruit toutes les validations sans recréditer un compte existant.
