@@ -115,6 +115,7 @@ def create_archive(project: Path, output: Path, linux_directory: str) -> dict:
                     raise ValueError(f'Lien source interdit : {source}')
                 else:
                     files.append(source)
+    _shared.add_solution_files(project, files, directories)
     files = sorted(set(files))
     output.parent.mkdir(parents=True, exist_ok=True)
     with NamedTemporaryFile(dir=output.parent, suffix='.zip.tmp', delete=False) as temporary:
@@ -123,12 +124,12 @@ def create_archive(project: Path, output: Path, linux_directory: str) -> dict:
     try:
         with ZipFile(stage, 'w', compression=ZIP_DEFLATED, compresslevel=6) as archive:
             for folder in sorted(directories):
-                info = ZipInfo('console-ciel/' + folder.relative_to(project).as_posix() + '/')
+                info = ZipInfo(_shared.archive_name(project, folder) + '/')
                 info.create_system = 3
                 info.external_attr = (stat.S_IFDIR | 0o755) << 16 | 0x10
                 archive.writestr(info, b'')
             for source in files:
-                name = 'console-ciel/' + source.relative_to(project).as_posix()
+                name = _shared.archive_name(project, source)
                 before = sha256(source)
                 archive.write(source, name)
                 records.append({'file': name, 'bytes': source.stat().st_size, 'sha256': before,
@@ -148,7 +149,7 @@ def create_archive(project: Path, output: Path, linux_directory: str) -> dict:
                 with archive.open(record['file']) as stream:
                     for chunk in iter(lambda: stream.read(1024 * 1024), b''):
                         digest.update(chunk)
-                source = project / record['file'].removeprefix('console-ciel/')
+                source = _shared.archive_source(project, record['file'])
                 info = archive.getinfo(record['file'])
                 if digest.hexdigest() != record['sha256'] or sha256(source) != record['sha256']:
                     raise ValueError(f'Octets différents ou source modifiée pendant l’archivage : {record["file"]}')
