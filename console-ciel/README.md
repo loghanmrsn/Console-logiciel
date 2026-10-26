@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.17.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.18.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_dev_0.17.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_ctf_0.18.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.17.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.18.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -54,7 +54,7 @@ Après les quatre premiers chapitres, le portable du **chapitre 5** propose **Y 
 
 Après le chapitre 5, revenez au palier puis **descendez un étage à la fois jusqu’au premier niveau (rez-de-chaussée)**. Sortez par la porte en bas à gauche et traversez la cour jusqu’à **l’hôtel d’en face**. Son grand hall accueille une réception où réserver la **chambre 206**. Une panne du système de réservation vous conduit dans la salle informatique voisine ; réparez-la pour accéder aux escaliers. Le premier étage reste limité au palier. Au deuxième étage, un panneau vous guide vers la chambre 206 : déposez vos affaires, puis choisissez **Dormir** ou **Se poser sur le lit**. En restant assis, les choix **Dormir / Continuer à attendre** reviennent toutes les dix secondes, jusqu’au sommeil qui fait passer la nuit.
 
-Au réveil, le panneau vous invite à **descendre au rez-de-chaussée** : cette première descente rapporte **50 points**. Entrez dans la salle du petit déjeuner et asseyez-vous à table. Le café oublié vous conduit à la machine en panne. Son panneau présente six fils : **A, B, C** en haut et **1, 2, 3** en bas. Reliez les couleurs identiques : **A–3 rouge, B–2 vert et C–1 marron**. Le fil sélectionné brille ; un nouvel appui le désélectionne. Une fois les trois paires reliées, prenez votre café, remontez dans la **chambre 206** et récupérez le sac à dos contenant l’ordinateur, pour **50 points supplémentaires**. Redescendez, sortez de l’hôtel et rejoignez l’arrêt de bus. Le trajet mène au bâtiment du CTF **sudo hack**, dont le hall attend cinq futurs défis.
+Au réveil, le panneau vous invite à **descendre au rez-de-chaussée** : cette première descente rapporte **50 points**. Entrez dans la salle du petit déjeuner et asseyez-vous à table. Le café oublié vous conduit à la machine en panne. Son panneau présente six fils : **A, B, C** en haut et **1, 2, 3** en bas. Reliez les couleurs identiques : **A–3 rouge, B–2 vert et C–1 marron**. Le fil sélectionné brille ; un nouvel appui le désélectionne. Une fois les trois paires reliées, prenez votre café, remontez dans la **chambre 206** et récupérez le sac à dos contenant l’ordinateur, pour **50 points supplémentaires**. Redescendez, sortez de l’hôtel et rejoignez l’arrêt de bus. Le trajet mène au bâtiment du CTF **sudo hack**, où cinq postes proposent des épreuves de phishing, journaux de connexion, Base64, permissions et flag final. Les réponses se saisissent au clavier physique ou virtuel. Chaque réussite débloque le poste suivant ; les indices restent consultables. Après les cinq épreuves, sortez et prenez le **bus de retour en ville**, près de l’hôtel. Vous pouvez ensuite revisiter les bâtiments et le CTF.
 
 Entre les deux bâtiments, empruntez le **passage piéton** : attendez le **feu vert**, les voitures roulent lentement et s’arrêtent pour vous laisser passer. Une traversée commencée au rouge et terminée sans choc coûte **200 points**. En cas de collision, vous revenez au départ de cette traversée, avec votre progression conservée.
 
@@ -64,23 +64,25 @@ Six **PNJ avec lesquels discuter** accompagnent l’enquête : première salle, 
 
 La **carte en haut à gauche** affiche votre position et les PNJ dans l’hôtel. **→** l’affiche ou la masque ; **ZQSD ou le joystick** permettent de marcher. Les passages et la progression de l’hôtel sont sauvegardés.
 
+Une **[fiche de solutions illustrée](../solution/README.md)** regroupe les bonnes réponses de tous les chapitres, de l’hôtel et du CTF. Elle contient les solutions complètes.
+
 Un **tableau de missions à droite de l’écran** affiche les objectifs du chapitre. Il se déplie ou se replie avec **T** ou le **bouton de face haut** de la manette. Les repères des missions disparaissent après leur réussite ; le bilan reste accessible depuis le menu Pause.
 
 ### Les points et la boutique
 
-Les treize missions de l’enquête rapportent **50 points à leur première réussite**, soit **650 points**. La descente matinale au rez-de-chaussée et la récupération du sac ajoutent **50 points chacune**, pour **750 points au maximum par profil, avant achats et pénalités**. Réparer la machine à café et prendre le bus ne donnent pas de points. Rejouer ou commencer une nouvelle partie ne réattribue pas les récompenses déjà obtenues.
+Les treize missions de l’enquête rapportent **50 points à leur première réussite**, soit **650 points**. La descente matinale au rez-de-chaussée et la récupération du sac ajoutent **50 points chacune**, puis les cinq épreuves Sudo Hack ajoutent **250 points**, pour **1 000 points au maximum par profil, avant achats et pénalités**. Réparer la machine à café et prendre le bus ne donnent pas de points. Rejouer ou commencer une nouvelle partie ne réattribue pas les récompenses déjà obtenues.
 
 Les pénalités retirent les points disponibles. Si le solde ne suffit pas, le reste devient une **dette**, visible en haut de l’écran et dans le profil. Les prochaines récompenses remboursent cette dette en priorité. Recommencer l’enquête conserve les pénalités et la dette.
 
 La boutique propose des avatars, des cadres, des thèmes et quatre emplacements de jeux : **Test 1, Test 2, Test 3 et Test 4**, à **200 points chacun**. Ces quatre jeux sont encore en préparation.
 
-Les achats sont conservés dans le profil et apparaissent dans sa bibliothèque ou son inventaire. Un solde insuffisant empêche l’achat ; un article déjà possédé n’est pas facturé une seconde fois. Sans autre dépense ni pénalité, l’enquête et les deux récompenses du matin permettent d’acheter trois jeux, avec 150 points restants.
+Les achats sont conservés dans le profil et apparaissent dans sa bibliothèque ou son inventaire. Un solde insuffisant empêche l’achat ; un article déjà possédé n’est pas facturé une seconde fois. Sans autre dépense ni pénalité, le parcours complet, hôtel et CTF compris, permet d’acheter les quatre jeux, avec 200 points restants.
 
 ### Les profils et les avatars
 
 Chaque joueur dispose de son pseudo, de sa progression, de ses points et de ses achats. Le profil actif et son avatar apparaissent en haut à gauche.
 
-Le bouton **Dev · Super administrateur**, disponible dans **Profil** et lors de la première création, ouvre un profil séparé avec les **13 défis éducatifs et les épreuves de l’hôtel déjà validés**, ainsi que **750 points au départ**. Les étages sont débloqués et le bus vers le CTF reste disponible. Réutiliser Dev conserve sa sauvegarde ; réinitialiser son parcours garde les défis validés, les achats et le solde.
+Le bouton **Dev · Super administrateur**, disponible dans **Profil** et lors de la première création, ouvre un profil séparé avec les **13 défis éducatifs, les épreuves de l’hôtel et les cinq postes du CTF déjà validés**, ainsi que **1 000 points au départ**. Les étages sont débloqués et le bus vers le CTF reste disponible. Réutiliser Dev conserve sa sauvegarde ; réinitialiser son parcours garde les défis validés, les achats et le solde.
 
 Dans **Profil → Modifier**, il est possible de choisir un avatar ou une photo locale. Pour ajouter ses images :
 
@@ -123,7 +125,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.17.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.17.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.18.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.18.0.zip).
 - **Installation détaillée :** [Windows](docs/WINDOWS.md) · [Raspberry Pi](docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](docs/ENQUETE.md) · [Profils et clavier](docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](docs/ARCHITECTURE.md) · [Tests et livraisons](docs/DELIVERY.md) · [Problèmes connus](docs/KNOWN_ISSUES.md).
