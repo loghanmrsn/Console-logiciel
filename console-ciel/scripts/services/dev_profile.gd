@@ -23,15 +23,15 @@ static func build() -> Dictionary:
 		"repaired": true, "luggage_placed": true, "bed_state": "rested",
 		"morning_stage": 6, "coffee_connections": SaveService.COFFEE_WIRES.duplicate()
 	}
-	# The hotel challenges are finished; stage 6 keeps the earlier areas visitable
-	# and leaves the optional bus journey to the CTF available from the courtyard.
+	progress["ctf"] = {"version": 1, "completed": SaveService.CtfCatalog.IDS.duplicate()}
+	# Stage 6 keeps every earlier zone visitable; the CTF bus remains available.
 	var document := {
 		"schema_version": SaveService.SCHEMA_VERSION,
 		"id": SaveService.DEV_PROFILE_ID, "display_name": SaveService.DEV_PROFILE_NAME,
-		"role": "super_admin", "wallet": {"points": points + 50 * SaveService.HOTEL_REWARD_IDS.size()},
+		"role": "super_admin", "wallet": {"points": points + 50 * SaveService.HOTEL_REWARD_IDS.size() + 50 * SaveService.CtfCatalog.IDS.size()},
 		"owned_items": SaveService.DEFAULT_ITEMS.duplicate(),
 		"equipped": {"avatar": "avatar_default", "theme": "theme_brume", "frame": "frame_default"},
-		"rewarded_missions": progress.completed_missions.duplicate() + SaveService.HOTEL_REWARD_IDS,
+		"rewarded_missions": progress.completed_missions.duplicate() + SaveService.HOTEL_REWARD_IDS + SaveService.CtfCatalog.REWARD_IDS,
 		"progress": progress
 	}
 	return SaveService.validate_profile(document)
