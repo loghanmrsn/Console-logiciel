@@ -25,7 +25,7 @@ Les vrais jeux ne sont pas encore prêts. À la demande de l’utilisateur, la b
 | Test 4 | 200 points |
 | Les quatre | 800 points |
 
-Chaque mission pédagogique réussie pour la première fois rapporte **50 points**, soit **150 par chapitre** et **450 au maximum par profil** sur les neuf missions. Sans autre dépense, quatre réussites permettent d’acheter un jeu à 200 points ; après neuf réussites puis deux achats, il reste 50 points. Un troisième achat est alors refusé. Les autres achats attendent de futurs défis ou un solde déjà présent dans un ancien profil. Rejouer une mission, recommencer l’enquête ou ouvrir un emplacement Test ne redonne pas ces récompenses.
+Les treize missions éducatives donnent **650 points**, les deux objectifs du matin à l’hôtel **100 points** et les cinq postes Sudo Hack **250 points**, soit **1 000 points possibles par profil**, avant achats et pénalités. Sans autre dépense ni dette, les quatre Test à 200 points laissent 200 points. Un solde inférieur au prix empêche l’achat. Rejouer une mission, recommencer l’enquête ou ouvrir un emplacement Test ne redonne pas ces récompenses.
 
 À leur introduction en **0.5.0**, les emplacements coûtaient **20, 30, 40 et 50 points**, soit 140 au total ; cette tarification décrit les anciennes livraisons. Un jeu acquis à ces prix reste acquis sans nouveau débit.
 
@@ -84,3 +84,5 @@ La recette source complète compte **8 438 assertions**, sans échec. Le rendu X
 4. Terminer les neuf missions avec un profil neuf, sans achat : le solde est de 450. Acheter deux Test laisse 50 points ; un troisième achat à 200 est refusé. Rejouer n’ajoute aucun point.
 
 Le [guide Windows](WINDOWS.md) complète ce parcours avec les repères de mission, l’ascenseur, la reprise et le bilan en pause. Les résultats 0.5.0 et 0.6.1 ci-dessus restent historiques et ne remplacent pas la recette courante.
+
+Les cinq épreuves **Sudo Hack** se jouent dans le hall du CTF. Chaque poste donne 50 points une seule fois. Après le flag final, le bus devant le CTF ramène en ville ; les lieux restent visitables. [Toutes les solutions illustrées](../../solution/README.md).
