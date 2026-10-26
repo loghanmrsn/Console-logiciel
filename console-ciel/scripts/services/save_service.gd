@@ -13,6 +13,7 @@ const CHAPTER_TWO_IDS := ["network", "addressing", "security"]
 const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
 const CHAPTER_FOUR_IDS := ["firewall", "ip_conflict", "subnet_mask"]
 const CHAPTER_FIVE_IDS := ["maze"]
+const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const HOTEL_VERSION := 2
 const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
 const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
@@ -360,7 +361,7 @@ func _validate_hotel_progress(progress: Dictionary, completed: Array, rewarded: 
 		return _fail("Le repos assis se poursuit dans la chambre, sur le lit.")
 	if progress.checkpoint_id == "room206_bed" and hotel.bed_state == "standing":
 		return _fail("Ce point de reprise nécessite de s’installer sur le lit.")
-	if not _is_integer(hotel.get("morning_stage"), 0, 8):
+	if not _is_integer(hotel.get("morning_stage"), 0, 9):
 		return _fail("L’étape de la matinée est invalide.")
 	var stage := int(hotel.morning_stage)
 	if (stage > 0) != (hotel.bed_state == "rested"):
@@ -385,10 +386,26 @@ func _validate_hotel_progress(progress: Dictionary, completed: Array, rewarded: 
 		return _fail("Le joueur n’est pas encore installé à sa table.")
 	if progress.room_id == "ctf_bus_stop" and stage < 7:
 		return _fail("Prenez le bus avec votre sac pour rejoindre le CTF.")
-	if progress.room_id == "ctf_lobby" and stage != 8:
+	if progress.room_id == "ctf_lobby" and stage < 8:
 		return _fail("Entrez par la porte du bâtiment Sudo Hack.")
 	if (stage == 7 and progress.room_id != "ctf_bus_stop") or (stage == 8 and progress.room_id not in ["ctf_bus_stop", "ctf_lobby"]):
 		return _fail("Le voyage vers le CTF doit conserver son lieu d’arrivée.")
+	return _ok()
+
+func _validate_ctf_progress(progress: Dictionary, rewarded: Array) -> Dictionary:
+	var ctf: Variant = progress.get("ctf", CtfCatalog.empty_state())
+	if not ctf is Dictionary or ctf.size() != 2 or not _is_integer(ctf.get("version"), 1, 1) or not _valid_id_list(ctf.get("completed"), CtfCatalog.IDS):
+		return _fail("La progression du CTF est invalide.")
+	var done: Array = ctf.completed
+	if done != CtfCatalog.IDS.slice(0, done.size()):
+		return _fail("Les épreuves Sudo Hack doivent être validées dans l'ordre.")
+	for id in done:
+		if "ctf_" + str(id) not in rewarded:
+			return _fail("Une réussite Sudo Hack ne possède pas son reçu de récompense.")
+	if not done.is_empty() and (not progress.started or int(progress.hotel.morning_stage) < 6):
+		return _fail("Le CTF commence après la récupération du sac.")
+	if int(progress.hotel.morning_stage) == 9 and done != CtfCatalog.IDS:
+		return _fail("Terminez les cinq épreuves avant de revenir en ville.")
 	return _ok()
 
 func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
@@ -445,7 +462,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return _fail("La liste des récompenses est invalide.")
 	var rewarded: Array = []
 	for id in document.rewarded_missions:
-		if not id is String or id not in _mission_ids + HOTEL_REWARD_IDS or id in rewarded:
+		if not id is String or id not in _mission_ids + HOTEL_REWARD_IDS + CtfCatalog.REWARD_IDS or id in rewarded:
 			return _fail("La liste des récompenses contient une mission inconnue ou dupliquée.")
 		rewarded.append(id)
 	if not document.get("progress") is Dictionary:
@@ -624,6 +641,9 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	var hotel_validation := _validate_hotel_progress(progress, completed, rewarded)
 	if not hotel_validation.ok:
 		return hotel_validation
+	var ctf_validation := _validate_ctf_progress(progress, rewarded)
+	if not ctf_validation.ok: return ctf_validation
+	if progress.has("ctf"): progress.ctf.version = 1
 	progress.hotel.version = HOTEL_VERSION
 	progress.hotel.morning_stage = int(progress.hotel.morning_stage)
 	document.schema_version = SCHEMA_VERSION
