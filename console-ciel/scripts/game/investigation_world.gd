@@ -377,6 +377,7 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 func _refresh_art() -> void:
 	if is_instance_valid(hotel_visual):
 		hotel_visual.state = _pending_progress.get("hotel", {}).duplicate(true)
+		hotel_visual.ctf_completed = _pending_progress.get("ctf", {}).get("completed", []).duplicate()
 		for visual in _hotel_props:
 			visual.state = hotel_visual.state
 			visual.queue_redraw()
@@ -535,6 +536,7 @@ func _is_target_available(target: Node2D) -> bool:
 		"hotel_coffee_machine": return morning_stage in [3, 4]
 		"hotel_backpack": return morning_stage == 5
 		"campus_bus": return morning_stage >= 6
+		"ctf_return_bus": return _pending_progress.get("ctf", {}).get("completed", []).size() == 5
 
 	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
