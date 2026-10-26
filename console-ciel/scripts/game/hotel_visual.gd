@@ -1,6 +1,8 @@
 extends Node2D
 ## Original, static vector scenery. Gold inlays and a calm marble palette link
 ## the vast lobby, the stair landings and the private guest room.
+const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
+var ctf_completed: Array = []
 const Layout = preload("res://scripts/game/hotel_layout.gd")
 const IVORY := Color("f2ede2")
 const STONE := Color("ded8ca")
@@ -294,8 +296,12 @@ func _ctf_lobby() -> void:
 	_rug(Rect2(620, 440, 560, 680), Color("d4d4dc"))
 	_text("sudo hack", Vector2(900, 180), 49, INK, true)
 	_text("ACCUEIL DU CTF", Vector2(900, 230), 22, INK, true)
-	_text("Bienvenue aux participants", Vector2(900, 485), 27, INK, true)
-	_text("La suite des épreuves arrive bientôt.", Vector2(900, 535), 21, INK, true)
+	_text("5 POSTES · 5 ÉPREUVES", Vector2(900, 1060), 23, INK, true)
+	for index in range(5):
+		var desk := Layout.ctf_desk(index)
+		var done: bool = CtfCatalog.IDS[index] in ctf_completed
+		_rug(desk.grow(30), Color("d1ded3") if done else Color("d7dce0"))
+		_text(str(index + 1) + " · " + str(CtfCatalog.CHALLENGES[CtfCatalog.IDS[index]].skill) + (" · VALIDÉ" if done else ""), desk.get_center() + Vector2(0, 110), 17, INK, true)
 	for x in [340, 1460]: _window(Rect2(x - 100, 90, 200, 130))
 
 func _backpack(at: Vector2) -> void:
@@ -315,6 +321,15 @@ func _wall(rect: Rect2) -> void:
 func _furniture(kind: String, rect: Rect2) -> void:
 	_rounded(Rect2(rect.position + Vector2(6, 9), rect.size), Color("c1bda9"), 12)
 	match kind:
+		"ctf_desk":
+			_rounded(rect, Color("bba783"), 10)
+			var center := rect.get_center()
+			_rounded(Rect2(center - Vector2(75, 55), Vector2(150, 88)), INK, 7)
+			_rounded(Rect2(center - Vector2(66, 47), Vector2(132, 69)), Color("91b7ad"), 4)
+			_text(">_ sudo hack", center + Vector2(0, -12), 15, INK, true)
+			_rounded(Rect2(center + Vector2(-18, 33), Vector2(36, 13)), VELVET, 3)
+			_rounded(Rect2(center + Vector2(-70, 50), Vector2(140, 20)), IVORY, 4)
+			for x in range(-55, 65, 15): draw_line(center + Vector2(x, 54), center + Vector2(x, 66), STONE, 2)
 		"reception", "ctf_reception":
 			_rounded(rect, Color("5c4c44"), 18)
 			draw_rect(Rect2(rect.position + Vector2(12, 18), rect.size - Vector2(24, 33)), VELVET)
