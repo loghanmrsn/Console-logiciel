@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.17.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.18.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -183,10 +183,10 @@ Prenez le café, puis retournez dans la chambre 206 récupérer le sac à dos
 avec l’ordinateur : 50 points à la première récupération. Redescendez, sortez
 de l’hôtel et interagissez avec l’arrêt de bus. Le trajet mène à un autre
 arrêt devant le bâtiment du CTF sudo hack. Entrez dans son hall ; les cinq
-défis seront ajoutés plus tard.
+défis sont jouables. Après leur réussite, le bus de retour ramène en ville.
 
 L’enquête conserve 650 points ; ces deux objectifs du matin ajoutent 100
-points, soit 750 au maximum par profil. Le café et le bus ne rapportent pas
+points, soit 1 000 au maximum par profil, en ajoutant les 250 points des cinq postes du CTF. Le café et le bus ne rapportent pas
 de points. Rejouer ou Nouvelle partie ne réattribue jamais une récompense
 déjà reçue. La progression et le portefeuille sont enregistrés ensemble.
 La manipulation des fils est une simulation ; aucun appareil réel n’est utilisé.
@@ -203,7 +203,7 @@ ni pénalité supplémentaire. La pause arrête la circulation et le feu.
 Les points disponibles paient la pénalité ; le reste devient une dette
 visible en haut de l’écran et dans le profil. Les récompenses suivantes
 remboursent la dette avant d’ajouter des points. Nouvelle partie conserve
-la dette et les pénalités. Le total de 750 points est avant ces déductions.
+la dette et les pénalités. Le total de 1 000 points, CTF compris, est avant ces déductions.
 
 ÉPREUVES DE L’HÔTEL — 0.14.0
 Les deux épreuves existantes gardent leur direction artistique. Les baies
@@ -234,8 +234,19 @@ PROFIL DEV — 0.17.0
 Dans Profil, ou sous le clavier de première création, choisir
 Dev · Super administrateur. Ce profil séparé possède les treize défis
 validés, l’hôtel réparé, le café terminé et le sac récupéré, avec
-750 points initiaux. Les étages sont accessibles et le bus reste proposé.
+1 000 points initiaux pour un nouveau Dev en 0.18.0. Les étages sont accessibles et le bus reste proposé.
 Le rôle est visible sur sa carte et dans la présentation du profil.
 Un nouveau clic retrouve le même compte, sans le recréer ni le créditer.
 Réinitialiser Dev conserve les défis validés, le solde et les achats.
 Les profils de joueurs gardent leur progression et leurs règles normales.
+
+SUDO HACK — 0.18.0
+Cinq postes : phishing, journaux, Base64, permissions et flag final.
+Lisez les indices et saisissez les réponses avec le clavier physique
+ou à l’écran (Maj, 123 et symboles). Chaque épreuve donne 50 points
+une seule fois. Les postes déjà validés restent consultables.
+Après le coffre final, sortez et prenez le bus pour revenir en ville.
+Les anciennes sauvegardes et récompenses sont conservées.
+Fiche complète : https://github.com/loghanmrsn/Console-logiciel/tree/main/solution
+Un ancien Dev garde son solde : Réinitialiser sa progression valide
+aussi le CTF, sans ajouter de points ni retirer ses achats.
