@@ -292,14 +292,28 @@ func board_bus() -> Dictionary:
 	if not ready.ok:
 		return ready
 	var hotel := state()
-	if int(hotel.morning_stage) != 6:
+	if int(hotel.morning_stage) not in [6, 9]:
 		return SaveService._fail("Récupérez votre sac avec l’ordinateur avant de prendre le bus pour Sudo Hack.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	progress.hotel.morning_stage = 7
+	progress.hotel.morning_stage = 9 if int(hotel.morning_stage) == 9 else 7
 	progress.room_id = "ctf_bus_stop"
 	progress.checkpoint_id = "ctf_arrival"
 	progress.active_mission = ""
 	var saved := _save_progress(progress)
 	if not saved.ok:
 		return saved
+	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
+
+func return_bus() -> Dictionary:
+	var ready := _ready_for(["ctf_bus_stop"])
+	if not ready.ok: return ready
+	if not CtfService.completed():
+		return SaveService._fail("Terminez les cinq épreuves Sudo Hack avant le voyage de retour.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.hotel.morning_stage = 9
+	progress.room_id = "courtyard"
+	progress.checkpoint_id = "from_first"
+	progress.active_mission = ""
+	var saved := _save_progress(progress)
+	if not saved.ok: return saved
 	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
