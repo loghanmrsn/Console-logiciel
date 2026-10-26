@@ -1,4 +1,26 @@
-# Livraison 0.17.0 — Dev super administrateur
+# Livraison 0.18.0 — Sudo Hack, retour en ville et solutions
+
+Le hall **Sudo Hack** propose cinq épreuves : reconnaître un message de phishing, lire un journal de connexion, décoder du Base64, corriger les droits d’un fichier et retrouver un flag final. Les postes se débloquent dans l’ordre et restent consultables après réussite. Chacun présente ses indices et le clavier virtuel AZERTY avec Maj, chiffres et symboles ; le clavier physique et la manette restent disponibles.
+
+Les cinq réussites ajoutent **250 points**, pour **1 000 points possibles** sur le parcours complet avant achats et pénalités. Les récompenses remboursent d’abord une dette éventuelle. Réponse, progression et reçu sont enregistrés avec les points dans une seule transaction ; rejouer ne crédite pas les mêmes épreuves. Les commandes des postes ne s’exécutent jamais sur l’ordinateur réel.
+
+Après le flag final, sortez et prenez le **bus de retour en ville** devant Sudo Hack. Il vous ramène sur le trottoir près de l’arrêt desservant l’hôtel. L’hôtel, le premier bâtiment et le CTF restent visitables ; les réussites sont sauvegardées. Les anciennes sauvegardes déjà arrivées au CTF reprennent les nouveaux postes sans migration ni crédit à la lecture. Un nouveau Dev possède aussi les cinq validations ; pour un ancien Dev, réinitialiser explicitement son parcours ajoute ces validations en gardant son solde et ses achats.
+
+La **[fiche de solutions illustrée](../../solution/README.md)** donne toutes les bonnes réponses et les étapes du parcours, des cinq chapitres aux fils de la machine à café puis au CTF. Elle est disponible dans le dossier `solution` du dépôt et incluse à côté de `console-ciel/` dans les archives complètes.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_ctf_0.18.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.18.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.18.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.18.0.zip).
+
+Recette du **26 octobre 2026** : **11 629 assertions dans 33 suites source**, puis **9 014 assertions dans 25 suites sur chacun des deux packs exportés**, zéro échec. Les tests couvrent erreurs de saisie, ordre des postes, refus d’écriture, reprise, répétition sans double gain, dette, ancien Dev et retour en ville. Les anciens chapitres, l’hôtel, la circulation et les PNJ restent couverts. Le parcours physique vérifie les **quinze lieux** : **746 contrôles**, **397 corps solides** et **35 617 segments**. [Résumé détaillé](../tests/ctf_0.18.0_results/summary.json).
+
+Le rendu réel X11 / OpenGL ES 3.2 du pack exporté ajoute **269 contrôles et neuf captures** : [hall](screenshots/ctf_0.18.0/ctf_hall_challenge.png), [phishing](screenshots/ctf_0.18.0/ctf_phishing_challenge.png), [journaux](screenshots/ctf_0.18.0/ctf_logs_challenge.png), [Base64](screenshots/ctf_0.18.0/ctf_base64_challenge.png), [permissions](screenshots/ctf_0.18.0/ctf_permissions_challenge.png), [flag](screenshots/ctf_0.18.0/ctf_flag_challenge.png), [800 × 480](screenshots/ctf_0.18.0/ctf_compact_challenge.png), [bus](screenshots/ctf_0.18.0/ctf_bus_retour_challenge.png) et [retour en ville](screenshots/ctf_0.18.0/ctf_retour_ville_challenge.png).
+
+L’audit statique vérifie **1238 fichiers**, **120 UID**, **292 références** et **377 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **305 contrôles réussis**.
+
+Les deux exports contiennent **265 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles officiels sont contrôlés par SHA-512 ; CRC et SHA-256 des quatre archives sont vérifiés. Les **62 anciennes archives** et la présentation des README sont conservées.
+
+Les ressources exportées et le rendu sont exécutés par Godot sur **Linux x86_64 avec Mesa llvmpipe et audio Dummy**. Les exécutables Windows et ARM64 Raspberry Pi ne sont pas lancés nativement : les essais sur leurs appareils, le GPU, le son et une manette physique restent à réaliser.
+
+# Historique — livraison 0.17.0 — Dev super administrateur
 
 Le bouton **Dev · Super administrateur**, présent dans **Profil** et au premier écran de création, ouvre un compte local séparé au nom de **Dev**. Il possède les **treize défis éducatifs validés**, leurs observations, vérifications et indices, ainsi que le séjour réparé, le café terminé et le sac récupéré. Les cinq chapitres sont accessibles ; le bus vers le CTF reste proposé. Les **750 points initiaux** correspondent aux quinze récompenses uniques déjà comptabilisées. [Utiliser Dev](DEV.md).
 
