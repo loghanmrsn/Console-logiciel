@@ -58,6 +58,7 @@ var door_shape: CollisionShape2D
 var _open_door_body: StaticBody2D
 var _open_door_shape: CollisionShape2D
 var camera: Camera2D
+var _last_camera_player_position := Vector2.INF
 var target_id := ""
 var lighting_restored := false
 var door_open := false
@@ -110,10 +111,13 @@ var _markdown_sprite: Sprite2D
 var _lab_screens: Dictionary = {}
 
 func _ready() -> void:
+	process_physics_priority = 1
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	camera = Camera2D.new()
 	camera.name = "RoomCamera"
 	camera.position = WORLD_SIZE * 0.5
 	camera.position_smoothing_enabled = false
+	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	camera.enabled = true
 	add_child(camera)
 	_build_room(_chapter_for_room(str(_pending_progress.get("room_id", "room_01"))))
@@ -368,7 +372,7 @@ func _sprite(host: Node2D,asset: String,rect: Rect2) -> Sprite2D:
 	visual.name=asset.capitalize().replace('_','')+'Art'
 	visual.texture=Art.TEXTURES[asset]
 	visual.centered=false
-	visual.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+	visual.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	visual.position=rect.position-host.position if host!=self else rect.position
 	visual.scale=rect.size/visual.texture.get_size()
 	host.add_child(visual)
@@ -443,6 +447,7 @@ func _fit_camera() -> void:
 	var fit := .92 if maze_active or chapter_id == 0 else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
+	camera.reset_physics_interpolation()
 
 func _update_camera_position() -> void:
 	if not is_inside_tree() or not is_instance_valid(camera) or not is_instance_valid(player):
@@ -454,8 +459,11 @@ func _update_camera_position() -> void:
 		center.x = clampf(player.position.x, half_visible.x, extent.x - half_visible.x)
 	if half_visible.y < extent.y * .5:
 		center.y = clampf(player.position.y, half_visible.y, extent.y - half_visible.y)
-	# No permanent background animation or camera smoothing is needed.
+	# Physics interpolation smooths both camera and player from the same tick.
+	var teleported := _last_camera_player_position.is_finite() and player.position.distance_to(_last_camera_player_position) > 64.0
+	_last_camera_player_position = player.position
 	camera.position = center
+	if teleported: camera.reset_physics_interpolation()
 
 func set_controls_enabled(enabled: bool) -> void:
 	_controls_enabled = enabled
@@ -485,8 +493,10 @@ func restore_checkpoint() -> void:
 	if room_id == "hotel_room_206" and str(_pending_progress.get("hotel", {}).get("bed_state", "standing")) == "sitting":
 		player.position = HotelLayout.BED_SEAT
 	player.velocity = Vector2.ZERO
+	player.reset_physics_interpolation()
 	if is_instance_valid(traffic): traffic.reset_for_spawn(player.position)
 	_update_camera_position()
+	camera.reset_physics_interpolation()
 	_update_target()
 
 func restore_progress(progress: Dictionary) -> void:
@@ -793,6 +803,7 @@ func set_bed_pose(pose: String) -> void:
 		player.velocity = Vector2.ZERO
 	elif was_seated:
 		player.position = HotelLayout.checkpoints("hotel_room_206").room206_bed
+	if was_seated != _hotel_seated(): player.reset_physics_interpolation()
 	if is_instance_valid(player.sprite): player.sprite.visible = not _hotel_seated()
 	player.controls_enabled = _controls_enabled and not _hotel_seated()
 	if is_instance_valid(hotel_visual):
