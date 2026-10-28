@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.18.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.19.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -250,3 +250,16 @@ Les anciennes sauvegardes et récompenses sont conservées.
 Fiche complète : https://github.com/loghanmrsn/Console-logiciel/tree/main/solution
 Un ancien Dev garde son solde : Réinitialiser sa progression valide
 aussi le CTF, sans ajouter de points ni retirer ses achats.
+
+FLUIDITÉ ET TERMINAL DEV — 0.19.0
+Caméra et personnages utilisent l’interpolation physique ; la marche accélère
+progressivement, sans glissement au relâchement. Textures filtrées et regard
+PNJ adouci ; les téléportations restent instantanées. Échap ferme les panneaux CTF.
+Dans Profil (Dev sélectionné) ou Pause, ouvrir Terminal Dev.
+add coins 500 : ajouter le montant de votre choix, en entier positif.
+skip missions : passer un seul objectif actuel, sans points.
+reset missions : rejouer depuis le début, en gardant solde et achats.
+help / status / clear : aide, état et effacement de l’historique affiché.
+Le terminal ne lance jamais de commande système ; il est réservé au compte Dev.
+Toutes les commandes :
+https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md
