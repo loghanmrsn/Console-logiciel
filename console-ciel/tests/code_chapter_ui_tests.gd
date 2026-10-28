@@ -367,7 +367,29 @@ func _point_clear(at: Vector2) -> bool:
 
 
 func _walk_axis(code: Key, distance: float) -> void:
-	await _hold(code, int(floor(distance * 60.0 / app.demo.world.player.SPEED)))
+	# Observe the real distance instead of assuming instant constant velocity.
+	# An early physical obstacle still ends the walk and is checked by callers.
+	if not router.gameplay_allowed(): await create_timer(.23).timeout
+	var player = app.demo.world.player
+	var start: Vector2 = player.position
+	var previous := start
+	var stalled := 0
+	var event := InputEventKey.new()
+	event.keycode = code
+	event.pressed = true
+	Input.parse_input_event(event)
+	var maximum_steps := ceili(distance * 60.0 / player.SPEED) + 40
+	for step in range(maximum_steps):
+		await physics_frame
+		var current: Vector2 = player.position
+		if current.distance_to(start) >= distance - 1.5: break
+		stalled = stalled + 1 if current.distance_to(previous) < .01 else 0
+		if stalled >= 8: break
+		previous = current
+	event = event.duplicate()
+	event.pressed = false
+	Input.parse_input_event(event)
+	await _physics_frames(2)
 
 
 func _choose(id: String, metadata: String, joy: bool = false) -> void:
