@@ -172,6 +172,7 @@ func _advance_cars(delta: float, from: Vector2, to: Vector2) -> bool:
 		if wrapped: next_x = Layout.LOOP_START if car.direction > 0 else Layout.LOOP_END
 		car.x = next_x
 		car.body.position = Vector2(next_x, car.y + 27)
+		if wrapped: car.body.reset_physics_interpolation()
 		if not wrapped and _hit_cooldown <= 0 and _swept_hit(from - Vector2(old_x, car.y), to - Vector2(next_x, car.y)):
 			return true
 	return false
@@ -202,6 +203,7 @@ func _move_to_start(side: int) -> void:
 	if is_instance_valid(player):
 		player.position = at
 		player.velocity = Vector2.ZERO
+		player.reset_physics_interpolation()
 	reset_for_spawn(at)
 
 class PedestrianSignal extends Node2D:
