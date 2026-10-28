@@ -7,6 +7,7 @@ var _attention := 0.0:
 		queue_redraw()
 var _attentive := false
 var _look := Vector2.ZERO
+var _target_look := Vector2.ZERO
 var _gesture: Tween
 
 func configure(spec: Dictionary) -> void:
@@ -28,10 +29,24 @@ func set_attention(value: bool) -> void:
 	_gesture.tween_property(self, "_attention", 1.0 if value else 0.0, .16)
 
 func look_toward(direction: Vector2) -> void:
-	var look := direction.normalized().snapped(Vector2(.5, .5))
-	if look == _look: return
-	_look = look
+	_target_look = direction.normalized()
+	var settings := get_node_or_null("/root/SettingsService")
+	if settings != null and settings.current.get("reduce_motion", false):
+		_look = _target_look
+		set_process(false)
+		queue_redraw()
+	else:
+		set_process(_look.distance_squared_to(_target_look) > .0001)
+
+func _process(delta: float) -> void:
+	_look = _look.lerp(_target_look, 1.0 - exp(-16.0 * delta))
+	if _look.distance_squared_to(_target_look) < .0001:
+		_look = _target_look
+		set_process(false)
 	queue_redraw()
+
+func _ready() -> void:
+	set_process(false)
 
 func _exit_tree() -> void:
 	if is_instance_valid(_gesture): _gesture.kill()
