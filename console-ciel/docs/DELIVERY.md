@@ -1,4 +1,26 @@
-# Livraison 0.18.0 — Sudo Hack, retour en ville et solutions
+# Livraison 0.19.0 — fluidité, rendu et terminal Dev
+
+Le personnage et la caméra utilisent une interpolation physique commune. La caméra s’actualise après le joueur ; la marche accélère sur une courte durée et s’arrête immédiatement au relâchement, sans glissement. L’axe d’animation garde sa direction près des diagonales, et le regard des PNJ évolue progressivement. Les téléportations, reprises et retours des voitures réinitialisent leur interpolation.
+
+Les douze images SVG du personnage sont importées à échelle 2 puis dessinées à leur taille initiale. Les 48 textures utilisent des mipmaps et un filtrage linéaire adapté. La direction artistique et les collisions sont conservées. Le HUD reste au-dessus du décor : les murs ne recouvrent plus le texte du bouton Interagir. Échap ferme les fenêtres du CTF, les contrôles restent visibles après un redimensionnement compact, et les rappels de focus différés sont protégés quand la scène quitte l’arbre.
+
+Dans **Profil → Ouvrir le terminal Dev** ou **Pause → Terminal Dev**, le compte dédié accepte `add coins 500` avec le montant choisi, `skip missions` pour un seul objectif sans points, `reset missions` pour rejouer et `help`, `status`, `clear`. Le clavier virtuel et la manette sont disponibles. Le rôle est contrôlé à chaque commande ; aucun texte n’est transmis à un shell. Toute mutation est validée et enregistrée avant le changement du jeu. Un joueur ordinaire appelé Dev reste un joueur. [Toutes les commandes](https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md).
+
+Le fichier **solution/commandes triches.md** et les anciennes solutions illustrées sont inclus dans les archives complètes. `add coins` ne modifie ni missions ni reçus et laisse la dette inchangée. Passer un objectif complète ses preuves et son reçu sans crédit ; rejouer ne donne donc pas une seconde récompense. `reset missions` conserve solde, achats, équipement, images, pénalités et reçus. La remise en place habituelle de Dev reste distincte et conserve les défis validés.
+
+[Télécharger Windows](../builds/Console_CIEL_Windows_x86_64_dev_tools_0.19.0.zip) · [Télécharger Raspberry Pi](../builds/Console_CIEL_Raspberry_Pi_ARM64_0.19.0.zip). [Projet complet Windows](../builds/Console_CIEL_Projet_Complet_Windows_0.19.0.zip) · [Projet complet Raspberry Pi](../builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.19.0.zip).
+
+Recette du **28 octobre 2026** : **11 922 assertions dans 36 suites source**, puis **9 307 assertions dans 28 suites sur chaque pack exporté**, zéro échec. Accès au terminal, montants invalides et limites, lecture sans écriture, refus disque, persistance, saut de tous les objectifs et séparation des profils sont couverts. Le déplacement, les 15 lieux, les PNJ, les anciens chapitres, l’hôtel et la circulation restent testés. Les parcours de marche observent les distances réelles, y compris dans le labyrinthe. Le contrôle physique vérifie **746 points**, **397 corps solides** et **35 617 segments**. [Résumé détaillé](../tests/polish_0.19.0_results/summary.json).
+
+Le rendu réel du pack exporté ajoute **126 contrôles et 18 captures** : [terminal depuis Profil](screenshots/polish_0.19.0/dev_terminal_profile_challenge.png), [terminal en 800 × 480](screenshots/polish_0.19.0/dev_terminal_compact_challenge.png), [terminal en partie](screenshots/polish_0.19.0/dev_terminal_game_challenge.png), puis une capture pour chacun des quinze lieux : cinq étages, labyrinthe, ville et huit zones de l’hôtel / CTF. Le local informatique montre notamment le HUD devant le mur, avec son interaction entièrement lisible.
+
+L’audit statique vérifie **1285 fichiers**, **125 UID**, **302 références** et **385 liens Markdown locaux**, sans erreur. Le chargement des ressources dans le contexte Godot ajoute **317 contrôles réussis**.
+
+Les deux exports contiennent **269 ressources intégrées, dont 48 SVG**, vérifiées par MD5. Les modèles officiels sont contrôlés par SHA-512 ; CRC et SHA-256 des quatre archives sont vérifiés. Les **66 anciennes archives** et la présentation des README sont conservées. Après un redémarrage de l’environnement, les six cas compilés déjà clos ont été revérifiés par leurs hashes et les cinquante autres cas ont été exécutés jusqu’à leur résultat final ; aucune exécution interrompue n’est comptée comme une réussite.
+
+Les ressources exportées et le rendu utilisent **Linux x86_64, OpenGL ES 3.2 Mesa llvmpipe et audio Dummy**. Ce contrôle n’est ni un lancement natif Windows / ARM64 ni un benchmark matériel de fluidité. Les essais sur les appareils destinataires, leur GPU, le son et une manette physique restent à réaliser. Les captures utilisent directement Godot ; le projet ne dispose pas d’un adaptateur ou CLI game-dev configuré.
+
+# Historique — livraison 0.18.0 — Sudo Hack, retour en ville et solutions
 
 Le hall **Sudo Hack** propose cinq épreuves : reconnaître un message de phishing, lire un journal de connexion, décoder du Base64, corriger les droits d’un fichier et retrouver un flag final. Les postes se débloquent dans l’ordre et restent consultables après réussite. Chacun présente ses indices et le clavier virtuel AZERTY avec Maj, chiffres et symboles ; le clavier physique et la manette restent disponibles.
 
