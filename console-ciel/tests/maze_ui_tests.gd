@@ -159,10 +159,10 @@ func _walk_to_center() -> void:
 func _walk_point(target: Vector2) -> void:
 	var delta: Vector2 = target - app.demo.world.player.position
 	if absf(delta.x) > 4:
-		await _hold(KEY_RIGHT if delta.x > 0 else KEY_LEFT,maxi(1,roundi(absf(delta.x)*60.0/190.0)))
+		await _walk_axis(KEY_RIGHT if delta.x > 0 else KEY_LEFT,absf(delta.x))
 	delta = target - app.demo.world.player.position
 	if absf(delta.y) > 4:
-		await _hold(KEY_DOWN if delta.y > 0 else KEY_UP,maxi(1,roundi(absf(delta.y)*60.0/190.0)))
+		await _walk_axis(KEY_DOWN if delta.y > 0 else KEY_UP,absf(delta.y))
 
 func _test_terminal() -> void:
 	var terminal = app.demo.terminal_panel
