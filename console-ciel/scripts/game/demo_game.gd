@@ -1,6 +1,7 @@
 class_name DemoGame
 extends Control
 ## Enquête intégrée au menu existant. Les réponses et récompenses restent dans les services.
+const DevConsole = preload("res://scripts/ui/dev_console_panel.gd")
 const GlassButton = preload('res://scripts/ui/translucent_button.gd')
 const WorldScene = preload('res://scenes/investigation_world.tscn')
 const Challenge = preload('res://scripts/game/challenge_panel.gd')
@@ -120,6 +121,7 @@ func _build() -> void:
 		_target_panel.visible = not label.is_empty())
 	# HUD uses native-size controls above the room; it is not scaled with the camera.
 	var hud=MarginContainer.new()
+	hud.z_index=20
 	hud.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ['left','right','top','bottom']: hud.add_theme_constant_override('margin_'+side,12)
@@ -556,6 +558,7 @@ func request_pause() -> void:
 		resume(), 'pause_objectives')
 	if InvestigationService.current_chapter() != 0 and InvestigationService.conclusion().ok:
 		_button(modal_content, 'Bilan du chapitre', _show_conclusion, 'pause_conclusion')
+	if ProfileService.is_super_admin(): _button(modal_content, 'Terminal Dev', _show_dev_terminal, 'pause_dev_terminal')
 	_button(modal_content, 'Paramètres', func(): settings_requested.emit(), 'pause_settings')
 	_button(modal_content, 'Aide aux commandes', func(): help_requested.emit(), 'pause_help')
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'pause_menu')
@@ -672,7 +675,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door': _close_overlay()
+		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
 		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
@@ -815,7 +818,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'ctf_challenge'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'ctf_challenge', 'dev_terminal'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -878,6 +881,8 @@ func _wire_modal() -> void:
 		if not control.focus_entered.is_connected(_ensure_modal_focus): control.focus_entered.connect(_ensure_modal_focus)
 	if overlay_kind == "terminal" and is_instance_valid(terminal_panel) and is_instance_valid(terminal_panel.code_keyboard):
 		terminal_panel.code_keyboard.wire_navigation()
+	var dev_panel := modal_content.get_node_or_null("dev_console_panel")
+	if is_instance_valid(dev_panel): dev_panel.code_keyboard.wire_navigation()
 	var ctf_panel := modal_content.get_node_or_null("ctf_challenge_panel")
 	if is_instance_valid(ctf_panel) and is_instance_valid(ctf_panel.code_keyboard): ctf_panel.code_keyboard.wire_navigation()
 	if is_instance_valid(challenge) and is_instance_valid(challenge.code_keyboard):
@@ -994,3 +999,14 @@ func _switch_zone(destination: String, door_id: String) -> void:
 	world.restore_progress(AppState.profile.progress)
 	world.restore_checkpoint()
 	_close_overlay()
+
+func _show_dev_terminal() -> void:
+	if not ProfileService.is_super_admin(): return
+	_open_overlay("dev_terminal")
+	var panel := DevConsole.new()
+	modal_content.add_child(panel)
+	panel.close_requested.connect(_close_overlay)
+	panel.navigation_changed.connect(func(): _fit_modal.call_deferred(); _wire_modal.call_deferred())
+	panel.command_applied.connect(func(result: Dictionary):
+		if result.get("moved", false): world.restore_checkpoint())
+	_wire_modal()
