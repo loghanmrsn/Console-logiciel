@@ -1,6 +1,6 @@
 # Console CIEL — toutes les solutions
 
-**Version 0.18.0.** Cette fiche donne volontairement les bonnes réponses. Elle suit l’ordre du jeu, du premier bâtiment au retour du CTF. Les commandes et identifiants concernent uniquement les simulations de Console CIEL.
+**Version 0.19.0.** Cette fiche donne volontairement les bonnes réponses. Elle suit l’ordre du jeu, du premier bâtiment au retour du CTF. Les commandes et identifiants concernent uniquement les simulations de Console CIEL.
 
 ## Avant de commencer
 
@@ -114,3 +114,5 @@ Sans achat ni pénalité : **650 points** pour les treize missions éducatives, 
 Le profil **Dev · Super administrateur** créé en 0.18.0 possède aussi les cinq postes du CTF validés. Un ancien Dev conserve son solde : réinitialiser son parcours ajoute les nouvelles validations sans lui ajouter de points.
 
 [Revenir au projet](../console-ciel/README.md)
+
+Les commandes réservées au profil Dev sont regroupées dans le fichier **commandes triches.md**, dans ce même dossier. [Ouvrir la fiche](https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md).
