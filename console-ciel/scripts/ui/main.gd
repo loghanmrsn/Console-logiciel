@@ -1,4 +1,5 @@
 extends Control
+const DevConsole = preload("res://scripts/ui/dev_console_panel.gd")
 const GlassButton=preload('res://scripts/ui/translucent_button.gd')
 const ThemeFactory=preload('res://scripts/ui/theme_factory.gd')
 const ProfileCard=preload('res://scripts/ui/profile_card.gd')
@@ -340,7 +341,9 @@ func _responsive() -> void:
 	for entry in responsive_grids:
 		if is_instance_valid(entry[0]):
 			_adapt_grid(entry[0],entry[1],entry[2])
-	if content!=null and is_inside_tree(): _wire_navigation()
+	if content!=null and is_inside_tree():
+		_wire_navigation()
+		_ensure_focus_visible.call_deferred()
 
 func _adapt_grid(grid: GridContainer,minimum: int,maximum: int) -> void:
 	var available=minf(grid.size.x,size.x-44)
@@ -383,6 +386,7 @@ func _show_screen(next: String) -> void:
 	_clear(next)
 	match next:
 		'profiles': _profiles()
+		'dev_terminal': _dev_terminal()
 		'home': _home()
 		'shop': _shop()
 		'settings': _settings()
@@ -420,6 +424,7 @@ func _focus_initial() -> void:
 		choices[0].grab_focus()
 
 func _ensure_focus_visible() -> void:
+	if not is_inside_tree(): return
 	focus_scroll_serial+=1
 	var token=focus_scroll_serial
 	await get_tree().process_frame
@@ -487,6 +492,10 @@ func _wire_navigation() -> void:
 			if not body.is_empty():
 				tab.focus_neighbor_top=tab.get_path_to(body[-1])
 				tab.focus_neighbor_bottom=tab.get_path_to(body[0])
+
+	if screen == "dev_terminal":
+		var console := content.get_node_or_null("dev_console_panel")
+		if is_instance_valid(console): console.code_keyboard.wire_navigation()
 
 func _label(host: Node,text: String,font_size: int=0,secondary: bool=false) -> Label:
 	var label=Label.new()
@@ -566,6 +575,7 @@ func _profiles() -> void:
 	_button(content,'Dev · Super administrateur',_use_dev_profile,'use_dev_profile')
 	if not AppState.profile.is_empty():
 		_profile_overview()
+		if ProfileService.is_super_admin(): _button(content, 'Ouvrir le terminal Dev', func(): _show_screen('dev_terminal'), 'open_dev_terminal')
 	var grid=_grid(content,310,3)
 	for profile in ProfileService.profiles:
 		var card=ProfileCard.new()
@@ -602,7 +612,7 @@ func _profile_overview() -> void:
 	row.add_child(identity)
 	_label(identity,AppState.profile.display_name,24)
 	if ProfileService.is_super_admin():
-		_label(identity,'Super administrateur · défis déjà validés',16).name = 'profile_role'
+		_label(identity,'Super administrateur · terminal disponible',16).name = 'profile_role'
 	_label(identity,'%d points · %d jeux acquis · %d / %d défis réalisés'%[AppState.profile.wallet.points,GameLibrary.owned_games(AppState.profile,ShopService.catalog).size(),AppState.profile.progress.completed_missions.size(),RewardService.missions.size()],14,true)
 	var penalties := PenaltyService.state()
 	if int(penalties.count) > 0:
@@ -628,7 +638,7 @@ func _use_dev_profile() -> void:
 		last_profile_id=AppState.profile.id
 		if is_instance_valid(demo): demo.queue_free(); demo=null
 		_show_screen('home')
-		_notify('Dev · Super administrateur · tous les défis actuels sont validés.')
+		_notify('Dev · Super administrateur · profil sélectionné.')
 
 func _open_editor(id: String) -> void:
 	_pending_created_id=''
@@ -1145,7 +1155,8 @@ func _product_action(id: String) -> void:
 	elif AppState.profile.wallet.points<item.price:
 		var maximum=0
 		for mission in RewardService.missions: maximum+=mission.reward
-		_confirm('Points insuffisants','Résolvez les missions des cinq chapitres pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
+		maximum += 50 * (SaveService.HOTEL_REWARD_IDS.size() + SaveService.CtfCatalog.IDS.size())
+		_confirm('Points insuffisants','Terminez l’enquête, l’hôtel et le CTF pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
 	else:
 		_confirm('Acheter « '+item.name+' » ?','Prix : %d points virtuels. Nouveau solde : %d points. Aucun argent réel.' % [item.price,AppState.profile.wallet.points-item.price],'Acheter',func():
 			if _result(ShopService.purchase(id),'✓ Achat réussi et enregistré',func(): _product_action(id)): _show_screen('shop'))
@@ -1506,6 +1517,7 @@ func _back() -> void:
 			if AppState.profile.is_empty(): _request_quit()
 			else: _show_screen('home')
 		'shop': _show_screen('home')
+		'dev_terminal': _show_screen('profiles')
 
 func _settings_dirty() -> bool:
 	if SettingsService.current!=SettingsService.committed: return true
@@ -1607,3 +1619,13 @@ func _process(delta: float) -> void:
 
 func _exit_tree() -> void:
 	if is_instance_valid(demo) and demo.get_parent()==null: demo.free()
+
+func _dev_terminal() -> void:
+	if not ProfileService.is_super_admin():
+		_title("Terminal indisponible", "Sélectionnez le profil Dev · Super administrateur.")
+		_button(content, "Retour aux profils", func(): _show_screen("profiles"), "dev_console_denied")
+		return
+	var console := DevConsole.new()
+	content.add_child(console)
+	console.close_requested.connect(func(): _show_screen("profiles"))
+	console.navigation_changed.connect(func(): _responsive(); _wire_navigation())
