@@ -17,3 +17,7 @@ L’ouverture de Dev est explicite : aucun profil de joueur n’est remplacé ou
 Le compte Dev utilise un identifiant dédié. Ses données sont construites depuis les règles livrées puis passent le même validateur et les mêmes écritures atomiques que les autres profils. Un fichier Dev endommagé ou sa sauvegarde précédente n’est jamais remplacé par un compte neuf ; l’écran de récupération reste disponible. Un refus d’écriture conserve le profil actif.
 
 [Bilan de livraison](DELIVERY.md) · [Résumé de recette](../tests/ctf_0.18.0_results/summary.json) · [Profils et clavier](PROFILS_ET_CLAVIER.md).
+
+## Terminal Dev — 0.19.0
+
+Depuis Profil ou Pause, ouvrir **Terminal Dev**. `add coins 500` ajoute le montant choisi ; `skip missions` passe un seul objectif sans points. `reset missions` prépare un parcours rejouable, distinct de la remise en place habituelle de Dev. Solde, achats et reçus sont conservés. [Liste complète des commandes](https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md).
