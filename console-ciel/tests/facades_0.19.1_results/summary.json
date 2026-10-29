@@ -1,0 +1,747 @@
+{
+  "version": "0.19.1",
+  "source": [
+    {
+      "name": "audit_regressions",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 34,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.89,
+      "script_sha256": "f8e958f6c247bc1687f52448810f06e92a0dec874328bcf5569f0c611dc4fbff",
+      "log": "/workspace/console-ciel-facades-validation/regression/audit_regressions/run.log"
+    },
+    {
+      "name": "campus_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 154,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.93,
+      "script_sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da",
+      "log": "/workspace/console-ciel-facades-validation/regression/campus_services_tests/run.log"
+    },
+    {
+      "name": "campus_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 151,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 49.21,
+      "script_sha256": "c2b081fd3ed04b808cb46f4d91963fdf8a60a865fee1016bc55c1b490c2680dd",
+      "log": "/workspace/console-ciel-facades-validation/regression/campus_ui_tests/run.log"
+    },
+    {
+      "name": "chapter_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 272,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.76,
+      "script_sha256": "70531b0b6de362b58a914813f9b95e0f47e425e2d20e7010d352af29f7c19abc",
+      "log": "/workspace/console-ciel-facades-validation/regression/chapter_services_tests/run.log"
+    },
+    {
+      "name": "chapter_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 670,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 57.26,
+      "script_sha256": "0529f41b006de1e997eefe11b439e6ce851c8a0a0c04f63d5ffbeb66786cb470",
+      "log": "/workspace/console-ciel-facades-validation/regression/chapter_ui_tests/run.log"
+    },
+    {
+      "name": "code_chapter_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 340,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.74,
+      "script_sha256": "03175238e6c4e04987fe6fb12b344fedea8ebda3fe6ba9dd104d05886e0dac1c",
+      "log": "/workspace/console-ciel-facades-validation/regression/code_chapter_services_tests/run.log"
+    },
+    {
+      "name": "code_chapter_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 605,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 35.26,
+      "script_sha256": "e845b342137254e723c0e067c4dc8446f8c381db9207ca4291539336299a06e8",
+      "log": "/workspace/console-ciel-facades-validation/regression/code_chapter_ui_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 455,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.46,
+      "script_sha256": "a4ef91ac70e3ba58614a8c0a6e1c8cb9f6b4d4b97fad2ee9dd0c2c993afb8595",
+      "log": "/workspace/console-ciel-facades-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "ctf_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 233,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 23.9,
+      "script_sha256": "d8cf664dca000a309c58cf42bf631a661ad0a33620ce89474d0b02fc5f01e929",
+      "log": "/workspace/console-ciel-facades-validation/regression/ctf_ui_tests/run.log"
+    },
+    {
+      "name": "dev_console_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 213,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.83,
+      "script_sha256": "aad6a61b67be310ab98754e63fd8c47d301f0ac309b8fb239c282f86d34e7ee0",
+      "log": "/workspace/console-ciel-facades-validation/regression/dev_console_services_tests/run.log"
+    },
+    {
+      "name": "dev_console_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 54,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 8.44,
+      "script_sha256": "c77fafce627e1a03155f629d11773302d960e23364e9dabd81fcfe007c4b3f88",
+      "log": "/workspace/console-ciel-facades-validation/regression/dev_console_ui_tests/run.log"
+    },
+    {
+      "name": "dev_profile_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 48,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.64,
+      "script_sha256": "925171194b2cfbcb798c9a23c30aac2dbc13d288728a37207a72ee41131cd52a",
+      "log": "/workspace/console-ciel-facades-validation/regression/dev_profile_services_tests/run.log"
+    },
+    {
+      "name": "dev_profile_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 30,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.72,
+      "script_sha256": "417c454b2e321d5b2c836efc6453ca8fe3e23b71a9ccb86e9b3978e863ab6790",
+      "log": "/workspace/console-ciel-facades-validation/regression/dev_profile_ui_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 520,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.59,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-facades-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "hotel_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 356,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 136.63,
+      "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+      "log": "/workspace/console-ciel-facades-validation/regression/hotel_ui_tests/run.log"
+    },
+    {
+      "name": "hotel_visual_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 247,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 25.24,
+      "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+      "log": "/workspace/console-ciel-facades-validation/regression/hotel_visual_ui_tests/run.log"
+    },
+    {
+      "name": "investigation_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 189,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.7,
+      "script_sha256": "b6a83af5fb43e91aca5ddda7488fce829dba6db8eface5a8909f8c3dff38ee59",
+      "log": "/workspace/console-ciel-facades-validation/regression/investigation_tests/run.log"
+    },
+    {
+      "name": "keyboard_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 786,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.51,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log": "/workspace/console-ciel-facades-validation/regression/keyboard_tests/run.log"
+    },
+    {
+      "name": "lessons_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 249,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 27.95,
+      "script_sha256": "dd2f80e5ad352de8340bde59947df7a15daf83956f7266f5acfbe016f52b389a",
+      "log": "/workspace/console-ciel-facades-validation/regression/lessons_network_ui_tests/run.log"
+    },
+    {
+      "name": "library_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 477,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 23.23,
+      "script_sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107",
+      "log": "/workspace/console-ciel-facades-validation/regression/library_ui_tests/run.log"
+    },
+    {
+      "name": "maze_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 219,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.94,
+      "script_sha256": "2dd512ed95cade45a769b93b6971e7620a45cb5d8223a4e1378cee3ae1464c1a",
+      "log": "/workspace/console-ciel-facades-validation/regression/maze_services_tests/run.log"
+    },
+    {
+      "name": "maze_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1454,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 93.74,
+      "script_sha256": "e8a77dd0f5d2a5a9e16036bbf459a81111c31d8bdde8254e4252a0712f8cc9df",
+      "log": "/workspace/console-ciel-facades-validation/regression/maze_ui_tests/run.log"
+    },
+    {
+      "name": "mission_tracker_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 182,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.09,
+      "script_sha256": "7d4172f58422704a1d92b9d7bdf07180067312f9fc13dc635a9d2ed6bb246596",
+      "log": "/workspace/console-ciel-facades-validation/regression/mission_tracker_tests/run.log"
+    },
+    {
+      "name": "morning_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 767,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.23,
+      "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+      "log": "/workspace/console-ciel-facades-validation/regression/morning_services_tests/run.log"
+    },
+    {
+      "name": "morning_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 310,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 26.9,
+      "script_sha256": "acdb7ef3a744b127ae9720a7e044d69bf29da545cf0c53b0dd5c78a69334ca6a",
+      "log": "/workspace/console-ciel-facades-validation/regression/morning_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.21,
+      "script_sha256": "8324cf38a4ee0de88fdd24b99964218de4efc1a415076314030d9ec351ab8104",
+      "log": "/workspace/console-ciel-facades-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "network_lab_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 183,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.63,
+      "script_sha256": "18c3a4ceb3c3f6df3f16afb41929e5878aff3009654955d8d79be5dad21b20d2",
+      "log": "/workspace/console-ciel-facades-validation/regression/network_lab_services_tests/run.log"
+    },
+    {
+      "name": "npc_polish_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 426,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 33.8,
+      "script_sha256": "399da7b3774aa52bc8704cc78fddee8bca5902f1c4c976083e391b8fa5936e5f",
+      "log": "/workspace/console-ciel-facades-validation/regression/npc_polish_ui_tests/run.log"
+    },
+    {
+      "name": "npc_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 311,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 18.78,
+      "script_sha256": "9ecfa7083370ca4247eaa176c7ff675cca565d6220d7415eb5aa01070ff4f47e",
+      "log": "/workspace/console-ciel-facades-validation/regression/npc_ui_tests/run.log"
+    },
+    {
+      "name": "profile_editor_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 644,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 18.41,
+      "script_sha256": "8c53e2adad7bdce7302e15f1cc8e19050e058df321dccfd4fca8f98325906292",
+      "log": "/workspace/console-ciel-facades-validation/regression/profile_editor_tests/run.log"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.54,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "/workspace/console-ciel-facades-validation/regression/run_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.56,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-facades-validation/regression/stability_tests/run.log"
+    },
+    {
+      "name": "traffic_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 153,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.82,
+      "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+      "log": "/workspace/console-ciel-facades-validation/regression/traffic_services_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 27.99,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-facades-validation/regression/traffic_ui_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.44,
+      "script_sha256": "75db9d2d06152b945a2aa1daf2344c4df578315f56ab7a0d1560e2c75fdcfb26",
+      "log": "/workspace/console-ciel-facades-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 746,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.4,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "/workspace/console-ciel-facades-validation/regression/world_collision_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "traffic_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+    },
+    {
+      "platform": "linux",
+      "name": "traffic_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 746,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "bd61affd46e592fccd913758c150a6eeeb5e792c57b460e7516cb12538eedc83"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 746,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "bd61affd46e592fccd913758c150a6eeeb5e792c57b460e7516cb12538eedc83"
+    },
+    {
+      "platform": "windows",
+      "name": "maze_services_tests",
+      "assertions": 219,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "2dd512ed95cade45a769b93b6971e7620a45cb5d8223a4e1378cee3ae1464c1a",
+      "log_sha256": "bc30ab824d3723992504c5ecaaddc97dbdb82eeb904a516be6a62715684e9b69"
+    },
+    {
+      "platform": "linux",
+      "name": "maze_services_tests",
+      "assertions": 219,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "2dd512ed95cade45a769b93b6971e7620a45cb5d8223a4e1378cee3ae1464c1a",
+      "log_sha256": "bc30ab824d3723992504c5ecaaddc97dbdb82eeb904a516be6a62715684e9b69"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "495ebb77027a8bd1d9fc4c028c61d4edcf8adc48e764b6a6d43da4a0df186cea",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "495ebb77027a8bd1d9fc4c028c61d4edcf8adc48e764b6a6d43da4a0df186cea",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "maze_ui_tests",
+      "assertions": 1454,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e8a77dd0f5d2a5a9e16036bbf459a81111c31d8bdde8254e4252a0712f8cc9df",
+      "log_sha256": "de598a3433f3fcd35f0121705da7198b35aacdccc9a24bf69643069ba676b5bb"
+    },
+    {
+      "platform": "linux",
+      "name": "maze_ui_tests",
+      "assertions": 1454,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e8a77dd0f5d2a5a9e16036bbf459a81111c31d8bdde8254e4252a0712f8cc9df",
+      "log_sha256": "de598a3433f3fcd35f0121705da7198b35aacdccc9a24bf69643069ba676b5bb"
+    },
+    {
+      "platform": "windows",
+      "name": "campus_ui_tests",
+      "assertions": 151,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c2b081fd3ed04b808cb46f4d91963fdf8a60a865fee1016bc55c1b490c2680dd",
+      "log_sha256": "1fdc9b32932ef45a2da5d2e3140426b88e72cd184bd1358e6bd4463874fe4782"
+    },
+    {
+      "platform": "linux",
+      "name": "campus_ui_tests",
+      "assertions": 151,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c2b081fd3ed04b808cb46f4d91963fdf8a60a865fee1016bc55c1b490c2680dd",
+      "log_sha256": "1fdc9b32932ef45a2da5d2e3140426b88e72cd184bd1358e6bd4463874fe4782"
+    }
+  ],
+  "native": [
+    {
+      "assertions": 1494,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/chapitre_5_palier_challenge.png",
+          "bytes": 107496,
+          "sha256": "a2de5f46d01d903c61b640181afbbc0de6f36b8dc81e2f5545ea68f2df661ddf"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/connexion_challenge.png",
+          "bytes": 82015,
+          "sha256": "f8afd923c040ab802d171a4e0dcc5a869308931a01a68f3e9842c137af61680a"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/elevation_challenge.png",
+          "bytes": 71308,
+          "sha256": "b37ca26e1d5bd8a8fd83df508d5afec6c2ad5dac1ef9a34c47137a5f5fd0212b"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/entree_labyrinthe_challenge.png",
+          "bytes": 75624,
+          "sha256": "1aaf33e474e028d36ea86937c4af3e840a87dc05e1c4bb7dddc1b31c2308c1b5"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/inscription_0_challenge.png",
+          "bytes": 81117,
+          "sha256": "b11a2ee26ec0c684da158c2327b9fe64d922e9cdcd71f5428f718b23d654c036"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/inscription_1_challenge.png",
+          "bytes": 74096,
+          "sha256": "ca7a45e7ee6adb108e6b32c4377f0fcfc4690f284e56b355141f70235895827c"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/inscription_2_challenge.png",
+          "bytes": 76553,
+          "sha256": "3795f2aca147fe8fa6b82cd5c83b2e8da577d09751cf10c4d3e09ef7000bb891"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/portable_challenge.png",
+          "bytes": 93222,
+          "sha256": "6f3f781eb5df69a11ffdc8b832674ac3e1c7547fb1fb2bc6a85ab286974aa0ef"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/retour_rapide_labyrinthe_challenge.png",
+          "bytes": 60704,
+          "sha256": "154eb999a140d7f32360e984c584d3638040c81af1b62e7001f8aeb28ece6cf3"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/maze_ui_tests/terminal_central_challenge.png",
+          "bytes": 62968,
+          "sha256": "6a5774dab8a239fd7aa642a5edf673cdc97190d4a8431c03b75444ce57a6c051"
+        }
+      ],
+      "script_sha256": "e8a77dd0f5d2a5a9e16036bbf459a81111c31d8bdde8254e4252a0712f8cc9df",
+      "log_sha256": "5df94225dbe0d8ab2be414ffb2acd33b42ca1fb05205de21384f4a62fe9c3e73"
+    },
+    {
+      "assertions": 199,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/carte_compacte_challenge.png",
+          "bytes": 56194,
+          "sha256": "09f2ccceb9ffa132eb83b6d9f4332d178546d05505b24ca5fd5ca3696976e781"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/carte_deployee_challenge.png",
+          "bytes": 79023,
+          "sha256": "5e84726e6838da4ec31e8b85fd54efc5ca2348b95276d47d2e549419c72758fc"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/carte_repliee_challenge.png",
+          "bytes": 71519,
+          "sha256": "6a381193c867c4fb1ac20fb70c11c9e0a32a6c2ebbffbcad4b561b4ddc1b7c28"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/cour_immeuble_face_challenge.png",
+          "bytes": 90413,
+          "sha256": "05b399e491ae5d2d94aff1f8382b36993cbaaf8431c43300b8209ca9f60ec8a6"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/facade_hotel_ciel_challenge.png",
+          "bytes": 103116,
+          "sha256": "e861518aa1cd95c10c175b29d7324383ded5637d161aa318c1aafe90b6d7221b"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/grand_atrium_challenge.png",
+          "bytes": 62226,
+          "sha256": "be21d08c078ada92091dc62ef8e4456501e5662ab41b9149556868167202eb90"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/grand_batiment_entree_challenge.png",
+          "bytes": 79023,
+          "sha256": "5e84726e6838da4ec31e8b85fd54efc5ca2348b95276d47d2e549419c72758fc"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/pause_exploration_challenge.png",
+          "bytes": 81016,
+          "sha256": "a1d2daa9a419ae38c6f283e3296febe89ce9cde1171406bf97cf9e42ace79164"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/premier_niveau_sortie_challenge.png",
+          "bytes": 137453,
+          "sha256": "ff908f81617876f48f2203fe67ce2e762e592089e6fb07996eacb33969e6f77e"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/reprise_nouveau_batiment_challenge.png",
+          "bytes": 79023,
+          "sha256": "5e84726e6838da4ec31e8b85fd54efc5ca2348b95276d47d2e549419c72758fc"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/retour_palier_challenge.png",
+          "bytes": 108606,
+          "sha256": "ba026356e865df4b54374b35b1c18e6e3fefca6a9d30d3b4538cf1ec7d42abf9"
+        },
+        {
+          "file": "docs/screenshots/facades_0.19.1/campus_ui_tests/salle_aile_ouest_challenge.png",
+          "bytes": 65674,
+          "sha256": "204eb4eccc0f0ccb65bc080d60001cffe2d95db5a0dd60eb57b37937561ed895"
+        }
+      ],
+      "script_sha256": "c2b081fd3ed04b808cb46f4d91963fdf8a60a865fee1016bc55c1b490c2680dd",
+      "log_sha256": "22deb629db27843033da5aff7bd5cff3fd7923ba3e95d510e98f26345a4df0d7"
+    }
+  ],
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "notes": [
+    "Tests sur profils isolés. Le parcours du labyrinthe est effectué à pied avec collisions réelles.",
+    "Retour rapide : rester, Échap, manette simulée, écriture refusée, reprise et conservation exacte de la validation et des points.",
+    "Les essais initiaux sur versions intermédiaires sont exclus ; les résultats portent sur les exports finaux et pilotes actuels."
+  ]
+}
