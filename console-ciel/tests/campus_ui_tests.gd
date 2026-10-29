@@ -57,6 +57,7 @@ func _run() -> void:
 	await _capture("cour_immeuble_face_challenge")
 	await _walk_axis(KEY_UP,550)
 	_check(app.demo.world.target_id == "courtyard_second","Traversée réelle de la cour jusqu’à la porte d’en face")
+	await _capture("facade_hotel_ciel_challenge")
 	await _use_door("building_02",true)
 	_check(app.demo.world.world_extent() == Campus.BUILDING_SIZE and app.demo.world.world_extent().x > 6*1000,"Le bâtiment est beaucoup plus grand que la première pièce")
 	_check(app.demo.campus_map.visible and app.demo.campus_map.expanded,"Carte visible en haut à gauche à l’arrivée")
