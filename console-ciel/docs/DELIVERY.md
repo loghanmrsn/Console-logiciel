@@ -1,3 +1,20 @@
+# Livraison 0.19.1 — façades et retour du labyrinthe
+
+L’hôtel CIEL reçoit une façade en pierre claire, une toiture à lucarnes, des balcons, un portique à colonnes et une entrée vitrée. Le bâtiment d’enseignement conserve une identité distincte. Les volumes dessinés restent dans les emprises solides existantes ; portes, PNJ, passage piéton et circulation restent accessibles.
+
+Après le message de réussite du terminal, un panneau propose **Retourner au début du labyrinthe** ou **Continuer à explorer**. Échap ferme le panneau. Le retour ne change que le checkpoint, après une écriture réussie : aucune mission annulée, aucun point perdu ou ajouté. Une erreur de sauvegarde garde le joueur sur place et permet de réessayer.
+
+Validation du 29 octobre 2026 :
+
+- 36 suites sources : 11938 assertions, aucun échec.
+- 14 suites sur les deux packs exportés : 5714 assertions, aucun échec.
+- Rendu natif X11 / Mesa llvmpipe / Compatibility : 1693 contrôles, deux parcours complets avec captures ; clavier et manette simulée, petit écran 800 × 480 avec texte agrandi.
+- Vérifications des ressources intégrées, format EXE/ARM64, CRC et empreintes des archives. Sauvegardes personnelles et anciennes livraisons conservées.
+
+[Résultats détaillés](../tests/facades_0.19.1_results/summary.json). Les packs Windows et ARM64 sont exécutés avec Godot Linux x86_64 pour la recette ; ce n’est pas un essai natif Windows ou Raspberry Pi. Matériel cible, manette physique et audio restent à tester.
+
+---
+
 # Livraison 0.19.0 — fluidité, rendu et terminal Dev
 
 Le personnage et la caméra utilisent une interpolation physique commune. La caméra s’actualise après le joueur ; la marche accélère sur une courte durée et s’arrête immédiatement au relâchement, sans glissement. L’axe d’animation garde sa direction près des diagonales, et le regard des PNJ évolue progressivement. Les téléportations, reprises et retours des voitures réinitialisent leur interpolation.
