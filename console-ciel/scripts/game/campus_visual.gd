@@ -52,16 +52,71 @@ func _courtyard() -> void:
 	_text("PASSAGE PIÉTON", Vector2(900, 548), 17, true)
 
 func _facades() -> void:
-	for rect in [Rect2(100,80,1600,250),Rect2(100,1090,1600,160)]:
-		draw_rect(rect,Color("c6d4d4"))
-		for x in range(180,1640,180):
-			if abs(x-900)>140:
-				draw_rect(Rect2(x,rect.position.y+45,96,70),Color("718d93"))
-				draw_rect(Rect2(x+6,rect.position.y+51,84,58),Color("b7d4d8"))
-	_text("HÔTEL CIEL · ★ ★ ★ ★ ★",Vector2(900,220),26,true)
-	_text("BÂTIMENT A · CONSOLE CIEL",Vector2(900,1210),24,true)
+	# Architectural details remain inside the existing solid building footprints.
+	# The porch is overhead decoration: the approach to the door stays clear.
+	_hotel_facade()
+	_academy_facade()
 	_door(Vector2(900,330),"ENTRER",true)
 	_door(Vector2(900,1090),"RETOUR",false)
+
+func _hotel_facade() -> void:
+	# Limestone wings, slate mansard roof, central portico and brass fittings.
+	draw_rect(Rect2(100,80,1600,250), Color("d8d1bc"))
+	for x in [100, 1420]:
+		draw_rect(Rect2(x,80,280,250), Color("c7c3ad"))
+		draw_rect(Rect2(x+12,90,256,220), Color("e4dcc6"))
+	for y in [174, 257, 318]:
+		draw_rect(Rect2(108,y,1584,7), Color("b6ad94"))
+		draw_line(Vector2(108,y),Vector2(1692,y),Color("f1e8d4"),3,true)
+	for x in range(140, 1680, 110):
+		if x > 730 and x < 1030: continue
+		_facade_window(Vector2(x,184), Vector2(58,61), true)
+		_facade_window(Vector2(x,269), Vector2(58,40), false)
+	# A sloping roof with dormers gives the silhouette depth without moving walls.
+	draw_colored_polygon(PackedVector2Array([Vector2(100,164),Vector2(130,80),Vector2(1670,80),Vector2(1700,164)]),Color("647e7c"))
+	for y in [103,125,147]: draw_line(Vector2(130,y),Vector2(1670,y),Color("839994"),2,true)
+	for x in [190,410,630,1110,1330,1550]:
+		draw_colored_polygon(PackedVector2Array([Vector2(x-8,142),Vector2(x+30,102),Vector2(x+68,142)]),Color("e4dcc6"))
+		_facade_window(Vector2(x+8,125),Vector2(44,33),false)
+	draw_rect(Rect2(735,165,330,165),Color("eee3ca"))
+	_text("HÔTEL CIEL",Vector2(900,205),29,true)
+	_text("★ ★ ★ ★ ★",Vector2(900,232),20,true)
+	# Recessed glazed entrance and four stone columns.
+	draw_rect(Rect2(814,251,172,79),Color("526f70"))
+	for x in [822,904]: _facade_window(Vector2(x,259),Vector2(74,67),false)
+	for x in [754,790,994,1030]:
+		draw_rect(Rect2(x,248,16,77),Color("c5b894"))
+		draw_rect(Rect2(x+3,249,5,72),Color("f4ebd6"))
+		draw_rect(Rect2(x-4,319,24,9),Color("b2a17e"))
+	draw_colored_polygon(PackedVector2Array([Vector2(738,250),Vector2(760,234),Vector2(1040,234),Vector2(1062,250)]),Color("668681"))
+	draw_line(Vector2(738,250),Vector2(1062,250),Color("c7ad70"),5,true)
+	for x in [724,1076]:
+		draw_rect(Rect2(x-5,276,10,27),Color("9b8254"))
+		draw_circle(Vector2(x,280),8,Color("f1dc9f"))
+
+func _facade_window(at: Vector2, size: Vector2, balcony: bool) -> void:
+	draw_rect(Rect2(at-Vector2(4,4),size+Vector2(8,8)),Color("eee5cd"))
+	draw_rect(Rect2(at,size),Color("587b80"))
+	draw_rect(Rect2(at+Vector2(4,4),size-Vector2(8,8)),Color("b2ced0"))
+	draw_colored_polygon(PackedVector2Array([at+Vector2(5,5),at+Vector2(size.x-5,5),at+Vector2(5,size.y-5)]),Color("d4e3df"))
+	draw_line(at+Vector2(size.x/2,0),at+Vector2(size.x/2,size.y),Color("eee2c6"),3,true)
+	draw_line(at+Vector2(0,size.y*.45),at+Vector2(size.x,size.y*.45),Color("eee2c6"),3,true)
+	if balcony:
+		var y := at.y+size.y-15
+		draw_rect(Rect2(at.x-8,y+16,size.x+16,5),Color("afa486"))
+		draw_line(Vector2(at.x-6,y),Vector2(at.x+size.x+6,y),Color("627874"),3,true)
+		for x in range(-4,int(size.x)+7,9): draw_line(Vector2(at.x+x,y),Vector2(at.x+x,y+16),Color("627874"),2,true)
+
+func _academy_facade() -> void:
+	# The original school remains distinct from the five-star hotel opposite.
+	draw_rect(Rect2(100,1090,1600,160),Color("c5d4d0"))
+	for x in range(125,1660,130):
+		if abs(x-900)<150: continue
+		_facade_window(Vector2(x,1120),Vector2(86,64),false)
+	for y in [1096,1203,1236]: draw_rect(Rect2(108,y,1584,6),Color("8fa9a2"))
+	draw_rect(Rect2(746,1090,308,153),Color("e2e5d9"))
+	_text("BÂTIMENT A",Vector2(900,1178),24,true)
+	_text("CONSOLE CIEL",Vector2(900,1210),20,true)
 
 func _building() -> void:
 	# A 6,400 × 4,200 world, over fifty times the first room's area.
