@@ -66,11 +66,30 @@ func _run() -> void:
 	await _key(KEY_SPACE)
 	_check(app.demo.overlay_kind == "terminal" and app.demo.terminal_panel.phase == "user","Le terminal central demande un identifiant")
 	await _test_terminal()
-	_check(app.demo.overlay_kind == "conclusion" and state.profile.wallet.points == 650,"Le seul défi finit après obtention des droits, à 650 points cumulés")
-	await _capture("bilan_mystere_challenge")
-	await _activate("conclusion_stay")
-	_check(not app.demo.world.get_interactable("maze_terminal").visible and app.demo.world.target_id != "maze_terminal","Le marqueur du terminal disparaît après la réussite")
-	await _test_resume("maze")
+	_check(app.demo.overlay_kind == "maze_success_return" and state.profile.wallet.points == 650,"La réussite propose un retour rapide après les 650 points cumulés")
+	await _check_modal_layout("retour rapide 800x480")
+	await _capture("retour_rapide_labyrinthe_challenge")
+	var completed: Dictionary = state.profile.duplicate(true)
+	var position_before: Vector2 = app.demo.world.player.position
+	await _activate("maze_success_stay",true)
+	_check(state.profile == completed and app.demo.world.player.position == position_before,"Rester laisse le joueur au terminal sans modifier la réussite")
+	app.demo._show_maze_success_return()
+	await _frames(8)
+	await _key(KEY_ESCAPE)
+	_check(app.demo.overlay_kind.is_empty(),"Échap ferme la proposition")
+	app.demo._show_maze_success_return()
+	await _frames(8)
+	saves.simulate_write_failure = true
+	await _activate("maze_fast_return")
+	saves.simulate_write_failure = false
+	_check(state.profile == completed and app.demo.world.player.position == position_before,"Échec de sauvegarde : aucune téléportation ni perte")
+	await _activate("dialog_continue")
+	await _activate("maze_fast_return",true)
+	_check(app.demo.world.player.position.distance_to(Layout.at(Layout.START)) < 2,"Le choix de retour rejoint physiquement l’entrée")
+	completed.progress.checkpoint_id = "maze_entry"
+	_check(state.profile == completed and saves.read_profile(profile_id).data == completed,"Retour enregistré sans perdre validation, reçu ou points")
+	_check(not app.demo.world.get_interactable("maze_terminal").visible,"Le marqueur reste masqué après retour")
+	await _test_resume("maze_entry")
 	_check(app.demo.world.maze_active,"Continuer reprend aussi une réussite dans le labyrinthe")
 	# The full path above is walked; this final proximity setup tests the exit UI.
 	app.demo.world.player.position = Layout.at(Layout.START)
@@ -250,7 +269,7 @@ func _test_resume(checkpoint: String) -> void:
 	await _frames(8)
 	await _physics_frames(3)
 	_check(state.profile == saved and app.demo.world.chapter_id == 5 and saved.progress.checkpoint_id == checkpoint,"Le profil retrouve le chapitre 5 et son point de reprise")
-	_check(app.demo.world.player.position.is_equal_approx(Layout.checkpoints()[checkpoint]),"Le personnage reprend au terminal enregistré")
+	_check(app.demo.world.player.position.is_equal_approx(Layout.checkpoints()[checkpoint]),"Le personnage reprend au checkpoint enregistré")
 	if app.demo.overlay_kind == "conclusion": await _activate("conclusion_stay")
 
 func _approach(id: String) -> void:
@@ -265,3 +284,31 @@ func _approach(id: String) -> void:
 	await _physics_frames(3)
 	await _frames(3)
 	_check(app.demo.world.target_id == id,"Cible du palier approchée : " + id)
+
+
+func _walk_axis(code: Key, distance: float) -> void:
+	# Observe the real distance instead of assuming instant constant velocity.
+	# An early physical obstacle still ends the walk and is checked by callers.
+	if not router.gameplay_allowed(): await create_timer(.23).timeout
+	var player = app.demo.world.player
+	var start: Vector2 = player.position
+	var previous := start
+	var stalled := 0
+	var event := InputEventKey.new()
+	event.keycode = code
+	event.pressed = true
+	Input.parse_input_event(event)
+	Input.flush_buffered_events()
+	var maximum_steps := ceili(distance * 60.0 / player.SPEED) + 40
+	for step in range(maximum_steps):
+		await physics_frame
+		var current: Vector2 = player.position
+		if current.distance_to(start) >= distance - 1.5: break
+		stalled = stalled + 1 if current.distance_to(previous) < .01 else 0
+		if stalled >= 8: break
+		previous = current
+	event = event.duplicate()
+	event.pressed = false
+	Input.parse_input_event(event)
+	Input.flush_buffered_events()
+	await _physics_frames(2)
