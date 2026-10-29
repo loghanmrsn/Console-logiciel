@@ -58,7 +58,7 @@ Lire les trois observations de chaque poste, valider les corrections, puis monte
 4. Saisir **`sudo -i`** (ou **`su -`**), valider puis saisir de nouveau **`admin`** à la demande du mot de passe.
 5. La session **root** valide l’unique mission `???`.
 
-Quitter le labyrinthe par son point de retour, puis descendre **un étage à la fois** jusqu’au rez-de-chaussée. Interagir avec la porte de sortie en bas à gauche.
+Après la réussite, le panneau **Retourner au début du labyrinthe** permet de rejoindre son entrée sans perdre la validation ni les points. **Continuer à explorer** permet de rester au terminal. Quitter ensuite le labyrinthe par son point de retour, puis descendre **un étage à la fois** jusqu’au rez-de-chaussée. Interagir avec la porte de sortie en bas à gauche.
 
 ## La ville — passage piéton
 
