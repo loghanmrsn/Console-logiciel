@@ -493,6 +493,7 @@ func _mission_completed(result: Dictionary) -> void:
 	if int(data.get('debt_repaid', 0)) > 0:
 		reward_text += '\n%d points ont remboursé votre dette ; %d points sont disponibles en plus.' % [int(data.debt_repaid), int(data.credited_points)]
 	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown', 'subnet_mask', 'maze'] else _close_overlay
+	if data.get('mission_id') == 'maze': next = _show_maze_success_return
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
 
 func _show_library() -> void:
@@ -675,7 +676,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
+		'maze_success_return', 'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
 		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
@@ -934,6 +935,27 @@ func _show_laptop() -> void:
 	go.theme_type_variation = 'PrimaryButton'
 	_button(modal_content,'Rester ici',_close_overlay,'maze_stay')
 	_wire_modal()
+
+func _show_maze_success_return() -> void:
+	_open_overlay('maze_success_return')
+	_label(modal_content, 'Labyrinthe réussi !', 26)
+	_label(modal_content, 'Voulez-vous retourner au début du labyrinthe ? Votre mission reste validée et vos points sont conservés.')
+	var go := _button(modal_content, 'Retourner au début du labyrinthe', _return_to_maze_entry, 'maze_fast_return')
+	go.theme_type_variation = 'PrimaryButton'
+	_button(modal_content, 'Continuer à explorer', _close_overlay, 'maze_success_stay')
+	_wire_modal()
+
+func _return_to_maze_entry() -> void:
+	if _busy or overlay_kind != 'maze_success_return': return
+	_busy = true
+	var result: Dictionary = InvestigationService.return_to_maze_entry()
+	_busy = false
+	if not result.ok:
+		_show_dialog('Retour non enregistré', str(result.error), _show_maze_success_return)
+		return
+	world.restore_progress(AppState.profile.progress)
+	world.restore_checkpoint()
+	_close_overlay()
 
 func _show_maze_return() -> void:
 	_open_overlay('maze_return')
