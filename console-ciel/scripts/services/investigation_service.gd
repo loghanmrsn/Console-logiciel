@@ -436,6 +436,19 @@ func enter_maze() -> Dictionary:
 	progress.active_mission = ""
 	return _save_progress(progress)
 
+## Return only the checkpoint; completion, receipts and wallet stay untouched.
+func return_to_maze_entry() -> Dictionary:
+	if AppState.profile.is_empty():
+		return SaveService._fail("Aucun profil actif.")
+	var checked := SaveService.validate_profile(AppState.profile)
+	if not checked.ok or checked.get("migration_required", false):
+		return SaveService._fail("Rechargez un profil valide avant de revenir à l’entrée.")
+	if AppState.profile.progress.room_id != "maze_05" or "maze" not in AppState.profile.progress.completed_missions:
+		return SaveService._fail("Terminez le défi du labyrinthe avant ce retour rapide.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.checkpoint_id = "maze_entry"
+	return _save_progress(progress)
+
 func leave_maze() -> Dictionary:
 	if AppState.profile.is_empty() or AppState.profile.progress.room_id != "maze_05": return SaveService._fail("Vous n’êtes pas dans le labyrinthe.")
 	return enter_chapter(5)
