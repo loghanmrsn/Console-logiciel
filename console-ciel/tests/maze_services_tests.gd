@@ -52,6 +52,7 @@ func _run() -> void:
 	_check(state.profile == before and saves.read_profile(profile_id).data == before,"Une téléportation échouée ne modifie rien")
 	_ok(investigation.enter_maze(),"Entrée depuis le portable")
 	_check(state.profile.progress.room_id == "maze_05" and state.profile.progress.checkpoint_id == "maze_entry","Le labyrinthe et son entrée sont sauvegardés")
+	_check(not investigation.return_to_maze_entry().ok,"Retour rapide interdit avant réussite")
 	_ok(investigation.begin_mission("maze"),"Mission mystère démarrée")
 	before = state.profile.duplicate(true)
 	for pair in [["root","admin"],["admin","ADMIN"],[" admin","admin"],["admin",""]]:
@@ -90,6 +91,14 @@ func _run() -> void:
 	_check(investigation.terminal_command("whoami").data.output.begins_with("root") and investigation.terminal_command("id").data.output.contains("uid=0"),"La session obtenue possède bien les droits root simulés")
 	var again: Dictionary = investigation.terminal_command("su -","admin")
 	_check(again.ok and again.data.reward == 0,"Une autre commande d’élévation ne redonne pas de points")
+	before = state.profile.duplicate(true)
+	saves.simulate_write_failure = true
+	_check(not investigation.return_to_maze_entry().ok,"Retour rapide : erreur de sauvegarde remontée")
+	saves.simulate_write_failure = false
+	_check(state.profile == before and saves.read_profile(profile_id).data == before,"Retour refusé sans changement de profil")
+	_ok(investigation.return_to_maze_entry(),"Retour rapide après réussite")
+	before.progress.checkpoint_id = "maze_entry"
+	_check(state.profile == before and saves.read_profile(profile_id).data == before,"Seul le checkpoint change : validation et points persistés")
 	_ok(investigation.leave_maze(),"Retour au palier")
 	_check(state.profile.progress.room_id == "room_05" and state.profile.progress.active_mission.is_empty(),"Retour au palier enregistré")
 	_ok(investigation.enter_chapter(4),"Descente")
