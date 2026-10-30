@@ -116,3 +116,5 @@ Le profil **Dev · Super administrateur** créé en 0.18.0 possède aussi les ci
 [Revenir au projet](../console-ciel/README.md)
 
 Les commandes réservées au profil Dev sont regroupées dans le fichier **commandes triches.md**, dans ce même dossier. [Ouvrir la fiche](https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md).
+
+Le bus devant Sudo Hack permet aussi de rentrer en ville avant la fin des cinq épreuves. Les réponses validées et les points restent conservés. Reprenez le bus près de l’hôtel pour poursuivre le CTF.
