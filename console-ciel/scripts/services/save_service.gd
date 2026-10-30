@@ -17,9 +17,10 @@ const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const HOTEL_VERSION := 2
 const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
 const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
-const HOTEL_ROOMS := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ROOMS := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
 const HOTEL_CHECKPOINTS := {
+ "school_arrival": "school_stop", "school_door": "school_stop", "school_entry": "school_cyber",
 	"new_entrance": "building_02", "hall_it": "building_02", "hall_stairs": "building_02",
 	"it_entrance": "hotel_it", "stairs_from_hall": "hotel_stairs_1", "stairs_from_floor2": "hotel_stairs_1",
 	"floor2_stairs": "hotel_floor_2", "floor2_room206": "hotel_floor_2",
@@ -384,6 +385,8 @@ func _validate_hotel_progress(progress: Dictionary, completed: Array, rewarded: 
 		return _fail("Ce retour de la salle de petit déjeuner est encore inaccessible.")
 	if progress.checkpoint_id == "breakfast_table" and stage < 3:
 		return _fail("Le joueur n’est pas encore installé à sa table.")
+	if progress.room_id in ["school_stop", "school_cyber"] and stage not in [6, 9]:
+		return _fail("Rejoignez le lycée avec votre sac, depuis un arrêt de bus.")
 	if progress.room_id == "ctf_bus_stop" and stage < 7:
 		return _fail("Prenez le bus avec votre sac pour rejoindre le CTF.")
 	if progress.room_id == "ctf_lobby" and stage < 8:
@@ -622,7 +625,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	# Only the complete, otherwise valid pre-hotel document is extended. A new
 	# room without its hotel state is corrupt, rather than a legacy migration.
 	if not progress.has("hotel"):
-		if progress.room_id in HOTEL_ROOMS.slice(1) or (progress.checkpoint_id in HOTEL_CHECKPOINTS and progress.checkpoint_id != "new_entrance"):
+		if (progress.room_id in HOTEL_ROOMS and progress.room_id != "building_02") or (progress.checkpoint_id in HOTEL_CHECKPOINTS and progress.checkpoint_id != "new_entrance"):
 			return _fail("La sauvegarde de cette salle ne contient pas son état d’hôtel.")
 		progress["hotel"] = empty_hotel_progress()
 		expanded = true
