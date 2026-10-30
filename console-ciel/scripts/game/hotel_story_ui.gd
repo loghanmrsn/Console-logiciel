@@ -655,9 +655,8 @@ func _show_ctf(id: String) -> void:
 func _show_return_bus() -> void:
 	game._open_overlay("ctf_bus")
 	game._label(game.modal_content, "Arrêt de bus · retour en ville", 26)
-	game._label(game.modal_content, "Le bus vous ramène sur le trottoir près de l'hôtel CIEL." if CtfService.completed() else "Le trajet de retour sera disponible après les cinq épreuves Sudo Hack.")
-	if CtfService.completed():
-		game._button(game.modal_content, "Revenir en ville", _return_bus, "ctf_bus_return")
+	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel CIEL. Vos épreuves réussies et vos points sont conservés. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
+	game._button(game.modal_content, "Revenir en ville", _return_bus, "ctf_bus_return")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "ctf_bus_close")
 	game._wire_modal()
 
