@@ -10,6 +10,7 @@ var canvas: Control
 var world: Node2D
 var _last_position := Vector2.INF
 var _last_zone := ""
+var _last_map_key := -1
 var _column: VBoxContainer
 var _fit_scheduled := false
 
@@ -97,7 +98,7 @@ func toggle_map() -> void:
 
 func _refresh() -> void:
 	if canvas == null: return
-	toggle_button.text = "Carte · →  " + ("▴" if expanded else "▾")
+	toggle_button.text = "Carte · " + InputSetup.keyboard_label_for("game_map") + "  " + ("▴" if expanded else "▾")
 	canvas.visible = expanded
 	legend.visible = expanded
 	area_label.visible = expanded
@@ -105,6 +106,10 @@ func _refresh() -> void:
 
 func _process(_delta: float) -> void:
 	if not is_visible_in_tree() or not is_instance_valid(world): return
+	var map_key := int(SettingsService.current.get("bindings", {}).get("game_map", {}).get("key", KEY_RIGHT))
+	if map_key != _last_map_key:
+		_last_map_key = map_key
+		_refresh()
 	var zone := str(world.room_id)
 	if zone != _last_zone:
 		_last_zone = zone
