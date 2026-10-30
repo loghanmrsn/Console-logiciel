@@ -21,7 +21,7 @@ const CHARACTERS := [
 	},
 	{
 		"id": "npc_hotel_door", "zone": "courtyard", "name": "Camille",
-		"role": "Accueil de l’Hôtel CIEL",
+		"role": "Accueil de l’Hôtel Ritz",
 		"at": Vector2(1130, 412), "approach": Vector2(1130, 458),
 		"coat": "798d83", "skin": "c89e82", "hair": "554b43", "accessory": "tie", "hairstyle": "side_part"
 	},
@@ -61,7 +61,7 @@ static func pages(id: String, progress: Dictionary) -> Array[String]:
 			return ["Bienvenue dans Console CIEL ! Vous incarnez une personne venue remettre ce bâtiment en service. Une panne perturbe l’atelier : la lumière, la porte du bureau et son ordinateur ont besoin de vous.", "Commencez par le tableau électrique, puis examinez la commande de la porte et l’ordinateur. Approchez-vous d’un objet et utilisez Espace ou la touche basse de la manette. T ou la touche haute affiche les missions. Les défis rapportent des points utilisables dans la boutique."]
 		"npc_top_floor":
 			if "maze" in completed:
-				return ["Vous avez terminé l’épreuve du dernier étage. Pour quitter le bâtiment, retournez à l’ascenseur et descendez jusqu’au rez-de-chaussée.", "La porte de sortie se trouve dans la première salle. Traversez ensuite la cour par le passage piéton pour rejoindre l’Hôtel CIEL, le bâtiment d’en face."]
+				return ["Vous avez terminé l’épreuve du dernier étage. Pour quitter le bâtiment, retournez à l’ascenseur et descendez jusqu’au rez-de-chaussée.", "La porte de sortie se trouve dans la première salle. Traversez ensuite la cour par le passage piéton pour rejoindre l’Hôtel Ritz, le bâtiment d’en face."]
 			return ["Vous voici au dernier étage du premier bâtiment. Le portable, au centre de la pièce, propose un parcours où l’observation compte autant que les connaissances.", "Interagissez avec le portable puis choisissez « Y aller ». Explorez les lieux et lisez les inscriptions : certains indices sont utiles, d’autres sont des fausses pistes. Prenez votre temps ; je vous laisse découvrir le reste."]
 		"npc_buffet":
 			if morning >= 5:
@@ -75,7 +75,7 @@ static func pages(id: String, progress: Dictionary) -> Array[String]:
 			if morning >= 6:
 				return ["Vous avez votre sac et votre ordinateur : tout est prêt pour votre départ à Sudo Hack.", "L’arrêt de bus se trouve de l’autre côté de la cour. Empruntez le passage piéton et attendez le vert avant de traverser."]
 			if not bool(hotel.get("reserved", false)):
-				return ["Bienvenue à l’Hôtel CIEL, le deuxième bâtiment de votre aventure. Entrez par la porte à ma gauche : la réception vous attend dans le grand hall.", "Adressez-vous à la réception pour réserver la chambre 206. La réservation fait partie de l’histoire et ne vous coûte aucun point."]
+				return ["Bienvenue à l’Hôtel Ritz, le deuxième bâtiment de votre aventure. Entrez par la porte à ma gauche : la réception vous attend dans le grand hall.", "Adressez-vous à la réception pour réserver la chambre 206. La réservation fait partie de l’histoire et ne vous coûte aucun point."]
 			return ["La réception reste votre point de repère dans l’hôtel. Le local informatique est tout près et les escaliers desservent la chambre 206.", "Seul le palier du premier étage est ouvert ; les chambres de cet étage sont fermées au public. Votre chambre se trouve au deuxième étage."]
 		"npc_crossing":
 			return ["Pour traverser, utilisez les bandes blanches et attendez le feu piéton vert. Quand le feu est rouge, les voitures passent. Elles roulent doucement, mais regardez avant de vous engager.", "Une traversée complète commencée au rouge entraîne une pénalité de 200 points, même sans collision. Si une voiture vous touche, vous revenez sur votre trottoir de départ. Une traversée commencée au vert reste protégée jusqu’à votre arrivée."]
