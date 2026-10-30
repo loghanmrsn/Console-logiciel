@@ -1,0 +1,281 @@
+{
+  "version": "0.20.0",
+  "source": [
+    {
+      "name": "appearance_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1881,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.54,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log": "/workspace/console-ciel-comfort-validation/regression/appearance_tests/run.log"
+    },
+    {
+      "name": "chapter_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 272,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.64,
+      "script_sha256": "70531b0b6de362b58a914813f9b95e0f47e425e2d20e7010d352af29f7c19abc",
+      "log": "/workspace/console-ciel-comfort-validation/regression/chapter_services_tests/run.log"
+    },
+    {
+      "name": "chapter_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 682,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 54.34,
+      "script_sha256": "0529f41b006de1e997eefe11b439e6ce851c8a0a0c04f63d5ffbeb66786cb470",
+      "log": "/workspace/console-ciel-comfort-validation/regression/chapter_ui_tests/run.log"
+    },
+    {
+      "name": "code_chapter_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 617,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 33.86,
+      "script_sha256": "e845b342137254e723c0e067c4dc8446f8c381db9207ca4291539336299a06e8",
+      "log": "/workspace/console-ciel-comfort-validation/regression/code_chapter_ui_tests/run.log"
+    },
+    {
+      "name": "comfort_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.68,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log": "/workspace/console-ciel-comfort-validation/regression/comfort_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.1,
+      "script_sha256": "8324cf38a4ee0de88fdd24b99964218de4efc1a415076314030d9ec351ab8104",
+      "log": "/workspace/console-ciel-comfort-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "replay_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 241,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 31.33,
+      "script_sha256": "f4bcea6bd6327c27fb28d0b0dee5814b45c2e9a53bb2795f6d1ba362d75f8af4",
+      "log": "/workspace/console-ciel-comfort-validation/regression/replay_ui_tests/run.log"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.44,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "/workspace/console-ciel-comfort-validation/regression/run_tests/run.log"
+    },
+    {
+      "name": "traffic_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 153,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.92,
+      "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+      "log": "/workspace/console-ciel-comfort-validation/regression/traffic_services_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.09,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-comfort-validation/regression/traffic_ui_tests/run.log"
+    },
+    {
+      "name": "ui_smoke",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 2375,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 150.1,
+      "script_sha256": "87091725f76a6391454374feb43248d4cddda22941a3b48e0edf8bcdc7916854",
+      "log": "/workspace/console-ciel-comfort-validation/regression/ui_smoke/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.44,
+      "script_sha256": "2370edda8c6cfb58d4b4cdb7e6539904907167b3c677cbdb2c0fa51e134dd24f",
+      "log": "/workspace/console-ciel-comfort-validation/regression/windows_contracts/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "replay_ui_tests",
+      "assertions": 241,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f4bcea6bd6327c27fb28d0b0dee5814b45c2e9a53bb2795f6d1ba362d75f8af4",
+      "log_sha256": "73fd0f197d9c8bfda85d5fb4b5baa0add4ce5ef7371588c3c08262cf7a64d251"
+    },
+    {
+      "platform": "linux",
+      "name": "replay_ui_tests",
+      "assertions": 241,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f4bcea6bd6327c27fb28d0b0dee5814b45c2e9a53bb2795f6d1ba362d75f8af4",
+      "log_sha256": "73fd0f197d9c8bfda85d5fb4b5baa0add4ce5ef7371588c3c08262cf7a64d251"
+    },
+    {
+      "platform": "windows",
+      "name": "comfort_ui_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log_sha256": "9c80b4fa777ba55e006353e62f366a3ad06bc62d3f1b7352046a67fc58706801"
+    },
+    {
+      "platform": "linux",
+      "name": "comfort_ui_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log_sha256": "9c80b4fa777ba55e006353e62f366a3ad06bc62d3f1b7352046a67fc58706801"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "26e6eaff855e5dc3e475a9297215a0e4fc9ae491d535197527fb42f3f3e73966",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "26e6eaff855e5dc3e475a9297215a0e4fc9ae491d535197527fb42f3f3e73966",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 55,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/comfort_0.20.0/comfort_ui_tests/ascenseur_direct_challenge.png",
+        "bytes": 132332,
+        "sha256": "7bff3838201cd546d8e6a42a474246e346328b40a0656b4980215459532d09bd"
+      },
+      {
+        "file": "docs/screenshots/comfort_0.20.0/comfort_ui_tests/commandes_choix_challenge.png",
+        "bytes": 110213,
+        "sha256": "2350cf69c57077ea75b552d5d941beb9b2588ca124d353ff50fdcee632bbe0c1"
+      },
+      {
+        "file": "docs/screenshots/comfort_0.20.0/comfort_ui_tests/commandes_compact_challenge.png",
+        "bytes": 77134,
+        "sha256": "66049343bfd0b356b99833f0e3c8bb25dd7ef6546890698f0ce2948720a85b40"
+      },
+      {
+        "file": "docs/screenshots/comfort_0.20.0/comfort_ui_tests/musique_choix_challenge.png",
+        "bytes": 92933,
+        "sha256": "624b31498304964682897dbaf814e30a3e2d5ff9f82ea24ab2a50c3a9daa1a29"
+      }
+    ],
+    "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+    "log_sha256": "38d14c9b85afe14c64a98dc4c0832afbac42963884d4b88237235601790944db"
+  },
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "pending": [
+    "Logo officiel du lycée Louise Michel de Ruffec : fichier non fourni, accès au site bloqué par la politique réseau."
+  ]
+}
