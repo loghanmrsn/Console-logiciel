@@ -1,0 +1,225 @@
+{
+  "version": "0.21.1",
+  "source": [
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.54,
+      "script_sha256": "34e0d1097a7e89ac3e65b1ae76ae5291e5359ec7e012109535840762d94b9fc5",
+      "log": "/workspace/console-ciel-finish-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 76,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.11,
+      "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+      "log": "/workspace/console-ciel-finish-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "comfort_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.25,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log": "/workspace/console-ciel-finish-validation/regression/comfort_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.19,
+      "script_sha256": "8324cf38a4ee0de88fdd24b99964218de4efc1a415076314030d9ec351ab8104",
+      "log": "/workspace/console-ciel-finish-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 511,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.66,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log": "/workspace/console-ciel-finish-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 528,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.28,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-finish-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "replay_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 241,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 31.3,
+      "script_sha256": "f4bcea6bd6327c27fb28d0b0dee5814b45c2e9a53bb2795f6d1ba362d75f8af4",
+      "log": "/workspace/console-ciel-finish-validation/regression/replay_ui_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.47,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-finish-validation/regression/stability_tests/run.log"
+    },
+    {
+      "name": "morning_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 767,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.22,
+      "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+      "log": "/workspace/console-ciel-finish-validation/regression/morning_services_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.08,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-finish-validation/regression/traffic_ui_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 76,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+      "log_sha256": "0540187dc5b1cf231e1ddf2eee0792bc97212e55b44b8090fa65058427b86c35"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 76,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+      "log_sha256": "0540187dc5b1cf231e1ddf2eee0792bc97212e55b44b8090fa65058427b86c35"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7f76d7687f937ca602f1eb23a2a3cd3940e46f0c5b120195084e1581f39dac00",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7f76d7687f937ca602f1eb23a2a3cd3940e46f0c5b120195084e1581f39dac00",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 88,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/finish_0.21.1/school_ui_tests/bus_destinations_challenge.png",
+        "bytes": 90676,
+        "sha256": "b02a9ee5c9094d0de4b52993618aa0340442278abe6d8102fb838f171f5b2296"
+      },
+      {
+        "file": "docs/screenshots/finish_0.21.1/school_ui_tests/lycee_cyber_challenge.png",
+        "bytes": 104548,
+        "sha256": "2135ae2859fa8718404a7649d1b1d6f9f1c9f4649866215d2b5405061f95411d"
+      },
+      {
+        "file": "docs/screenshots/finish_0.21.1/school_ui_tests/lycee_facade_challenge.png",
+        "bytes": 101453,
+        "sha256": "8f5a277e1b4c8d02f08ff51dcf253f2e3b9673dec2efd4e590e00e693ea59e9b"
+      }
+    ],
+    "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+    "log_sha256": "6297032daa217efb7b9c64316d200b486d803c1beec7b689a9635de50c02c4e2"
+  }
+}
