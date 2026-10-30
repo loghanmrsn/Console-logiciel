@@ -38,7 +38,7 @@ func _run() -> void:
 	copy.completed.append("flag")
 	_check(ctf.state().completed.is_empty(), "La lecture renvoie une copie sans pouvoir modifier la progression")
 	_ok(hotel.travel("ctf_bus_stop"), "Sortie vers l'arrêt")
-	_assert_failed(Callable(hotel, "return_bus"), "Le retour reste bloqué avant les cinq réussites")
+	_test_early_return()
 	_assert_failed(Callable(ctf, "submit").bind("phishing", "sudo-hack-support.example"), "Une réponse hors du bâtiment est refusée")
 	_ok(hotel.travel("ctf_lobby"), "Retour aux postes")
 	for index in range(5):
@@ -54,6 +54,10 @@ func _run() -> void:
 		_check(ctf.submit(id, answer).reward == 0 and state.profile.wallet.points == 800 + 50 * index, "Une répétition ne crédite jamais deux fois : " + id)
 		state.clear_profile()
 		_ok(profiles.select_profile(profile_id), "Reprise réelle après chaque épreuve")
+		if index < 4:
+			_ok(hotel.travel("ctf_bus_stop"), "Rejoindre le bus pendant le CTF")
+			_test_early_return()
+			_ok(hotel.travel("ctf_lobby"), "Reprendre les épreuves")
 	_check(ctf.completed() and state.profile.wallet.points == 1000 and state.profile.progress.run_reward_points == 650, "Cinq épreuves ajoutent 250 points sans altérer les chapitres")
 	var finished: Dictionary = state.profile.duplicate(true)
 	for invalid_state in [null, [], {}, {"version": 2, "completed": []}, {"version": 1, "completed": ["flag"]}, {"version": 1, "completed": ["phishing", "phishing"]}, {"version": 1, "completed": ["phishing"], "other": true}]:
@@ -108,3 +112,16 @@ func _run() -> void:
 	_ok(profiles.reset_progress(), "Mise à jour explicite des validations de Dev")
 	_check(ctf.completed() and state.profile.wallet.points == 750, "Réinitialiser Dev valide les nouveaux postes sans lui donner de nouveaux points")
 	_finish()
+
+func _test_early_return() -> void:
+	var before: Dictionary = state.profile.duplicate(true)
+	_assert_failed(Callable(hotel, "return_bus"), "Échec disque du retour anticipé sans perte", true)
+	_ok(hotel.return_bus(), "Retour en ville avant la fin")
+	_check(state.profile.progress.room_id == "courtyard" and hotel.state().morning_stage == 6, "Ville accessible avec sac conservé")
+	_check(state.profile.progress.get("ctf", {}) == before.progress.get("ctf", {}) and state.profile.wallet == before.wallet and state.profile.rewarded_missions == before.rewarded_missions, "Réponses et récompenses conservées")
+	state.clear_profile()
+	_ok(profiles.select_profile(profile_id), "Recharger le séjour en ville")
+	_ok(hotel.travel("building_02"), "Revisiter l’hôtel pendant le CTF")
+	_ok(hotel.travel("courtyard"), "Retrouver le bus en ville")
+	_ok(hotel.board_bus(), "Repartir vers Sudo Hack")
+	_check(state.profile.progress.get("ctf", {}) == before.progress.get("ctf", {}), "Progression CTF toujours présente au retour")
