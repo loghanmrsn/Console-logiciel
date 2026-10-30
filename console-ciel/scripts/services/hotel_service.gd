@@ -23,6 +23,7 @@ const REPAIR_OBSERVATIONS := {
 	}
 }
 const ROUTES := {
+ "school_stop>school_cyber": "school_entry", "school_cyber>school_stop": "school_door",
 	"building_02>hotel_it": "it_entrance",
 	"hotel_it>building_02": "hall_it",
 	"building_02>hotel_stairs_1": "stairs_from_hall",
@@ -287,7 +288,8 @@ func collect_backpack() -> Dictionary:
 	progress.hotel.morning_stage = 6
 	return _save_progress(progress, "hotel_backpack")
 
-func board_bus() -> Dictionary:
+func board_bus(destination: String = "ctf_bus_stop") -> Dictionary:
+	if destination not in ["ctf_bus_stop", "school_stop"]: return SaveService._fail("Arrêt inconnu.")
 	var ready := _ready_for(["courtyard"])
 	if not ready.ok:
 		return ready
@@ -295,9 +297,9 @@ func board_bus() -> Dictionary:
 	if int(hotel.morning_stage) not in [6, 9]:
 		return SaveService._fail("Récupérez votre sac avec l’ordinateur avant de prendre le bus pour Sudo Hack.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	progress.hotel.morning_stage = 9 if int(hotel.morning_stage) == 9 else 7
-	progress.room_id = "ctf_bus_stop"
-	progress.checkpoint_id = "ctf_arrival"
+	progress.hotel.morning_stage = 9 if int(hotel.morning_stage) == 9 else (6 if destination == "school_stop" else 7)
+	progress.room_id = destination
+	progress.checkpoint_id = "school_arrival" if destination == "school_stop" else "ctf_arrival"
 	progress.active_mission = ""
 	var saved := _save_progress(progress)
 	if not saved.ok:
@@ -305,7 +307,7 @@ func board_bus() -> Dictionary:
 	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
 
 func return_bus() -> Dictionary:
-	var ready := _ready_for(["ctf_bus_stop"])
+	var ready := _ready_for(["ctf_bus_stop", "school_stop"])
 	if not ready.ok: return ready
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
 	# Stage 6 permits city visits and boarding again; CTF answers/receipts stay intact.
