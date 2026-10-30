@@ -54,7 +54,7 @@ func _ready() -> void:
 	objective_panel.add_child(column)
 	objective_title = Label.new()
 	objective_title.name = "hotel_objective_title"
-	objective_title.text = "HÔTEL CIEL · SÉJOUR"
+	objective_title.text = "HÔTEL RITZ · SÉJOUR"
 	objective_title.add_theme_font_size_override("font_size", 13)
 	objective_title.clip_text = true
 	objective_title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -97,7 +97,7 @@ func refresh() -> void:
 	_profile_id = current_profile
 	_room_id = current_room
 	var state: Dictionary = HotelService.state()
-	objective_title.text = "HÔTEL CIEL · " + ({"hotel_stairs_1": "PALIER 1", "hotel_floor_2": "ÉTAGE 2", "hotel_room_206": "CHAMBRE 206", "hotel_breakfast": "PETIT DÉJEUNER", "courtyard": "ARRÊT DE BUS"}.get(current_room, "RÉCEPTION"))
+	objective_title.text = "HÔTEL RITZ · " + ({"hotel_stairs_1": "PALIER 1", "hotel_floor_2": "ÉTAGE 2", "hotel_room_206": "CHAMBRE 206", "hotel_breakfast": "PETIT DÉJEUNER", "courtyard": "ARRÊT DE BUS"}.get(current_room, "RÉCEPTION"))
 	if current_room in ["ctf_bus_stop", "ctf_lobby"]:
 		objective_title.text = "SUDO HACK · " + ("ARRIVÉE" if current_room == "ctf_bus_stop" else "ACCUEIL")
 	var morning_stage := int(state.get("morning_stage", 0))
@@ -302,7 +302,7 @@ func handle_target(id: String) -> bool:
 
 func _show_reception() -> void:
 	game._open_overlay("hotel_reception")
-	game._label(game.modal_content, "Bienvenue à l’Hôtel CIEL", 28)
+	game._label(game.modal_content, "Bienvenue à l’Hôtel Ritz", 28)
 	if HotelService.state().get("reserved", false):
 		game._label(game.modal_content, "Votre chambre 206 est réservée. " + ("Les escaliers donnent accès au deuxième étage." if HotelService.state().get("repaired", false) else "Le système de réservation vient de tomber en panne. Le local informatique est à côté de la réception."))
 		game._button(game.modal_content, "Continuer", game._close_overlay, "hotel_reception_close")
@@ -655,7 +655,7 @@ func _show_ctf(id: String) -> void:
 func _show_return_bus() -> void:
 	game._open_overlay("ctf_bus")
 	game._label(game.modal_content, "Arrêt de bus · retour en ville", 26)
-	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel CIEL. Vos épreuves réussies et vos points sont conservés. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
+	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel Ritz. Vos épreuves réussies et vos points sont conservés. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
 	game._button(game.modal_content, "Revenir en ville", _return_bus, "ctf_bus_return")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "ctf_bus_close")
 	game._wire_modal()
@@ -668,4 +668,4 @@ func _return_bus() -> void:
 	game.world.restore_progress(AppState.profile.progress)
 	game.world.restore_checkpoint()
 	game._close_overlay()
-	game.notification_requested.emit("Retour en ville · Hôtel CIEL")
+	game.notification_requested.emit("Retour en ville · Hôtel Ritz")
