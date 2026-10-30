@@ -3,7 +3,8 @@ extends RefCounted
 ## A destination is a saved room, never a reward-bearing investigation chapter.
 
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
-const ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const School = preload("res://scripts/game/school_layout.gd")
+const ZONES := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HALL_SIZE := Vector2(6400, 4200)
 const BED_SEAT := Vector2(840, 420)
 
@@ -11,6 +12,7 @@ static func is_zone(zone: String) -> bool:
 	return ZONES.has(zone)
 
 static func extent(zone: String) -> Vector2:
+	if zone.begins_with("school_"): return School.extent(zone)
 	match zone:
 		"hotel_it": return Vector2(1400, 900)
 		"hotel_stairs_1": return Vector2(1600, 1100)
@@ -21,6 +23,7 @@ static func extent(zone: String) -> Vector2:
 		_: return HALL_SIZE
 
 static func title(zone: String) -> String:
+	if zone.begins_with("school_"): return School.title(zone)
 	match zone:
 		"hotel_it": return "Local informatique · rez-de-chaussée"
 		"hotel_stairs_1": return "Étage 1 · palier des escaliers"
@@ -32,6 +35,7 @@ static func title(zone: String) -> String:
 		_: return "Hôtel Ritz · grand hall"
 
 static func checkpoints(zone: String) -> Dictionary:
+	if zone.begins_with("school_"): return School.checkpoints(zone)
 	match zone:
 		"hotel_it": return {"entrance": Vector2(700, 750), "it_entrance": Vector2(700, 750)}
 		"hotel_stairs_1": return {"entrance": Vector2(500, 820), "stairs_from_hall": Vector2(500, 820), "stairs_from_floor2": Vector2(1020, 820)}
@@ -43,6 +47,7 @@ static func checkpoints(zone: String) -> Dictionary:
 		_: return {"entrance": Vector2(3200, 4000), "new_entrance": Vector2(3200, 4000), "hall_it": Vector2(2390, 3500), "hall_stairs": Vector2(4040, 3710), "hall_breakfast": Vector2(4660, 3500)}
 
 static func interactions(zone: String) -> Array[Dictionary]:
+	if zone.begins_with("school_"): return School.interactions(zone)
 	match zone:
 		"hotel_it": return [
 			_target("hotel_it_return", "Porte · retour à la réception", Vector2(700, 800), 90),
@@ -80,6 +85,7 @@ static func _target(id: String, label: String, at: Vector2, radius: float) -> Di
 	return {"id": id, "label": label, "at": at, "radius": radius}
 
 static func walls(zone: String) -> Array[Rect2]:
+	if zone.begins_with("school_"): return School.walls(zone)
 	var size := extent(zone)
 	var result: Array[Rect2] = [
 		Rect2(40, 40, size.x - 80, 24), Rect2(40, size.y - 64, size.x - 80, 24),
@@ -121,6 +127,7 @@ static func chair_rect(table: Rect2) -> Rect2:
 	return Rect2(table.get_center().x - 36, table.end.y + 22, 72, 28)
 
 static func furniture_specs(zone: String) -> Array[Dictionary]:
+	if zone.begins_with("school_"): return School.furniture_specs(zone)
 	var result: Array[Dictionary] = []
 	match zone:
 		"building_02":
@@ -164,6 +171,7 @@ static func _prop(kind: String, rect: Rect2) -> Dictionary:
 	return {"kind": kind, "rect": rect}
 
 static func rooms(zone: String) -> Array[Rect2]:
+	if zone.begins_with("school_"): return School.rooms(zone)
 	match zone:
 		"building_02": return [Rect2(2200, 2820, 2100, 1290), Rect2(2200, 550, 2000, 2250), Rect2(300, 650, 1500, 1900), Rect2(4600, 650, 1500, 1900), Rect2(1450, 2800, 800, 920), Rect2(3850, 3000, 650, 720)]
 		"hotel_it": return [Rect2(80, 80, 1240, 740)]
