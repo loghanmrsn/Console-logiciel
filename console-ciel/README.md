@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.19.3** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.20.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_city_0.19.3.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_comfort_0.20.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.19.3.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.20.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.19.3.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.19.3.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.20.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.20.0.zip).
 - **Installation détaillée :** [Windows](docs/WINDOWS.md) · [Raspberry Pi](docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](docs/ENQUETE.md) · [Profils et clavier](docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](docs/ARCHITECTURE.md) · [Tests et livraisons](docs/DELIVERY.md) · [Problèmes connus](docs/KNOWN_ISSUES.md).
@@ -142,3 +142,5 @@ L’hôtel possède une façade détaillée avec toiture, balcons et entrée vit
 Après une réussite, **Rejouer cette mission** permet de refaire uniquement le défi concerné. Toutes les validations, les étages débloqués et les points sont conservés ; aucune récompense supplémentaire n’est attribuée. La remise à zéro complète reste une action distincte depuis **Nouvelle partie**.
 
 Le bus devant Sudo Hack permet de **revenir en ville à tout moment**, même avant la fin du CTF. Les épreuves réussies et les points restent conservés ; reprenez le bus en ville pour continuer.
+
+Les paramètres permettent de choisir quatre ambiances musicales et de personnaliser les touches du clavier et les boutons de manette. Maintenez **Maj** ou **le joystick gauche enfoncé** pour sprinter (+10 %). L’ascenseur du premier bâtiment propose aussi le choix direct d’un étage déjà débloqué. Les livres du chapitre 3 expliquent les exercices. Rejouer une mission conserve la progression du reste de l’enquête.
