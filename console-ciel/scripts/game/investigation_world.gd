@@ -546,7 +546,7 @@ func _is_target_available(target: Node2D) -> bool:
 		"hotel_coffee_machine": return morning_stage in [3, 4]
 		"hotel_backpack": return morning_stage == 5
 		"campus_bus": return morning_stage >= 6
-		"ctf_return_bus": return _pending_progress.get("ctf", {}).get("completed", []).size() == 5
+		"ctf_return_bus": return true
 
 	return target.interaction_id in ["elevator", "books"] or not _pending_progress.get("completed_missions", []).has(target.interaction_id)
 
