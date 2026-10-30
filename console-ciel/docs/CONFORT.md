@@ -10,4 +10,4 @@ Dans le premier bâtiment, l’ascenseur permet de choisir directement un étage
 
 Au chapitre 3, consultez les trois livres au coin ressources pour découvrir Python, HTML et Markdown. Le bouton **Rejouer cette mission** refait seulement l’exercice choisi : toute l’enquête ne recommence pas de zéro et aucune récompense n’est distribuée deux fois.
 
-L’hôtel de la ville porte désormais le nom **Ritz**. L’indication « L’hôtel CIEL · en face » a été retirée. Le logo officiel du lycée Louise Michel de Ruffec reste à intégrer dès réception de son fichier ; aucun logo de remplacement n’est présenté comme officiel.
+L’hôtel de la ville porte désormais le nom **Ritz**. L’indication « L’hôtel CIEL · en face » a été retirée. Le logo fourni du lycée Louise Michel de Ruffec figure sur les panneaux du nouveau lycée, accessible au deuxième arrêt de bus.
