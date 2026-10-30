@@ -11,3 +11,5 @@
 - **Godot Engine 4.6.3** : licence **MIT**, texte dans `licenses/GODOT_MIT.txt`, composants tiers dans `licenses/GODOT_THIRD_PARTY.json` et textes de licences dans `licenses/GODOT_LICENSE_TEXTS.json`. Référence : https://godotengine.org/license/.
 
 Les licences des ressources n'attribuent pas une licence globale au code scolaire : l'équipe pourra choisir cette licence ultérieurement. Conserver les notices Godot et tierces lors de la redistribution des exécutables.
+
+Le logo fourni du lycée Louise Michel de Ruffec (`lycee/logo_louise_michel.jpg`) est exclu de CC0. Droits réservés à ses titulaires ; voir `lycee/NOTICE.md`.
