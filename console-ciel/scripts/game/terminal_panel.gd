@@ -13,6 +13,7 @@ var phase := "user"
 var login_name := ""
 var pending_command := ""
 var _busy := false
+var replay := false
 
 func _ready() -> void:
 	name = "maze_terminal_panel"
@@ -49,7 +50,7 @@ func _ready() -> void:
 		if event.is_action_pressed("ui_down") or (event is InputEventJoypadButton and event.is_action_pressed("ui_accept")):
 			code_keyboard.focus_first_key()
 			editor.accept_event())
-	if InvestigationService.mission_state("maze") == "completed":
+	if InvestigationService.mission_state("maze") == "completed" and not replay:
 		output.text = "root@ciel:~#  uid=0(root) · droits complets enregistrés."
 		prompt.text = "Cette mission est terminée."
 		editor.hide()
@@ -60,7 +61,7 @@ func _ready() -> void:
 		close.pressed.connect(func(): close_requested.emit())
 		add_child(close)
 	else:
-		_set_phase("command" if InvestigationService.terminal_connected() else "user")
+		_set_phase("command" if InvestigationService.terminal_connected() and not replay else "user")
 
 func _set_phase(value: String) -> void:
 	phase = value
