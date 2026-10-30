@@ -200,3 +200,8 @@ static func label_for(action: String) -> String:
 		if event is InputEventKey: names.append(OS.get_keycode_string(event.keycode))
 		elif event is InputEventJoypadButton: names.append("bouton %d" % event.button_index)
 	return " / ".join(names)
+
+static func keyboard_label_for(action: String) -> String:
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey: return OS.get_keycode_string(event.keycode)
+	return "—"
