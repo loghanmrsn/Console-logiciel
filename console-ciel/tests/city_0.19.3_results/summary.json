@@ -1,0 +1,214 @@
+{
+  "version": "0.19.3",
+  "source": [
+    {
+      "name": "campus_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 154,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.83,
+      "script_sha256": "542d440a53ed243f6e088e30eedf4cdff1d6da812662a7c453fce1c2d213f4da",
+      "log": "/workspace/console-ciel-city-validation/regression/campus_services_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 511,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.94,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log": "/workspace/console-ciel-city-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "ctf_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 261,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.19,
+      "script_sha256": "f596aec8a5eaedd53884acfd2ab996d805733a445654b584d2b0b912491b6117",
+      "log": "/workspace/console-ciel-city-validation/regression/ctf_ui_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 520,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.48,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-city-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "morning_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 767,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.12,
+      "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+      "log": "/workspace/console-ciel-city-validation/regression/morning_services_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.55,
+      "script_sha256": "23c40cf585be0813f90556a7969d1bce0af4c9a831fa7a0086b8c014d81ae870",
+      "log": "/workspace/console-ciel-city-validation/regression/windows_contracts/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "ctf_ui_tests",
+      "assertions": 261,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f596aec8a5eaedd53884acfd2ab996d805733a445654b584d2b0b912491b6117",
+      "log_sha256": "ab7e715a194202a41005888dc229196513e071c8b2c7f78adffbdd755e31831a"
+    },
+    {
+      "platform": "linux",
+      "name": "ctf_ui_tests",
+      "assertions": 261,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f596aec8a5eaedd53884acfd2ab996d805733a445654b584d2b0b912491b6117",
+      "log_sha256": "ab7e715a194202a41005888dc229196513e071c8b2c7f78adffbdd755e31831a"
+    },
+    {
+      "platform": "windows",
+      "name": "ctf_services_tests",
+      "assertions": 511,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log_sha256": "43c84136b84f523b55ea51c27df2cc45be19399b2fa5d5e3695c5fd607568d16"
+    },
+    {
+      "platform": "linux",
+      "name": "ctf_services_tests",
+      "assertions": 511,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log_sha256": "43c84136b84f523b55ea51c27df2cc45be19399b2fa5d5e3695c5fd607568d16"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8659c6d41789ba008c4d4a8e2f1b72bf37fbc644e460b4830f3bb6f566047587",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8659c6d41789ba008c4d4a8e2f1b72bf37fbc644e460b4830f3bb6f566047587",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 301,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_base64_challenge.png",
+        "bytes": 124538,
+        "sha256": "2431db6de04d961fe1812a4ecd91108c8c45118aeb6844ca5ab25c81202120ad"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_bus_retour_challenge.png",
+        "bytes": 87382,
+        "sha256": "2a539d4fbd11fa262be5aff9055a9db4b9f5d2060205be4270ff45f9cf78ee15"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_compact_challenge.png",
+        "bytes": 77886,
+        "sha256": "bc4f7b4918c87eddbb7412c05a02753b3fdabc263ca56c641603c0e433d5adaa"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_flag_challenge.png",
+        "bytes": 118807,
+        "sha256": "87d7e10a8608217c45994cbfa05d3f0403473d7137ece09555bf96332016e177"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_hall_challenge.png",
+        "bytes": 95043,
+        "sha256": "92473e522a54fccb01d3b0974e3a0fd4d65add7f15d0305739e891a7702bd690"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_logs_challenge.png",
+        "bytes": 140523,
+        "sha256": "8603efb5822f64b7c9f9670104653dc8a51bb3dd0b2e4fd5de19c1064795a639"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_permissions_challenge.png",
+        "bytes": 134693,
+        "sha256": "8320cc8683467e167ee97d99218a96a021e36adefe5e99c534da76a8d57fe6ca"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_phishing_challenge.png",
+        "bytes": 137457,
+        "sha256": "b0968d5cf6cbdb6e112fb7595b321573b9a612a7d8e61930731eb83dfe44246c"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_retour_anticipe_challenge.png",
+        "bytes": 80115,
+        "sha256": "b1e4c47154971c9bc420ecc78ee8f1c65e2ecfe3521172a7475c27080b0cd4a1"
+      },
+      {
+        "file": "docs/screenshots/city_0.19.3/ctf_ui_tests/ctf_retour_ville_challenge.png",
+        "bytes": 104031,
+        "sha256": "d2e5b5c598a9d3fdc13cb546a1926c88355584765534eb1c899b9fa895372a4c"
+      }
+    ],
+    "script_sha256": "f596aec8a5eaedd53884acfd2ab996d805733a445654b584d2b0b912491b6117",
+    "log_sha256": "0d6183f913d40e450179d83dea110f9a160d4507fde15f59c11975a420333f0f"
+  },
+  "native_windows_execution": false,
+  "native_arm64_execution": false
+}
