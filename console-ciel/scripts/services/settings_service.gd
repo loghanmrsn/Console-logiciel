@@ -3,9 +3,11 @@ const InputMapping=preload('res://scripts/input_setup.gd')
 
 signal settings_changed(settings: Dictionary)
 
-const OPTIONAL_KEYS := ["appearance_style", "background_color", "button_color", "home_layout"]
+const OPTIONAL_KEYS := ["appearance_style", "background_color", "button_color", "home_layout", "music_track", "bindings"]
 const APPEARANCE_STYLES := ["profile", "brume", "sable", "sauge", "nuit", "aurore"]
-var defaults: Dictionary = {"master": 75, "music": 35, "effects": 65, "fullscreen": false, "large_text": false, "reduce_motion": false, "reduce_transparency": false, "deadzone": 0.25, "appearance_style": "profile", "background_color": "", "button_color": "", "home_layout": "split"}
+const MUSIC_TRACKS := {"menu": "Piano doux", "ambient": "Ambiance calme", "electro": "Électro légère", "chiptune": "Rétro 8 bits"}
+var _selected_track := "menu"
+var defaults: Dictionary = {"master": 75, "music": 35, "effects": 65, "fullscreen": false, "large_text": false, "reduce_motion": false, "reduce_transparency": false, "deadzone": 0.25, "appearance_style": "profile", "background_color": "", "button_color": "", "home_layout": "split", "music_track": "menu", "bindings": {}}
 var current: Dictionary = defaults.duplicate(true)
 var committed: Dictionary = defaults.duplicate(true)
 var storage_root: String = ""
@@ -55,6 +57,12 @@ func _normalize(values: Dictionary) -> Dictionary:
 			if not (value is int or value is float) or not is_finite(float(value)) or float(value) != floor(float(value)) or float(value) < 0 or float(value) > 100:
 				return {"ok": false, "error": "Le volume doit être un entier de 0 à 100 : " + key, "data": null}
 			result[key] = int(value)
+		elif key == "music_track":
+			if not value is String or value not in MUSIC_TRACKS: return {"ok": false, "error": "Musique inconnue.", "data": null}
+			result[key] = value
+		elif key == "bindings":
+			if not InputMapping.valid_bindings(value): return {"ok": false, "error": "Commandes personnalisées invalides.", "data": null}
+			result[key] = value.duplicate(true)
 		elif key == "deadzone":
 			if not (value is int or value is float) or not is_finite(float(value)) or float(value) < 0.1 or float(value) > 0.6:
 				return {"ok": false, "error": "La zone morte doit être comprise entre 0,10 et 0,60.", "data": null}
@@ -230,7 +238,9 @@ func _apply(values: Dictionary) -> void:
 		var amount: int = current[pair[1]]
 		AudioServer.set_bus_mute(index, amount == 0)
 		AudioServer.set_bus_volume_db(index, linear_to_db(maxf(float(amount) / 100.0, 0.0001)))
+	InputMapping.apply_bindings(current.bindings, float(current.deadzone))
 	InputMapping.set_deadzone(float(current.deadzone))
+	_select_music(str(current.music_track))
 	if DisplayServer.get_name() != "headless":
 		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if current.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
 		DisplayServer.window_set_mode(mode)
@@ -289,3 +299,16 @@ func play_effect() -> void:
 	_ensure_audio()
 	if is_instance_valid(_effect_player) and _effect_player.stream != null:
 		_effect_player.play()
+
+func _select_music(track: String) -> void:
+	if track == _selected_track or not is_instance_valid(_music_player): return
+	var stream := _load_sound("res://assets/audio/" + track + ".wav")
+	if stream == null: return
+	stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	stream.loop_begin = 0
+	stream.loop_end = stream.data.size() / 2
+	var playing := _music_player.playing
+	_music_player.stop()
+	_music_player.stream = stream
+	_selected_track = track
+	if playing: _music_player.play()
