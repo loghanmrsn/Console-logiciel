@@ -106,7 +106,7 @@ func refresh() -> void:
 		objectives_expanded = true
 	_last_morning_stage = morning_stage
 	if morning_stage > 0:
-		objective_text.text = ("Entrez au lycée et découvrez la salle cyber. Bus : retour en ville." if current_room.begins_with("school_") else _morning_objective(morning_stage, current_room))
+		objective_text.text = (("Découvrez les postes, le tableau et les baies réseau. Sortez pour retrouver le bus." if current_room == "school_cyber" else "Entrez au lycée et découvrez la salle cyber. Bus : retour en ville.") if current_room.begins_with("school_") else _morning_objective(morning_stage, current_room))
 	elif not state.get("reserved", false):
 		objective_text.text = "Réservez votre chambre à la réception."
 	elif not state.get("repaired", false):
@@ -618,7 +618,7 @@ func _collect_backpack() -> void:
 func _show_bus() -> void:
 	game._open_overlay("hotel_bus")
 	game._label(game.modal_content, "Choisir un arrêt", 27)
-	game._label(game.modal_content, "Le bus vous dépose devant le bâtiment du CTF Sudo Hack. Votre sac et votre ordinateur doivent être avec vous.")
+	game._label(game.modal_content, "Choisissez le CTF Sudo Hack ou le lycée Louise Michel de Ruffec. Emportez votre sac et votre ordinateur.")
 	game._button(game.modal_content, "1 · CTF Sudo Hack", _board_bus, "hotel_bus_board")
 	game._button(game.modal_content, "2 · Lycée Louise Michel", func(): _board_bus("school_stop"), "school_bus_board")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "hotel_bus_close")
