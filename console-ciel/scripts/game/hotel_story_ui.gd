@@ -1,7 +1,7 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ZONES := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
@@ -100,12 +100,13 @@ func refresh() -> void:
 	objective_title.text = "HÔTEL RITZ · " + ({"hotel_stairs_1": "PALIER 1", "hotel_floor_2": "ÉTAGE 2", "hotel_room_206": "CHAMBRE 206", "hotel_breakfast": "PETIT DÉJEUNER", "courtyard": "ARRÊT DE BUS"}.get(current_room, "RÉCEPTION"))
 	if current_room in ["ctf_bus_stop", "ctf_lobby"]:
 		objective_title.text = "SUDO HACK · " + ("ARRIVÉE" if current_room == "ctf_bus_stop" else "ACCUEIL")
+	if current_room.begins_with("school_"): objective_title.text = "LYCÉE LOUISE MICHEL · RUFFEC"
 	var morning_stage := int(state.get("morning_stage", 0))
 	if morning_stage > 0 and morning_stage != _last_morning_stage:
 		objectives_expanded = true
 	_last_morning_stage = morning_stage
 	if morning_stage > 0:
-		objective_text.text = _morning_objective(morning_stage, current_room)
+		objective_text.text = ("Entrez au lycée et découvrez la salle cyber. Bus : retour en ville." if current_room.begins_with("school_") else _morning_objective(morning_stage, current_room))
 	elif not state.get("reserved", false):
 		objective_text.text = "Réservez votre chambre à la réception."
 	elif not state.get("repaired", false):
@@ -267,6 +268,13 @@ func can_pause_bed() -> bool:
 func handle_target(id: String) -> bool:
 	if id.trim_prefix("ctf_") in CtfCatalog.IDS:
 		_show_ctf(id.trim_prefix("ctf_"))
+		return true
+	if id.begins_with("school_"):
+		match id:
+			"school_enter": _show_travel("school_cyber", "Salle cyber", "Bienvenue au lycée Louise Michel de Ruffec. Découvrez les postes et le laboratoire réseau.")
+			"school_exit": _show_travel("school_stop", "Sortir du lycée", "Rejoignez l’arrêt de bus devant l’entrée.")
+			"school_bus": _show_return_bus()
+			_: game._show_dialog("Salle cyber · Louise Michel", {"school_network": "Baie pédagogique : commutateur, routeur, panneau de brassage et onduleur. Les équipements de ce laboratoire sont isolés du réseau réel.", "school_course": "Espace de cours : observez les postes, les câbles et les équipements. Les prochains défis seront ajoutés ici."}.get(id, "Poste de travail équipé : écran, clavier, souris et unité centrale. Les prochaines épreuves seront préparées dans cette salle."), game._close_overlay)
 		return true
 	if not id.begins_with("hotel_") and id not in ["campus_bus", "ctf_enter", "ctf_leave", "ctf_return_bus"]:
 		return false
@@ -609,21 +617,22 @@ func _collect_backpack() -> void:
 
 func _show_bus() -> void:
 	game._open_overlay("hotel_bus")
-	game._label(game.modal_content, "Arrêt de bus · Sudo Hack", 27)
+	game._label(game.modal_content, "Choisir un arrêt", 27)
 	game._label(game.modal_content, "Le bus vous dépose devant le bâtiment du CTF Sudo Hack. Votre sac et votre ordinateur doivent être avec vous.")
-	game._button(game.modal_content, "Prendre le bus", _board_bus, "hotel_bus_board")
+	game._button(game.modal_content, "1 · CTF Sudo Hack", _board_bus, "hotel_bus_board")
+	game._button(game.modal_content, "2 · Lycée Louise Michel", func(): _board_bus("school_stop"), "school_bus_board")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "hotel_bus_close")
 	game._wire_modal()
 
-func _board_bus() -> void:
-	var result: Dictionary = HotelService.board_bus()
+func _board_bus(destination: String = "ctf_bus_stop") -> void:
+	var result: Dictionary = HotelService.board_bus(destination)
 	if not result.ok:
 		_show_error("Trajet non enregistré", result, _show_bus)
 		return
 	game.world.restore_progress(AppState.profile.progress)
 	game.world.restore_checkpoint()
 	game._close_overlay()
-	game.notification_requested.emit("Sudo Hack · Entrez dans le bâtiment du CTF")
+	game.notification_requested.emit("Lycée Louise Michel · Entrez dans la salle cyber" if destination == "school_stop" else "Sudo Hack · Entrez dans le bâtiment du CTF")
 
 func _notify_reward(result: Dictionary, message: String) -> void:
 	var reward := int(result.get("reward", 0))
