@@ -83,7 +83,7 @@ func _hall() -> void:
 		_window(Rect2(x, 76, 300, 110))
 
 func _hall_signage() -> void:
-	_text("HÔTEL CIEL", Vector2(3200, 3320), 37, INK, true)
+	_text("HÔTEL RITZ", Vector2(3200, 3320), 37, INK, true)
 	_text("★ ★ ★ ★ ★", Vector2(3200, 3360), 23, GOLD, true)
 	_text("RÉCEPTION", Vector2(3200, 3587), 25, INK, true)
 	_person(Vector2(3200, 3402), false)
