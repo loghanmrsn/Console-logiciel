@@ -1,3 +1,15 @@
+# Livraison 0.20.0 — musique, commandes et déplacements
+
+Hôtel renommé Ritz dans les décors et dialogues ; indication « en face » retirée. Quatre ambiances musicales originales CC0, sélection immédiate avec application/annulation et sauvegarde. Personnalisation des touches clavier et des boutons manette, détection des conflits de jeu, restauration des valeurs par défaut. Sprint maintenu sur Maj/L3 : exactement +10 % (190 → 209), collisions inchangées. Destinations directes de l’ascenseur limitées aux chapitres débloqués. Invitation à consulter les livres, même sur un profil ayant terminé toute l’enquête. Le texte de rejeu précise que seule la mission de l’étage est rejouée.
+
+Les réglages supplémentaires restent optionnels pour lire les anciens fichiers. Aucun changement de schéma des profils, aucune remise à zéro de la progression. [Utilisation](CONFORT.md).
+
+Recette du 30 octobre 2026 : 12 suites sources (6623 assertions), 8 suites sur les packs Windows et ARM64 (876 assertions), et 55 contrôles natifs X11 / Mesa llvmpipe. Aucun échec final. Entrées clavier et manette simulées, écran 1280 × 720 et 800 × 480, trajet direct, sauvegarde/rechargement, échec d’écriture, annulation et retour aux réglages initiaux, conflit de touche et déplacement de la carte testés.
+
+[Résultats](../tests/comfort_0.20.0_results/summary.json). Les packs sont exécutés par Godot Linux x86_64 ; les essais natifs Windows et Raspberry Pi, l’écoute réelle du son et la manette physique restent à effectuer. Archives CRC et SHA256 vérifiées, anciennes livraisons conservées. Le logo officiel du lycée Louise Michel de Ruffec attend son fichier : il n’est pas inclus dans cette livraison.
+
+---
+
 # Livraison 0.19.3 — retour en ville pendant le CTF
 
 Le bus devant Sudo Hack est interactif dès l’arrivée, même avec zéro épreuve réussie. Le bouton **Revenir en ville** ramène sur le trottoir près de l’hôtel. Réponses, récompenses, solde et sac sont conservés. Le bus en ville permet de revenir et de continuer au prochain poste. Le retour après les cinq réussites conserve son comportement.
