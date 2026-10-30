@@ -50,6 +50,18 @@ func _run() -> void:
 	await _key(KEY_SPACE)
 	_check(app.demo.overlay_kind == "dialog", "Le dernier poste explique son verrouillage")
 	await _dismiss_dialog()
+	await _travel_target("ctf_leave", "ctf_bus_stop")
+	await _target("ctf_return_bus")
+	await _key(KEY_SPACE)
+	await _capture("ctf_retour_anticipe_challenge")
+	await _failed_action("ctf_bus_return", "ctf_bus", "Retour anticipé")
+	await _activate("ctf_bus_return", true)
+	_check(app.demo.world.room_id == "courtyard" and state.profile.wallet.points == 750, "Retour en ville à zéro épreuve, sans perte de points")
+	await _resume_area("courtyard", "Reprise du retour anticipé")
+	_check(hotel.board_bus().ok, "Reprendre le bus vers le CTF")
+	app.demo.world.restore_progress(state.profile.progress)
+	app.demo.world.restore_checkpoint()
+	await _travel_target("ctf_enter", "ctf_lobby")
 	for index in range(5):
 		var id: String = CtfCatalog.IDS[index]
 		await _target("ctf_" + id)
