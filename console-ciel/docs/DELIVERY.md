@@ -1,3 +1,15 @@
+# Livraison 0.19.3 — retour en ville pendant le CTF
+
+Le bus devant Sudo Hack est interactif dès l’arrivée, même avec zéro épreuve réussie. Le bouton **Revenir en ville** ramène sur le trottoir près de l’hôtel. Réponses, récompenses, solde et sac sont conservés. Le bus en ville permet de revenir et de continuer au prochain poste. Le retour après les cinq réussites conserve son comportement.
+
+Aucun changement de schéma des sauvegardes : un retour anticipé reprend l’état hôtel « sac récupéré, prêt à prendre le bus », avec les réponses CTF intactes. Le trajet est enregistré avant le déplacement ; une erreur d’écriture laisse le joueur à l’arrêt.
+
+Recette du 30 octobre 2026 : 6 suites sources (2231 assertions), 6 suites sur les packs Windows et ARM64 (1766 assertions), et 301 contrôles natifs X11 / Mesa llvmpipe. Aucun échec final. Tests de retour avant toute épreuve et après chacune des quatre premières, rechargement en ville, visite à l’hôtel et reprise du CTF ; choix natifs clavier/manette simulée, échec disque et retour final.
+
+[Résultats](../tests/city_0.19.3_results/summary.json). Les packs sont exécutés par Godot Linux x86_64 ; les essais natifs Windows et Raspberry Pi, le son et la manette physique restent à effectuer. Archives CRC et SHA256 vérifiées, anciennes livraisons conservées.
+
+---
+
 # Livraison 0.19.2 — rejouer une mission sans effacer le parcours
 
 Le bouton du bilan appelait auparavant le démarrage d’une nouvelle enquête. Il devient **Rejouer cette mission**, avec une confirmation qui sélectionne **Annuler** par défaut. Le même choix est proposé après la réussite d’un défi. Seul le panneau de réponses est rouvert : missions validées, indices, étages débloqués, points, récompenses et achats restent conservés. Les observations déjà consultées restent disponibles. Le service existant revalide la réponse et ne crédite aucune seconde récompense.
