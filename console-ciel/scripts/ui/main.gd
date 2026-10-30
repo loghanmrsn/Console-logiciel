@@ -1060,7 +1060,7 @@ func _new_game() -> void:
 		_confirm('Réinitialiser le parcours Dev ?','Les défis resteront validés. Vos points, achats et pénalités seront conservés.','Réinitialiser Dev',_start_game)
 		return
 	if AppState.profile.progress.started:
-		_confirm('Nouvelle partie ?','La progression actuelle de l’enquête sera remise à zéro. Vos achats, points et récompenses déjà attribuées seront conservés ; rejouer ne donne pas de points supplémentaires.','Recommencer',_start_game)
+		_confirm('Nouvelle partie ?','La progression actuelle de l’enquête sera remise à zéro. Vos achats, points et récompenses déjà attribuées seront conservés ; rejouer ne donne pas de points supplémentaires.','Réinitialiser toute l’enquête',_start_game)
 	else: _start_game()
 
 func _start_game() -> void:
