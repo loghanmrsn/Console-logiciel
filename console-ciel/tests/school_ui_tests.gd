@@ -45,6 +45,15 @@ func _run() -> void:
 	await _frames(8)
 	await _approach("school_enter")
 	await _capture("lycee_facade_challenge")
+	var custom: Dictionary = settings.current.duplicate(true)
+	custom.bindings = {"game_map": {"key": KEY_M}, "pause": {"key": KEY_F10}}
+	_check(settings.preview(custom).ok, "Personnaliser la carte et la pause")
+	await _frames(5)
+	_check("M" in str(_find("campus_map_toggle").text), "La carte affiche son nouveau raccourci")
+	_check("F10" in str(_find("game_pause").text), "La pause affiche son nouveau raccourci")
+	settings.cancel_preview()
+	await _frames(5)
+	_check("P" in str(_find("game_pause").text), "Annuler restaure aussi la légende")
 	await _key(KEY_SPACE)
 	_check(app.demo.overlay_kind == "hotel_travel", "Porte du lycée accessible")
 	# Travel has its own save-before-move contract; exercise that service then restore.
