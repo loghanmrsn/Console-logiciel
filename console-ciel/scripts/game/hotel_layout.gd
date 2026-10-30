@@ -29,7 +29,7 @@ static func title(zone: String) -> String:
 		"hotel_breakfast": return "Petit déjeuner · rez-de-chaussée"
 		"ctf_bus_stop": return "sudo hack · arrêt du bus"
 		"ctf_lobby": return "sudo hack · accueil du CTF"
-		_: return "Hôtel CIEL · grand hall"
+		_: return "Hôtel Ritz · grand hall"
 
 static func checkpoints(zone: String) -> Dictionary:
 	match zone:
