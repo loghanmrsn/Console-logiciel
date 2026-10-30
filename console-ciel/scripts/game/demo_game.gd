@@ -60,6 +60,7 @@ var _modal_serial := 0
 var _busy := false
 var _restored := false
 var _last_profile_id := ''
+var _last_completed_mission := ''
 var _pending_focus_key := ''
 var _controller_waiting := false
 var _controller_message := ''
@@ -235,6 +236,7 @@ func refresh() -> void:
 	_sync_overlay_theme()
 	if not AppState.profile.is_empty():
 		var changed: bool = _last_profile_id != str(AppState.profile.id)
+		if changed: _last_completed_mission = ''
 		if changed and not _last_profile_id.is_empty() and not overlay_kind.is_empty():
 			_discard_controller_context()
 			_close_overlay()
@@ -485,6 +487,7 @@ func _interaction_requested(id: String) -> void:
 
 func _mission_completed(result: Dictionary) -> void:
 	var data: Dictionary = result.get('data', {})
+	_last_completed_mission = str(data.get('mission_id', ''))
 	var reward: int = int(data.get('reward', 0))
 	var explanation: String = str(data.get('explanation', 'L’équipement est rétabli.'))
 	var clue_text: String = str(data.get('clue', {}).get('text', ''))
@@ -495,6 +498,8 @@ func _mission_completed(result: Dictionary) -> void:
 	var next: Callable = _show_conclusion if data.get('mission_id') in ['computer', 'security', 'markdown', 'subnet_mask', 'maze'] else _close_overlay
 	if data.get('mission_id') == 'maze': next = _show_maze_success_return
 	_show_dialog('✓ Mission terminée', explanation + '\n\n' + reward_text + '\nProgression et récompense sauvegardées.', next)
+	_button(modal_content, 'Rejouer cette mission', _confirm_replay, 'mission_replay')
+	_wire_modal()
 
 func _show_library() -> void:
 	_open_overlay('library')
@@ -672,7 +677,7 @@ func handle_back() -> void:
 	match overlay_kind:
 		'controller_pause': return
 		'': request_pause()
-		'confirm': _show_conclusion()
+		'confirm': _cancel_replay()
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
@@ -740,25 +745,57 @@ func _show_conclusion() -> void:
 	var stay := _button(modal_content, 'Revenir dans la pièce', _close_overlay, 'conclusion_stay')
 	stay.theme_type_variation = 'PrimaryButton'
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'conclusion_menu')
-	_button(modal_content, 'Rejouer', _confirm_replay, 'conclusion_replay')
+	_button(modal_content, 'Rejouer cette mission', _confirm_replay, 'conclusion_replay')
 	_wire_modal()
+
+func _replay_target() -> String:
+	var definitions: Array = InvestigationService.chapter_missions()
+	for definition in definitions:
+		if definition.id == _last_completed_mission and definition.id in AppState.profile.progress.completed_missions:
+			return _last_completed_mission
+	# After a reload, the chapter's last completed objective is the relevant one.
+	for index in range(definitions.size() - 1, -1, -1):
+		if definitions[index].id in AppState.profile.progress.completed_missions:
+			return str(definitions[index].id)
+	return ''
 
 func _confirm_replay() -> void:
+	var id := _replay_target()
+	if id.is_empty(): return
 	_open_overlay('confirm')
-	_label(modal_content, 'Rejouer l’enquête ?', 26)
-	_label(modal_content, 'Les objectifs et indices de cette partie seront remis à zéro. Vos achats, votre solde et les récompenses déjà attribuées restent conservés : aucune mission déjà récompensée ne rapportera de nouveaux points.')
-	_button(modal_content, 'Annuler', _show_conclusion, 'replay_cancel')
-	_button(modal_content, 'Rejouer', _replay, 'replay_confirm')
+	_label(modal_content, 'Rejouer uniquement cette mission ?', 26)
+	_label(modal_content, str(InvestigationService.mission(id).name))
+	_label(modal_content, 'Cette mission reste validée. Votre progression, vos étages débloqués, vos points et vos achats sont conservés. Vous pouvez refaire les réponses, sans gagner une seconde récompense.')
+	_button(modal_content, 'Annuler', _cancel_replay, 'replay_cancel')
+	_button(modal_content, 'Rejouer cette mission', _replay, 'replay_confirm')
+	_pending_focus_key = 'replay_cancel'
 	_wire_modal()
 
+func _cancel_replay() -> void:
+	if InvestigationService.conclusion().ok: _show_conclusion()
+	else: _close_overlay()
+
 func _replay() -> void:
-	var result: Dictionary = ProfileService.start_game()
-	if not result.ok:
-		_show_dialog('Sauvegarde impossible', result.error, _show_conclusion)
+	if _busy or overlay_kind != 'confirm': return
+	var id := _replay_target()
+	if id.is_empty(): return
+	if id == 'maze':
+		if world.room_id == 'room_05':
+			_switch_maze(true)
+			if world.room_id != 'maze_05': return
+		_show_terminal(true)
 		return
-	world.restore_progress(AppState.profile.progress)
-	world.restore_checkpoint()
-	_close_overlay()
+	# Completed missions can be revalidated by the existing service without any
+	# write or new reward. Only this panel's response controls are recreated.
+	_open_overlay('challenge')
+	challenge = Challenge.new()
+	modal_content.add_child(challenge)
+	challenge.configure(id)
+	challenge.close_requested.connect(_close_overlay)
+	challenge.notification_requested.connect(func(message): notification_requested.emit(message))
+	challenge.navigation_changed.connect(_wire_modal)
+	challenge.mission_completed.connect(_mission_completed)
+	_wire_modal()
 
 func _show_npc(id: String) -> void:
 	var character := NpcCatalog.find(id)
@@ -977,13 +1014,14 @@ func _switch_maze(entering: bool) -> void:
 	world.restore_checkpoint()
 	_close_overlay()
 
-func _show_terminal() -> void:
+func _show_terminal(replay := false) -> void:
 	var ready: Dictionary = InvestigationService.begin_mission('maze')
 	if not ready.ok:
 		_show_dialog('Terminal indisponible',str(ready.error),_close_overlay)
 		return
 	_open_overlay('terminal')
 	terminal_panel = MazeTerminal.new()
+	terminal_panel.replay = replay
 	modal_content.add_child(terminal_panel)
 	terminal_panel.close_requested.connect(_close_overlay)
 	terminal_panel.mission_completed.connect(_mission_completed)
