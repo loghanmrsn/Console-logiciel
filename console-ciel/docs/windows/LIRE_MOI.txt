@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.19.1 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.19.2 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -327,7 +327,7 @@ Fiche complète : https://github.com/loghanmrsn/Console-logiciel/tree/main/solut
 Un ancien Dev garde son solde : Réinitialiser sa progression valide
 aussi le CTF, sans ajouter de points ni retirer ses achats.
 
-FLUIDITÉ ET TERMINAL DEV — 0.19.1
+FLUIDITÉ ET TERMINAL DEV — 0.19.2
 Caméra et personnages utilisent l’interpolation physique ; la marche accélère
 progressivement, sans glissement au relâchement. Textures filtrées et regard
 PNJ adouci ; les téléportations restent instantanées. Échap ferme les panneaux CTF.
