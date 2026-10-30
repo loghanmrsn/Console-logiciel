@@ -307,10 +307,9 @@ func board_bus() -> Dictionary:
 func return_bus() -> Dictionary:
 	var ready := _ready_for(["ctf_bus_stop"])
 	if not ready.ok: return ready
-	if not CtfService.completed():
-		return SaveService._fail("Terminez les cinq épreuves Sudo Hack avant le voyage de retour.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	progress.hotel.morning_stage = 9
+	# Stage 6 permits city visits and boarding again; CTF answers/receipts stay intact.
+	progress.hotel.morning_stage = 9 if CtfService.completed() else 6
 	progress.room_id = "courtyard"
 	progress.checkpoint_id = "from_first"
 	progress.active_mission = ""
