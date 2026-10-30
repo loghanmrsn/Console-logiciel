@@ -41,7 +41,6 @@ func _courtyard() -> void:
 	for y in [465,940]:
 		var at := Vector2(900,y)
 		draw_polyline(PackedVector2Array([at+Vector2(-18,15),at,at+Vector2(18,15)]),Color("75988d"),5,true)
-	_text("L’HÔTEL CIEL · EN FACE",Vector2(900,460),27,true)
 	draw_rect(Road.ROAD, Color("525f65"))
 	draw_rect(Rect2(64, 568, 1672, 12), Color("b9b9ad"))
 	draw_rect(Rect2(64, 820, 1672, 12), Color("b9b9ad"))
@@ -79,7 +78,7 @@ func _hotel_facade() -> void:
 		draw_colored_polygon(PackedVector2Array([Vector2(x-8,142),Vector2(x+30,102),Vector2(x+68,142)]),Color("e4dcc6"))
 		_facade_window(Vector2(x+8,125),Vector2(44,33),false)
 	draw_rect(Rect2(735,165,330,165),Color("eee3ca"))
-	_text("HÔTEL CIEL",Vector2(900,205),29,true)
+	_text("HÔTEL RITZ",Vector2(900,205),29,true)
 	_text("★ ★ ★ ★ ★",Vector2(900,232),20,true)
 	# Recessed glazed entrance and four stone columns.
 	draw_rect(Rect2(814,251,172,79),Color("526f70"))
