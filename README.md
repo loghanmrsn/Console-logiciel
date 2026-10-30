@@ -1,4 +1,4 @@
-# Console CIEL
+# Console Logiciel
 
 **Version 0.19.1** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
