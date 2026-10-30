@@ -133,7 +133,7 @@ func _build() -> void:
 	var top=HBoxContainer.new()
 	top.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	hud_column.add_child(top)
-	var pause_button=_button(top,'Pause · P',request_pause,'game_pause')
+	var pause_button=_button(top,'Pause · ' + InputSetup.keyboard_label_for('pause'),request_pause,'game_pause')
 	pause_button.custom_minimum_size=Vector2(136,44)
 	pause_button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	pause_button.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
@@ -314,6 +314,8 @@ func _fit_minimum() -> void:
 
 func _settings_changed(_value: Dictionary) -> void:
 	if is_inside_tree():
+		var pause_control := find_child("game_pause", true, false) as Button
+		if pause_control != null: pause_control.text = "Pause · " + InputSetup.keyboard_label_for("pause")
 		_interact_button.text = "Interagir · " + InputSetup.label_for("game_interact")
 		_sync_overlay_theme()
 		_update_objectives()
