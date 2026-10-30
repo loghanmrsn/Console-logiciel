@@ -322,7 +322,7 @@ func _responsive() -> void:
 	var margin=12 if compact else 28
 	if shell_column!=null:shell_column.add_theme_constant_override('separation',10 if compact else 16)
 	if footer!=null and screen=='game':
-		footer.text=('ZQSD / joystick : marcher · → : carte · Espace : interagir · P : pause' if is_instance_valid(demo) and demo.world != null and HotelLayout.is_zone(demo.world.room_id) else 'Flèches / joystick · Espace : interagir · T / face haut : missions · P / Start : pause')
+		footer.text=_game_controls_hint()
 	if footer!=null and screen in ['home','shop','profiles','help']:
 		footer.text='Flèches / joystick · Entrée / face bas : valider · Échap : retour'
 	var horizontal=maxi(margin,int((size.x-1400)/2))
@@ -1084,7 +1084,7 @@ func _continue_game() -> void:
 
 func _game() -> void:
 	header_back.hide()
-	footer.text='Flèches / joystick : déplacement · Espace / face bas : interagir · T / face haut : missions · P : pause'
+	footer.text=_game_controls_hint()
 	if not is_instance_valid(demo):
 		demo=Demo.new()
 		demo.menu_requested.connect(func():
@@ -1177,6 +1177,7 @@ func _settings() -> void:
 			_slider(panel,'Volume général','master',0,100,1,'%')
 			_slider(panel,'Musique','music',0,100,1,'%')
 			_slider(panel,'Effets','effects',0,100,1,'%')
+			_music_selection(panel)
 			_button(panel,'Écouter un effet',func(): SettingsService.play_effect(),'test_effect')
 		1:
 			_label(panel,'Votre écran et votre bibliothèque',22)
@@ -1190,6 +1191,11 @@ func _settings() -> void:
 		3:
 			_slider(panel,'Zone morte du joystick','deadzone',.1,.6,.01,'')
 			axes_label=_label(panel,'',0,true)
+			var editor=preload('res://scripts/ui/binding_editor.gd').new()
+			panel.add_child(editor)
+			editor.configure(draft_settings.get('bindings',{}))
+			editor.changed.connect(func(value): draft_settings.bindings=value; SettingsService.preview(draft_settings))
+			_label(panel,'Sprint : maintenir Maj ou le joystick gauche enfoncé · vitesse +10 %.',0,true)
 			_button(panel,'Test des commandes',func(): controls_origin='settings'; _show_screen('controls'),'test_controls')
 			_label(panel,'La correspondance USB HID du contrôleur fabriqué devra être mesurée sur le matériel. Le joystick au repos doit rester dans la zone morte.',0,true)
 		4:
@@ -1629,3 +1635,19 @@ func _dev_terminal() -> void:
 	content.add_child(console)
 	console.close_requested.connect(func(): _show_screen("profiles"))
 	console.navigation_changed.connect(func(): _responsive(); _wire_navigation())
+
+func _music_selection(host: Node) -> void:
+	_label(host, 'Ambiance musicale', 20)
+	var selector := OptionButton.new()
+	selector.name = 'setting_music_track'
+	selector.custom_minimum_size.y = 44
+	var ids: Array = SettingsService.MUSIC_TRACKS.keys()
+	for id in ids: selector.add_item(SettingsService.MUSIC_TRACKS[id])
+	selector.selected = ids.find(draft_settings.get('music_track', 'menu'))
+	selector.item_selected.connect(func(index):
+		draft_settings.music_track = ids[index]
+		SettingsService.preview(draft_settings))
+	host.add_child(selector)
+
+func _game_controls_hint() -> String:
+	return '%s : interagir · %s : sprint · %s : missions · %s : carte · %s : pause' % [InputSetup.label_for('game_interact'), InputSetup.label_for('game_sprint'), InputSetup.label_for('game_missions'), InputSetup.label_for('game_map'), InputSetup.label_for('pause')]
