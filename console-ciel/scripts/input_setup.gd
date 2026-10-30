@@ -5,7 +5,18 @@ extends RefCounted
 ## controller_mapping.json; gameplay code consumes named InputMap actions.
 const NO_CONTROLLER_DEVICE := 2147483647
 const MAPPING_PATH := "res://data/controller_mapping.json"
-const JOY_ACTIONS := ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "tab_previous", "tab_next", "game_up", "game_down", "game_left", "game_right", "game_interact", "game_missions", "pause"]
+const JOY_ACTIONS := ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "tab_previous", "tab_next", "game_up", "game_down", "game_left", "game_right", "game_interact", "game_missions", "pause", "game_sprint"]
+const CUSTOM_ACTIONS := {
+ "game_up": "Marcher vers le haut", "game_down": "Marcher vers le bas",
+ "game_left": "Marcher à gauche", "game_right": "Marcher à droite",
+ "game_interact": "Interagir", "game_missions": "Missions", "game_map": "Carte",
+ "game_sprint": "Sprint (+10 %)", "pause": "Pause",
+ "ui_accept": "Valider", "ui_cancel": "Retour",
+ "ui_up": "Menu : haut", "ui_down": "Menu : bas",
+ "ui_left": "Menu : gauche", "ui_right": "Menu : droite",
+ "tab_previous": "Catégorie précédente", "tab_next": "Catégorie suivante"
+}
+static var _applied_bindings: Dictionary = {}
 static var controller_device := NO_CONTROLLER_DEVICE
 static var mapping_error := ""
 static var _joy_mapping: Dictionary = {}
@@ -21,7 +32,7 @@ static func configure(deadzone: float = 0.25) -> Dictionary:
 		"tab_previous": [_key(KEY_Q)], "tab_next": [_key(KEY_E)],
 		"game_up": [_key(KEY_UP), _key(KEY_Z)], "game_down": [_key(KEY_DOWN), _key(KEY_S)],
 		"game_left": [_key(KEY_LEFT), _key(KEY_Q)], "game_right": [_key(KEY_RIGHT), _key(KEY_D)],
-		"game_interact": [_key(KEY_SPACE)], "game_missions": [_key(KEY_T)], "pause": [_key(KEY_P)]
+		"game_interact": [_key(KEY_SPACE)], "game_missions": [_key(KEY_T)], "pause": [_key(KEY_P)], "game_sprint": [_key(KEY_SHIFT)]
 	}
 	for action in JOY_ACTIONS:
 		var events: Array = keys[action]
@@ -31,6 +42,8 @@ static func configure(deadzone: float = 0.25) -> Dictionary:
 		if joy.has("axis"):
 			events.append(_axis(int(joy.axis), float(joy.direction)))
 		_set_action(action, events, deadzone)
+	_set_action("game_map", [_key(KEY_RIGHT)], deadzone)
+	_applied_bindings = {}
 	_configure_walk_right(deadzone)
 	_set_action("ui_focus_next", [_key(KEY_TAB)], deadzone)
 	var previous := _key(KEY_TAB)
@@ -45,7 +58,7 @@ static func bind_controller(device: int) -> void:
 	controller_device = device if device >= 0 else NO_CONTROLLER_DEVICE
 	# InputMap filtering also protects Input.get_vector() and native Control input.
 	# Consuming an event alone would leave Godot's action state already updated.
-	for action in JOY_ACTIONS + ["game_walk_right"]:
+	for action in JOY_ACTIONS + ["game_walk_right", "game_sprint", "game_map"]:
 		if not InputMap.has_action(action):
 			continue
 		var events := InputMap.action_get_events(action)
@@ -75,7 +88,7 @@ static func validate_mapping(document: Variant) -> Dictionary:
 	for action in JOY_ACTIONS:
 		# Previous custom HID files do not define this new shortcut. Preserve
 		# their measured mappings and keep T usable without guessing a HID index.
-		if action == "game_missions" and not document.actions.has(action):
+		if action in ["game_missions", "game_sprint"] and not document.actions.has(action):
 			continue
 		if not document.actions.has(action):
 			return _mapping_failure("Commande manette obligatoire absente : " + action)
@@ -146,3 +159,44 @@ static func _configure_walk_right(deadzone: float) -> void:
 		if event is InputEventKey and event.keycode == KEY_RIGHT: continue
 		events.append(event.duplicate())
 	_set_action("game_walk_right", events, deadzone)
+
+## Store only portable key/button identifiers, never serialized InputEvent objects.
+static func valid_bindings(bindings: Variant) -> bool:
+	if not bindings is Dictionary: return false
+	for action in bindings:
+		if action not in CUSTOM_ACTIONS or not bindings[action] is Dictionary: return false
+		for kind in bindings[action]:
+			var code: Variant = bindings[action][kind]
+			if kind == "key":
+				if not _bounded_integer(code, 1, KEY_UNKNOWN - 1): return false
+			elif kind == "button":
+				if not _bounded_integer(code, 0, JOY_BUTTON_MAX - 1): return false
+			else: return false
+	return true
+
+static func apply_bindings(bindings: Dictionary, deadzone: float) -> void:
+	if bindings == _applied_bindings: return
+	configure(deadzone)
+	for action in bindings:
+		for kind in bindings[action]:
+			for event in InputMap.action_get_events(action):
+				if (kind == "key" and event is InputEventKey) or (kind == "button" and event is InputEventJoypadButton):
+					InputMap.action_erase_event(action, event)
+			var code := int(bindings[action][kind])
+			InputMap.action_add_event(action, _key(code) if kind == "key" else _button(code))
+	# In hotel zones the map's keyboard shortcut must not also move the player.
+	var walk: Array = []
+	for event in InputMap.action_get_events("game_right"):
+		var conflicts := false
+		for map_event in InputMap.action_get_events("game_map"):
+			if map_event.is_match(event): conflicts = true
+		if not conflicts: walk.append(event.duplicate())
+	_set_action("game_walk_right", walk, deadzone)
+	_applied_bindings = bindings.duplicate(true)
+
+static func label_for(action: String) -> String:
+	var names: Array[String] = []
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey: names.append(OS.get_keycode_string(event.keycode))
+		elif event is InputEventJoypadButton: names.append("bouton %d" % event.button_index)
+	return " / ".join(names)
