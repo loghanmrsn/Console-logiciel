@@ -4,7 +4,7 @@ config_version=5
 [application]
 config/name="Console CIEL"
 config/icon="res://assets/console.svg"
-config/version="0.19.3"
+config/version="0.20.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/use_custom_user_dir=true
@@ -54,6 +54,15 @@ default_bus_layout="res://default_bus_layout.tres"
 gdscript/warnings/inference_on_variant=0
 
 [input]
+
+game_sprint={
+"deadzone": 0.25,
+"events": [Object(InputEventKey,"keycode":4194325), Object(InputEventJoypadButton,"button_index":7)]
+}
+game_map={
+"deadzone": 0.25,
+"events": [Object(InputEventKey,"keycode":4194321)]
+}
 
 ui_up={
 "deadzone": 0.25,
