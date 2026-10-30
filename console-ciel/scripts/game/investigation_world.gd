@@ -764,7 +764,7 @@ func world_extent() -> Vector2:
 	return MazeLayout.extent() if maze_active else WORLD_SIZE
 
 func _build_hotel() -> void:
-	hotel_visual = HotelVisual.new()
+	hotel_visual = preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
 	hotel_visual.name = "HotelScenery"
 	hotel_visual.zone = campus_zone
 	_room_root.add_child(hotel_visual)
@@ -781,7 +781,7 @@ func _build_hotel() -> void:
 			circle.radius = rect.size.x * .5
 			body.get_child(0).shape = circle
 			body.get_child(0).position = Vector2(0, -rect.size.y * .5)
-		var visual := HotelVisual.new()
+		var visual = preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
 		visual.zone = campus_zone
 		visual.furniture_only = spec
 		visual.furniture_anchor = body.position
