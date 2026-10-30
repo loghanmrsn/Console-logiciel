@@ -271,7 +271,7 @@ func _test_pause() -> void:
 	await _test_controller_loss()
 	await _test_controller_loss_in_quit_modal()
 	await create_timer(0.22).timeout
-	_check(app.demo.world.target_id.is_empty(), "Le point d'entrée reste hors portée des équipements")
+	_check(app.demo.world.target_id == "building_exit", "À l’entrée, seule la porte de sortie est proche ; aucun équipement de mission")
 	await _test_collisions(false)
 	await _approach("lock")
 	await _press(KEY_SPACE)
@@ -308,12 +308,11 @@ func _test_pause() -> void:
 		_check(state.profile.progress.completed_missions.size() == 3, "Rejouer ne réinitialise rien avant la confirmation")
 		await _activate("replay_confirm")
 		await _frames(5)
-		_check(state.profile.progress.completed_missions.is_empty() and state.profile.progress.run_reward_points == 0 and state.profile.wallet.points == 150, "Rejouer réinitialise la partie et conserve le solde et les récompenses")
-		await create_timer(0.22).timeout
-		await _solve_lighting(false)
-		await _solve_lock(false)
-		await _solve_computer(false)
-		_check(state.profile.wallet.points == 150 and state.profile.progress.run_reward_points == 0, "Rejouer les trois défis ne rapporte aucun point supplémentaire")
+		_check(state.profile.progress.completed_missions.size() == 3 and state.profile.progress.run_reward_points == 150 and state.profile.wallet.points == 150, "Rejouer conserve toutes les validations et les points")
+		_check(app.demo.challenge.mission_id == "computer", "Seule la dernière mission est rouverte")
+		await _press(KEY_ESCAPE)
+		await _press(KEY_P)
+		await _activate("pause_conclusion")
 		await _activate("conclusion_menu")
 	elif app.screen == "game":
 		await _press(KEY_P)
