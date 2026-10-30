@@ -1,3 +1,15 @@
+# Livraison 0.21.0 — lycée Louise Michel de Ruffec
+
+Le bus en ville propose l’arrêt 1 Sudo Hack et l’arrêt 2 Lycée Louise Michel. Le nouveau parvis reprend les lignes de la photo : bâtiment bas, bandeau rosé, fenêtres avec volets, entrée vitrée, jardinières et cheminement. Deux panneaux portent le logo fourni, conservé sans retouche. La salle cyber fictive comprend six ordinateurs avec claviers et souris, six sièges, deux baies réseau et un tableau. Les postes et équipements peuvent être consultés ; les prochaines missions seront ajoutées ultérieurement.
+
+Les collisions partagent la géométrie du mobilier. Les interactions, les portes et les retours en ville sont testés. Le lycée se visite après récupération du sac à l’hôtel, comme le trajet existant vers le CTF. Aucun changement de schéma : deux salles et trois points de reprise sont admis, sans modifier les anciens objectifs ni distribuer de points supplémentaires. Les erreurs de sauvegarde ne déplacent pas le joueur.
+
+Vérifications du 30 octobre 2026 : 2050 assertions sources, 460 sur les packs Windows/ARM64, 84 en rendu natif X11/Mesa. Aucun échec final. Les packs sont chargés par Godot Linux x86_64 ; matériel natif Windows/Pi, son et manette physique restent à tester. [Rapport](../tests/school_0.21.0_results/summary.json).
+
+Le logo est exclu de CC0 : [notice](../assets/lycee/NOTICE.md). La photographie n’est pas distribuée. L’aménagement est une interprétation pour le jeu et ne représente pas les plans réels de l’établissement.
+
+---
+
 # Livraison 0.20.0 — musique, commandes et déplacements
 
 Hôtel renommé Ritz dans les décors et dialogues ; indication « en face » retirée. Quatre ambiances musicales originales CC0, sélection immédiate avec application/annulation et sauvegarde. Personnalisation des touches clavier et des boutons manette, détection des conflits de jeu, restauration des valeurs par défaut. Sprint maintenu sur Maj/L3 : exactement +10 % (190 → 209), collisions inchangées. Destinations directes de l’ascenseur limitées aux chapitres débloqués. Invitation à consulter les livres, même sur un profil ayant terminé toute l’enquête. Le texte de rejeu précise que seule la mission de l’étage est rejouée.
