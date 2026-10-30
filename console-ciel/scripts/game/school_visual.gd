@@ -67,10 +67,11 @@ func _cyber() -> void:
 	for y in [365,695]: draw_line(Vector2(170,y),Vector2(1810,y),Color("8ca4a7"),3)
 
 func _prop_art(kind: String, rect: Rect2) -> void:
-	draw_rect(Rect2(rect.position+Vector2(5,9),rect.size),Color(0.15,0.22,0.24,0.18))
+	draw_style_box(_shadow_style(), Rect2(rect.position+Vector2(5,9),rect.size))
 	match kind:
 		"cyber_desk":
 			draw_rect(rect,Color("bdac8e"))
+			for offset in [26,54,86]: draw_line(rect.position+Vector2(10,offset),rect.position+Vector2(rect.size.x-10,offset),Color("b4a385"),1)
 			draw_rect(Rect2(rect.position,Vector2(rect.size.x,7)),Color("e1d4b8"))
 			var a := rect.position
 			draw_rect(Rect2(a+Vector2(82,-58),Vector2(156,87)),DARK)
@@ -80,6 +81,7 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 			draw_rect(Rect2(a+Vector2(125,43),Vector2(70,8)),DARK)
 			draw_rect(Rect2(a+Vector2(82,66),Vector2(140,24)),Color("e7e9df"))
 			for x in range(90,216,12): draw_line(a+Vector2(x,70),a+Vector2(x,85),METAL,1)
+			for y in [73,79]: draw_line(a+Vector2(85,y),a+Vector2(219,y),METAL,1)
 			draw_circle(a+Vector2(252,78),10,Color("e4e7e2"))
 			draw_rect(Rect2(a+Vector2(280,20),Vector2(25,70)),DARK)
 			draw_circle(a+Vector2(293,31),3,Color("8dd0aa"))
@@ -100,8 +102,8 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 			draw_rect(Rect2(rect.position-Vector2(8,125),Vector2(196,170)),METAL)
 			draw_rect(Rect2(rect.position-Vector2(3,120),Vector2(186,160)),Color.WHITE)
 			draw_texture_rect(LOGO,Rect2(rect.position+Vector2(52,-116),Vector2(69,104)),false)
-			_text("LOUISE MICHEL",rect.get_center()+Vector2(0,8),14,DARK,true)
-			_text("RUFFEC",rect.get_center()+Vector2(0,28),12,DARK,true)
+			_text("LOUISE MICHEL",rect.get_center()+Vector2(0,-5),14,DARK,true)
+			_text("RUFFEC",rect.get_center()+Vector2(0,14),12,DARK,true)
 		"garden":
 			draw_rect(rect,Color("b6b7a8"))
 			draw_rect(rect.grow(-10),Color("778b6b"))
@@ -114,3 +116,13 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 			for x in [rect.position.x+10,rect.end.x-10]: draw_line(Vector2(x,rect.position.y),Vector2(x,rect.end.y),DARK,6)
 			draw_rect(Rect2(rect.position-Vector2(10,10),Vector2(rect.size.x+20,18)),DARK)
 			draw_rect(Rect2(rect.position+Vector2(25,80),Vector2(270,17)),Color("aa9477"))
+
+var _soft_shadow: StyleBoxFlat
+func _shadow_style() -> StyleBoxFlat:
+	if _soft_shadow == null:
+		_soft_shadow = StyleBoxFlat.new()
+		_soft_shadow.bg_color = Color(0.15,0.22,0.24,0.12)
+		_soft_shadow.set_corner_radius_all(6)
+		_soft_shadow.shadow_color = Color(0.15,0.22,0.24,0.10)
+		_soft_shadow.shadow_size = 6
+	return _soft_shadow
