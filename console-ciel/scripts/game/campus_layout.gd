@@ -47,5 +47,5 @@ static func interactions(zone: String) -> Array[Dictionary]:
 	if zone != "courtyard": return []
 	return [
 		{"id": "courtyard_first", "label": "Porte · premier bâtiment", "at": Vector2(900, 1060), "radius": 100.0},
-		{"id": "courtyard_second", "label": "Porte · hôtel CIEL", "at": Vector2(900, 370), "radius": 100.0},
+		{"id": "courtyard_second", "label": "Porte · hôtel Ritz", "at": Vector2(900, 370), "radius": 100.0},
 		{"id": "campus_bus", "label": "Arrêt de bus · rejoindre sudo hack", "at": Vector2(1140, 900), "radius": 90.0}]
