@@ -1,3 +1,15 @@
+# Livraison 0.21.1 — lycée Louise Michel de Ruffec
+
+Finitions des postes du lycée : ombres douces mises en cache, détails du bois et des claviers, panneau et logo mieux cadrés. Les légendes de pause et de carte suivent maintenant les touches personnalisées et leur annulation. Le menu du bus décrit ses deux destinations ; le texte d’objectif distingue le parvis de l’intérieur du lycée.
+
+Contrôles ciblés : déplacement, arrêt immédiat, collisions, raccourcis personnalisés, sauvegardes et récupération après panne d’écriture, trajets hôtel/ville/lycée/CTF, trafic routier et rejeu sans perte. Audit statique de l’ensemble des ressources. Aucun gain chiffré de FPS n’est revendiqué ; les contrôles de fluidité portent sur le comportement des déplacements et des interactions, pas sur un benchmark du Raspberry Pi.
+
+Vérifications du 30 octobre 2026 : 2432 assertions sources, 468 sur les packs Windows/ARM64, 88 en rendu natif X11/Mesa. Aucun échec final. Les packs sont chargés par Godot Linux x86_64 ; matériel natif Windows/Pi, son et manette physique restent à tester. [Rapport](../tests/finish_0.21.1_results/summary.json).
+
+Le logo est exclu de CC0 : [notice](../assets/lycee/NOTICE.md). La photographie n’est pas distribuée. L’aménagement est une interprétation pour le jeu et ne représente pas les plans réels de l’établissement.
+
+---
+
 # Livraison 0.21.0 — lycée Louise Michel de Ruffec
 
 Le bus en ville propose l’arrêt 1 Sudo Hack et l’arrêt 2 Lycée Louise Michel. Le nouveau parvis reprend les lignes de la photo : bâtiment bas, bandeau rosé, fenêtres avec volets, entrée vitrée, jardinières et cheminement. Deux panneaux portent le logo fourni, conservé sans retouche. La salle cyber fictive comprend six ordinateurs avec claviers et souris, six sièges, deux baies réseau et un tableau. Les postes et équipements peuvent être consultés ; les prochaines missions seront ajoutées ultérieurement.
