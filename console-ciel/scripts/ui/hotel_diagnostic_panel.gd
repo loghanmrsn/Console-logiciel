@@ -97,7 +97,7 @@ func _build_overview() -> void:
 	text.alignment = BoxContainer.ALIGNMENT_CENTER
 	text.add_theme_constant_override("separation", 6)
 	row.add_child(text)
-	for entry in [["HÔTEL CIEL · MAINTENANCE", 13], ["Réservations rétablies" if artwork.repaired else "Serveur de réservation", 24], ["Service en ligne" if artwork.repaired else "%d / 4 indices examinés" % hotel_state.get("repair_observations", []).size(), 17]]:
+	for entry in [["HÔTEL RITZ · MAINTENANCE", 13], ["Réservations rétablies" if artwork.repaired else "Serveur de réservation", 24], ["Service en ligne" if artwork.repaired else "%d / 4 indices examinés" % hotel_state.get("repair_observations", []).size(), 17]]:
 		var label := _label(text, entry[0], entry[1])
 		label.add_theme_color_override("font_color", Color("fff8e7"))
 	var progress := ProgressBar.new()
