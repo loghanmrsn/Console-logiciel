@@ -1,3 +1,22 @@
+# Livraison 0.19.2 — rejouer une mission sans effacer le parcours
+
+Le bouton du bilan appelait auparavant le démarrage d’une nouvelle enquête. Il devient **Rejouer cette mission**, avec une confirmation qui sélectionne **Annuler** par défaut. Le même choix est proposé après la réussite d’un défi. Seul le panneau de réponses est rouvert : missions validées, indices, étages débloqués, points, récompenses et achats restent conservés. Les observations déjà consultées restent disponibles. Le service existant revalide la réponse et ne crédite aucune seconde récompense.
+
+Le terminal du labyrinthe peut également être rejoué avec son clavier et une nouvelle saisie d’identifiant. Depuis le palier, il rejoint d’abord l’entrée du labyrinthe ; depuis le labyrinthe, aucun déplacement n’est nécessaire. Le retour rapide après réussite reste disponible. Après rechargement du jeu, le bilan cible la dernière mission terminée de son chapitre.
+
+L’action distincte **Nouvelle partie**, depuis l’accueil, annonce désormais explicitement **Réinitialiser toute l’enquête** dans sa confirmation. Elle conserve son comportement volontaire de nouvelle partie.
+
+Recette du 30 octobre 2026 :
+
+- 38 suites sources, 14332 assertions, aucun échec.
+- 12 suites sur les packs exportés Windows et ARM64, 4976 assertions, aucun échec.
+- Rendu natif X11 / Mesa llvmpipe / Compatibility : 249 contrôles ; treize missions rejouées, confirmation, annulation, clavier/manette simulée, 800 × 480 et texte agrandi. Sauvegarde intégrale inchangée après les réponses ; succès même lorsque l’écriture est simulée indisponible.
+- Archives CRC/SHA256 vérifiées ; anciennes versions conservées.
+
+[Résultats détaillés](../tests/replay_0.19.2_results/summary.json). Les packs sont chargés par Godot Linux x86_64 : les essais natifs Windows et Raspberry Pi, manette physique et audio restent à effectuer.
+
+---
+
 # Livraison 0.19.1 — façades et retour du labyrinthe
 
 L’hôtel CIEL reçoit une façade en pierre claire, une toiture à lucarnes, des balcons, un portique à colonnes et une entrée vitrée. Le bâtiment d’enseignement conserve une identité distincte. Les volumes dessinés restent dans les emprises solides existantes ; portes, PNJ, passage piéton et circulation restent accessibles.
