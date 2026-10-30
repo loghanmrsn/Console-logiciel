@@ -1,6 +1,7 @@
 extends CharacterBody2D
 ## Physics keeps the feet solid; interpolation smooths the rendered character.
 const SPEED := 190.0
+const SPRINT_MULTIPLIER := 1.10
 const ACCELERATION := 2400.0
 var controls_enabled := true
 var reserve_map_arrow := false
@@ -51,7 +52,7 @@ func _physics_process(delta: float) -> void:
 			_direction = "right" if facing.x > 0 else "left"
 		else:
 			_direction = "down" if facing.y > 0 else "up"
-		velocity = velocity.move_toward(direction * SPEED, ACCELERATION * delta)
+		velocity = velocity.move_toward(direction * SPEED * (SPRINT_MULTIPLIER if Input.is_action_pressed("game_sprint") else 1.0), ACCELERATION * delta)
 	else:
 		# Stop immediately on release; acceleration must never create drift.
 		velocity = Vector2.ZERO
@@ -66,7 +67,7 @@ func _update_animation(walking: bool) -> void:
 	if sprite.animation != _direction: sprite.animation = _direction
 	if walking and not reduced:
 		sprite.play()
-		sprite.speed_scale = clampf(velocity.length() / SPEED, .35, 1.0)
+		sprite.speed_scale = clampf(velocity.length() / SPEED, .35, SPRINT_MULTIPLIER)
 	else:
 		sprite.stop()
 		sprite.frame = 0
