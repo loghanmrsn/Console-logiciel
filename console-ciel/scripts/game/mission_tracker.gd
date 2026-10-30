@@ -181,6 +181,7 @@ func refresh() -> void:
 	elif next_text.is_empty():
 		next_text = "Terminez la mission précédente." if not first_locked.is_empty() else "Commencez l’enquête depuis l’accueil."
 	if _exit_unlocked() and chapter in [2,3,4]: next_text = "Descendez au premier niveau · porte de sortie"
+	if chapter == 3: next_text += "\nConsultez les livres au coin ressources : ils expliquent les réponses."
 	next_step_label = _label(mission_list, next_text, "mission_next_step", true)
 	next_step_label.visible = chapter != 5 or completed == definitions.size()
 	_body.visible = panel_expanded
