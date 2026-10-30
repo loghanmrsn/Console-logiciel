@@ -190,7 +190,7 @@ func _build() -> void:
 	_target_label=_label(target_column,'Approchez un équipement')
 	_target_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	_target_label.add_theme_font_size_override('font_size',18)
-	_interact_button=_button(target_column,'Interagir · Espace / face bas',_interact,'game_interact')
+	_interact_button=_button(target_column,'Interagir · ' + InputSetup.label_for('game_interact'),_interact,'game_interact')
 	_interact_button.add_theme_font_size_override('font_size',16)
 	_interact_button.custom_minimum_size.y=36
 	_interact_button.disabled=true
@@ -314,6 +314,7 @@ func _fit_minimum() -> void:
 
 func _settings_changed(_value: Dictionary) -> void:
 	if is_inside_tree():
+		_interact_button.text = "Interagir · " + InputSetup.label_for("game_interact")
 		_sync_overlay_theme()
 		_update_objectives()
 		if is_instance_valid(hotel_story): hotel_story.refresh()
@@ -381,7 +382,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not ControllerService.accepts_event(event): return
-	if event is InputEventKey and event.keycode == KEY_RIGHT and not event.pressed:
+	if event.is_action_released("game_map"):
 		_map_held = false
 	if event.is_action_released('game_missions'):
 		_missions_held = false
@@ -394,7 +395,7 @@ func _input(event: InputEvent) -> void:
 	var typing: Control = get_viewport().gui_get_focus_owner()
 	if event is InputEventKey and typing is LineEdit and modal_content.is_ancestor_of(typing) and not event.is_action("ui_cancel"):
 		return
-	if event is InputEventKey and event.keycode == KEY_RIGHT and event.pressed and HotelService.is_hotel_zone(str(world.room_id)) and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
+	if event.is_action_pressed("game_map") and HotelService.is_hotel_zone(str(world.room_id)) and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
 		if not _map_held:
 			_map_held = true
 			campus_map.toggle_map()
@@ -527,6 +528,11 @@ func _show_elevator() -> void:
 		_label(modal_content, 'Vous êtes au dernier étage de l’enquête.')
 	elif up.disabled:
 		_label(modal_content, 'Montée verrouillée : terminez les objectifs de ce chapitre.')
+	_label(modal_content, 'Choisir directement un étage débloqué', 20)
+	for destination in range(1, 6):
+		var floor_name := 'Rez-de-chaussée' if destination == 1 else 'Étage %d' % (destination - 1)
+		var choice := _button(modal_content, '%s · chapitre %d%s' % [floor_name, destination, ' · ici' if destination == chapter else ''], func(): _travel_to_chapter(destination), 'elevator_floor_%d' % destination)
+		choice.disabled = destination == chapter or not InvestigationService.can_use_elevator() or not InvestigationService.can_enter_chapter(destination)
 	_button(modal_content, 'Retour au menu', _return_to_menu, 'elevator_menu')
 	_label(modal_content, 'Échap / bouton de face droit : rester dans la pièce.', 16)
 	_wire_modal()
@@ -765,7 +771,7 @@ func _confirm_replay() -> void:
 	_open_overlay('confirm')
 	_label(modal_content, 'Rejouer uniquement cette mission ?', 26)
 	_label(modal_content, str(InvestigationService.mission(id).name))
-	_label(modal_content, 'Cette mission reste validée. Votre progression, vos étages débloqués, vos points et vos achats sont conservés. Vous pouvez refaire les réponses, sans gagner une seconde récompense.')
+	_label(modal_content, 'Vous rejouez seulement cette mission de cet étage, pas toute l’enquête de A à Z. Cette mission reste validée. Votre progression, vos étages débloqués, vos points et vos achats sont conservés. Vous pouvez refaire les réponses, sans gagner une seconde récompense.')
 	_button(modal_content, 'Annuler', _cancel_replay, 'replay_cancel')
 	_button(modal_content, 'Rejouer cette mission', _replay, 'replay_confirm')
 	_pending_focus_key = 'replay_cancel'
@@ -1036,13 +1042,13 @@ func _show_zone_door(id: String) -> void:
 	if not destinations.has(id): return
 	var destination: String = destinations[id]
 	_open_overlay("zone_door")
-	var titles := {"room_01": "Premier bâtiment", "building_02": "Hôtel CIEL", "courtyard": "Sortir dans la cour"}
+	var titles := {"room_01": "Premier bâtiment", "building_02": "Hôtel Ritz", "courtyard": "Sortir dans la cour"}
 	_label(modal_content, str(titles[destination]), 26)
 	var description := "Vous retrouverez cette porte pour revenir. Votre progression est conservée."
 	if id == "building_exit":
 		description = "Un grand bâtiment vous attend de l’autre côté de la cour."
 	elif destination == "building_02":
-		description = "Retrouvez le hall, les escaliers et la salle du petit déjeuner." if int(HotelService.state().get("morning_stage", 0)) > 0 else "Bienvenue à l’Hôtel CIEL. Rejoignez la réception pour réserver votre chambre. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick."
+		description = "Retrouvez le hall, les escaliers et la salle du petit déjeuner." if int(HotelService.state().get("morning_stage", 0)) > 0 else "Bienvenue à l’Hôtel Ritz. Rejoignez la réception pour réserver votre chambre. Affichez ou masquez la carte avec → ; marchez avec ZQSD ou le joystick."
 	_label(modal_content, description)
 	_button(modal_content,"Entrer" if destination != "courtyard" else "Sortir",func(): _switch_zone(destination,id),"zone_go")
 	_button(modal_content,"Rester ici",_close_overlay,"zone_stay")
