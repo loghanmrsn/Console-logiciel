@@ -2,20 +2,69 @@
   "schema_version": 1,
   "description": "Indices du mapping standard Godot pour une manette reconnue. Le futur contrôleur USB HID doit être mesuré dans Test des commandes avant de modifier ces valeurs ; aucune mesure de ce matériel n'est présumée.",
   "actions": {
-    "ui_up": {"button": 11, "axis": 1, "direction": -1},
-    "ui_down": {"button": 12, "axis": 1, "direction": 1},
-    "ui_left": {"button": 13, "axis": 0, "direction": -1},
-    "ui_right": {"button": 14, "axis": 0, "direction": 1},
-    "ui_accept": {"button": 0},
-    "ui_cancel": {"button": 1},
-    "tab_previous": {"button": 9},
-    "tab_next": {"button": 10},
-    "game_up": {"button": 11, "axis": 1, "direction": -1},
-    "game_down": {"button": 12, "axis": 1, "direction": 1},
-    "game_left": {"button": 13, "axis": 0, "direction": -1},
-    "game_right": {"button": 14, "axis": 0, "direction": 1},
-    "game_interact": {"button": 0},
-    "game_missions": {"button": 3},
-    "pause": {"button": 6}
+    "ui_up": {
+      "button": 11,
+      "axis": 1,
+      "direction": -1
+    },
+    "ui_down": {
+      "button": 12,
+      "axis": 1,
+      "direction": 1
+    },
+    "ui_left": {
+      "button": 13,
+      "axis": 0,
+      "direction": -1
+    },
+    "ui_right": {
+      "button": 14,
+      "axis": 0,
+      "direction": 1
+    },
+    "ui_accept": {
+      "button": 0
+    },
+    "ui_cancel": {
+      "button": 1
+    },
+    "tab_previous": {
+      "button": 9
+    },
+    "tab_next": {
+      "button": 10
+    },
+    "game_up": {
+      "button": 11,
+      "axis": 1,
+      "direction": -1
+    },
+    "game_down": {
+      "button": 12,
+      "axis": 1,
+      "direction": 1
+    },
+    "game_left": {
+      "button": 13,
+      "axis": 0,
+      "direction": -1
+    },
+    "game_right": {
+      "button": 14,
+      "axis": 0,
+      "direction": 1
+    },
+    "game_interact": {
+      "button": 0
+    },
+    "game_missions": {
+      "button": 3
+    },
+    "pause": {
+      "button": 6
+    },
+    "game_sprint": {
+      "button": 7
+    }
   }
 }
