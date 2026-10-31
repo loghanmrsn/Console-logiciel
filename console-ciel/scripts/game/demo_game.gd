@@ -689,7 +689,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
-		'maze_success_return', 'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
+		'maze_success_return', 'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'city_challenge', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
 		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
 		'conclusion': _return_to_menu()
@@ -864,7 +864,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'ctf_challenge', 'dev_terminal'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'city_challenge', 'ctf_challenge', 'dev_terminal'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
@@ -929,6 +929,8 @@ func _wire_modal() -> void:
 		terminal_panel.code_keyboard.wire_navigation()
 	var dev_panel := modal_content.get_node_or_null("dev_console_panel")
 	if is_instance_valid(dev_panel): dev_panel.code_keyboard.wire_navigation()
+	var city_panel := modal_content.get_node_or_null("city_network_panel")
+	if is_instance_valid(city_panel) and is_instance_valid(city_panel.keyboard): city_panel.keyboard.wire_navigation()
 	var ctf_panel := modal_content.get_node_or_null("ctf_challenge_panel")
 	if is_instance_valid(ctf_panel) and is_instance_valid(ctf_panel.code_keyboard): ctf_panel.code_keyboard.wire_navigation()
 	if is_instance_valid(challenge) and is_instance_valid(challenge.code_keyboard):
