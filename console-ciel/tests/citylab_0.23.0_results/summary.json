@@ -1,0 +1,291 @@
+{
+  "version": "0.23.0",
+  "source": [
+    {
+      "name": "city_network_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 52,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.64,
+      "script_sha256": "1b92e632cd6734cef1e2635df59d3850f3a65674da2a1addc9fddfe6fe4aad7b",
+      "log": "/workspace/console-ciel-citylab-validation/regression/city_network_services_tests/run.log"
+    },
+    {
+      "name": "city_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 73,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.89,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log": "/workspace/console-ciel-citylab-validation/regression/city_network_ui_tests/run.log"
+    },
+    {
+      "name": "workshop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 35,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.82,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log": "/workspace/console-ciel-citylab-validation/regression/workshop_ui_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.45,
+      "script_sha256": "dacf68671757f71c200b1fecfae3e7982df83e7c2c07a010126c2d52205e5c58",
+      "log": "/workspace/console-ciel-citylab-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 80,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.97,
+      "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+      "log": "/workspace/console-ciel-citylab-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "traffic_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 153,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.83,
+      "script_sha256": "cb949677f4be17d56fae1946ada9812e70e7a277b4ffaa4f6abf7ed29f0d9103",
+      "log": "/workspace/console-ciel-citylab-validation/regression/traffic_services_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.1,
+      "script_sha256": "8324cf38a4ee0de88fdd24b99964218de4efc1a415076314030d9ec351ab8104",
+      "log": "/workspace/console-ciel-citylab-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 511,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.64,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log": "/workspace/console-ciel-citylab-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 544,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.19,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-citylab-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "replay_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 241,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 31.41,
+      "script_sha256": "f4bcea6bd6327c27fb28d0b0dee5814b45c2e9a53bb2795f6d1ba362d75f8af4",
+      "log": "/workspace/console-ciel-citylab-validation/regression/replay_ui_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.66,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-citylab-validation/regression/stability_tests/run.log"
+    },
+    {
+      "name": "morning_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 767,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.23,
+      "script_sha256": "df1bfa8823e2a69851c5b3018f52c5444109ed6d723afb0b04796e2fa064a1bb",
+      "log": "/workspace/console-ciel-citylab-validation/regression/morning_services_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "windows",
+      "name": "city_network_services_tests",
+      "assertions": 52,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1b92e632cd6734cef1e2635df59d3850f3a65674da2a1addc9fddfe6fe4aad7b",
+      "log_sha256": "fb7ea3bac83a256e2f2e4d76b4b7ba86407aaefabc9a5326d1cfee6cac8e8d1b"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_services_tests",
+      "assertions": 52,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1b92e632cd6734cef1e2635df59d3850f3a65674da2a1addc9fddfe6fe4aad7b",
+      "log_sha256": "fb7ea3bac83a256e2f2e4d76b4b7ba86407aaefabc9a5326d1cfee6cac8e8d1b"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "40aaaed9737dd0c49ab1655bdcf35a65b9b379cf3a9bc0c050235f5a896d08c7",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "40aaaed9737dd0c49ab1655bdcf35a65b9b379cf3a9bc0c050235f5a896d08c7",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 101,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_architecture_challenge.png",
+        "bytes": 94355,
+        "sha256": "6f783d13664e817d9e2c5a00fbd98be94f03bf6b7c809ae220f922523ca798b8"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_ciel_porte_challenge.png",
+        "bytes": 83498,
+        "sha256": "fd9ba5127afe7e820c25dd4bf8119c111824643837e570ff8037f1ebcd92467b"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_cours_challenge.png",
+        "bytes": 180382,
+        "sha256": "96e10a5c81a3c3c3e4830cdb48618c452dbae12d79a043efd6215d0bb904fa8b"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_ipv4_challenge.png",
+        "bytes": 103417,
+        "sha256": "5c1268cefc19f1108940e43aa3479a2888e8a324f17e0295b858aff4592e793f"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_ipv6_challenge.png",
+        "bytes": 78515,
+        "sha256": "0283726aa306ecbebbff777d4025261e513040d51a5e731b19bf6fc86b4091d5"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_routing_challenge.png",
+        "bytes": 127855,
+        "sha256": "eb6e1138536c03c827704fafced70d05fca7a329b1055817b084b72dc3b31448"
+      },
+      {
+        "file": "docs/screenshots/citylab_0.23.0/city_network_ui_tests/city_salle_reseau_challenge.png",
+        "bytes": 103594,
+        "sha256": "733efc7af445561e23b285f069884ab0ae5defda696626ae5d13792e0a845418"
+      }
+    ],
+    "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+    "log_sha256": "bf03a9bcd9545d95d731eba650ca0ff59ec1b25f501b0a655be127c232d79890"
+  }
+}
