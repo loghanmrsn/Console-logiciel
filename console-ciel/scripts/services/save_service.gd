@@ -14,12 +14,14 @@ const CHAPTER_THREE_IDS := ["python", "html", "markdown"]
 const CHAPTER_FOUR_IDS := ["firewall", "ip_conflict", "subnet_mask"]
 const CHAPTER_FIVE_IDS := ["maze"]
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
+const CityCatalog = preload("res://scripts/game/city_network_catalog.gd")
 const HOTEL_VERSION := 2
 const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
 const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
-const HOTEL_ROOMS := ["school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ROOMS := ["school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
 const HOTEL_CHECKPOINTS := {
+ "city_lab_entry": "school_network_lab", "city_workshop_return": "school_workshop",
  "school_hall_entry": "school_hall", "school_passage_entry": "school_passage", "school_workshop_entry": "school_workshop",
  "school_arrival": "school_stop", "school_door": "school_stop", "school_entry": "school_cyber",
 	"new_entrance": "building_02", "hall_it": "building_02", "hall_stairs": "building_02",
@@ -466,7 +468,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return _fail("La liste des récompenses est invalide.")
 	var rewarded: Array = []
 	for id in document.rewarded_missions:
-		if not id is String or id not in _mission_ids + HOTEL_REWARD_IDS + CtfCatalog.REWARD_IDS or id in rewarded:
+		if not id is String or id not in _mission_ids + HOTEL_REWARD_IDS + CtfCatalog.REWARD_IDS + CityCatalog.REWARD_IDS or id in rewarded:
 			return _fail("La liste des récompenses contient une mission inconnue ou dupliquée.")
 		rewarded.append(id)
 	if not document.get("progress") is Dictionary:
@@ -649,7 +651,15 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not wires is Dictionary or wires.size() > 3: return _fail("Câblage du lycée invalide.")
 	for terminal in wires:
 		if terminal not in COFFEE_WIRES or wires[terminal] != COFFEE_WIRES[terminal]: return _fail("Connexion de porte invalide.")
-	if progress.room_id in ["school_passage", "school_workshop"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
+	if progress.room_id in ["school_passage", "school_workshop", "school_network_lab"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
+	var city: Variant = progress.get("city_network", CityCatalog.empty_state())
+	if not city is Dictionary or city.size() != 2 or not _is_integer(city.get("version"),1,1) or not city.get("completed") is Array:
+		return _fail("Progression City CIEL invalide.")
+	if city.completed.size() > CityCatalog.IDS.size(): return _fail("Trop de missions City CIEL.")
+	for index in range(city.completed.size()):
+		if city.completed[index] != CityCatalog.IDS[index] or CityCatalog.REWARD_IDS[index] not in rewarded:
+			return _fail("Ordre ou reçu des missions City CIEL invalide.")
+	if progress.has("city_network"): progress.city_network.version = 1
 	var ctf_validation := _validate_ctf_progress(progress, rewarded)
 	if not ctf_validation.ok: return ctf_validation
 	if progress.has("ctf"): progress.ctf.version = 1
