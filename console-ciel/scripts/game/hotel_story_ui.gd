@@ -1,7 +1,7 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ZONES := ["school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
@@ -127,6 +127,8 @@ func refresh() -> void:
 	_fit_objectives()
 	_schedule_objective_fit()
 	sync_visibility()
+	if current_room in ["school_hall", "school_passage", "school_workshop"]:
+		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Suivez le couloir : l’atelier se trouve à gauche, après environ 10 mètres.", "school_workshop": "Découvrez l’atelier : impression 3D, informatique et électronique."}[current_room]
 	if current_room == "building_02" and morning_stage == 1 and not _ground_arrival_scheduled:
 		_ground_arrival_scheduled = true
 		_ensure_ground_arrival.call_deferred()
@@ -271,10 +273,16 @@ func handle_target(id: String) -> bool:
 		return true
 	if id.begins_with("school_"):
 		match id:
+			"school_hall": _show_travel("school_hall", "Couloir du lycée", "Une porte sécurisée se trouve sur votre droite.")
+			"school_cyber_return": _show_travel("school_cyber", "Salle cyber", "Revenir dans la salle informatique.")
+			"school_secure": _show_school_wiring()
+			"school_hall_return": _show_travel("school_hall", "Premier couloir", "Revenir à la porte sécurisée.")
+			"school_workshop": _show_travel("school_workshop", "Atelier cyber et électronique", "La porte à gauche mène aux plans de travail et aux équipements.")
+			"school_passage_return": _show_travel("school_passage", "Long couloir", "Revenir dans le couloir de liaison.")
 			"school_enter": _show_travel("school_cyber", "Salle cyber", "Bienvenue au lycée Louise Michel de Ruffec. Découvrez les postes et le laboratoire réseau.")
 			"school_exit": _show_travel("school_stop", "Sortir du lycée", "Rejoignez l’arrêt de bus devant l’entrée.")
 			"school_bus": _show_return_bus()
-			_: game._show_dialog("Salle cyber · Louise Michel", {"school_network": "Baie pédagogique : commutateur, routeur, panneau de brassage et onduleur. Les équipements de ce laboratoire sont isolés du réseau réel.", "school_course": "Espace de cours : observez les postes, les câbles et les équipements. Les prochains défis seront ajoutés ici."}.get(id, "Poste de travail équipé : écran, clavier, souris et unité centrale. Les prochaines épreuves seront préparées dans cette salle."), game._close_overlay)
+			_: game._show_dialog("Salle cyber · Louise Michel", {"school_3d": "Imprimante 3D : châssis, plateau, tête et bobine de filament. Utilisez cet établi pour les futures activités de prototypage.", "school_laptops": "Deux ordinateurs portables dédiés aux manipulations du laboratoire.", "school_electronics": "Banc électronique : carte de prototypage et instrument de mesure. Les futurs exercices se feront en basse tension.", "school_network": "Baie pédagogique : commutateur, routeur, panneau de brassage et onduleur. Les équipements de ce laboratoire sont isolés du réseau réel.", "school_course": "Espace de cours : observez les postes, les câbles et les équipements. Les prochains défis seront ajoutés ici."}.get(id, "Poste de travail équipé : écran, clavier, souris et unité centrale. Les prochaines épreuves seront préparées dans cette salle."), game._close_overlay)
 		return true
 	if not id.begins_with("hotel_") and id not in ["campus_bus", "ctf_enter", "ctf_leave", "ctf_return_bus"]:
 		return false
@@ -678,3 +686,28 @@ func _return_bus() -> void:
 	game.world.restore_checkpoint()
 	game._close_overlay()
 	game.notification_requested.emit("Retour en ville · Hôtel Ritz")
+
+func _show_school_wiring() -> void:
+	if AppState.profile.progress.get("school_wires", {}).size() == 3:
+		_show_travel("school_passage", "Porte déverrouillée", "Le câblage est réparé. Le passage reste ouvert lors de vos prochaines visites.")
+		return
+	game._open_overlay("hotel_travel")
+	game._label(game.modal_content, "Porte sécurisée · réparer le câblage", 26)
+	game._label(game.modal_content, "Reliez les trois paires de même couleur : A–3 rouge, B–2 vert, C–1 marron. Circuit pédagogique basse tension, alimentation coupée.")
+	var panel := CoffeeWiringPanel.new()
+	game.modal_content.add_child(panel)
+	var selected := {"top": ""}
+	var feedback = game._label(game.modal_content, "Choisissez une borne du haut puis une borne du bas.")
+	panel.refresh(AppState.profile.progress.get("school_wires", {}), "")
+	panel.terminal_pressed.connect(func(id: String):
+		if id in ["A", "B", "C"]:
+			selected.top = "" if selected.top == id else id
+		else:
+			var result: Dictionary = HotelService.connect_school_wire(selected.top, id)
+			feedback.text = "Connexion enregistrée." if result.ok else result.error
+			if result.ok: selected.top = ""
+		panel.refresh(AppState.profile.progress.get("school_wires", {}), selected.top)
+		if AppState.profile.progress.get("school_wires", {}).size() == 3:
+			_show_school_wiring())
+	game._button(game.modal_content, "Revenir au couloir", game._close_overlay, "school_wiring_close")
+	game._wire_modal()
