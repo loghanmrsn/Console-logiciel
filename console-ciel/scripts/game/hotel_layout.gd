@@ -4,7 +4,7 @@ extends RefCounted
 
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const School = preload("res://scripts/game/school_layout.gd")
-const ZONES := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const ZONES := ["school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HALL_SIZE := Vector2(6400, 4200)
 const BED_SEAT := Vector2(840, 420)
 
