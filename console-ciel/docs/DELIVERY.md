@@ -1,3 +1,17 @@
+# Livraison 0.23.0 — City CIEL et laboratoire réseau
+
+L’atelier est nommé City CIEL. Une porte à gauche, à environ 5–10 m de l’entrée à l’échelle du jeu, ouvre une salle réseau avec postes fixes, routeur, switch, baies et tableau. Murs en relief, plinthes, fenêtres, huisseries et cloison renforcent le volume des pièces. Leurs empreintes et les ouvertures sont partagées avec les collisions ; un fond de seuil empêche de marcher dans le vide.
+
+Trois configurations guidées : plan IPv4 de 192.168.50.42/24 (masque, réseau, dernier hôte), LAN IPv6 de 2001:db8:50:1::42/64 (128 bits, préfixe, réseau), puis routage vers 192.168.60.0/24. Cours intégré, clavier physique et virtuel, suivi de progression. Les notions distinguent taille d’adresse et longueur de préfixe : IPv4 32 bits, IPv6 128 bits ; /24 et /64 sont les préfixes des scénarios. Aucun trafic ni commande système réel.
+
+État optionnel `progress.city_network` validé comme préfixe ordonné des trois missions, avec reçus de récompense. Les anciens profils restent lisibles sans réécriture lors de la simple consultation. Chaque première réussite rapporte 50 points, dette prioritaire, sans double crédit après consultation ou remise à zéro du parcours. Les écritures de progression et de récompense sont atomiques. [Guide](CITY_CIEL.md).
+
+Vérifications du 31 octobre 2026 : 12 suites sources, 2597 assertions ; 8 suites sur les packs Windows et ARM64, 566 assertions ; 101 contrôles en rendu natif X11/Mesa. Aucun échec final. Les tests couvrent mauvaises réponses, ordre, rechargement, dette, écriture impossible, reçus conservés, clavier virtuel, écran 800 × 480, portes, collision des murs et absence de sortie dans le vide. Audit statique des ressources, archives CRC/SHA256 et antériorité des anciennes livraisons vérifiés. [Résultats](../tests/citylab_0.23.0_results/summary.json).
+
+Les packs sont chargés par Godot Linux x86_64 ; essais natifs Windows/Pi et contrôleur physique restent à effectuer. Le logo fourni demeure exclu de CC0, voir sa [notice](../assets/lycee/NOTICE.md).
+
+---
+
 # Livraison 0.22.0 — lycée Louise Michel de Ruffec
 
 Un accès depuis la salle cyber mène à un premier couloir. La porte à droite demande une mission de câblage (A–3 rouge, B–2 vert, C–1 marron). Les paires correctes sont sauvegardées une par une et la porte reste ouverte après rechargement. Le long passage dessert à gauche un atelier avec imprimante 3D et bobine, deux portables, ordinateur fixe avec écran, baie et banc d’électronique. Les trois nouvelles salles sont reliées dans les deux sens et disposent de collisions et de points de reprise.
