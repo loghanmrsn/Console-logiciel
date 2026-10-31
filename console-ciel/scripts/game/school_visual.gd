@@ -13,7 +13,8 @@ func _draw() -> void:
 		_prop_art(str(furniture_only.kind), furniture_only.rect)
 		return
 	draw_rect(Rect2(0,0,2000,1400), Color("8b9695") if zone == "school_stop" else Color("dce3e5"))
-	if zone == "school_stop": _exterior()
+	if zone in ["school_hall", "school_passage", "school_workshop"]: _atelier_area()
+	elif zone == "school_stop": _exterior()
 	else: _cyber()
 	for wall in School.walls(zone):
 		if zone == "school_stop" and wall.size.y == 330: continue
@@ -69,6 +70,29 @@ func _cyber() -> void:
 func _prop_art(kind: String, rect: Rect2) -> void:
 	draw_style_box(_shadow_style(), Rect2(rect.position+Vector2(5,9),rect.size))
 	match kind:
+		"printer3d", "laptop_bench", "electronics":
+			draw_rect(rect,Color("bba98a"))
+			var at := rect.position + Vector2(40,-90)
+			if kind == "printer3d":
+				draw_rect(Rect2(at,Vector2(200,190)),DARK)
+				draw_rect(Rect2(at+Vector2(14,14),Vector2(172,140)),Color("8ba9ac"))
+				draw_rect(Rect2(at+Vector2(40,130),Vector2(120,10)),METAL)
+				draw_line(at+Vector2(100,16),at+Vector2(100,90),DARK,10)
+				draw_rect(Rect2(at+Vector2(75,98),Vector2(50,32)),Color("dba77a"))
+				draw_circle(at+Vector2(232,48),33,DARK)
+				draw_circle(at+Vector2(232,48),19,Color("dba77a"))
+			elif kind == "laptop_bench":
+				for x in [0,220]:
+					var a := at+Vector2(x,25)
+					draw_rect(Rect2(a,Vector2(170,95)),DARK)
+					draw_rect(Rect2(a+Vector2(8,8),Vector2(154,76)),Color("92b5b9"))
+					draw_rect(Rect2(a+Vector2(-8,98),Vector2(186,48)),METAL)
+					for y in [108,120,132]: draw_line(a+Vector2(6,y),a+Vector2(162,y),DARK,2)
+			else:
+				draw_rect(Rect2(at+Vector2(10,50),Vector2(120,85)),Color("557e69"))
+				for x in range(30,120,20): draw_circle(at+Vector2(x,80),5,Color("e5c48e"))
+				draw_rect(Rect2(at+Vector2(190,35),Vector2(95,95)),DARK)
+				draw_rect(Rect2(at+Vector2(201,46),Vector2(73,48)),Color("a1cbb5"))
 		"cyber_desk":
 			draw_rect(rect,Color("bdac8e"))
 			for offset in [26,54,86]: draw_line(rect.position+Vector2(10,offset),rect.position+Vector2(rect.size.x-10,offset),Color("b4a385"),1)
@@ -126,3 +150,17 @@ func _shadow_style() -> StyleBoxFlat:
 		_soft_shadow.shadow_color = Color(0.15,0.22,0.24,0.10)
 		_soft_shadow.shadow_size = 6
 	return _soft_shadow
+
+func _atelier_area() -> void:
+	var size := School.extent(zone)
+	draw_rect(Rect2(Vector2.ZERO,size),Color("dce3e5"))
+	for x in range(80,int(size.x)-80,120): draw_line(Vector2(x,64),Vector2(x,size.y-64),Color("cbd4d6"),1)
+	for y in range(80,int(size.y)-60,120): draw_line(Vector2(64,y),Vector2(size.x-64,y),Color("cbd4d6"),1)
+	_text(School.title(zone).to_upper(),Vector2(size.x/2,110),22,DARK,true)
+	for target in School.interactions(zone):
+		if target.id in ["school_secure","school_workshop","school_cyber_return","school_hall_return","school_passage_return"]:
+			draw_rect(Rect2(target.at-Vector2(72,50),Vector2(144,14)),METAL)
+			_text(target.label,target.at+Vector2(0,-65),16,DARK,true)
+	if zone == "school_passage":
+		_text("ATELIER ← · 10 m",Vector2(1400,250),22,DARK,true)
+		for x in range(450,2600,300): draw_line(Vector2(x,340),Vector2(x+80,340),Color("90a6a6"),4)
