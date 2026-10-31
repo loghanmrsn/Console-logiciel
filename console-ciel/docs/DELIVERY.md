@@ -1,3 +1,15 @@
+# Livraison 0.22.0 — lycée Louise Michel de Ruffec
+
+Un accès depuis la salle cyber mène à un premier couloir. La porte à droite demande une mission de câblage (A–3 rouge, B–2 vert, C–1 marron). Les paires correctes sont sauvegardées une par une et la porte reste ouverte après rechargement. Le long passage dessert à gauche un atelier avec imprimante 3D et bobine, deux portables, ordinateur fixe avec écran, baie et banc d’électronique. Les trois nouvelles salles sont reliées dans les deux sens et disposent de collisions et de points de reprise.
+
+L’état optionnel `progress.school_wires` admet seulement les trois connexions prévues. Les anciennes sauvegardes restent lisibles ; aucun point ni mission de l’enquête n’est remis à zéro. Les salles derrière la porte sont refusées si la mission n’est pas validée. Tests : mauvaise paire, échec d’écriture, connexions, ouverture, visite, collisions, rechargement et retours.
+
+Vérifications du 30 octobre 2026 : 1281 assertions sources, 386 sur les packs Windows/ARM64, 47 en rendu natif X11/Mesa. Aucun échec final. Les packs sont chargés par Godot Linux x86_64 ; matériel natif Windows/Pi, son et manette physique restent à tester. [Rapport](../tests/workshop_0.22.0_results/summary.json).
+
+Le logo est exclu de CC0 : [notice](../assets/lycee/NOTICE.md). La photographie n’est pas distribuée. L’aménagement est une interprétation pour le jeu et ne représente pas les plans réels de l’établissement.
+
+---
+
 # Livraison 0.21.1 — lycée Louise Michel de Ruffec
 
 Finitions des postes du lycée : ombres douces mises en cache, détails du bois et des claviers, panneau et logo mieux cadrés. Les légendes de pause et de carte suivent maintenant les touches personnalisées et leur annulation. Le menu du bus décrit ses deux destinations ; le texte d’objectif distingue le parvis de l’intérieur du lycée.
