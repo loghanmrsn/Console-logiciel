@@ -1,7 +1,7 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ZONES := ["school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
@@ -128,7 +128,11 @@ func refresh() -> void:
 	_schedule_objective_fit()
 	sync_visibility()
 	if current_room in ["school_hall", "school_passage", "school_workshop"]:
-		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Suivez le couloir : l’atelier se trouve à gauche, après environ 10 mètres.", "school_workshop": "Découvrez l’atelier : impression 3D, informatique et électronique."}[current_room]
+		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Suivez le couloir : l’atelier se trouve à gauche, après environ 10 mètres.", "school_workshop": "City CIEL : découvrez l’atelier. Porte à gauche à environ 5–10 m : laboratoire réseau."}[current_room]
+	if current_room == "school_network_lab":
+		objective_title.text = "CITY CIEL · LABORATOIRE RÉSEAU"
+		var done: int = CityService.state().completed.size()
+		objective_text.text = "Missions réseau · %d / 3. " % done + (["Configurez le poste IPv4 /24.","Préparez le LAN IPv6 /64.","Reliez les réseaux via le routeur.","Configurations validées ! Vous pouvez revoir le cours et les postes."][done])
 	if current_room == "building_02" and morning_stage == 1 and not _ground_arrival_scheduled:
 		_ground_arrival_scheduled = true
 		_ensure_ground_arrival.call_deferred()
@@ -271,13 +275,21 @@ func handle_target(id: String) -> bool:
 	if id.trim_prefix("ctf_") in CtfCatalog.IDS:
 		_show_ctf(id.trim_prefix("ctf_"))
 		return true
+	if id.begins_with("school_city_"):
+		var suffix := id.trim_prefix("school_city_")
+		match suffix:
+			"door": _show_travel("school_network_lab", "City CIEL · salle réseau", "Entrez dans le laboratoire IPv4 / IPv6 : trois configurations pratiques vous attendent.")
+			"return": _show_travel("school_workshop", "City CIEL · atelier", "Retour à l’atelier par la porte de communication.")
+			"lesson": game._show_dialog("City CIEL · cours de réseau", preload("res://scripts/game/city_network_catalog.gd").LESSON, game._close_overlay)
+			_: _show_city_challenge(suffix)
+		return true
 	if id.begins_with("school_"):
 		match id:
 			"school_hall": _show_travel("school_hall", "Couloir du lycée", "Une porte sécurisée se trouve sur votre droite.")
 			"school_cyber_return": _show_travel("school_cyber", "Salle cyber", "Revenir dans la salle informatique.")
 			"school_secure": _show_school_wiring()
 			"school_hall_return": _show_travel("school_hall", "Premier couloir", "Revenir à la porte sécurisée.")
-			"school_workshop": _show_travel("school_workshop", "Atelier cyber et électronique", "La porte à gauche mène aux plans de travail et aux équipements.")
+			"school_workshop": _show_travel("school_workshop", "City CIEL", "La porte à gauche mène aux plans de travail et aux équipements.")
 			"school_passage_return": _show_travel("school_passage", "Long couloir", "Revenir dans le couloir de liaison.")
 			"school_enter": _show_travel("school_cyber", "Salle cyber", "Bienvenue au lycée Louise Michel de Ruffec. Découvrez les postes et le laboratoire réseau.")
 			"school_exit": _show_travel("school_stop", "Sortir du lycée", "Rejoignez l’arrêt de bus devant l’entrée.")
@@ -710,4 +722,20 @@ func _show_school_wiring() -> void:
 		if AppState.profile.progress.get("school_wires", {}).size() == 3:
 			_show_school_wiring())
 	game._button(game.modal_content, "Revenir au couloir", game._close_overlay, "school_wiring_close")
+	game._wire_modal()
+
+func _show_city_challenge(id: String) -> void:
+	const CityCatalog = preload("res://scripts/game/city_network_catalog.gd")
+	if id not in CityCatalog.IDS or CityService.mission_state(id) == "locked":
+		game._show_dialog("Poste à débloquer", "Validez d’abord le poste précédent. Le tableau de cours reste consultable.", game._close_overlay)
+		return
+	game._open_overlay("city_challenge")
+	var panel := preload("res://scripts/ui/city_network_panel.gd").new()
+	panel.mission_id = id
+	game.modal_content.add_child(panel)
+	panel.close_requested.connect(game._close_overlay)
+	panel.navigation_changed.connect(func(): game._fit_modal.call_deferred(); game._wire_modal.call_deferred())
+	panel.mission_completed.connect(func(result: Dictionary):
+		game.notification_requested.emit(PenaltyService.reward_message("Configuration réseau validée", result))
+		game._show_dialog("Configuration enregistrée", CityCatalog.CHALLENGES[id].explanation, game._close_overlay))
 	game._wire_modal()
