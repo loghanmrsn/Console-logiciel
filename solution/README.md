@@ -124,3 +124,23 @@ Le bus devant Sudo Hack permet aussi de rentrer en ville avant la fin des cinq �
 Depuis la salle cyber, prenez l’accès au couloir. Interagissez avec la porte à droite et reliez **A–3 (rouge), B–2 (vert), C–1 (marron)**. Sélectionnez une borne du haut puis la borne du bas ; un second appui sur la borne du haut annule sa sélection. Une mauvaise paire est refusée. Chaque connexion correcte est sauvegardée ; la porte reste déverrouillée.
 
 Choisissez **Y aller**, suivez le long couloir et prenez la porte à gauche signalée « Atelier · 10 m ». La visite de l’atelier n’ajoute pas de points et ne réinitialise aucune mission. Le retour par les mêmes portes est possible.
+
+## City CIEL — laboratoire IPv4 / IPv6 (0.23.0)
+
+Dans l’atelier City CIEL, prenez la porte à gauche, à environ 5–10 m de l’entrée. Le tableau et le cours intégré donnent les explications. Validez les trois postes dans l’ordre ; chaque première réussite rapporte 50 points (ou rembourse d’abord une éventuelle dette).
+
+| Poste | Champ | Réponse |
+| --- | --- | --- |
+| PC-01 · IPv4 | Masque décimal | `255.255.255.0` |
+| PC-01 · IPv4 | Adresse réseau | `192.168.50.0` |
+| PC-01 · IPv4 | Dernier hôte | `192.168.50.254` |
+| PC-02 · IPv6 | Taille d’une adresse | `128` |
+| PC-02 · IPv6 | Longueur du préfixe du LAN | `64` |
+| PC-02 · IPv6 | Réseau complet | `2001:db8:50:1::/64` |
+| Routeur + switch | Équipement entre réseaux | `routeur` |
+| Routeur + switch | Passerelle du PC | `192.168.50.1` |
+| Routeur + switch | Réseau du serveur | `192.168.60.0/24` |
+
+IPv4 comporte **32 bits** ; /24 laisse 8 bits pour les hôtes. Dans cet exercice, .0 est le réseau, .255 la diffusion et .1 à .254 les adresses hôtes. IPv6 comporte **128 bits** et le LAN de cet exercice utilise **/64** ; /32 n’est pas la bonne réponse pour ce LAN. Le bloc `2001:db8::/32` est réservé aux exemples de documentation.
+
+Un switch relie les équipements d’un LAN ; le routeur achemine les paquets vers un autre réseau. La passerelle du PC doit appartenir à son LAN et le routage doit fonctionner dans les deux sens.
