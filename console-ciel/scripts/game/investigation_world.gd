@@ -445,6 +445,7 @@ func _fit_camera() -> void:
 	# On compact screens, retain an 18 px character instead of shrinking the
 	# complete room into a short strip. The cropped axes follow the player.
 	var fit := .92 if maze_active or chapter_id == 0 else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
+	if campus_zone == "school_network_lab": fit = .80
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
 	camera.reset_physics_interpolation()
@@ -455,10 +456,11 @@ func _update_camera_position() -> void:
 	var half_visible: Vector2 = get_viewport_rect().size / camera.zoom * 0.5
 	var extent := world_extent()
 	var center := extent * .5
+	var follow := player.position + (Vector2(0,-80) if campus_zone == "school_network_lab" else Vector2.ZERO)
 	if half_visible.x < extent.x * .5:
-		center.x = clampf(player.position.x, half_visible.x, extent.x - half_visible.x)
+		center.x = clampf(follow.x, half_visible.x, extent.x - half_visible.x)
 	if half_visible.y < extent.y * .5:
-		center.y = clampf(player.position.y, half_visible.y, extent.y - half_visible.y)
+		center.y = clampf(follow.y, half_visible.y, extent.y - half_visible.y)
 	# Physics interpolation smooths both camera and player from the same tick.
 	var teleported := _last_camera_player_position.is_finite() and player.position.distance_to(_last_camera_player_position) > 64.0
 	_last_camera_player_position = player.position
@@ -764,7 +766,7 @@ func world_extent() -> Vector2:
 	return MazeLayout.extent() if maze_active else WORLD_SIZE
 
 func _build_hotel() -> void:
-	hotel_visual = preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
+	hotel_visual = preload("res://scripts/game/city_lab_visual.gd").new() if campus_zone == "school_network_lab" else preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
 	hotel_visual.name = "HotelScenery"
 	hotel_visual.zone = campus_zone
 	_room_root.add_child(hotel_visual)
@@ -781,7 +783,7 @@ func _build_hotel() -> void:
 			circle.radius = rect.size.x * .5
 			body.get_child(0).shape = circle
 			body.get_child(0).position = Vector2(0, -rect.size.y * .5)
-		var visual = preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
+		var visual = preload("res://scripts/game/city_lab_visual.gd").new() if campus_zone == "school_network_lab" else preload("res://scripts/game/school_visual.gd").new() if campus_zone.begins_with("school_") else HotelVisual.new()
 		visual.zone = campus_zone
 		visual.furniture_only = spec
 		visual.furniture_anchor = body.position
