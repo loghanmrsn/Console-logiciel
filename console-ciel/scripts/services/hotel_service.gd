@@ -23,6 +23,7 @@ const REPAIR_OBSERVATIONS := {
 	}
 }
 const ROUTES := {
+ "school_workshop>school_network_lab": "city_lab_entry", "school_network_lab>school_workshop": "city_workshop_return",
  "school_cyber>school_hall": "school_hall_entry", "school_hall>school_cyber": "school_entry",
  "school_hall>school_passage": "school_passage_entry", "school_passage>school_hall": "school_hall_entry",
  "school_passage>school_workshop": "school_workshop_entry", "school_workshop>school_passage": "school_passage_entry",
