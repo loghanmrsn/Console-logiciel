@@ -1,0 +1,177 @@
+{
+  "version": "0.22.0",
+  "source": [
+    {
+      "name": "workshop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 35,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 5.0,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log": "/workspace/console-ciel-workshop-validation/regression/workshop_ui_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.45,
+      "script_sha256": "bc9991d048378bbf1b74addbdd5231cb8bac6cf73d6a1e06b6a7c996916239e0",
+      "log": "/workspace/console-ciel-workshop-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 80,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.97,
+      "script_sha256": "4e2c082a66e54400181d88774f6f5977ab5fbbe705807a209d56990327347cc0",
+      "log": "/workspace/console-ciel-workshop-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 511,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.66,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log": "/workspace/console-ciel-workshop-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 540,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.39,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-workshop-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.56,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-workshop-validation/regression/stability_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "workshop_ui_tests",
+      "assertions": 35,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "7f20477ea7c0af3e23591446e79f097e04c3d9e6acbd94b62882f4eb85b1ff6e"
+    },
+    {
+      "platform": "linux",
+      "name": "workshop_ui_tests",
+      "assertions": 35,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "7f20477ea7c0af3e23591446e79f097e04c3d9e6acbd94b62882f4eb85b1ff6e"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "37ddb3356f076de69e69f479fe6244e935ffd06dd9b426cb09fa10b392504796",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "37ddb3356f076de69e69f479fe6244e935ffd06dd9b426cb09fa10b392504796",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 47,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/workshop_0.22.0/workshop_ui_tests/atelier_equipements_challenge.png",
+        "bytes": 82485,
+        "sha256": "0ee9e46809b7bc1d8ecb62498f5c0e9c0b8ed36d84b00d12af4075a5a8d4ec2a"
+      },
+      {
+        "file": "docs/screenshots/workshop_0.22.0/workshop_ui_tests/couloir_atelier_challenge.png",
+        "bytes": 92744,
+        "sha256": "a9b7d4c9eb5c588f4ff394e7fdfa00eee4f5fb92a0eb137182e5a9cc6014f050"
+      },
+      {
+        "file": "docs/screenshots/workshop_0.22.0/workshop_ui_tests/porte_cablage_challenge.png",
+        "bytes": 93060,
+        "sha256": "404780452751d8dcab472b392a86fd1b39a2e106ddf81d6d6866628efbccea33"
+      }
+    ],
+    "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+    "log_sha256": "1b11ddffbb70e6f0aeba450c90b6dc4cafa664d796044cc6a8d83b2955427695"
+  }
+}
