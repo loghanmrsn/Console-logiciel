@@ -16,11 +16,7 @@ func _draw() -> void:
 	if zone in ["school_hall", "school_passage", "school_workshop"]: _atelier_area()
 	elif zone == "school_stop": _exterior()
 	else: _cyber()
-	for wall in School.walls(zone):
-		if zone == "school_stop" and wall.size.y == 330: continue
-		draw_rect(Rect2(wall.position+Vector2(4,6),wall.size),Color("657b7c"))
-		draw_rect(wall,Color("b6c4c0"))
-		draw_line(wall.position,wall.position+Vector2(wall.size.x,0),Color("e7ece5"),3)
+	preload("res://scripts/game/school_architecture.gd").draw_room(self,zone)
 
 func _exterior() -> void:
 	# Low, horizontal school frontage: pale concrete, rose fascia and glazed vestibule.
