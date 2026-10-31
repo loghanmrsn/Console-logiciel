@@ -1,10 +1,10 @@
-# Console CIEL 0.21.1 — Windows x86_64
+# Console CIEL 0.22.0 — Windows x86_64
 
-[Télécharger Windows 0.21.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_finish_0.21.1.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.22.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_workshop_0.22.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.21.1](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.21.1.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-finish-0.21.1/Console_CIEL.exe`.
+Le [projet complet Windows 0.22.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.22.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-workshop-0.22.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
@@ -14,7 +14,7 @@ Les treize missions de l’enquête rapportent **50 points à leur première ré
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.21.1](Console_CIEL_Windows_x86_64_finish_0.21.1.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.21.1.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.22.0](Console_CIEL_Windows_x86_64_workshop_0.22.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.22.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
@@ -78,6 +78,6 @@ La version **0.15.0** a ajouté six personnages solides et des discussions à pl
 
 La version **0.16.0** a affiné les six PNJ : coiffures et tenues distinctes, regards, geste d’accueil, portraits rapprochés et bulles portant leur nom. La discussion fonctionne depuis les côtés libres, avec de courts fondus, un portrait et des boutons fixes, un texte défilant et un bouton de fermeture directe. Espace avance aussi les pages ; les obstacles et les sauvegardes sont conservés. [Visuel et commandes](../docs/PNJ.md).
 
-La version **0.21.1** propose le bouton **Dev · Super administrateur** : profil séparé, treize défis, épreuves de l’hôtel et cinq postes du CTF validés, étages accessibles et 1 000 points initiaux. La réutilisation conserve sa sauvegarde et les autres profils restent indépendants. [Utiliser Dev](../docs/DEV.md).
+La version **0.22.0** propose le bouton **Dev · Super administrateur** : profil séparé, treize défis, épreuves de l’hôtel et cinq postes du CTF validés, étages accessibles et 1 000 points initiaux. La réutilisation conserve sa sauvegarde et les autres profils restent indépendants. [Utiliser Dev](../docs/DEV.md).
 
 Les cinq épreuves **Sudo Hack** se jouent dans le hall du CTF. Chaque poste donne 50 points une seule fois. Après le flag final, le bus devant le CTF ramène en ville ; les lieux restent visitables. [Toutes les solutions illustrées](../../solution/README.md).
