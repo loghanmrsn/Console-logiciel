@@ -118,3 +118,9 @@ Le profil **Dev · Super administrateur** créé en 0.18.0 possède aussi les ci
 Les commandes réservées au profil Dev sont regroupées dans le fichier **commandes triches.md**, dans ce même dossier. [Ouvrir la fiche](https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md).
 
 Le bus devant Sudo Hack permet aussi de rentrer en ville avant la fin des cinq épreuves. Les réponses validées et les points restent conservés. Reprenez le bus près de l’hôtel pour poursuivre le CTF.
+
+## Lycée — porte de l’atelier (0.22.0)
+
+Depuis la salle cyber, prenez l’accès au couloir. Interagissez avec la porte à droite et reliez **A–3 (rouge), B–2 (vert), C–1 (marron)**. Sélectionnez une borne du haut puis la borne du bas ; un second appui sur la borne du haut annule sa sélection. Une mauvaise paire est refusée. Chaque connexion correcte est sauvegardée ; la porte reste déverrouillée.
+
+Choisissez **Y aller**, suivez le long couloir et prenez la porte à gauche signalée « Atelier · 10 m ». La visite de l’atelier n’ajoute pas de points et ne réinitialise aucune mission. Le retour par les mêmes portes est possible.
