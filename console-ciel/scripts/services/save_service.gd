@@ -17,9 +17,10 @@ const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const HOTEL_VERSION := 2
 const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
 const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
-const HOTEL_ROOMS := ["school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ROOMS := ["school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
 const HOTEL_CHECKPOINTS := {
+ "school_hall_entry": "school_hall", "school_passage_entry": "school_passage", "school_workshop_entry": "school_workshop",
  "school_arrival": "school_stop", "school_door": "school_stop", "school_entry": "school_cyber",
 	"new_entrance": "building_02", "hall_it": "building_02", "hall_stairs": "building_02",
 	"it_entrance": "hotel_it", "stairs_from_hall": "hotel_stairs_1", "stairs_from_floor2": "hotel_stairs_1",
@@ -644,6 +645,11 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	var hotel_validation := _validate_hotel_progress(progress, completed, rewarded)
 	if not hotel_validation.ok:
 		return hotel_validation
+	var wires: Variant = progress.get("school_wires", {})
+	if not wires is Dictionary or wires.size() > 3: return _fail("Câblage du lycée invalide.")
+	for terminal in wires:
+		if terminal not in COFFEE_WIRES or wires[terminal] != COFFEE_WIRES[terminal]: return _fail("Connexion de porte invalide.")
+	if progress.room_id in ["school_passage", "school_workshop"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
 	var ctf_validation := _validate_ctf_progress(progress, rewarded)
 	if not ctf_validation.ok: return ctf_validation
 	if progress.has("ctf"): progress.ctf.version = 1
