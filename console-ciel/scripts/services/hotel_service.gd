@@ -23,6 +23,9 @@ const REPAIR_OBSERVATIONS := {
 	}
 }
 const ROUTES := {
+ "school_cyber>school_hall": "school_hall_entry", "school_hall>school_cyber": "school_entry",
+ "school_hall>school_passage": "school_passage_entry", "school_passage>school_hall": "school_hall_entry",
+ "school_passage>school_workshop": "school_workshop_entry", "school_workshop>school_passage": "school_passage_entry",
  "school_stop>school_cyber": "school_entry", "school_cyber>school_stop": "school_door",
 	"building_02>hotel_it": "it_entrance",
 	"hotel_it>building_02": "hall_it",
@@ -318,3 +321,15 @@ func return_bus() -> Dictionary:
 	var saved := _save_progress(progress)
 	if not saved.ok: return saved
 	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
+
+func connect_school_wire(top: String, bottom: String) -> Dictionary:
+	var ready := _ready_for(["school_hall"])
+	if not ready.ok: return ready
+	if top not in SaveService.COFFEE_WIRES or SaveService.COFFEE_WIRES[top] != bottom:
+		return SaveService._fail("Reliez les bornes de même couleur.")
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	var wires: Dictionary = progress.get("school_wires", {}).duplicate(true)
+	if wires.has(top): return SaveService._ok()
+	wires[top] = bottom
+	progress.school_wires = wires
+	return _save_progress(progress)
