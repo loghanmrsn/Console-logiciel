@@ -1155,7 +1155,7 @@ func _product_action(id: String) -> void:
 	elif AppState.profile.wallet.points<item.price:
 		var maximum=0
 		for mission in RewardService.missions: maximum+=mission.reward
-		maximum += 50 * (SaveService.HOTEL_REWARD_IDS.size() + SaveService.CtfCatalog.IDS.size())
+		maximum += 50 * (SaveService.HOTEL_REWARD_IDS.size() + SaveService.CtfCatalog.IDS.size() + SaveService.CityCatalog.IDS.size())
 		_confirm('Points insuffisants','Terminez l’enquête, l’hôtel et le CTF pour gagner jusqu’à %d points par profil. Une mission ne récompense qu’une seule fois. Cet article coûte %d points ; votre solde est de %d.' % [maximum,item.price,AppState.profile.wallet.points],'Compris',func(): pass)
 	else:
 		_confirm('Acheter « '+item.name+' » ?','Prix : %d points virtuels. Nouveau solde : %d points. Aucun argent réel.' % [item.price,AppState.profile.wallet.points-item.price],'Acheter',func():
