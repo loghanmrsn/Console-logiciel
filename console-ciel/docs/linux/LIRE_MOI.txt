@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.21.1 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.22.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -251,7 +251,7 @@ Fiche complète : https://github.com/loghanmrsn/Console-logiciel/tree/main/solut
 Un ancien Dev garde son solde : Réinitialiser sa progression valide
 aussi le CTF, sans ajouter de points ni retirer ses achats.
 
-FLUIDITÉ ET TERMINAL DEV — 0.21.1
+FLUIDITÉ ET TERMINAL DEV — 0.22.0
 Caméra et personnages utilisent l’interpolation physique ; la marche accélère
 progressivement, sans glissement au relâchement. Textures filtrées et regard
 PNJ adouci ; les téléportations restent instantanées. Échap ferme les panneaux CTF.
@@ -264,7 +264,7 @@ Le terminal ne lance jamais de commande système ; il est réservé au compte De
 Toutes les commandes :
 https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md
 
-CONFORT — 0.21.1
+CONFORT — 0.22.0
 Paramètres > Audio : quatre ambiances musicales au choix.
 Paramètres > Commandes : touches clavier et boutons manette personnalisables.
 Appliquer sauvegarde ; Annuler restaure ; retour aux commandes par défaut disponible.
@@ -274,7 +274,7 @@ Chapitre 3 : les livres au coin ressources expliquent les exercices.
 Rejouer cette mission ne réinitialise pas toute l’enquête.
 L’hôtel de la ville se nomme désormais Ritz.
 
-LYCÉE — 0.21.1
+LYCÉE — 0.22.0
 Bus en ville : arrêt 1 Sudo Hack ; arrêt 2 lycée Louise Michel de Ruffec.
 Porte du lycée : salle cyber, six postes, baie réseau et tableau interactifs.
 Panneaux portant le logo fourni. Sortir puis bus pour revenir en ville.
