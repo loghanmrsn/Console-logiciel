@@ -32,6 +32,7 @@ func _run() -> void:
 	_check(Town.buildings().size()==38,"40 bâtiments avec les deux lieux d’origine")
 	_check(app.demo.world.world_extent()==Town.SIZE,"Grande ville chargée")
 	_check(app.demo.campus_map.visible,"Carte de la ville visible")
+	await _verify_streets()
 	for building in Town.buildings():
 		_check(not _point_clear(building.rect.get_center()),"Façade solide : "+building.title)
 		for road in Town.roads(): _check(not building.rect.intersects(road),"Bâtiment hors chaussée")
@@ -67,7 +68,7 @@ func _run() -> void:
 	_check(ambient.people[0].body.position==start,"La pause immobilise les passants")
 	app.demo._close_overlay()
 	await _key(KEY_RIGHT)
-	for spec in [{"at":Vector2(2730,1060),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
+	for spec in [{"at":Vector2(1690,990),"image":"ville_raccord_centre_challenge"},{"at":Vector2(4150,1670),"image":"ville_intersection_nord_challenge"},{"at":Vector2(4170,4330),"image":"ville_intersection_sud_challenge"},{"at":Vector2(2730,1060),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
 		app.demo.world.player.position=spec.at
 		app.demo.world.player.reset_physics_interpolation()
 		await _physics_frames(4)
@@ -121,6 +122,48 @@ func _run() -> void:
 	await _activate("town_walk_go")
 	_check(state.profile.progress.room_id=="ctf_bus_stop" and state.profile.wallet.points==80,"Accès à pied gratuit depuis la façade")
 	await _finish()
+
+func _verify_streets() -> void:
+	var streets := Town.roads()
+	var visited: Array[int] = [0]
+	var pending: Array[int] = [0]
+	while not pending.is_empty():
+		var index := pending.pop_back() as int
+		for other in range(streets.size()):
+			if other not in visited and streets[index].intersects(streets[other]):
+				visited.append(other)
+				pending.append(other)
+	_check(visited.size()==streets.size(),"Toutes les rues appartiennent au même réseau connecté")
+	for x in range(1650,2071,10): _check(Town.on_road(Vector2(x,700)),"Rue continue entre le centre et l’avenue")
+	for y in [625,700,790]:
+		var ray := PhysicsRayQueryParameters2D.create(Vector2(1690,y),Vector2(2130,y),1)
+		_check(app.demo.world.get_world_2d().direct_space_state.intersect_ray(ray).is_empty(),"Raccord sans obstacle caché")
+	for crossing in Town.crosswalks():
+		_check(Town.on_road(crossing.position+Vector2.ONE) and Town.on_road(crossing.end-Vector2.ONE),"Passage piéton posé sur la chaussée")
+	if not captures: return
+	# Render the street layer alone to detect pavement seams in the actual
+	# framebuffer, independently of the layout graph and moving vehicles.
+	var view := SubViewport.new()
+	view.size=Vector2i(1200,920)
+	view.render_target_update_mode=SubViewport.UPDATE_ONCE
+	var paint := preload("res://scripts/game/town_streets.gd").new()
+	paint.scale=Vector2(.2,.2)
+	view.add_child(paint)
+	root.add_child(view)
+	await _frames(5)
+	var image := view.get_texture().get_image()
+	_check(image!=null and not image.is_empty(),"Rendu des routes disponible")
+	if image!=null and not image.is_empty():
+		var samples: Array[Vector2] = [Vector2(1768,705),Vector2(1820,700)]
+		for junction in Town.intersections():
+			var center := junction.get_center()
+			for point in [Vector2(center.x-35,junction.position.y-20),Vector2(center.x-35,junction.end.y+20),Vector2(junction.position.x-20,center.y-35),Vector2(junction.end.x+20,center.y-35)]:
+				if Town.on_road(point): samples.append(point)
+		for point in samples:
+			var color := image.get_pixelv(Vector2i(point*.2))
+			_check(Vector3(color.r,color.g,color.b).distance_to(Vector3(84.0/255,98.0/255,105.0/255))<.025,"Asphalte sans trou ni trottoir au raccord : "+str(point))
+	view.queue_free()
+
 func _approach(id: String) -> void:
 	var specs: Array=Campus.interactions("courtyard") if app.demo.world.room_id=="courtyard" else preload("res://scripts/game/hotel_layout.gd").interactions(app.demo.world.room_id)
 	for spec in specs:
