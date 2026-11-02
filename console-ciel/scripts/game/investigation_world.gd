@@ -842,7 +842,7 @@ func _build_campus() -> void:
 			visual.furniture_only = town_spec
 			visual.furniture_anchor = body.position
 			body.add_child(visual)
-			if town_spec.kind in ["fountain","island","tree"]:
+			if town_spec.kind in ["fountain","island","tree","cafe_table"]:
 				var circle := CircleShape2D.new()
 				circle.radius=rect.size.x*.5
 				body.get_child(0).shape=circle
