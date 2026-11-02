@@ -797,6 +797,20 @@ func _build_hotel() -> void:
 		index += 1
 	for spec in HotelLayout.interactions(campus_zone):
 		_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
+	if campus_zone in ["school_stop","ctf_bus_stop"]:
+		var entrances: Array[Dictionary] = []
+		for spec in HotelLayout.interactions(campus_zone):
+			if str(spec.id).ends_with("_enter"): entrances.append(spec)
+		_add_entrance_beacons(entrances)
+
+func _add_entrance_beacons(entries: Array[Dictionary]) -> void:
+	var beacons := preload("res://scripts/game/entrance_beacons.gd").new()
+	for entry in entries:
+		var offset: Vector2=entry.get("marker_offset",Vector2(0,-45))
+		var target: Node2D=get_interactable(str(entry.id))
+		if target!=null: target.set("marker_offset",offset)
+		beacons.points.append(entry.at+offset)
+	_room_root.add_child(beacons)
 
 func _hotel_seated() -> bool:
 	return room_id == "hotel_room_206" and _bed_pose == "sitting"
@@ -869,3 +883,4 @@ func _build_campus() -> void:
 		_props.add_child(town_ambient)
 		for spec in CampusLayout.interactions(campus_zone):
 			_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
+		_add_entrance_beacons(CampusLayout.entrances())
