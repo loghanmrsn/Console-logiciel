@@ -292,36 +292,40 @@ func collect_backpack() -> Dictionary:
 	progress.hotel.morning_stage = 6
 	return _save_progress(progress, "hotel_backpack")
 
-func board_bus(destination: String = "ctf_bus_stop") -> Dictionary:
-	if destination not in ["ctf_bus_stop", "school_stop"]: return SaveService._fail("Arrêt inconnu.")
-	var ready := _ready_for(["courtyard"])
-	if not ready.ok:
-		return ready
+func bus_plan(destination: String = "ctf_bus_stop", returning: bool = false) -> Dictionary:
+	if destination not in ["ctf_bus_stop","school_stop","courtyard"]: return SaveService._fail("Arrêt inconnu.")
+	var ready := _ready_for(["ctf_bus_stop","school_stop"] if returning else ["courtyard"])
+	if not ready.ok: return ready
 	var hotel := state()
-	if int(hotel.morning_stage) not in [6, 9]:
-		return SaveService._fail("Récupérez votre sac avec l’ordinateur avant de prendre le bus pour Sudo Hack.")
+	if not returning and int(hotel.morning_stage) not in [6,9]:
+		return SaveService._fail("Récupérez votre sac avec l’ordinateur avant de partir.")
 	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	progress.hotel.morning_stage = 9 if int(hotel.morning_stage) == 9 else (6 if destination == "school_stop" else 7)
-	progress.room_id = destination
-	progress.checkpoint_id = "school_arrival" if destination == "school_stop" else "ctf_arrival"
+	if returning:
+		progress.hotel.morning_stage = 9 if CtfService.completed() else 6
+		progress.room_id = "courtyard"
+		progress.checkpoint_id = "from_first"
+	else:
+		if destination == "courtyard": return SaveService._fail("Vous êtes déjà en ville.")
+		progress.hotel.morning_stage = 9 if int(hotel.morning_stage) == 9 else (6 if destination == "school_stop" else 7)
+		progress.room_id = destination
+		progress.checkpoint_id = "school_arrival" if destination == "school_stop" else "ctf_arrival"
 	progress.active_mission = ""
-	var saved := _save_progress(progress)
-	if not saved.ok:
-		return saved
-	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
+	return SaveService._ok(progress)
+
+# Low-level story transitions; the player-facing ticket flow uses TransitService.
+func board_bus(destination: String = "ctf_bus_stop") -> Dictionary:
+	var plan := bus_plan(destination)
+	if not plan.ok: return plan
+	var saved := _save_progress(plan.data)
+	if not saved.ok: return saved
+	return SaveService._ok({"room_id":plan.data.room_id,"checkpoint_id":plan.data.checkpoint_id})
 
 func return_bus() -> Dictionary:
-	var ready := _ready_for(["ctf_bus_stop", "school_stop"])
-	if not ready.ok: return ready
-	var progress: Dictionary = AppState.profile.progress.duplicate(true)
-	# Stage 6 permits city visits and boarding again; CTF answers/receipts stay intact.
-	progress.hotel.morning_stage = 9 if CtfService.completed() else 6
-	progress.room_id = "courtyard"
-	progress.checkpoint_id = "from_first"
-	progress.active_mission = ""
-	var saved := _save_progress(progress)
+	var plan := bus_plan("courtyard",true)
+	if not plan.ok: return plan
+	var saved := _save_progress(plan.data)
 	if not saved.ok: return saved
-	return SaveService._ok({"room_id": progress.room_id, "checkpoint_id": progress.checkpoint_id})
+	return SaveService._ok({"room_id":plan.data.room_id,"checkpoint_id":plan.data.checkpoint_id})
 
 func connect_school_wire(top: String, bottom: String) -> Dictionary:
 	var ready := _ready_for(["school_hall"])
