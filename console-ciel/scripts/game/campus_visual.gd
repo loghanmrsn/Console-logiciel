@@ -28,7 +28,6 @@ func _draw() -> void:
 	if zone == "courtyard":
 		_facades()
 		_gardens()
-		_street_furniture()
 	else:
 		for i in Layout.rooms().size():
 			var room: Rect2 = Layout.rooms()[i]
@@ -45,14 +44,6 @@ func _courtyard() -> void:
 	for y in [465,940]:
 		var at := Vector2(900,y)
 		draw_polyline(PackedVector2Array([at+Vector2(-18,15),at,at+Vector2(18,15)]),Color("75988d"),5,true)
-	draw_rect(Road.ROAD, Color("525f65"))
-	draw_rect(Rect2(64, 568, 1672, 12), Color("b9b9ad"))
-	draw_rect(Rect2(64, 820, 1672, 12), Color("b9b9ad"))
-	for x in range(90, 1710, 90):
-		if x < 740 or x > 1040: draw_rect(Rect2(x, 698, 48, 4), Color("d7d6c6"))
-	for y in range(588, 813, 32): draw_rect(Rect2(805, y, 190, 18), Color("f4f0dd"))
-	for x in [770, 1025]: draw_rect(Rect2(x, 592, 5, 216), Color("eee9d4"))
-	_text("PASSAGE PIÉTON", Vector2(900, 548), 17, true)
 
 func _facades() -> void:
 	# Architectural details remain inside the existing solid building footprints.
@@ -163,12 +154,6 @@ func _gardens() -> void:
 			draw_circle(at + Vector2(5, 8), 39, Color("9caf98"))
 			draw_circle(at, 36, Color("6e927a"))
 			draw_arc(at, 26, PI, TAU, 20, Color("b6cf9e"), 4, true)
-
-func _street_furniture() -> void:
-	for rect in Road.barriers():
-		draw_rect(rect, Color("637d7c"))
-		draw_line(rect.position + Vector2(0, 3), Vector2(rect.end.x, rect.position.y + 3), Color("cfdbd3"), 3)
-		for x in range(int(rect.position.x + 15), int(rect.end.x), 42): draw_rect(Rect2(x, rect.position.y - 7, 6, 27), Color("526d6c"))
 
 func _bench(rect: Rect2) -> void:
 	draw_rect(Rect2(rect.position + Vector2(4, 8), rect.size), Color("bec3b8"))
