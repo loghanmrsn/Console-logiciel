@@ -3,6 +3,7 @@ extends "res://scripts/game/school_visual.gd"
 func _draw() -> void:
 	if not furniture_only.is_empty():
 		draw_set_transform(-furniture_anchor)
+		if use_baked_art and preload("res://scripts/game/baked_art.gd").draw_school(self,str(furniture_only.kind),furniture_only.rect): return
 		_prop_art(str(furniture_only.kind),furniture_only.rect)
 		return
 	draw_rect(Rect2(0,0,2200,1600),Color("dfdfd3"))
@@ -38,14 +39,14 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 		super._prop_art(kind,rect)
 		return
 	draw_style_box(_shadow_style(),Rect2(rect.position+Vector2(6,10),rect.size))
-	draw_rect(rect,Color("b9a98a"))
+	Workshop.table(self,rect,Color("b9a98a"))
 	var at := rect.position+Vector2(20,22)
 	# Router, console, ventilation and link lights.
-	draw_rect(Rect2(at,Vector2(175,100)),Color("e0e5df"))
+	preload("res://scripts/game/render_materials.gd").rounded(self,Rect2(at,Vector2(175,100)),Color("e0e5df"),9)
 	draw_rect(Rect2(at+Vector2(12,14),Vector2(148,32)),Color("466776"))
 	for x in [20,55,90,125]: draw_circle(at+Vector2(x,70),3,Color("82b995"))
 	at += Vector2(205,0)
-	draw_rect(Rect2(at,Vector2(170,100)),Color("3d535d"))
+	preload("res://scripts/game/render_materials.gd").rounded(self,Rect2(at,Vector2(170,100)),Color("3d535d"),8)
 	for row in [20,50]:
 		for x in range(14,153,23):
 			draw_rect(Rect2(at+Vector2(x,row),Vector2(16,18)),Color("b3c5be"))
