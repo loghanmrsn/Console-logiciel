@@ -1,0 +1,382 @@
+{
+  "version": "0.25.0",
+  "source": [
+    {
+      "name": "campus_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 151,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 49.31,
+      "script_sha256": "35c9a9534472063c25d6309ee7c157eca37df81d588bdc557228d5044818dc07",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/campus_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.3,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "npc_polish_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 426,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 34.14,
+      "script_sha256": "399da7b3774aa52bc8704cc78fddee8bca5902f1c4c976083e391b8fa5936e5f",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/npc_polish_ui_tests/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 81,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.34,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "town_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 701,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.53,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/town_ui_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.19,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/traffic_ui_tests/run.log"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.75,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/transit_services_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.57,
+      "script_sha256": "fd39985c19443f6e84471ad61b4ac2b704723def79ee438eeb232e2624d16801",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1056,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.65,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "/workspace/console-ciel-campus-signs-validation/regression/world_collision_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "town_ui_tests",
+      "assertions": 701,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "f80f66242c2efcf95b811324d4cdc3451b22f0539bd7b9c554ae8cea4fb5c8a9"
+    },
+    {
+      "platform": "linux",
+      "name": "town_ui_tests",
+      "assertions": 701,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "f80f66242c2efcf95b811324d4cdc3451b22f0539bd7b9c554ae8cea4fb5c8a9"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 81,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "7c1cb8c078bc2d7397a7964002b4f270a558cf76d084d266ca9c490c4564f4ca"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 81,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "7c1cb8c078bc2d7397a7964002b4f270a558cf76d084d266ca9c490c4564f4ca"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "80be1b726ecfd87fdaef36b3538563845f64a02fd52e82c4a5e9d3eb09115ef6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "80be1b726ecfd87fdaef36b3538563845f64a02fd52e82c4a5e9d3eb09115ef6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": [
+    {
+      "assertions": 858,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/bus_attente_assise_challenge.png",
+          "bytes": 113345,
+          "sha256": "c37c56da40b90add99c4a43918a60d94957d3e615de4da08785d645da248fa8f"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/bus_attente_compact_challenge.png",
+          "bytes": 75570,
+          "sha256": "6d7e716a168c598666ca54ece4a7aafa89a54e27371add5bdd3f82aa8698df5c"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/bus_descente_challenge.png",
+          "bytes": 110776,
+          "sha256": "989aa4f7ee07a216aaef9891a818f2020303eb79dd71e7ffc0cb5eab0057615d"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/bus_paiement_challenge.png",
+          "bytes": 112411,
+          "sha256": "84ba1f8c6f029a46df6ae07df78363dea6865679ea2be1d658a3ca79ff0d31d9"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ctf_repere_compact_challenge.png",
+          "bytes": 62982,
+          "sha256": "dd71adaa592050571058cce5b5afaf07e24870e281064e8db58ffeddd13258c1"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ctf_repere_lointain_challenge.png",
+          "bytes": 79021,
+          "sha256": "cf36007bcd741d7b2328f53645b77b08713c44c3b7ec7aa29e4ff35bacc2823b"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/lycee_campus_facade_challenge.png",
+          "bytes": 78343,
+          "sha256": "e6b8b341f90bc3bb5495517cd32dfbd4974453d054f5f3928430b45c2981aabf"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/lycee_campus_parvis_challenge.png",
+          "bytes": 76109,
+          "sha256": "8bd1fd929360681c431096945782d4f76db4bc1e82d984af3856db2a68cf7394"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_arret_billet_challenge.png",
+          "bytes": 108812,
+          "sha256": "6e697f296510157cab77e5c20cc9ed3235656bc8a56f423d1da95052584f67cb"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_boucle_nord_challenge.png",
+          "bytes": 80317,
+          "sha256": "f996012b3b3f07906b32bad03800401579e3465b590c686e118e72324cc1cd91"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_boucle_nord_est_challenge.png",
+          "bytes": 65657,
+          "sha256": "6ea9b76bdd12accf279b73fac48c78388b7e0995effe4859bf6d4e6973348a65"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_boucle_ouest_challenge.png",
+          "bytes": 100220,
+          "sha256": "0bb27af4a65c885d18497f9035d589247f26ad7c7ea925d52b90d6335551ea47"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_boucle_sud_est_challenge.png",
+          "bytes": 62601,
+          "sha256": "9ec5c8a04706c4b8f0ccb000fb146702901082021094a0d65f2f8ac163766edb"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_boucle_sud_ouest_challenge.png",
+          "bytes": 62692,
+          "sha256": "773137b37f2ba1fe2630c2a3905e614ba9a91b68acdc671ad4da17bdc4a69850"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_commerces_challenge.png",
+          "bytes": 92919,
+          "sha256": "8fa59a0de63ec297de3d7ce5c950062a1d461d989c2a0f27388addefbcd36844"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_intersection_nord_challenge.png",
+          "bytes": 75934,
+          "sha256": "d2bada1a36b24365e970955321f5b58cda6a55b1cadea8a755bf5863cfb9483c"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_intersection_sud_challenge.png",
+          "bytes": 62653,
+          "sha256": "98f690cc0d500f7ed7cee58b54f75a8c7964b61145fcb990b7e354fd9806666e"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_parc_fontaine_challenge.png",
+          "bytes": 72102,
+          "sha256": "65f6a3dcaa605449f0cb3207f110e260835f9327b82647d8fc0c70f6786dfe23"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_raccord_centre_challenge.png",
+          "bytes": 94118,
+          "sha256": "006e517bab0d342a9746f1b633cb3bedb61049c0a23534ef2bd44a43a018e140"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_rond_point_challenge.png",
+          "bytes": 73412,
+          "sha256": "27ed0c89f746f1ea140646a7e993eb5d961457e9edfd772384bd8b8f1050d4dc"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/town_ui_tests/ville_vue_ensemble_challenge.png",
+          "bytes": 70239,
+          "sha256": "f7a67a0d04ecd644f59d924aacccf4f3ede97d9ea9cfa5f5c122b39f87b9b5f7"
+        }
+      ],
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "3cae1095380625e1fc03460aa7592e3279ee0d8152beaf2fbdaf9ffc23fd0069"
+    },
+    {
+      "assertions": 93,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/campus_0.25.0/school_ui_tests/bus_destinations_challenge.png",
+          "bytes": 102992,
+          "sha256": "41ff9bf23a977726d9340e2dcbba6f92fa3291527b9915b2f344513fe3324d43"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/school_ui_tests/lycee_cyber_challenge.png",
+          "bytes": 106223,
+          "sha256": "bc3e7b6c57cee5902bf2ac3c585e24e2c9ceeb23b449162bfa381de44c94533b"
+        },
+        {
+          "file": "docs/screenshots/campus_0.25.0/school_ui_tests/lycee_facade_challenge.png",
+          "bytes": 102080,
+          "sha256": "537f5bfd21deebfb74725bff3079a518620591dbc9f29c85e4e0be4eaff2ed1f"
+        }
+      ],
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "90a5d35837de898ca6f66f8c88acf2d0940e99e118e6f7c42889896e7c69ae0a"
+    }
+  ],
+  "assistant_review": "docs/OUTILS_ASSISTANT.md"
+}
