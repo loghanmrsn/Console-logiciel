@@ -1,0 +1,961 @@
+{
+  "version": "0.26.0",
+  "source": [
+    {
+      "name": "appearance_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1881,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.57,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log": "/workspace/console-ciel-graphics-validation/regression/appearance_tests/run.log"
+    },
+    {
+      "name": "baked_art_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 489,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.54,
+      "script_sha256": "9da99bcc4b128b37239e69283838dc5892bad3d438caf314eab1338957168443",
+      "log": "/workspace/console-ciel-graphics-validation/regression/baked_art_tests/run.log"
+    },
+    {
+      "name": "city_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 73,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 10.23,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log": "/workspace/console-ciel-graphics-validation/regression/city_network_ui_tests/run.log"
+    },
+    {
+      "name": "code_chapter_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 617,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 34.53,
+      "script_sha256": "e845b342137254e723c0e067c4dc8446f8c381db9207ca4291539336299a06e8",
+      "log": "/workspace/console-ciel-graphics-validation/regression/code_chapter_ui_tests/run.log"
+    },
+    {
+      "name": "comfort_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.77,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log": "/workspace/console-ciel-graphics-validation/regression/comfort_ui_tests/run.log"
+    },
+    {
+      "name": "graphics_gallery_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 48,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 5.76,
+      "script_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238",
+      "log": "/workspace/console-ciel-graphics-validation/regression/graphics_gallery_tests/run.log"
+    },
+    {
+      "name": "hotel_visual_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 247,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 23.92,
+      "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+      "log": "/workspace/console-ciel-graphics-validation/regression/hotel_visual_ui_tests/run.log"
+    },
+    {
+      "name": "keyboard_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 786,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.33,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log": "/workspace/console-ciel-graphics-validation/regression/keyboard_tests/run.log"
+    },
+    {
+      "name": "library_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 477,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 22.61,
+      "script_sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107",
+      "log": "/workspace/console-ciel-graphics-validation/regression/library_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.49,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-graphics-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "npc_polish_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 426,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 34.29,
+      "script_sha256": "399da7b3774aa52bc8704cc78fddee8bca5902f1c4c976083e391b8fa5936e5f",
+      "log": "/workspace/console-ciel-graphics-validation/regression/npc_polish_ui_tests/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 81,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.61,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log": "/workspace/console-ciel-graphics-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "town_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 701,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.62,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log": "/workspace/console-ciel-graphics-validation/regression/town_ui_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 27.94,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-graphics-validation/regression/traffic_ui_tests/run.log"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.65,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "/workspace/console-ciel-graphics-validation/regression/transit_services_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.57,
+      "script_sha256": "5286b39000877122b0360c546031867e5393da6f48e5d220ac32345dfda9d487",
+      "log": "/workspace/console-ciel-graphics-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1056,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.95,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "/workspace/console-ciel-graphics-validation/regression/world_collision_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "code_chapter_ui_tests",
+      "assertions": 617,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e845b342137254e723c0e067c4dc8446f8c381db9207ca4291539336299a06e8",
+      "log_sha256": "0dbceb59bcf5f2ff290457b50b10832ac875ad58d78541d62cc0452fdc87822a"
+    },
+    {
+      "platform": "linux",
+      "name": "code_chapter_ui_tests",
+      "assertions": 617,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e845b342137254e723c0e067c4dc8446f8c381db9207ca4291539336299a06e8",
+      "log_sha256": "7149e1d09bacc4606dad4f9aa52927e9708aa58690a80a4b3e47958ff8e1c904"
+    },
+    {
+      "platform": "windows",
+      "name": "npc_polish_ui_tests",
+      "assertions": 426,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "399da7b3774aa52bc8704cc78fddee8bca5902f1c4c976083e391b8fa5936e5f",
+      "log_sha256": "09f3d502791fdd4355a76f77f12a0b3fdb5afc2f2be6123e90575baca33785f3"
+    },
+    {
+      "platform": "linux",
+      "name": "npc_polish_ui_tests",
+      "assertions": 426,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "399da7b3774aa52bc8704cc78fddee8bca5902f1c4c976083e391b8fa5936e5f",
+      "log_sha256": "09f3d502791fdd4355a76f77f12a0b3fdb5afc2f2be6123e90575baca33785f3"
+    },
+    {
+      "platform": "windows",
+      "name": "traffic_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+    },
+    {
+      "platform": "linux",
+      "name": "traffic_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log_sha256": "855a77c34ccc1ef2ace871ee25645c65f8a79756c0bb571aad07589509b142b7"
+    },
+    {
+      "platform": "windows",
+      "name": "hotel_visual_ui_tests",
+      "assertions": 247,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+      "log_sha256": "1286b83d0a38d0e736396ed6a8d59a8a85dc83bf6c1d2296619b89d6fef12f08"
+    },
+    {
+      "platform": "linux",
+      "name": "hotel_visual_ui_tests",
+      "assertions": 247,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+      "log_sha256": "1286b83d0a38d0e736396ed6a8d59a8a85dc83bf6c1d2296619b89d6fef12f08"
+    },
+    {
+      "platform": "windows",
+      "name": "library_ui_tests",
+      "assertions": 477,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107",
+      "log_sha256": "943699c5c51f5ebe9ea407b701fa86b3a4ba0395e1525dc019e5144315036f48"
+    },
+    {
+      "platform": "linux",
+      "name": "library_ui_tests",
+      "assertions": 477,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "2d308650ca6498e3e84c7ab8243f42fa568d4c78c38294853ee9c4e3650f2107",
+      "log_sha256": "943699c5c51f5ebe9ea407b701fa86b3a4ba0395e1525dc019e5144315036f48"
+    },
+    {
+      "platform": "windows",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "windows",
+      "name": "town_ui_tests",
+      "assertions": 701,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "f80f66242c2efcf95b811324d4cdc3451b22f0539bd7b9c554ae8cea4fb5c8a9"
+    },
+    {
+      "platform": "linux",
+      "name": "town_ui_tests",
+      "assertions": 701,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "f80f66242c2efcf95b811324d4cdc3451b22f0539bd7b9c554ae8cea4fb5c8a9"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 81,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "7c1cb8c078bc2d7397a7964002b4f270a558cf76d084d266ca9c490c4564f4ca"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 81,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "7c1cb8c078bc2d7397a7964002b4f270a558cf76d084d266ca9c490c4564f4ca"
+    },
+    {
+      "platform": "windows",
+      "name": "graphics_gallery_tests",
+      "assertions": 48,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238",
+      "log_sha256": "d7b971f1d5a4f956cfd51595ac10a8c3e28ab0bcbdf2430e2646fba3b5f72582"
+    },
+    {
+      "platform": "linux",
+      "name": "graphics_gallery_tests",
+      "assertions": 48,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238",
+      "log_sha256": "d7b971f1d5a4f956cfd51595ac10a8c3e28ab0bcbdf2430e2646fba3b5f72582"
+    },
+    {
+      "platform": "windows",
+      "name": "comfort_ui_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log_sha256": "9c80b4fa777ba55e006353e62f366a3ad06bc62d3f1b7352046a67fc58706801"
+    },
+    {
+      "platform": "linux",
+      "name": "comfort_ui_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "66a1d1ead98c3a0d7e9ae345fdf8d790767f151ee4ba696a3dbb9708def716dd",
+      "log_sha256": "9c80b4fa777ba55e006353e62f366a3ad06bc62d3f1b7352046a67fc58706801"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 1056,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "23ac5bd1d48273f227ee7c99dd0ee955ae7b44b0c705550b3e46d88229647808"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 1056,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "23ac5bd1d48273f227ee7c99dd0ee955ae7b44b0c705550b3e46d88229647808"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "linux",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "platform": "linux",
+      "name": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "platform": "windows",
+      "name": "baked_art_tests",
+      "assertions": 475,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9da99bcc4b128b37239e69283838dc5892bad3d438caf314eab1338957168443",
+      "log_sha256": "531d98385a01846916adf4a3adc8c9358237ee04860d536e189ed24dfa43c30f"
+    },
+    {
+      "platform": "linux",
+      "name": "baked_art_tests",
+      "assertions": 475,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9da99bcc4b128b37239e69283838dc5892bad3d438caf314eab1338957168443",
+      "log_sha256": "531d98385a01846916adf4a3adc8c9358237ee04860d536e189ed24dfa43c30f"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7be33462291f35d3d9b16c4069bcee5dc66d9165bba4b170228a36fe1ce721b3",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7be33462291f35d3d9b16c4069bcee5dc66d9165bba4b170228a36fe1ce721b3",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": [
+    {
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/console_compact_nuit_challenge.png",
+          "bytes": 62376,
+          "sha256": "6c20adec43e22f96f5eb7656d9d1aa343ac327f2a84c8bd8cfbca8f9b252fc51"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/console_home_challenge.png",
+          "bytes": 127046,
+          "sha256": "90eca34932d2917143cec29702f4717eff3b91c22f238631cb6ef7c8f42f33a4"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/console_profiles_challenge.png",
+          "bytes": 105647,
+          "sha256": "e8c8e61b23024ba27373a6ec4e36f169b0228ce2948f2da9addeb3713ea4c8ad"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/console_settings_challenge.png",
+          "bytes": 81743,
+          "sha256": "0cf2179d542bde3d43a893d7b7154c72a07d96d517c82cc92840cf61c40a73bf"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/console_shop_challenge.png",
+          "bytes": 109037,
+          "sha256": "132d4976da40ab69371fd69bfd5424fbb31b75352e5808e1a0c5a33111ed503f"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_building_02_challenge.png",
+          "bytes": 98882,
+          "sha256": "fd5623b1eac8bec39d3f16247a7c3e843c3eddaa24e8c40119d4d3ade1ac9394"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_courtyard_challenge.png",
+          "bytes": 190537,
+          "sha256": "71f05624cfae9ec13f64b03e3c82296323edc81386db9547a142b812aa0f6aea"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_ctf_lobby_challenge.png",
+          "bytes": 106859,
+          "sha256": "3398d60d8abc0897f855e88356793fb29360a27738a5b6cbf3b4106e48942bb6"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_hotel_breakfast_challenge.png",
+          "bytes": 98815,
+          "sha256": "09efd1a9f0aea99bb049cd62f30675bd3d3bce57df0c04e3e5b734929b91a4fe"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_hotel_it_challenge.png",
+          "bytes": 109871,
+          "sha256": "bc365f2198f6ac8fc0a1d289f79107fbdf673cbf8d8ee2231702ca41a5fb0d49"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_hotel_room_206_challenge.png",
+          "bytes": 96954,
+          "sha256": "0c943510f5c1718a4a3b163a1b08e4167f09e6fb62189f66a325c95cff304cf3"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_maze_05_challenge.png",
+          "bytes": 89389,
+          "sha256": "ad73da85e38043d7799da10bf86c8cdf482a6b62a1eaaabc0ddd509c4e101687"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_room_01_challenge.png",
+          "bytes": 152483,
+          "sha256": "2694c286e385cedf3c225c0d105ac69018bd2c13adbf54ce18be131755a9abda"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_room_02_challenge.png",
+          "bytes": 156260,
+          "sha256": "f10a527f4fb6a768b3e62b3f947b2b302b8c6d54bac437db799144a2927af71b"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_room_03_challenge.png",
+          "bytes": 153142,
+          "sha256": "97334f7b1b52da7dee6a896b467db13046994bdf56e455026d62f381ab36e173"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_room_04_challenge.png",
+          "bytes": 151448,
+          "sha256": "05684dc4d67f02659eae63cce57536349e01c6f928290528379978b3d40829b4"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_room_05_challenge.png",
+          "bytes": 121519,
+          "sha256": "4ccc8e96b06680924e7c87e77aa7cbb9beb9439a55a2bc9926ccc9264f5147c1"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_school_network_lab_challenge.png",
+          "bytes": 117031,
+          "sha256": "341eed6d7d0d289fd976a3578393305b78d5948edde7788bedb0d0bef1c113a6"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/jeu_school_workshop_challenge.png",
+          "bytes": 115236,
+          "sha256": "bd47c334bc4b50e40d4d29fcbbbeaaefcd6eaab5b67a328d8b2c7304cc7247d2"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/graphics_gallery_tests/personnage_directions_challenge.png",
+          "bytes": 67544,
+          "sha256": "e751dfeb6e4a1a39cbca609107ddc96ed861ab284020fa299a0b7733d5a9270b"
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "67103b164e09de29be85b7a6469ff764db44e2c46ed8e4ca43e452e85b84235a",
+      "script_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238",
+      "log_sha256": "267ea9fad22a3d280bbdc28e355ce12fc4974dfb8885b77db057a9e857c0b0ad"
+    },
+    {
+      "assertions": 798,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/bus_attente_assise_challenge.png",
+          "bytes": 121874,
+          "sha256": "0d2e7f41603b4d6088c9ebae7300e36207bf10033c975c121b215cab00afa1ee"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/ctf_repere_compact_challenge.png",
+          "bytes": 85487,
+          "sha256": "5fd593d68816636f73ae76dd5e2da83b7d19b37a0ed648e0a93fc3473c85c961"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/lycee_campus_facade_challenge.png",
+          "bytes": 114437,
+          "sha256": "0b5dba541604d21f45c2ca738a293a44c88c0ca11aab9c138f115ce9975fc339"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/ville_commerces_challenge.png",
+          "bytes": 181399,
+          "sha256": "7dde8230c250a16fcfeb31043f1f35f9a4e08c528d461c548e6468ea2d5b4225"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/ville_parc_fontaine_challenge.png",
+          "bytes": 89953,
+          "sha256": "8caa949210277015c2948d61c04da9dc4e4ee3f99325feb440215bda4b60ad9b"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/town_ui_tests/ville_vue_ensemble_challenge.png",
+          "bytes": 181034,
+          "sha256": "b71b733425c2d685401032ff370b02960b5621171703608306d2810ddfafa796"
+        }
+      ],
+      "capture_selection": [
+        "ville_commerces_challenge",
+        "ville_parc_fontaine_challenge",
+        "lycee_campus_facade_challenge",
+        "ctf_repere_compact_challenge",
+        "bus_attente_assise_challenge",
+        "ville_vue_ensemble_challenge"
+      ],
+      "driver_sha256": "72b3113200cdbe1579654608c2eab23e82eb91dadfb5aa3e0088347316d49b7d",
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log_sha256": "153daceb0c05c93084026968685230e4a39f1706cbe2c0bff70cf5c9a897b775"
+    },
+    {
+      "assertions": 263,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/graphics_0.26.0/hotel_visual_ui_tests/hotel_visuel_diagnostic_compact_challenge.png",
+          "bytes": 55067,
+          "sha256": "54dadad20083663022bb4447b6b07c3be11e1bf0f79fe4a965a65678671015f1"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/hotel_visual_ui_tests/hotel_visuel_diagnostic_nuit_challenge.png",
+          "bytes": 126205,
+          "sha256": "366cc9be0235a0fa8f2cdf7b9319602fe40b885c4d6f66bbc8f64e6e23770b59"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/hotel_visual_ui_tests/hotel_visuel_local_informatique_challenge.png",
+          "bytes": 106376,
+          "sha256": "ecac56b7097d932c4ea2a3cc7a0fb3222e793f8510e60aee3beda439b1c1452a"
+        },
+        {
+          "file": "docs/screenshots/graphics_0.26.0/hotel_visual_ui_tests/hotel_visuel_machine_et_tasses_challenge.png",
+          "bytes": 113104,
+          "sha256": "48164e92dd843596159e939ed530157cd09162ec3ee05ffb8dd393bde7f74843"
+        }
+      ],
+      "capture_selection": [
+        "hotel_visuel_machine_et_tasses_challenge",
+        "hotel_visuel_local_informatique_challenge",
+        "hotel_visuel_diagnostic_compact_challenge",
+        "hotel_visuel_diagnostic_nuit_challenge"
+      ],
+      "driver_sha256": "190369aa2be1b2513e0bee2572a921dedd7fc89c6c4952d644b7183ae65ad540",
+      "script_sha256": "50de054664098221d11b66c31439baf6523fe3941150ad248a48565319ffc837",
+      "log_sha256": "ed37e183f30a2db9578d1293c465fcc015de8eead99f5f78a53d2d4a311bd271"
+    }
+  ],
+  "host_performance": {
+    "baseline_version": "0.25.0",
+    "candidate_version": "0.26.0",
+    "baseline_commit": "374146725c54d415a25bb6c24fd47dc7a372d1f2",
+    "metric": "90 process-frame intervals after 30 warmup frames; single sequential host run per build",
+    "limits": "Linux x86_64 Mesa llvmpipe; host variability; no Raspberry Pi FPS claim",
+    "budget": {
+      "max_interval_ratio": 1.3,
+      "max_added_video_memory_bytes": 41943040
+    },
+    "comparisons": [
+      {
+        "zone": "room_01",
+        "baseline": {
+          "draw_calls": 118.0,
+          "frame_interval_median_ms": 22.148,
+          "frame_interval_p95_ms": 27.062,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 45033987.0,
+          "viewport": "(1280, 720)",
+          "zone": "room_01"
+        },
+        "candidate": {
+          "draw_calls": 124.0,
+          "frame_interval_median_ms": 22.916,
+          "frame_interval_p95_ms": 34.268,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 45034755.0,
+          "viewport": "(1280, 720)",
+          "zone": "room_01"
+        },
+        "ratios": {
+          "frame_interval_median_ms": 1.0346758172295467,
+          "frame_interval_p95_ms": 1.2662774369965264
+        },
+        "within_budget": true
+      },
+      {
+        "zone": "building_02",
+        "baseline": {
+          "draw_calls": 385.0,
+          "frame_interval_median_ms": 25.727,
+          "frame_interval_p95_ms": 31.637,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 49493733.0,
+          "viewport": "(1280, 720)",
+          "zone": "building_02"
+        },
+        "candidate": {
+          "draw_calls": 433.0,
+          "frame_interval_median_ms": 27.847,
+          "frame_interval_p95_ms": 33.294,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 52153669.0,
+          "viewport": "(1280, 720)",
+          "zone": "building_02"
+        },
+        "ratios": {
+          "frame_interval_median_ms": 1.0824037003925837,
+          "frame_interval_p95_ms": 1.052375383253785
+        },
+        "within_budget": true
+      },
+      {
+        "zone": "school_network_lab",
+        "baseline": {
+          "draw_calls": 258.0,
+          "frame_interval_median_ms": 25.621,
+          "frame_interval_p95_ms": 30.451,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 49663053.0,
+          "viewport": "(1280, 720)",
+          "zone": "school_network_lab"
+        },
+        "candidate": {
+          "draw_calls": 86.0,
+          "frame_interval_median_ms": 23.134,
+          "frame_interval_p95_ms": 30.881,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 54386249.0,
+          "viewport": "(1280, 720)",
+          "zone": "school_network_lab"
+        },
+        "ratios": {
+          "frame_interval_median_ms": 0.9029311892588112,
+          "frame_interval_p95_ms": 1.0141210469278512
+        },
+        "within_budget": true
+      },
+      {
+        "zone": "courtyard",
+        "baseline": {
+          "draw_calls": 548.0,
+          "frame_interval_median_ms": 28.263,
+          "frame_interval_p95_ms": 32.564,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 51995687.0,
+          "viewport": "(1280, 720)",
+          "zone": "courtyard"
+        },
+        "candidate": {
+          "draw_calls": 366.0,
+          "frame_interval_median_ms": 26.261,
+          "frame_interval_p95_ms": 30.084,
+          "hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+          "samples": 90,
+          "video_memory_bytes": 82733005.0,
+          "viewport": "(1280, 720)",
+          "zone": "courtyard"
+        },
+        "ratios": {
+          "frame_interval_median_ms": 0.9291653398436117,
+          "frame_interval_p95_ms": 0.9238422798182041
+        },
+        "within_budget": true
+      }
+    ],
+    "baseline_test_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238",
+    "candidate_test_sha256": "a7dd8a477a08874503e82a3b38a3162fce59e92829c49b3bcb4afb460e8b5238"
+  },
+  "assistant_review": "docs/OUTILS_ASSISTANT.md",
+  "city_360_reference": {
+    "url": "https://lycee-louise-michel.fr/360/BAC%20PRO%20CIEL/index.html#",
+    "visited": false,
+    "blocker": "Network proxy denied domain (403); allowlist draft saved for review. Recreation from this reference remains pending."
+  }
+}
