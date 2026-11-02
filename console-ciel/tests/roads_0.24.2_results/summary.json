@@ -1,0 +1,227 @@
+{
+  "version": "0.24.2",
+  "source": [
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.4,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-roads-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "town_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 424,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.4,
+      "script_sha256": "89db7bf9f52171bd4df5234e9331ef9b7409fd9d494abfb739c46a10755a6c58",
+      "log": "/workspace/console-ciel-roads-validation/regression/town_ui_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.55,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-roads-validation/regression/traffic_ui_tests/run.log"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.53,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "/workspace/console-ciel-roads-validation/regression/transit_services_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.45,
+      "script_sha256": "3f400e80474521b4d36eb1bcc88feb477fd87ca36f33d37fe38825bc7ae5d1fc",
+      "log": "/workspace/console-ciel-roads-validation/regression/windows_contracts/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "town_ui_tests",
+      "assertions": 424,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "89db7bf9f52171bd4df5234e9331ef9b7409fd9d494abfb739c46a10755a6c58",
+      "log_sha256": "f0d3da859508d7535cfd3fedc7c69ed09ae1931e90763499b52d7294ea84c47e"
+    },
+    {
+      "platform": "linux",
+      "name": "town_ui_tests",
+      "assertions": 424,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "89db7bf9f52171bd4df5234e9331ef9b7409fd9d494abfb739c46a10755a6c58",
+      "log_sha256": "f0d3da859508d7535cfd3fedc7c69ed09ae1931e90763499b52d7294ea84c47e"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "70fc25f2f55b0cc97d9af2416ef93ac309fb1b1680b6b76c64ba9f3c2b2974fa",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "70fc25f2f55b0cc97d9af2416ef93ac309fb1b1680b6b76c64ba9f3c2b2974fa",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 498,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/bus_attente_assise_challenge.png",
+        "bytes": 114324,
+        "sha256": "316703345ec3936110e69c636142908eaf4d20ac372afd71dcb5cb3dc5df9bb1"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/bus_attente_compact_challenge.png",
+        "bytes": 76466,
+        "sha256": "dccffaf8b5afb4b81e6e8f9f0664a290ae2c8a09e2674bd24b955e3249d1fa12"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/bus_descente_challenge.png",
+        "bytes": 110791,
+        "sha256": "54223f37c70ed8fa1f4f224378bc87290cdbda3bc86d74cf5670eae21c926d4f"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/bus_paiement_challenge.png",
+        "bytes": 112528,
+        "sha256": "560b49eaf68be3ef21b173ff687a7aea0ce7de9a8af99a3447884324f8418f69"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_arret_billet_challenge.png",
+        "bytes": 107320,
+        "sha256": "e14739e629ed2097aff34fddaf20b4ee6102590f5476cc780f8518cfa5cabc74"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_commerces_challenge.png",
+        "bytes": 90922,
+        "sha256": "72344765665f49b594ed6bff1bd816a11238e3cfdce7c9fb4fe074828bb49d8f"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_intersection_nord_challenge.png",
+        "bytes": 75869,
+        "sha256": "989467d69bf52117d0b112fdc7957a3c73f4e789ea8b44a071b26886c570913b"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_intersection_sud_challenge.png",
+        "bytes": 62938,
+        "sha256": "888adffc1c65f1a9c57d18f17934657a829a4560af6275b0742dd1c964619d1b"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_parc_fontaine_challenge.png",
+        "bytes": 71557,
+        "sha256": "09f1ca77199ade4a12d2221b5bf52f91a2f2fd03200713a46fd8780ceda8d066"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_raccord_centre_challenge.png",
+        "bytes": 90686,
+        "sha256": "b2026ee0d92be63671901871951dc041f9b9a357b6a00999893c34e4bee47a50"
+      },
+      {
+        "file": "docs/screenshots/roads_0.24.2/town_ui_tests/ville_rond_point_challenge.png",
+        "bytes": 73435,
+        "sha256": "347e733baa1650294ce25b0ca9365d89395b38c4e5bc6ee869fd9a6a4a9cf48b"
+      }
+    ],
+    "script_sha256": "89db7bf9f52171bd4df5234e9331ef9b7409fd9d494abfb739c46a10755a6c58",
+    "log_sha256": "5fce8290a346074ec64c87f8b91a093bc0836daf52d262f72254debc1258255d"
+  }
+}
