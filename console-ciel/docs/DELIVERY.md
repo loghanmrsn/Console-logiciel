@@ -1,3 +1,17 @@
+# Livraison 0.24.2 — routes et intersections continues
+
+La rue devant le Ritz et le bâtiment A rejoint désormais toute la largeur de l’avenue ouest, par une intersection en T. Le vide entre les deux anciens segments est supprimé. La carte inclut cette liaison et représente les deux ronds-points. Les bâtiments, leurs portes et l’arrêt du centre gardent leurs positions. [Guide de la ville](VILLE.md).
+
+Le dessin routier est regroupé dans TownStreets : tous les fonds de trottoir sont dessinés avant toutes les chaussées, puis viennent les marquages et les barrières. Cette organisation supprime les bandes de trottoir qui coupaient les voies aux carrefours et autour des ronds-points. Les lignes centrales s’interrompent aux intersections et aux passages piétons. Deux passages piétons bordent la nouvelle jonction en T. TownLayout partage la géométrie des six segments, sept intersections et six passages piétons avec le rendu et la carte.
+
+Les collisions et les règles du passage central, les pénalités de 200 points, les itinéraires des voitures et des passants, les sauvegardes et les déplacements entre les bâtiments sont conservés. Le dessin de rue est statique : pas de recalcul à chaque image, pas de nouvelle texture téléchargée.
+
+Vérifications du 2 novembre 2026 : 5 suites sources (614 assertions), 8 suites sur les packs Windows/ARM64 (1198 assertions), et 498 contrôles en rendu X11/Mesa. Aucun échec final. Le test vérifie que tous les segments appartiennent au même réseau, que le raccord se parcourt sans obstacle et que les passages piétons sont sur la chaussée. Un rendu isolé de la couche routière contrôle les pixels d’asphalte au vide signalé et dans chaque branche existante des sept intersections : un trottoir dessiné par-dessus ferait échouer le contrôle. Les régressions circulation, pénalités, mouvement, mobilier de terrasse et billet de bus sont incluses. Onze captures réelles du jeu sont conservées, dont le raccord du centre et les carrefours nord et sud. [Résultats](../tests/roads_0.24.2_results/summary.json) · [Captures](screenshots/roads_0.24.2/town_ui_tests/).
+
+Les ressources des exports Windows et ARM64 sont exécutées par Godot Linux x86_64. Le lancement natif sous Windows ou sur Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Aucun gain de FPS n’est revendiqué. Anciennes livraisons et présentation des README conservées.
+
+---
+
 # Livraison 0.24.1 — enseignes, terrasses et bus
 
 Les commerces et services ont maintenant des enseignes encadrées fixées aux façades, avec une typographie adaptée à leur largeur. La Poste possède une plaque jaune avec une grande enveloppe ; les cafés, bar et restaurants sont identifiables par leur enseigne verte et leur tasse. Chacun de ces cinq lieux reçoit deux tables avec des cafés servis, quatre chaises et une ardoise de menu. Les tables ont une collision circulaire ; les chaises et les menus sont également solides. Les objets laissent les portes et les parcours piétons accessibles. [Guide de la ville](VILLE.md).
