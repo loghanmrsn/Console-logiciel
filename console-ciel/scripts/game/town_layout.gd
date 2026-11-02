@@ -1,5 +1,6 @@
 extends RefCounted
 ## Compact town centre: 38 new facades + the two original playable buildings.
+const Road = preload("res://scripts/game/road_layout.gd")
 const SIZE := Vector2(6000,4600)
 const PARK := Rect2(2210,1660,1450,850)
 const FOUNTAIN := Vector2(2930,2070)
@@ -23,7 +24,18 @@ static func add_building(result: Array[Dictionary], rect: Rect2) -> void:
 	var index := result.size()
 	result.append({"kind":"building","rect":rect,"title":NAMES[index],"index":index,"floors":2+index%3})
 static func roads() -> Array[Rect2]:
-	return [Rect2(1800,64,270,4420),Rect2(3900,64,220,4420),Rect2(100,1300,5800,220),Rect2(100,2650,5800,220),Rect2(100,3950,5800,220)]
+	# The original street joins the full width of the first avenue. Its old
+	# crossing/penalty region stays owned by RoadLayout, independently of paint.
+	return [Rect2(1800,64,270,4420),Rect2(3900,64,220,4420),Rect2(100,1300,5800,220),Rect2(100,2650,5800,220),Rect2(100,3950,5800,220),Rect2(Road.ROAD.position,Vector2(2070-Road.ROAD.position.x,Road.ROAD.size.y))]
+static func intersections() -> Array[Rect2]:
+	var result: Array[Rect2] = []
+	var streets := roads()
+	for index in range(streets.size()):
+		for other in range(index+1,streets.size()):
+			if streets[index].intersects(streets[other]): result.append(streets[index].intersection(streets[other]))
+	return result
+static func crosswalks() -> Array[Rect2]:
+	return [Road.CROSSING,Rect2(1800,496,270,52),Rect2(1800,850,270,52),Rect2(2720,1300,110,220),Rect2(2720,2650,110,220),Rect2(4300,2650,110,220)]
 static func roundabouts() -> Array[Vector2]: return [Vector2(1935,1410),Vector2(4010,2760)]
 static func props() -> Array[Dictionary]:
 	var result: Array[Dictionary] = [{"kind":"fountain","rect":Rect2(FOUNTAIN-Vector2(95,95),Vector2(190,190))},{"kind":"shelter","rect":Rect2(1080,850,170,22)}]
