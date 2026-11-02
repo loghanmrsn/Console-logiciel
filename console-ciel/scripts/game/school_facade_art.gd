@@ -1,5 +1,6 @@
 extends RefCounted
 ## Original low school frontage inspired by the user's Ruffec photograph.
+const Garden = preload("res://scripts/game/exterior_painter.gd")
 const LOGO = preload("res://assets/lycee/logo_louise_michel.jpg")
 const STONE := Color("e8e0cf")
 const ROSE := Color("c8aaa7")
@@ -15,6 +16,9 @@ static func draw_facade(c: Node2D, f: Rect2) -> void:
 	_box(c,f,Rect2(6,12,1800,310),Color(0.18,.23,.22,.18))
 	_box(c,f,Rect2(0,0,560,310),ROSE)
 	_box(c,f,Rect2(540,45,1260,265),STONE)
+	for i in range(10):
+		var x := 585.0+i*117
+		_line(c,f,Vector2(x,89),Vector2(x-11,296),Color("d5ccbb"),1)
 	_box(c,f,Rect2(540,45,1260,31),ROSE)
 	_box(c,f,Rect2(0,-8,560,21),Color("d4d1c0"))
 	_box(c,f,Rect2(540,30,1260,18),Color("d4d1c0"))
@@ -74,10 +78,7 @@ static func prop(c: Node2D, spec: Dictionary) -> void:
 			c.draw_rect(Rect2(r.position+Vector2(4,6),r.size),Color(0.18,.23,.20,.16))
 			c.draw_rect(r,Color("b6b7aa"))
 			c.draw_rect(r.grow(-8),Color("809572"))
-			for x in range(int(r.position.x)+24,int(r.end.x)-15,44):
-				var at := Vector2(x,r.get_center().y)
-				c.draw_circle(at,23,Color("899b78"))
-				for off in [Vector2(-7,-10),Vector2(9,6),Vector2(3,-3)]: c.draw_circle(at+off,4,Color("ddc8d5"))
+			Garden.flowers(c,r.grow(-12),int(r.position.x))
 		"campus_bench":
 			c.draw_rect(r,Color("6b8976"))
 			for y in [7,18,29]: c.draw_line(r.position+Vector2(4,y),Vector2(r.end.x-4,r.position.y+y),Color("a5b49a"),3)
