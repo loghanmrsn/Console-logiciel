@@ -7,10 +7,12 @@ const SCHOOL_STONE := Color("e6e1d5")
 const ROSE := Color("bda3a0")
 const METAL := Color("6e858a")
 const DARK := Color("283c49")
+var use_baked_art := true
 
 func _draw() -> void:
 	if not furniture_only.is_empty():
 		draw_set_transform(-furniture_anchor)
+		if use_baked_art and preload("res://scripts/game/baked_art.gd").draw_school(self,str(furniture_only.kind),furniture_only.rect): return
 		_prop_art(str(furniture_only.kind), furniture_only.rect)
 		return
 	draw_rect(Rect2(0,0,2000,1400), Color("8b9695") if zone == "school_stop" else Color("dce3e5"))
@@ -47,6 +49,9 @@ func _cyber() -> void:
 	for y in [365,695]: draw_line(Vector2(170,y),Vector2(1810,y),Color("8ca4a7"),3)
 
 func _prop_art(kind: String, rect: Rect2) -> void:
+	if kind in ["cyber_desk","laptop_bench","electronics","printer3d","chair","rack"]:
+		Workshop.prop(self,kind,rect)
+		return
 	draw_style_box(_shadow_style(), Rect2(rect.position+Vector2(5,9),rect.size))
 	match kind:
 		"printer3d", "laptop_bench", "electronics":
@@ -110,10 +115,7 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 		"garden":
 			draw_rect(rect,Color("b6b7a8"))
 			draw_rect(rect.grow(-10),Color("778b6b"))
-			for i in range(15):
-				var at := rect.position+Vector2(25+(i*53)%220,22+(i*37)%110)
-				draw_circle(at,14,Color("8c9c78"))
-				draw_circle(at+Vector2(3,-7),3,Color("ded4e0"))
+			preload("res://scripts/game/exterior_painter.gd").flowers(self,rect.grow(-12),int(rect.position.x))
 		"shelter":
 			draw_rect(rect,Color("adc4bf"))
 			for x in [rect.position.x+10,rect.end.x-10]: draw_line(Vector2(x,rect.position.y),Vector2(x,rect.end.y),DARK,6)
