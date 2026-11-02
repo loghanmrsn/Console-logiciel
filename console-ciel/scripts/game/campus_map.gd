@@ -33,6 +33,7 @@ class FloorPlan extends Control:
 			for road in town.roads(): draw_rect(Rect2(origin+road.position*scale_factor,road.size*scale_factor),Color("899e9b"))
 			for center in town.roundabouts(): draw_circle(origin+center*scale_factor,145*scale_factor,Color("899e9b"))
 			draw_rect(Rect2(origin+town.PARK.position*scale_factor,town.PARK.size*scale_factor),Color("91b286"))
+			draw_rect(Rect2(origin+town.SCHOOL_GROUNDS.position*scale_factor,town.SCHOOL_GROUNDS.size*scale_factor),Color("bdc7ae"))
 		for i in rooms.size():
 			var room: Rect2 = rooms[i]
 			draw_rect(Rect2(origin+room.position*scale_factor,room.size*scale_factor),Plan.COLORS[i%4])
@@ -52,7 +53,12 @@ class FloorPlan extends Control:
 		if zone == "courtyard":
 			for spec in Plan.interactions(zone):
 				var marker: Vector2=origin+spec.at*scale_factor
-				draw_rect(Rect2(marker-Vector2(2,2),Vector2(4,4)),Color("ba873e"))
+				if spec.id=="campus_bus": draw_rect(Rect2(marker-Vector2(2,2),Vector2(4,4)),Color("ba873e"))
+			for spec in Plan.entrances():
+				var marker: Vector2=origin+spec.at*scale_factor
+				draw_circle(marker,4,Color("fffdf4"))
+				draw_circle(marker,2.5,Color("477fa5"))
+				draw_circle(marker,1,Color("fffdf4"))
 		for character in People.for_zone(zone):
 			var marker: Vector2 = origin + character.at * scale_factor
 			draw_circle(marker, 3, Color("856b8c"))
@@ -124,7 +130,7 @@ func _process(_delta: float) -> void:
 	if zone != _last_zone:
 		_last_zone = zone
 		canvas.zone = zone
-		legend.text = "● Vous  ▪ Entrées / bus\nCentre / Ritz : nord-ouest\nParc : centre · lycée : nord-est" if zone == "courtyard" else "● Vous   ▪ Porte / accueil\n▲ / ▼ Escaliers   ● PNJ"
+		legend.text = "● Vous  ○ Entrées  ▪ Bus\nCentre / Ritz : nord-ouest\nParc : centre · campus : est" if zone == "courtyard" else "● Vous   ▪ Porte / accueil\n▲ / ▼ Escaliers   ● PNJ"
 		area_label.text = HotelLayout.title(zone) if HotelLayout.is_zone(zone) else "Ville CIEL · centre au nord-ouest"
 		canvas.queue_redraw()
 	if not expanded: return
