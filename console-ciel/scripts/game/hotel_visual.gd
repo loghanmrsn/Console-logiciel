@@ -284,7 +284,8 @@ func _bus_shelter(rect: Rect2) -> void:
 	for x in [rect.position.x + 8, rect.end.x - 12]: draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y), INK, 7)
 	_rounded(Rect2(rect.position + Vector2(-15, -18), Vector2(rect.size.x + 30, 30)), VELVET, 9)
 	_rounded(Rect2(rect.position + Vector2(25, 95), Vector2(rect.size.x - 50, 30)), Color("947c60"), 5)
-	_text("BUS", rect.position + Vector2(150, 54), 22, INK, true)
+	_text("1 · SUDO HACK", rect.position + Vector2(150, 45), 19, INK, true)
+	_text("CENTRE / RITZ · 1 € = 10 points", rect.position + Vector2(150, 74), 13, INK, true)
 
 func _bus(at: Vector2) -> void:
 	_rounded(Rect2(at - Vector2(185, 40), Vector2(370, 100)), VELVET, 17)
