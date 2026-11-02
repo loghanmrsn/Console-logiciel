@@ -4,6 +4,7 @@ const Road = preload("res://scripts/game/road_layout.gd")
 ## Shared courtyard geometry and interactions for the hotel and bus route.
 const BUILDING_SIZE := Vector2(6400, 4200)
 const COURTYARD_SIZE := Town.SIZE
+const ACADEMY := Rect2(340,1090,1360,160)
 const ROOM_SIZE := Vector2(1120, 660)
 const ROOM_X := [300, 1540, 3620, 4860]
 const ROOM_Y := [300, 1080, 2460, 3240]
@@ -27,7 +28,7 @@ static func walls(zone: String) -> Array[Rect2]:
 	var size := extent(zone)
 	var result: Array[Rect2] = [Rect2(40,40,size.x-80,24), Rect2(40,size.y-64,size.x-80,24), Rect2(40,64,24,size.y-128), Rect2(size.x-64,64,24,size.y-128)]
 	if zone == "courtyard":
-		result.append_array([Rect2(100,80,1600,250), Rect2(100,1090,1600,160)])
+		result.append_array([Rect2(100,80,1600,250), ACADEMY])
 		result.append_array(Road.gardens())
 		result.append_array(Road.barriers())
 		result.append_array(Road.furniture())
