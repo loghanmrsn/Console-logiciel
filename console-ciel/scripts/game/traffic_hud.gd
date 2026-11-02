@@ -17,7 +17,7 @@ func _ready() -> void:
 	_status.add_theme_font_size_override("font_size", 18)
 	column.add_child(_status)
 	_detail = Label.new()
-	_detail.text = "Rouge : pénalité de 200 points\nChoc : retour sur le trottoir"
+	_detail.text = "Centre : rouge = 200 points\nChoc : retour sur le trottoir"
 	_detail.add_theme_font_size_override("font_size", 13)
 	column.add_child(_detail)
 
@@ -25,7 +25,12 @@ func _process(_delta: float) -> void:
 	if not is_instance_valid(world) or not is_instance_valid(world.traffic):
 		hide()
 		return
-	visible = world.traffic.enabled and world.is_visible_in_tree()
+	var compact := get_viewport_rect().size.x<1000
+	custom_minimum_size.x=210 if compact else 245
+	var font_size := 15 if compact else 18
+	if _status.get_theme_font_size("font_size") != font_size: _status.add_theme_font_size_override("font_size",font_size)
+	if get_parent() is Control: position=Vector2(maxf(12,(get_parent().size.x-custom_minimum_size.x)*.5),12)
+	visible = world.traffic.enabled and world.is_visible_in_tree() and world.get_player_position().distance_to(Vector2(900,700)) < 650
 	var green: bool = world.traffic.phase == world.traffic.Phase.GREEN
 	var seconds := maxi(0, ceili(world.traffic.remaining))
 	var message := ("✓ VERT · Traversez" if green else "● ROUGE · Attendez") + (" · %ds" % seconds if seconds > 0 else "")
