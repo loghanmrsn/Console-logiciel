@@ -363,7 +363,7 @@ func _sync_controls() -> void:
 	if is_instance_valid(mission_tracker):
 		mission_tracker.visible = enabled and InvestigationService.current_chapter() != 0
 		mission_tracker.set_input_enabled(enabled)
-	if is_instance_valid(campus_map): campus_map.visible = enabled and HotelService.is_hotel_zone(str(world.room_id))
+	if is_instance_valid(campus_map): campus_map.visible = enabled and (HotelService.is_hotel_zone(str(world.room_id)) or world.room_id == "courtyard")
 	if is_instance_valid(hotel_story): hotel_story.sync_visibility()
 	if is_instance_valid(_zone_hint):
 		_zone_hint.visible = enabled and world.room_id == "courtyard" and (not is_instance_valid(hotel_story) or not hotel_story.is_hotel_zone())
@@ -397,7 +397,7 @@ func _input(event: InputEvent) -> void:
 	var typing: Control = get_viewport().gui_get_focus_owner()
 	if event is InputEventKey and typing is LineEdit and modal_content.is_ancestor_of(typing) and not event.is_action("ui_cancel"):
 		return
-	if event.is_action_pressed("game_map") and HotelService.is_hotel_zone(str(world.room_id)) and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
+	if event.is_action_pressed("game_map") and (HotelService.is_hotel_zone(str(world.room_id)) or world.room_id == "courtyard") and not paused and overlay_kind.is_empty() and SceneRouter.gameplay_allowed():
 		if not _map_held:
 			_map_held = true
 			campus_map.toggle_map()
@@ -689,6 +689,7 @@ func handle_back() -> void:
 		'library':
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
+		'bus_ride': hotel_story.finish_bus_animation()
 		'maze_success_return', 'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'city_challenge', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
 		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
@@ -864,7 +865,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'city_challenge', 'ctf_challenge', 'dev_terminal'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['bus_ride', 'challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'city_challenge', 'ctf_challenge', 'dev_terminal'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
