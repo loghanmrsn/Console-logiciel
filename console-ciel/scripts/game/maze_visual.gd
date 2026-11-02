@@ -17,6 +17,9 @@ func _draw() -> void:
 				draw_rect(Rect2(rect.position, Vector2(tile,8)), Color("9bb6b8"))
 				draw_rect(Rect2(rect.position + Vector2(0,tile-9), Vector2(tile,9)), Color("567176"))
 				draw_rect(rect.grow(-5), Color("759296"), false, 1)
+				for row in [22,42]:
+					draw_line(rect.position+Vector2(3,row),Vector2(rect.end.x-3,rect.position.y+row),Color("59777d"),1,true)
+					draw_line(rect.position+Vector2(20+(x%2)*17,row-18),rect.position+Vector2(20+(x%2)*17,row-2),Color("86a0a3"),1,true)
 			else:
 				draw_rect(rect.grow(-3), Color("d2dfdb") if (x+y)%2 == 0 else Color("dce6e3"))
 	var font := ThemeDB.fallback_font
