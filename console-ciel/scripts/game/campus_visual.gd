@@ -1,6 +1,7 @@
 extends Node2D
 ## Original vector scenery for the courtyard and the hotel bus stop.
 const Layout = preload("res://scripts/game/campus_layout.gd")
+const Town = preload("res://scripts/game/town_layout.gd")
 const Road = preload("res://scripts/game/road_layout.gd")
 var zone := "courtyard"
 var furniture_only: Dictionary = {}
@@ -16,8 +17,11 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO,size),Color("edf0e8") if zone == "courtyard" else Color("e9efed"))
 	if zone == "courtyard": _courtyard()
 	else: _building()
+	var town_solids: Array[Rect2] = []
+	if zone == "courtyard":
+		for spec in Town.solid_specs(): town_solids.append(spec.rect)
 	for wall in Layout.walls(zone):
-		if zone == "courtyard" and wall in Road.furniture(): continue
+		if zone == "courtyard" and (wall in town_solids or wall in Road.furniture()): continue
 		draw_rect(Rect2(wall.position+Vector2(4,7),wall.size),Color("bbc7c2"))
 		draw_rect(wall,Color("91a59e"))
 		draw_line(wall.position+Vector2(2,2),wall.position+Vector2(wall.size.x-2,2),Color("cedbd4"),3)
