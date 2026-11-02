@@ -22,11 +22,16 @@ class FloorPlan extends Control:
 	var zone := "building_02"
 	func _draw() -> void:
 		var extent: Vector2 = HotelPlan.extent(zone) if HotelPlan.is_zone(zone) else Plan.extent(zone)
-		var rooms: Array[Rect2] = HotelPlan.rooms(zone) if HotelPlan.is_zone(zone) else Plan.rooms()
+		var rooms: Array[Rect2] = []
+		if HotelPlan.is_zone(zone): rooms = HotelPlan.rooms(zone)
 		var walls: Array[Rect2] = HotelPlan.walls(zone) if HotelPlan.is_zone(zone) else Plan.walls(zone)
 		var scale_factor := minf((size.x-12)/extent.x,(size.y-12)/extent.y)
 		var origin := (size-extent*scale_factor)*.5
 		draw_rect(Rect2(origin,extent*scale_factor),Color("eee6d3"))
+		if zone == "courtyard":
+			var town = preload("res://scripts/game/town_layout.gd")
+			for road in town.roads(): draw_rect(Rect2(origin+road.position*scale_factor,road.size*scale_factor),Color("899e9b"))
+			draw_rect(Rect2(origin+town.PARK.position*scale_factor,town.PARK.size*scale_factor),Color("91b286"))
 		for i in rooms.size():
 			var room: Rect2 = rooms[i]
 			draw_rect(Rect2(origin+room.position*scale_factor,room.size*scale_factor),Plan.COLORS[i%4])
@@ -43,6 +48,10 @@ class FloorPlan extends Control:
 					draw_colored_polygon(PackedVector2Array([marker+Vector2(-4,-flip*3),marker+Vector2(4,-flip*3),marker+Vector2(0,flip*4)]),Color("6d718e"))
 				else:
 					draw_rect(Rect2(marker-Vector2(3,2),Vector2(6,4)),Color("ba873e"))
+		if zone == "courtyard":
+			for spec in Plan.interactions(zone):
+				var marker: Vector2=origin+spec.at*scale_factor
+				draw_rect(Rect2(marker-Vector2(2,2),Vector2(4,4)),Color("ba873e"))
 		for character in People.for_zone(zone):
 			var marker: Vector2 = origin + character.at * scale_factor
 			draw_circle(marker, 3, Color("856b8c"))
@@ -114,7 +123,8 @@ func _process(_delta: float) -> void:
 	if zone != _last_zone:
 		_last_zone = zone
 		canvas.zone = zone
-		area_label.text = HotelLayout.title(zone) if HotelLayout.is_zone(zone) else "Cour · entre les deux bâtiments"
+		legend.text = "● Vous  ▪ Entrées / bus\nCentre / Ritz : nord-ouest\nParc : centre · lycée : nord-est" if zone == "courtyard" else "● Vous   ▪ Porte / accueil\n▲ / ▼ Escaliers   ● PNJ"
+		area_label.text = HotelLayout.title(zone) if HotelLayout.is_zone(zone) else "Ville CIEL · centre au nord-ouest"
 		canvas.queue_redraw()
 	if not expanded: return
 	var point: Vector2 = world.get_player_position()
