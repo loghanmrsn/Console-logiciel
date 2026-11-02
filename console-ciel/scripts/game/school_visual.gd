@@ -1,6 +1,7 @@
 extends "res://scripts/game/hotel_visual.gd"
 ## Original 2D reconstruction inspired by the supplied photograph, not a floor survey.
 const School = preload("res://scripts/game/school_layout.gd")
+const Facade = preload("res://scripts/game/school_facade_art.gd")
 const LOGO = preload("res://assets/lycee/logo_louise_michel.jpg")
 const SCHOOL_STONE := Color("e6e1d5")
 const ROSE := Color("bda3a0")
@@ -19,31 +20,13 @@ func _draw() -> void:
 	preload("res://scripts/game/school_architecture.gd").draw_room(self,zone)
 
 func _exterior() -> void:
-	# Low, horizontal school frontage: pale concrete, rose fascia and glazed vestibule.
 	for y in range(440,1300,80): draw_line(Vector2(80,y),Vector2(1920,y),Color("929b98"),1)
-	draw_rect(Rect2(110,430,1780,24),Color("647878"))
-	draw_rect(Rect2(100,100,1800,310),SCHOOL_STONE)
-	draw_rect(Rect2(100,90,1800,48),ROSE)
-	draw_rect(Rect2(100,90,1800,8),Color("e7dfcf"))
-	for x in range(160,1870,180):
-		draw_rect(Rect2(x,182,128,154),Color("627a80"))
-		draw_rect(Rect2(x+7,190,114,135),Color("bdd2d0"))
-		draw_rect(Rect2(x+7,190,114,55),Color("dddcd2"))
-		for y in range(193,241,6): draw_line(Vector2(x+8,y),Vector2(x+120,y),Color("c5c8bf"),1)
-		draw_line(Vector2(x+64,246),Vector2(x+64,325),Color("e4e7df"),3)
-		draw_rect(Rect2(x+133,145,13,250),Color("c3bfb0"))
-	# Glass entry projects ahead of the window ribbon.
-	draw_rect(Rect2(840,145,320,280),METAL)
-	for x in [850, 955, 1060]:
-		draw_rect(Rect2(x,160,94,249),Color("acc8c8"))
-		draw_line(Vector2(x+8,190),Vector2(x+78,230),Color("cfe0db"),5)
-		draw_line(Vector2(x+46,160),Vector2(x+46,409),Color("e0e3d9"),4)
-	draw_rect(Rect2(828,137,344,16),Color("dedfd3"))
-	draw_line(Vector2(997,320),Vector2(997,346),DARK,4)
-	_text("LYCÉE LOUISE MICHEL",Vector2(1000,117),22,DARK,true)
-	_text("RUFFEC · ENTRÉE",Vector2(1000,470),19,DARK,true)
+	Facade.draw_facade(self,School.EXTERIOR)
+	_text("RUFFEC · ENTRÉE",Vector2(400,470),19,DARK,true)
 	# Quiet landscaping and route to a clearly identified bus stop.
-	draw_rect(Rect2(880,500,240,740),Color("c9c7b8"))
+	draw_rect(Rect2(880,900,240,340),Color("c9c7b8"))
+	draw_rect(Rect2(310,420,180,480),Color("c9c7b8"))
+	draw_rect(Rect2(310,800,810,180),Color("c9c7b8"))
 	for y in range(520,1210,60): draw_line(Vector2(880,y),Vector2(1120,y),Color("b6b7ab"),1)
 	_text("2 · LYCÉE LOUISE MICHEL",Vector2(1560,1175),20,DARK,true)
 	_text("BUS · RETOUR EN VILLE",Vector2(1560,1210),16,DARK,true)
