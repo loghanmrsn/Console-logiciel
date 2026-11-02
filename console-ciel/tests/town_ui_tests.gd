@@ -36,6 +36,20 @@ func _run() -> void:
 		_check(not _point_clear(building.rect.get_center()),"Façade solide : "+building.title)
 		for road in Town.roads(): _check(not building.rect.intersects(road),"Bâtiment hors chaussée")
 	_check(not _point_clear(Town.FOUNTAIN),"Bassin de fontaine solide")
+
+	var terrace_count := 0
+	for prop in Town.props():
+		if prop.kind in ["cafe_table","cafe_chair","menu_board"]:
+			_check(not _point_clear(prop.rect.get_center()),"Mobilier de terrasse solide : "+prop.kind)
+			if prop.kind=="cafe_table": terrace_count+=1
+	_check(terrace_count==10,"Deux tables devant chacun des cinq cafés, bar et restaurants")
+	for building in Town.buildings():
+		if not preload("res://scripts/game/storefront_art.gd").is_food(building.title): continue
+		var door := Vector2(building.rect.get_center().x,building.rect.end.y)
+		for side in [-18,0,18]:
+			var ray := PhysicsRayQueryParameters2D.create(door+Vector2(side,20),door+Vector2(side,150),1)
+			_check(app.demo.world.get_world_2d().direct_space_state.intersect_ray(ray).is_empty(),"Accès à la porte préservé : "+building.title)
+
 	var ambient=app.demo.world.town_ambient
 	_check(ambient.people.size()==12,"Douze passants sans interaction")
 	var start: Vector2=ambient.people[0].body.position
@@ -85,6 +99,9 @@ func _run() -> void:
 	await _frames(8)
 	await _capture("bus_attente_compact_challenge")
 	_check(_find("bus_ride_finish").is_visible_in_tree(),"Sortie de l’animation disponible en 800 × 480")
+	var skip_rect: Rect2=_find("bus_ride_finish").get_global_rect()
+	_check(Rect2(Vector2.ZERO,root.size).encloses(skip_rect),"Bouton du bus entièrement dans la petite fenêtre")
+	_check(ride.cabin.size.y==210,"Intérieur adapté à une fenêtre compacte")
 	root.size=Vector2i(1280,720)
 	await _frames(5)
 	ride.elapsed=5.1
