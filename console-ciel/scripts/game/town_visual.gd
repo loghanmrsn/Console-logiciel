@@ -1,5 +1,6 @@
 extends Node2D
 ## Detailed, original 2D town scenery; solid bases are owned by TownLayout.
+const Storefront = preload("res://scripts/game/storefront_art.gd")
 const Town = preload("res://scripts/game/town_layout.gd")
 var furniture_only: Dictionary = {}
 var furniture_anchor := Vector2.ZERO
@@ -47,6 +48,7 @@ func _prop(spec: Dictionary) -> void:
 	draw_rect(Rect2(at+Vector2(8,10),rect.size),Color(0.13,.20,.22,.16))
 	match str(spec.kind):
 		"building": _building(spec)
+		"cafe_table", "cafe_chair", "menu_board": Storefront.furniture(self,spec)
 		"tree", "island":
 			var center := rect.get_center()
 			draw_circle(center,rect.size.x*.5,Color("b4bc9e"))
@@ -85,6 +87,7 @@ func _building(spec: Dictionary) -> void:
 	draw_colored_polygon(PackedVector2Array([roof.position,roof.position+Vector2(28,-30),roof.position+Vector2(roof.size.x-28,-30),roof.position+Vector2(roof.size.x,0),roof.end,roof.position+Vector2(0,roof.size.y)]),Color("637c7b") if index%2 == 0 else Color("a37b69"))
 	for x in range(int(rect.position.x)+35,int(rect.end.x)-30,85):
 		for y in range(int(rect.position.y)+65,int(rect.end.y)-70,65):
+			if Rect2(x,y,43,40).intersects(Storefront.sign_rect(rect).grow(4)): continue
 			draw_rect(Rect2(x-4,y-4,51,48),Color("ece8d6"))
 			draw_rect(Rect2(x,y,43,40),Color("6f949e"))
 			draw_line(Vector2(x+21,y),Vector2(x+21,y+40),Color("d4e1d7"),2)
@@ -96,7 +99,7 @@ func _building(spec: Dictionary) -> void:
 		var awning := Rect2(rect.position+Vector2(18,rect.size.y-85),Vector2(rect.size.x-36,24))
 		draw_rect(awning,Color("577f76") if index%2 == 0 else Color("ab7163"))
 		for x in range(int(awning.position.x)+5,int(awning.end.x)-5,32): draw_rect(Rect2(x,awning.position.y,13,24),Color("e6dcca"))
-	_text(str(spec.title),Vector2(rect.get_center().x,rect.end.y-95),19)
+	Storefront.sign(self,spec)
 func _text(value: String, at: Vector2, size: int) -> void:
 	var font := ThemeDB.fallback_font
 	draw_string(font,at-Vector2(font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x/2,0),value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,Color("344f58"))
