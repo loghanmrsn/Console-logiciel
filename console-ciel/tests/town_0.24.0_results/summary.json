@@ -1,0 +1,320 @@
+{
+  "version": "0.24.0",
+  "source": [
+    {
+      "name": "city_network_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 52,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.65,
+      "script_sha256": "1b92e632cd6734cef1e2635df59d3850f3a65674da2a1addc9fddfe6fe4aad7b",
+      "log": "/workspace/console-ciel-town-validation/regression/city_network_services_tests/run.log"
+    },
+    {
+      "name": "city_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 73,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.96,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log": "/workspace/console-ciel-town-validation/regression/city_network_ui_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.56,
+      "script_sha256": "8a96406003abd8a5d7df929accc055b25483bc1c3fd8a15917a39112c9f48996",
+      "log": "/workspace/console-ciel-town-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 81,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.46,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log": "/workspace/console-ciel-town-validation/regression/school_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.1,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-town-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "ctf_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 263,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.73,
+      "script_sha256": "8f5f4d78bd3d8037712b0381b4d6acbe8d6e181f0ef6a9bd262152a086638b90",
+      "log": "/workspace/console-ciel-town-validation/regression/ctf_ui_tests/run.log"
+    },
+    {
+      "name": "town_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 280,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.66,
+      "script_sha256": "88454ced049ab4ff765868bdf4b3540e569a59133ad005b1945868754c9d7f51",
+      "log": "/workspace/console-ciel-town-validation/regression/town_ui_tests/run.log"
+    },
+    {
+      "name": "ctf_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 511,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.04,
+      "script_sha256": "1257714deefb72cdb71b0dde3b843e6d177568d7a954c9d301249ca053795643",
+      "log": "/workspace/console-ciel-town-validation/regression/ctf_services_tests/run.log"
+    },
+    {
+      "name": "hotel_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 544,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.38,
+      "script_sha256": "68449c6daba765f3eeb9d4c835ac62ccdcdbc71b4d220b4f8d82c5fb77a34be2",
+      "log": "/workspace/console-ciel-town-validation/regression/hotel_services_tests/run.log"
+    },
+    {
+      "name": "campus_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 151,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 49.18,
+      "script_sha256": "35c9a9534472063c25d6309ee7c157eca37df81d588bdc557228d5044818dc07",
+      "log": "/workspace/console-ciel-town-validation/regression/campus_ui_tests/run.log"
+    },
+    {
+      "name": "morning_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 310,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 26.58,
+      "script_sha256": "04e3c9424ee45fb5413d4671cf820e98361ba8eeb65b99a105aa865948d95817",
+      "log": "/workspace/console-ciel-town-validation/regression/morning_ui_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.85,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-town-validation/regression/stability_tests/run.log"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.75,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "/workspace/console-ciel-town-validation/regression/transit_services_tests/run.log"
+    },
+    {
+      "name": "traffic_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 28.17,
+      "script_sha256": "7a79d269758940db2a429dc9aaf55146ba2eb527bf303517ecae36a61d33e94c",
+      "log": "/workspace/console-ciel-town-validation/regression/traffic_ui_tests/run.log"
+    }
+  ],
+  "compiled": [
+    {
+      "platform": "windows",
+      "name": "town_ui_tests",
+      "assertions": 280,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "88454ced049ab4ff765868bdf4b3540e569a59133ad005b1945868754c9d7f51",
+      "log_sha256": "aaa284508b5109fcb682afe0aef9f6c7fb6b873b7c73e5495182265292ea8a2e"
+    },
+    {
+      "platform": "linux",
+      "name": "town_ui_tests",
+      "assertions": 280,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "88454ced049ab4ff765868bdf4b3540e569a59133ad005b1945868754c9d7f51",
+      "log_sha256": "aaa284508b5109fcb682afe0aef9f6c7fb6b873b7c73e5495182265292ea8a2e"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "865233dad0cb365c18c9fdaeb110aee444ef64f09d97b5657257427a1d0e4691",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "865233dad0cb365c18c9fdaeb110aee444ef64f09d97b5657257427a1d0e4691",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native": {
+    "assertions": 312,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/bus_attente_assise_challenge.png",
+        "bytes": 67772,
+        "sha256": "5969ced57e370fab3aac10f10c083e6797aa8d08bf09a7be269899e0ef9f574d"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/bus_attente_compact_challenge.png",
+        "bytes": 34044,
+        "sha256": "ed3e8b5551620e24e959f2177c91c1f2474c1f2360461e155f2c3b39c2d51486"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/bus_descente_challenge.png",
+        "bytes": 65401,
+        "sha256": "cf3a23547dcc51c814d8ba656d9782588f6e875d1ce55271c1fd02dd2d99f6f4"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/bus_paiement_challenge.png",
+        "bytes": 67562,
+        "sha256": "f2c8cb77c137061b448e60e5bce33581955a52357c15581594efae1d432e8bb6"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/ville_arret_billet_challenge.png",
+        "bytes": 107751,
+        "sha256": "4b9d7f131feea037a7994df411299ceaafccc3012dcfab8ae8bcaf1457067d56"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/ville_commerces_challenge.png",
+        "bytes": 80708,
+        "sha256": "9aa71ca1ac50a2177ad90c775dcd7f80ec17ddb03a4cf8a8cd6c946aca240d32"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/ville_parc_fontaine_challenge.png",
+        "bytes": 71381,
+        "sha256": "999fa97fd7636744c2b124e5a3e72c4261c2ac1a0e9c91c0ce3d679cd63753cb"
+      },
+      {
+        "file": "docs/screenshots/town_0.24.0/town_ui_tests/ville_rond_point_challenge.png",
+        "bytes": 75016,
+        "sha256": "d97b6b0d991446c9fb8db5cfb122e51d155041013457dd2ca7839e8fccdfe54f"
+      }
+    ],
+    "script_sha256": "88454ced049ab4ff765868bdf4b3540e569a59133ad005b1945868754c9d7f51",
+    "log_sha256": "99840a92960466b5db6e7483f9d78bef602ee927069761907e10cc0705fe7372"
+  }
+}
