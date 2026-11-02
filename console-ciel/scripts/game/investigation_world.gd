@@ -67,6 +67,7 @@ var chapter_id := 1
 var room_id := "room_01"
 var campus_zone := ""
 var campus_visual: Node2D
+var town_ambient: Node2D
 var hotel_visual: Node2D
 var _hotel_props: Array[Node2D] = []
 var traffic: Node2D
@@ -161,6 +162,7 @@ func _build_room(chapter: int) -> void:
 	hotel_visual = null
 	traffic = null
 	_hotel_props.clear()
+	town_ambient = null
 	_bed_pose = "standing"
 	door_body = null
 	door_shape = null
@@ -203,10 +205,11 @@ func _build_room(chapter: int) -> void:
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
-	player.reserve_map_arrow = HotelLayout.is_zone(campus_zone)
+	player.reserve_map_arrow = HotelLayout.is_zone(campus_zone) or campus_zone == "courtyard"
 	if is_instance_valid(traffic):
 		traffic.player = player
 		traffic.reset_for_spawn(player.position)
+		if is_instance_valid(town_ambient): town_ambient.player = player
 	player.controls_enabled = _controls_enabled
 	_restored_once = false
 	_was_repaired = false
@@ -445,6 +448,7 @@ func _fit_camera() -> void:
 	# On compact screens, retain an 18 px character instead of shrinking the
 	# complete room into a short strip. The cropped axes follow the player.
 	var fit := .92 if maze_active or chapter_id == 0 else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
+	if campus_zone == "courtyard": fit = .68
 	if campus_zone == "school_network_lab": fit = .80
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
@@ -456,7 +460,7 @@ func _update_camera_position() -> void:
 	var half_visible: Vector2 = get_viewport_rect().size / camera.zoom * 0.5
 	var extent := world_extent()
 	var center := extent * .5
-	var follow := player.position + (Vector2(0,-80) if campus_zone == "school_network_lab" else Vector2.ZERO)
+	var follow := player.position + (Vector2(0,-80) if campus_zone == "school_network_lab" else (Vector2(0,-100) if campus_zone == "courtyard" else Vector2.ZERO))
 	if half_visible.x < extent.x * .5:
 		center.x = clampf(follow.x, half_visible.x, extent.x - half_visible.x)
 	if half_visible.y < extent.y * .5:
@@ -470,6 +474,7 @@ func _update_camera_position() -> void:
 func set_controls_enabled(enabled: bool) -> void:
 	_controls_enabled = enabled
 	if is_instance_valid(traffic): traffic.enabled = enabled
+	if is_instance_valid(town_ambient): town_ambient.enabled = enabled
 	if is_instance_valid(player):
 		player.controls_enabled = enabled and not _hotel_seated()
 		if not enabled:
@@ -822,10 +827,26 @@ func _build_campus() -> void:
 	_room_root.add_child(campus_visual)
 	_room_root.move_child(campus_visual, 0)
 	var index := 0
+	var town_specs: Array = preload("res://scripts/game/town_layout.gd").solid_specs() if campus_zone == "courtyard" else []
+	if campus_zone == "courtyard":
+		var backdrop := preload("res://scripts/game/town_visual.gd").new()
+		campus_visual.add_child(backdrop)
 	for rect in CampusLayout.walls(campus_zone):
-		var street_prop := campus_zone == "courtyard" and rect in RoadTraffic.Layout.furniture()
+		var town_spec: Dictionary = {}
+		for spec in town_specs:
+			if spec.rect == rect: town_spec = spec; break
+		var street_prop := not town_spec.is_empty() or campus_zone == "courtyard" and rect in RoadTraffic.Layout.furniture()
 		var body := _add_obstacle(rect,"CampusWall%d" % index, not street_prop)
-		if street_prop:
+		if not town_spec.is_empty():
+			var visual := preload("res://scripts/game/town_visual.gd").new()
+			visual.furniture_only = town_spec
+			visual.furniture_anchor = body.position
+			body.add_child(visual)
+			if town_spec.kind in ["fountain","island","tree"]:
+				var circle := CircleShape2D.new()
+				circle.radius=rect.size.x*.5
+				body.get_child(0).shape=circle
+		elif street_prop:
 			for spec in RoadTraffic.Layout.furniture_specs():
 				if spec.rect != rect or spec.kind == "signal": continue
 				var visual := CampusVisual.new()
@@ -842,5 +863,9 @@ func _build_campus() -> void:
 		traffic = RoadTraffic.new()
 		_props.add_child(traffic)
 		traffic.notice.connect(func(message: String): traffic_notice.emit(message))
+		town_ambient = preload("res://scripts/game/town_ambient.gd").new()
+		town_ambient.player = player
+		town_ambient.traffic = traffic
+		_props.add_child(town_ambient)
 		for spec in CampusLayout.interactions(campus_zone):
 			_add_target(str(spec.id), str(spec.label), spec.at, float(spec.radius))
