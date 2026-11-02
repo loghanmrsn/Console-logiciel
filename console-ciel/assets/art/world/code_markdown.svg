@@ -22,4 +22,5 @@
   <path d="M54 40H105M54 47H91M20 53H104" fill="none" stroke="#c7c1d4" stroke-width="3" stroke-linecap="round" />
   <rect x="55" y="67" width="16" height="12" fill="#8da89a" />
   <rect x="39" y="78" width="48" height="6" rx="3" fill="#b6c8b8" />
+<path d="M9 8 H115 M10 62 H116" fill="none" stroke="#c4d8d2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M8 19 L52 19 L19 60 H8Z" fill="#f3f8e7" opacity=".08"/><ellipse cx="115" cy="65" rx="1" ry="1" fill="#b6c99a" />
 </svg>
