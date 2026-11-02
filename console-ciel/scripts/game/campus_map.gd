@@ -31,6 +31,7 @@ class FloorPlan extends Control:
 		if zone == "courtyard":
 			var town = preload("res://scripts/game/town_layout.gd")
 			for road in town.roads(): draw_rect(Rect2(origin+road.position*scale_factor,road.size*scale_factor),Color("899e9b"))
+			for center in town.roundabouts(): draw_circle(origin+center*scale_factor,145*scale_factor,Color("899e9b"))
 			draw_rect(Rect2(origin+town.PARK.position*scale_factor,town.PARK.size*scale_factor),Color("91b286"))
 		for i in rooms.size():
 			var room: Rect2 = rooms[i]
