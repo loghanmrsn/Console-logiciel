@@ -53,7 +53,7 @@ func _run() -> void:
 	_check(app.demo.world.target_id == "building_exit","La porte de sortie est accessible à pied depuis l’ascenseur")
 	await _capture("premier_niveau_sortie_challenge")
 	await _use_door("courtyard",true)
-	_check(not app.demo.mission_tracker.visible and not app.demo.campus_map.visible,"Cour sans faux tableau de missions ni carte intérieure")
+	_check(not app.demo.mission_tracker.visible and app.demo.campus_map.visible,"Ville avec carte urbaine et sans tableau de missions de l’enquête")
 	await _capture("cour_immeuble_face_challenge")
 	await _walk_axis(KEY_UP,550)
 	_check(app.demo.world.target_id == "courtyard_second","Traversée réelle de la cour jusqu’à la porte d’en face")
