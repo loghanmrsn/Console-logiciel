@@ -74,3 +74,33 @@ input_tokens_estimate: "~unknown"
 output_tokens_estimate: "~unknown"
 duration_seconds: "~unknown"
 ```
+
+## Revue des graphismes 0.26.0
+
+Le panel rapide Rams, Torvalds et Feynman a examiné la refonte 2D avant ses validations finales. Rams a reçu le poids de domaine 1,5 ; les autres sièges, 1,0. Deux tours ont été exécutés avec analyses indépendantes, avis anonymisés et directive anti-conformité au second tour. Un président distinct a produit la synthèse, avec le fournisseur natif unique disponible.
+
+Les trois positions finales étaient `approve_with_checks`, confiance moyenne : 2,625 points pour un seuil de 2,333. Rams et Torvalds ont explicitement déclaré un critère bloquant ; Feynman n’a pas déclaré de veto. Les critères portent sur les portes et repères visibles, l’absence de décalage entre dessin et collision, et un coût de rendu mesuré acceptable. Si une entrée devient masquée, si le dessin suggère un passage physiquement bloqué ou si la comparaison révèle une régression importante, corriger ou rétablir le dessin concerné avant publication. Les questions matérielles restent ouvertes.
+
+La recommandation concrète du président était de produire une comparaison native avant/après avec captures et mesures. Les premières mesures ont précisément conduit à précalculer les décors fixes plutôt qu’à livrer les primitives détaillées coûteuses. La [fiche graphique](GRAPHISMES.md) et les [résultats finaux](../tests/graphics_0.26.0_results/summary.json) rendent ce contrôle vérifiable.
+
+Les profils Agency Godot, Level Designer, UI Designer et Code Reviewer ont guidé les changements et la revue des contrats de rendu, de l’interface et des ressources. Trois agents d’implémentation ont fourni des modifications partielles puis atteint leur limite d’usage ; l’implémentation et la validation ont été poursuivies directement par le coordinateur. Les trois sièges du Council ont achevé leurs deux tours ; aucune position simulée n’a été comptée. L’accord des agents ne constitue pas un test matériel ni un essai utilisateur.
+
+```yaml
+schema_version: 1
+mode: quick
+panel_size: 3
+rounds_run: 2
+enforcement_calls: 4
+enforcement_breakdown:
+  dissent_quota: 0
+  novelty_gate: 0
+  agreement_check: 3
+  anti_recursion: 0
+  missing_stance: 1
+tools_used: [native_host_subagents, local_file_read, source_tests]
+provider_count: 1
+fallbacks_triggered: [single_provider_chairman]
+input_tokens_estimate: "~unknown"
+output_tokens_estimate: "~unknown"
+duration_seconds: "~unknown"
+```
