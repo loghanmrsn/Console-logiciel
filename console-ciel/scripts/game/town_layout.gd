@@ -3,7 +3,7 @@ extends RefCounted
 const SIZE := Vector2(6000,4600)
 const PARK := Rect2(2210,1660,1450,850)
 const FOUNTAIN := Vector2(2930,2070)
-const NAMES := ["Boulangerie", "Épicerie du centre", "Pharmacie", "La Poste", "Café des amis", "Sudo Hack", "Mairie", "Médiathèque", "Librairie", "Fleuriste", "Louise Michel", "Résidence des Tilleuls", "Maison de santé", "Opticien", "Cycles & Réparations", "Salon du marché", "Cinéma Le Parc", "Restaurant de la place", "Résidence des Arts", "Atelier du quartier", "Maison des associations", "Hôtel des Voyageurs", "Résidence Bellevue", "Résidence du Canal", "Garage", "Maison de quartier", "Résidence des Écoles", "Épicerie bio", "Laverie", "Café du parc", "Résidence du Square", "Maison de la musique", "Résidence des Jardins", "Papeterie", "Restaurant du Marché", "Résidence des Platanes", "Banque", "Boucherie"]
+const NAMES := ["Boulangerie", "Épicerie du centre", "Pharmacie", "La Poste", "Café des amis", "Sudo Hack", "Mairie", "Médiathèque", "Librairie", "Fleuriste", "Louise Michel", "Résidence des Tilleuls", "Maison de santé", "Opticien", "Cycles & Réparations", "Bar du marché", "Cinéma Le Parc", "Restaurant de la place", "Résidence des Arts", "Atelier du quartier", "Maison des associations", "Hôtel des Voyageurs", "Résidence Bellevue", "Résidence du Canal", "Garage", "Maison de quartier", "Résidence des Écoles", "Épicerie bio", "Laverie", "Café du parc", "Résidence du Square", "Maison de la musique", "Résidence des Jardins", "Papeterie", "Restaurant du Marché", "Résidence des Platanes", "Banque", "Boucherie"]
 static func buildings() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for origin in [Vector2(2200,180),Vector2(4300,180)]:
@@ -33,6 +33,15 @@ static func props() -> Array[Dictionary]:
 	for x in [2150,3800,4230,5810]:
 		for y in [1180,2510,3810]: result.append({"kind":"lamp","rect":Rect2(x,y,18,18)})
 	for point in [Vector2(2860,1270),Vector2(2860,2890),Vector2(4440,2620)]: result.append({"kind":"signal","rect":Rect2(point,Vector2(20,20))})
+	# Terraces stay beside the central doorway, with a clear route to the road.
+	for building in buildings():
+		if not preload("res://scripts/game/storefront_art.gd").is_food(building.title): continue
+		var rect: Rect2=building.rect
+		for x in [rect.position.x+70,rect.end.x-70]:
+			var center := Vector2(x,rect.end.y+68)
+			result.append({"kind":"cafe_table","rect":Rect2(center-Vector2(32,32),Vector2(64,64))})
+			for y in [-40,40]: result.append({"kind":"cafe_chair","rect":Rect2(center+Vector2(-11,y-10),Vector2(22,20))})
+		result.append({"kind":"menu_board","rect":Rect2(rect.get_center().x+45,rect.end.y+46,42,22)})
 	return result
 static func solid_specs() -> Array[Dictionary]:
 	var result: Array[Dictionary] = buildings()
