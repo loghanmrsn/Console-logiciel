@@ -66,11 +66,11 @@
       "ok": true,
       "exit_code": 0,
       "completed": true,
-      "assertions": 263,
+      "assertions": 261,
       "failures": 0,
       "engine_errors": [],
-      "seconds": 28.73,
-      "script_sha256": "8f5f4d78bd3d8037712b0381b4d6acbe8d6e181f0ef6a9bd262152a086638b90",
+      "seconds": 27.71,
+      "script_sha256": "3e4e938b30bd62b86349e9a870408c65b46032271f862892c713525399281cc5",
       "log": "/workspace/console-ciel-town-validation/regression/ctf_ui_tests/run.log"
     },
     {
