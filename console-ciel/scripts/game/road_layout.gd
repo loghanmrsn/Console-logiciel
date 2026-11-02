@@ -20,10 +20,10 @@ static func start_for(side_id: int) -> Vector2:
 	return NORTH if side_id < 0 else SOUTH
 
 static func barriers() -> Array[Rect2]:
-	return [Rect2(64, 552, 736, 14), Rect2(1000, 552, 736, 14), Rect2(64, 834, 736, 14), Rect2(1000, 834, 736, 14)]
+	return [Rect2(64, 552, 736, 14), Rect2(1000, 552, 736, 14), Rect2(318, 834, 482, 14), Rect2(1000, 834, 736, 14)]
 
 static func gardens() -> Array[Rect2]:
-	return [Rect2(190, 400, 330, 120), Rect2(1280, 400, 330, 120), Rect2(190, 880, 330, 120), Rect2(1280, 880, 330, 120)]
+	return [Rect2(190, 400, 330, 120), Rect2(1280, 400, 330, 120), Rect2(350, 880, 240, 120), Rect2(1280, 880, 330, 120)]
 
 static func furniture() -> Array[Rect2]:
 	# Signal bases, the bus sign and benches are solid; paint/shadows are not.
