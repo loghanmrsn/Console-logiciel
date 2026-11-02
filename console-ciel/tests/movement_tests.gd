@@ -29,13 +29,13 @@ func _run() -> void:
 	player.reset_physics_interpolation()
 	world.set_controls_enabled(true)
 	var start: Vector2 = player.position
-	Input.action_press("game_right")
+	Input.action_press("game_walk_right" if player.reserve_map_arrow else "game_right")
 	await physics_frame
 	await physics_frame
 	_check(player.velocity.x > 0 and player.velocity.x <= player.SPEED, "Accélération positive bornée")
 	for step in range(20): await physics_frame
 	_check(player.position.x > start.x + 40 and player.velocity.length() <= player.SPEED + .01, "La marche avance sans dépasser la vitesse prévue")
-	Input.action_release("game_right")
+	Input.action_release("game_walk_right" if player.reserve_map_arrow else "game_right")
 	await physics_frame
 	await physics_frame
 	var stopped: Vector2 = player.position
@@ -48,11 +48,11 @@ func _run() -> void:
 		for index in range(4):
 			var texture: Texture2D = player.sprite.sprite_frames.get_frame_texture(direction, index)
 			_check(texture.get_image().has_mipmaps() and texture.get_width() == 128, "Texture filtrée en haute définition : " + direction + str(index))
-	Input.action_press("game_right")
+	Input.action_press("game_walk_right" if player.reserve_map_arrow else "game_right")
 	world.set_controls_enabled(false)
 	for step in range(5): await physics_frame
 	_check(player.position == stopped and player.velocity == Vector2.ZERO, "Pause stoppe les déplacements même avec une touche maintenue")
-	Input.action_release("game_right")
+	Input.action_release("game_walk_right" if player.reserve_map_arrow else "game_right")
 	world.restore_checkpoint()
 	_check(player.position == world._chapter_checkpoints().from_first, "Reprise au checkpoint sans déplacement résiduel")
 	world.free()
