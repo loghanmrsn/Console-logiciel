@@ -136,6 +136,8 @@ func _prop_art(kind: String, rect: Rect2) -> void:
 			for x in [rect.position.x+10,rect.end.x-10]: draw_line(Vector2(x,rect.position.y),Vector2(x,rect.end.y),DARK,6)
 			draw_rect(Rect2(rect.position-Vector2(10,10),Vector2(rect.size.x+20,18)),DARK)
 			draw_rect(Rect2(rect.position+Vector2(25,80),Vector2(270,17)),Color("aa9477"))
+			_text("2 · LYCÉE · CENTRE / RITZ", rect.get_center()+Vector2(0,-15),16,DARK,true)
+			_text("BILLET 1 € / 10 POINTS",rect.get_center()+Vector2(0,10),13,DARK,true)
 
 var _soft_shadow: StyleBoxFlat
 func _shadow_style() -> StyleBoxFlat:
