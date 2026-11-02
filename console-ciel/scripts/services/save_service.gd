@@ -652,6 +652,12 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	for terminal in wires:
 		if terminal not in COFFEE_WIRES or wires[terminal] != COFFEE_WIRES[terminal]: return _fail("Connexion de porte invalide.")
 	if progress.room_id in ["school_passage", "school_workshop", "school_network_lab"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
+	if document.has("bus_travel"):
+		var ticket: Variant = document.bus_travel
+		if not ticket is Dictionary or ticket.size() != 4 or not _is_integer(ticket.get("version"),1,1) or not _is_integer(ticket.get("rides"),1,1000000) or not _is_integer(ticket.get("spent_points"),10,10000000) or ticket.get("last_stop") not in ["courtyard","ctf_bus_stop","school_stop"]:
+			return _fail("Historique de billets invalide.")
+		if int(ticket.spent_points) != int(ticket.rides)*10: return _fail("Coût des billets incohérent.")
+		for key in ["version","rides","spent_points"]: ticket[key]=int(ticket[key])
 	var city: Variant = progress.get("city_network", CityCatalog.empty_state())
 	if not city is Dictionary or city.size() != 2 or not _is_integer(city.get("version"),1,1) or not city.get("completed") is Array:
 		return _fail("Progression City CIEL invalide.")
