@@ -144,3 +144,9 @@ Dans l’atelier City CIEL, prenez la porte à gauche, à environ 5–10 m de l�
 IPv4 comporte **32 bits** ; /24 laisse 8 bits pour les hôtes. Dans cet exercice, .0 est le réseau, .255 la diffusion et .1 à .254 les adresses hôtes. IPv6 comporte **128 bits** et le LAN de cet exercice utilise **/64** ; /32 n’est pas la bonne réponse pour ce LAN. Le bloc `2001:db8::/32` est réservé aux exemples de documentation.
 
 Un switch relie les équipements d’un LAN ; le routeur achemine les paquets vers un autre réseau. La passerelle du PC doit appartenir à son LAN et le routage doit fonctionner dans les deux sens.
+
+## Ville et billets de bus (0.24.0)
+
+Le bus coûte désormais **10 points par trajet (1 € virtuel)**, aller comme retour. Les missions n’ont pas changé de réponses. Si votre solde est insuffisant, utilisez l’accès à pied depuis les façades **Sudo Hack** ou **Louise Michel** en ville, ou le bouton **Retour à pied · gratuit** à leurs arrêts. L’histoire peut ainsi continuer sans billet.
+
+Le paiement et l’arrivée sont enregistrés avant la séquence de montée/paiement/attente assise/descente. Passer l’animation ne rembourse pas le billet et ne débite pas une seconde fois. La carte permet de retrouver le centre et le Ritz au nord-ouest, le parc au centre et le lycée au nord-est.
