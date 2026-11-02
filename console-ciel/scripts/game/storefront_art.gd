@@ -1,5 +1,6 @@
 extends RefCounted
 ## Original wall-mounted business signs and terrace objects; no new textures.
+const Art = preload("res://scripts/game/exterior_painter.gd")
 static func is_food(title: String) -> bool:
 	var value := title.to_lower()
 	return "café" in value or "restaurant" in value or "bar " in value
@@ -12,9 +13,14 @@ static func sign(canvas: Node2D, spec: Dictionary) -> void:
 	var food := is_food(title)
 	var face := Color("e6c75d") if postal else (Color("365c55") if food else Color("e8e0ca"))
 	var ink := Color("284b66") if postal else (Color("fbf5e2") if food else Color("34525c"))
-	canvas.draw_style_box(panel(Color(0.12,.18,.20,.22),5),Rect2(rect.position+Vector2(4,6),rect.size))
+	Art.contact(canvas,rect,.75)
 	canvas.draw_style_box(panel(Color("776a51"),5),rect.grow(4))
+	canvas.draw_style_box(panel(Color("b39d70"),4),Rect2(rect.position+Vector2(0,3),rect.size+Vector2(0,3)))
 	canvas.draw_style_box(panel(face,3),rect)
+	canvas.draw_line(rect.position+Vector2(8,2),Vector2(rect.end.x-8,rect.position.y+2),face.lightened(.23),1.5,true)
+	canvas.draw_line(rect.position+Vector2(6,rect.size.y-3),rect.end-Vector2(6,3),face.darkened(.16),1.5,true)
+	# Fine painted-board grain stays behind the lettering and pictograms.
+	for y in [11,49]: canvas.draw_line(rect.position+Vector2(9,y),Vector2(rect.end.x-9,rect.position.y+y),Color(face.darkened(.25),.12),1,true)
 	var icon_center := rect.position+Vector2(41,31)
 	if postal:
 		envelope(canvas,icon_center,Vector2(60,38),ink)
@@ -52,16 +58,22 @@ static func furniture(canvas: Node2D, spec: Dictionary) -> void:
 	var at := rect.get_center()
 	match str(spec.kind):
 		"cafe_table":
-			canvas.draw_circle(at+Vector2(4,7),32,Color(0.15,.20,.20,.20))
+			Art.ellipse(canvas,at+Vector2(5,8),Vector2(35,29),Color(0.15,.20,.20,.11))
+			Art.ellipse(canvas,at+Vector2(2,4),Vector2(31,26),Color(0.15,.20,.20,.10))
 			canvas.draw_circle(at,32,Color("806a4f"))
 			canvas.draw_circle(at-Vector2(0,3),29,Color("ceb78f"))
-			canvas.draw_line(at+Vector2(-23,7),at+Vector2(24,7),Color("b39c76"),1)
+			for y in [-17,-6,7,18]:
+				var reach := sqrt(29*29-(y+3)*(y+3))-2
+				canvas.draw_line(at+Vector2(-reach,y),at+Vector2(reach,y),Color("b39c76"),1,true)
+			canvas.draw_arc(at-Vector2(0,3),27,PI*1.07,PI*1.88,20,Color("e5d0aa"),1.5,true)
 			canvas.draw_rect(Rect2(at+Vector2(-5,-20),Vector2(15,13)),Color("f5efdc"))
 			cup(canvas,at+Vector2(-12,-6),7,Color("fff9e8"),Color("674632"))
 			cup(canvas,at+Vector2(13,11),7,Color("fff9e8"),Color("674632"))
 		"cafe_chair":
-			canvas.draw_style_box(panel(Color("57766b"),4),rect)
-			canvas.draw_line(rect.position+Vector2(0,5),Vector2(rect.end.x,rect.position.y+5),Color("a9ba9b"),4)
+			canvas.draw_style_box(panel(Color("45645b"),4),rect)
+			canvas.draw_style_box(panel(Color("7e9680"),3),rect.grow(-3))
+			canvas.draw_arc(rect.get_center()+Vector2(0,-4),rect.size.x*.48,PI,TAU,12,Color("a2b197"),3,true)
+			for y in [8,13]: canvas.draw_line(rect.position+Vector2(4,y),Vector2(rect.end.x-4,rect.position.y+y),Color("68846c"),1,true)
 			for x in [rect.position.x+3,rect.end.x-3]: canvas.draw_line(Vector2(x,rect.end.y-2),Vector2(x,rect.end.y+5),Color("4b5c55"),2)
 		"menu_board":
 			canvas.draw_line(at+Vector2(-20,10),at+Vector2(-12,-42),Color("a68961"),5)
