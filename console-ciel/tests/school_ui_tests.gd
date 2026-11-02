@@ -40,8 +40,9 @@ func _run() -> void:
 	saves.simulate_write_failure = false
 	app.demo.hotel_story._show_bus()
 	await _activate("school_bus_board")
+	await _activate("bus_ride_finish")
 	_check(state.profile.progress.room_id == "school_stop", "Bus vers le lycée")
-	_check(state.profile.wallet == before.wallet and state.profile.progress.completed_missions == before.progress.completed_missions, "Aucune perte de points ou de missions")
+	_check(state.profile.wallet.points == before.wallet.points-10 and state.profile.progress.completed_missions == before.progress.completed_missions, "Billet de 10 points ; missions conservées")
 	await _frames(8)
 	await _approach("school_enter")
 	await _capture("lycee_facade_challenge")
