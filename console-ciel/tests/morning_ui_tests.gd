@@ -71,7 +71,7 @@ func _run() -> void:
 		await _finish()
 		return
 	await _test_backpack_and_departure()
-	_check(state.profile.wallet.points == 750 and state.profile.rewarded_missions.size() == 15, "Le matin donne seulement les deux récompenses prévues, soit 100 points")
+	_check(state.profile.wallet.points == 740 and state.profile.rewarded_missions.size() == 15, "Le matin donne 100 points puis le billet coûte 10 points")
 	_check(state.profile.progress.run_reward_points == 650 and state.profile.progress.completed_missions.size() == 13, "Les treize défis antérieurs et leur plafond restent intacts")
 	_check(saves.read_profile(profile_id).data == state.profile, "Le dernier état CTF correspond au document enregistré")
 	await _finish()
@@ -262,6 +262,7 @@ func _test_backpack_and_departure() -> void:
 	_check(app.demo.overlay_kind == "hotel_bus", "L’arrêt propose le trajet vers sudo hack")
 	await _failed_action("hotel_bus_board", "hotel_bus", "Trajet en bus")
 	await _activate("hotel_bus_board", true)
+	if app.demo.overlay_kind == "bus_ride": await _activate("bus_ride_finish")
 	await _frames(8)
 	_check(app.demo.world.room_id == "ctf_bus_stop" and state.profile.progress.hotel.morning_stage == 7, "Le bus arrive à un autre arrêt devant le bâtiment du CTF")
 	await _check_layout_connectivity("ctf_bus_stop")
