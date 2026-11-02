@@ -68,12 +68,20 @@ func _run() -> void:
 	_check(ambient.people[0].body.position==start,"La pause immobilise les passants")
 	app.demo._close_overlay()
 	await _key(KEY_RIGHT)
-	for spec in [{"at":Vector2(1690,990),"image":"ville_raccord_centre_challenge"},{"at":Vector2(4150,1670),"image":"ville_intersection_nord_challenge"},{"at":Vector2(4170,4330),"image":"ville_intersection_sud_challenge"},{"at":Vector2(2730,1060),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
+	for spec in [{"at":Vector2(1690,990),"image":"ville_raccord_centre_challenge"},{"at":Vector2(380,1050),"image":"ville_boucle_ouest_challenge"},{"at":Vector2(2180,380),"image":"ville_boucle_nord_challenge"},{"at":Vector2(6210,380),"image":"ville_boucle_nord_est_challenge"},{"at":Vector2(6210,4670),"image":"ville_boucle_sud_est_challenge"},{"at":Vector2(380,4670),"image":"ville_boucle_sud_ouest_challenge"},{"at":Vector2(4150,1670),"image":"ville_intersection_nord_challenge"},{"at":Vector2(4170,4330),"image":"ville_intersection_sud_challenge"},{"at":Vector2(2730,1240),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
 		app.demo.world.player.position=spec.at
 		app.demo.world.player.reset_physics_interpolation()
 		await _physics_frames(4)
 		await _frames(5)
 		await _capture(spec.image)
+	if captures:
+		var zoom: Vector2=app.demo.world.camera.zoom
+		app.demo.world.camera.zoom=Vector2(.105,.105)
+		app.demo.world._update_camera_position()
+		await _frames(8)
+		await _capture("ville_vue_ensemble_challenge")
+		app.demo.world.camera.zoom=zoom
+		app.demo.world._update_camera_position()
 	await _approach("campus_bus")
 	await _key(KEY_SPACE)
 	_check(_find("hotel_bus_board")!=null and _find("school_bus_board")!=null,"Choix des destinations")
@@ -134,6 +142,17 @@ func _verify_streets() -> void:
 				visited.append(other)
 				pending.append(other)
 	_check(visited.size()==streets.size(),"Toutes les rues appartiennent au même réseau connecté")
+	for index in range(streets.size()):
+		var street := streets[index]
+		var horizontal := street.size.x>street.size.y
+		for tip in [street.get_center()-Vector2(street.size.x*.5-1,0),street.get_center()+Vector2(street.size.x*.5-1,0)] if horizontal else [street.get_center()-Vector2(0,street.size.y*.5-1),street.get_center()+Vector2(0,street.size.y*.5-1)]:
+			var joined := false
+			for other in range(streets.size()):
+				if other!=index and streets[other].has_point(tip): joined=true
+			_check(joined,"Chaque extrémité rejoint une autre rue : "+str(tip))
+	for lane in [[Vector2(174,620),Vector2(174,4570)],[Vector2(6010,120),Vector2(6010,4570)],[Vector2(1840,170),Vector2(6080,170)],[Vector2(104,4500),Vector2(6080,4500)]]:
+		var ray := PhysicsRayQueryParameters2D.create(lane[0],lane[1],1)
+		_check(app.demo.world.get_world_2d().direct_space_state.intersect_ray(ray).is_empty(),"Boulevard sans bâtiment, jardin ou barrière sur la chaussée")
 	for x in range(1650,2071,10): _check(Town.on_road(Vector2(x,700)),"Rue continue entre le centre et l’avenue")
 	for y in [625,700,790]:
 		var ray := PhysicsRayQueryParameters2D.create(Vector2(1690,y),Vector2(2130,y),1)
@@ -144,7 +163,7 @@ func _verify_streets() -> void:
 	# Render the street layer alone to detect pavement seams in the actual
 	# framebuffer, independently of the layout graph and moving vehicles.
 	var view := SubViewport.new()
-	view.size=Vector2i(1200,920)
+	view.size=Vector2i(Town.SIZE*.2)
 	view.render_target_update_mode=SubViewport.UPDATE_ONCE
 	var paint := preload("res://scripts/game/town_streets.gd").new()
 	paint.scale=Vector2(.2,.2)
