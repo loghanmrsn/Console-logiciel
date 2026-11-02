@@ -1,5 +1,6 @@
 extends Node2D
 ## Original layered 2D characters. Only short focus gestures animate; feet stay fixed.
+const Materials = preload("res://scripts/game/render_materials.gd")
 var character: Dictionary = {}
 var _attention := 0.0:
 	set(value):
@@ -52,10 +53,7 @@ func _exit_tree() -> void:
 	if is_instance_valid(_gesture): _gesture.kill()
 
 static func _rounded(canvas: CanvasItem, rect: Rect2, color: Color, radius := 4.0) -> void:
-	var style := StyleBoxFlat.new()
-	style.bg_color = color
-	style.set_corner_radius_all(int(radius))
-	canvas.draw_style_box(style, rect)
+	Materials.rounded(canvas,rect,color,radius)
 
 static func _ellipse(canvas: CanvasItem, at: Vector2, radius: Vector2, color: Color) -> void:
 	canvas.draw_set_transform(at, 0, radius)
@@ -83,6 +81,8 @@ static func draw_character(canvas: CanvasItem, spec: Dictionary, attention := 0.
 	_rounded(canvas, Rect2(-13, -37, 26, 23), coat, 7)
 	_rounded(canvas, Rect2(-11, -35, 9, 3), coat.lightened(.18), 2)
 	canvas.draw_line(Vector2(-11, -16), Vector2(11, -16), coat.darkened(.18), 1, true)
+	canvas.draw_polyline(PackedVector2Array([Vector2(-10,-30),Vector2(-8,-25),Vector2(-10,-20)]),Color(coat.lightened(.4),.4),.8,true)
+	canvas.draw_line(Vector2(4,-19),Vector2(10,-20),coat.darkened(.26),1,true)
 	# The near hand rises a few pixels in greeting; the collider stays still.
 	for side in [-1, 1]:
 		var raise := attention * 3 if side == 1 else 0.0
