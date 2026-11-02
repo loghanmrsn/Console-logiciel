@@ -13,3 +13,5 @@
 Les licences des ressources n'attribuent pas une licence globale au code scolaire : l'équipe pourra choisir cette licence ultérieurement. Conserver les notices Godot et tierces lors de la redistribution des exécutables.
 
 Le logo fourni du lycée Louise Michel de Ruffec (`lycee/logo_louise_michel.jpg`) est exclu de CC0. Droits réservés à ses titulaires ; voir `lycee/NOTICE.md`.
+
+- **Graphismes 0.26.0** : personnages, mobilier, façades, végétation et éléments d’interface redessinés localement en SVG/GDScript, CC0 pour ces créations originales. Les PNG de `art/baked/` sont des précalculs de ces dessins par le moteur Godot ; leurs sources et le générateur `tools/bake_static_art.gd` sont conservés. Les reproductions du logo du lycée dans la façade et les panneaux restent **exclues de CC0**, y compris dans les sprites précalculés. Leurs droits restent réservés aux titulaires du logo, selon `lycee/NOTICE.md`. Aucun modèle ou texture de fournisseur payant ajouté.
