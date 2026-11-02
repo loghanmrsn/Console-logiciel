@@ -1,3 +1,17 @@
+# Livraison 0.24.1 — enseignes, terrasses et bus
+
+Les commerces et services ont maintenant des enseignes encadrées fixées aux façades, avec une typographie adaptée à leur largeur. La Poste possède une plaque jaune avec une grande enveloppe ; les cafés, bar et restaurants sont identifiables par leur enseigne verte et leur tasse. Chacun de ces cinq lieux reçoit deux tables avec des cafés servis, quatre chaises et une ardoise de menu. Les tables ont une collision circulaire ; les chaises et les menus sont également solides. Les objets laissent les portes et les parcours piétons accessibles. [Guide de la ville](VILLE.md).
+
+Le bus est redessiné en perspective dans la direction artistique existante : allée centrale, rangées de sièges, passagers, vitres avec reflets et paysage défilant, plafond éclairé, conducteur, tableau de bord, volant, portes et marches, mains courantes, boutons d’arrêt et valideur de billet. La destination apparaît sur le bandeau intérieur. Le joueur monte, présente sa carte, attend assis puis descend. La cabine et son bouton s’adaptent aux petites fenêtres. Les styles de dessin récurrents du bus sont mis en cache ; aucun téléchargement de texture supplémentaire.
+
+Le billet reste fixé à 1 € virtuel = 10 points, aller comme retour. Paiement et arrivée restent enregistrés ensemble avant l’animation. Échap ou le bouton permet de passer la séquence sans second débit ; réduction des animations : arrivée immédiate. Les accès à pied gratuits, les récompenses et les sauvegardes sont conservés.
+
+Vérifications du 2 novembre 2026 : 5 suites sources (523 assertions), 8 suites sur les packs Windows/ARM64 (1016 assertions), et 365 contrôles en rendu X11/Mesa. Aucun échec final. Contrôles : collisions de toutes les terrasses, passage devant les portes, routes et parcours des passants, déplacement, circulation, paiement, erreur d’écriture, rechargement, phases du bus et bouton entièrement visible en 800 × 480. Huit captures réelles du rendu sont conservées. [Résultats](../tests/signs_0.24.1_results/summary.json) · [Captures](screenshots/signs_0.24.1/town_ui_tests/).
+
+Les ressources des exports Windows et ARM64 sont exécutées par Godot Linux x86_64. Le lancement natif sous Windows ou sur Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Aucun gain de FPS n’est revendiqué. Anciennes archives conservées.
+
+---
+
 # Livraison 0.24.0 — ville et bus
 
 Ville de 6 000 × 4 600 unités : 38 nouvelles façades et les deux bâtiments d’origine, commerces et services, parc des Tilleuls, fontaine animée, deux ronds-points, feux et rues. Les positions du Ritz, du bâtiment A, de leurs entrées et des anciens points de reprise restent inchangées. La géométrie partagée aligne les bâtiments, les obstacles et la carte. Douze passants sans interaction empruntent des trottoirs vérifiés libres ; les véhicules supplémentaires sont lents, s’arrêtent aux passages concernés et cèdent devant le joueur. Le passage central garde sa machine d’états et ses pénalités. Le cadrage de ville est élargi, et le panneau de circulation reste près de la traversée centrale.
