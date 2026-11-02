@@ -1,0 +1,42 @@
+[
+	{
+		"draw_calls": 124.0,
+		"frame_interval_median_ms": 22.916,
+		"frame_interval_p95_ms": 34.268,
+		"hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+		"samples": 90,
+		"video_memory_bytes": 45034755.0,
+		"viewport": "(1280, 720)",
+		"zone": "room_01"
+	},
+	{
+		"draw_calls": 433.0,
+		"frame_interval_median_ms": 27.847,
+		"frame_interval_p95_ms": 33.294,
+		"hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+		"samples": 90,
+		"video_memory_bytes": 52153669.0,
+		"viewport": "(1280, 720)",
+		"zone": "building_02"
+	},
+	{
+		"draw_calls": 86.0,
+		"frame_interval_median_ms": 23.134,
+		"frame_interval_p95_ms": 30.881,
+		"hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+		"samples": 90,
+		"video_memory_bytes": 54386249.0,
+		"viewport": "(1280, 720)",
+		"zone": "school_network_lab"
+	},
+	{
+		"draw_calls": 366.0,
+		"frame_interval_median_ms": 26.261,
+		"frame_interval_p95_ms": 30.084,
+		"hardware": "Linux x86_64 X11 llvmpipe; not Raspberry Pi",
+		"samples": 90,
+		"video_memory_bytes": 82733005.0,
+		"viewport": "(1280, 720)",
+		"zone": "courtyard"
+	}
+]
