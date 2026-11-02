@@ -1,10 +1,10 @@
 # Console Logiciel
 
-**Version 0.23.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.24.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_citylab_0.23.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_town_0.24.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.23.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.24.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -70,7 +70,7 @@ Un **tableau de missions à droite de l’écran** affiche les objectifs du chap
 
 ### Les points et la boutique
 
-Les treize missions de l’enquête rapportent **50 points à leur première réussite**, soit **650 points**. La descente matinale au rez-de-chaussée et la récupération du sac ajoutent **50 points chacune**, puis les cinq épreuves Sudo Hack ajoutent **250 points**, puis les trois missions de City CIEL ajoutent **150 points**, pour **1 150 points au maximum par profil, avant achats et pénalités**. Réparer la machine à café et prendre le bus ne donnent pas de points. Rejouer ou commencer une nouvelle partie ne réattribue pas les récompenses déjà obtenues.
+Les treize missions de l’enquête rapportent **50 points à leur première réussite**, soit **650 points**. La descente matinale au rez-de-chaussée et la récupération du sac ajoutent **50 points chacune**, puis les cinq épreuves Sudo Hack ajoutent **250 points**, puis les trois missions de City CIEL ajoutent **150 points**, pour **1 150 points au maximum par profil, avant achats, billets et pénalités**. Réparer la machine à café et prendre le bus ne donnent pas de points. Rejouer ou commencer une nouvelle partie ne réattribue pas les récompenses déjà obtenues.
 
 Les pénalités retirent les points disponibles. Si le solde ne suffit pas, le reste devient une **dette**, visible en haut de l’écran et dans le profil. Les prochaines récompenses remboursent cette dette en priorité. Recommencer l’enquête conserve les pénalités et la dette.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.23.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.23.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.24.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.24.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
@@ -147,8 +147,10 @@ Les paramètres permettent de choisir quatre ambiances musicales et de personnal
 
 Le bus de la ville propose deux destinations : **1 · CTF Sudo Hack** et **2 · Lycée Louise Michel de Ruffec**. Découvrez son parvis inspiré de la photo fournie, les panneaux portant le logo du lycée et sa salle cyber : six postes, baies réseau, tableau et mobilier. Les prochains défis de cette salle seront ajoutés ensuite. Le retour en ville conserve votre progression.
 
-La mise à jour **0.23.0** affine les ombres et les détails du lycée, recadre le panneau du logo et corrige les indications de touches personnalisées ainsi que les textes des trajets. Les déplacements, collisions, sauvegardes et scénarios de récupération sont vérifiés automatiquement.
+La mise à jour **0.24.0** affine les ombres et les détails du lycée, recadre le panneau du logo et corrige les indications de touches personnalisées ainsi que les textes des trajets. Les déplacements, collisions, sauvegardes et scénarios de récupération sont vérifiés automatiquement.
 
 Au lycée, une porte mène au premier couloir. Réparez le câblage de la porte à droite (**A–3, B–2, C–1**), puis suivez le long passage jusqu’à la porte à gauche de l’atelier. Imprimante 3D, portables, poste fixe et électronique vous y attendent. Le déverrouillage est sauvegardé sans modifier les points ni les missions de l’enquête.
 
 L’atelier du lycée s’appelle **City CIEL**. Une porte à gauche mène au laboratoire réseau, avec murs en relief, postes, routeur et switch. Trois missions guidées (50 points chacune) apprennent le masque **IPv4 /24**, le préfixe **IPv6 /64** et le routage entre deux réseaux. IPv4 contient **32 bits**, IPv6 **128 bits**. Un cours et un clavier virtuel restent disponibles.
+
+La ville comprend **40 bâtiments**, des commerces, un parc avec fontaine, deux ronds-points, des feux et des passants sans dialogue. Les lieux d’origine restent proches et accessibles aux mêmes coordonnées. **Bus : 1 € = 10 points par trajet**, aller et retour ; montée, paiement, attente assise et descente sont animés. Un accès à pied reste gratuit. La carte se masque avec son raccourci (→ par défaut) ; utilisez D ou le joystick pour marcher à droite.
