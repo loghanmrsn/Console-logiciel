@@ -719,7 +719,7 @@ func _show_ctf(id: String) -> void:
 func _show_return_bus() -> void:
 	game._open_overlay("ctf_bus")
 	game._label(game.modal_content, "Arrêt de bus · retour en ville", 26)
-	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel Ritz. Vos épreuves réussies et vos points sont conservés. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
+	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel Ritz. Le billet coûte 1 € virtuel, soit 10 points. Vos épreuves réussies sont conservées. Le retour à pied est gratuit. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
 	game._button(game.modal_content, "Revenir en bus · 1 € (10 points)", _return_bus, "ctf_bus_return")
 	game._button(game.modal_content,"Retour à pied · gratuit",func(): _walking_trip("courtyard"),"ctf_bus_walk")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "ctf_bus_close")
