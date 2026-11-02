@@ -29,4 +29,5 @@
     <path d="M 56.3 28.8 q 3 8 0 16 t 0 14" />
     <path d="M 67.2 28.8 q 3 8 0 16 t 0 14" />
   </g>
+<path d="M10 17 V81 M74 17 V81 M11 83 H73" fill="none" stroke="#d6c5a3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /><path d="M19 23 L29 23 M44 23 L56 23 M18 51 H32 M48 51 H63" fill="none" stroke="#eedcc0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
