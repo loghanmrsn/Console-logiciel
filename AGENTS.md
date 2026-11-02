@@ -2,6 +2,8 @@
 
 L'utilisateur souhaite des commits GitHub séparés pour chaque fichier modifié.
 
+Identité Git locale à conserver pour les nouveaux commits : `user.name=loghanmrsn`, `user.email=morissonloghan05@gmail.com`. Ne pas réécrire les anciens commits et ne pas forcer les pushes. Intégrer la branche de livraison dans `main` après vérification pour rendre les commits éligibles aux contributions GitHub ; l'adresse doit être associée au compte GitHub de l'utilisateur.
+
 - Préparer et vérifier les changements avant de les publier.
 - Utiliser une branche de travail pour publier les commits par fichier ; garder `main` utilisable jusqu'à la livraison complète.
 - Ne pas créer de commits vides ou répéter artificiellement un même changement pour augmenter le compteur.
