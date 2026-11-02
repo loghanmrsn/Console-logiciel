@@ -133,6 +133,9 @@ func refresh() -> void:
 		objective_title.text = "CITY CIEL · LABORATOIRE RÉSEAU"
 		var done: int = CityService.state().completed.size()
 		objective_text.text = "Missions réseau · %d / 3. " % done + (["Configurez le poste IPv4 /24.","Préparez le LAN IPv6 /64.","Reliez les réseaux via le routeur.","Configurations validées ! Vous pouvez revoir le cours et les postes."][done])
+	if current_room == "courtyard" and morning_stage >= 6:
+		objective_title.text = "VILLE CIEL · CENTRE ET QUARTIERS"
+		objective_text.text = "Ritz / bâtiment A : nord-ouest. Parc : centre. Bus : 1 € = 10 points. CTF et lycée accessibles à pied."
 	if current_room == "building_02" and morning_stage == 1 and not _ground_arrival_scheduled:
 		_ground_arrival_scheduled = true
 		_ensure_ground_arrival.call_deferred()
@@ -272,6 +275,15 @@ func can_pause_bed() -> bool:
 	return is_sitting() and game.overlay_kind in ["hotel_bed_waiting", "hotel_bed_choices"]
 
 func handle_target(id: String) -> bool:
+	if id in ["town_walk_ctf","town_walk_school"]:
+		var destination := "ctf_bus_stop" if id == "town_walk_ctf" else "school_stop"
+		game._open_overlay("hotel_travel")
+		game._label(game.modal_content,"Accès à pied · " + TransitService.DESTINATIONS[destination],25)
+		game._label(game.modal_content,"Rejoindre l’entrée du bâtiment à pied. Aucun billet n’est nécessaire ; prenez votre sac avant de poursuivre l’histoire.")
+		game._button(game.modal_content,"Y aller à pied",func(): _walking_trip(destination),"town_walk_go")
+		game._button(game.modal_content,"Rester en ville",game._close_overlay,"town_walk_close")
+		game._wire_modal()
+		return true
 	if id.trim_prefix("ctf_") in CtfCatalog.IDS:
 		_show_ctf(id.trim_prefix("ctf_"))
 		return true
@@ -638,21 +650,44 @@ func _collect_backpack() -> void:
 func _show_bus() -> void:
 	game._open_overlay("hotel_bus")
 	game._label(game.modal_content, "Choisir un arrêt", 27)
-	game._label(game.modal_content, "Choisissez le CTF Sudo Hack ou le lycée Louise Michel de Ruffec. Emportez votre sac et votre ordinateur.")
-	game._button(game.modal_content, "1 · CTF Sudo Hack", _board_bus, "hotel_bus_board")
-	game._button(game.modal_content, "2 · Lycée Louise Michel", func(): _board_bus("school_stop"), "school_bus_board")
+	game._label(game.modal_content, "Choisissez le CTF Sudo Hack ou le lycée Louise Michel de Ruffec. Emportez votre sac et votre ordinateur. Billet par trajet : 1 € = 10 points. Solde : %d points." % int(AppState.profile.wallet.points))
+	game._button(game.modal_content, "1 · CTF Sudo Hack · 1 € (10 points)", _board_bus, "hotel_bus_board")
+	game._button(game.modal_content, "2 · Lycée Louise Michel · 1 € (10 points)", func(): _board_bus("school_stop"), "school_bus_board")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "hotel_bus_close")
 	game._wire_modal()
 
 func _board_bus(destination: String = "ctf_bus_stop") -> void:
-	var result: Dictionary = HotelService.board_bus(destination)
+	var result: Dictionary = TransitService.travel(destination)
 	if not result.ok:
-		_show_error("Trajet non enregistré", result, _show_bus)
+		_show_error("Trajet non enregistré",result,_show_bus)
+		return
+	_show_bus_ride(result)
+
+func _walking_trip(destination: String) -> void:
+	var result: Dictionary = TransitService.travel(destination,true)
+	if not result.ok:
+		_show_error("Passage indisponible",result,func(): _walking_trip(destination))
 		return
 	game.world.restore_progress(AppState.profile.progress)
 	game.world.restore_checkpoint()
 	game._close_overlay()
-	game.notification_requested.emit("Lycée Louise Michel · Entrez dans la salle cyber" if destination == "school_stop" else "Sudo Hack · Entrez dans le bâtiment du CTF")
+	game.notification_requested.emit("Arrivée à pied · "+str(result.destination))
+
+func _show_bus_ride(result: Dictionary) -> void:
+	game._open_overlay("bus_ride")
+	var ride := preload("res://scripts/ui/bus_ride_panel.gd").new()
+	ride.destination = str(result.destination)
+	game.modal_content.add_child(ride)
+	ride.finished.connect(func():
+		game.world.restore_progress(AppState.profile.progress)
+		game.world.restore_checkpoint()
+		game._close_overlay()
+		game.notification_requested.emit("Arrivée · "+str(result.destination)+" · billet 1 € / 10 points payé"))
+	game._wire_modal()
+
+func finish_bus_animation() -> void:
+	var ride = game.modal_content.get_node_or_null("bus_ride_panel")
+	if is_instance_valid(ride): ride.finish()
 
 func _notify_reward(result: Dictionary, message: String) -> void:
 	var reward := int(result.get("reward", 0))
@@ -685,19 +720,17 @@ func _show_return_bus() -> void:
 	game._open_overlay("ctf_bus")
 	game._label(game.modal_content, "Arrêt de bus · retour en ville", 26)
 	game._label(game.modal_content, "Le bus vous ramène près de l’hôtel Ritz. Vos épreuves réussies et vos points sont conservés. Vous pourrez reprendre le bus en ville pour continuer le CTF.")
-	game._button(game.modal_content, "Revenir en ville", _return_bus, "ctf_bus_return")
+	game._button(game.modal_content, "Revenir en bus · 1 € (10 points)", _return_bus, "ctf_bus_return")
+	game._button(game.modal_content,"Retour à pied · gratuit",func(): _walking_trip("courtyard"),"ctf_bus_walk")
 	game._button(game.modal_content, "Rester ici", game._close_overlay, "ctf_bus_close")
 	game._wire_modal()
 
 func _return_bus() -> void:
-	var result: Dictionary = HotelService.return_bus()
+	var result: Dictionary = TransitService.travel("courtyard")
 	if not result.ok:
-		_show_error("Retour non enregistré", result, _show_return_bus)
+		_show_error("Retour non enregistré",result,_show_return_bus)
 		return
-	game.world.restore_progress(AppState.profile.progress)
-	game.world.restore_checkpoint()
-	game._close_overlay()
-	game.notification_requested.emit("Retour en ville · Hôtel Ritz")
+	_show_bus_ride(result)
 
 func _show_school_wiring() -> void:
 	if AppState.profile.progress.get("school_wires", {}).size() == 3:
