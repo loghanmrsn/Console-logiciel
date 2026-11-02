@@ -1,6 +1,8 @@
 extends Node2D
 ## Original, static vector scenery. Gold inlays and a calm marble palette link
 ## the vast lobby, the stair landings and the private guest room.
+const Materials = preload("res://scripts/game/render_materials.gd")
+const Workshop = preload("res://scripts/game/workshop_art.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 var ctf_completed: Array = []
 const Layout = preload("res://scripts/game/hotel_layout.gd")
@@ -320,7 +322,7 @@ func _wall(rect: Rect2) -> void:
 	draw_line(rect.position + Vector2(2, 2), rect.position + Vector2(rect.size.x - 2, 2), Color("eee8d9"), 3)
 
 func _furniture(kind: String, rect: Rect2) -> void:
-	_rounded(Rect2(rect.position + Vector2(6, 9), rect.size), Color("c1bda9"), 12)
+	Materials.shadow(self,rect,12,.20)
 	match kind:
 		"ctf_desk":
 			_rounded(rect, Color("bba783"), 10)
@@ -411,6 +413,7 @@ func _spiral(rect: Rect2, ascending: bool) -> void:
 	draw_polyline(PackedVector2Array([arrow_at + Vector2(-13, -flip * 6), arrow_at + Vector2(0, flip * 7), arrow_at + Vector2(13, -flip * 6)]), INK, 4, true)
 
 func _seat(rect: Rect2, long_seat: bool) -> void:
+	Materials.shadow(self,rect,22,.20)
 	_rounded(rect, VELVET, 22)
 	_rounded(Rect2(rect.position + Vector2(17, 22), rect.size - Vector2(34, 35)), Color("55777a"), 13)
 	if long_seat:
@@ -419,11 +422,13 @@ func _seat(rect: Rect2, long_seat: bool) -> void:
 			draw_line(Vector2(x, rect.position.y + 29), Vector2(x, rect.end.y - 15), VELVET, 3)
 	for x in [rect.position.x + 5, rect.end.x - 22]: _rounded(Rect2(x, rect.position.y + 10, 17, rect.size.y - 20), Color("294b52"), 8)
 
+	for index in range(5 if long_seat else 2):
+		var x := rect.position.x+32+index*(rect.size.x-64)/(4 if long_seat else 1)
+		draw_circle(Vector2(x,rect.get_center().y),2,Color("294e58"))
+		draw_arc(Vector2(x,rect.get_center().y),8,PI*.1,PI*.9,12,Color(.7,.8,.75,.16),1,true)
+
 func _plant(rect: Rect2) -> void:
-	var center := rect.get_center()
-	_rounded(Rect2(center - Vector2(24, 6), Vector2(48, 42)), Color("aa8b63"), 7)
-	for offset in [Vector2(-17, -12), Vector2(18, -17), Vector2(0, -34)]: draw_circle(center + offset, rect.size.x * .25, Color("78947a"))
-	draw_circle(center - Vector2(6, 24), rect.size.x * .2, Color("91a787"))
+	Workshop.plant(self,rect)
 
 func _server(rect: Rect2) -> void:
 	_rounded(rect, Color("344c54"), 9)
@@ -495,12 +500,19 @@ func _status_led(at: Vector2, color: Color) -> void:
 	draw_circle(at - Vector2(1, 1), 1, color.lightened(.3))
 
 func _bed(rect: Rect2) -> void:
+	Materials.shadow(self,rect,20,.25)
 	_rounded(rect.grow(10), Color("a18a65"), 18)
 	_rounded(rect, Color("f8f4e9"), 14)
 	_rounded(Rect2(rect.position + Vector2(8, 72), rect.size - Vector2(16, 80)), Color("91aaa3"), 9)
 	for x in [rect.position.x + 20, rect.position.x + 141]: _rounded(Rect2(x, rect.position.y + 15, 99, 58), Color("fffdf5"), 12)
 	draw_line(rect.position + Vector2(12, 87), Vector2(rect.end.x - 12, rect.position.y + 87), Color("d6dfcf"), 4)
 	_rounded(Rect2(rect.position.x + 8, rect.end.y - 53, rect.size.x - 16, 39), VELVET, 5)
+
+	for index in range(9):
+		var x := rect.position.x+20+index*(rect.size.x-40)/9
+		draw_polyline(PackedVector2Array([Vector2(x,rect.position.y+105),Vector2(x+6,rect.get_center().y),Vector2(x+2,rect.end.y-59)]),Color(.22,.39,.39,.12),1.5,true)
+	for x in [rect.position.x+20,rect.position.x+141]:
+		draw_arc(Vector2(x+49,rect.position.y+43),24,PI*.15,PI*.85,16,Color("e1dfd1"),2,true)
 
 func _suitcase(at: Vector2) -> void:
 	_rounded(Rect2(at - Vector2(48, 20), Vector2(96, 62)), Color("4a565b"), 8)
@@ -557,10 +569,7 @@ func _rug(rect: Rect2, color: Color) -> void:
 	draw_style_box(box, rect.grow(-12))
 
 func _rounded(rect: Rect2, color: Color, radius: int) -> void:
-	var box := StyleBoxFlat.new()
-	box.bg_color = color
-	box.set_corner_radius_all(radius)
-	draw_style_box(box, rect)
+	Materials.rounded(self,rect,color,radius)
 
 func _text(value: String, at: Vector2, font_size: int, color := INK, centered := false) -> void:
 	var font := ThemeDB.fallback_font
