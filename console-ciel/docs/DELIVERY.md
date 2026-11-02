@@ -1,3 +1,15 @@
+# Livraison 0.24.0 — ville et bus
+
+Ville de 6 000 × 4 600 unités : 38 nouvelles façades et les deux bâtiments d’origine, commerces et services, parc des Tilleuls, fontaine animée, deux ronds-points, feux et rues. Les positions du Ritz, du bâtiment A, de leurs entrées et des anciens points de reprise restent inchangées. La géométrie partagée aligne les bâtiments, les obstacles et la carte. Douze passants sans interaction empruntent des trottoirs vérifiés libres ; les véhicules supplémentaires sont lents, s’arrêtent aux passages concernés et cèdent devant le joueur. Le passage central garde sa machine d’états et ses pénalités. Le cadrage de ville est élargi, et le panneau de circulation reste près de la traversée centrale.
+
+Billet virtuel : 1 € = 10 points par trajet, aller et retour. TransitService valide le parcours d’hôtel, débite le portefeuille et enregistre l’arrivée dans une transaction unique, puis joue la séquence montée/paiement/attente assise/descente. Les helpers de déplacement d’HotelService restent des transitions internes ; toutes les commandes de bus présentées au joueur passent par TransitService. L’état optionnel bus_travel conserve le nombre et le coût cumulé des billets, vérifiés à la lecture. Une panne d’écriture n’avance ni le solde ni l’arrivée ; après interruption de la séquence, la reprise se fait à destination, sans second débit. Échap ou le bouton de passage termine l’animation déjà payée. Réduction des animations : arrivée immédiate. Les accès à pied restent gratuits, ce qui évite de bloquer l’histoire après des pénalités. [Guide](VILLE.md).
+
+Vérifications du 2 novembre 2026 : 14 suites sources (2552 assertions), 8 suites sur les packs Windows/ARM64 (910 assertions), et 312 contrôles en rendu X11/Mesa. Aucun échec final. Tests : façades solides hors chaussée, parcours des passants sans obstacles, pause, carte, billet, solde insuffisant, erreur disque, rechargement, accès gratuit, phases de l’animation et 800 × 480. Les régressions hôtel, matinée, CTF, City CIEL et circulation sont incluses. [Résultats](../tests/town_0.24.0_results/summary.json).
+
+Les exports sont chargés par Godot Linux x86_64. Matériel natif Windows/Raspberry Pi, écoute réelle du son et contrôleur physique restent à tester ; aucun gain de FPS n’est revendiqué. Les façades sont décoratives à l’exception des accès jouables déjà présents ; il ne s’agit pas de simuler 5 000 agents. Archives et anciennes livraisons conservées.
+
+---
+
 # Livraison 0.23.0 — City CIEL et laboratoire réseau
 
 L’atelier est nommé City CIEL. Une porte à gauche, à environ 5–10 m de l’entrée à l’échelle du jeu, ouvre une salle réseau avec postes fixes, routeur, switch, baies et tableau. Murs en relief, plinthes, fenêtres, huisseries et cloison renforcent le volume des pièces. Leurs empreintes et les ouvertures sont partagées avec les collisions ; un fond de seuil empêche de marcher dans le vide.
