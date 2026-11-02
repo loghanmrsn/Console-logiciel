@@ -46,11 +46,15 @@ static func furniture() -> Array[Rect2]:
 		result.append(Rect2(room.position+Vector2(900,100),Vector2(70,70)))
 	return result
 
+static func entrances() -> Array[Dictionary]:
+	var result: Array[Dictionary] = [
+		{"id": "courtyard_first", "label": "Porte · premier bâtiment", "at": Vector2(900, 1060), "radius": 100.0,"marker_offset":Vector2(0,10)},
+		{"id": "courtyard_second", "label": "Porte · hôtel Ritz", "at": Vector2(900, 370), "radius": 100.0,"marker_offset":Vector2(0,-20)}]
+	result.append_array(Town.interactions())
+	return result
+
 static func interactions(zone: String) -> Array[Dictionary]:
 	if zone != "courtyard": return []
-	var result: Array[Dictionary] = [
-		{"id": "courtyard_first", "label": "Porte · premier bâtiment", "at": Vector2(900, 1060), "radius": 100.0},
-		{"id": "courtyard_second", "label": "Porte · hôtel Ritz", "at": Vector2(900, 370), "radius": 100.0},
-		{"id": "campus_bus", "label": "Arrêt Centre / Ritz · destinations et billet", "at": Vector2(1140, 900), "radius": 90.0}]
-	result.append_array(Town.interactions())
+	var result := entrances()
+	result.insert(2,{"id":"campus_bus","label":"Arrêt Centre / Ritz · destinations et billet","at":Vector2(1140,900),"radius":90.0})
 	return result
