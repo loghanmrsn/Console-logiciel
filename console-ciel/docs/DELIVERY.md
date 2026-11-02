@@ -1,3 +1,15 @@
+# Livraison 0.24.3 — rues et boulevards en boucle
+
+Un boulevard périphérique relie toutes les extrémités du réseau. La ville de 6 400 × 4 800 unités possède dix segments routiers, vingt extrémités engagées dans une autre rue et vingt et une intersections. Les rues forment des boucles continues autour des quartiers, y compris au nord, à l’est, au sud et à l’ouest. La carte partage cette géométrie. Les chaussées conservent leur dessin en passes et les marquages s’interrompent aux raccords. [Guide de la ville](VILLE.md).
+
+Les douze façades du nord et les huit façades de l’ouest sont repositionnées pour dégager les voies et les trottoirs. L’aile gauche du bâtiment A est raccourcie ; son empreinte commune au modèle et aux collisions laisse passer le boulevard ouest. Le jardin sud-ouest et la barrière voisine sont adaptés. Les proportions des arbres suivent les dimensions du jardin. Les quatre côtés du PNJ Sam restent accessibles : le contrôle a repéré un premier jardin trop proche, corrigé avant livraison. Les entrées de l’hôtel et du bâtiment A, le bus et leurs points de reprise restent accessibles aux mêmes positions.
+
+Vérifications du 2 novembre 2026 : 8 suites sources (2414 assertions), 8 suites sur les packs Windows/ARM64 (1550 assertions), et 735 contrôles en rendu X11/Mesa. Aucun échec final. Le réseau est connecté, chaque extrémité rejoint une autre voie et les quatre côtés du boulevard sont dégagés dans PhysicsServer. Le rendu réel de chaque branche de carrefour est contrôlé par ses pixels d’asphalte. Le test global des collisions parcourt les étages, l’hôtel, le lycée et la ville ; les régressions PNJ, circulation, pénalités, mouvement, portes et billets passent. Dix-sept captures réelles comprennent les coins du boulevard, les rues, les commerces et une vue d’ensemble du réseau. [Résultats](../tests/loop_0.24.3_results/summary.json) · [Captures](screenshots/loop_0.24.3/town_ui_tests/).
+
+Les packs Windows et ARM64 sont exécutés par Godot Linux x86_64. Le lancement natif sous Windows ou sur Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Aucun gain de FPS n’est revendiqué. Sauvegardes et anciennes livraisons conservées ; présentation des README réutilisée.
+
+---
+
 # Livraison 0.24.2 — routes et intersections continues
 
 La rue devant le Ritz et le bâtiment A rejoint désormais toute la largeur de l’avenue ouest, par une intersection en T. Le vide entre les deux anciens segments est supprimé. La carte inclut cette liaison et représente les deux ronds-points. Les bâtiments, leurs portes et l’arrêt du centre gardent leurs positions. [Guide de la ville](VILLE.md).
