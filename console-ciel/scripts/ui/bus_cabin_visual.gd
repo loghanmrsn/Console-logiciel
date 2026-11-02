@@ -121,8 +121,11 @@ func _windows(right: bool) -> void:
 		draw_polyline(PackedVector2Array([a,b,c,d,a]),Color("556f76"),5,true)
 func _seat_back(at: Vector2, width: float, height: float) -> void:
 	draw_rect(Rect2(at+Vector2(-width*.15,-3),Vector2(width*.3,20)),Color("445a62"))
-	draw_style_box(_style(Color("273f4f"),7),Rect2(at-Vector2(width*.5,height),Vector2(width,height*.86)))
-	draw_style_box(_style(Color("4b7485"),5),Rect2(at-Vector2(width*.5-6,height-6),Vector2(width-12,height*.65)))
+	draw_style_box(_style(Color("273f4f"),12),Rect2(at-Vector2(width*.5,height),Vector2(width,height*.86)))
+	draw_style_box(_style(Color("4b7485"),9),Rect2(at-Vector2(width*.5-6,height-6),Vector2(width-12,height*.65)))
+	draw_arc(at-Vector2(0,height*.62),width*.36,PI*1.12,PI*1.88,24,Color("8aadb3"),1.5,true)
+	for x in [-.22,.22]:
+		draw_circle(at+Vector2(width*x,-height*.42),1.6,Color("355766"))
 	for stripe in range(3):
 		var y := at.y-height+16+stripe*(height*.15)
 		draw_line(Vector2(at.x-width*.35,y),Vector2(at.x+width*.35,y),Color("648c98"),1,true)
