@@ -1,6 +1,7 @@
 extends Node2D
 ## Detailed, original 2D town scenery; solid bases are owned by TownLayout.
 const Storefront = preload("res://scripts/game/storefront_art.gd")
+const SchoolFacade = preload("res://scripts/game/school_facade_art.gd")
 const Town = preload("res://scripts/game/town_layout.gd")
 var furniture_only: Dictionary = {}
 var furniture_anchor := Vector2.ZERO
@@ -22,6 +23,13 @@ func _draw() -> void:
 		draw_set_transform(-furniture_anchor)
 		_prop(furniture_only)
 		return
+	# Quiet campus grounds and the former shop-sized plot, now a pocket garden.
+	draw_rect(Town.SCHOOL_GROUNDS,Color("c6c7b7"))
+	draw_rect(Town.SCHOOL_GROUNDS.grow(-14),Color("969f90"))
+	draw_rect(Rect2(6790,900,2020,310),Color("c9c9bb"))
+	for y in range(930,1200,60): draw_line(Vector2(6790,y),Vector2(8810,y),Color("b7bbad"),1)
+	draw_rect(Rect2(7270,900,180,345),Color("e1d8c4"))
+	draw_rect(Town.FORMER_SCHOOL,Color("b6c6a8"))
 	draw_rect(Town.PARK,Color("afc59d"))
 	draw_rect(Rect2(2840,1660,180,850),Color("d9d4bf"))
 	draw_rect(Rect2(2210,2000,1450,140),Color("d9d4bf"))
@@ -37,6 +45,7 @@ func _prop(spec: Dictionary) -> void:
 	match str(spec.kind):
 		"building": _building(spec)
 		"cafe_table", "cafe_chair", "menu_board": Storefront.furniture(self,spec)
+		"campus_planter", "campus_bench", "campus_sign", "campus_arrow": SchoolFacade.prop(self,spec)
 		"tree", "island":
 			var center := rect.get_center()
 			draw_circle(center,rect.size.x*.5,Color("b4bc9e"))
@@ -66,6 +75,9 @@ func _prop(spec: Dictionary) -> void:
 			draw_circle(rect.get_center()-Vector2(0,130),14,Color("eddfac"))
 func _building(spec: Dictionary) -> void:
 	var rect: Rect2 = spec.rect
+	if spec.get("school",false):
+		SchoolFacade.draw_facade(self,rect)
+		return
 	var index := int(spec.index)
 	var palettes := [Color("d7c9ae"),Color("c9d1c3"),Color("d7bdb2"),Color("c0ced0"),Color("d3cdbc")]
 	var base: Color = palettes[index%palettes.size()]
