@@ -33,6 +33,7 @@ func _run() -> void:
 	_check(app.demo.world.world_extent()==Town.SIZE,"Grande ville chargée")
 	_check(app.demo.campus_map.visible,"Carte de la ville visible")
 	await _verify_streets()
+	_verify_campus_entries()
 	for building in Town.buildings():
 		_check(not _point_clear(building.rect.get_center()),"Façade solide : "+building.title)
 		for road in Town.roads(): _check(not building.rect.intersects(road),"Bâtiment hors chaussée")
@@ -68,18 +69,36 @@ func _run() -> void:
 	_check(ambient.people[0].body.position==start,"La pause immobilise les passants")
 	app.demo._close_overlay()
 	await _key(KEY_RIGHT)
-	for spec in [{"at":Vector2(1690,990),"image":"ville_raccord_centre_challenge"},{"at":Vector2(380,1050),"image":"ville_boucle_ouest_challenge"},{"at":Vector2(2180,380),"image":"ville_boucle_nord_challenge"},{"at":Vector2(6210,380),"image":"ville_boucle_nord_est_challenge"},{"at":Vector2(6210,4670),"image":"ville_boucle_sud_est_challenge"},{"at":Vector2(380,4670),"image":"ville_boucle_sud_ouest_challenge"},{"at":Vector2(4150,1670),"image":"ville_intersection_nord_challenge"},{"at":Vector2(4170,4330),"image":"ville_intersection_sud_challenge"},{"at":Vector2(2730,1240),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
+	for spec in [{"at":Vector2(1690,990),"image":"ville_raccord_centre_challenge"},{"at":Vector2(3825,1055),"image":"ctf_repere_lointain_challenge"},{"at":Vector2(7950,930),"image":"lycee_campus_facade_challenge"},{"at":Vector2(7950,1185),"image":"lycee_campus_parvis_challenge"},{"at":Vector2(380,1050),"image":"ville_boucle_ouest_challenge"},{"at":Vector2(2180,380),"image":"ville_boucle_nord_challenge"},{"at":Vector2(6210,380),"image":"ville_boucle_nord_est_challenge"},{"at":Vector2(6210,4670),"image":"ville_boucle_sud_est_challenge"},{"at":Vector2(380,4670),"image":"ville_boucle_sud_ouest_challenge"},{"at":Vector2(4150,1670),"image":"ville_intersection_nord_challenge"},{"at":Vector2(4170,4330),"image":"ville_intersection_sud_challenge"},{"at":Vector2(2730,1240),"image":"ville_commerces_challenge"},{"at":Vector2(2920,2290),"image":"ville_parc_fontaine_challenge"},{"at":Vector2(4150,2920),"image":"ville_rond_point_challenge"}]:
 		app.demo.world.player.position=spec.at
 		app.demo.world.player.reset_physics_interpolation()
 		await _physics_frames(4)
 		await _frames(5)
+		if spec.image=="ctf_repere_lointain_challenge":
+			var target=app.demo.world.get_interactable("town_walk_ctf")
+			_check(not target.highlighted and app.demo.world.player.position.distance_to(target.position)>target.interaction_radius,"Le repère reste visible hors portée d’interaction")
+			_check(app.demo.world._room_root.get_node("EntranceBeacons").points.has(target.position+target.marker_offset),"Le point permanent correspond à la porte du CTF")
 		await _capture(spec.image)
+		if spec.image=="ctf_repere_lointain_challenge":
+			root.size=Vector2i(800,480)
+			await _frames(8)
+			var beacons=app.demo.world._room_root.get_node("EntranceBeacons")
+			_check(is_equal_approx(beacons._radius*app.demo.world.camera.zoom.x,6.0),"Le repère garde son rayon lisible dans une petite fenêtre")
+			await _capture("ctf_repere_compact_challenge")
+			root.size=Vector2i(1280,720)
+			await _frames(5)
 	if captures:
 		var zoom: Vector2=app.demo.world.camera.zoom
+		var overlays: Array[CanvasItem]=[app.demo.hotel_story.objective_panel,app.demo.campus_map,_find("game_pause")]
+		var colors: Array[Color]=[]
+		for overlay in overlays:
+			colors.append(overlay.modulate)
+			overlay.modulate=Color(1,1,1,0)
 		app.demo.world.camera.zoom=Vector2(.105,.105)
 		app.demo.world._update_camera_position()
 		await _frames(8)
 		await _capture("ville_vue_ensemble_challenge")
+		for index in range(overlays.size()): overlays[index].modulate=colors[index]
 		app.demo.world.camera.zoom=zoom
 		app.demo.world._update_camera_position()
 	await _approach("campus_bus")
@@ -130,6 +149,21 @@ func _run() -> void:
 	await _activate("town_walk_go")
 	_check(state.profile.progress.room_id=="ctf_bus_stop" and state.profile.wallet.points==80,"Accès à pied gratuit depuis la façade")
 	await _finish()
+
+func _verify_campus_entries() -> void:
+	var beacons=app.demo.world._room_root.get_node("EntranceBeacons")
+	_check(beacons.visible and beacons.points.size()==4,"Repères permanents des quatre bâtiments accessibles")
+	for entry in Campus.entrances():
+		var offset: Vector2=entry.get("marker_offset",Vector2(0,-45))
+		_check(beacons.points.has(entry.at+offset),"Repère aligné avec sa porte : "+entry.id)
+		_check(app.demo.world.get_interactable(entry.id).marker_offset==offset,"Repère et interaction utilisent le même décalage : "+entry.id)
+		_check(_point_clear(entry.at),"Porte et point d’approche dégagés : "+entry.id)
+	for building in Town.buildings():
+		if building.school: continue
+		_check(not building.rect.grow(800).intersects(Town.SCHOOL),"Lycée isolé des autres façades : "+building.title)
+	_check(_point_clear(Town.FORMER_SCHOOL.get_center()),"L’ancienne façade du lycée a laissé place au jardin")
+	for prop in Town.props():
+		if str(prop.kind).begins_with("campus_"): _check(not _point_clear(prop.rect.get_center()),"Mobilier de campus solide : "+prop.kind)
 
 func _verify_streets() -> void:
 	var streets := Town.roads()
