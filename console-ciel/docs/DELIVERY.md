@@ -1,3 +1,19 @@
+# Livraison 0.26.0 — graphismes et rendu optimisé
+
+Les personnages, le mobilier, les façades et la végétation gagnent des courbes, des matériaux et des détails. Toitures variées, volets, vitrages en retrait, ombres de contact, claviers, ordinateurs portables, imprimante 3D, instruments électroniques, sièges et textiles donnent davantage de relief au jeu 2D. Les cartes de la console, les boutons, les aperçus de thèmes et les sièges du bus sont affinés. Les dimensions des sprites du personnage et les géométries physiques restent compatibles avec les parcours existants. [Comparaisons avant/après](GRAPHISMES.md).
+
+Les premiers dessins détaillés coûtaient trop cher dans la ville et le laboratoire. Les 117 décors fixes sont désormais précalculés par Godot, avec mipmaps et marges transparentes supprimées. Leurs sources restent modifiables ; un contrat vérifie la présence dans les exports, les dimensions, les empreintes et un budget de 40 Mio pour les textures RGBA avec mipmaps. Feux, fontaine, passants et missions restent pilotés par les composants existants. Le logo du lycée conserve ses droits réservés dans les images dérivées.
+
+Vérifications du 2 novembre 2026 : 17 suites sources, 7111 assertions ; 36 suites sur les packs Windows et ARM64, 14474 assertions ; 1190 contrôles avec rendu X11/Mesa. Aucun échec final. Les contrôles couvrent notamment les collisions, les portes et repères d’entrée, les routes, les missions réseau, le bus à 10 points, le clavier, les événements de manette simulés, les apparences et la fenêtre compacte. Les captures ne sont pas retouchées. [Résultats et mesures](../tests/graphics_0.26.0_results/summary.json).
+
+Les quatre scénarios mesurés respectent la marge déclarée de 1,30 fois les intervalles médian et p95 de la version 0.25.0 et de 40 Mio supplémentaires de mémoire vidéo. Les valeurs exactes figurent dans le rapport, y compris les vues plus coûteuses. Ces mesures uniques sur Linux x86_64/llvmpipe ne prouvent pas un gain de FPS sur Raspberry Pi. L’exécution native Windows et ARM64 sur le matériel cible, le son et la manette physiques restent à tester.
+
+Council et les profils Agency ont été utilisés pour la direction artistique et la revue ; limites d’usage des agents, votes et critères bloquants sont consignés dans [la fiche des outils](OUTILS_ASSISTANT.md). L’identité des nouveaux commits est `loghanmrsn <morissonloghan05@gmail.com>`. L’historique existant et les anciennes archives sont conservés.
+
+La visite à 360° de City CIEL fournie en cours de travail reste inaccessible depuis cet environnement : refus réseau 403 pour le domaine du lycée. Une demande d’ajout de ce domaine a été enregistrée dans la configuration cloud. Cette livraison ne prétend pas reproduire une salle qui n’a pas encore pu être observée ; cette adaptation reste à faire après accès à la référence.
+
+---
+
 # Livraison 0.25.0 — campus Louise Michel et repères d’entrée
 
 Les quatre accès de la ville — bâtiment A, Ritz, Sudo Hack et lycée — disposent de petits points permanents. Ils restent visibles hors portée d’interaction et conservent un rayon de six pixels à l’écran, y compris en petite fenêtre et dans la vue d’ensemble. Les décalages des points devant le Ritz et le bâtiment A sont partagés avec les symboles d’interaction. La carte distingue les entrées accessibles du bus ; les portes des zones d’arrivée du CTF et du lycée sont également repérées.
