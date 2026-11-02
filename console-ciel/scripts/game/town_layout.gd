@@ -1,21 +1,21 @@
 extends RefCounted
 ## Compact town centre: 38 new facades + the two original playable buildings.
 const Road = preload("res://scripts/game/road_layout.gd")
-const SIZE := Vector2(6000,4600)
+const SIZE := Vector2(6400,4800)
 const PARK := Rect2(2210,1660,1450,850)
 const FOUNTAIN := Vector2(2930,2070)
 const NAMES := ["Boulangerie", "Épicerie du centre", "Pharmacie", "La Poste", "Café des amis", "Sudo Hack", "Mairie", "Médiathèque", "Librairie", "Fleuriste", "Louise Michel", "Résidence des Tilleuls", "Maison de santé", "Opticien", "Cycles & Réparations", "Bar du marché", "Cinéma Le Parc", "Restaurant de la place", "Résidence des Arts", "Atelier du quartier", "Maison des associations", "Hôtel des Voyageurs", "Résidence Bellevue", "Résidence du Canal", "Garage", "Maison de quartier", "Résidence des Écoles", "Épicerie bio", "Laverie", "Café du parc", "Résidence du Square", "Maison de la musique", "Résidence des Jardins", "Papeterie", "Restaurant du Marché", "Résidence des Platanes", "Banque", "Boucherie"]
 static func buildings() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
-	for origin in [Vector2(2200,180),Vector2(4300,180)]:
+	for origin in [Vector2(2200,350),Vector2(4300,350)]:
 		for row in range(2):
-			for col in range(3): add_building(result,Rect2(origin+Vector2(col*490,row*520),Vector2(410,270)))
+			for col in range(3): add_building(result,Rect2(origin+Vector2(col*490,row*470),Vector2(410,270)))
 	for row in range(2):
-		for col in range(2): add_building(result,Rect2(200+col*770,1700+row*430,570,260))
+		for col in range(2): add_building(result,Rect2(400+col*770,1700+row*430,570,260))
 	for row in range(2):
 		for col in range(3): add_building(result,Rect2(4300+col*490,1700+row*470,410,270))
 	for row in range(2):
-		for col in range(2): add_building(result,Rect2(200+col*770,3100+row*440,570,270))
+		for col in range(2): add_building(result,Rect2(400+col*770,3100+row*440,570,270))
 	for origin_x in [2200,4300]:
 		for row in range(2):
 			for col in range(3): add_building(result,Rect2(origin_x+col*490,3100+row*440,410,270))
@@ -26,7 +26,13 @@ static func add_building(result: Array[Dictionary], rect: Rect2) -> void:
 static func roads() -> Array[Rect2]:
 	# The original street joins the full width of the first avenue. Its old
 	# crossing/penalty region stays owned by RoadLayout, independently of paint.
-	return [Rect2(1800,64,270,4420),Rect2(3900,64,220,4420),Rect2(100,1300,5800,220),Rect2(100,2650,5800,220),Rect2(100,3950,5800,220),Rect2(Road.ROAD.position,Vector2(2070-Road.ROAD.position.x,Road.ROAD.size.y))]
+	# All segment ends overlap another street, including the outer boulevard.
+	return [
+		Rect2(1800,80,270,4530), Rect2(3900,80,220,4530),
+		Rect2(64,1300,6056,220), Rect2(64,2650,6056,220), Rect2(64,3950,6056,220),
+		Rect2(Road.ROAD.position,Vector2(2070-Road.ROAD.position.x,Road.ROAD.size.y)),
+		Rect2(64,580,220,4030), Rect2(5900,80,220,4530),
+		Rect2(1800,80,4320,180), Rect2(64,4390,6056,220)]
 static func intersections() -> Array[Rect2]:
 	var result: Array[Rect2] = []
 	var streets := roads()
@@ -66,7 +72,7 @@ static func interactions() -> Array[Dictionary]:
 		result.append({"id":"town_walk_ctf" if b.title == "Sudo Hack" else "town_walk_school", "label":b.title+" · accès à pied", "at":b.rect.get_center()+Vector2(0,b.rect.size.y*.5+65),"radius":95.0})
 	return result
 static func pedestrian_routes() -> Array[PackedVector2Array]:
-	return [PackedVector2Array([Vector2(2170,1580),Vector2(3750,1580),Vector2(3750,2550),Vector2(2170,2550)]),PackedVector2Array([Vector2(2130,110),Vector2(3750,110),Vector2(3750,1160),Vector2(2130,1160)]),PackedVector2Array([Vector2(4200,1600),Vector2(5800,1600),Vector2(5800,2540),Vector2(4200,2540)])]
+	return [PackedVector2Array([Vector2(2170,1580),Vector2(3750,1580),Vector2(3750,2550),Vector2(2170,2550)]),PackedVector2Array([Vector2(2130,680),Vector2(3750,680),Vector2(3750,1235),Vector2(2130,1235)]),PackedVector2Array([Vector2(4200,1600),Vector2(5800,1600),Vector2(5800,2540),Vector2(4200,2540)])]
 static func car_route() -> PackedVector2Array:
 	return PackedVector2Array([Vector2(2220,1360),Vector2(3850,1360),Vector2(3950,1500),Vector2(3950,2600),Vector2(3810,2705),Vector2(2210,2705),Vector2(1950,2590),Vector2(1950,1560)])
 static func on_road(at: Vector2) -> bool:
