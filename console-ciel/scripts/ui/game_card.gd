@@ -7,6 +7,7 @@ signal details_requested(id)
 func configure(item: Dictionary, owned: bool, educational: bool = false, compact: bool = false) -> void:
 	var identifier = str(item.get('id', 'game_enquete'))
 	name = 'game_card_' + identifier
+	theme_type_variation = 'CardPanel'
 	if compact:
 		var panel_style = get_theme_stylebox('panel', 'PanelContainer').duplicate()
 		panel_style.content_margin_top = 8
@@ -69,5 +70,5 @@ func _label(value: String, font_size: int, muted: bool = false) -> Label:
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override('font_size', font_size + maxi(0, get_theme_default_font_size() - 18))
 	if muted:
-		label.modulate.a = 0.76
+		label.theme_type_variation = 'SecondaryLabel'
 	return label
