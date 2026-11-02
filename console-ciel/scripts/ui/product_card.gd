@@ -7,6 +7,7 @@ signal action_requested(id)
 
 func configure(item: Dictionary, owned: bool, equipped: bool, enough: bool) -> void:
 	name = 'product_card_' + str(item.id)
+	theme_type_variation = 'CardPanel'
 	var column = VBoxContainer.new()
 	column.add_theme_constant_override('separation', 6 if item.get('type') == 'game' else 10)
 	add_child(column)
@@ -18,6 +19,7 @@ func configure(item: Dictionary, owned: bool, equipped: bool, enough: bool) -> v
 	category.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(category)
 	var status = _label('✓ Équipé' if equipped else ('✓ Possédé' if owned else ('Inclus' if int(item.get('price', 0)) == 0 else '%d pts' % int(item.price))), 13)
+	status.theme_type_variation = 'StatusLabel'
 	status.name = 'product_status_' + str(item.id)
 	status.autowrap_mode = TextServer.AUTOWRAP_OFF
 	status.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -67,5 +69,5 @@ func _label(value: String, font_size: int, muted: bool = false) -> Label:
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override('font_size', font_size + maxi(0, get_theme_default_font_size() - 18))
 	if muted:
-		label.modulate.a = 0.76
+		label.theme_type_variation = 'SecondaryLabel'
 	return label
