@@ -6,6 +6,7 @@ var furniture_only: Dictionary = {}
 var furniture_anchor := Vector2.ZERO
 var water_time := 0.0
 func _ready() -> void:
+	if furniture_only.is_empty(): add_child(preload("res://scripts/game/town_streets.gd").new())
 	if not furniture_only.is_empty() and furniture_only.kind == "signal":
 		var light := preload("res://scripts/game/road_traffic.gd").PedestrianSignal.new()
 		light.position = furniture_only.rect.get_center()-furniture_anchor
@@ -21,19 +22,6 @@ func _draw() -> void:
 		draw_set_transform(-furniture_anchor)
 		_prop(furniture_only)
 		return
-	for road in Town.roads():
-		draw_rect(road.grow(34),Color("c9c6b7"))
-		draw_rect(road,Color("546269"))
-		if road.size.x > road.size.y:
-			for x in range(int(road.position.x)+20,int(road.end.x)-20,100): draw_line(Vector2(x,road.get_center().y),Vector2(x+45,road.get_center().y),Color("dedcc6"),3)
-		else:
-			for y in range(int(road.position.y)+20,int(road.end.y)-20,100): draw_line(Vector2(road.get_center().x,y),Vector2(road.get_center().x,y+45),Color("dedcc6"),3)
-	for point in Town.roundabouts():
-		draw_circle(point,145,Color("546269"))
-		draw_arc(point,100,0,TAU,64,Color("d5d7c6"),3,true)
-	# Mark pedestrian crossings at the park approaches.
-	for at in [Vector2(2720,1300),Vector2(2720,2650),Vector2(4300,2650)]:
-		for y in range(0,200,28): draw_rect(Rect2(at+Vector2(0,y),Vector2(110,12)),Color("ede9d4"))
 	draw_rect(Town.PARK,Color("afc59d"))
 	draw_rect(Rect2(2840,1660,180,850),Color("d9d4bf"))
 	draw_rect(Rect2(2210,2000,1450,140),Color("d9d4bf"))
