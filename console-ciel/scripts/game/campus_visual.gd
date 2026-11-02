@@ -103,11 +103,11 @@ func _facade_window(at: Vector2, size: Vector2, balcony: bool) -> void:
 
 func _academy_facade() -> void:
 	# The original school remains distinct from the five-star hotel opposite.
-	draw_rect(Rect2(100,1090,1600,160),Color("c5d4d0"))
-	for x in range(125,1660,130):
+	draw_rect(Layout.ACADEMY,Color("c5d4d0"))
+	for x in range(int(Layout.ACADEMY.position.x)+25,int(Layout.ACADEMY.end.x)-40,130):
 		if abs(x-900)<150: continue
 		_facade_window(Vector2(x,1120),Vector2(86,64),false)
-	for y in [1096,1203,1236]: draw_rect(Rect2(108,y,1584,6),Color("8fa9a2"))
+	for y in [1096,1203,1236]: draw_rect(Rect2(Layout.ACADEMY.position.x+8,y,Layout.ACADEMY.size.x-16,6),Color("8fa9a2"))
 	draw_rect(Rect2(746,1090,308,153),Color("e2e5d9"))
 	_text("BÂTIMENT A",Vector2(900,1178),24,true)
 	_text("CONSOLE CIEL",Vector2(900,1210),20,true)
@@ -149,7 +149,7 @@ func _text(text: String, at: Vector2, font_size: int, centered := false) -> void
 func _gardens() -> void:
 	for rect in Road.gardens():
 		draw_rect(rect.grow(-6), Color("bfd0b4"))
-		for offset in [90, 240]:
+		for offset in [rect.size.x*.27, rect.size.x*.73]:
 			var at := rect.position + Vector2(offset, 55)
 			draw_circle(at + Vector2(5, 8), 39, Color("9caf98"))
 			draw_circle(at, 36, Color("6e927a"))
