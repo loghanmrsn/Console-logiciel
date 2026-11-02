@@ -16,3 +16,7 @@ Le sac et l’ordinateur de l’histoire sont nécessaires avant le départ. Apr
 Le solde et l’arrivée sont sauvegardés ensemble avant l’animation. Une erreur d’écriture laisse le joueur sur place et ne débite rien. Fermer le jeu pendant la séquence reprend au point d’arrivée sans payer une deuxième fois.
 
 Si le solde est inférieur à 10 points, le bus refuse le billet sans créer de dette. Vous pouvez rejoindre les façades des destinations à pied ; aux arrêts Sudo Hack et du lycée, « Retour à pied · gratuit » permet aussi de revenir en ville. Les missions, les récompenses déjà acquises et la dette éventuelle sont conservées.
+
+Les façades possèdent des enseignes encadrées avec pictogrammes et lettres adaptées à leur largeur. La Poste se reconnaît à sa plaque jaune et à sa grande enveloppe. Les cinq cafés, bar et restaurants possèdent chacun deux tables avec des cafés servis, quatre chaises et une ardoise. Ces objets ont des collisions, tout en laissant le passage central des portes et les circuits piétons libres.
+
+L’animation de bus présente une cabine en perspective : allée centrale, six sièges visibles, passagers, vitres et paysage défilant, éclairage, mains courantes, boutons d’arrêt, conducteur et tableau de bord, portes vitrées et marches. La carte de paiement rejoint le valideur, puis le joueur s’assoit avant de descendre. Le tarif, la sauvegarde et les commandes de passage de l’animation restent identiques. La cabine s’adapte également aux fenêtres de 800 × 480.
