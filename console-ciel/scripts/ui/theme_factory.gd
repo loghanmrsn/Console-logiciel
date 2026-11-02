@@ -1,6 +1,6 @@
 extends RefCounted
 
-static func panel(color: Color, radius: int = 22, border: Color = Color('#ffffff')) -> StyleBoxFlat:
+static func panel(color: Color, radius: int = 18, border: Color = Color('#ffffff')) -> StyleBoxFlat:
 	var s = StyleBoxFlat.new()
 	s.bg_color = color
 	s.set_corner_radius_all(radius)
@@ -10,9 +10,10 @@ static func panel(color: Color, radius: int = 22, border: Color = Color('#ffffff
 	s.content_margin_right = 18
 	s.content_margin_top = 16
 	s.content_margin_bottom = 16
-	s.shadow_color = Color(0.15, 0.22, 0.28, 0.055)
-	s.shadow_size = 8
-	s.shadow_offset = Vector2(0, 3)
+	s.shadow_color = Color(0.08, 0.14, 0.19, 0.11)
+	s.shadow_size = 9
+	s.shadow_offset = Vector2(0, 4)
+	s.anti_aliasing = true
 	return s
 
 const AppearancePalette = preload('res://scripts/ui/appearance_palette.gd')
@@ -31,8 +32,12 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 	var opaque: bool = settings.get('reduce_transparency', false)
 	var dark := AppearancePalette.luminance(foreground) > 0.5
 	var border := foreground.lerp(surface, 0.80)
+	var highlight := surface.lerp(Color.WHITE, 0.18 if dark else 0.78)
+	var recessed := surface.lerp(Color(colors.background), 0.62)
 	var focus_color := accent if AppearancePalette.contrast_ratio(accent, surface) >= 3.0 else foreground
 	t.set_color('focus', 'Appearance', focus_color)
+	t.set_color('highlight', 'Appearance', highlight)
+	t.set_color('recessed', 'Appearance', recessed)
 	var font_size := 22 if settings.get('large_text', false) else 18
 	t.default_font_size = font_size
 	for kind in ['Label', 'Button', 'LineEdit', 'CheckBox', 'CheckButton', 'OptionButton', 'TabBar', 'PopupMenu', 'LinkButton', 'RichTextLabel', 'TextEdit']:
@@ -44,7 +49,7 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 	for variation in ['SecondaryLabel', 'MutedLabel']:
 		t.set_type_variation(variation, 'Label')
 		t.set_color('font_color', variation, muted)
-	var focus := panel(Color(0, 0, 0, 0), 14, focus_color)
+	var focus := panel(Color(0, 0, 0, 0), 12, focus_color)
 	focus.set_border_width_all(3)
 	focus.shadow_size = 0
 	for kind in ['Button', 'OptionButton', 'CheckButton', 'CheckBox']:
@@ -56,10 +61,12 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 				fill = button_surface.darkened(0.08) if dark else button_surface.darkened(0.09)
 			elif state == 'disabled':
 				fill = surface.lerp(Color(colors.background), 0.35)
-			var box := panel(fill, 14, border)
+			var box := panel(fill, 12, border)
 			box.content_margin_top = 9
 			box.content_margin_bottom = 9
-			box.shadow_size = 3
+			box.border_width_bottom = 2
+			box.shadow_size = 3 if state in ['normal', 'hover'] else 0
+			box.shadow_offset = Vector2(0, 2)
 			t.set_stylebox(state, kind, box)
 			var color_name: String = 'font_color' if state == 'normal' else 'font_' + state + '_color'
 			t.set_color(color_name, kind, AppearancePalette.readable_text(fill))
@@ -79,18 +86,54 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 	t.set_stylebox('hover', 'PopupMenu', panel(secondary, 9, border))
 	t.set_color('font_hover_color', 'PopupMenu', foreground)
 	t.set_color('font_separator_color', 'PopupMenu', muted)
-	t.set_stylebox('panel', 'PanelContainer', panel(Color(surface, 1.0 if opaque else 0.96), 22, border))
-	t.set_stylebox('panel', 'Panel', panel(surface, 22, border))
-	for definition in [['PrimaryButton', 'Button'], ['NavigationButton', 'Button'], ['NavigationSelected', 'NavigationButton'], ['NavigationPanel', 'PanelContainer'], ['HeroPanel', 'PanelContainer'], ['HUDPanel', 'PanelContainer']]:
+	t.set_stylebox('panel', 'PanelContainer', panel(Color(surface, 1.0 if opaque else 0.97), 18, border))
+	t.set_stylebox('panel', 'Panel', panel(surface, 18, border))
+	for definition in [['PrimaryButton', 'Button'], ['NavigationButton', 'Button'], ['NavigationSelected', 'NavigationButton'], ['NavigationPanel', 'PanelContainer'], ['HeroPanel', 'PanelContainer'], ['HUDPanel', 'PanelContainer'], ['CardPanel', 'PanelContainer'], ['InsetPanel', 'PanelContainer'], ['StatusLabel', 'Label'], ['CodeLabel', 'Label']]:
 		t.set_type_variation(definition[0], definition[1])
+	var card := panel(surface, 18, border)
+	card.border_width_bottom = 2
+	t.set_stylebox('panel', 'CardPanel', card)
+	var inset := panel(recessed, 10, border)
+	inset.shadow_size = 0
+	inset.content_margin_left = 10
+	inset.content_margin_right = 10
+	inset.content_margin_top = 5
+	inset.content_margin_bottom = 5
+	t.set_stylebox('panel', 'InsetPanel', inset)
+	t.set_stylebox('normal', 'CodeLabel', inset)
+	var status := inset.duplicate() as StyleBoxFlat
+	status.bg_color = secondary
+	status.content_margin_top = 3
+	status.content_margin_bottom = 3
+	status.content_margin_left = 8
+	status.content_margin_right = 8
+	t.set_stylebox('normal', 'StatusLabel', status)
+	t.set_color('font_color', 'StatusLabel', foreground)
+	t.set_color('font_color', 'CodeLabel', foreground)
+	var separator := StyleBoxLine.new()
+	separator.color = border
+	separator.thickness = 1
+	t.set_stylebox('separator', 'HSeparator', separator)
+	var progress_background := panel(recessed, 4, border)
+	progress_background.shadow_size = 0
+	progress_background.content_margin_top = 0
+	progress_background.content_margin_bottom = 0
+	var progress_fill := panel(focus_color, 4, Color.TRANSPARENT)
+	progress_fill.shadow_size = 0
+	progress_fill.content_margin_top = 0
+	progress_fill.content_margin_bottom = 0
+	t.set_stylebox('background', 'ProgressBar', progress_background)
+	t.set_stylebox('fill', 'ProgressBar', progress_fill)
 	for state in ['normal', 'hover', 'pressed', 'hover_pressed', 'disabled']:
 		var fill := accent
 		if state == 'hover': fill = accent.lightened(0.07)
 		if state in ['pressed', 'hover_pressed']: fill = accent.darkened(0.08)
 		if state == 'disabled': fill = surface.lerp(Color(colors.background), 0.35)
-		var primary := panel(fill, 16, border)
+		var primary := panel(fill, 12, fill.darkened(0.16))
 		primary.content_margin_top = 13
 		primary.content_margin_bottom = 13
+		primary.border_width_bottom = 2
+		primary.shadow_size = 4 if state in ['normal', 'hover'] else 0
 		t.set_stylebox(state, 'PrimaryButton', primary)
 		t.set_color('font_color' if state == 'normal' else 'font_' + state + '_color', 'PrimaryButton', AppearancePalette.readable_text(fill))
 	t.set_color('font_focus_color', 'PrimaryButton', AppearancePalette.readable_text(accent))
@@ -98,7 +141,7 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 	# Foreground focus stays visible even when the chosen accent equals the button fill.
 	primary_focus.border_color = AppearancePalette.readable_text(accent)
 	t.set_stylebox('focus', 'PrimaryButton', primary_focus)
-	var nav_panel := panel(Color(surface, 1.0 if opaque else 0.80), 44, border)
+	var nav_panel := panel(Color(surface, 1.0 if opaque else 0.84), 26, border)
 	nav_panel.content_margin_top = 6
 	nav_panel.content_margin_bottom = 6
 	nav_panel.content_margin_left = 8
@@ -112,7 +155,7 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 		var fill := Color(0, 0, 0, 0)
 		if state == 'hover': fill = Color(secondary, 1.0 if opaque else 0.72)
 		if state in ['pressed', 'hover_pressed']: fill = secondary
-		var box := panel(fill, 36, Color(0, 0, 0, 0))
+		var box := panel(fill, 19, Color(0, 0, 0, 0))
 		box.shadow_size = 0
 		box.content_margin_left = 6
 		box.content_margin_right = 6
@@ -121,7 +164,7 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 		t.set_stylebox(state, 'NavigationButton', box)
 		t.set_color('font_color' if state == 'normal' else 'font_' + state + '_color', 'NavigationButton', foreground)
 	for state in ['normal', 'hover', 'pressed', 'hover_pressed']:
-		var active := panel(secondary, 36, border)
+		var active := panel(secondary, 19, border)
 		active.shadow_size = 0
 		active.content_margin_top = 4
 		active.content_margin_bottom = 4
@@ -129,11 +172,12 @@ static func build(settings: Dictionary, palette: Dictionary) -> Theme:
 		active.content_margin_right = 6
 		t.set_stylebox(state, 'NavigationSelected', active)
 		t.set_color('font_color' if state == 'normal' else 'font_' + state + '_color', 'NavigationSelected', foreground)
-	var nav_focus := panel(Color(0, 0, 0, 0), 36, focus_color)
+	var nav_focus := panel(Color(0, 0, 0, 0), 19, focus_color)
 	nav_focus.set_border_width_all(3)
 	nav_focus.shadow_size = 0
 	t.set_stylebox('focus', 'NavigationButton', nav_focus)
-	var hero_panel := panel(secondary, 28, border)
+	t.set_stylebox('focus', 'NavigationSelected', nav_focus)
+	var hero_panel := panel(secondary, 22, border)
 	hero_panel.content_margin_left = 28
 	hero_panel.content_margin_right = 28
 	hero_panel.content_margin_top = 24
