@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.24.1** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.24.2** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_signs_0.24.1.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_roads_0.24.2.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.24.1.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.24.2.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.24.1.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.24.1.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.24.2.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.24.2.zip).
 - **Installation détaillée :** [Windows](docs/WINDOWS.md) · [Raspberry Pi](docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](docs/ENQUETE.md) · [Profils et clavier](docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](docs/ARCHITECTURE.md) · [Tests et livraisons](docs/DELIVERY.md) · [Problèmes connus](docs/KNOWN_ISSUES.md).
@@ -147,7 +147,7 @@ Les paramètres permettent de choisir quatre ambiances musicales et de personnal
 
 Le bus de la ville propose deux destinations : **1 · CTF Sudo Hack** et **2 · Lycée Louise Michel de Ruffec**. Découvrez son parvis inspiré de la photo fournie, les panneaux portant le logo du lycée et sa salle cyber : six postes, baies réseau, tableau et mobilier. Les prochains défis de cette salle seront ajoutés ensuite. Le retour en ville conserve votre progression.
 
-La mise à jour **0.24.1** affine les ombres et les détails du lycée, recadre le panneau du logo et corrige les indications de touches personnalisées ainsi que les textes des trajets. Les déplacements, collisions, sauvegardes et scénarios de récupération sont vérifiés automatiquement.
+La mise à jour **0.24.2** affine les ombres et les détails du lycée, recadre le panneau du logo et corrige les indications de touches personnalisées ainsi que les textes des trajets. Les déplacements, collisions, sauvegardes et scénarios de récupération sont vérifiés automatiquement.
 
 Au lycée, une porte mène au premier couloir. Réparez le câblage de la porte à droite (**A–3, B–2, C–1**), puis suivez le long passage jusqu’à la porte à gauche de l’atelier. Imprimante 3D, portables, poste fixe et électronique vous y attendent. Le déverrouillage est sauvegardé sans modifier les points ni les missions de l’enquête.
 
@@ -156,3 +156,5 @@ L’atelier du lycée s’appelle **City CIEL**. Une porte à gauche mène au la
 La ville comprend **40 bâtiments**, des commerces, un parc avec fontaine, deux ronds-points, des feux et des passants sans dialogue. Les lieux d’origine restent proches et accessibles aux mêmes coordonnées. **Bus : 1 € = 10 points par trajet**, aller et retour ; montée, paiement, attente assise et descente sont animés. Un accès à pied reste gratuit. La carte se masque avec son raccourci (→ par défaut) ; utilisez D ou le joystick pour marcher à droite.
 
 Les commerces disposent d’enseignes encadrées ; la Poste porte une grande enveloppe. Cafés, bar et restaurants ont des tables avec tasses, chaises et ardoises de menu. L’intérieur du bus est dessiné en perspective, avec allée, sièges, poste de conduite, portes et valideur de billet.
+
+La rue du centre rejoint maintenant l’avenue par une intersection en T. Les chaussées restent continues aux croisements et aux ronds-points ; les trottoirs et les marquages ne coupent plus les raccords. La carte inclut cette liaison.
