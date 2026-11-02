@@ -1,7 +1,7 @@
 extends Control
-## Read-only preview. Selecting a connection belongs to the native controls below.
-## The diagram represents a fictitious 5 V teaching circuit, never mains wiring.
-
+## Read-only preview of the fictitious 5 V teaching circuit.
+## Native controls below the board remain the only interactive connections.
+const Materials = preload("res://scripts/game/render_materials.gd")
 var connections: Array = []
 
 func _ready() -> void:
@@ -9,57 +9,96 @@ func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	resized.connect(queue_redraw)
+	theme_changed.connect(queue_redraw)
 
 func set_connections(value: Array) -> void:
 	connections = value.duplicate()
 	queue_redraw()
 
 func _draw() -> void:
-	var font: Font = get_theme_default_font()
-	var font_size: int = get_theme_default_font_size()
-	var ink := Color("25313c")
-	var accent := Color("527fa3")
-	var focus_style := get_theme_stylebox("focus", "Button")
-	if focus_style is StyleBoxFlat:
-		accent = focus_style.border_color
-	var box := StyleBoxFlat.new()
-	box.bg_color = Color("e6edf2")
-	box.border_color = Color("d3dfe7")
-	box.set_border_width_all(1)
-	box.set_corner_radius_all(14)
-	draw_style_box(box, Rect2(Vector2.ZERO, size))
-	var source := Vector2(size.x * 0.18, 76)
-	var switch_at := Vector2(size.x * 0.5, 76)
-	var lamp := Vector2(size.x * 0.82, 76)
-	var return_y := 146.0
-	var source_top := Vector2(source.x, 27)
-	var lamp_top := Vector2(lamp.x, 27)
+	if size.x < 1 or size.y < 1:
+		return
+	var surface := get_theme_color("recessed", "Appearance")
+	var ink := get_theme_color("font_color", "Label")
+	var accent := get_theme_color("focus", "Appearance")
+	var edge := ink.lerp(surface, .82)
+	Materials.rounded(self, Rect2(Vector2.ZERO, size), surface, 14, edge, 1)
+	# Engraved guides and fasteners distinguish the mounting board from the
+	# loose insulated leads. There is no flashing or animated current.
+	for x in range(20, int(size.x - 10), 18):
+		for y in range(18, int(size.y - 10), 18):
+			draw_circle(Vector2(x, y), .65, Color(ink, .10))
+	for at in [Vector2(11, 11), Vector2(size.x - 11, 11), Vector2(11, size.y - 11), size - Vector2(11, 11)]:
+		_screw(at, edge)
+	var source := Vector2(size.x * .18, 68)
+	var switch_at := Vector2(size.x * .5, 68)
+	var lamp := Vector2(size.x * .82, 68)
+	var return_y := 110.0
 	if connections.has("source_switch"):
-		draw_line(source, switch_at, accent, 4.0, true)
+		_lead(source, source + Vector2(25, 20), switch_at + Vector2(-25, 20), switch_at, accent)
 	if connections.has("switch_lamp"):
-		draw_line(switch_at, lamp, accent, 4.0, true)
+		_lead(switch_at, switch_at + Vector2(25, -12), lamp + Vector2(-25, -12), lamp, accent)
 	if connections.has("lamp_return"):
-		draw_polyline(PackedVector2Array([lamp, Vector2(lamp.x, return_y), Vector2(source.x, return_y), source]), accent, 4.0, true)
+		_lead(lamp, lamp + Vector2(16, return_y), source + Vector2(-16, return_y), source, accent.darkened(.18))
 	if connections.has("source_lamp"):
-		draw_polyline(PackedVector2Array([source, source_top, lamp_top, lamp]), accent, 4.0, true)
+		_lead(source, source + Vector2(5, -61), lamp + Vector2(-5, -61), lamp, accent)
 	if connections.has("switch_return"):
-		draw_polyline(PackedVector2Array([switch_at, Vector2(switch_at.x, return_y), Vector2(source.x, return_y), source]), accent, 4.0, true)
-	for at in [source, switch_at, lamp]:
-		draw_circle(at, 26, Color("fbfcfd"))
-		draw_arc(at, 26, 0, TAU, 40, accent, 2.0, true)
-	# Battery, closed switch and lamp are intentionally abstract symbols.
-	draw_line(source + Vector2(-5, -12), source + Vector2(-5, 12), ink, 3.0, true)
-	draw_line(source + Vector2(5, -7), source + Vector2(5, 7), ink, 3.0, true)
-	draw_line(source + Vector2(-15, 0), source + Vector2(-5, 0), ink, 2.0, true)
-	draw_line(source + Vector2(5, 0), source + Vector2(15, 0), ink, 2.0, true)
-	draw_circle(switch_at + Vector2(-13, 0), 3, ink)
-	draw_circle(switch_at + Vector2(13, 0), 3, ink)
-	draw_line(switch_at + Vector2(-13, 0), switch_at + Vector2(13, 0), ink, 3.0, true)
-	draw_circle(lamp, 13, Color("f2e2b4"))
-	draw_line(lamp + Vector2(-8, -8), lamp + Vector2(8, 8), ink, 2.0, true)
-	draw_line(lamp + Vector2(-8, 8), lamp + Vector2(8, -8), ink, 2.0, true)
+		_lead(switch_at, switch_at + Vector2(0, return_y), source + Vector2(-18, return_y), source, accent.darkened(.18))
+	# Battery holder: moulded cradle, two cylindrical cells, metal contacts.
+	Materials.shadow(self, Rect2(source - Vector2(26, 27), Vector2(52, 54)), 7, .16, Vector2(1, 3))
+	Materials.rounded(self, Rect2(source - Vector2(26, 27), Vector2(52, 54)), Color("34454b"), 7, Color("6a7a7f"), 1)
+	for offset in [-11, 11]:
+		var rect := Rect2(source + Vector2(offset - 7, -20), Vector2(14, 40))
+		Materials.rounded(self, rect, Color("af784b"), 6)
+		Materials.rounded(self, Rect2(rect.position + Vector2(3, 1), Vector2(4, 37)), Color("d5a774"), 2)
+		draw_line(rect.position + Vector2(0, 9), rect.position + Vector2(14, 9), Color("493f37"), 3, true)
+		draw_line(rect.position + Vector2(3, -1), rect.position + Vector2(11, -1), Color("d6dcda"), 3, true)
+		draw_line(rect.position + Vector2(3, 41), rect.position + Vector2(11, 41), Color("aab6b2"), 3, true)
+	# Toggle switch: mounting plate, threaded collar and a raised lever.
+	var plate := Rect2(switch_at - Vector2(24, 25), Vector2(48, 50))
+	Materials.shadow(self, plate, 7, .14, Vector2(1, 3))
+	Materials.rounded(self, plate, Color("aebfc0"), 7, Color("637a81"), 1)
+	for side in [-1, 1]:
+		_screw(switch_at + Vector2(16 * side, 17 * side), Color("75878a"))
+	draw_circle(switch_at, 11, Color("42575e"))
+	draw_arc(switch_at, 9, 0, TAU, 24, Color("dae3e0"), 3, true)
+	draw_line(switch_at, switch_at + Vector2(0, -17), Color("34474d"), 8, true)
+	draw_line(switch_at + Vector2(-1, -1), switch_at + Vector2(-1, -18), Color("e0e7e3"), 4, true)
+	draw_circle(switch_at + Vector2(0, -18), 5, Color("d5dfdc"))
+	# Lamp: ceramic base, threaded cap and a transparent glass envelope.
+	Materials.ellipse(self, Rect2(lamp + Vector2(-25, 15), Vector2(50, 13)), Color(0, 0, 0, .13))
+	Materials.ellipse(self, Rect2(lamp + Vector2(-23, 7), Vector2(46, 16)), Color("b8c3ba"))
+	Materials.rounded(self, Rect2(lamp + Vector2(-11, 0), Vector2(22, 19)), Color("8d9891"), 3)
+	for y in [5, 10, 15]:
+		draw_line(lamp + Vector2(-10, y), lamp + Vector2(10, y - 2), Color("d8ddcc"), 2, true)
+	var lit := connections.has("source_switch") and connections.has("switch_lamp") and connections.has("lamp_return")
+	var glass := Color("e9d392") if lit else Color("c4d8d4")
+	draw_circle(lamp - Vector2(0, 15), 19, glass.darkened(.14))
+	draw_circle(lamp - Vector2(0, 17), 17, glass)
+	draw_arc(lamp - Vector2(0, 17), 14, -2.7, -1.1, 16, Color("f6f6e8"), 2, true)
+	draw_polyline(PackedVector2Array([lamp + Vector2(-6, 0), lamp + Vector2(-7, -17), lamp + Vector2(-2, -13), lamp + Vector2(3, -18), lamp + Vector2(7, -1)]), Color("8d723f"), 1.5, true)
+	var font := get_theme_default_font()
+	var font_size := get_theme_default_font_size()
 	var labels := ["Source 5 V", "Interrupteur", "Lampe"]
 	var points := [source, switch_at, lamp]
 	for index in range(labels.size()):
-		var width: float = font.get_string_size(labels[index], HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-		draw_string(font, points[index] + Vector2(-width * 0.5, 51), labels[index], HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, ink)
+		var max_width := size.x * .31
+		# At the smallest permitted width, use the available three-column label
+		# area while retaining the user's requested font size.
+		draw_string(font, points[index] + Vector2(-max_width * .5, 59), labels[index], HORIZONTAL_ALIGNMENT_CENTER, max_width, font_size, ink)
+
+func _screw(at: Vector2, color: Color) -> void:
+	draw_circle(at + Vector2(0, 1), 3, color.darkened(.35))
+	draw_circle(at, 2.6, color.lightened(.18))
+	draw_line(at + Vector2(-1.5, 1), at + Vector2(1.5, -1), color.darkened(.4), 1, true)
+
+func _lead(start: Vector2, control_a: Vector2, control_b: Vector2, finish: Vector2, color: Color) -> void:
+	var points := PackedVector2Array()
+	var shadow := PackedVector2Array()
+	for step in range(33):
+		var at := start.bezier_interpolate(control_a, control_b, finish, step / 32.0)
+		points.append(at)
+		shadow.append(at + Vector2(1, 3))
+	draw_polyline(shadow, Color(0, 0, 0, .18), 7, true)
+	draw_polyline(points, color.darkened(.25), 5, true)
+	draw_polyline(points, color.lightened(.18), 2, true)
