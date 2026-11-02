@@ -1,5 +1,6 @@
 extends Node2D
 ## Original vector scenery for the courtyard and the hotel bus stop.
+const Painter = preload("res://scripts/game/exterior_painter.gd")
 const Layout = preload("res://scripts/game/campus_layout.gd")
 const Town = preload("res://scripts/game/town_layout.gd")
 const Road = preload("res://scripts/game/road_layout.gd")
@@ -75,6 +76,8 @@ func _hotel_facade() -> void:
 	draw_rect(Rect2(735,165,330,165),Color("eee3ca"))
 	_text("HÔTEL RITZ",Vector2(900,205),29,true)
 	_text("★ ★ ★ ★ ★",Vector2(900,232),20,true)
+	Painter.masonry(self,Rect2(112,263,610,53),Color("c5bba3"),18,75)
+	Painter.masonry(self,Rect2(1075,263,605,53),Color("c5bba3"),18,75)
 	# Recessed glazed entrance and four stone columns.
 	draw_rect(Rect2(814,251,172,79),Color("526f70"))
 	for x in [822,904]: _facade_window(Vector2(x,259),Vector2(74,67),false)
@@ -148,12 +151,8 @@ func _text(text: String, at: Vector2, font_size: int, centered := false) -> void
 
 func _gardens() -> void:
 	for rect in Road.gardens():
-		draw_rect(rect.grow(-6), Color("bfd0b4"))
-		for offset in [rect.size.x*.27, rect.size.x*.73]:
-			var at := rect.position + Vector2(offset, 55)
-			draw_circle(at + Vector2(5, 8), 39, Color("9caf98"))
-			draw_circle(at, 36, Color("6e927a"))
-			draw_arc(at, 26, PI, TAU, 20, Color("b6cf9e"), 4, true)
+		if preload("res://scripts/game/baked_art.gd").draw_garden(self,rect): continue
+		Painter.garden(self,rect)
 
 func _bench(rect: Rect2) -> void:
 	draw_rect(Rect2(rect.position + Vector2(4, 8), rect.size), Color("bec3b8"))
