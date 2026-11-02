@@ -6,6 +6,7 @@ signal edited(id)
 
 func configure(profile: Dictionary, item: Dictionary, recent: bool) -> void:
 	name = 'profile_card_' + str(profile.id)
+	theme_type_variation = 'CardPanel'
 	var column = VBoxContainer.new()
 	column.add_theme_constant_override('separation', 14)
 	add_child(column)
@@ -19,6 +20,7 @@ func configure(profile: Dictionary, item: Dictionary, recent: bool) -> void:
 	var active = not AppState.profile.is_empty() and AppState.profile.get('id', '') == profile.id
 	if recent or active:
 		var badge = _label('● En cours' if active else 'Récent', 12)
+		badge.theme_type_variation = 'StatusLabel'
 		badge.name = 'profile_recent_' + str(profile.id)
 		badge.autowrap_mode = TextServer.AUTOWRAP_OFF
 		badge.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -84,5 +86,5 @@ func _label(value: String, font_size: int, muted: bool = false) -> Label:
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override('font_size', font_size + maxi(0, get_theme_default_font_size() - 18))
 	if muted:
-		label.modulate.a = 0.76
+		label.theme_type_variation = 'SecondaryLabel'
 	return label
