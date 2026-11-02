@@ -1,8 +1,9 @@
 extends RefCounted
+const Town = preload("res://scripts/game/town_layout.gd")
 const Road = preload("res://scripts/game/road_layout.gd")
 ## Shared courtyard geometry and interactions for the hotel and bus route.
 const BUILDING_SIZE := Vector2(6400, 4200)
-const COURTYARD_SIZE := Vector2(1800, 1300)
+const COURTYARD_SIZE := Town.SIZE
 const ROOM_SIZE := Vector2(1120, 660)
 const ROOM_X := [300, 1540, 3620, 4860]
 const ROOM_Y := [300, 1080, 2460, 3240]
@@ -30,6 +31,7 @@ static func walls(zone: String) -> Array[Rect2]:
 		result.append_array(Road.gardens())
 		result.append_array(Road.barriers())
 		result.append_array(Road.furniture())
+		for spec in Town.solid_specs(): result.append(spec.rect)
 	else:
 		for room in rooms():
 			# Every room opens onto a continuous network of broad galleries.
@@ -45,7 +47,9 @@ static func furniture() -> Array[Rect2]:
 
 static func interactions(zone: String) -> Array[Dictionary]:
 	if zone != "courtyard": return []
-	return [
+	var result: Array[Dictionary] = [
 		{"id": "courtyard_first", "label": "Porte · premier bâtiment", "at": Vector2(900, 1060), "radius": 100.0},
 		{"id": "courtyard_second", "label": "Porte · hôtel Ritz", "at": Vector2(900, 370), "radius": 100.0},
-		{"id": "campus_bus", "label": "Arrêt de bus · rejoindre sudo hack", "at": Vector2(1140, 900), "radius": 90.0}]
+		{"id": "campus_bus", "label": "Arrêt Centre / Ritz · destinations et billet", "at": Vector2(1140, 900), "radius": 90.0}]
+	result.append_array(Town.interactions())
+	return result
