@@ -9,15 +9,21 @@ static func draw_room(canvas: Node2D, zone: String) -> void:
 		canvas.draw_rect(Rect2(wall.position+Vector2(6,8),wall.size+Vector2(0,10)),Color(0.12,0.18,0.19,0.17))
 		# The physical footprint is the base. Render height does not enlarge it.
 		var face := Rect2(wall.position-Vector2(0,rise),wall.size+Vector2(0,rise))
-		canvas.draw_rect(face,Color("cfdbd7"))
+		canvas.draw_rect(face,Color("f4f5f5"))
 		if wall.size.y > wall.size.x:
-			canvas.draw_rect(Rect2(face.position-Vector2(14,0),Vector2(14,face.size.y)),Color("a3b4ad"))
+			canvas.draw_rect(Rect2(face.position-Vector2(14,0),Vector2(14,face.size.y)),Color("c2cdd3"))
 		else:
-			canvas.draw_line(face.position+Vector2(0,26),face.position+Vector2(face.size.x,26),Color("c1cdc6"),1)
+			canvas.draw_line(face.position+Vector2(0,26),face.position+Vector2(face.size.x,26),Color("e1e6e8"),1)
 
-		canvas.draw_rect(Rect2(wall.position-Vector2(0,rise),Vector2(wall.size.x,9)),Color("f0f2e7"))
-		canvas.draw_rect(Rect2(wall.position+Vector2(0,wall.size.y-8),Vector2(wall.size.x,8)),Color("6b8583"))
-		canvas.draw_line(face.position+Vector2(0,10),face.position+Vector2(0,face.size.y),Color("a3b6b0"),3,true)
+		canvas.draw_rect(Rect2(wall.position-Vector2(0,rise),Vector2(wall.size.x,9)),Color("ffffff"))
+		canvas.draw_rect(Rect2(wall.position+Vector2(0,wall.size.y-8),Vector2(wall.size.x,8)),Color("7f929f"))
+		canvas.draw_line(face.position+Vector2(0,10),face.position+Vector2(0,face.size.y),Color("c5cfd5"),3,true)
+	var scene = preload("res://scripts/game/school_atelier_scene.gd")
+	if zone in Plan.Ateliers.IDS:
+		scene.door(canvas,Vector2(Plan.Ateliers.entry(zone).x,Plan.extent(zone).y-65),"",false)
+	if zone == "school_passage":
+		for item in [[1400,64,"1 · BAC PRO CIEL"],[2150,64,"2 · 2TNE"],[2700,64,"5 · BTS FED"],[900,636,"3 · RÉUNION"]]:
+			scene.door(canvas,Vector2(item[0],item[1]),item[2],item[1]==64)
 	if zone == "school_workshop":
 		left_door(canvas, Vector2(52,720))
 		label(canvas,"SALLE RÉSEAU",Vector2(218,603),20)
