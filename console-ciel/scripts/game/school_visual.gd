@@ -1,5 +1,8 @@
 extends "res://scripts/game/hotel_visual.gd"
 ## Original 2D reconstruction inspired by the supplied photograph, not a floor survey.
+const Ateliers = preload("res://scripts/game/school_ateliers.gd")
+const AtelierArt = preload("res://scripts/game/school_atelier_art.gd")
+const AtelierScene = preload("res://scripts/game/school_atelier_scene.gd")
 const School = preload("res://scripts/game/school_layout.gd")
 const Facade = preload("res://scripts/game/school_facade_art.gd")
 const LOGO = preload("res://assets/lycee/logo_louise_michel.jpg")
@@ -16,7 +19,8 @@ func _draw() -> void:
 		_prop_art(str(furniture_only.kind), furniture_only.rect)
 		return
 	draw_rect(Rect2(0,0,2000,1400), Color("8b9695") if zone == "school_stop" else Color("dce3e5"))
-	if zone in ["school_hall", "school_passage", "school_workshop"]: _atelier_area()
+	if zone in Ateliers.IDS: AtelierScene.draw_floor(self,zone)
+	elif zone in ["school_hall", "school_passage"]: _atelier_area()
 	elif zone == "school_stop": _exterior()
 	else: _cyber()
 	preload("res://scripts/game/school_architecture.gd").draw_room(self,zone)
@@ -49,6 +53,9 @@ func _cyber() -> void:
 	for y in [365,695]: draw_line(Vector2(170,y),Vector2(1810,y),Color("8ca4a7"),3)
 
 func _prop_art(kind: String, rect: Rect2) -> void:
+	if kind in AtelierArt.KINDS:
+		AtelierArt.prop(self,kind,rect)
+		return
 	if kind in ["cyber_desk","laptop_bench","electronics","printer3d","chair","rack"]:
 		Workshop.prop(self,kind,rect)
 		return
@@ -141,9 +148,10 @@ func _atelier_area() -> void:
 	for y in range(80,int(size.y)-60,120): draw_line(Vector2(64,y),Vector2(size.x-64,y),Color("cbd4d6"),1)
 	_text(School.title(zone).to_upper(),Vector2(size.x/2,110),22,DARK,true)
 	for target in School.interactions(zone):
-		if target.id in ["school_secure","school_workshop","school_cyber_return","school_hall_return","school_passage_return"]:
+		if target.id in ["school_secure","school_cyber_return","school_hall_return","school_passage_return"]:
 			draw_rect(Rect2(target.at-Vector2(72,50),Vector2(144,14)),METAL)
 			_text(target.label,target.at+Vector2(0,-65),16,DARK,true)
 	if zone == "school_passage":
-		_text("ATELIER ← · 10 m",Vector2(1400,250),22,DARK,true)
+		_text("1 · CIEL     2 · 2TNE     3 · RÉUNION     5 · BTS FED",Vector2(1750,420),22,DARK,true)
+		_text("← 4 · INFORMATIQUE / SORTIE",Vector2(620,260),18,DARK,true)
 		for x in range(450,2600,300): draw_line(Vector2(x,340),Vector2(x+80,340),Color("90a6a6"),4)
