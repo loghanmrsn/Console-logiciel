@@ -1,3 +1,15 @@
+# Livraison 0.27.0 — les cinq ateliers du lycée
+
+Les ateliers CIEL, 2TNE, réunion, informatique et BTS FED sont reconstruits comme des salles jouables, avec murs blancs, fenêtres hautes, allées bleues, mezzanine et équipements distincts. Trois salles supplémentaires complètent les deux espaces existants remaniés. Les portes, repères, observations et points de reprise sont intégrés au parcours du lycée. Le laboratoire IPv4 / IPv6 reste une extension pédagogique accessible depuis l’atelier 1. [Description des salles et des références](ATELIERS.md).
+
+Vérifications du 3 novembre 2026 : 13 suites sources, 3607 assertions ; 22 suites sur les packs Windows et ARM64, 6174 assertions ; 201 contrôles avec rendu X11/Mesa. Aucun échec final. Les contrôles couvrent le verrouillage, les portes clavier/manette simulée, les observations, les collisions, les chemins vers chaque cible, l’erreur d’écriture, la reprise de sauvegarde, les anciennes missions et l’écran 800 × 480. [Rapport complet](../tests/ateliers_0.27.0_results/summary.json).
+
+Douze captures non retouchées proviennent du pack exporté chargé dans Godot Linux x86_64 : [galerie](screenshots/ateliers_0.27.0/school_ateliers_ui_tests/). Les 131 sprites fixes respectent le budget de 40 Mio RGBA avec mipmaps (35,35 Mio). Les versions Windows et ARM64 sont exportées et leur contenu vérifié ; leur lancement natif sur Windows ou Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Aucun gain de FPS n’est revendiqué.
+
+Les photos de la visite ont servi de référence et restent hors du logiciel. Les dimensions et connexions sont adaptées au jeu. Les peintures jaune et vert vif ont été remplacées par du blanc et des accents gris bleu. Les 126 archives antérieures sont conservées sans modification, ainsi que les sauvegardes.
+
+---
+
 # Livraison 0.26.0 — graphismes et rendu optimisé
 
 Les personnages, le mobilier, les façades et la végétation gagnent des courbes, des matériaux et des détails. Toitures variées, volets, vitrages en retrait, ombres de contact, claviers, ordinateurs portables, imprimante 3D, instruments électroniques, sièges et textiles donnent davantage de relief au jeu 2D. Les cartes de la console, les boutons, les aperçus de thèmes et les sièges du bus sont affinés. Les dimensions des sprites du personnage et les géométries physiques restent compatibles avec les parcours existants. [Comparaisons avant/après](GRAPHISMES.md).
