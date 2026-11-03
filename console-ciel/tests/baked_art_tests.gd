@@ -17,7 +17,7 @@ func _run() -> void:
 		if spec.kind in ["fountain","signal"]:
 			check(not records.has(id),"Animation conservée en temps réel : "+str(spec.kind))
 		else: expected[id]=true
-	for zone in ["school_stop","school_cyber","school_workshop","school_network_lab"]:
+	for zone in ["school_stop","school_cyber","school_workshop","school_network_lab","school_tne","school_meeting","school_fed"]:
 		for spec in School.furniture_specs(zone): expected[Cache.key("school_"+str(spec.kind),Rect2(Vector2.ZERO,spec.rect.size))]=true
 	for rect in preload("res://scripts/game/road_layout.gd").gardens():
 		expected[Cache.key("campus_garden",Rect2(Vector2.ZERO,rect.size))]=true
