@@ -1,0 +1,519 @@
+{
+  "version": "0.27.0",
+  "date_utc": "2026-11-03",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_tests": [
+    {
+      "name": "baked_art_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 548,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.42,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log": "baked_art_tests.output.txt",
+      "log_sha256": "227e558e7fbbb196ae8f847b7590d797c6e95307eca2f83f0aa6703a6df2e0d4"
+    },
+    {
+      "name": "city_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 73,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.07,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log": "city_network_ui_tests.output.txt",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "name": "hotel_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 356,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 134.96,
+      "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+      "log": "hotel_ui_tests.output.txt",
+      "log_sha256": "86b29715f6fa37c6c0d13d2858e680d6a0ca24cf2c872432b77afea51e24c61e"
+    },
+    {
+      "name": "keyboard_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 786,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.98,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log": "keyboard_tests.output.txt",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.07,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.32,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "run_tests.output.txt",
+      "log_sha256": "fb08b0825e173781890725e64c5e3bf703ce28f7e911f3c6caa301590828fb51"
+    },
+    {
+      "name": "school_ateliers_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 153,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 12.06,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log": "school_ateliers_ui_tests.output.txt",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 87,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 7.21,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log": "school_ui_tests.output.txt",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.07,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "stability_tests.output.txt",
+      "log_sha256": "d9fe2a13afce8ed9688d7037e6f695a7117f388568ee4d7697bc247a682d532b"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.42,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "transit_services_tests.output.txt",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.33,
+      "script_sha256": "f056900eeaf836f7f8a11c2af4a0fd595c91d8fb529eba903dc8fd3fd7174a4e",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    },
+    {
+      "name": "workshop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 41,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.62,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log": "workshop_ui_tests.output.txt",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1215,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.53,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "world_collision_tests.output.txt",
+      "log_sha256": "d639b4fa78bc70abbfb239c1d11e8d49859d3aa31ed6bc2a369c72abcaa7abe5"
+    }
+  ],
+  "source_assertions": 3607,
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "platform": "windows",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "windows",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "linux",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 1215,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "d639b4fa78bc70abbfb239c1d11e8d49859d3aa31ed6bc2a369c72abcaa7abe5"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 1215,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "d639b4fa78bc70abbfb239c1d11e8d49859d3aa31ed6bc2a369c72abcaa7abe5"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "linux",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "windows",
+      "name": "baked_art_tests",
+      "assertions": 531,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log_sha256": "3f7687e374225cd770815abf64b64e124d8662491ebb750ece29301f1d843a0e"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "baked_art_tests",
+      "assertions": 531,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log_sha256": "3f7687e374225cd770815abf64b64e124d8662491ebb750ece29301f1d843a0e"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "96a320d2757f7e20785b55b90701b51f9d11f48effbf25cf2671e57373d1b2e9",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "96a320d2757f7e20785b55b90701b51f9d11f48effbf25cf2671e57373d1b2e9",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "compiled_assertions": 6174,
+  "native_renderer": {
+    "assertions": 201,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/atelier_porte_compact_challenge.png",
+        "bytes": 55877,
+        "sha256": "f28f5126a20f1dab7cb43b9a41c264d0e40dffa43a4c0ac36056e87b5b822b77"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/couloir_cinq_ateliers_challenge.png",
+        "bytes": 77306,
+        "sha256": "3de1f9e7edc78734dc466a0fbdde27c0f18450d67ea44d4cdb5de2455ea26ac4"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_cyber_ensemble_challenge.png",
+        "bytes": 142056,
+        "sha256": "eb26b632d4f34020bffcc16685a425f7dc5deae14fb4ae3ac4bc628975701785"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_cyber_jeu_challenge.png",
+        "bytes": 109893,
+        "sha256": "29785974e3a8a3d43100ad216bfc4530aa5e82b0d07743829d464255a3d18639"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_fed_ensemble_challenge.png",
+        "bytes": 111604,
+        "sha256": "3723a2ec86248ee434ac10280cc7ac4f44da450d2e68a013577dd369f747e8b6"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_fed_jeu_challenge.png",
+        "bytes": 103689,
+        "sha256": "97bdb11e45d39ebab1cc71349ef72efc549de684ad365920527c2c9afdff5248"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_meeting_ensemble_challenge.png",
+        "bytes": 112379,
+        "sha256": "fbf5b7408106eea343817c5ea58d31547b45252397e6ef009a4297090fccf749"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_meeting_jeu_challenge.png",
+        "bytes": 132172,
+        "sha256": "62d068eec51c5d7feed1eeefc8ab88a6d7ff253dce7f1414283399585defe244"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_tne_ensemble_challenge.png",
+        "bytes": 123762,
+        "sha256": "db6d9051711c7fcf34bfe6bf7e858257a2ef4ed501baa418645f7436b0c628f5"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_tne_jeu_challenge.png",
+        "bytes": 128294,
+        "sha256": "1c3930798e8647cbd1b9ab6dadd07b47a46d22bfe522d4808127ce6c76e7ddb9"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_workshop_ensemble_challenge.png",
+        "bytes": 124743,
+        "sha256": "46e983165536860424c630b53cebdae211c4b973c08a71cc2b574b5596c08dd6"
+      },
+      {
+        "file": "docs/screenshots/ateliers_0.27.0/school_ateliers_ui_tests/school_workshop_jeu_challenge.png",
+        "bytes": 119984,
+        "sha256": "beb02c626024569949e215cf5ce0ca707b853a13dbc9d15fdf6e337070fc4b9d"
+      }
+    ],
+    "capture_selection": "all",
+    "driver_sha256": "145a7a36fff98af79f7f7d687d45fe24402667f5667bab94eccd8ed80adeeed0",
+    "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+    "log_sha256": "2d064f8e59dfe8eee71c925179148a1d11515847fd2889de1f094815b957404e"
+  },
+  "all_passed": true,
+  "reference": {
+    "url": "https://lycee-louise-michel.fr/360/BAC%20PRO%20CIEL/index.html",
+    "workshops": 5,
+    "panorama_positions": 54,
+    "photos_redistributed": false,
+    "adapted_dimensions_and_connections": true
+  },
+  "baked_art": {
+    "sprites": 131,
+    "rgba_mipmaps_mib": 35.35,
+    "budget_mib": 40
+  },
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "previous_archives_preserved": 126,
+  "total_assertions": 9982
+}
