@@ -5,15 +5,30 @@
 		"exterior_painter": "5bc9b70bc69ccc78efa3e496bb46724782ac1da08235468708a58a7fe10c9093",
 		"render_materials": "6ec8ea5071d8ae08eeb7921fbc08b6d44bb347001770c2f3ad25d36e5428d65e",
 		"road_layout": "e7caf51fc80e1801b5bc56e2330db3d9451c89c0cab79910085540169d8babce",
+		"school_atelier_art": "15dc0b450294feb7ee62afe302ae01ad33dbdf3f4a537bc3f4eb72608c231d46",
+		"school_atelier_scene": "4ad6b056e96e5fc2d515661ba915086b3546996c4d90445820354d22d12f75ce",
+		"school_ateliers": "d4222ba6ab6ed6d1b30a460ef991d22be9a4f5944ff7f648a4620c164c0efd0d",
 		"school_facade_art": "9dbafd2137d54f27290e1136725ca2ee67fff5bf6f9679a21ee58906c0af8eda",
-		"school_layout": "b4184f2f244ea1b93f6fdd0bac55331aed2132edafb1d409864599fbc807b603",
-		"school_visual": "33f87529afc2d2f3491367be4ee2a6a2905ae7879b3348aeaed6f1412b48dd65",
+		"school_layout": "790829c01bf60e582c9e60ca24fae2c11c7c092472e0368e778eb1f394208e84",
+		"school_visual": "02ce11c2f3c325aafbd0abb3ff3a9dd8ddbb2e4892e3242ff6978d2205ebc9a8",
+		"storefront_art": "2eaf5c7bb750204bc320b892b97e13efc356b714ba325364dd4e5739e64d436d",
 		"town_layout": "c076d9f3942562ac287fd3f89bef6b3eac55a00f527764898e5bf99334f5517d",
 		"town_visual": "60bfca7e74dd313a49e45347bce1b7e48c240c083271015853907a3f55e60541",
-		"workshop_art": "e1a98ca75d4ad48dd871101702c99ba9759f4039420c216d0d1c803d22620511",
-		"storefront_art": "2eaf5c7bb750204bc320b892b97e13efc356b714ba325364dd4e5739e64d436d"
+		"workshop_art": "e1a98ca75d4ad48dd871101702c99ba9759f4039420c216d0d1c803d22620511"
 	},
+	"generator_sha256": "5346b5f6e06f36a953c8dc19171651f5f6439ab88ea89118490b15eec5a63904",
+	"school_logo_sha256": "c94e5910e205935e37519125c59c7e2b861e1aafc49d6075f0394bfce3b7f6bf",
 	"sprites": {
+		"001d0b700f2b12bc5726": {
+			"file": "001d0b700f2b12bc5726.png",
+			"rect": [
+				-3.0,
+				-80.0,
+				292.0,
+				182.0
+			],
+			"scale": 1.0
+		},
 		"00484d60769cd6faa22f": {
 			"file": "00484d60769cd6faa22f.png",
 			"rect": [
@@ -83,6 +98,16 @@
 				65.8823547363281
 			],
 			"scale": 0.85
+		},
+		"0a31dd06c80148e0f0ac": {
+			"file": "0a31dd06c80148e0f0ac.png",
+			"rect": [
+				-3.0,
+				-115.0,
+				432.0,
+				307.0
+			],
+			"scale": 1.0
 		},
 		"0be6f5060d2f2dc081ce": {
 			"file": "0be6f5060d2f2dc081ce.png",
@@ -174,6 +199,16 @@
 			],
 			"scale": 0.85
 		},
+		"16bf7ba74a5878a6c289": {
+			"file": "16bf7ba74a5878a6c289.png",
+			"rect": [
+				-3.0,
+				-140.0,
+				60.0,
+				200.0
+			],
+			"scale": 1.0
+		},
 		"175fff9b25d0fcc8f882": {
 			"file": "175fff9b25d0fcc8f882.png",
 			"rect": [
@@ -181,6 +216,16 @@
 				-14.0,
 				70.0,
 				66.0
+			],
+			"scale": 1.0
+		},
+		"1856316444a43b7157ba": {
+			"file": "1856316444a43b7157ba.png",
+			"rect": [
+				-3.0,
+				-145.0,
+				432.0,
+				247.0
 			],
 			"scale": 1.0
 		},
@@ -314,6 +359,16 @@
 			],
 			"scale": 0.85
 		},
+		"53adb783ea8389ddc5e3": {
+			"file": "53adb783ea8389ddc5e3.png",
+			"rect": [
+				-3.0,
+				0.0,
+				60.0,
+				54.0
+			],
+			"scale": 1.0
+		},
 		"540afb09acb48cb96fde": {
 			"file": "540afb09acb48cb96fde.png",
 			"rect": [
@@ -343,6 +398,26 @@
 				76.470588684082
 			],
 			"scale": 0.85
+		},
+		"5a7eff334a505b4f8b1b": {
+			"file": "5a7eff334a505b4f8b1b.png",
+			"rect": [
+				-3.0,
+				0.0,
+				312.0,
+				152.0
+			],
+			"scale": 1.0
+		},
+		"5b1b0aab9302bcf8373c": {
+			"file": "5b1b0aab9302bcf8373c.png",
+			"rect": [
+				-3.0,
+				-145.0,
+				432.0,
+				267.0
+			],
+			"scale": 1.0
 		},
 		"5b5368d44c7abcaa157b": {
 			"file": "5b5368d44c7abcaa157b.png",
@@ -604,6 +679,16 @@
 			],
 			"scale": 1.0
 		},
+		"9d6c57a389118e7fa09b": {
+			"file": "9d6c57a389118e7fa09b.png",
+			"rect": [
+				-3.0,
+				-80.0,
+				262.0,
+				172.0
+			],
+			"scale": 1.0
+		},
 		"9dfeb5aaba706219b7f2": {
 			"file": "9dfeb5aaba706219b7f2.png",
 			"rect": [
@@ -623,6 +708,26 @@
 				76.470588684082
 			],
 			"scale": 0.85
+		},
+		"9f742058fabd3cebda75": {
+			"file": "9f742058fabd3cebda75.png",
+			"rect": [
+				-3.0,
+				0.0,
+				432.0,
+				172.0
+			],
+			"scale": 1.0
+		},
+		"a452a5ad76ba1829b04b": {
+			"file": "a452a5ad76ba1829b04b.png",
+			"rect": [
+				-3.0,
+				-135.0,
+				1232.0,
+				227.0
+			],
+			"scale": 1.0
 		},
 		"a4af37c528dd4b5dd38b": {
 			"file": "a4af37c528dd4b5dd38b.png",
@@ -801,6 +906,16 @@
 				-66.0,
 				492.0,
 				228.0
+			],
+			"scale": 1.0
+		},
+		"bdd54a23895af43ee098": {
+			"file": "bdd54a23895af43ee098.png",
+			"rect": [
+				-3.0,
+				-65.0,
+				662.0,
+				107.0
 			],
 			"scale": 1.0
 		},
@@ -1114,6 +1229,16 @@
 			],
 			"scale": 0.85
 		},
+		"f2623fc51002da1edbff": {
+			"file": "f2623fc51002da1edbff.png",
+			"rect": [
+				-3.0,
+				0.0,
+				452.0,
+				162.0
+			],
+			"scale": 1.0
+		},
 		"f3e99ca619de460381e0": {
 			"file": "f3e99ca619de460381e0.png",
 			"rect": [
@@ -1141,6 +1266,16 @@
 				0.0,
 				132.0,
 				177.0
+			],
+			"scale": 1.0
+		},
+		"f7317e35a8bf52088c7b": {
+			"file": "f7317e35a8bf52088c7b.png",
+			"rect": [
+				-3.0,
+				-56.0,
+				222.0,
+				178.0
 			],
 			"scale": 1.0
 		},
@@ -1183,9 +1318,17 @@
 				38.8235282897949
 			],
 			"scale": 0.85
+		},
+		"ff9e3b8a5bdb0c0b7049": {
+			"file": "ff9e3b8a5bdb0c0b7049.png",
+			"rect": [
+				-3.0,
+				-80.0,
+				372.0,
+				192.0
+			],
+			"scale": 1.0
 		}
 	},
-	"version": 1,
-	"generator_sha256": "92641465a67a489f8bd2dc4a9c33f975075b11f14ac551b04a0bffd912c20352",
-	"school_logo_sha256": "c94e5910e205935e37519125c59c7e2b861e1aafc49d6075f0394bfce3b7f6bf"
+	"version": 1
 }
