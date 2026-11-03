@@ -1,7 +1,7 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ZONES := ["school_tne", "school_meeting", "school_fed", "school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
@@ -128,7 +128,10 @@ func refresh() -> void:
 	_schedule_objective_fit()
 	sync_visibility()
 	if current_room in ["school_hall", "school_passage", "school_workshop"]:
-		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Suivez le couloir : l’atelier se trouve à gauche, après environ 10 mètres.", "school_workshop": "City CIEL : découvrez l’atelier. Porte à gauche à environ 5–10 m : laboratoire réseau."}[current_room]
+		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Le couloir dessert les ateliers CIEL, 2TNE, réunion et BTS FED.", "school_workshop": "Atelier 1 : prototypage et systèmes techniques. Porte à gauche : laboratoire IPv4 / IPv6."}[current_room]
+	if current_room in preload("res://scripts/game/school_ateliers.gd").IDS:
+		objective_title.text = preload("res://scripts/game/school_ateliers.gd").TITLES[current_room].to_upper()
+		objective_text.text = "Explorez les équipements signalés par un point. Espace / bouton 0 pour observer ou emprunter une porte."
 	if current_room == "school_network_lab":
 		objective_title.text = "CITY CIEL · LABORATOIRE RÉSEAU"
 		var done: int = CityService.state().completed.size()
@@ -294,6 +297,13 @@ func handle_target(id: String) -> bool:
 			"return": _show_travel("school_workshop", "City CIEL · atelier", "Retour à l’atelier par la porte de communication.")
 			"lesson": game._show_dialog("City CIEL · cours de réseau", preload("res://scripts/game/city_network_catalog.gd").LESSON, game._close_overlay)
 			_: _show_city_challenge(suffix)
+		return true
+	var ateliers = preload("res://scripts/game/school_ateliers.gd")
+	if ateliers.NOTES.has(id):
+		game._show_dialog(ateliers.NOTES[id][0],ateliers.NOTES[id][1],game._close_overlay)
+		return true
+	if id in ateliers.NEW_IDS:
+		_show_travel(id,ateliers.TITLES[id],"Entrez dans cet atelier du lycée Louise Michel.")
 		return true
 	if id.begins_with("school_"):
 		match id:
