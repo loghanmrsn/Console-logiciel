@@ -18,9 +18,11 @@ const CityCatalog = preload("res://scripts/game/city_network_catalog.gd")
 const HOTEL_VERSION := 2
 const HOTEL_REWARD_IDS := ["hotel_ground_floor", "hotel_backpack"]
 const COFFEE_WIRES := {"A": "3", "B": "2", "C": "1"}
-const HOTEL_ROOMS := ["school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ROOMS := ["school_tne", "school_meeting", "school_fed", "school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const HOTEL_REPAIR_IDS := ["power", "network", "storage", "service"]
 const HOTEL_CHECKPOINTS := {
+ "school_tne_entry":"school_tne", "school_meeting_entry":"school_meeting", "school_fed_entry":"school_fed",
+ "school_passage_tne":"school_passage", "school_passage_meeting":"school_passage", "school_passage_fed":"school_passage",
  "city_lab_entry": "school_network_lab", "city_workshop_return": "school_workshop",
  "school_hall_entry": "school_hall", "school_passage_entry": "school_passage", "school_workshop_entry": "school_workshop",
  "school_arrival": "school_stop", "school_door": "school_stop", "school_entry": "school_cyber",
@@ -651,7 +653,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not wires is Dictionary or wires.size() > 3: return _fail("Câblage du lycée invalide.")
 	for terminal in wires:
 		if terminal not in COFFEE_WIRES or wires[terminal] != COFFEE_WIRES[terminal]: return _fail("Connexion de porte invalide.")
-	if progress.room_id in ["school_passage", "school_workshop", "school_network_lab"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
+	if progress.room_id in ["school_passage", "school_workshop", "school_network_lab", "school_tne", "school_meeting", "school_fed"] and wires.size() != 3: return _fail("La porte sécurisée du lycée est verrouillée.")
 	if document.has("bus_travel"):
 		var ticket: Variant = document.bus_travel
 		if not ticket is Dictionary or ticket.size() != 4 or not _is_integer(ticket.get("version"),1,1) or not _is_integer(ticket.get("rides"),1,1000000) or not _is_integer(ticket.get("spent_points"),10,10000000) or ticket.get("last_stop") not in ["courtyard","ctf_bus_stop","school_stop"]:
