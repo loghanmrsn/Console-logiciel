@@ -23,6 +23,9 @@ const REPAIR_OBSERVATIONS := {
 	}
 }
 const ROUTES := {
+ "school_passage>school_tne":"school_tne_entry", "school_tne>school_passage":"school_passage_tne",
+ "school_passage>school_meeting":"school_meeting_entry", "school_meeting>school_passage":"school_passage_meeting",
+ "school_passage>school_fed":"school_fed_entry", "school_fed>school_passage":"school_passage_fed",
  "school_workshop>school_network_lab": "city_lab_entry", "school_network_lab>school_workshop": "city_workshop_return",
  "school_cyber>school_hall": "school_hall_entry", "school_hall>school_cyber": "school_entry",
  "school_hall>school_passage": "school_passage_entry", "school_passage>school_hall": "school_hall_entry",
