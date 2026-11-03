@@ -450,6 +450,7 @@ func _fit_camera() -> void:
 	var fit := .92 if maze_active or chapter_id == 0 else maxf(MINIMUM_CAMERA_ZOOM, minf(available.x / WORLD_SIZE.x, available.y / WORLD_SIZE.y))
 	if campus_zone == "courtyard": fit = .68
 	if campus_zone == "school_network_lab": fit = .80
+	if campus_zone in HotelLayout.School.Ateliers.IDS: fit = .72
 	camera.zoom = Vector2(fit, fit)
 	_update_camera_position()
 	camera.reset_physics_interpolation()
