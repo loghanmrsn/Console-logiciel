@@ -27,7 +27,7 @@ func _run() -> void:
 		node.use_baked_art=false
 		var id := Cache.key(str(spec.kind),r,str(spec.get("index","")))
 		await _bake(node,box,id,.85)
-	for zone in ["school_stop","school_cyber","school_workshop","school_network_lab"]:
+	for zone in ["school_stop","school_cyber","school_workshop","school_network_lab","school_tne","school_meeting","school_fed"]:
 		for spec in School.furniture_specs(zone):
 			var r := Rect2(Vector2.ZERO,spec.rect.size)
 			var id := Cache.key("school_"+str(spec.kind),r)
@@ -49,7 +49,7 @@ func _run() -> void:
 		node.anchor=box.position
 		await _bake(node,box,id,1.0)
 	var source_hashes: Dictionary={}
-	for path in ["town_visual","town_layout","school_facade_art","school_visual","city_lab_visual","workshop_art","exterior_painter","render_materials","school_layout","campus_visual","road_layout","storefront_art"]:
+	for path in ["town_visual","town_layout","school_facade_art","school_visual","city_lab_visual","workshop_art","exterior_painter","render_materials","school_layout","school_ateliers","school_atelier_art","school_atelier_scene","campus_visual","road_layout","storefront_art"]:
 		source_hashes[path]=FileAccess.get_file_as_string("res://scripts/game/"+path+".gd").sha256_text()
 	var file := FileAccess.open(Cache.DIRECTORY+"manifest.json",FileAccess.WRITE)
 	file.store_string(JSON.stringify({"version":1,"generator_inputs":source_hashes,"generator_sha256":FileAccess.get_file_as_string("res://tools/bake_static_art.gd").sha256_text(),"school_logo_sha256":FileAccess.get_sha256("res://assets/lycee/logo_louise_michel.jpg"),"sprites":records},"\t"));file.close()
