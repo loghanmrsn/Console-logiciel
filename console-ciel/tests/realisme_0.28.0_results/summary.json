@@ -1,0 +1,846 @@
+{
+  "version": "0.28.0",
+  "date_utc": "2026-11-04",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_tests": [
+    {
+      "name": "baked_art_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 575,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.05,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log": "baked_art_tests.output.txt",
+      "log_sha256": "0b1bdbc58c0cb0a074469cf202310038a8bfe122d9961834d8725b15123fac06"
+    },
+    {
+      "name": "city_network_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 73,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 10.89,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log": "city_network_ui_tests.output.txt",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "name": "dev_console_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 213,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.61,
+      "script_sha256": "aad6a61b67be310ab98754e63fd8c47d301f0ac309b8fb239c282f86d34e7ee0",
+      "log": "dev_console_services_tests.output.txt",
+      "log_sha256": "e0005cf63e9d9ca3a0464c3a3c1e2df956bcb7b5da35ac9689ea0c09f8e0103f"
+    },
+    {
+      "name": "dev_profile_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 48,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.52,
+      "script_sha256": "925171194b2cfbcb798c9a23c30aac2dbc13d288728a37207a72ee41131cd52a",
+      "log": "dev_profile_services_tests.output.txt",
+      "log_sha256": "0a99ce92a5a8942c898843065c4b4f3abbe0371050eb19ef678d634aa5761f6c"
+    },
+    {
+      "name": "keyboard_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 786,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.51,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log": "keyboard_tests.output.txt",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.0,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "profile_editor_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 644,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 23.73,
+      "script_sha256": "8c53e2adad7bdce7302e15f1cc8e19050e058df321dccfd4fca8f98325906292",
+      "log": "profile_editor_tests.output.txt",
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "name": "pseudo_blacklist_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.06,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log": "pseudo_blacklist_tests.output.txt",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "name": "pseudo_blacklist_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 10,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.28,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log": "pseudo_blacklist_ui_tests.output.txt",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "name": "school_realism_asset_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 328,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.94,
+      "script_sha256": "a85dc308d3ebc4b43608da1b2f8a678044de2398ea25da8bcda65c14043dd88f",
+      "log": "school_realism_asset_tests.output.txt",
+      "log_sha256": "6131f4d009ee66b9a4fcaea08e9f2504e2a307d8711af0e1bd1458241a6dbb94"
+    },
+    {
+      "name": "school_realism_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 163,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 13.63,
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log": "school_realism_ui_tests.output.txt",
+      "log_sha256": "b54b180f20d00ea06ee4d3b95144643029ab2032f07775f667431d71b1ca65f4"
+    },
+    {
+      "name": "school_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 87,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.06,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log": "school_ui_tests.output.txt",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "name": "town_details_asset_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 45,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.86,
+      "script_sha256": "c1cc67c075a3518f72cb606489c35df9f6188f5b07e13d36d6d01cd9a86d0527",
+      "log": "town_details_asset_tests.output.txt",
+      "log_sha256": "01569e9ce3d50fe27512ec3654a83e0c55efd1d2126cbddceee84559105c0021"
+    },
+    {
+      "name": "town_details_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 720,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 10.0,
+      "script_sha256": "ecda5de86b9632825d4d0801c2185e4ed32f96f00b550dd7fecb8394e8a93737",
+      "log": "town_details_ui_tests.output.txt",
+      "log_sha256": "a4fa07acd5984868c2da58d1943cfbabf604c1f6ff04c1e412dbf75b8e522ab7"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.85,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "transit_services_tests.output.txt",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.77,
+      "script_sha256": "399c17839f92a0b4775b0a7cb47eaf34577ca9e948e087ed438218b0bf158b78",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    },
+    {
+      "name": "workshop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 41,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.56,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log": "workshop_ui_tests.output.txt",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1221,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.11,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "world_collision_tests.output.txt",
+      "log_sha256": "0e370e40c282eeebb1994956577306c1d5b7cd9a9070e13c3dd2d43d4d44c00f"
+    }
+  ],
+  "source_assertions": 5054,
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "school_realism_ui_tests",
+      "assertions": 163,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log_sha256": "b54b180f20d00ea06ee4d3b95144643029ab2032f07775f667431d71b1ca65f4"
+    },
+    {
+      "platform": "linux",
+      "name": "school_realism_ui_tests",
+      "assertions": 163,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log_sha256": "b54b180f20d00ea06ee4d3b95144643029ab2032f07775f667431d71b1ca65f4"
+    },
+    {
+      "platform": "windows",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "windows",
+      "name": "town_details_ui_tests",
+      "assertions": 720,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ecda5de86b9632825d4d0801c2185e4ed32f96f00b550dd7fecb8394e8a93737",
+      "log_sha256": "a4fa07acd5984868c2da58d1943cfbabf604c1f6ff04c1e412dbf75b8e522ab7"
+    },
+    {
+      "platform": "linux",
+      "name": "town_details_ui_tests",
+      "assertions": 720,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ecda5de86b9632825d4d0801c2185e4ed32f96f00b550dd7fecb8394e8a93737",
+      "log_sha256": "a4fa07acd5984868c2da58d1943cfbabf604c1f6ff04c1e412dbf75b8e522ab7"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "windows",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "linux",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "windows",
+      "name": "pseudo_blacklist_ui_tests",
+      "assertions": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "platform": "linux",
+      "name": "pseudo_blacklist_ui_tests",
+      "assertions": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 1221,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "0e370e40c282eeebb1994956577306c1d5b7cd9a9070e13c3dd2d43d4d44c00f"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 1221,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "0e370e40c282eeebb1994956577306c1d5b7cd9a9070e13c3dd2d43d4d44c00f"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "a85dc308d3ebc4b43608da1b2f8a678044de2398ea25da8bcda65c14043dd88f",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "linux",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "a85dc308d3ebc4b43608da1b2f8a678044de2398ea25da8bcda65c14043dd88f",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "windows",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "linux",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "windows",
+      "name": "pseudo_blacklist_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "platform": "linux",
+      "name": "pseudo_blacklist_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "platform": "windows",
+      "name": "baked_art_tests",
+      "assertions": 555,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log_sha256": "d840bf5124af1fcc7e1864a392cbd814768e653702663e4c7f2a685337f2fa7d"
+    },
+    {
+      "platform": "linux",
+      "name": "baked_art_tests",
+      "assertions": 555,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "43db7dda8e82410680cbd86e4a1dfa9d700c3a90d6ec25573a6831adf81c90e0",
+      "log_sha256": "d840bf5124af1fcc7e1864a392cbd814768e653702663e4c7f2a685337f2fa7d"
+    },
+    {
+      "platform": "windows",
+      "name": "town_details_asset_tests",
+      "assertions": 37,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c1cc67c075a3518f72cb606489c35df9f6188f5b07e13d36d6d01cd9a86d0527",
+      "log_sha256": "1ba58b23874a702fb1c262b9441a1d93b889c2bbbbb63a8f8d703a1ae2e6c9cc"
+    },
+    {
+      "platform": "linux",
+      "name": "town_details_asset_tests",
+      "assertions": 37,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c1cc67c075a3518f72cb606489c35df9f6188f5b07e13d36d6d01cd9a86d0527",
+      "log_sha256": "1ba58b23874a702fb1c262b9441a1d93b889c2bbbbb63a8f8d703a1ae2e6c9cc"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "263f8ee4d122be814e37b0e7931c8dc58c92d9139d5d916b1cd014ecc0e5c2f6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "263f8ee4d122be814e37b0e7931c8dc58c92d9139d5d916b1cd014ecc0e5c2f6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    }
+  ],
+  "compiled_assertions": 8776,
+  "native_renderer": {
+    "town_details_ui_tests": {
+      "assertions": 809,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/realisme_0.28.0/town_details_ui_tests/civic_bibliotheque_challenge.webp",
+          "bytes": 106966,
+          "sha256": "cecd875dbed2ef9bee14f062dcb2871cc0f50550134f16f9f0e5b2d5a29fd7f0",
+          "original_png_sha256": "5e5532e402d9ddcd44fc7260a616156430e06377ce1fe2816a491b96ce2b4acb",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/town_details_ui_tests/civic_fontaine_challenge.webp",
+          "bytes": 59072,
+          "sha256": "f50150f439a150afc463124e5584f7eed900059aad1fd747541541fca2e7e837",
+          "original_png_sha256": "dca687a552792eccbacbd5bfff0337ed5b2b974fa9751e67b98f903ebd997ab1",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/town_details_ui_tests/civic_mairie_challenge.webp",
+          "bytes": 114632,
+          "sha256": "7b56a3927fee900d8fd55efb948642c4883ec5fe0b8d56fca331cd47010c2aae",
+          "original_png_sha256": "e1af800c82dcbad3bbb3cd2e0cb87ae6d33384996b59a8120d0e324d6162d122",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/town_details_ui_tests/civic_mediatheque_challenge.webp",
+          "bytes": 134868,
+          "sha256": "e21b6004aa977058ef982900e908608456545bd4143763b24005a133c835c4b8",
+          "original_png_sha256": "1cb804036fddec088495727eda3cbe0ed70f9b95e78f53049a4d1620710be001",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "504b6b47951a9ce6313add54072c82ecbd1dbd0e466a3d9e2071c58c9735a0b1",
+      "script_sha256": "ecda5de86b9632825d4d0801c2185e4ed32f96f00b550dd7fecb8394e8a93737",
+      "log_sha256": "0a9a922cca8bd3b227bfba575b61d2968448f1e9bd8ac95889c8cc93445ed2ef",
+      "capture_encoding": "Lossless WebP; every RGBA byte checked against the original viewport PNG; no visual edits."
+    },
+    "pseudo_blacklist_ui_tests": {
+      "assertions": 14,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/realisme_0.28.0/pseudo_blacklist_ui_tests/pseudo_interdit_challenge.webp",
+          "bytes": 62348,
+          "sha256": "4c63153998e05bbb57ecf71851543d4836214283d6adea47b054ee6350cc5687",
+          "original_png_sha256": "b3b61c8e8d463d31911897b4ffc8664a793ccdbce933b25ef4efd1f1b87f93d4",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "22ea409a9e311384f450a808d3f614a4e7b92a211e7b320df0c88ad78c035dac",
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log_sha256": "b2c215ad84442ac9b2474d3ca55abe840e7d0b44268ce4131a742703fa59d2b1",
+      "capture_encoding": "Lossless WebP; every RGBA byte checked against the original viewport PNG; no visual edits."
+    },
+    "school_realism_ui_tests": {
+      "assertions": 228,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/atelier_porte_compact_challenge.webp",
+          "bytes": 84674,
+          "sha256": "6bf1f5db1fb538d699b6118db1fdaea4a1c6011c12b92fd304261cdac579b32e",
+          "original_png_sha256": "6ffb973fcf6bb9294a74dc564a770a09801143133c250714631e78c1499b4bbb",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/couloir_cinq_ateliers_challenge.webp",
+          "bytes": 310656,
+          "sha256": "0fc1d650e57d3218812cb6d14e32ede3e91cf272cdb4f9909e9c4133d722fc81",
+          "original_png_sha256": "42ddd3bb86d1eb199f26a28152ffb1db8bf8ff484d9fb9b8f052e45dbb442974",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/courtyard_realisme_challenge.webp",
+          "bytes": 255048,
+          "sha256": "bc24c63c217350b603a2f6f8ba77477e129040d088cfc3f45d3b0d97b66289b5",
+          "original_png_sha256": "f09ebc4e3d532a8453dc622947d6b3629b9d49b5e263b2f82cae9dad71caa16c",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_cyber_ensemble_challenge.webp",
+          "bytes": 245646,
+          "sha256": "bfedb8ada5372d5c8c9bde549fa77889a0a97fe14778f27fa3b1d95e2a5cb565",
+          "original_png_sha256": "80b8a95d37ef93eacc9ad110e9c5af054a618f3709a98bb5265558c3f50cb229",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_fed_ensemble_challenge.webp",
+          "bytes": 193618,
+          "sha256": "6f7b829b2d99b9de8713274d41d9c69b8ff253cb3c46c720563465a804d54365",
+          "original_png_sha256": "2c46a249171fd6cbf0a718358eba8bf2c5c1009641d08fc6b30584a34dc5ebb9",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_meeting_ensemble_challenge.webp",
+          "bytes": 229750,
+          "sha256": "7e3b931814227fbd3df22d2a1e3684789dbb127750dcb51d77ce02bc1b044a41",
+          "original_png_sha256": "274afbb818545b14191956fbdb2478dd46abf3d56a23305129d28fb3ccd0f9ce",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_network_lab_realisme_challenge.webp",
+          "bytes": 374458,
+          "sha256": "0acf0828bd83b3d11b38b6ce1b34b6fd7d2b92cc7909d392ecafcd70ea922a36",
+          "original_png_sha256": "57783342f3a18f2894ebe5935312de0420217912564b83a12dc74504c92d8564",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_stop_realisme_challenge.webp",
+          "bytes": 156554,
+          "sha256": "39bd3915cdac8797a10a7e8bbf70f2fad4ed5c44b5d1ff796997a5e54b01207e",
+          "original_png_sha256": "55b63a089ad66fab318c6656fc36f3f9176f45a1b2e556a064af01e05bb1817c",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_tne_ensemble_challenge.webp",
+          "bytes": 205516,
+          "sha256": "ebea0195616997560b2bc448b1a9dd7e29dada7393864730c373d283fb69f6ff",
+          "original_png_sha256": "27c4cfe01b223a9513abe0d6cc78ae0635a11d39c0fd5df439a7920e902ee380",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/realisme_0.28.0/school_realism_ui_tests/school_workshop_ensemble_challenge.webp",
+          "bytes": 202678,
+          "sha256": "42f0500d57ac50e1c6f4c94898f13d25e1d8992101d67aa246b0a2ecbf996e3e",
+          "original_png_sha256": "aadb923262fa9b4dfd17550c0041d8601d0f907f804e47411313e16e58af73e1",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "Ten retained images: all five room overviews, corridor, secure door, network lab and two school frontage views.",
+      "driver_sha256": "a82ea069fc46e9fac74c7839f824742981c9a9f7d66e28312121f4edc4cdddde",
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log_sha256": "1cffc88b55b7932bb3d74a7a09c1da7bbd9922f51093d08f314f91649ea6974c",
+      "capture_encoding": "Lossless WebP; every RGBA byte checked against the original viewport PNG; no visual edits.",
+      "additional_captures_not_redistributed": [
+        {
+          "filename": "school_cyber_jeu_challenge.webp",
+          "sha256": "f9ea4e8dc8c5030b60538018b8ff6d700bef264e15026a4fe03493df3b92926d",
+          "original_png_sha256": "6afb133b6df73ab61f7c0b7cd50a9c33f410d4f431866c33ba33ad2ea0ff8258",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "filename": "school_fed_jeu_challenge.webp",
+          "sha256": "98ab82d63d758b61de25edddff16485c35f739b1fe7976b34e41dbc9bcf78d67",
+          "original_png_sha256": "1f686fc3e14c20e3670ae0cfdbe2a83ba5b69afeec21532277788aa68864c1b3",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "filename": "school_meeting_jeu_challenge.webp",
+          "sha256": "54ab0f21a29c64c8d232680e49319f954ddc0f45be36aed982ebfd999f16b49f",
+          "original_png_sha256": "7b24409994ec198f0744f4702c3e2638106d932a6cc09aa7568f194d00a11180",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "filename": "school_tne_jeu_challenge.webp",
+          "sha256": "5a5b2b777f686d37df2116419bbc338587c524c7c92686bad2e7632ac2ccfb12",
+          "original_png_sha256": "9bb3bff3c15c870b231f7fbedbe2698588b8041d6bcfca59103d37eb330f2404",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "filename": "school_workshop_jeu_challenge.webp",
+          "sha256": "e9ec69cfc20397ebac5fc11b3e7e6dbed27ca51a320824b0a8b72d398b585657",
+          "original_png_sha256": "ea665dd4750d3a3f14c6a4ebcc258d3eabd424904c70f728446859fb0aea7c73",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "additional_capture_note": "Five alternate close views were validated and retained in the isolated validation workspace. Omitted from the delivery to keep the complete Windows source archive below the GitHub file limit."
+    }
+  },
+  "native_assertions": 1051,
+  "packaging_stub_assertions": 29,
+  "all_passed": true,
+  "art": {
+    "school_renders": 24,
+    "town_renders": 5,
+    "blender_version": "4.3.2",
+    "lossless_pixel_roundtrips": 29,
+    "static_cache_entries": 137,
+    "rgba_mipmaps_mib": 42.96,
+    "budget_mib": 48,
+    "game_dev_cli_available": false,
+    "external_model_or_photo_textures": false
+  },
+  "naming_policy": {
+    "editable_companion": "pseudo_blacklist.json",
+    "on_creation_and_rename": true,
+    "old_saves_preserved": true,
+    "whole_terms_not_arbitrary_substrings": true
+  },
+  "render_comparison": "render_comparison.json",
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "powershell_export_wrapper_executed": false,
+  "previous_archives_preserved": 130,
+  "total_assertions": 14910
+}
