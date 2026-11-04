@@ -38,7 +38,7 @@ def main() -> int:
         project = base / "projet avec espaces et accents é"
         (project / "tools").mkdir(parents=True)
         shutil.copy2(ROOT / "tools/export_windows.ps1", project / "tools/export_windows.ps1")
-        for name in ("project.godot", "export_presets.cfg", "docs/windows/LIRE_MOI.txt", "assets/LICENSES.md", "assets/licenses/GODOT_MIT.txt"):
+        for name in ("data/pseudo_blacklist.json", "project.godot", "export_presets.cfg", "docs/windows/LIRE_MOI.txt", "assets/LICENSES.md", "assets/licenses/GODOT_MIT.txt"):
             destination = project / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / name, destination)
@@ -81,7 +81,7 @@ if '--export-release' in args or '--export-debug' in args:
         check(result.returncode == 0 and exe_path.exists() and zip_path.exists(), "Chemins avec espaces et accents acceptés")
         with ZipFile(zip_path) as archive:
             check(archive.testzip() is None, "CRC de l'archive de test valide")
-            check({"Console_CIEL.exe", "Console_CIEL.pck", "test-associated.dll", "LIRE_MOI.txt", "assets/LICENSES.md", "assets/licenses/GODOT_MIT.txt"}.issubset(archive.namelist()), "Fichiers associés et licences conservés")
+            check({"pseudo_blacklist.json", "Console_CIEL.exe", "Console_CIEL.pck", "test-associated.dll", "LIRE_MOI.txt", "assets/LICENSES.md", "assets/licenses/GODOT_MIT.txt"}.issubset(archive.namelist()), "Fichiers associés et licences conservés")
             check(not any("profiles/" in item or item.endswith(("settings.cfg", "session.json")) for item in archive.namelist()), "Données utilisateur absentes de l'archive")
         previous_zip = zip_path.read_bytes()
         previous_exe = exe_path.read_bytes()
