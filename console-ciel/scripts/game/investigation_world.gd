@@ -68,6 +68,7 @@ var room_id := "room_01"
 var campus_zone := ""
 var campus_visual: Node2D
 var town_ambient: Node2D
+var town_fountain: Node2D
 var hotel_visual: Node2D
 var _hotel_props: Array[Node2D] = []
 var traffic: Node2D
@@ -163,6 +164,7 @@ func _build_room(chapter: int) -> void:
 	traffic = null
 	_hotel_props.clear()
 	town_ambient = null
+	town_fountain = null
 	_bed_pose = "standing"
 	door_body = null
 	door_shape = null
@@ -205,6 +207,7 @@ func _build_room(chapter: int) -> void:
 	player.name = "Player"
 	player.position = _chapter_checkpoints().entrance
 	_props.add_child(player)
+	if campus_zone.begins_with("school_") and campus_zone!="school_stop": player.set_visual_scale(2.4)
 	player.reserve_map_arrow = HotelLayout.is_zone(campus_zone) or campus_zone == "courtyard"
 	if is_instance_valid(traffic):
 		traffic.player = player
@@ -476,6 +479,7 @@ func set_controls_enabled(enabled: bool) -> void:
 	_controls_enabled = enabled
 	if is_instance_valid(traffic): traffic.enabled = enabled
 	if is_instance_valid(town_ambient): town_ambient.enabled = enabled
+	if is_instance_valid(town_fountain): town_fountain.set_process(enabled)
 	if is_instance_valid(player):
 		player.controls_enabled = enabled and not _hotel_seated()
 		if not enabled:
@@ -857,6 +861,9 @@ func _build_campus() -> void:
 			visual.furniture_only = town_spec
 			visual.furniture_anchor = body.position
 			body.add_child(visual)
+			if town_spec.kind=="fountain":
+				town_fountain=visual
+				visual.set_process(_controls_enabled)
 			if town_spec.kind in ["fountain","island","tree","cafe_table"]:
 				var circle := CircleShape2D.new()
 				circle.radius=rect.size.x*.5
