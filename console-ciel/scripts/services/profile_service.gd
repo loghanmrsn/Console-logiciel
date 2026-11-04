@@ -1,6 +1,7 @@
 extends Node
 
 const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
+const PseudoPolicy := preload("res://scripts/services/pseudo_policy.gd")
 const DevProfile := preload("res://scripts/services/dev_profile.gd")
 
 signal profiles_changed(profiles: Array)
@@ -52,6 +53,8 @@ func create_profile(display_name: String, avatar_id: String = "avatar_default", 
 	var name := SaveService.validate_display_name(display_name)
 	if not name.ok:
 		return name
+	var policy := PseudoPolicy.validate_new_name(str(name.data))
+	if not policy.ok: return policy
 	var avatar := ShopService.item(avatar_id)
 	if avatar.is_empty() or avatar.type != "avatar" or int(avatar.price) != 0:
 		return SaveService._fail("Choisissez un avatar gratuit pour créer le profil.")
@@ -109,6 +112,9 @@ func update_profile(display_name: String, avatar_id: String, avatar_image: Strin
 	var name := SaveService.validate_display_name(display_name)
 	if not name.ok:
 		return name
+	if str(name.data)!=str(AppState.profile.display_name):
+		var policy := PseudoPolicy.validate_new_name(str(name.data))
+		if not policy.ok: return policy
 	if is_super_admin() and str(name.data) != SaveService.DEV_PROFILE_NAME:
 		return SaveService._fail("Le profil super administrateur conserve le nom Dev.")
 	var avatar := ShopService.item(avatar_id)
