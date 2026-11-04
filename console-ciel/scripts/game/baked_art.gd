@@ -10,11 +10,16 @@ static func key(kind: String, rect: Rect2, variant: String = "") -> String:
 	return (kind+"|"+str(rect)+"|"+variant).sha256_text().left(20)
 
 static func draw_town(canvas: CanvasItem, spec: Dictionary) -> bool:
+	if spec.kind in ["flag_fr","flag_eu","book_box","media_kiosk"]:
+		preload("res://scripts/game/exterior_painter.gd").contact(canvas,spec.rect,.8)
 	return _draw(canvas,key(str(spec.kind),spec.rect,str(spec.get("index",""))))
 
 static func draw_school(canvas: CanvasItem, kind: String, rect: Rect2) -> bool:
 	var local := Rect2(Vector2.ZERO,rect.size)
-	return _draw(canvas,key("school_"+kind,local),rect.position)
+	var id := key("school_"+kind,local)
+	if kind not in ["whiteboard","meeting_board"] and preload("res://scripts/game/school_realism.gd").record(kind,rect.size).size()>0:
+		preload("res://scripts/game/school_surfaces.gd").contact(canvas,rect)
+	return _draw(canvas,id,rect.position)
 
 static func draw_garden(canvas: CanvasItem, rect: Rect2) -> bool:
 	return _draw(canvas,key("campus_garden",Rect2(Vector2.ZERO,rect.size)),rect.position)
@@ -34,7 +39,8 @@ static func _draw(canvas: CanvasItem, id: String, offset: Vector2 = Vector2.ZERO
 	if _material==null:
 		_material=CanvasItemMaterial.new()
 		_material.blend_mode=CanvasItemMaterial.BLEND_MODE_PREMULT_ALPHA
-	if canvas.material != _material: canvas.material=_material
+	var selected: Material = null if record.get("alpha", "premultiplied")=="straight" else _material
+	if canvas.material != selected: canvas.material=selected
 	if canvas.texture_filter != CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS:
 		canvas.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	var box: Array=record.rect
