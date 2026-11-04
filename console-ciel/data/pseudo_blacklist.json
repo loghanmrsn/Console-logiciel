@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Liste locale modifiable : noms complets et mots entiers interdits. Les anciens profils restent accessibles.",
+  "blocked_names": ["admin", "administrateur", "administrator", "moderateur", "moderator", "superadmin", "root", "hitler", "adolfhitler", "nazi"],
+  "blocked_terms": ["admin", "administrateur", "moderateur", "connard", "connasse", "encule", "salope", "putain", "pute", "fdp", "merde", "fuck", "shit", "bitch"]
+}
