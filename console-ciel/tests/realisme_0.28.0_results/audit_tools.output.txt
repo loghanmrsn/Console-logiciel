@@ -1,0 +1,30 @@
+OK Archive normale valide
+OK Lien source refusé, archive précédente et cible conservées
+OK Lien de sortie refusé
+OK Livraison courante : CRC et empreintes source vérifiés
+OK Livraison courante : binaire sélectionné préservé avec chemin imbriqué
+OK Livraison courante : dossier local, notice, .gdignore et image inclus dans console-ciel/images_profil/
+OK Livraison courante : dossier local, notice, .gdignore et image inclus dans console-ciel/builds/releases/windows-x86_64-profils-0.4.2/images_profil/
+OK Livraison courante : ancien dossier binaire exclu de l’archive
+OK Livraison courante : manifeste indique la sélection et la conservation séparée
+OK Livraison courante : nouveaux et anciens binaires restent intacts sur disque
+OK Mode par défaut : ancien et nouveau binaire toujours inclus
+OK Mode par défaut : conservation sur disque et ancien comportement préservés
+OK Archive source : dossier images_profil et images personnelles locales inclus
+OK Archive source : CRC valide et livraisons binaires exclues
+OK Échec import_error ne remplace pas le binaire et ne signale pas succès
+OK Échec export_error ne remplace pas le binaire et ne signale pas succès
+OK Échec empty ne remplace pas le binaire et ne signale pas succès
+OK Export réussi avec chemins contenant des espaces
+OK Liste noire initiale livrée à côté du binaire
+OK Réexport conserve la liste noire personnalisée
+OK Répertoire de préparation nettoyé
+OK Version rc refusée
+OK Erreur de préparation empêche le lancement graphique
+OK Double préparation de la même racine refusée
+OK Verrou libéré après fermeture
+OK Erreur moteur générique détectée même sans erreur de script
+OK Corruption volontaire uniquement dans la copie de test reconnue
+OK Erreur hors copie de test jamais masquée
+OK Moteur absent produit un diagnostic exploitable
+AUDIT_TOOLS : 29 assertions, 0 échec(s).
