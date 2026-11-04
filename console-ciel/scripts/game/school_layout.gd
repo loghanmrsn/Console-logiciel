@@ -33,6 +33,13 @@ static func walls(zone: String) -> Array[Rect2]:
 	if zone == "school_stop": result.append(EXTERIOR)
 	return result
 static func furniture_specs(zone: String) -> Array[Dictionary]:
+	var items := _furniture_specs(zone)
+	for spec in items:
+		if spec.kind=="rack":
+			# Preserve the front/access line with a realistic cabinet depth.
+			spec.rect=Rect2(spec.rect.position+Vector2(0,85),Vector2(120,80))
+	return items
+static func _furniture_specs(zone: String) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	if zone in Ateliers.NEW_IDS: return Ateliers.furniture(zone)
 	if zone in ["school_hall", "school_passage"]: return result
