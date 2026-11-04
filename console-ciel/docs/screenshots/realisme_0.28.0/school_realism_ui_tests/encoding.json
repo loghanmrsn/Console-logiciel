@@ -1,0 +1,92 @@
+[
+  {
+    "file": "atelier_porte_compact_challenge.webp",
+    "height": 480,
+    "lossless_roundtrip_verified": true,
+    "sha256": "6bf1f5db1fb538d699b6118db1fdaea4a1c6011c12b92fd304261cdac579b32e",
+    "source": "atelier_porte_compact_challenge.png",
+    "source_sha256": "6ffb973fcf6bb9294a74dc564a770a09801143133c250714631e78c1499b4bbb",
+    "width": 800
+  },
+  {
+    "file": "couloir_cinq_ateliers_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "0fc1d650e57d3218812cb6d14e32ede3e91cf272cdb4f9909e9c4133d722fc81",
+    "source": "couloir_cinq_ateliers_challenge.png",
+    "source_sha256": "42ddd3bb86d1eb199f26a28152ffb1db8bf8ff484d9fb9b8f052e45dbb442974",
+    "width": 1280
+  },
+  {
+    "file": "courtyard_realisme_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "bc24c63c217350b603a2f6f8ba77477e129040d088cfc3f45d3b0d97b66289b5",
+    "source": "courtyard_realisme_challenge.png",
+    "source_sha256": "f09ebc4e3d532a8453dc622947d6b3629b9d49b5e263b2f82cae9dad71caa16c",
+    "width": 1280
+  },
+  {
+    "file": "school_cyber_ensemble_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "bfedb8ada5372d5c8c9bde549fa77889a0a97fe14778f27fa3b1d95e2a5cb565",
+    "source": "school_cyber_ensemble_challenge.png",
+    "source_sha256": "80b8a95d37ef93eacc9ad110e9c5af054a618f3709a98bb5265558c3f50cb229",
+    "width": 1280
+  },
+  {
+    "file": "school_fed_ensemble_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "6f7b829b2d99b9de8713274d41d9c69b8ff253cb3c46c720563465a804d54365",
+    "source": "school_fed_ensemble_challenge.png",
+    "source_sha256": "2c46a249171fd6cbf0a718358eba8bf2c5c1009641d08fc6b30584a34dc5ebb9",
+    "width": 1280
+  },
+  {
+    "file": "school_meeting_ensemble_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "7e3b931814227fbd3df22d2a1e3684789dbb127750dcb51d77ce02bc1b044a41",
+    "source": "school_meeting_ensemble_challenge.png",
+    "source_sha256": "274afbb818545b14191956fbdb2478dd46abf3d56a23305129d28fb3ccd0f9ce",
+    "width": 1280
+  },
+  {
+    "file": "school_network_lab_realisme_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "0acf0828bd83b3d11b38b6ce1b34b6fd7d2b92cc7909d392ecafcd70ea922a36",
+    "source": "school_network_lab_realisme_challenge.png",
+    "source_sha256": "57783342f3a18f2894ebe5935312de0420217912564b83a12dc74504c92d8564",
+    "width": 1280
+  },
+  {
+    "file": "school_stop_realisme_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "39bd3915cdac8797a10a7e8bbf70f2fad4ed5c44b5d1ff796997a5e54b01207e",
+    "source": "school_stop_realisme_challenge.png",
+    "source_sha256": "55b63a089ad66fab318c6656fc36f3f9176f45a1b2e556a064af01e05bb1817c",
+    "width": 1280
+  },
+  {
+    "file": "school_tne_ensemble_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "ebea0195616997560b2bc448b1a9dd7e29dada7393864730c373d283fb69f6ff",
+    "source": "school_tne_ensemble_challenge.png",
+    "source_sha256": "27c4cfe01b223a9513abe0d6cc78ae0635a11d39c0fd5df439a7920e902ee380",
+    "width": 1280
+  },
+  {
+    "file": "school_workshop_ensemble_challenge.webp",
+    "height": 720,
+    "lossless_roundtrip_verified": true,
+    "sha256": "42f0500d57ac50e1c6f4c94898f13d25e1d8992101d67aa246b0a2ecbf996e3e",
+    "source": "school_workshop_ensemble_challenge.png",
+    "source_sha256": "aadb923262fa9b4dfd17550c0041d8601d0f907f804e47411313e16e58af73e1",
+    "width": 1280
+  }
+]
