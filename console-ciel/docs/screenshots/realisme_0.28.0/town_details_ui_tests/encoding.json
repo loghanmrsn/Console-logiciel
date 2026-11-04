@@ -1,0 +1,38 @@
+[
+	{
+		"file": "civic_bibliotheque_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "cecd875dbed2ef9bee14f062dcb2871cc0f50550134f16f9f0e5b2d5a29fd7f0",
+		"source": "civic_bibliotheque_challenge.png",
+		"source_sha256": "5e5532e402d9ddcd44fc7260a616156430e06377ce1fe2816a491b96ce2b4acb",
+		"width": 1280
+	},
+	{
+		"file": "civic_fontaine_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "f50150f439a150afc463124e5584f7eed900059aad1fd747541541fca2e7e837",
+		"source": "civic_fontaine_challenge.png",
+		"source_sha256": "dca687a552792eccbacbd5bfff0337ed5b2b974fa9751e67b98f903ebd997ab1",
+		"width": 1280
+	},
+	{
+		"file": "civic_mairie_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "7b56a3927fee900d8fd55efb948642c4883ec5fe0b8d56fca331cd47010c2aae",
+		"source": "civic_mairie_challenge.png",
+		"source_sha256": "e1af800c82dcbad3bbb3cd2e0cb87ae6d33384996b59a8120d0e324d6162d122",
+		"width": 1280
+	},
+	{
+		"file": "civic_mediatheque_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "e21b6004aa977058ef982900e908608456545bd4143763b24005a133c835c4b8",
+		"source": "civic_mediatheque_challenge.png",
+		"source_sha256": "1cb804036fddec088495727eda3cbe0ed70f9b95e78f53049a4d1620710be001",
+		"width": 1280
+	}
+]
