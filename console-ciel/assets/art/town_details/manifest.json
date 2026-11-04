@@ -1,0 +1,107 @@
+{
+	"blender_version": "4.3.2",
+	"eu_star_count": 12.0,
+	"fr_stripe_order": [
+		"blue",
+		"white",
+		"red"
+	],
+	"generator_sha256": "f722190238f3499b59cd85019ab59d8cf938ad8c6b19ba7032c6cdecbe2ba8bc",
+	"intent": "Public building forecourt decorations, French and European flags, books, media poster and realistic animated stone fountain.",
+	"license": "CC0-1.0 original artwork",
+	"packing_generator_sha256": "e1292d999d2121f2717ec1459793fe5d75ae44119c6c558c8d8ba1d8ecbf7b4b",
+	"rig_sha256": "635b136c8bc14b953f6c974ea5c66e60aa29a73ad973dd351fdddd65335f8ee9",
+	"sprites": {
+		"book_box_100x40": {
+			"alpha": "straight",
+			"file": "book_box_100x40.webp",
+			"footprint": [
+				100.0,
+				40.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-25.0,
+				-117.0,
+				153.0,
+				168.0
+			],
+			"scale": 1.0,
+			"sha256": "01480a828715b7993c0950089064a470fa8e508b5425e9b1768f9d5e90d358af",
+			"source_png_sha256": "5847ea98da4ee052ee4be94eccbaf171fb58e67e526cf55216ba30615dd39d5a"
+		},
+		"flag_eu_24x20": {
+			"alpha": "straight",
+			"file": "flag_eu_24x20.webp",
+			"footprint": [
+				24.0,
+				20.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-161.0,
+				161.0,
+				214.0
+			],
+			"scale": 1.0,
+			"sha256": "02249fdc660e1d49a9a8b013744036dbfe0003676ee7062790309389ac60ba8e",
+			"source_png_sha256": "89f16bc6d0f31862f169fececd00a6e6e55ef809eff6384c52673cb9d7d9faea"
+		},
+		"flag_fr_24x20": {
+			"alpha": "straight",
+			"file": "flag_fr_24x20.webp",
+			"footprint": [
+				24.0,
+				20.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-161.0,
+				161.0,
+				214.0
+			],
+			"scale": 1.0,
+			"sha256": "95475117a303f0d88557c9ef961b58dfaefcaf7ed7c8b1ecc182f64d79a28576",
+			"source_png_sha256": "757509204a12f69160c48e1b02bc55566e4ce2f89fdfa94efab904815303855f"
+		},
+		"fountain_190x190": {
+			"alpha": "straight",
+			"file": "fountain_190x190.webp",
+			"footprint": [
+				190.0,
+				190.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-43.0,
+				230.0,
+				261.0
+			],
+			"scale": 1.0,
+			"sha256": "d4b0648c2c9abafea3ea83a2b6c410ea48b676ee2776a1f85b5224671f2f5415",
+			"source_png_sha256": "1fc67f7c98a83ab11b19d7b3aefd29caa0987168cdd276dfb12f66d1c2931d84"
+		},
+		"media_kiosk_76x34": {
+			"alpha": "straight",
+			"file": "media_kiosk_76x34.webp",
+			"footprint": [
+				76.0,
+				34.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-109.0,
+				116.0,
+				175.0
+			],
+			"scale": 1.0,
+			"sha256": "292c45aefb3ac860fe8743715f4ec7f638bdc01940f5d64318fab75e3542ecbd",
+			"source_png_sha256": "f32e21e43033a2aca39c65a35511fdb84399d536efcae8957870f6567ae43fc9"
+		}
+	},
+	"version": 1.0
+}
