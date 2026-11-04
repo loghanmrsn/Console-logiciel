@@ -1,3 +1,21 @@
+# Livraison 0.28.0 — décors, fontaine, salles et pseudos
+
+La mairie reçoit les drapeaux français et européen ; la bibliothèque, une boîte à livres et un banc ; la médiathèque, un panneau et un banc. Les entrées restent dégagées. La fontaine possède un bassin et une vasque en pierre avec une eau animée, suspendue en pause et avec les animations réduites. Les cinq ateliers, le laboratoire réseau et la façade du lycée bénéficient de mobilier et de volumes précalculés dans Blender, de matières, de murs blancs et d’une échelle intérieure du personnage adaptée. [Rendu et régénération](REALISME.md).
+
+La liste noire locale vérifie la création et le renommage des pseudos. Le fichier `pseudo_blacklist.json` est livré à côté des exécutables Windows et ARM64. Les anciens profils restent utilisables et les droits du compte Dev ne dépendent pas du nom. Les erreurs de configuration et de sauvegarde sont signalées sans création ou renommage partiel. [Personnaliser les règles](PSEUDOS.md).
+
+Vérifications de cette livraison : 18 suites sources (5054 assertions), 34 suites sur les packs Windows et ARM64 (8776 assertions), trois parcours avec rendu X11/Mesa (1051 assertions) et 29 contrôles des outils avec binaires factices isolés. Aucun échec final. Clavier, manette simulée, parcours, accès, collisions, pause, anciens profils, réglages et erreurs disque sont couverts. [Résultats](../tests/realisme_0.28.0_results/summary.json).
+
+Les quinze [captures conservées](screenshots/realisme_0.28.0/) proviennent du pack livré chargé dans Godot Linux x86_64. Leur encodage WebP est sans perte, avec comparaison exacte des pixels aux PNG du framebuffer. Cinq vues rapprochées supplémentaires, redondantes avec les vues d’ensemble des salles, restent dans le dossier de validation et ne sont pas redistribuées pour respecter la limite de taille de GitHub ; leurs empreintes sont consignées dans le rapport. Les 29 rendus Blender sont également vérifiés sans perte. Le catalogue de 137 décors fixes, la façade, la fontaine et la matière de sol représentent 42.96 Mio RGBA avec mipmaps pour un budget de 48 Mio.
+
+Les intervalles entre images sont comparés à 0.27.0 dans huit lieux, sur le même moteur et le même rendu logiciel, sans exécution parallèle des builds ou autres tests. [Mesures brutes et limites](../tests/realisme_0.28.0_results/render_comparison.json). Une seule mesure par version ne permet pas de conclure à un gain de FPS sur le matériel des joueurs.
+
+Les exécutables Windows x86_64 et Linux ARM64, leurs ressources intégrées et leurs ZIP sont vérifiés. Leur lancement physique sur Windows ou Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Le script PowerShell d’export a été adapté pour inclure la liste noire ; il n’a pas été exécuté ici. Les livraisons ont été produites par le moteur officiel depuis Linux.
+
+Les 130 archives antérieures et les sauvegardes sont conservées. Les nouvelles archives complètes contiennent les binaires courants ; les anciens rapports et binaires restent disponibles séparément dans le dépôt. Aucune photographie de la visite n’est redistribuée. Les nouveaux dessins sont originaux ; le logo du lycée conserve ses droits réservés.
+
+---
+
 # Livraison 0.27.0 — les cinq ateliers du lycée
 
 Les ateliers CIEL, 2TNE, réunion, informatique et BTS FED sont reconstruits comme des salles jouables, avec murs blancs, fenêtres hautes, allées bleues, mezzanine et équipements distincts. Trois salles supplémentaires complètent les deux espaces existants remaniés. Les portes, repères, observations et points de reprise sont intégrés au parcours du lycée. Le laboratoire IPv4 / IPv6 reste une extension pédagogique accessible depuis l’atelier 1. [Description des salles et des références](ATELIERS.md).
