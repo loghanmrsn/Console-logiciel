@@ -143,9 +143,7 @@ func _shadow_style() -> StyleBoxFlat:
 
 func _atelier_area() -> void:
 	var size := School.extent(zone)
-	draw_rect(Rect2(Vector2.ZERO,size),Color("dce3e5"))
-	for x in range(80,int(size.x)-80,120): draw_line(Vector2(x,64),Vector2(x,size.y-64),Color("cbd4d6"),1)
-	for y in range(80,int(size.y)-60,120): draw_line(Vector2(64,y),Vector2(size.x-64,y),Color("cbd4d6"),1)
+	preload("res://scripts/game/school_surfaces.gd").floor_material(self,size)
 	_text(School.title(zone).to_upper(),Vector2(size.x/2,110),22,DARK,true)
 	for target in School.interactions(zone):
 		if target.id in ["school_secure","school_cyber_return","school_hall_return","school_passage_return"]:
