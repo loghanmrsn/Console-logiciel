@@ -4,6 +4,7 @@ const Storefront = preload("res://scripts/game/storefront_art.gd")
 const SchoolFacade = preload("res://scripts/game/school_facade_art.gd")
 const Town = preload("res://scripts/game/town_layout.gd")
 const Art = preload("res://scripts/game/exterior_painter.gd")
+const Details = preload("res://scripts/game/town_details.gd")
 var furniture_only: Dictionary = {}
 var use_baked_art := true
 var furniture_anchor := Vector2.ZERO
@@ -53,6 +54,9 @@ func _prop(spec: Dictionary) -> void:
 	var rect: Rect2 = spec.rect
 	var at := rect.position
 	if spec.kind not in ["tree","island","signal","lamp"]: Art.contact(self,rect,.8)
+	if Details.draw(self,spec):
+		if spec.kind=="fountain": Details.fountain_water(self,rect,water_time)
+		return
 	match str(spec.kind):
 		"building": _building(spec)
 		"cafe_table", "cafe_chair", "menu_board": Storefront.furniture(self,spec)
@@ -64,16 +68,6 @@ func _prop(spec: Dictionary) -> void:
 			draw_circle(center-Vector2(0,2),rect.size.x*.5-5,Color("aab68c"))
 			Art.flowers(self,rect.grow(-15),int(at.x))
 			Art.tree(self,Rect2(center-Vector2(22,25),Vector2(44,44)),2)
-		"fountain":
-			var center := rect.get_center()
-			Art.ellipse(self,center+Vector2(5,11),Vector2(103,89),Color(.16,.23,.22,.10))
-			draw_circle(center,95,Color("aaa990"))
-			draw_circle(center-Vector2(0,8),88,Color("dce0d2"))
-			draw_circle(center-Vector2(0,10),74,Color("81b8c1"))
-			for index in range(3):
-				var offset := Vector2((index-1)*32,-12)
-				draw_arc(center+offset,24+4*sin(water_time*2+index),0,TAU,32,Color("c3e0de"),2,true)
-				draw_line(center+offset,center+offset-Vector2(0,65+5*sin(water_time*3)),Color("d5eeec"),5,true)
 		"shelter":
 			Art.rounded(self,Rect2(at-Vector2(6,90),Vector2(rect.size.x+12,112)),Color("a6c0bf"),4)
 			draw_colored_polygon(PackedVector2Array([at+Vector2(6,-82),at+Vector2(60,-82),at+Vector2(15,14),at+Vector2(6,14)]),Color("c9dbd4"))
