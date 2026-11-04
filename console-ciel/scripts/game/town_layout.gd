@@ -8,7 +8,7 @@ const SCHOOL_GROUNDS := Rect2(6750,340,2100,890)
 const FORMER_SCHOOL := Rect2(4790,820,410,270)
 const PARK := Rect2(2210,1660,1450,850)
 const FOUNTAIN := Vector2(2930,2070)
-const NAMES := ["Boulangerie", "Épicerie du centre", "Pharmacie", "La Poste", "Café des amis", "Sudo Hack", "Mairie", "Médiathèque", "Librairie", "Fleuriste", "Louise Michel", "Résidence des Tilleuls", "Maison de santé", "Opticien", "Cycles & Réparations", "Bar du marché", "Cinéma Le Parc", "Restaurant de la place", "Résidence des Arts", "Atelier du quartier", "Maison des associations", "Hôtel des Voyageurs", "Résidence Bellevue", "Résidence du Canal", "Garage", "Maison de quartier", "Résidence des Écoles", "Épicerie bio", "Laverie", "Café du parc", "Résidence du Square", "Maison de la musique", "Résidence des Jardins", "Papeterie", "Restaurant du Marché", "Résidence des Platanes", "Banque", "Boucherie"]
+const NAMES := ["Boulangerie", "Épicerie du centre", "Pharmacie", "La Poste", "Café des amis", "Sudo Hack", "Mairie", "Médiathèque", "Bibliothèque", "Fleuriste", "Louise Michel", "Résidence des Tilleuls", "Maison de santé", "Opticien", "Cycles & Réparations", "Bar du marché", "Cinéma Le Parc", "Restaurant de la place", "Résidence des Arts", "Atelier du quartier", "Maison des associations", "Hôtel des Voyageurs", "Résidence Bellevue", "Résidence du Canal", "Garage", "Maison de quartier", "Résidence des Écoles", "Épicerie bio", "Laverie", "Café du parc", "Résidence du Square", "Maison de la musique", "Résidence des Jardins", "Papeterie", "Restaurant du Marché", "Résidence des Platanes", "Banque", "Boucherie"]
 static func buildings() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for origin in [Vector2(2200,350),Vector2(4300,350)]:
@@ -51,6 +51,14 @@ static func crosswalks() -> Array[Rect2]:
 static func roundabouts() -> Array[Vector2]: return [Vector2(1935,1410),Vector2(4010,2760)]
 static func props() -> Array[Dictionary]:
 	var result: Array[Dictionary] = [{"kind":"fountain","rect":Rect2(FOUNTAIN-Vector2(95,95),Vector2(190,190))},{"kind":"shelter","rect":Rect2(1080,850,170,22)}]
+	# Civic forecourts: decoration at the sides, with an open central doorway.
+	result.append_array([
+		{"kind":"flag_fr","rect":Rect2(4365,655,24,20)},
+		{"kind":"flag_eu","rect":Rect2(4610,655,24,20)},
+		{"kind":"media_kiosk","rect":Rect2(4850,665,76,34)},
+		{"kind":"bench","rect":Rect2(5060,685,100,45)},
+		{"kind":"book_box","rect":Rect2(5325,665,100,40)},
+		{"kind":"bench","rect":Rect2(5550,685,100,45)}])
 	for point in roundabouts(): result.append({"kind":"island","rect":Rect2(point-Vector2(65,65),Vector2(130,130))})
 	for at in [Vector2(2380,1790),Vector2(3380,1790),Vector2(2380,2310),Vector2(3380,2310)]: result.append({"kind":"tree","rect":Rect2(at,Vector2(60,60))})
 	for at in [Vector2(2520,1870),Vector2(3160,2270)]: result.append({"kind":"bench","rect":Rect2(at,Vector2(180,45))})
