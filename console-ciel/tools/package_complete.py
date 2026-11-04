@@ -43,6 +43,11 @@ def excluded(path: Path, project: Path) -> str:
 
 
 
+def historical_verification(path: Path, version: str) -> bool:
+    """Old delivery reports stay beside the old archives, not inside new ones."""
+    return path.name.endswith('.verification.json') and not path.name.endswith(version + '.verification.json')
+
+
 def archive_name(project: Path, source: Path) -> str:
     if source.is_relative_to(project):
         return 'console-ciel/' + source.relative_to(project).as_posix()
@@ -148,6 +153,9 @@ def create_archive(project: Path, output: Path, windows_directory: str | None = 
                 source = parent / name
                 if source == output.with_suffix('.verification.json'):
                     skipped.append({'path': source.relative_to(project).as_posix(), 'reason': 'rapport de sortie généré après vérification'})
+                    continue
+                if current_windows_only and folder == 'builds' and historical_verification(source, version):
+                    skipped.append({'path': source.relative_to(project).as_posix(), 'reason': 'rapport d’une ancienne livraison conservé séparément dans le dépôt'})
                     continue
                 reason = excluded(source, project)
                 if reason:
