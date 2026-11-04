@@ -6,10 +6,7 @@ func _draw() -> void:
 		if use_baked_art and preload("res://scripts/game/baked_art.gd").draw_school(self,str(furniture_only.kind),furniture_only.rect): return
 		_prop_art(str(furniture_only.kind),furniture_only.rect)
 		return
-	draw_rect(Rect2(0,0,2200,1600),Color("dfdfd3"))
-	for x in range(80,2160,120):
-		for y in range(80,1520,120):
-			draw_rect(Rect2(x,y,118,118),Color("e4e5dc") if (x/120+y/120)%2 == 0 else Color("e0e2d9"))
+	preload("res://scripts/game/school_surfaces.gd").floor_material(self,Vector2(2200,1600))
 	# A distinct but quiet equipment bay, with glazed partition frames.
 	draw_rect(Rect2(1500,100,620,1200),Color("cdd9d8"))
 	for y in [180,350,1100,1230]:
