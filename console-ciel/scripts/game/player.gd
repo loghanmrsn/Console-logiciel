@@ -35,6 +35,13 @@ func _ready() -> void:
 	add_child(sprite)
 	_update_animation(false)
 
+func set_visual_scale(multiplier: float) -> void:
+	# Feet stay anchored to the same collision body; this changes only the art.
+	if sprite==null: return
+	var width := sprite.sprite_frames.get_frame_texture("down",0).get_width()
+	sprite.scale=Vector2.ONE*(.78*64.0/width)*multiplier
+	sprite.position=Vector2(0,-23)*multiplier
+
 func _physics_process(delta: float) -> void:
 	var router := get_node_or_null("/root/SceneRouter")
 	if not controls_enabled or not is_visible_in_tree() or (router != null and not router.gameplay_allowed()):
