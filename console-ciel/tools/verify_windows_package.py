@@ -44,14 +44,15 @@ def verify(executable: Path, archive: Path) -> dict:
     expected_art = {path.relative_to(project).as_posix() + '.import'
                     for path in (project / 'assets/art').rglob('*.svg')}
     assert expected_art and set(art) == expected_art,'Collection graphique différente des sources livrées'
-    for name in ['data/game_rules.json','data/shop_catalog.json','data/controller_mapping.json','project.binary']:
+    for name in ['data/pseudo_blacklist.json','assets/art/town_details/manifest.json','data/game_rules.json','data/shop_catalog.json','data/controller_mapping.json','project.binary']:
         assert name in files,'Ressource absente : '+name
     with zipfile.ZipFile(archive) as package:
         assert package.testzip() is None,'CRC ZIP invalide'
         names=package.namelist()
         assert len(names)==len(set(names)),'Entrées dupliquées'
-        for name in ['Console_CIEL.exe','LIRE_MOI.txt','assets/LICENSES.md','assets/licenses/GODOT_MIT.txt','assets/licenses/CC0.txt']:
+        for name in ['Console_CIEL.exe','pseudo_blacklist.json','LIRE_MOI.txt','assets/LICENSES.md','assets/licenses/GODOT_MIT.txt','assets/licenses/CC0.txt']:
             assert name in names,'Livraison incomplète : '+name
+        assert package.read('pseudo_blacklist.json')==(project/'data/pseudo_blacklist.json').read_bytes(),'Liste noire différente des sources'
         assert package.read('Console_CIEL.exe')==payload,'ZIP différent du binaire vérifié'
         assert not any(n.endswith('.zip') or n.startswith(('profiles/','.godot/')) or '..' in n.split('/') for n in names),'Contenu interdit'
     return {'executable':str(executable),'architecture':'PE32+ x86_64','exe_bytes':len(payload),'exe_sha256':hashlib.sha256(payload).hexdigest(),'archive':str(archive),'zip_bytes':archive.stat().st_size,'zip_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'crc_valid':True,'archive_entries':names,'embedded_files':entries,'art_textures':len(art)}
