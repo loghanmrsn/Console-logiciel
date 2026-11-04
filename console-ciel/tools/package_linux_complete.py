@@ -103,6 +103,8 @@ def create_archive(project: Path, output: Path, linux_directory: str) -> dict:
                 source = parent / name
                 relative = source.relative_to(project)
                 reason = excluded(source, project)
+                if folder == 'builds' and _shared.historical_verification(source, version):
+                    reason = 'rapport d’une ancienne livraison conservé séparément dans le dépôt'
                 if source == output.with_suffix('.verification.json'):
                     reason = 'rapport externe généré après vérification'
                 if folder == 'builds' and relative.parts[:len(latest_relative.parts)] != latest_relative.parts:
