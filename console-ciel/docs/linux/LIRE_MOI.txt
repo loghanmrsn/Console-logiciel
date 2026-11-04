@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.27.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.28.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -251,7 +251,7 @@ Fiche complète : https://github.com/loghanmrsn/Console-logiciel/tree/main/solut
 Un ancien Dev garde son solde : Réinitialiser sa progression valide
 aussi le CTF, sans ajouter de points ni retirer ses achats.
 
-FLUIDITÉ ET TERMINAL DEV — 0.27.0
+FLUIDITÉ ET TERMINAL DEV — 0.28.0
 Caméra et personnages utilisent l’interpolation physique ; la marche accélère
 progressivement, sans glissement au relâchement. Textures filtrées et regard
 PNJ adouci ; les téléportations restent instantanées. Échap ferme les panneaux CTF.
@@ -264,7 +264,7 @@ Le terminal ne lance jamais de commande système ; il est réservé au compte De
 Toutes les commandes :
 https://github.com/loghanmrsn/Console-logiciel/blob/main/solution/commandes%20triches.md
 
-CONFORT — 0.27.0
+CONFORT — 0.28.0
 Paramètres > Audio : quatre ambiances musicales au choix.
 Paramètres > Commandes : touches clavier et boutons manette personnalisables.
 Appliquer sauvegarde ; Annuler restaure ; retour aux commandes par défaut disponible.
@@ -274,13 +274,13 @@ Chapitre 3 : les livres au coin ressources expliquent les exercices.
 Rejouer cette mission ne réinitialise pas toute l’enquête.
 L’hôtel de la ville se nomme désormais Ritz.
 
-LYCÉE — 0.27.0
+LYCÉE — 0.28.0
 Bus en ville : arrêt 1 Sudo Hack ; arrêt 2 lycée Louise Michel de Ruffec.
 Porte du lycée : salle cyber, six postes, baie réseau et tableau interactifs.
 Panneaux portant le logo fourni. Sortir puis bus pour revenir en ville.
 Les nouvelles épreuves de la salle cyber seront ajoutées ensuite.
 
-VILLE ET BUS — 0.27.0
+VILLE ET BUS — 0.28.0
 40 bâtiments, parc avec fontaine, commerces, feux, ronds-points et passants.
 Les lieux d’origine restent proches et aux mêmes positions (nord-ouest).
 Carte : flèche droite ; marcher à droite : D ou joystick (touches personnalisables).
@@ -289,5 +289,12 @@ Montée, paiement, attente assise et descente animés ; passage possible.
 Le paiement et l’arrivée sont enregistrés ensemble avant la séquence.
 Accès à pied gratuit aux lieux de l’histoire si le solde manque.
 
-ATELIERS DU LYCÉE — 0.27.0
+ATELIERS DU LYCÉE — 0.28.0
 Cinq espaces jouables inspirés de la visite du lycée Louise Michel : atelier CIEL, 2TNE, réunion, informatique et BTS FED. Murs blancs, mobilier et équipements distincts. Depuis la salle informatique, emprunter le couloir puis ouvrir la porte sécurisée pour accéder aux autres ateliers. Espace / bouton 0 sur les repères pour observer ou changer de salle. Le laboratoire IPv4 / IPv6 reste relié à l’atelier 1.
+
+RÉALISME DES SALLES ET DU LYCÉE — 0.28.0
+Mobilier et façade créés en volume puis précalculés pour le jeu : pieds et épaisseurs des bureaux, sièges, métal, bois, armoires et équipements techniques. Les sols et murs blancs reçoivent des matières et des ombres douces. L’échelle du personnage est adaptée aux salles ; les déplacements, portes et sauvegardes sont conservés.
+
+DÉCORS ET PSEUDOS — 0.28.0
+Drapeaux français et européen devant la mairie, boîte à livres et banc devant la bibliothèque, panneau et banc devant la médiathèque. Fontaine en pierre avec jets animés ; accès aux portes dégagés.
+Liste noire : modifier pseudo_blacklist.json à côté de l’exécutable. blocked_names contient les noms complets ; blocked_terms les mots entiers interdits. Création et renommage contrôlés ; anciennes sauvegardes conservées. Garder le format JSON, puis enregistrer. Une configuration invalide est signalée. Conserver sa liste personnalisée lors d’une mise à jour.
