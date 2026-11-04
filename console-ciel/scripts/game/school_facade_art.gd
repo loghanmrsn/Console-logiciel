@@ -13,6 +13,12 @@ static func entrance(frame: Rect2, clearance: float = 65) -> Vector2:
 	return frame.position+Vector2(frame.size.x/6,frame.size.y+clearance)
 
 static func draw_facade(c: Node2D, f: Rect2) -> void:
+	if preload("res://scripts/game/school_realism.gd").manifest().get("sprites",{}).has("lycee_facade"):
+		preload("res://scripts/game/school_surfaces.gd").contact(c,Rect2(f.position+Vector2(0,f.size.y-12),Vector2(f.size.x,30)))
+		preload("res://scripts/game/school_realism.gd").facade(c,f)
+		# Keep the licensed school logo on its own small wall plaque.
+		c.draw_texture_rect(LOGO,_region(f,Rect2(22,42,30,46)),false)
+		return
 	_box(c,f,Rect2(6,12,1800,310),Color(0.18,.23,.22,.18))
 	_box(c,f,Rect2(0,0,560,310),ROSE)
 	_box(c,f,Rect2(540,45,1260,265),STONE)
