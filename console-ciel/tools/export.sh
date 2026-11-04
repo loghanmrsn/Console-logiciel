@@ -30,6 +30,9 @@ if [[ ! -s "$export_staging_path" ]]; then
   printf '%s\n' 'Export refusé : aucun exécutable produit.' >&2
   exit 1
 fi
+if [[ ! -f "$project_dir/builds/$(dirname -- "$target")/pseudo_blacklist.json" ]]; then
+  cp -- "$project_dir/data/pseudo_blacklist.json" "$export_staging_dir/pseudo_blacklist.json"
+fi
 for export_file in "$export_staging_dir"/*; do
   mv -- "$export_file" "$project_dir/builds/$(dirname -- "$target")/"
 done
