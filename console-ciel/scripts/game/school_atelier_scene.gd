@@ -2,6 +2,7 @@ extends RefCounted
 ## Bright white plaster, quiet blue circulation, light through high windows.
 const A = preload("res://scripts/game/school_ateliers.gd")
 const M = preload("res://scripts/game/render_materials.gd")
+const Surface = preload("res://scripts/game/school_surfaces.gd")
 const Ink := Color("405562")
 static func label(c: CanvasItem, text: String, at: Vector2, size: int=20) -> void:
 	var font := ThemeDB.fallback_font
@@ -9,15 +10,12 @@ static func label(c: CanvasItem, text: String, at: Vector2, size: int=20) -> voi
 static func draw_floor(c: Node2D, zone: String) -> void:
 	var size := A.extent(zone)
 	var industrial := zone in ["school_workshop","school_tne","school_fed"]
-	c.draw_rect(Rect2(Vector2.ZERO,size),Color("dce2e4"))
-	c.draw_rect(Rect2(64,64,size.x-128,size.y-128),Color("e2e6e7") if zone=="school_meeting" else Color("ced6da"))
-	for x in range(80,int(size.x)-80,240): c.draw_line(Vector2(x,64),Vector2(x,size.y-64),Color("c5cfd3"),1,true)
-	for y in range(80,int(size.y)-80,240): c.draw_line(Vector2(64,y),Vector2(size.x-64,y),Color("c5cfd3"),1,true)
+	Surface.floor_material(c,size)
 	if industrial:
 		var lane_x := 780.0 if zone=="school_workshop" else 800.0
-		M.rounded(c,Rect2(lane_x,230,140,size.y-440),Color("93b1c3"),10)
-		M.rounded(c,Rect2(140,size.y-300,size.x-280,140),Color("93b1c3"),10)
-		for x in range(int(lane_x)+8,int(lane_x)+125,24): c.draw_line(Vector2(x,size.y-290),Vector2(x,size.y-170),Color("eaf0f2"),12,true)
+		M.rounded(c,Rect2(lane_x,230,140,size.y-440),Color("87a4b3"),10)
+		M.rounded(c,Rect2(140,size.y-300,size.x-280,140),Color("87a4b3"),10)
+		for x in range(int(lane_x)+8,int(lane_x)+125,24): c.draw_line(Vector2(x,size.y-290),Vector2(x,size.y-170),Color("e9edec"),12,true)
 		for y in range(300,int(size.y)-410,280):
 			c.draw_polyline(PackedVector2Array([Vector2(lane_x+50,y+20),Vector2(lane_x+70,y),Vector2(lane_x+90,y+20)]),Color("dbe9ee"),4,true)
 	# Broad windows, mullions and restrained sunlight. Roof is cut away for play.
@@ -26,18 +24,7 @@ static func draw_floor(c: Node2D, zone: String) -> void:
 		M.rounded(c,Rect2(x+5,68,260,23),Color("c2dae5"),2)
 		for dx in [88,174]: c.draw_line(Vector2(x+dx,68),Vector2(x+dx,94),Color("f7f9f9"),5,true)
 		c.draw_line(Vector2(x,101),Vector2(x+270,101),Color("f9faf9"),6,true)
-		c.draw_colored_polygon(PackedVector2Array([Vector2(x+8,104),Vector2(x+260,104),Vector2(x+380,310),Vector2(x+130,310)]),Color(1,1,.96,.10))
-	label(c,A.TITLES[zone].to_upper(),Vector2(size.x/2,215 if zone=="school_workshop" else 145),24)
-	if zone=="school_workshop":
-		label(c,"PROTOTYPAGE · ÉLECTRONIQUE",Vector2(820,1110),18)
-		label(c,"SYSTÈMES TECHNIQUES",Vector2(2020,1130),18)
-	elif zone=="school_tne": label(c,"PRÉPARATION · MESURE · CÂBLAGE",Vector2(1200,1040),20)
-	elif zone=="school_fed": label(c,"ÉQUIPEMENTS DU BÂTIMENT · RÉGULATION",Vector2(1200,980),20)
-	elif zone=="school_cyber":
-		label(c,"POSTES INFORMATIQUES",Vector2(790,1050),21)
-		label(c,"MESURE",Vector2(1770,430),16)
-		label(c,"COULOIR →",Vector2(1770,1180),18)
-	elif zone=="school_meeting": label(c,"ÉCHANGER · CONCEVOIR · PRÉSENTER",Vector2(900,1110),18)
+		c.draw_texture_rect(Surface.light(),Rect2(x+30,110,430,340),false)
 	for target in A.targets(zone):
 		c.draw_circle(target.at,9,Color("688da4"))
 		c.draw_arc(target.at,8,0,TAU,20,Color("f8fafb"),2,true)
