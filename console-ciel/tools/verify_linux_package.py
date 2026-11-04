@@ -13,7 +13,7 @@ import zipfile
 EXECUTABLE = 'console-ciel.arm64'
 LAUNCHERS = ('Lancer_Console_CIEL.sh', 'Installer_raccourci.sh')
 REQUIRED_FILES = (
-    EXECUTABLE, *LAUNCHERS, 'LIRE_MOI.txt', 'assets/console.svg',
+    EXECUTABLE, *LAUNCHERS, 'pseudo_blacklist.json', 'LIRE_MOI.txt', 'assets/console.svg',
     'assets/LICENSES.md', 'assets/licenses/CC0.txt', 'assets/licenses/GODOT_MIT.txt',
     'assets/licenses/GODOT_LICENSE_TEXTS.json', 'assets/licenses/GODOT_THIRD_PARTY.json',
     'images_profil/.gdignore', 'images_profil/LIRE_MOI.txt',
@@ -133,7 +133,7 @@ def embedded_pack(payload: bytes, project: Path) -> dict:
     expected_art = {path.relative_to(project).as_posix() + '.import'
                     for path in (project / 'assets/art').rglob('*.svg')}
     require(bool(expected_art) and art == expected_art, 'Collection graphique différente des sources livrées.')
-    for name in ('data/game_rules.json', 'data/shop_catalog.json', 'data/controller_mapping.json', 'project.binary'):
+    for name in ('data/pseudo_blacklist.json', 'assets/art/town_details/manifest.json', 'data/game_rules.json', 'data/shop_catalog.json', 'data/controller_mapping.json', 'project.binary'):
         require(name in files, 'Ressource absente : ' + name)
     return {'embedded_files': entries, 'art_textures': len(art), 'pack_start': start,
             'pack_bytes': pack_size, 'pack_format': format_version,
@@ -150,6 +150,7 @@ def verify(executable: Path, archive: Path, project: Path | None = None) -> dict
     with zipfile.ZipFile(archive) as package:
         require(package.testzip() is None, 'CRC ZIP invalide.')
         names = package.namelist()
+        require(package.read('pseudo_blacklist.json')==(project/'data/pseudo_blacklist.json').read_bytes(), 'Liste noire différente des sources.')
         require(len(names) == len(set(names)), 'Entrées ZIP dupliquées.')
         for info in package.infolist():
             name = info.filename.removesuffix('/')
