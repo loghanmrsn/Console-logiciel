@@ -63,7 +63,7 @@ function Assert-WindowsExecutable([string]$Path) {
 
 try {
     $script:projectRoot = (Resolve-Path -LiteralPath $ProjectPath).Path
-    foreach ($required in @('project.godot', 'export_presets.cfg', 'docs/windows/LIRE_MOI.txt', 'assets/LICENSES.md', 'assets/licenses')) {
+    foreach ($required in @('data/pseudo_blacklist.json', 'project.godot', 'export_presets.cfg', 'docs/windows/LIRE_MOI.txt', 'assets/LICENSES.md', 'assets/licenses')) {
         if (-not (Test-Path -LiteralPath (Join-Path $projectRoot $required))) { throw "Fichier du projet absent : $required" }
     }
     if (Test-Path -LiteralPath $GodotPath -PathType Leaf) {
@@ -101,13 +101,16 @@ try {
     } else {
         [System.IO.Directory]::CreateDirectory((Join-Path $packageDirectory 'images_profil')) | Out-Null
     }
+    $policySource = Join-Path $buildRoot ($OutputDirectory + '/pseudo_blacklist.json')
+    if (-not (Test-Path -LiteralPath $policySource -PathType Leaf)) { $policySource = Join-Path $projectRoot 'data/pseudo_blacklist.json' }
+    Copy-Item -LiteralPath $policySource -Destination (Join-Path $packageDirectory 'pseudo_blacklist.json')
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $zip = Join-Path $stagingRoot $ArchiveName
     [System.IO.Compression.ZipFile]::CreateFromDirectory($packageDirectory, $zip, [System.IO.Compression.CompressionLevel]::Optimal, $false)
     $archive = [System.IO.Compression.ZipFile]::OpenRead($zip)
     try {
         $names = @($archive.Entries | ForEach-Object { $_.FullName.Replace([char]92, [char]47) })
-        foreach ($entry in @('Console_CIEL.exe', 'LIRE_MOI.txt', 'assets/LICENSES.md', 'assets/licenses/GODOT_MIT.txt')) {
+        foreach ($entry in @('pseudo_blacklist.json', 'Console_CIEL.exe', 'LIRE_MOI.txt', 'assets/LICENSES.md', 'assets/licenses/GODOT_MIT.txt')) {
             if ($names -notcontains $entry) { throw "Archive incomplète : $entry" }
         }
         if ($names -match '(?:^|/)profiles/|\.runtime-|settings\.cfg$|session\.json$') { throw 'Données utilisateur interdites dans le ZIP.' }
