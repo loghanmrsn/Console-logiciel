@@ -91,6 +91,7 @@ def run():
         project=base/'project with spaces'
         shutil.copytree(PROJECT/'tools',project/'tools',ignore=shutil.ignore_patterns('__pycache__'))
         for folder in ('scenes','scripts','assets','themes','data','tests','docs','images_profil'): (project/folder).mkdir()
+        (project/'data/pseudo_blacklist.json').write_text(json.dumps({'version':1,'blocked_names':['admin'],'blocked_terms':[]}))
         for name in ('project.godot','default_bus_layout.tres','export_presets.cfg','README.md','.gitignore'): (project/name).write_text('fixture')
         spec=importlib.util.spec_from_file_location('package',project/'tools/package_source.py')
         package=importlib.util.module_from_spec(spec);spec.loader.exec_module(package)
@@ -140,6 +141,11 @@ if '--export-release' in args or '--export-debug' in args:
             check(result.returncode!=0 and binary.read_text()=='previous executable','Échec '+mode+' ne remplace pas le binaire et ne signale pas succès')
         result=command(export,['arm64'],'good')
         check(result.returncode==0 and binary.read_text()=='new executable','Export réussi avec chemins contenant des espaces')
+        policy=binary.parent/'pseudo_blacklist.json'
+        check(policy.read_bytes()==(project/'data/pseudo_blacklist.json').read_bytes(),'Liste noire initiale livrée à côté du binaire')
+        policy.write_text(json.dumps({'version':1,'blocked_names':['personnalise'],'blocked_terms':[]}))
+        custom=policy.read_bytes()
+        check(command(export,['arm64'],'good').returncode==0 and policy.read_bytes()==custom,'Réexport conserve la liste noire personnalisée')
         check(not list(binary.parent.glob('.export.*')),'Répertoire de préparation nettoyé')
         check(command(export,['arm64'],'version').returncode!=0,'Version rc refusée')
         trace.write_text('')
