@@ -10,8 +10,8 @@ static func key(kind: String, rect: Rect2, variant: String = "") -> String:
 	return (kind+"|"+str(rect)+"|"+variant).sha256_text().left(20)
 
 static func draw_town(canvas: CanvasItem, spec: Dictionary) -> bool:
-	if spec.kind in ["flag_fr","flag_eu","book_box","media_kiosk"]:
-		preload("res://scripts/game/exterior_painter.gd").contact(canvas,spec.rect,.8)
+	if spec.has("forecourt_owner"):
+		preload("res://scripts/game/school_surfaces.gd").contact(canvas,spec.rect)
 	return _draw(canvas,key(str(spec.kind),spec.rect,str(spec.get("index",""))))
 
 static func draw_school(canvas: CanvasItem, kind: String, rect: Rect2) -> bool:
