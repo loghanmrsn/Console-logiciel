@@ -53,7 +53,8 @@ func _draw() -> void:
 func _prop(spec: Dictionary) -> void:
 	var rect: Rect2 = spec.rect
 	var at := rect.position
-	if spec.kind not in ["tree","island","signal","lamp"]: Art.contact(self,rect,.8)
+	if spec.kind=="fountain": preload("res://scripts/game/school_surfaces.gd").contact(self,rect)
+	elif spec.kind not in ["tree","island","signal","lamp"]: Art.contact(self,rect,.8)
 	if Details.draw(self,spec):
 		if spec.kind=="fountain": Details.fountain_water(self,rect,water_time)
 		return
