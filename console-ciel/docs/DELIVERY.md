@@ -1,3 +1,19 @@
+# Livraison 0.29.0 — décors des 40 bâtiments et eau courante
+
+Les 40 bâtiments de la ville disposent d’un décor adapté à leur domaine : grand panneau à enveloppe et boîte aux lettres à La Poste, fleurs en pots chez le fleuriste, livres, borne de médiathèque, vélo avec rayons, guitare avec cordes, outils, étals et jardinières. Les drapeaux de la mairie, le Ritz, le bâtiment A et le lycée sont inclus. Les 41 placements restent en dehors des portes, des chaussées et des parcours des passants. Les terrasses sont ajustées et les bancs civiques conservés.
+
+Les **34 rendus Blender/Cycles à double résolution** possèdent des volumes arrondis et des matériaux procéduraux. La fontaine présente des joints de pierre, une vasque, une buse et une bordure humide ; cinq jets et onze débordements produisent des gouttes, des éclaboussures et des ondulations. L’eau s’arrête en pause et avec les animations réduites. Le jeu reste en 2D avec des rendus précalculés et une animation graphique de l’eau. [Régénération et limites du rendu](REALISME.md).
+
+Vérifications finales : **14 suites sources (11210 assertions)**, **34 suites sur les packs Windows et ARM64 (22684 assertions)**, **un parcours avec rendu X11/Mesa (1004 assertions)** et **30 contrôles des outils de livraison**. Aucun échec final. Les tests couvrent tous les placements, les ressources réellement utilisées, les collisions, les accès, les rues, le clavier, la manette simulée, les trajets et les régressions des ateliers et des profils. Les pixels de l’eau ont été comparés en mouvement, en pause et avec les animations réduites. [Résultats complets](../tests/decors_0.29.0_results/summary.json).
+
+Les [six captures](screenshots/decors_0.29.0/town_details_ui_tests/) sont issues du pack livré chargé dans Godot Linux x86_64. Elles sont encodées en WebP sans perte avec comparaison exacte des pixels. L’[aperçu animé de la fontaine](screenshots/decors_0.29.0/fontaine_animee.gif) rassemble vingt recadrages réels du viewport, encodés en GIF à 256 couleurs. Les 34 rendus Blender passent également une comparaison sans perte. Le catalogue de 169 décors, la façade, la fontaine et la matière de sol représentent **58.17 Mio RGBA avec mipmaps** pour un budget de 64 Mio, après déduplication des textures réutilisées.
+
+Les exécutables Windows x86_64 et Linux ARM64 et leurs ressources intégrées sont vérifiés depuis Linux. Le lancement physique sous Windows ou sur Raspberry Pi, le son et la manette physiques restent à tester sur ces appareils. Les contrôles de rendu logiciel ne mesurent pas les performances du matériel cible.
+
+Les 134 archives antérieures restent intactes. Les nouvelles archives complètes incluent les sources, ressources, captures courantes et binaires courants. Les deux premières galeries historiques de prévisualisation restent dans le dépôt et les anciennes archives, sans duplication dans les nouveaux ZIP ; [détail du contenu](ARCHIVE_COMPLETE.md). L’identité Git `loghanmrsn <morissonloghan05@gmail.com>` est conservée.
+
+---
+
 # Livraison 0.28.0 — décors, fontaine, salles et pseudos
 
 La mairie reçoit les drapeaux français et européen ; la bibliothèque, une boîte à livres et un banc ; la médiathèque, un panneau et un banc. Les entrées restent dégagées. La fontaine possède un bassin et une vasque en pierre avec une eau animée, suspendue en pause et avec les animations réduites. Les cinq ateliers, le laboratoire réseau et la façade du lycée bénéficient de mobilier et de volumes précalculés dans Blender, de matières, de murs blancs et d’une échelle intérieure du personnage adaptée. [Rendu et régénération](REALISME.md).
