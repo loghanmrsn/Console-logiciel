@@ -72,3 +72,7 @@ L’accueil du lycée utilise des murs blancs et le mobilier Blender existant. L
 Commande reproductible : `blender -b -t 6 --python tools/render_supervisor.py -- --project . --output /tmp/ciel-supervisor`. La provenance et les empreintes sont dans `assets/art/supervisor/manifest.json`. Le jeu reste en 2D ; Blender n’est pas requis pour jouer.
 
 Le trajet vers les ateliers dure 2,6 secondes et comporte deux plans : escalier droit, puis couloir. La destination est sauvegardée avant le départ, sans résoudre le câblage ni donner de points. Les escaliers circulaires de l’hôtel sont remplacés par des volées droites aux mêmes emplacements. Les grandes pancartes extérieures du lycée sont retirées ; le petit logo de façade est conservé.
+
+## Correction des postes et du couloir — 0.31.0
+
+Les écrans des postes fixes possèdent des dalles agrandies et des pieds plus hauts. La tour, le clavier et la souris sont séparés. Le modèle original est régénéré avec Blender/Cycles et compressé sans perte. Le couloir conserve une porte vers City CIEL, sans panneaux ni textes au sol. Les anciennes salles et leurs sauvegardes sont conservées, mais leurs portes ne sont plus présentées dans ce couloir. Le retour vers l’accueil reste disponible à proximité de l’arrivée.
