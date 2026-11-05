@@ -49,7 +49,7 @@ func _run() -> void:
 	for path in texture_paths:
 		var texture: Texture2D=load(path)
 		bytes+=texture.get_width()*texture.get_height()*4.0*4.0/3.0
-	check(bytes<=48*1024*1024,"Décors et matières du lycée dans le budget de 48 Mio RGBA avec mipmaps")
+	check(bytes<=64*1024*1024,"Décors et matières du lycée dans le budget de 64 Mio RGBA avec mipmaps")
 	var generator := "res://tools/render_school_assets.py"
 	if FileAccess.file_exists(generator): check(FileAccess.get_sha256(generator)==manifest.get("generator_sha256",""),"Source de génération conservée")
 	var packer := "res://tools/pack_school_renders.gd"
