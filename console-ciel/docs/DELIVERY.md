@@ -1,3 +1,11 @@
+# Livraison 0.30.0 — accueil du lycée et surveillante
+
+Accueil à murs blancs, PNJ adulte blonde en pull ample modélisée dans Blender, choix d’accompagnement de 2,6 secondes vers les ateliers ou Rien. Animation avec marche sur escalier droit puis couloir, passage facultatif, pause lors de la déconnexion de manette. La grande pancarte du lycée est supprimée et les escaliers de l’hôtel sont droits. Les sauvegardes et les décors de ville sont conservés.
+
+31374 assertions réussies : suites sources, 26 suites sur les ressources compilées Windows/ARM64, rendu X11/Mesa et outils de livraison. Manette simulée ; lancement physique Windows et Raspberry Pi non effectué. Durée mesurée du trajet : 2.722612 secondes. Huit captures natives encodées en WebP sans perte. [Résultats](../tests/accueil_0.30.0_results/summary.json). 138 anciennes archives conservées.
+
+---
+
 # Livraison 0.29.0 — décors des 40 bâtiments et eau courante
 
 Les 40 bâtiments de la ville disposent d’un décor adapté à leur domaine : grand panneau à enveloppe et boîte aux lettres à La Poste, fleurs en pots chez le fleuriste, livres, borne de médiathèque, vélo avec rayons, guitare avec cordes, outils, étals et jardinières. Les drapeaux de la mairie, le Ritz, le bâtiment A et le lycée sont inclus. Les 41 placements restent en dehors des portes, des chaussées et des parcours des passants. Les terrasses sont ajustées et les bancs civiques conservés.
