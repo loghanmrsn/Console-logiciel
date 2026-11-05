@@ -1,8 +1,10 @@
 {
+	"forecourt_catalog_sha256": "e144300533eff4ce319cffa48f3c29361285e1d7f541d800241bf0b1b59ccac6",
 	"generator_inputs": {
 		"campus_visual": "f2ec7b96481cd6e9a75e66ae85a7983faf738a57f88d6da9ceb7d7a4c7043962",
 		"city_lab_visual": "81785422d1f39e466daddc5a98ccfe4e32d6cdc837847f2ae251125a4db0c8a9",
 		"exterior_painter": "5bc9b70bc69ccc78efa3e496bb46724782ac1da08235468708a58a7fe10c9093",
+		"fountain_water": "131942db6c9422e909d2f8b4a2983614c030b823750528731e7f3f90e68a3118",
 		"render_materials": "6ec8ea5071d8ae08eeb7921fbc08b6d44bb347001770c2f3ad25d36e5428d65e",
 		"road_layout": "e7caf51fc80e1801b5bc56e2330db3d9451c89c0cab79910085540169d8babce",
 		"school_atelier_art": "15dc0b450294feb7ee62afe302ae01ad33dbdf3f4a537bc3f4eb72608c231d46",
@@ -14,12 +16,12 @@
 		"school_surfaces": "46e53d1bf8917bb0424ccb42fad09a463aa15d69af4c0c9755116623634297ff",
 		"school_visual": "ffa7857aea9ce99eeba0d596f31045cfe81a890fc5e2a8c27eda63e1bbf21cc7",
 		"storefront_art": "2eaf5c7bb750204bc320b892b97e13efc356b714ba325364dd4e5739e64d436d",
-		"town_details": "cb96c2ad4032db69b724389bccc906e47cef7cee27f62cbb2d935b379ea2e4e9",
-		"town_layout": "7284129bcfc263ab74174416364b5b5641e2a932ccc97ad9cd2b208124eb5eba",
-		"town_visual": "babc2f26b9173fd7db0e63fb2879ac0b82eedb0adbfe79f32fc1a2a881dace08",
+		"town_details": "51d69031b48df08a5b05e381d769100c3b309cdeb5110bef1b18caf8534cf311",
+		"town_layout": "a31f6a381262ffd6f6e788395833e28fd44c052d3eadb6cb89eb5153456cd21e",
+		"town_visual": "ceb882030a8ddae18d96fd9e698d4f49ecd6eebf9dd45782d01e0bf5bb8edb79",
 		"workshop_art": "e1a98ca75d4ad48dd871101702c99ba9759f4039420c216d0d1c803d22620511"
 	},
-	"generator_sha256": "633903c44f13f4d8fb902b45fd42ead15bdeec8ad78107e5b243e0c04ddd795e",
+	"generator_sha256": "9e78b272fa5360f40c190a1b8becbc8e8440d190ca99af1323b489ff75cd7740",
 	"school_logo_sha256": "c94e5910e205935e37519125c59c7e2b861e1aafc49d6075f0394bfce3b7f6bf",
 	"school_render_manifest_sha256": "c76bfdcae03314a56ef2e77c7c52d7d25e4d66faccbfcb4bebe9a0266233c053",
 	"sprites": {
@@ -55,9 +57,9 @@
 				116.0,
 				175.0
 			],
-			"scale": 1.0,
-			"sha256": "292c45aefb3ac860fe8743715f4ec7f638bdc01940f5d64318fab75e3542ecbd",
-			"source_png_sha256": "f32e21e43033a2aca39c65a35511fdb84399d536efcae8957870f6567ae43fc9"
+			"scale": 2.0,
+			"sha256": "e20919b9a2ee1e8a9270e6d21833cb4772eb20db4bed67a09c4c448203a6fd5b",
+			"source_png_sha256": "9ac86c7252e6e6f93f5362bd4a27a1e830c7ac49781bcbebbe6f73ec7a58890e"
 		},
 		"00484d60769cd6faa22f": {
 			"file": "00484d60769cd6faa22f.png",
@@ -133,9 +135,9 @@
 				161.0,
 				214.0
 			],
-			"scale": 1.0,
-			"sha256": "95475117a303f0d88557c9ef961b58dfaefcaf7ed7c8b1ecc182f64d79a28576",
-			"source_png_sha256": "757509204a12f69160c48e1b02bc55566e4ce2f89fdfa94efab904815303855f"
+			"scale": 2.0,
+			"sha256": "b35200fc3d3da8b573270ca736b1acc5967f4e8a9fa265a17cffb420a371b0c8",
+			"source_png_sha256": "4f004991079857d643e2421d5f1d4598092f5f0ede6c79c4ebb9ee0b8441ad23"
 		},
 		"081dc71c96ec05935a67": {
 			"file": "081dc71c96ec05935a67.png",
@@ -164,6 +166,24 @@
 			"scale": 1.0,
 			"sha256": "607e86b33d6ad671e1088c621a7dd99e8b14d3f0d2f72b2d10dfd5a9f5ff790b",
 			"source_png_sha256": "c5a5b84b7b18922ce5ba96ee32910d88893eed2925fc489e6d63bda90da001b4"
+		},
+		"0b4d0623c1034b52d2bd": {
+			"alpha": "straight",
+			"file": "../town_details/garden_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2696.0,
+				3752.0,
+				151.0,
+				130.0
+			],
+			"scale": 2.0,
+			"sha256": "4c4e3355f85058cd5c6cc1737669fdb1d40ac9fe66bcf931e68f910b3668d58a",
+			"source_png_sha256": "a94d1268e9e11c77019f9a9b96cd515b9ffe69349ce27a9f59f205d7741cfeb7"
 		},
 		"0be6f5060d2f2dc081ce": {
 			"file": "0be6f5060d2f2dc081ce.png",
@@ -223,16 +243,6 @@
 			],
 			"scale": 0.85
 		},
-		"130892d36d031a3a7008": {
-			"file": "130892d36d031a3a7008.png",
-			"rect": [
-				2745.2353515625,
-				1100.64709472656,
-				35.294116973877,
-				38.8235282897949
-			],
-			"scale": 0.85
-		},
 		"13d36d71556215e50158": {
 			"file": "13d36d71556215e50158.png",
 			"rect": [
@@ -252,6 +262,42 @@
 				82.3529357910156
 			],
 			"scale": 0.85
+		},
+		"14f6aafc71a4d32f000b": {
+			"alpha": "straight",
+			"file": "../town_details/organic_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2696.0,
+				3300.0,
+				151.0,
+				137.0
+			],
+			"scale": 2.0,
+			"sha256": "b52469d77bf87d36ccd81a0e4233db571462527222352b1e91b14d2781de6b67",
+			"source_png_sha256": "ea232d8471474914919e104bf538a7f468afe68f9ba23c33d70a9d6ece5ac6e1"
+		},
+		"15fdec2f8f252d2fe66b": {
+			"alpha": "straight",
+			"file": "../town_details/stationery_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4796.0,
+				3293.0,
+				151.0,
+				144.0
+			],
+			"scale": 2.0,
+			"sha256": "1f0a59b927e560cf37080196713cdca54bf49941ce4019bd63bc7ab543064768",
+			"source_png_sha256": "19370aab43703dbd94e80080cd4b2fc016eecd36349dcc3f3e907fda28f3f87c"
 		},
 		"1640b71f931f8ddf646d": {
 			"file": "1640b71f931f8ddf646d.png",
@@ -357,6 +403,52 @@
 			],
 			"scale": 0.85
 		},
+		"1e1ac7d38e4024c81e08": {
+			"alpha": "straight",
+			"file": "../town_details/flower_display_120x44.webp",
+			"footprint": [
+				120.0,
+				44.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4306.0,
+				1026.0,
+				161.0,
+				140.0
+			],
+			"scale": 2.0,
+			"sha256": "6cb23619cba71298bde0e5b338ad2752122e79d86b03ce19dbad784b782b1050",
+			"source_png_sha256": "81671fafd8639890473cb817f0be01275cf015a6398a178816e7af7635c70ddc"
+		},
+		"1e284e85cd11b2ff1152": {
+			"file": "1e284e85cd11b2ff1152.png",
+			"rect": [
+				2745.2353515625,
+				1188.64709472656,
+				35.294116973877,
+				38.8235282897949
+			],
+			"scale": 0.85
+		},
+		"1fe7cda292311fd09f75": {
+			"alpha": "straight",
+			"file": "../town_details/cinema_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4306.0,
+				1892.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "307f820d47f4a6e4985b2546b0ac05c9755a6356f30ee8d9ee2dd066da92c831",
+			"source_png_sha256": "acacb04256a2be1cd1927537a2a1660d1c961aa0ed9da9cddbf5e4a264719d68"
+		},
 		"234d5eb71b4decd86f12": {
 			"file": "234d5eb71b4decd86f12.png",
 			"rect": [
@@ -366,6 +458,24 @@
 				322.352935791016
 			],
 			"scale": 0.85
+		},
+		"2e8cf8fb8beef000ac6b": {
+			"alpha": "straight",
+			"file": "../town_details/school_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				8368.0,
+				877.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "66232ad582f0cd33c96033ad4085f47268b8e3a817b2646ace7bf7fc2c212352",
+			"source_png_sha256": "94d47fbf6db1da9ec1a4084a8973daf40eb12bc682d912d9ff6a92760bf83f6a"
 		},
 		"30686e26fea42c199737": {
 			"file": "30686e26fea42c199737.png",
@@ -387,26 +497,6 @@
 			],
 			"scale": 0.85
 		},
-		"3dcdb966e9538ef5271b": {
-			"file": "3dcdb966e9538ef5271b.png",
-			"rect": [
-				1225.2353515625,
-				2400.64697265625,
-				35.294116973877,
-				38.8235282897949
-			],
-			"scale": 0.85
-		},
-		"3ef8da9912e14e973c5e": {
-			"file": "3ef8da9912e14e973c5e.png",
-			"rect": [
-				2724.2353515625,
-				1124.52941894531,
-				77.6470565795898,
-				76.470588684082
-			],
-			"scale": 0.85
-		},
 		"3f3202190af4808ef153": {
 			"file": "3f3202190af4808ef153.png",
 			"rect": [
@@ -416,6 +506,24 @@
 				76.470588684082
 			],
 			"scale": 0.85
+		},
+		"43a401dc3dfea95119ab": {
+			"alpha": "straight",
+			"file": "../town_details/bicycle_126x42.webp",
+			"footprint": [
+				126.0,
+				42.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				403.0,
+				2346.0,
+				172.0,
+				103.0
+			],
+			"scale": 2.0,
+			"sha256": "adf56d2d04824ac1ef935fbd8f8414f862ecd1e4f9f45f1d982b3f5a67d25d50",
+			"source_png_sha256": "54c04413a2048627a90702b19c0e8c2f785f321a03ebb6030f8cd82d9131f086"
 		},
 		"457d5bbd7f2ee7b8d7df": {
 			"file": "457d5bbd7f2ee7b8d7df.png",
@@ -437,6 +545,60 @@
 			],
 			"scale": 0.85
 		},
+		"468036bc03209c4f2ae6": {
+			"alpha": "straight",
+			"file": "../town_details/hotel_luggage_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				5286.0,
+				2346.0,
+				151.0,
+				164.0
+			],
+			"scale": 2.0,
+			"sha256": "b175c79e8ddd02e7c855abbfe6d23ae6d3b775d189286c7beae1d8ee117a1d2a",
+			"source_png_sha256": "dec7a9683bf06dc43a6946a1fa2d38ae554ae8afe822b10664a7b91d212b174c"
+		},
+		"476e51d416bee2922761": {
+			"alpha": "straight",
+			"file": "../town_details/optician_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				1176.0,
+				1885.0,
+				151.0,
+				147.0
+			],
+			"scale": 2.0,
+			"sha256": "f18b527b4cee53e204baf71c243e166905f6dd9aa123686b422de7cb838902b2",
+			"source_png_sha256": "3be1c982955fd5b88ba1a931d343c64cb59ba3eeea46fce0dbde111eecba503e"
+		},
+		"4ba7eda26d025b82b59f": {
+			"alpha": "straight",
+			"file": "../town_details/pharmacy_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				3186.0,
+				539.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "f52966bf2920fb6d01925f36a4cd9c43996c94ec293f359d84652f3517ce684a",
+			"source_png_sha256": "4c054737d6c0bb62e0d44998a3d9031889d71ebf88ccbf52ee491b05c369b626"
+		},
 		"502c3602bde229707d30": {
 			"file": "502c3602bde229707d30.png",
 			"rect": [
@@ -444,6 +606,34 @@
 				963.529418945312,
 				192.941177368164,
 				49.4117622375488
+			],
+			"scale": 0.85
+		},
+		"5307aa4cdd8c18c9cefc": {
+			"alpha": "straight",
+			"file": "../town_details/art_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				5293.0,
+				1897.0,
+				136.0,
+				129.0
+			],
+			"scale": 2.0,
+			"sha256": "f1f218ea7e1591a361c83184b5ea2b76d3b42831fd76af154b1a312b46f5c239",
+			"source_png_sha256": "778edf6bf52d1539b9cb934db7b72d46fa9f69fdd9b80800efd858bfa82bcb3a"
+		},
+		"53372f3273de5d5f4c81": {
+			"file": "53372f3273de5d5f4c81.png",
+			"rect": [
+				2724.2353515625,
+				1132.52941894531,
+				77.6470565795898,
+				76.470588684082
 			],
 			"scale": 0.85
 		},
@@ -465,16 +655,6 @@
 			"sha256": "7c0224289ce991345e8e194007bbaf7971e2435ffb9ca3e5f06921c26cea1bfd",
 			"source_png_sha256": "42eb001372422d9bfdfb24e4ae3918dbb09096f29b7ffb98f5dc1c4d60dab600"
 		},
-		"540afb09acb48cb96fde": {
-			"file": "540afb09acb48cb96fde.png",
-			"rect": [
-				4845.2353515625,
-				1980.64709472656,
-				35.294116973877,
-				38.8235282897949
-			],
-			"scale": 0.85
-		},
 		"546de028fbdebeaa1dee": {
 			"file": "546de028fbdebeaa1dee.png",
 			"rect": [
@@ -485,13 +665,31 @@
 			],
 			"scale": 0.85
 		},
-		"549e07af6c2e597dfb0e": {
-			"file": "549e07af6c2e597dfb0e.png",
+		"5962cacba6caf0129993": {
+			"alpha": "straight",
+			"file": "../town_details/restaurant_service_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
 			"rect": [
-				5314.2353515625,
-				3404.529296875,
-				77.6470565795898,
-				76.470588684082
+				5286.0,
+				3294.0,
+				151.0,
+				143.0
+			],
+			"scale": 2.0,
+			"sha256": "2b1905d1dc93fdc5cb8b3d1814a3ce65b440b9d1e8036c0594d25d1f0cf79f69",
+			"source_png_sha256": "a01319a1ba902ace5e68229e35cac6e29053bcff5917bba9cce01249cc0d473e"
+		},
+		"59c46b7730b1788229af": {
+			"file": "59c46b7730b1788229af.png",
+			"rect": [
+				1225.2353515625,
+				2488.64697265625,
+				35.294116973877,
+				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -541,6 +739,42 @@
 			],
 			"scale": 0.85
 		},
+		"5ca9df4cef0d9ad2169c": {
+			"alpha": "straight",
+			"file": "../town_details/tool_cart_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4306.0,
+				2361.0,
+				151.0,
+				146.0
+			],
+			"scale": 2.0,
+			"sha256": "66248618e5baaa5055884f76a0e4b083889a42410dc0d6283420b8d12250b0e9",
+			"source_png_sha256": "3f9a529afd0771ebb41941a1f69d4359ecd1351211b7581e72bae7e2c955eef2"
+		},
+		"5e52dbb3663f83c0b153": {
+			"alpha": "straight",
+			"file": "../town_details/school_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				548.0,
+				938.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "66232ad582f0cd33c96033ad4085f47268b8e3a817b2646ace7bf7fc2c212352",
+			"source_png_sha256": "94d47fbf6db1da9ec1a4084a8973daf40eb12bc682d912d9ff6a92760bf83f6a"
+		},
 		"64cfe984bc2c33a25f01": {
 			"file": "64cfe984bc2c33a25f01.png",
 			"rect": [
@@ -548,6 +782,16 @@
 				1631.47058105469,
 				583.529418945312,
 				340.0
+			],
+			"scale": 0.85
+		},
+		"654d8505bfc3ee5d1c41": {
+			"file": "654d8505bfc3ee5d1c41.png",
+			"rect": [
+				5314.2353515625,
+				3412.529296875,
+				77.6470565795898,
+				76.470588684082
 			],
 			"scale": 0.85
 		},
@@ -571,6 +815,42 @@
 			],
 			"scale": 0.85
 		},
+		"6dd55e973689b0810845": {
+			"alpha": "straight",
+			"file": "../town_details/bread_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2206.0,
+				548.0,
+				151.0,
+				139.0
+			],
+			"scale": 2.0,
+			"sha256": "b746a597d5508840161acd6f8f04e7b940e160e5c34d89a09e29047c5aea0f32",
+			"source_png_sha256": "7b0af28391d350e1cd77247ae153cecf0099d69b5cb49e207efc564b595bb8ce"
+		},
+		"6e291dbedb112b67d408": {
+			"alpha": "straight",
+			"file": "../town_details/cyber_terminal_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				3192.0,
+				1007.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "7778d76fa4acd3d3eedf8068104078a5505b20f324188adccb5bcc1a98925194",
+			"source_png_sha256": "47b42de89febe4e7cfd7f15f26a0b6a2c8580effe5fb9cc9ac5e4318dcbe7c91"
+		},
 		"70a8f70e05b20a4b2a68": {
 			"file": "70a8f70e05b20a4b2a68.png",
 			"rect": [
@@ -588,6 +868,52 @@
 				3471.470703125,
 				429.411743164062,
 				349.411743164062
+			],
+			"scale": 0.85
+		},
+		"725c8ee57961e62d1b93": {
+			"alpha": "straight",
+			"file": "../town_details/association_board_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4796.0,
+				2362.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "fb37f0a21a6efae4c03224bf49a1602364ba3ae763ee3c55f4977561af5a9911",
+			"source_png_sha256": "cd307291506a46b8b9dcc1cdaa6fb0914e343daf2dd7bc51459688877bbd7269"
+		},
+		"726662679e1434e5c23b": {
+			"alpha": "straight",
+			"file": "../town_details/music_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				3211.0,
+				3732.0,
+				101.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "7919711d89294db1213ed823ea7a4d9b3ca203d0d99cbf781ef8a7ed89b3e2ce",
+			"source_png_sha256": "10415a4e3533a3f1320894c499d24b991011951f2dde0c8b8e5f3bad994f3aa1"
+		},
+		"73c1da4d35283b82e8a9": {
+			"file": "73c1da4d35283b82e8a9.png",
+			"rect": [
+				2255.2353515625,
+				3908.64697265625,
+				35.294116973877,
+				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -621,6 +947,24 @@
 			],
 			"scale": 0.85
 		},
+		"76b7db2c92d31e023677": {
+			"alpha": "straight",
+			"file": "../town_details/bank_terminal_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4802.0,
+				3727.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "682ab8a586752e62a0b8ae5021e8e7713efb59821d0bbcf30b74a6b5f1696434",
+			"source_png_sha256": "ec53efac42dd3ff7ddcfffd14dd2954179f6ab0a2a2ee4fa2a3fa90141b51299"
+		},
 		"777e9cf96ea8fa04aec8": {
 			"file": "777e9cf96ea8fa04aec8.png",
 			"rect": [
@@ -638,16 +982,6 @@
 				2283.82348632812,
 				75.2941131591797,
 				82.3529357910156
-			],
-			"scale": 0.85
-		},
-		"79ce6d835ff922f287aa": {
-			"file": "79ce6d835ff922f287aa.png",
-			"rect": [
-				5335.2353515625,
-				3380.64697265625,
-				35.294116973877,
-				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -681,6 +1015,24 @@
 			],
 			"scale": 0.85
 		},
+		"80916c7f3a5dc105d6d2": {
+			"alpha": "straight",
+			"file": "../town_details/produce_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2696.0,
+				550.0,
+				151.0,
+				137.0
+			],
+			"scale": 2.0,
+			"sha256": "c315ae796f5f72b280fbad5167b9dd23dfb8d81a64ce5191030ed56f01eceddb",
+			"source_png_sha256": "54714d22bb5490d92a9f3826dd39fc249a04492e29c5fa7406db66ae9720a872"
+		},
 		"83d6cb05b4fb9a73b8eb": {
 			"file": "83d6cb05b4fb9a73b8eb.png",
 			"rect": [
@@ -700,6 +1052,24 @@
 				349.411743164062
 			],
 			"scale": 0.85
+		},
+		"8c852e2354a3ac533a77": {
+			"alpha": "straight",
+			"file": "../town_details/health_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				406.0,
+				1879.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "80e21b6327d6393237a5f2aef5b54df384176fef51720d0795b457590954400e",
+			"source_png_sha256": "30e8b8a9368ad648ef2c62e772e82ee7a1f7edb762f9219f9eddcdd5bdfc6038"
 		},
 		"8f932cb878b0cada9b6a": {
 			"alpha": "straight",
@@ -748,6 +1118,24 @@
 				57.6470565795898
 			],
 			"scale": 0.85
+		},
+		"943f06bcd595923c547b": {
+			"alpha": "straight",
+			"file": "../town_details/laundry_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				3199.0,
+				3304.0,
+				124.0,
+				138.0
+			],
+			"scale": 2.0,
+			"sha256": "8e25809909ac4bd2635130d6ac3656a3a330f3656500335f619176a98d522996",
+			"source_png_sha256": "c60c3ba38f902a28c8b3dd4cdf823aef72d0a6f1f58f9a4d9ac392acf0824743"
 		},
 		"94a53277c465f2c223c0": {
 			"alpha": "straight",
@@ -815,16 +1203,6 @@
 			],
 			"scale": 0.85
 		},
-		"9a6556f5a9d7c57b5a34": {
-			"file": "9a6556f5a9d7c57b5a34.png",
-			"rect": [
-				2255.2353515625,
-				3900.64697265625,
-				35.294116973877,
-				38.8235282897949
-			],
-			"scale": 0.85
-		},
 		"9a6fc82f79fd9e9362a1": {
 			"file": "9a6fc82f79fd9e9362a1.png",
 			"rect": [
@@ -863,16 +1241,6 @@
 			],
 			"scale": 0.85
 		},
-		"9e07eb666fb53ceed16e": {
-			"file": "9e07eb666fb53ceed16e.png",
-			"rect": [
-				4824.2353515625,
-				2004.52941894531,
-				77.6470565795898,
-				76.470588684082
-			],
-			"scale": 0.85
-		},
 		"9f742058fabd3cebda75": {
 			"alpha": "straight",
 			"file": "../school_realism/meeting_table_420x160.webp",
@@ -890,6 +1258,42 @@
 			"scale": 1.0,
 			"sha256": "7f54aad4b1786b8dfe773c25a10bd703df00261f6b1bba9f60d9d8d071437940",
 			"source_png_sha256": "27bbbc4263c93139869cedbb90fabad1aa5a09ef23a15e99fc65058b14e6d359"
+		},
+		"a1e6bdba7d5ef02edd6e": {
+			"alpha": "straight",
+			"file": "../town_details/residence_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4306.0,
+				3741.0,
+				151.0,
+				141.0
+			],
+			"scale": 2.0,
+			"sha256": "8e6a97e22b581f47d311a7ad602ccde81d91fa589fc10c2712de0daf03ffede9",
+			"source_png_sha256": "0fbabcd999d61090913005eda87021834a3d573b6d7983974417652f0b391316"
+		},
+		"a2707ed1eb739642afb5": {
+			"alpha": "straight",
+			"file": "../town_details/stationery_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2206.0,
+				3293.0,
+				151.0,
+				144.0
+			],
+			"scale": 2.0,
+			"sha256": "1f0a59b927e560cf37080196713cdca54bf49941ce4019bd63bc7ab543064768",
+			"source_png_sha256": "19370aab43703dbd94e80080cd4b2fc016eecd36349dcc3f3e907fda28f3f87c"
 		},
 		"a452a5ad76ba1829b04b": {
 			"alpha": "straight",
@@ -909,6 +1313,24 @@
 			"sha256": "248e591976a968e1af254c7d4cc140b9ceb66f91623de6376e09ae3734851c57",
 			"source_png_sha256": "6321a4f255e588e4e8ca549d662e0e4256167cf4090b45873fc60a7cf21d7153"
 		},
+		"a466d6ed03754a387ca9": {
+			"alpha": "straight",
+			"file": "../town_details/bar_barrel_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				1176.0,
+				2304.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "cd8016e8dfe7cccf2b2b3b5a8a1c8d756bc67002b367a1a590500c8c60bb6222",
+			"source_png_sha256": "75cef1643b31c9adb1c350b7908d744a919bb6c4a3d2e6c250252fda1fd8348e"
+		},
 		"a4af37c528dd4b5dd38b": {
 			"file": "a4af37c528dd4b5dd38b.png",
 			"rect": [
@@ -916,16 +1338,6 @@
 				3478.529296875,
 				429.411743164062,
 				342.352935791016
-			],
-			"scale": 0.85
-		},
-		"a4b5e8aa0981b6ad7eb3": {
-			"file": "a4b5e8aa0981b6ad7eb3.png",
-			"rect": [
-				5335.2353515625,
-				3460.64697265625,
-				35.294116973877,
-				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -939,13 +1351,13 @@
 			],
 			"scale": 0.85
 		},
-		"a7f8686acd5629d20cea": {
-			"file": "a7f8686acd5629d20cea.png",
+		"a7eb6e967bc5ce229967": {
+			"file": "a7eb6e967bc5ce229967.png",
 			"rect": [
-				1225.2353515625,
-				2480.64697265625,
-				35.294116973877,
-				38.8235282897949
+				2234.2353515625,
+				3852.529296875,
+				77.6470565795898,
+				76.470588684082
 			],
 			"scale": 0.85
 		},
@@ -1009,6 +1421,24 @@
 			],
 			"scale": 0.85
 		},
+		"b250e6292633d70437d0": {
+			"alpha": "straight",
+			"file": "../town_details/butcher_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				5286.0,
+				3729.0,
+				151.0,
+				148.0
+			],
+			"scale": 2.0,
+			"sha256": "f67fbcc42187d0079556aef294bf6765f0d5ea33d99c0c73f05233b5034f937f",
+			"source_png_sha256": "2408e2303dd5d9a7bc7d300f6492dad9513ccaa02f822f90acc417f9ae189b64"
+		},
 		"b97b7019f4e4d4d29b23": {
 			"file": "b97b7019f4e4d4d29b23.png",
 			"rect": [
@@ -1048,6 +1478,24 @@
 				163.529403686523
 			],
 			"scale": 0.85
+		},
+		"bc705a1f95e723e4429b": {
+			"alpha": "straight",
+			"file": "../town_details/coffee_cart_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2696.0,
+				1015.0,
+				151.0,
+				142.0
+			],
+			"scale": 2.0,
+			"sha256": "91db98b93e5e3da39f78ded82b92909e516c6376e5a85ed5057c60d24c828a4a",
+			"source_png_sha256": "53a243811996cb82fc0ef273201620c1b135403cf88c2ee8582e30e9ea7f99e7"
 		},
 		"bc87776ed0f8da4b2474": {
 			"file": "bc87776ed0f8da4b2474.png",
@@ -1147,9 +1595,9 @@
 				153.0,
 				168.0
 			],
-			"scale": 1.0,
-			"sha256": "01480a828715b7993c0950089064a470fa8e508b5425e9b1768f9d5e90d358af",
-			"source_png_sha256": "5847ea98da4ee052ee4be94eccbaf171fb58e67e526cf55216ba30615dd39d5a"
+			"scale": 2.0,
+			"sha256": "d32980ad7504b448c1c8ff46208bc459438e7095703abd6d5dff59f454304b7c",
+			"source_png_sha256": "b1381cf055c48d2e489cf1814d6286a3efe008af97b2dedd13273c1603f2e241"
 		},
 		"c1b21f4ccf26d2b87087": {
 			"file": "c1b21f4ccf26d2b87087.png",
@@ -1191,6 +1639,34 @@
 			],
 			"scale": 0.85
 		},
+		"c500ac6573a714afdbd3": {
+			"alpha": "straight",
+			"file": "../town_details/post_envelope_120x38.webp",
+			"footprint": [
+				120.0,
+				38.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				2206.0,
+				990.0,
+				161.0,
+				174.0
+			],
+			"scale": 2.0,
+			"sha256": "7bb1c391ffd9e41b8df6d2aeae68eb65810054b0d58a146c39538fbf4317669f",
+			"source_png_sha256": "a45dbe4126f2e99f79df383da26f35160476a9f656cc9816a5c308dc3a8808a1"
+		},
+		"c876d769a2799cde754e": {
+			"file": "c876d769a2799cde754e.png",
+			"rect": [
+				5335.2353515625,
+				3468.64697265625,
+				35.294116973877,
+				38.8235282897949
+			],
+			"scale": 0.85
+		},
 		"c8dd9756331e45c364b1": {
 			"file": "c8dd9756331e45c364b1.png",
 			"rect": [
@@ -1210,6 +1686,24 @@
 				185.0
 			],
 			"scale": 1.0
+		},
+		"cad51a168e4524bbf0ba": {
+			"alpha": "straight",
+			"file": "../town_details/residence_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				5286.0,
+				1021.0,
+				151.0,
+				141.0
+			],
+			"scale": 2.0,
+			"sha256": "8e6a97e22b581f47d311a7ad602ccde81d91fa589fc10c2712de0daf03ffede9",
+			"source_png_sha256": "0fbabcd999d61090913005eda87021834a3d573b6d7983974417652f0b391316"
 		},
 		"cc6f8ad89846d954d0a7": {
 			"file": "cc6f8ad89846d954d0a7.png",
@@ -1271,16 +1765,6 @@
 			],
 			"scale": 0.85
 		},
-		"d0a45fbaf26f0f18cf0a": {
-			"file": "d0a45fbaf26f0f18cf0a.png",
-			"rect": [
-				2234.2353515625,
-				3844.529296875,
-				77.6470565795898,
-				76.470588684082
-			],
-			"scale": 0.85
-		},
 		"d10ab5925ddcad30e843": {
 			"file": "d10ab5925ddcad30e843.png",
 			"rect": [
@@ -1301,6 +1785,24 @@
 			],
 			"scale": 0.85
 		},
+		"d1c4604374dcb7da3bcd": {
+			"alpha": "straight",
+			"file": "../town_details/garage_tools_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				409.0,
+				3760.0,
+				132.0,
+				125.0
+			],
+			"scale": 2.0,
+			"sha256": "400595f61f27bed5bb567800ebc6ac41296fae230e8140d99d7f755416719962",
+			"source_png_sha256": "9b21fc550a11f0508a2013a021aae5d688f34594054844b19f61a6d3d7196f52"
+		},
 		"d4d78131641c554965cf": {
 			"file": "d4d78131641c554965cf.png",
 			"rect": [
@@ -1310,6 +1812,24 @@
 				324.705871582031
 			],
 			"scale": 0.85
+		},
+		"d703752b88d56edd30ae": {
+			"alpha": "straight",
+			"file": "../town_details/community_board_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				1176.0,
+				3732.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "bcba46240138334ea880e330a4903a08157661fe6db298fcaf7b74aec33b51f1",
+			"source_png_sha256": "9cbec54b8fba5108522caf6d8867d94590606388c70cb91b9ee46f95be899983"
 		},
 		"d79fc7349ca9707f8b8e": {
 			"alpha": "straight",
@@ -1325,9 +1845,27 @@
 				161.0,
 				214.0
 			],
-			"scale": 1.0,
-			"sha256": "02249fdc660e1d49a9a8b013744036dbfe0003676ee7062790309389ac60ba8e",
-			"source_png_sha256": "89f16bc6d0f31862f169fececd00a6e6e55ef809eff6384c52673cb9d7d9faea"
+			"scale": 2.0,
+			"sha256": "d390ef8b15503488ffa1079a39c04b8f0735cd682e73378fb57de7e7414013d3",
+			"source_png_sha256": "1cd7ccfb989a9387c242bea2182fd557ae167008bf1ee44a0739f03a1ce9ba51"
+		},
+		"dcb290bcb51697c12049": {
+			"alpha": "straight",
+			"file": "../town_details/restaurant_service_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4796.0,
+				1894.0,
+				151.0,
+				143.0
+			],
+			"scale": 2.0,
+			"sha256": "2b1905d1dc93fdc5cb8b3d1814a3ce65b440b9d1e8036c0594d25d1f0cf79f69",
+			"source_png_sha256": "a01319a1ba902ace5e68229e35cac6e29053bcff5917bba9cce01249cc0d473e"
 		},
 		"dd96a2a54e2db8fe00a4": {
 			"file": "dd96a2a54e2db8fe00a4.png",
@@ -1357,6 +1895,16 @@
 			"sha256": "e95a45bccb0e9d0bc6e52a3c36b5b1a9d9d889cb3365429ba147bb9998c12c60",
 			"source_png_sha256": "fc78900e5e38b67fcdc776c056de10292521ca89b2c27ae683ad987942ee0451"
 		},
+		"de2dd30876a61df46678": {
+			"file": "de2dd30876a61df46678.png",
+			"rect": [
+				1204.2353515625,
+				2432.529296875,
+				77.6470565795898,
+				76.470588684082
+			],
+			"scale": 0.85
+		},
 		"defd1907df2d84f3d9db": {
 			"file": "defd1907df2d84f3d9db.png",
 			"rect": [
@@ -1376,6 +1924,42 @@
 				342.352935791016
 			],
 			"scale": 0.85
+		},
+		"df4f4c971e028261c3bb": {
+			"alpha": "straight",
+			"file": "../town_details/garden_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				406.0,
+				3312.0,
+				151.0,
+				130.0
+			],
+			"scale": 2.0,
+			"sha256": "4c4e3355f85058cd5c6cc1737669fdb1d40ac9fe66bcf931e68f910b3668d58a",
+			"source_png_sha256": "a94d1268e9e11c77019f9a9b96cd515b9ffe69349ce27a9f59f205d7741cfeb7"
+		},
+		"e113d918a1d2561eb5dc": {
+			"alpha": "straight",
+			"file": "../town_details/canal_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				1176.0,
+				3292.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "ee95d29033528be7049b0aa996c1653e2ee2aa43ad63a1a0a40f814d8680a263",
+			"source_png_sha256": "64e9effd723bc6399e4584bce146c0b8008f56f593822987041025b7cd4a6c18"
 		},
 		"e1c91955efa2db702d66": {
 			"file": "e1c91955efa2db702d66.png",
@@ -1407,13 +1991,13 @@
 			],
 			"scale": 1.0
 		},
-		"e8f69c575934db01e12e": {
-			"file": "e8f69c575934db01e12e.png",
+		"e7eb79a218f7a2dc1597": {
+			"file": "e7eb79a218f7a2dc1597.png",
 			"rect": [
-				2745.2353515625,
-				1180.64709472656,
-				35.294116973877,
-				38.8235282897949
+				4824.2353515625,
+				2012.52941894531,
+				77.6470565795898,
+				76.470588684082
 			],
 			"scale": 0.85
 		},
@@ -1442,16 +2026,6 @@
 				3478.529296875,
 				583.529418945312,
 				342.352935791016
-			],
-			"scale": 0.85
-		},
-		"ecb4de6dbcca99a4073f": {
-			"file": "ecb4de6dbcca99a4073f.png",
-			"rect": [
-				2255.2353515625,
-				3820.64697265625,
-				35.294116973877,
-				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -1485,13 +2059,31 @@
 			],
 			"scale": 0.85
 		},
-		"f20155529f1c34420e5e": {
-			"file": "f20155529f1c34420e5e.png",
+		"efff10ead9e5b9b9cbb4": {
+			"alpha": "straight",
+			"file": "../town_details/coffee_cart_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
 			"rect": [
-				1204.2353515625,
-				2424.529296875,
-				77.6470565795898,
-				76.470588684082
+				2206.0,
+				3735.0,
+				151.0,
+				142.0
+			],
+			"scale": 2.0,
+			"sha256": "91db98b93e5e3da39f78ded82b92909e516c6376e5a85ed5057c60d24c828a4a",
+			"source_png_sha256": "53a243811996cb82fc0ef273201620c1b135403cf88c2ee8582e30e9ea7f99e7"
+		},
+		"f12c2bb92d24be64c9c2": {
+			"file": "f12c2bb92d24be64c9c2.png",
+			"rect": [
+				4845.2353515625,
+				2068.64697265625,
+				35.294116973877,
+				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -1533,6 +2125,24 @@
 			],
 			"scale": 0.85
 		},
+		"f5c3af98ac214a9165d9": {
+			"alpha": "straight",
+			"file": "../town_details/garden_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				4306.0,
+				3312.0,
+				151.0,
+				130.0
+			],
+			"scale": 2.0,
+			"sha256": "4c4e3355f85058cd5c6cc1737669fdb1d40ac9fe66bcf931e68f910b3668d58a",
+			"source_png_sha256": "a94d1268e9e11c77019f9a9b96cd515b9ffe69349ce27a9f59f205d7741cfeb7"
+		},
 		"f7317e35a8bf52088c7b": {
 			"alpha": "straight",
 			"file": "../school_realism/measurement_bench_210x110.webp",
@@ -1561,6 +2171,24 @@
 			],
 			"scale": 0.85
 		},
+		"f84deedd4463241e2a26": {
+			"alpha": "straight",
+			"file": "../town_details/hotel_luggage_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				1092.0,
+				260.0,
+				151.0,
+				164.0
+			],
+			"scale": 2.0,
+			"sha256": "b175c79e8ddd02e7c855abbfe6d23ae6d3b775d189286c7beae1d8ee117a1d2a",
+			"source_png_sha256": "dec7a9683bf06dc43a6946a1fa2d38ae554ae8afe822b10664a7b91d212b174c"
+		},
 		"f926d4f431890e3001f2": {
 			"file": "f926d4f431890e3001f2.png",
 			"rect": [
@@ -1578,16 +2206,6 @@
 				3471.470703125,
 				435.294097900391,
 				349.411743164062
-			],
-			"scale": 0.85
-		},
-		"fd9773c26760228dde26": {
-			"file": "fd9773c26760228dde26.png",
-			"rect": [
-				4845.2353515625,
-				2060.64697265625,
-				35.294116973877,
-				38.8235282897949
 			],
 			"scale": 0.85
 		},
@@ -1610,6 +2228,6 @@
 			"source_png_sha256": "0eea0558b29d53c162be900e1d25799ad61730dac11573fc74208d162ca76fb3"
 		}
 	},
-	"town_render_manifest_sha256": "c60ad142653ef5753232c8f2ba1900dd86b5f79daf838a956f4cf6f3cf1d1606",
+	"town_render_manifest_sha256": "8aa69edec7c5d62f837734d2b3fc10449d753622191d2773b01497471b8bfe14",
 	"version": 1
 }
