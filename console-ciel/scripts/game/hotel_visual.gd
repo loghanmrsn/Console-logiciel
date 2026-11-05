@@ -356,7 +356,7 @@ func _furniture(kind: String, rect: Rect2) -> void:
 			draw_arc(center, 76, 0, TAU, 48, Color("d6e4d5"), 3, true)
 			draw_circle(center, 36, Color("e0d8bc"))
 			draw_circle(center, 16, GOLD)
-		"stairs_up", "stairs_down": _spiral(rect, kind == "stairs_up")
+		"stairs_up", "stairs_down": _straight_stairs(rect, kind == "stairs_up")
 		"planter": _plant(rect)
 		"column":
 			draw_circle(rect.get_center(), rect.size.x * 0.5, GOLD)
@@ -394,23 +394,39 @@ func _furniture(kind: String, rect: Rect2) -> void:
 		draw_line(rect.position + Vector2(10, 4), Vector2(rect.end.x - 10, rect.position.y + 4), Color(1, 1, 1, .28), 2, true)
 		draw_line(Vector2(rect.position.x + 10, rect.end.y - 4), rect.end - Vector2(10, 4), Color(0.12, .15, .15, .18), 3, true)
 
-func _spiral(rect: Rect2, ascending: bool) -> void:
-	var center := rect.get_center() - Vector2(0, 24)
-	var radius := minf(rect.size.x * .47, rect.size.y * .36)
-	_rounded(rect, Color("e0d5bc"), 35)
-	# Both ends face the lower landing. The curving treads turn around a solid
-	# central well rather than suggesting a straight through-floor corridor.
-	draw_arc(center, radius, PI * .15, PI * 2.85, 64, Color("a5916f"), 24, true)
-	for index in range(19):
-		var angle := PI * .25 + float(index) / 18.0 * PI * 1.5
-		var direction := Vector2.from_angle(angle)
-		draw_line(center + direction * radius * .38, center + direction * radius, Color("f4eddb"), 4, true)
-	draw_circle(center, radius * .31, VELVET)
-	draw_arc(center, radius * .4, 0, TAU, 32, GOLD, 4, true)
-	draw_rect(Rect2(center + Vector2(-radius * .5, radius * .65), Vector2(radius, radius * .45)), Color("d3c7ac"))
-	var arrow_at := Vector2(rect.get_center().x, rect.end.y - 22)
+func _straight_stairs(rect: Rect2, ascending: bool) -> void:
+	Materials.shadow(self,rect,12,.16)
+	var left := rect.position.x
+	var top := rect.position.y
+	var width := rect.size.x
+	var run := rect.size.y-38
+	_rounded(Rect2(left+25,top-25,width-50,49),Color("dedbd1"),4)
+	# Parallel flights with twelve continuous treads, risers and side rails.
+	for index in range(12):
+		var t := index/12.0
+		var next := (index+1)/12.0
+		var inset := lerpf(35,18,t)
+		var lower_inset := lerpf(35,18,next)
+		var y := top+16+t*run
+		var lower_y := top+16+next*run
+		var stone := Color("c3c2b9").lerp(Color("e6e2d7"),t if ascending else 1-t)
+		draw_colored_polygon(PackedVector2Array([Vector2(left+inset,y),Vector2(left+width-inset,y),Vector2(left+width-lower_inset,lower_y),Vector2(left+lower_inset,lower_y)]),stone)
+		draw_line(Vector2(left+lower_inset,lower_y-5),Vector2(left+width-lower_inset,lower_y-5),Color("f5f1e8"),4,true)
+		draw_line(Vector2(left+lower_inset,lower_y),Vector2(left+width-lower_inset,lower_y),Color("8c918c"),3,true)
+		if index%3==1: draw_line(Vector2(left+inset+45,y+4),Vector2(left+inset+79,lower_y-7),Color(.55,.57,.54,.23),1,true)
+	for side in [0,1]:
+		for index in range(7):
+			var t := index/6.0
+			var x := left+lerpf(30,12,t) if side==0 else left+width-lerpf(30,12,t)
+			var y := top+18+t*run
+			draw_line(Vector2(x,y),Vector2(x,y-52),Color("82765f"),4,true)
+		var start := Vector2(left+(30 if side==0 else width-30),top-34)
+		var end := Vector2(left+(12 if side==0 else width-12),top+run-34)
+		draw_line(start,end,GOLD,7,true)
+		draw_line(start-Vector2(1,2),end-Vector2(1,2),Color("e0c38c"),2,true)
+	var at := Vector2(rect.get_center().x,rect.end.y-10)
 	var flip := -1.0 if ascending else 1.0
-	draw_polyline(PackedVector2Array([arrow_at + Vector2(-13, -flip * 6), arrow_at + Vector2(0, flip * 7), arrow_at + Vector2(13, -flip * 6)]), INK, 4, true)
+	draw_polyline(PackedVector2Array([at+Vector2(-11,-flip*5),at+Vector2(0,flip*6),at+Vector2(11,-flip*5)]),INK,3,true)
 
 func _seat(rect: Rect2, long_seat: bool) -> void:
 	Materials.shadow(self,rect,22,.20)
