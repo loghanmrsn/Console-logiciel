@@ -65,7 +65,6 @@ static func props() -> Array[Dictionary]:
 		{"kind":"campus_planter","rect":Rect2(8280,1030,420,110)},
 		{"kind":"campus_bench","rect":Rect2(6920,965,180,36)},
 		{"kind":"campus_bench","rect":Rect2(8020,980,180,36)},
-		{"kind":"campus_sign","rect":Rect2(7780,970,145,35)},
 		{"kind":"tree","rect":Rect2(4860,920,60,60)},
 		{"kind":"bench","rect":Rect2(4940,1020,180,45)},
 		{"kind":"campus_arrow","rect":Rect2(5170,1040,22,20)}])
