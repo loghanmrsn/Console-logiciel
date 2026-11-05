@@ -59,7 +59,8 @@ func _run() -> void:
 	_check(app.demo.overlay_kind == "hotel_travel", "Porte du lycée accessible")
 	# Travel has its own save-before-move contract; exercise that service then restore.
 	app.demo._close_overlay()
-	_check(hotel.travel("school_cyber").ok, "Entrée dans la salle cyber")
+	_check(hotel.travel("school_reception").ok, "Entrée dans l’accueil")
+	_check(hotel.escort_to_workshops().ok and hotel.travel("school_cyber").ok, "Ateliers accompagnés puis salle cyber")
 	app.demo.world.restore_progress(state.profile.progress)
 	app.demo.world.restore_checkpoint()
 	await _frames(8)
@@ -75,7 +76,7 @@ func _run() -> void:
 		app.demo._close_overlay()
 	_check(saves.validate_profile(state.profile).ok and saves.read_profile(profile_id).data == state.profile, "Sauvegarde du lycée valide et persistante")
 	_check(profiles.select_profile(profile_id).ok and state.profile.progress.room_id == "school_cyber", "Reprise au lycée")
-	_check(hotel.travel("school_stop").ok and hotel.return_bus().ok, "Retour au parvis puis en ville")
+	_check(hotel.travel("school_reception").ok and hotel.travel("school_stop").ok and hotel.return_bus().ok, "Retour au parvis puis en ville")
 	_check(hotel.board_bus().ok and state.profile.progress.room_id == "ctf_bus_stop", "Ancien arrêt CTF conservé")
 	await _finish()
 
