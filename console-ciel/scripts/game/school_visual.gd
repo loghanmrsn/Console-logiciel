@@ -148,12 +148,9 @@ func _shadow_style() -> StyleBoxFlat:
 func _atelier_area() -> void:
 	var size := School.extent(zone)
 	preload("res://scripts/game/school_surfaces.gd").floor_material(self,size)
+	if zone == "school_passage": return
 	_text(School.title(zone).to_upper(),Vector2(size.x/2,110),22,DARK,true)
 	for target in School.interactions(zone):
 		if target.id in ["school_secure","school_cyber_return","school_hall_return","school_passage_return"]:
 			draw_rect(Rect2(target.at-Vector2(72,50),Vector2(144,14)),METAL)
 			_text(target.label,target.at+Vector2(0,-65),16,DARK,true)
-	if zone == "school_passage":
-		_text("1 · CIEL     2 · 2TNE     3 · RÉUNION     5 · BTS FED",Vector2(1750,420),22,DARK,true)
-		_text("← PORTE SÉCURISÉE     ↓ ACCUEIL / ATELIER 4",Vector2(620,260),18,DARK,true)
-		for x in range(450,2600,300): draw_line(Vector2(x,340),Vector2(x+80,340),Color("90a6a6"),4)
