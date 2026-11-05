@@ -8,20 +8,21 @@
 		"render_materials": "6ec8ea5071d8ae08eeb7921fbc08b6d44bb347001770c2f3ad25d36e5428d65e",
 		"road_layout": "e7caf51fc80e1801b5bc56e2330db3d9451c89c0cab79910085540169d8babce",
 		"school_atelier_art": "15dc0b450294feb7ee62afe302ae01ad33dbdf3f4a537bc3f4eb72608c231d46",
-		"school_atelier_scene": "4b8bc67ee84e8c03505c9f729bc001d511d9d88eb1ef0eb0a006fcc183375cfd",
+		"school_atelier_scene": "811b6e13d8d6a8aa7af78a4c3c9cbe83c8db09d771c4aac5e6ed18e77658490f",
 		"school_ateliers": "d4222ba6ab6ed6d1b30a460ef991d22be9a4f5944ff7f648a4620c164c0efd0d",
 		"school_facade_art": "5236f1ff4533a898274f32836826d11121e10a7652f8857635fc48c0e7994bd1",
-		"school_layout": "97cb22e85e6229423770d61ce2b4aba669b8e7daaeb23c8d1242b7ad1c98f567",
+		"school_layout": "c71c98b3c4a3e6dff134acb4d7bfe5386469ac8946aa7ed23817ce570dae79b1",
 		"school_realism": "4c0d6a475b5b010f5422ffc8cb8cbcadc50380de60903de237683ca0e4dea48c",
+		"school_reception": "a550f392f04dcbcd534d3a43615fb5498a2dbe5160603950d8820cac026d0ff3",
 		"school_surfaces": "46e53d1bf8917bb0424ccb42fad09a463aa15d69af4c0c9755116623634297ff",
-		"school_visual": "ffa7857aea9ce99eeba0d596f31045cfe81a890fc5e2a8c27eda63e1bbf21cc7",
+		"school_visual": "c079369551644c25f664ebb91f4ae50465c161ea3f10957a466b8eff2ae782ea",
 		"storefront_art": "2eaf5c7bb750204bc320b892b97e13efc356b714ba325364dd4e5739e64d436d",
 		"town_details": "51d69031b48df08a5b05e381d769100c3b309cdeb5110bef1b18caf8534cf311",
-		"town_layout": "a31f6a381262ffd6f6e788395833e28fd44c052d3eadb6cb89eb5153456cd21e",
+		"town_layout": "e7aab6d474ca2c7f3c760900968b01704c33bb2161e86ff5acde64c8b268a489",
 		"town_visual": "ceb882030a8ddae18d96fd9e698d4f49ecd6eebf9dd45782d01e0bf5bb8edb79",
 		"workshop_art": "e1a98ca75d4ad48dd871101702c99ba9759f4039420c216d0d1c803d22620511"
 	},
-	"generator_sha256": "9e78b272fa5360f40c190a1b8becbc8e8440d190ca99af1323b489ff75cd7740",
+	"generator_sha256": "9dc579fbbadb99a6affb590f8c56c2c00b10489d5ca674ebea6a8d752fd34138",
 	"school_logo_sha256": "c94e5910e205935e37519125c59c7e2b861e1aafc49d6075f0394bfce3b7f6bf",
 	"school_render_manifest_sha256": "c76bfdcae03314a56ef2e77c7c52d7d25e4d66faccbfcb4bebe9a0266233c053",
 	"sprites": {
@@ -486,6 +487,16 @@
 				38.8235282897949
 			],
 			"scale": 0.85
+		},
+		"36b43282ce55be4ff467": {
+			"file": "36b43282ce55be4ff467.png",
+			"rect": [
+				-1.0,
+				-50.0,
+				112.0,
+				85.0
+			],
+			"scale": 1.0
 		},
 		"39ee287970945a01e539": {
 			"file": "39ee287970945a01e539.png",
@@ -1052,6 +1063,16 @@
 				349.411743164062
 			],
 			"scale": 0.85
+		},
+		"8c329508e012974dc49b": {
+			"file": "8c329508e012974dc49b.png",
+			"rect": [
+				-11.0,
+				-46.0,
+				354.0,
+				318.0
+			],
+			"scale": 1.0
 		},
 		"8c852e2354a3ac533a77": {
 			"alpha": "straight",
@@ -2160,16 +2181,6 @@
 			"scale": 1.0,
 			"sha256": "af45649b8ccf50ebb337532f2c4aa37a3101432af9ecbd38b6f0c5e99884e8bf",
 			"source_png_sha256": "d1ee1d2cc0ed1d80e1211a3a235d5bdc9707d30ccfcf61450eacdbc337af4f2b"
-		},
-		"f75166c090b5f495c3b4": {
-			"file": "f75166c090b5f495c3b4.png",
-			"rect": [
-				7775.05859375,
-				817.941162109375,
-				158.823532104492,
-				198.823516845703
-			],
-			"scale": 0.85
 		},
 		"f84deedd4463241e2a26": {
 			"alpha": "straight",
