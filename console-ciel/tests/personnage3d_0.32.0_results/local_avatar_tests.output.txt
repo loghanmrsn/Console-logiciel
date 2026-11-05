@@ -1,0 +1,125 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+  OK  Créer uniquement le dossier d'images temporaire
+  OK  Catalogue livré chargé sans modification
+  OK  Nom local sûr accepté : photo.png
+  OK  Nom local sûr accepté : été 2026.JPEG
+  OK  Nom local sûr accepté : Mon_avatar.WEBP
+  OK  Nom local sûr accepté : simple.jpg
+  OK  Nom/type interdit refusé : null
+  OK  Nom/type interdit refusé : 42
+  OK  Nom/type interdit refusé : []
+  OK  Nom/type interdit refusé : {}
+  OK  Nom/type interdit refusé : ""
+  OK  Nom/type interdit refusé : ".hidden.png"
+  OK  Nom/type interdit refusé : "../photo.png"
+  OK  Nom/type interdit refusé : "sub/photo.png"
+  OK  Nom/type interdit refusé : "sub\\photo.png"
+  OK  Nom/type interdit refusé : "https://site/photo.png"
+  OK  Nom/type interdit refusé : "file:///tmp/photo.png"
+  OK  Nom/type interdit refusé : "/tmp/photo.png"
+  OK  Nom/type interdit refusé : "C:\\photo.png"
+  OK  Nom/type interdit refusé : "../.."
+  OK  Nom/type interdit refusé : "photo.svg"
+  OK  Nom/type interdit refusé : "photo.gif"
+  OK  Nom/type interdit refusé : "photo.png "
+  OK  Nom/type interdit refusé : " photo.png"
+  OK  Nom/type interdit refusé : "photo.png\n"
+  OK  Nom/type interdit refusé : "a?b.png"
+  OK  Nom/type interdit refusé : "a*b.jpg"
+  OK  Nom/type interdit refusé : "CON.png"
+  OK  Nom/type interdit refusé : "CON.photo.png"
+  OK  Nom/type interdit refusé : "lpt9.JPEG"
+  OK  Nom/type interdit refusé : "bad.png"
+  OK  Nom/type interdit refusé : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.png"
+  OK  Le test utilise un seul dossier explicitement isolé
+  OK  Aucun chargement par traversée de chemin
+  OK  Fixture PNG créée localement
+  OK  Fixture JPG majuscule créée localement
+  OK  Fixture JPEG créée localement
+  OK  Fixture WebP créée localement
+  OK  Fichier temporaire écrit : invalide.png
+  OK  Fichier temporaire écrit : unsupported.svg
+  OK  Sous-dossier de test préparé
+  OK  Image imbriquée de test créée
+  OK  Fichier temporaire écrit : trop_grande.png
+  OK  Fichier temporaire écrit : trop_lourde.png
+  OK  Entrée prête pour l'aperçu : Photo.JPG
+  OK  Vignette bornée : Photo.JPG
+  OK  Entrée prête pour l'aperçu : Portrait.jpeg
+  OK  Vignette bornée : Portrait.jpeg
+  OK  Entrée prête pour l'aperçu : bleu.png
+  OK  Vignette bornée : bleu.png
+  OK  Entrée prête pour l'aperçu : profil.WEBP
+  OK  Vignette bornée : profil.WEBP
+  OK  Seules les quatre images directes valides sont proposées
+  OK  Format réellement décodé : bleu.png
+  OK  Format réellement décodé : Photo.JPG
+  OK  Format réellement décodé : Portrait.jpeg
+  OK  Format réellement décodé : profil.WEBP
+  OK  Fichier invalide, démesuré ou imbriqué ignoré : invalide.png
+  OK  Fichier invalide, démesuré ou imbriqué ignoré : trop_grande.png
+  OK  Fichier invalide, démesuré ou imbriqué ignoré : trop_lourde.png
+  OK  Fichier invalide, démesuré ou imbriqué ignoré : unsupported.svg
+  OK  Fichier invalide, démesuré ou imbriqué ignoré : nested/cache.png
+  OK  Les aperçus identiques réutilisent la vignette en cache
+  OK  Actualiser relit l'image au lieu d'utiliser l'ancien cache
+  OK  Une image liée symboliquement n'est jamais chargée
+  OK  Le lien symbolique est absent du sélecteur
+  OK  Créer un profil avec image personnelle
+  OK  Seul le nom simple de l'image est enregistré
+  OK  Schéma et avatar de repli du catalogue restent inchangés
+  OK  Une image personnelle ne coûte rien et n'ajoute aucun article
+  OK  Image personnelle et profil survivent à une lecture disque
+  OK  Ancien document sans champ avatar_image accepté
+  OK  Champ facultatif vide accepté
+  OK  Image absente ne rend pas la sauvegarde invalide
+  OK  Référence d'image invalide refusée dans le document : 42
+  OK  Référence d'image invalide refusée dans le document : null
+  OK  Référence d'image invalide refusée dans le document : []
+  OK  Référence d'image invalide refusée dans le document : "../bleu.png"
+  OK  Référence d'image invalide refusée dans le document : "https://site/photo.png"
+  OK  Référence d'image invalide refusée dans le document : "photo.gif"
+  OK  Création avec une nouvelle image absente refusée
+  OK  Création avec un chemin arbitraire refusée
+  OK  Créer un deuxième profil avec une autre image
+  OK  Chaque profil garde son image propre
+  OK  Resélectionner le premier profil
+  OK  La sélection restaure l'image du bon profil
+  OK  Nouvelle image absente refusée sans modifier le profil
+  OK  Échec d'écriture du changement d'image signalé
+  OK  Échec conserve image, pseudo, points et fichier précédents
+  OK  Changer d'image et enregistrer un pseudo en minuscules
+  OK  Changement d'image conserve argent et inventaire
+  OK  Modifier Alice ne modifie aucun champ de Bob
+  OK  Rééquiper un thème sans changer l'image
+  OK  Rééquiper un cadre sans changer l'image
+  OK  Thème et cadre conservent la photo personnelle
+  OK  Un achat sans points reste refusé même avec une photo personnelle
+  OK  Préparer deux équipements possédés dans le profil de test isolé
+  OK  Changer réellement de thème avec une photo personnelle
+  OK  Changer réellement de cadre avec une photo personnelle
+  OK  Équiper thème/cadre conserve image, points et inventaire
+  OK  Échec de sauvegarde du retour à l'avatar du catalogue signalé
+  OK  Retour à l'avatar échoué conserve la photo et le document précédent
+  OK  Rééquiper le même avatar du catalogue
+  OK  Avatar du catalogue retire l'image même si le repli était déjà équipé
+  OK  Restaurer une image locale après l'avatar du catalogue
+  OK  L'ancienne API sans troisième argument reste utilisable
+  OK  Choisir un avatar normal par l'ancienne API retire l'image
+  OK  Préparer la disparition d'image sans autre modification
+  OK  Supprimer uniquement la fixture d'image temporaire
+  OK  Une image supprimée abandonne aussi sa vignette mise en cache
+  OK  Le profil reste chargeable et conserve sa référence après suppression d'image
+  OK  Renommer conserve une référence existante dont l'image a disparu
+  OK  Le repli existant, les points et l'inventaire restent disponibles
+  OK  Réouvrir le profil après disparition d'image
+  OK  Le chargement conserve les données et permet le repli visuel
+  OK  Une autre image valide peut remplacer celle qui manque
+  OK  Fichier temporaire écrit : profil.WEBP
+  OK  Une image devenue invalide disparaît de l'aperçu sans invalider le profil
+  OK  Image devenue invalide : renommage toujours possible
+  OK  Dossier absent : liste vide, aucun échec de profil
+  OK  Le stockage des profils reste indépendant du dossier d'images
+  OK  Le dossier d'images lui-même ne peut pas être un lien symbolique
+AVATARS LOCAUX : 122 assertions, 0 échec(s).
