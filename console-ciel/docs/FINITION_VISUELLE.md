@@ -74,3 +74,5 @@ Avec ses paramètres par défaut, le script conserve le comportement d'export pr
 ## Limites
 
 Rendu logiciel X11, pas écran physique Windows/Pi. Aucune manette USB réelle, aucun mapping du contrôleur fabriqué, aucune écoute audio ni mesure des performances Raspberry Pi. Le pilote ne permet pas le réglage V-Sync ; l'avertissement est attendu. Une inspection sur l'écran final et une répétition à la manette restent nécessaires. L'affichage des images dans la conversation ne garantit pas que l'explorateur de fichiers iPhone permette leur téléchargement.
+
+Les premières galeries historiques `refonte/` et `finition/` restent accessibles dans le dépôt et les anciennes archives ; voir [le contenu des archives courantes](ARCHIVE_COMPLETE.md).
