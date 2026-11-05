@@ -1,17 +1,109 @@
 {
 	"blender_version": "4.3.2",
+	"catalog_sha256": "e144300533eff4ce319cffa48f3c29361285e1d7f541d800241bf0b1b59ccac6",
 	"eu_star_count": 12.0,
 	"fr_stripe_order": [
 		"blue",
 		"white",
 		"red"
 	],
-	"generator_sha256": "f722190238f3499b59cd85019ab59d8cf938ad8c6b19ba7032c6cdecbe2ba8bc",
-	"intent": "Public building forecourt decorations, French and European flags, books, media poster and realistic animated stone fountain.",
+	"generator_sha256": "25688973ce491699972149ecbd867c46c6498a29d8dbca42b56d90e060c60278",
+	"intent": "Domain-specific physical forecourt decorations for every city building, rendered at 2x resolution. Stone fountain with animated flowing water in Godot.",
 	"license": "CC0-1.0 original artwork",
+	"models_sha256": "93853977998e36b6db796891a73514380e420172b726a57185988e73ede3d51f",
 	"packing_generator_sha256": "e1292d999d2121f2717ec1459793fe5d75ae44119c6c558c8d8ba1d8ecbf7b4b",
 	"rig_sha256": "635b136c8bc14b953f6c974ea5c66e60aa29a73ad973dd351fdddd65335f8ee9",
 	"sprites": {
+		"art_display_110x36": {
+			"alpha": "straight",
+			"file": "art_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-11.0,
+				-77.0,
+				136.0,
+				129.0
+			],
+			"scale": 2.0,
+			"sha256": "f1f218ea7e1591a361c83184b5ea2b76d3b42831fd76af154b1a312b46f5c239",
+			"source_png_sha256": "778edf6bf52d1539b9cb934db7b72d46fa9f69fdd9b80800efd858bfa82bcb3a"
+		},
+		"association_board_110x36": {
+			"alpha": "straight",
+			"file": "association_board_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-82.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "fb37f0a21a6efae4c03224bf49a1602364ba3ae763ee3c55f4977561af5a9911",
+			"source_png_sha256": "cd307291506a46b8b9dcc1cdaa6fb0914e343daf2dd7bc51459688877bbd7269"
+		},
+		"bank_terminal_110x36": {
+			"alpha": "straight",
+			"file": "bank_terminal_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-12.0,
+				-87.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "682ab8a586752e62a0b8ae5021e8e7713efb59821d0bbcf30b74a6b5f1696434",
+			"source_png_sha256": "ec53efac42dd3ff7ddcfffd14dd2954179f6ab0a2a2ee4fa2a3fa90141b51299"
+		},
+		"bar_barrel_110x36": {
+			"alpha": "straight",
+			"file": "bar_barrel_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-90.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "cd8016e8dfe7cccf2b2b3b5a8a1c8d756bc67002b367a1a590500c8c60bb6222",
+			"source_png_sha256": "75cef1643b31c9adb1c350b7908d744a919bb6c4a3d2e6c250252fda1fd8348e"
+		},
+		"bicycle_126x42": {
+			"alpha": "straight",
+			"file": "bicycle_126x42.webp",
+			"footprint": [
+				126.0,
+				42.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-21.0,
+				-48.0,
+				172.0,
+				103.0
+			],
+			"scale": 2.0,
+			"sha256": "adf56d2d04824ac1ef935fbd8f8414f862ecd1e4f9f45f1d982b3f5a67d25d50",
+			"source_png_sha256": "54c04413a2048627a90702b19c0e8c2f785f321a03ebb6030f8cd82d9131f086"
+		},
 		"book_box_100x40": {
 			"alpha": "straight",
 			"file": "book_box_100x40.webp",
@@ -26,9 +118,135 @@
 				153.0,
 				168.0
 			],
-			"scale": 1.0,
-			"sha256": "01480a828715b7993c0950089064a470fa8e508b5425e9b1768f9d5e90d358af",
-			"source_png_sha256": "5847ea98da4ee052ee4be94eccbaf171fb58e67e526cf55216ba30615dd39d5a"
+			"scale": 2.0,
+			"sha256": "d32980ad7504b448c1c8ff46208bc459438e7095703abd6d5dff59f454304b7c",
+			"source_png_sha256": "b1381cf055c48d2e489cf1814d6286a3efe008af97b2dedd13273c1603f2e241"
+		},
+		"bread_stall_110x36": {
+			"alpha": "straight",
+			"file": "bread_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-76.0,
+				151.0,
+				139.0
+			],
+			"scale": 2.0,
+			"sha256": "b746a597d5508840161acd6f8f04e7b940e160e5c34d89a09e29047c5aea0f32",
+			"source_png_sha256": "7b0af28391d350e1cd77247ae153cecf0099d69b5cb49e207efc564b595bb8ce"
+		},
+		"butcher_stall_110x36": {
+			"alpha": "straight",
+			"file": "butcher_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-85.0,
+				151.0,
+				148.0
+			],
+			"scale": 2.0,
+			"sha256": "f67fbcc42187d0079556aef294bf6765f0d5ea33d99c0c73f05233b5034f937f",
+			"source_png_sha256": "2408e2303dd5d9a7bc7d300f6492dad9513ccaa02f822f90acc417f9ae189b64"
+		},
+		"canal_display_110x36": {
+			"alpha": "straight",
+			"file": "canal_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-82.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "ee95d29033528be7049b0aa996c1653e2ee2aa43ad63a1a0a40f814d8680a263",
+			"source_png_sha256": "64e9effd723bc6399e4584bce146c0b8008f56f593822987041025b7cd4a6c18"
+		},
+		"cinema_display_110x36": {
+			"alpha": "straight",
+			"file": "cinema_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-82.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "307f820d47f4a6e4985b2546b0ac05c9755a6356f30ee8d9ee2dd066da92c831",
+			"source_png_sha256": "acacb04256a2be1cd1927537a2a1660d1c961aa0ed9da9cddbf5e4a264719d68"
+		},
+		"coffee_cart_110x36": {
+			"alpha": "straight",
+			"file": "coffee_cart_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-79.0,
+				151.0,
+				142.0
+			],
+			"scale": 2.0,
+			"sha256": "91db98b93e5e3da39f78ded82b92909e516c6376e5a85ed5057c60d24c828a4a",
+			"source_png_sha256": "53a243811996cb82fc0ef273201620c1b135403cf88c2ee8582e30e9ea7f99e7"
+		},
+		"community_board_110x36": {
+			"alpha": "straight",
+			"file": "community_board_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-82.0,
+				151.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "bcba46240138334ea880e330a4903a08157661fe6db298fcaf7b74aec33b51f1",
+			"source_png_sha256": "9cbec54b8fba5108522caf6d8867d94590606388c70cb91b9ee46f95be899983"
+		},
+		"cyber_terminal_110x36": {
+			"alpha": "straight",
+			"file": "cyber_terminal_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-12.0,
+				-87.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "7778d76fa4acd3d3eedf8068104078a5505b20f324188adccb5bcc1a98925194",
+			"source_png_sha256": "47b42de89febe4e7cfd7f15f26a0b6a2c8580effe5fb9cc9ac5e4318dcbe7c91"
 		},
 		"flag_eu_24x20": {
 			"alpha": "straight",
@@ -44,9 +262,9 @@
 				161.0,
 				214.0
 			],
-			"scale": 1.0,
-			"sha256": "02249fdc660e1d49a9a8b013744036dbfe0003676ee7062790309389ac60ba8e",
-			"source_png_sha256": "89f16bc6d0f31862f169fececd00a6e6e55ef809eff6384c52673cb9d7d9faea"
+			"scale": 2.0,
+			"sha256": "d390ef8b15503488ffa1079a39c04b8f0735cd682e73378fb57de7e7414013d3",
+			"source_png_sha256": "1cd7ccfb989a9387c242bea2182fd557ae167008bf1ee44a0739f03a1ce9ba51"
 		},
 		"flag_fr_24x20": {
 			"alpha": "straight",
@@ -62,9 +280,27 @@
 				161.0,
 				214.0
 			],
-			"scale": 1.0,
-			"sha256": "95475117a303f0d88557c9ef961b58dfaefcaf7ed7c8b1ecc182f64d79a28576",
-			"source_png_sha256": "757509204a12f69160c48e1b02bc55566e4ce2f89fdfa94efab904815303855f"
+			"scale": 2.0,
+			"sha256": "b35200fc3d3da8b573270ca736b1acc5967f4e8a9fa265a17cffb420a371b0c8",
+			"source_png_sha256": "4f004991079857d643e2421d5f1d4598092f5f0ede6c79c4ebb9ee0b8441ad23"
+		},
+		"flower_display_120x44": {
+			"alpha": "straight",
+			"file": "flower_display_120x44.webp",
+			"footprint": [
+				120.0,
+				44.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-68.0,
+				161.0,
+				140.0
+			],
+			"scale": 2.0,
+			"sha256": "6cb23619cba71298bde0e5b338ad2752122e79d86b03ce19dbad784b782b1050",
+			"source_png_sha256": "81671fafd8639890473cb817f0be01275cf015a6398a178816e7af7635c70ddc"
 		},
 		"fountain_190x190": {
 			"alpha": "straight",
@@ -80,9 +316,99 @@
 				230.0,
 				261.0
 			],
-			"scale": 1.0,
-			"sha256": "d4b0648c2c9abafea3ea83a2b6c410ea48b676ee2776a1f85b5224671f2f5415",
-			"source_png_sha256": "1fc67f7c98a83ab11b19d7b3aefd29caa0987168cdd276dfb12f66d1c2931d84"
+			"scale": 2.0,
+			"sha256": "20013c2176a4af57106e16811200acb778376a6c28276843415d6630fa6bf902",
+			"source_png_sha256": "0f4b5abf7cb1576add00d7867d34e0824595be3b189f8f93da4155b53690c25d"
+		},
+		"garage_tools_110x36": {
+			"alpha": "straight",
+			"file": "garage_tools_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-15.0,
+				-54.0,
+				132.0,
+				125.0
+			],
+			"scale": 2.0,
+			"sha256": "400595f61f27bed5bb567800ebc6ac41296fae230e8140d99d7f755416719962",
+			"source_png_sha256": "9b21fc550a11f0508a2013a021aae5d688f34594054844b19f61a6d3d7196f52"
+		},
+		"garden_planter_110x36": {
+			"alpha": "straight",
+			"file": "garden_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-62.0,
+				151.0,
+				130.0
+			],
+			"scale": 2.0,
+			"sha256": "4c4e3355f85058cd5c6cc1737669fdb1d40ac9fe66bcf931e68f910b3668d58a",
+			"source_png_sha256": "a94d1268e9e11c77019f9a9b96cd515b9ffe69349ce27a9f59f205d7741cfeb7"
+		},
+		"health_sign_110x36": {
+			"alpha": "straight",
+			"file": "health_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-85.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "80e21b6327d6393237a5f2aef5b54df384176fef51720d0795b457590954400e",
+			"source_png_sha256": "30e8b8a9368ad648ef2c62e772e82ee7a1f7edb762f9219f9eddcdd5bdfc6038"
+		},
+		"hotel_luggage_110x36": {
+			"alpha": "straight",
+			"file": "hotel_luggage_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-98.0,
+				151.0,
+				164.0
+			],
+			"scale": 2.0,
+			"sha256": "b175c79e8ddd02e7c855abbfe6d23ae6d3b775d189286c7beae1d8ee117a1d2a",
+			"source_png_sha256": "dec7a9683bf06dc43a6946a1fa2d38ae554ae8afe822b10664a7b91d212b174c"
+		},
+		"laundry_display_110x36": {
+			"alpha": "straight",
+			"file": "laundry_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-5.0,
+				-70.0,
+				124.0,
+				138.0
+			],
+			"scale": 2.0,
+			"sha256": "8e25809909ac4bd2635130d6ac3656a3a330f3656500335f619176a98d522996",
+			"source_png_sha256": "c60c3ba38f902a28c8b3dd4cdf823aef72d0a6f1f58f9a4d9ac392acf0824743"
 		},
 		"media_kiosk_76x34": {
 			"alpha": "straight",
@@ -98,9 +424,207 @@
 				116.0,
 				175.0
 			],
-			"scale": 1.0,
-			"sha256": "292c45aefb3ac860fe8743715f4ec7f638bdc01940f5d64318fab75e3542ecbd",
-			"source_png_sha256": "f32e21e43033a2aca39c65a35511fdb84399d536efcae8957870f6567ae43fc9"
+			"scale": 2.0,
+			"sha256": "e20919b9a2ee1e8a9270e6d21833cb4772eb20db4bed67a09c4c448203a6fd5b",
+			"source_png_sha256": "9ac86c7252e6e6f93f5362bd4a27a1e830c7ac49781bcbebbe6f73ec7a58890e"
+		},
+		"music_display_110x36": {
+			"alpha": "straight",
+			"file": "music_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				7.0,
+				-82.0,
+				101.0,
+				150.0
+			],
+			"scale": 2.0,
+			"sha256": "7919711d89294db1213ed823ea7a4d9b3ca203d0d99cbf781ef8a7ed89b3e2ce",
+			"source_png_sha256": "10415a4e3533a3f1320894c499d24b991011951f2dde0c8b8e5f3bad994f3aa1"
+		},
+		"optician_sign_110x36": {
+			"alpha": "straight",
+			"file": "optician_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-79.0,
+				151.0,
+				147.0
+			],
+			"scale": 2.0,
+			"sha256": "f18b527b4cee53e204baf71c243e166905f6dd9aa123686b422de7cb838902b2",
+			"source_png_sha256": "3be1c982955fd5b88ba1a931d343c64cb59ba3eeea46fce0dbde111eecba503e"
+		},
+		"organic_stall_110x36": {
+			"alpha": "straight",
+			"file": "organic_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-74.0,
+				151.0,
+				137.0
+			],
+			"scale": 2.0,
+			"sha256": "b52469d77bf87d36ccd81a0e4233db571462527222352b1e91b14d2781de6b67",
+			"source_png_sha256": "ea232d8471474914919e104bf538a7f468afe68f9ba23c33d70a9d6ece5ac6e1"
+		},
+		"pharmacy_sign_110x36": {
+			"alpha": "straight",
+			"file": "pharmacy_sign_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-85.0,
+				151.0,
+				153.0
+			],
+			"scale": 2.0,
+			"sha256": "f52966bf2920fb6d01925f36a4cd9c43996c94ec293f359d84652f3517ce684a",
+			"source_png_sha256": "4c054737d6c0bb62e0d44998a3d9031889d71ebf88ccbf52ee491b05c369b626"
+		},
+		"post_envelope_120x38": {
+			"alpha": "straight",
+			"file": "post_envelope_120x38.webp",
+			"footprint": [
+				120.0,
+				38.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-104.0,
+				161.0,
+				174.0
+			],
+			"scale": 2.0,
+			"sha256": "7bb1c391ffd9e41b8df6d2aeae68eb65810054b0d58a146c39538fbf4317669f",
+			"source_png_sha256": "a45dbe4126f2e99f79df383da26f35160476a9f656cc9816a5c308dc3a8808a1"
+		},
+		"produce_stall_110x36": {
+			"alpha": "straight",
+			"file": "produce_stall_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-74.0,
+				151.0,
+				137.0
+			],
+			"scale": 2.0,
+			"sha256": "c315ae796f5f72b280fbad5167b9dd23dfb8d81a64ce5191030ed56f01eceddb",
+			"source_png_sha256": "54714d22bb5490d92a9f3826dd39fc249a04492e29c5fa7406db66ae9720a872"
+		},
+		"residence_planter_110x36": {
+			"alpha": "straight",
+			"file": "residence_planter_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-73.0,
+				151.0,
+				141.0
+			],
+			"scale": 2.0,
+			"sha256": "8e6a97e22b581f47d311a7ad602ccde81d91fa589fc10c2712de0daf03ffede9",
+			"source_png_sha256": "0fbabcd999d61090913005eda87021834a3d573b6d7983974417652f0b391316"
+		},
+		"restaurant_service_110x36": {
+			"alpha": "straight",
+			"file": "restaurant_service_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-80.0,
+				151.0,
+				143.0
+			],
+			"scale": 2.0,
+			"sha256": "2b1905d1dc93fdc5cb8b3d1814a3ce65b440b9d1e8036c0594d25d1f0cf79f69",
+			"source_png_sha256": "a01319a1ba902ace5e68229e35cac6e29053bcff5917bba9cce01249cc0d473e"
+		},
+		"school_display_110x36": {
+			"alpha": "straight",
+			"file": "school_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-12.0,
+				-87.0,
+				138.0,
+				155.0
+			],
+			"scale": 2.0,
+			"sha256": "66232ad582f0cd33c96033ad4085f47268b8e3a817b2646ace7bf7fc2c212352",
+			"source_png_sha256": "94d47fbf6db1da9ec1a4084a8973daf40eb12bc682d912d9ff6a92760bf83f6a"
+		},
+		"stationery_display_110x36": {
+			"alpha": "straight",
+			"file": "stationery_display_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-81.0,
+				151.0,
+				144.0
+			],
+			"scale": 2.0,
+			"sha256": "1f0a59b927e560cf37080196713cdca54bf49941ce4019bd63bc7ab543064768",
+			"source_png_sha256": "19370aab43703dbd94e80080cd4b2fc016eecd36349dcc3f3e907fda28f3f87c"
+		},
+		"tool_cart_110x36": {
+			"alpha": "straight",
+			"file": "tool_cart_110x36.webp",
+			"footprint": [
+				110.0,
+				36.0
+			],
+			"lossless_roundtrip_verified": true,
+			"rect": [
+				-18.0,
+				-83.0,
+				151.0,
+				146.0
+			],
+			"scale": 2.0,
+			"sha256": "66248618e5baaa5055884f76a0e4b083889a42410dc0d6283420b8d12250b0e9",
+			"source_png_sha256": "3f9a529afd0771ebb41941a1f69d4359ecd1351211b7581e72bae7e2c955eef2"
 		}
 	},
 	"version": 1.0
