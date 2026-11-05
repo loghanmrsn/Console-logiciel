@@ -1,0 +1,3 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+INTERACTION_BENCHMARK {"host":"Linux x86_64; CPU microbenchmarks; no hardware FPS claim","profile_handler_median_us":7469.5,"profile_samples_us":[7327.0,7397.05,7430.55,7469.5,7805.675,7836.5,7988.6],"renderer":"headless","same_profile_repeats_per_batch":40,"target_repeats_per_batch":500,"target_samples_us":[51.956,60.09,60.922,61.396,64.016,67.96,127.538],"target_selection_median_us":61.396,"version":"0.31.0","world_targets":7}
