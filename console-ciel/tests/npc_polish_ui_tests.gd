@@ -140,6 +140,8 @@ func _test_interrupted_close() -> void:
 	_check(app.demo.overlay_kind == "npc" and _find("npc_dialogue_panel") == panel, "La reprise conserve la même discussion après interruption du fondu")
 	_check(not app.demo._npc_closing and is_equal_approx(panel.modulate.a, 1) and not (_find("npc_next") as Button).disabled, "La discussion restaurée retrouve son opacité et ses boutons")
 	await _activate("npc_close")
+	# Assert after the documented fade deadline, independently of frame cadence.
+	await create_timer(.12).timeout
 	_check(app.demo.overlay_kind.is_empty(), "Une nouvelle fermeture fonctionne après l’interruption")
 
 func _compact_conversation() -> void:
