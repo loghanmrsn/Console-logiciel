@@ -66,13 +66,13 @@ func _draw() -> void:
 		draw_rect(Rect2(634,101,266,5),Color("edf0ee"))
 		_text("ESCALIER · ATELIERS",Vector2(55,44))
 	else:
-		for x in [80,320,560,800]:
+		for x in [560]:
 			M.rounded(self,Rect2(x,45,100,173),Color("778f9b"),4)
 			draw_rect(Rect2(x+7,52,86,159),Color("b7c9d0"))
 			draw_rect(Rect2(x+16,64,67,50),Color("e1edef"))
 			draw_line(Vector2(x+78,136),Vector2(x+87,136),Color("f8f8eb"),3,true)
 		draw_line(Vector2(0,218),Vector2(900,218),Color("8e9fa5"),5,true)
-		_text("COULOIR DES ATELIERS →",Vector2(285,29))
+
 	draw_set_transform(Vector2.ZERO)
 func _text(value: String, at: Vector2) -> void:
 	draw_string(ThemeDB.fallback_font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("3d5563"))
