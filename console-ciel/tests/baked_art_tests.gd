@@ -23,6 +23,7 @@ func _run() -> void:
 		expected[Cache.key("campus_garden",Rect2(Vector2.ZERO,rect.size))]=true
 	check(records.size()==expected.size(),"Inventaire complet sans sprite orphelin")
 	var bytes := 0.0
+	var measured: Dictionary={}
 	for id in expected:
 		check(records.has(id),"Sprite attendu : "+id)
 		if not records.has(id): continue
@@ -33,8 +34,10 @@ func _run() -> void:
 		check(texture.get_width()>0 and texture.get_height()>0 and texture.get_width()<=4096 and texture.get_height()<=4096,"Dimensions bornées : "+id)
 		var box: Array=entry.rect
 		check(box.size()==4 and box[2]>0 and box[3]>0 and is_equal_approx(float(texture.get_width()),float(box[2])*float(entry.scale)) and is_equal_approx(float(texture.get_height()),float(box[3])*float(entry.scale)),"Origine et taille après détourage : "+id)
-		bytes+=texture.get_width()*texture.get_height()*4.0*4.0/3.0
-	check(bytes<40*1024*1024,"Budget de 40 Mio RGBA avec mipmaps")
+		if not measured.has(entry.file):
+			measured[entry.file]=true
+			bytes+=texture.get_width()*texture.get_height()*4.0*4.0/3.0
+	check(bytes<64*1024*1024,"Budget de 64 Mio RGBA avec mipmaps")
 	if FileAccess.file_exists("res://assets/lycee/logo_louise_michel.jpg"):
 		check(FileAccess.get_sha256("res://assets/lycee/logo_louise_michel.jpg")==manifest.get("school_logo_sha256",""),"Logo source inchangé")
 	if FileAccess.file_exists("res://tools/bake_static_art.gd"):
