@@ -16,7 +16,7 @@ from tempfile import NamedTemporaryFile
 from zipfile import ZIP_DEFLATED, ZipFile
 
 PROJECT_FOLDERS = (
-    'scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil',
+    'scenes', 'scripts', 'assets', 'art_sources', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil',
     'builds', 'export_templates', 'script_templates', 'feature_profiles',
     'text_editor_themes', 'shared', 'scratch', 'library-files',
 )
@@ -40,6 +40,8 @@ def excluded(path: Path, project: Path) -> str:
         return 'sauvegarde personnelle'
     if path.name.endswith(TEMP_SUFFIXES) or path.name.startswith(('.windows-export-', '.windows-previous-')):
         return 'fichier temporaire'
+    if re.search(r'\.blend\d+$', path.name):
+        return 'copie de travail Blender ; source .blend courante incluse'
     return ''
 
 
