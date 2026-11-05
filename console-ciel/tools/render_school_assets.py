@@ -50,12 +50,12 @@ def bench(w,d):
  box('Solid beech worktop',(w/2,d/2,.78),(w,d,.09),'wood',.025)
  return .825
 
-def monitor(x,y,z,width=.72):
- box('Monitor foot',(x,y-.07,z+.015),(.31,.23,.03),'metal',.015);box('Monitor stand',(x,y+.015,z+.17),(.065,.05,.28),'metal',.01)
- box('Monitor shell',(x,y,z+.48),(width,.065,width*.57),'dark',.018)
- box('Matte display',(x,y-.038,z+.49),(width-.045,.007,width*.57-.05),'screen',.006)
- for i in range(4):box('Interface line',(x-width*.22+i*.012,y-.044,z+.56-i*.038),(width*.33-i*.032,.002,.009),'white',0)
- box('Window sidebar',(x-width*.39,y-.045,z+.49),(width*.11,.002,width*.4),'blue',0)
+def monitor(x,y,z,width=.95):
+ box('Monitor foot',(x,y-.07,z+.015),(.31,.23,.03),'metal',.015);box('Monitor stand',(x,y+.015,z+.25),(.07,.07,.44),'metal',.01)
+ box('Monitor shell',(x,y,z+.69),(width,.065,width*.57),'dark',.018)
+ box('Matte display',(x,y-.038,z+.70),(width-.045,.007,width*.57-.05),'screen',.006)
+ for i in range(4):box('Interface line',(x-width*.22+i*.012,y-.044,z+.80-i*.038),(width*.33-i*.032,.002,.009),'white',0)
+ box('Window sidebar',(x-width*.39,y-.045,z+.70),(width*.11,.002,width*.4),'blue',0)
 
 def keyboard(x,y,z,w=.65):
  box('Keyboard',(x,y,z+.025),(w,.24,.045),'dark',.018)
@@ -66,10 +66,10 @@ def keyboard(x,y,z,w=.65):
 def computer(w,d):
  z=bench(w,d)
  for x in [w*.27,w*.73] if w>2.6 else [w*.45]:
-  monitor(x,d*.67,z,.78);keyboard(x,d*.28,z)
+  monitor(x,d*.67,z,.95);keyboard(x,d*.28,z)
   o=box('Mouse',(x+.46,d*.28,z+.035),(.11,.17,.07),'dark',.04)
   pipe([(x,d*.48,z+.03),(x,d*.5,z+.04),(x+.35,d*.5,z+.04),(x+.46,d*.37,z+.04)],.007,'dark')
- box('Computer tower',(w-.18,d*.7,z+.28),(.23,.46,.55),'dark',.02)
+ box('Computer tower',(w-.18,d*.7,z+.33),(.27,.46,.66),'dark',.02)
  for i in range(8):box('Tower grille',(w-.18,d*.467,z+.1+i*.035),(.17,.004,.008),'metal',.001)
  cylinder('Power light',(w-.18,d*.461,z+.48),(w-.18,d*.455,z+.48),.014,'blue')
 
