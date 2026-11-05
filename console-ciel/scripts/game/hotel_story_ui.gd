@@ -128,7 +128,7 @@ func refresh() -> void:
 	_schedule_objective_fit()
 	sync_visibility()
 	if current_room in ["school_hall", "school_passage", "school_workshop"]:
-		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "Le couloir dessert les ateliers CIEL, 2TNE, réunion et BTS FED.", "school_workshop": "Atelier 1 : prototypage et systèmes techniques. Porte à gauche : laboratoire IPv4 / IPv6."}[current_room]
+		objective_text.text = {"school_hall": "Porte à droite : réparez les trois connexions pour ouvrir le passage.", "school_passage": "La porte du couloir mène à l’atelier CIEL.", "school_workshop": "Atelier 1 : prototypage et systèmes techniques. Porte à gauche : laboratoire IPv4 / IPv6."}[current_room]
 	if current_room in preload("res://scripts/game/school_ateliers.gd").IDS:
 		objective_title.text = preload("res://scripts/game/school_ateliers.gd").TITLES[current_room].to_upper()
 		objective_text.text = "Explorez les équipements signalés par un point. Espace / bouton 0 pour observer ou emprunter une porte."
