@@ -64,3 +64,11 @@ Vérifications : `tests/town_details_asset_tests.gd` contrôle les 40 bâtiments
 Rendus capturés dans le logiciel : [La Poste](screenshots/decors_0.29.0/town_details_ui_tests/civic_poste_challenge.webp) · [Fleuriste](screenshots/decors_0.29.0/town_details_ui_tests/civic_fleuriste_challenge.webp) · [Cycles](screenshots/decors_0.29.0/town_details_ui_tests/civic_cycles_challenge.webp) · [Commerces](screenshots/decors_0.29.0/town_details_ui_tests/civic_marche_challenge.webp) · [Musique](screenshots/decors_0.29.0/town_details_ui_tests/civic_musique_challenge.webp).
 
 ![Écoulement réel de la fontaine dans le jeu, recadré du viewport et encodé en GIF.](screenshots/decors_0.29.0/fontaine_animee.gif)
+
+## Accueil et surveillante — 0.30.0
+
+L’accueil du lycée utilise des murs blancs et le mobilier Blender existant. La surveillante adulte est modélisée localement dans Blender à une échelle de référence d’environ 1,60 m : silhouette fine, cheveux blonds, pull ample opaque et pantalon sombre. La référence de 55 kg guide la silhouette sans simulation de masse. Le fichier `art_sources/surveillante.blend` et le générateur `tools/render_supervisor.py` permettent de reprendre le modèle. Neuf rendus RGBA (repos et huit pas de marche) sont réunis dans un atlas utilisé en jeu, dans le portrait et pendant l’accompagnement. Rendu Cycles CPU 128 échantillons ; aucun modèle externe.
+
+Commande reproductible : `blender -b -t 6 --python tools/render_supervisor.py -- --project . --output /tmp/ciel-supervisor`. La provenance et les empreintes sont dans `assets/art/supervisor/manifest.json`. Le jeu reste en 2D ; Blender n’est pas requis pour jouer.
+
+Le trajet vers les ateliers dure 2,6 secondes et comporte deux plans : escalier droit, puis couloir. La destination est sauvegardée avant le départ, sans résoudre le câblage ni donner de points. Les escaliers circulaires de l’hôtel sont remplacés par des volées droites aux mêmes emplacements. Les grandes pancartes extérieures du lycée sont retirées ; le petit logo de façade est conservé.
