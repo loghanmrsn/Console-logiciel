@@ -89,3 +89,5 @@ La version **0.19.0** propose le bouton **Dev · Super administrateur** : profil
 Le dossier **solution/** est également inclus à côté de **console-ciel/** dans les deux ZIP complets. Sa fiche donne toutes les bonnes réponses et affiche les captures correspondantes, présentes dans les sources.
 
 Depuis 0.29.0, les deux premières galeries historiques `docs/screenshots/refonte/` et `docs/screenshots/finition/` restent dans le [dépôt](https://github.com/loghanmrsn/Console-logiciel/tree/main/console-ciel/docs/screenshots) et les anciennes archives complètes, notamment 0.28.0. Elles ne sont plus dupliquées dans les nouveaux ZIP afin de garder les téléchargements sous la limite de taille GitHub. Le manifeste indique cette exclusion. Les sources, ressources utilisées par le logiciel, captures courantes et autres galeries sont conservées ; aucun fichier historique n’est supprimé du dépôt.
+
+Depuis la version 0.32.0, les archives complètes incluent aussi `art_sources/` avec les fichiers Blender courants. Les copies de travail `.blend1`, `.blend2`, etc. sont exclues. Les personnages et accessoires sont utilisables sans Blender dans les exécutables livrés.
