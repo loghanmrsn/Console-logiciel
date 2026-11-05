@@ -1,0 +1,75 @@
+{
+  "file": "docs/screenshots/personnage3d_0.32.0/demarche_souple.gif",
+  "sha256": "bab82994f1e8aeb8d61603a3bac118dc61047753b78fec15989d8de92613dd66",
+  "frames": 16,
+  "duration_ms_per_frame": 60,
+  "source": "Actual 3D SubViewport of the exported ARM64 resource pack, loaded by Godot Linux x86_64 / X11 / Mesa llvmpipe",
+  "encoding": "Unedited engine frames, alpha composited onto the light preview background, GIF shared 256-colour palette. Original RGBA PNG frame hashes retained.",
+  "native_arm64_execution": false,
+  "source_frames": [
+    {
+      "file": "walk_00.png",
+      "sha256": "a17a405ca8e2659cb5ffedfbfd026b48063e89f70a619ad10ed55c08f0101a95"
+    },
+    {
+      "file": "walk_01.png",
+      "sha256": "3035b67ce8277b119db365aa81eecbe7d77ce968bf2e831a9784299aeb43c96f"
+    },
+    {
+      "file": "walk_02.png",
+      "sha256": "ba6463e4ed6dc2010141feb7e50873f09eae648070a4dd2392babaa21df4b8e4"
+    },
+    {
+      "file": "walk_03.png",
+      "sha256": "cb3df183cc60460d52c95943fafd932b821293822cfac0997df8a60fa39aca39"
+    },
+    {
+      "file": "walk_04.png",
+      "sha256": "16f7f76941697b803a8820220e072f71e1ffafcac1fe7a505fc86dadacf4dd70"
+    },
+    {
+      "file": "walk_05.png",
+      "sha256": "1c11223034aae78c93165854569d701038eab8e8013fc6812f79628f698f97c2"
+    },
+    {
+      "file": "walk_06.png",
+      "sha256": "22cf746cd082d662c6f18999adcd14ee1890dd834651ca362829b9f019003d00"
+    },
+    {
+      "file": "walk_07.png",
+      "sha256": "e6cd0738fa722478442444f8f090cb1ffaeb2775169596eac26c5b7164f7bfb9"
+    },
+    {
+      "file": "walk_08.png",
+      "sha256": "60fd9df7cd502d6dec84bf0233468a8931031f81238a0b600ff3e47fae9978e1"
+    },
+    {
+      "file": "walk_09.png",
+      "sha256": "837604ba4b18b2d7056bc249a201f3dc0df4ccc8555837085c2fcf5b7303da1e"
+    },
+    {
+      "file": "walk_10.png",
+      "sha256": "c26da35bbaea6c650e6dc6fb099ba957343b79c2916ed57fcc8b3bd18d11150b"
+    },
+    {
+      "file": "walk_11.png",
+      "sha256": "cb670b8f6fa64138668ac565d763424b12c0a524c8c0d598de7da425194ab8d9"
+    },
+    {
+      "file": "walk_12.png",
+      "sha256": "9b44e6dd6d9c7223fd47cc5e01219b192ffec87a36eec678713c7c4cac3edb44"
+    },
+    {
+      "file": "walk_13.png",
+      "sha256": "b3aa74b11f31760ef71621f985f214af4bb8b628aa696b262a62ca6a6b609fab"
+    },
+    {
+      "file": "walk_14.png",
+      "sha256": "24ab756988d7cc3c878378561007a1ccd706b28416baa58f02a8be63dcfbf22f"
+    },
+    {
+      "file": "walk_15.png",
+      "sha256": "90cb31e3a3e5a57f7ae0973008d8a3c8a865e30e17d20cfdf21a0b100442dcb0"
+    }
+  ]
+}
