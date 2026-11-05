@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.30.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.31.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -302,5 +302,5 @@ Liste noire : modifier pseudo_blacklist.json à côté de l’exécutable. block
 DÉCORS DEVANT CHAQUE BÂTIMENT — 0.29.0
 Les 40 bâtiments disposent d’objets adaptés à leur activité : grand panneau à enveloppe et boîte aux lettres, fleurs en pots, livres, vélo, outils, instruments, commerces et résidences. Les modèles sont réalisés dans Blender puis rendus à double résolution. La fontaine en pierre possède des jets, des gouttes et des filets d’eau qui débordent de la vasque. La pause et les animations réduites immobilisent l’eau.
 
-ACCUEIL DU LYCÉE — 0.30.0
+ACCUEIL DU LYCÉE — 0.31.0
 Entrée à l’accueil. La surveillante blonde en pull ample propose un accompagnement de 2,6 secondes vers les ateliers ou le choix Rien. Animation désactivée avec animations réduites, et suspendue en cas de déconnexion de manette. Aucun point ni exercice validé automatiquement. Grande pancarte extérieure supprimée ; logo conservé sur la façade. Deux escaliers droits à l’hôtel et aux paliers. Sauvegardes et anciens paquets conservés.
