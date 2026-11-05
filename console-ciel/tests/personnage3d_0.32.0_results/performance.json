@@ -1,0 +1,91 @@
+{
+  "baseline": {
+    "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+    "profile_handler_median_us": 7469.5,
+    "profile_samples_us": [
+      7327.0,
+      7397.05,
+      7430.55,
+      7469.5,
+      7805.675,
+      7836.5,
+      7988.6
+    ],
+    "renderer": "headless",
+    "same_profile_repeats_per_batch": 40,
+    "target_repeats_per_batch": 500,
+    "target_samples_us": [
+      51.956,
+      60.09,
+      60.922,
+      61.396,
+      64.016,
+      67.96,
+      127.538
+    ],
+    "target_selection_median_us": 61.396,
+    "version": "0.31.0",
+    "world_targets": 7
+  },
+  "candidate_before_new_3d_feature": {
+    "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+    "profile_handler_median_us": 153.35,
+    "profile_samples_us": [
+      118.775,
+      135.9,
+      144.175,
+      153.35,
+      158.725,
+      189.625,
+      208.9
+    ],
+    "renderer": "headless",
+    "same_profile_repeats_per_batch": 40,
+    "target_repeats_per_batch": 500,
+    "target_samples_us": [
+      0.458,
+      0.508,
+      0.726,
+      0.784,
+      1.054,
+      1.294,
+      1.506
+    ],
+    "target_selection_median_us": 0.784,
+    "version": "0.31.0",
+    "world_targets": 7
+  },
+  "final_with_3d_feature": {
+    "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+    "profile_handler_median_us": 166.825,
+    "profile_samples_us": [
+      143.775,
+      148.4,
+      165.825,
+      166.825,
+      170.875,
+      193.075,
+      196.35
+    ],
+    "renderer": "headless",
+    "same_profile_repeats_per_batch": 40,
+    "target_repeats_per_batch": 500,
+    "target_samples_us": [
+      0.462,
+      0.54,
+      0.684,
+      0.686,
+      0.768,
+      0.976,
+      1.384
+    ],
+    "target_selection_median_us": 0.686,
+    "version": "0.32.0",
+    "world_targets": 7
+  },
+  "improvement_percent": {
+    "profile_handler_median_us": 97.77,
+    "target_selection_median_us": 98.88
+  },
+  "limits": "CPU microbenchmarks of repeated real UI profile handlers and stationary target selection on this Linux host. These timings are not native hardware FPS or a Raspberry Pi/Windows performance claim. Same engine and benchmark script; seven batches per measurement."
+}
