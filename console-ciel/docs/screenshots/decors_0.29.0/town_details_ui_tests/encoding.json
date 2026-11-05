@@ -1,0 +1,56 @@
+[
+	{
+		"file": "civic_cycles_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "91319f9714cea8c63e8fa09bf6fec7989667f53411c9b60fae96fe1feaffa309",
+		"source": "civic_cycles_challenge.png",
+		"source_sha256": "98c1001149d1d9b80c1705e7576c654195a9fce55a4ff1d4d456597bfd0972ca",
+		"width": 1280
+	},
+	{
+		"file": "civic_fleuriste_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "cc20aac3fb52e7e928668ed6d681d9e133c8b25c9bc7a8f470675e7a635d027c",
+		"source": "civic_fleuriste_challenge.png",
+		"source_sha256": "22764676eaf4da08af9edb60ee92c44d18a4ce78c2d9f289d9582f5ebaadf6e0",
+		"width": 1280
+	},
+	{
+		"file": "civic_fontaine_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "425860f6f7d7b13f624e292054c8e9fde2e7e9c731cadf165b306824707c3113",
+		"source": "civic_fontaine_challenge.png",
+		"source_sha256": "b94ff4c5431d70c7879d4c8d9093293e1cf782f8b2972f814de009bbbaf4a3aa",
+		"width": 1280
+	},
+	{
+		"file": "civic_marche_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "dc0a5e0536fca71009ae4fbe9350e2758b52b2c301d38cb20a2282dd8b83090c",
+		"source": "civic_marche_challenge.png",
+		"source_sha256": "cfe705164706641c189b63ba8c032009377cb9c9499ea3ee797abbd7b96721ad",
+		"width": 1280
+	},
+	{
+		"file": "civic_musique_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "ded75e93f072eabf35c068018412380a2bee8d6eb4b8d4adaec605ccb4ab40c7",
+		"source": "civic_musique_challenge.png",
+		"source_sha256": "6a396ec7010517c134794663a97467df8c890d2808040d9a6d9581e8d89b0b77",
+		"width": 1280
+	},
+	{
+		"file": "civic_poste_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "7573215a4dedb284434e4fcfa2de0c614daa4b36fac5de27b9fac4dcee0a0844",
+		"source": "civic_poste_challenge.png",
+		"source_sha256": "446876f79c0a86f3f59f5e109b3e66b7c60c8207758e9a11f129abbbee48db2d",
+		"width": 1280
+	}
+]
