@@ -11,11 +11,11 @@
 		"school_atelier_scene": "811b6e13d8d6a8aa7af78a4c3c9cbe83c8db09d771c4aac5e6ed18e77658490f",
 		"school_ateliers": "d4222ba6ab6ed6d1b30a460ef991d22be9a4f5944ff7f648a4620c164c0efd0d",
 		"school_facade_art": "5236f1ff4533a898274f32836826d11121e10a7652f8857635fc48c0e7994bd1",
-		"school_layout": "c71c98b3c4a3e6dff134acb4d7bfe5386469ac8946aa7ed23817ce570dae79b1",
+		"school_layout": "1f5acea5307ac0b3a467c4f534b14f0eac3aae6162f772bafe3caf659c157aa6",
 		"school_realism": "4c0d6a475b5b010f5422ffc8cb8cbcadc50380de60903de237683ca0e4dea48c",
 		"school_reception": "a550f392f04dcbcd534d3a43615fb5498a2dbe5160603950d8820cac026d0ff3",
 		"school_surfaces": "46e53d1bf8917bb0424ccb42fad09a463aa15d69af4c0c9755116623634297ff",
-		"school_visual": "c079369551644c25f664ebb91f4ae50465c161ea3f10957a466b8eff2ae782ea",
+		"school_visual": "a8cb3728f359902c64d3e5b2a0eed228d0cb5060b5327e10979afd30b4a66f33",
 		"storefront_art": "2eaf5c7bb750204bc320b892b97e13efc356b714ba325364dd4e5739e64d436d",
 		"town_details": "51d69031b48df08a5b05e381d769100c3b309cdeb5110bef1b18caf8534cf311",
 		"town_layout": "e7aab6d474ca2c7f3c760900968b01704c33bb2161e86ff5acde64c8b268a489",
@@ -24,7 +24,7 @@
 	},
 	"generator_sha256": "9dc579fbbadb99a6affb590f8c56c2c00b10489d5ca674ebea6a8d752fd34138",
 	"school_logo_sha256": "c94e5910e205935e37519125c59c7e2b861e1aafc49d6075f0394bfce3b7f6bf",
-	"school_render_manifest_sha256": "c76bfdcae03314a56ef2e77c7c52d7d25e4d66faccbfcb4bebe9a0266233c053",
+	"school_render_manifest_sha256": "74fb177d6e0bdf0665adff2447009fde872912df80e4081c45da1e98ab55f990",
 	"sprites": {
 		"001d0b700f2b12bc5726": {
 			"alpha": "straight",
@@ -216,13 +216,13 @@
 			"lossless_roundtrip_verified": true,
 			"rect": [
 				-18.0,
-				-83.0,
+				-89.0,
 				361.0,
-				220.0
+				226.0
 			],
 			"scale": 1.0,
-			"sha256": "845f9feaa804b4ee42ab835ddf5b38ea068ab9a156a55b02958c1cdff4489682",
-			"source_png_sha256": "419e587f652206d0110aa247d07c293c6b303f43855261f6051b4f439765ff83"
+			"sha256": "cd0d44147e9f942fe31f09276b58b543256dcbd1846aed83b64d405a07bbe7aa",
+			"source_png_sha256": "fae71ffca6c05d59e172c0e09418b78de18dfb7226f371c3e230e601345548e3"
 		},
 		"0dffa6441bf5cdd9c83f": {
 			"file": "0dffa6441bf5cdd9c83f.png",
@@ -1202,7 +1202,7 @@
 			],
 			"scale": 1.0,
 			"sha256": "edb536fe7c0bcd5e1627e30c92e897d3d0b08d8b45ad1d9863996610683581b6",
-			"source_png_sha256": "13328a09a39c20a8f6db251369ddcbf7ef0a9b7b9e98c33f31ecdfc1bf8581fa"
+			"source_png_sha256": "08c8f3bdfa75f0cf3699411eedcf1362611b382e9912b91620c8f447b1019d5c"
 		},
 		"9749711a45740c402d22": {
 			"file": "9749711a45740c402d22.png",
