@@ -8,11 +8,16 @@ var amount := 0.0
 var scenery := 0.0
 var destination := ""
 var _styles: Dictionary = {}
+var avatar3d: Control
 const DARK := Color("263c46")
 const METAL := Color("8fa5a7")
 const RAIL := Color("dbc46f")
 func _ready() -> void:
 	resized.connect(queue_redraw)
+	avatar3d=preload("res://scripts/character/character_view.gd").new()
+	avatar3d.preview_mode=false
+	avatar3d.configure(CharacterService.current().appearance)
+	add_child(avatar3d)
 func _draw() -> void:
 	if size.x<1 or size.y<1: return
 	draw_set_transform(Vector2.ZERO,0,Vector2(size.x/960.0,size.y/340.0))
@@ -84,7 +89,15 @@ func _draw() -> void:
 	if phase==3: guest=seat.lerp(exit,amount)
 	var walking := phase in [0,3] or phase==1 and amount>.65
 	var texture: Texture2D=WALK if walking and int(amount*12)%2==1 else GUEST
-	draw_texture_rect(texture,Rect2(guest-Vector2(25,72),Vector2(50,58)),false)
+	if is_instance_valid(avatar3d):
+		var factor=Vector2(size.x/960.0,size.y/340.0)
+		avatar3d.size=Vector2(50,74)*factor
+		avatar3d.position=(guest-Vector2(25,72))*factor
+		avatar3d.walking=walking
+		avatar3d.seated=phase==2 or phase==1 and amount>.96
+		avatar3d.heading=PI if phase==2 else 0.0
+		avatar3d.phase=amount*1.5
+		avatar3d.refresh()
 	if phase==2 or phase==1 and amount>.96:
 		_seat_front(seat,91)
 		for x in [-10,10]:
