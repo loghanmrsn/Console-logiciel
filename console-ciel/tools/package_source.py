@@ -5,7 +5,7 @@ from tempfile import NamedTemporaryFile
 from zipfile import ZIP_DEFLATED, ZipFile
 import os
 
-FOLDERS = ('scenes', 'scripts', 'assets', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil')
+FOLDERS = ('scenes', 'scripts', 'assets', 'art_sources', 'themes', 'data', 'tests', 'docs', 'tools', 'images_profil')
 ROOT_FILES = ('project.godot', 'default_bus_layout.tres', 'export_presets.cfg', 'README.md', '.gitignore')
 
 def create_archive(project: Path, output: Path) -> int:
@@ -23,6 +23,8 @@ def create_archive(project: Path, output: Path) -> int:
         files.append(path)
     for name in FOLDERS:
         folder = project / name
+        if name == 'art_sources' and not folder.exists():
+            continue  # Older projects predate editable Blender sources.
         if folder.is_symlink() or not folder.is_dir():
             raise ValueError(f'Dossier source absent ou lié : {folder}')
         for directory, dirs, names in os.walk(folder, followlinks=False):
@@ -30,7 +32,7 @@ def create_archive(project: Path, output: Path) -> int:
                 if (Path(directory) / entry).is_symlink():
                     raise ValueError(f'Lien symbolique refusé : {Path(directory) / entry}')
             dirs[:] = [name for name in dirs if name != '__pycache__']
-            files.extend(Path(directory) / name for name in names)
+            files.extend(Path(directory) / name for name in names if not ('.blend' in name and name.rsplit('.blend',1)[1].isdigit()))
     output.parent.mkdir(parents=True, exist_ok=True)
     with NamedTemporaryFile(dir=output.parent, suffix='.zip.tmp', delete=False) as staging:
         staging_path = Path(staging.name)
