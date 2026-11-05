@@ -1,0 +1,327 @@
+{
+  "version": "0.31.0",
+  "source_tests": [
+    {
+      "name": "baked_art_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 709,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.68,
+      "script_sha256": "3462c8813f1e8b46eb86664bddc44f0d779152b3a005583c00b8309de50d94a7",
+      "log": "baked_art_tests.output.txt",
+      "log_sha256": "3c106fcd5125db9367389decfc1851087622cdd29d81700a4abd27b0a7c25fd2"
+    },
+    {
+      "name": "school_ateliers_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 65,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 6.04,
+      "script_sha256": "cd72ba572a99878c33052d83a38b008974239da677514f364edc2d037494f290",
+      "log": "school_ateliers_ui_tests.output.txt",
+      "log_sha256": "ac0fb9c7ea94fe803d7429afb43800354c856abbe9d3a3031af87c2d8e738501"
+    },
+    {
+      "name": "school_realism_asset_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 328,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.12,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log": "school_realism_asset_tests.output.txt",
+      "log_sha256": "6131f4d009ee66b9a4fcaea08e9f2504e2a307d8711af0e1bd1458241a6dbb94"
+    },
+    {
+      "name": "school_reception_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 161,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 11.92,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log": "school_reception_ui_tests.output.txt",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.15,
+      "script_sha256": "d6b0a41c4cf2496be5a2610c1671b07c8f76a633871ac50f3cc7c51756f775f2",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1279,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.83,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "world_collision_tests.output.txt",
+      "log_sha256": "dbb60ab27df6645ee25c807898e65dda8959d2c4ff3d23834ac63ffca6eb72cb"
+    }
+  ],
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 65,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "cd72ba572a99878c33052d83a38b008974239da677514f364edc2d037494f290",
+      "log_sha256": "ac0fb9c7ea94fe803d7429afb43800354c856abbe9d3a3031af87c2d8e738501"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 65,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "cd72ba572a99878c33052d83a38b008974239da677514f364edc2d037494f290",
+      "log_sha256": "ac0fb9c7ea94fe803d7429afb43800354c856abbe9d3a3031af87c2d8e738501"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 1279,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "dbb60ab27df6645ee25c807898e65dda8959d2c4ff3d23834ac63ffca6eb72cb"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 1279,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "dbb60ab27df6645ee25c807898e65dda8959d2c4ff3d23834ac63ffca6eb72cb"
+    },
+    {
+      "platform": "windows",
+      "name": "baked_art_tests",
+      "assertions": 687,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "3462c8813f1e8b46eb86664bddc44f0d779152b3a005583c00b8309de50d94a7",
+      "log_sha256": "605231d32a0d3751451575910aba804ac6c8041517a6d89d84afed92ab595053"
+    },
+    {
+      "platform": "linux",
+      "name": "baked_art_tests",
+      "assertions": 687,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "3462c8813f1e8b46eb86664bddc44f0d779152b3a005583c00b8309de50d94a7",
+      "log_sha256": "605231d32a0d3751451575910aba804ac6c8041517a6d89d84afed92ab595053"
+    },
+    {
+      "platform": "windows",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "linux",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f5c22037397c4771a41ffba0ab52b12eff8d0c9cccb083875f4c15df89b568e9",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f5c22037397c4771a41ffba0ab52b12eff8d0c9cccb083875f4c15df89b568e9",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native_renderer": {
+    "assertions": 193,
+    "failures": 0,
+    "exit_code": 0,
+    "unexpected_errors": [],
+    "ok": true,
+    "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+    "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+    "native_arm64_execution": false,
+    "native_windows_execution": false,
+    "physical_controller_tested": false,
+    "perceived_audio_tested": false,
+    "captures": [
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/accompagnement_couloir_challenge.webp",
+        "bytes": 158064,
+        "sha256": "30f6d29c66046130df9fdbee23d5a04327639715eb54259839cb01719597dd32",
+        "original_png_sha256": "00ec489a5f3fc0d01da3c4d08b10526945be97f3b594a367d5f2f1cdb5533c61",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/accompagnement_escalier_challenge.webp",
+        "bytes": 162928,
+        "sha256": "f62216ce7b2f4ee546be51306c8975b66fd7fef94780a4679a33bcd83cfd4349",
+        "original_png_sha256": "cf72d8905669eafea54a4c4bf78dd2c8685bee3025b6a60f894e036b6022e895",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/accueil_surveillance_challenge.webp",
+        "bytes": 356846,
+        "sha256": "b0de8b991bb499547cc573daf025201acc6c9deda9cd98daec79a65a895c97bf",
+        "original_png_sha256": "3c6fb803a669e85591bf4240bf25a95447561701974c8ed31befb7d965e616c5",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/arrivee_ateliers_challenge.webp",
+        "bytes": 306630,
+        "sha256": "6dd1a66b82d63bba425a887975bf6743ee0e89495ac8213dc55c0788f794fab6",
+        "original_png_sha256": "bfe6af09f3563ef9838aba4aa6fd7ba38c73460263d695cebeeb4c738cb078ae",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/hotel_deux_escaliers_droits_challenge.webp",
+        "bytes": 46552,
+        "sha256": "9ceeacc22a0c53f3e42be5edb88564f3a0e6a8169289b67ca0fb0f3969fa0705",
+        "original_png_sha256": "30b02935e69bc981c15543823360736b24c2e81bd1785acb8e06b1f611ec3c63",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/hotel_palier_droit_challenge.webp",
+        "bytes": 52772,
+        "sha256": "0a9129d8c2dffc69918a3c34224a70bf86b85825d5835ef60f77a7956d8c875d",
+        "original_png_sha256": "83a121638ce544d79929a8f8f35795ac282b5105295b323b69a42502be8a4558",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/lycee_sans_pancarte_challenge.webp",
+        "bytes": 217676,
+        "sha256": "851fea9eb92b56901497914a59de2f3c92dbd5bc2b7f35d944b791991130401e",
+        "original_png_sha256": "de06b8305f7cda1ca453eb4d48cbae46f1dfb1c8f6b157aee99f6a4e060e14d0",
+        "lossless_roundtrip_verified": true
+      },
+      {
+        "file": "docs/screenshots/corrections_0.31.0/school_reception_ui_tests/surveillant_choix_compact_challenge.webp",
+        "bytes": 93704,
+        "sha256": "8f7fe3852cfe860493b176da2445021599ab46a20122577774b7c729ecf68ca5",
+        "original_png_sha256": "cdab46986ba9a94d58ad2b8ba908530a962af6878e3017aa11fbb3b47c9f6e7b",
+        "lossless_roundtrip_verified": true
+      }
+    ],
+    "capture_selection": "all",
+    "driver_sha256": "7efc9a7a72d9bee80ca1a31c21d892ea0fb3ce242bfc3788b7239c7b1cc63586",
+    "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+    "log_sha256": "f01125ee8a6e267bee4fcd0003811593064ac55ed67fdfbf28386fa52f50e4ca",
+    "capture_encoding": "Lossless WebP; exact RGBA comparison to original viewport PNG; no visual edits."
+  },
+  "escort_timing": {
+    "deterministic_stairs_and_corridor_captures": true,
+    "maximum_seconds": 3,
+    "natural_duration_seconds": 2.721785
+  },
+  "all_passed": true,
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "previous_archives_preserved": 142,
+  "art_mib": 62.63,
+  "total_assertions": 8057
+}
