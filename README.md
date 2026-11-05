@@ -1,10 +1,10 @@
 # Console Logiciel
 
-**Version 0.29.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.30.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_decors_0.29.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_accueil_0.30.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.29.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.30.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.29.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.29.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.30.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.30.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
@@ -145,11 +145,11 @@ Le bus devant Sudo Hack permet de **revenir en ville à tout moment**, même ava
 
 Les paramètres permettent de choisir quatre ambiances musicales et de personnaliser les touches du clavier et les boutons de manette. Maintenez **Maj** ou **le joystick gauche enfoncé** pour sprinter (+10 %). L’ascenseur du premier bâtiment propose aussi le choix direct d’un étage déjà débloqué. Les livres du chapitre 3 expliquent les exercices. Rejouer une mission conserve la progression du reste de l’enquête.
 
-Le bus de la ville propose deux destinations : **1 · CTF Sudo Hack** et **2 · Lycée Louise Michel de Ruffec**. Découvrez son parvis inspiré de la photo fournie, les panneaux portant le logo du lycée et sa salle cyber : six postes, baies réseau, tableau et mobilier. Les prochains défis de cette salle seront ajoutés ensuite. Le retour en ville conserve votre progression.
+Le bus de la ville propose deux destinations : **1 · CTF Sudo Hack** et **2 · Lycée Louise Michel de Ruffec**. Découvrez son parvis inspiré de la photo fournie, le logo conservé près du nom sur la façade et son accueil : six postes, baies réseau, tableau et mobilier. Les prochains défis de cette salle seront ajoutés ensuite. Le retour en ville conserve votre progression.
 
-La mise à jour **0.29.0** ajoute des décors modélisés dans Blender devant les 40 bâtiments : panneau à enveloppe à La Poste, fleurs, livres, vélo, outils et objets adaptés aux différents commerces. La fontaine présente des jets et des débordements animés, avec gouttes et ondulations. Les portes et les parcours restent accessibles.
+Les décors modélisés dans Blender restent présents devant les 40 bâtiments : panneau à enveloppe à La Poste, fleurs, livres, vélo, outils et objets adaptés aux différents commerces. La fontaine présente des jets et des débordements animés, avec gouttes et ondulations. Les portes et les parcours restent accessibles.
 
-Au lycée, une porte mène au premier couloir. Réparez le câblage de la porte à droite (**A–3, B–2, C–1**), puis suivez le long passage jusqu’à la porte à gauche de l’atelier. Imprimante 3D, portables, poste fixe et électronique vous y attendent. Le déverrouillage est sauvegardé sans modifier les points ni les missions de l’enquête.
+L’entrée du lycée conduit à l’accueil. Le PNJ **Surveillant**, une surveillante blonde avec un pull ample modélisée dans Blender, propose de vous accompagner au couloir des ateliers ou de rester ici. Le trajet animé montre les escaliers puis le couloir en 2,6 secondes, avec possibilité de le passer. Ce trajet ne résout aucun exercice et ne modifie pas les points. La salle cyber reste accessible depuis le couloir ; son ancien exercice de câblage est conservé.
 
 L’atelier du lycée s’appelle **City CIEL**. Une porte à gauche mène au laboratoire réseau, avec murs en relief, postes, routeur et switch. Trois missions guidées (50 points chacune) apprennent le masque **IPv4 /24**, le préfixe **IPv6 /64** et le routage entre deux réseaux. IPv4 contient **32 bits**, IPv6 **128 bits**. Un cours et un clavier virtuel restent disponibles.
 
@@ -161,6 +161,6 @@ La rue du centre rejoint maintenant l’avenue par une intersection en T. Les ch
 
 Un boulevard périphérique relie désormais toutes les extrémités des rues : le réseau forme des boucles continues, sans route arrêtée net aux limites des quartiers. Les façades, espaces verts et barrières ont été ajustés pour dégager les voies ; la carte suit le même tracé.
 
-Les quatre bâtiments accessibles possèdent un petit point permanent devant leur porte, visible à distance et sur la carte. Le lycée Louise Michel est isolé dans un campus à l’est, avec une façade basse crème et rose, une entrée vitrée, des volets et un panneau portant le logo fourni. Le parvis comprend des bancs et des jardinières ; son ancien emplacement est un jardin.
+Les quatre bâtiments accessibles possèdent un petit point permanent devant leur porte, visible à distance et sur la carte. Le lycée Louise Michel est isolé dans un campus à l’est, avec une façade basse crème et rose, une entrée vitrée, des volets et le logo fourni à côté du nom. Le parvis comprend des bancs et des jardinières ; son ancien emplacement est un jardin.
 
-La version 0.29.0 complète les salles et le lycée avec 34 rendus Blender de décors de ville à double résolution. Les cinq ateliers conservent leur mobilier détaillé, leurs murs blancs et leurs missions. Les 40 bâtiments ont un décor lié à leur domaine, y compris les résidences, le Ritz et le bâtiment A. La fontaine en pierre montre l’eau qui jaillit et déborde de la vasque. Les animations réduites et la pause sont respectées. La liste noire des pseudos reste modifiable à côté de l’exécutable. [Détails du rendu](console-ciel/docs/REALISME.md).
+La version **0.30.0** ajoute l’accueil du lycée et l’accompagnement par la surveillante. La grande pancarte du parvis est supprimée. Les deux escaliers de l’hôtel et ceux des paliers sont droits, avec marches en pierre et rampes. Les décors de ville, la fontaine animée, les ateliers et les sauvegardes sont conservés. [Détails du rendu](console-ciel/docs/REALISME.md).
