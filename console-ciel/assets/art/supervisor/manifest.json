@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "blender_version": "4.3.2",
+  "license": "CC0-1.0 original artwork",
+  "generator_sha256": "76fd7cf1e4d658c1e38a665e889dc0623e701f29bb8fb1827856ccad5c093fbc",
+  "sprite_sha256": "aa106ad3f7bda6ad4815d2745321378768d353e1d894acd49124d2f11cd1cac6",
+  "blend_sha256": "80e3951dfb383968d6165d7f5f66fdca69527ba02c0859a3dd53e91aebf0e287",
+  "frame_size": [
+    256,
+    448
+  ],
+  "frame_count": 9,
+  "idle_frame": 0,
+  "walk_frames": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "height_reference_metres": 1.6,
+  "build_reference": "slim adult woman; approximate 55 kg visual reference, not a physical mass simulation",
+  "prompt": "Adult school supervisor, slender build, about 1.60 m, golden blonde shoulder-length hair, naturally proportioned face, modest natural bust under a completely opaque oversized blue-grey knitted sweater, slim dark trousers, pale sneakers, small work badge. Friendly and professional. Front idle and right walking cycle.",
+  "negative_prompt": "child, giant chibi head, uniform jacket, revealing or tight clothing, exaggerated anatomy, external copyrighted models",
+  "runtime": "Orthographic RGBA sprite atlas; no runtime Blender or 3D dependency."
+}
