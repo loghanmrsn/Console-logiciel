@@ -90,3 +90,5 @@ godot --audio-driver Dummy --path . --script res://tests/refonte_states.gd
 ## Limites restantes
 
 Aucun Windows natif ni Raspberry Pi n'est disponible ici. **Double-clic, DPI Windows 100/125/150/200 %, plein écran natif, son, USB réel, écran final et performances Pi restent à vérifier.** Le rendu logiciel ne permet pas d'annoncer 60 FPS sur Pi. Le preset ARM64 est conservé mais ses modèles d'export sont absents de cet environnement. Arrêt système non configuré ; Quitter ferme uniquement l'application. Mapping du contrôleur fabriqué encore à mesurer. Aucun nouvel autostart, faux indicateur de batterie ou modification système.
+
+Les premières galeries historiques `refonte/` et `finition/` restent accessibles dans le dépôt et les anciennes archives ; voir [le contenu des archives courantes](ARCHIVE_COMPLETE.md).
