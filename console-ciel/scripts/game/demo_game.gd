@@ -434,6 +434,9 @@ func _interact() -> void:
 
 func _interaction_requested(id: String) -> void:
 	if _busy or paused or not overlay_kind.is_empty(): return
+	if id=="npc_school_supervisor":
+		hotel_story.show_school_supervisor()
+		return
 	if id.begins_with("npc_"):
 		_show_npc(id)
 		return
@@ -690,6 +693,8 @@ func handle_back() -> void:
 			if is_instance_valid(lesson_library) and lesson_library.handle_back(): return
 			_close_overlay()
 		'bus_ride': hotel_story.finish_bus_animation()
+		'school_escort': hotel_story.finish_school_escort()
+		'school_guide': _close_overlay()
 		'maze_success_return', 'challenge', 'pause', 'elevator', 'laptop', 'maze_return', 'terminal', 'zone_door', 'city_challenge', 'ctf_challenge', 'ctf_bus', 'dev_terminal': _close_overlay()
 		'npc': _close_npc_dialogue()
 		'dialog': _close_overlay()
@@ -865,7 +870,7 @@ func _fit_modal() -> void:
 	_modal_layout_serial+=1
 	var token=_modal_layout_serial
 	var extent=get_viewport_rect().size
-	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['bus_ride', 'challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'city_challenge', 'ctf_challenge', 'dev_terminal'] else 660)
+	_modal_panel.custom_minimum_size.x=minf(extent.x-36,900 if overlay_kind in ['bus_ride', 'school_escort', 'challenge', 'library', 'terminal', 'hotel_repair', 'hotel_coffee', 'city_challenge', 'ctf_challenge', 'dev_terminal'] else 660)
 	await get_tree().process_frame
 	if not is_inside_tree():return
 	await get_tree().process_frame
