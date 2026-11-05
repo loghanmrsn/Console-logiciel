@@ -1,6 +1,7 @@
 extends RefCounted
 ## Shared NPC placements and read-only dialogue. Talking never advances a quest.
 const CHARACTERS := [
+	{"id":"npc_school_supervisor","zone":"school_reception","name":"Surveillant","role":"Surveillante · vie scolaire","at":Vector2(710,540),"approach":Vector2(710,620),"visual_scale":1.872,"radius":110.0,"coat":"8da6ae","skin":"dbb395","hair":"d7b36b","accessory":"badge","hairstyle":"bun"},
 	{
 		"id": "npc_workshop", "zone": "room_01", "name": "Nora",
 		"role": "Technicienne CIEL",
@@ -22,7 +23,7 @@ const CHARACTERS := [
 	{
 		"id": "npc_hotel_door", "zone": "courtyard", "name": "Camille",
 		"role": "Accueil de l’Hôtel Ritz",
-		"at": Vector2(1130, 412), "approach": Vector2(1130, 458),
+		"at": Vector2(1130, 450), "approach": Vector2(1130, 496),
 		"coat": "798d83", "skin": "c89e82", "hair": "554b43", "accessory": "tie", "hairstyle": "side_part"
 	},
 	{
@@ -55,6 +56,7 @@ static func pages(id: String, progress: Dictionary) -> Array[String]:
 	var hotel: Dictionary = progress.get("hotel", {})
 	var morning := int(hotel.get("morning_stage", 0))
 	match id:
+		"npc_school_supervisor": return ["Bonjour ! Je peux vous accompagner jusqu’au couloir des ateliers."]
 		"npc_workshop":
 			if "computer" in completed:
 				return ["Bravo, l’atelier fonctionne à nouveau ! L’ascenseur du bureau permet de poursuivre l’enquête aux étages supérieurs.", "Chaque défi vous apprend à observer, comprendre puis résoudre une panne. Vous pouvez revenir me parler à tout moment. Votre carnet de missions s’affiche avec T ou la touche haute de la manette."]
