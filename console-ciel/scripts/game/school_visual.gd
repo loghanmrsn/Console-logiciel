@@ -22,6 +22,7 @@ func _draw() -> void:
 	if zone in Ateliers.IDS: AtelierScene.draw_floor(self,zone)
 	elif zone in ["school_hall", "school_passage"]: _atelier_area()
 	elif zone == "school_stop": _exterior()
+	elif zone == "school_reception": School.Reception.draw(self)
 	else: _cyber()
 	preload("res://scripts/game/school_architecture.gd").draw_room(self,zone)
 
@@ -53,6 +54,9 @@ func _cyber() -> void:
 	for y in [365,695]: draw_line(Vector2(170,y),Vector2(1810,y),Color("8ca4a7"),3)
 
 func _prop_art(kind: String, rect: Rect2) -> void:
+	if kind=="reception_stairs": School.Reception.stairs(self,rect);return
+	if kind=="garden_planter":
+		preload("res://scripts/game/town_details.gd").draw(self,{"kind":kind,"rect":rect});return
 	if kind in AtelierArt.KINDS:
 		AtelierArt.prop(self,kind,rect)
 		return
@@ -151,5 +155,5 @@ func _atelier_area() -> void:
 			_text(target.label,target.at+Vector2(0,-65),16,DARK,true)
 	if zone == "school_passage":
 		_text("1 · CIEL     2 · 2TNE     3 · RÉUNION     5 · BTS FED",Vector2(1750,420),22,DARK,true)
-		_text("← 4 · INFORMATIQUE / SORTIE",Vector2(620,260),18,DARK,true)
+		_text("← PORTE SÉCURISÉE     ↓ ACCUEIL / ATELIER 4",Vector2(620,260),18,DARK,true)
 		for x in range(450,2600,300): draw_line(Vector2(x,340),Vector2(x+80,340),Color("90a6a6"),4)
