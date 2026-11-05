@@ -1,10 +1,10 @@
 # Console Logiciel
 
-**Version 0.30.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.31.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_accueil_0.30.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_corrections_0.31.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.30.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.31.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.30.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.30.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.31.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.31.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
@@ -163,4 +163,6 @@ Un boulevard périphérique relie désormais toutes les extrémités des rues : 
 
 Les quatre bâtiments accessibles possèdent un petit point permanent devant leur porte, visible à distance et sur la carte. Le lycée Louise Michel est isolé dans un campus à l’est, avec une façade basse crème et rose, une entrée vitrée, des volets et le logo fourni à côté du nom. Le parvis comprend des bancs et des jardinières ; son ancien emplacement est un jardin.
 
-La version **0.30.0** ajoute l’accueil du lycée et l’accompagnement par la surveillante. La grande pancarte du parvis est supprimée. Les deux escaliers de l’hôtel et ceux des paliers sont droits, avec marches en pierre et rampes. Les décors de ville, la fontaine animée, les ateliers et les sauvegardes sont conservés. [Détails du rendu](console-ciel/docs/REALISME.md).
+La version **0.31.0** ajoute l’accueil du lycée et l’accompagnement par la surveillante. La grande pancarte du parvis est supprimée. Les deux escaliers de l’hôtel et ceux des paliers sont droits, avec marches en pierre et rampes. Les décors de ville, la fontaine animée, les ateliers et les sauvegardes sont conservés. [Détails du rendu](console-ciel/docs/REALISME.md).
+
+Les postes informatiques disposent d’écrans sur pieds agrandis. Le couloir des ateliers conserve une seule porte vers City CIEL ; les autres portes et les inscriptions murales et au sol sont retirées. Le retour à l’accueil reste accessible.
