@@ -30,6 +30,8 @@ def excluded(path: Path, project: Path) -> str:
     relative = path.relative_to(project)
     if any(part in EXCLUDED_DIRS or part.startswith('.runtime-') for part in relative.parts):
         return 'cache ou sauvegarde personnelle'
+    if relative.parts[:3] in {('docs', 'screenshots', 'refonte'), ('docs', 'screenshots', 'finition')}:
+        return 'première galerie historique conservée dans le dépôt et les anciennes archives ; voir docs/ARCHIVE_COMPLETE.md'
     if path.suffix.lower() in {'.zip', '.tpz'}:
         return 'archive imbriquée ou modèles régénérables'
     if path.name in SECRET_FILES or path.name == '.env' or path.name.startswith('.env.') or path.suffix.lower() in {'.pem', '.key', '.p12', '.pfx'}:
