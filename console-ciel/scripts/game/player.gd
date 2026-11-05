@@ -7,6 +7,8 @@ var controls_enabled := true
 var reserve_map_arrow := false
 var facing := Vector2.DOWN
 var accent := Color("527fa3")
+var avatar3d: Control
+var _visual_scale := 1.0
 var sprite: AnimatedSprite2D
 var _direction := "down"
 
@@ -33,10 +35,25 @@ func _ready() -> void:
 	# Supersampled SVGs keep their original 64 × 72 world footprint.
 	sprite.scale = Vector2.ONE * (.78 * 64.0 / frames.get_frame_texture("down", 0).get_width())
 	add_child(sprite)
+	avatar3d=preload("res://scripts/character/character_view.gd").new()
+	avatar3d.preview_mode=false
+	avatar3d.name="Player3D"
+	avatar3d.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(avatar3d)
+	set_character(preload("res://scripts/services/character_catalog.gd").record(AppState.profile).appearance)
+	set_visual_scale(1.0)
+	sprite.hide()
 	_update_animation(false)
+
+func set_character(appearance: Dictionary) -> void:
+	if avatar3d!=null: avatar3d.configure(appearance)
 
 func set_visual_scale(multiplier: float) -> void:
 	# Feet stay anchored to the same collision body; this changes only the art.
+	_visual_scale=multiplier
+	if avatar3d!=null:
+		avatar3d.size=Vector2(56,84)*multiplier
+		avatar3d.position=Vector2(-28,-77)*multiplier
 	if sprite==null: return
 	var width := sprite.sprite_frames.get_frame_texture("down",0).get_width()
 	sprite.scale=Vector2.ONE*(.78*64.0/width)*multiplier
@@ -68,6 +85,9 @@ func _physics_process(delta: float) -> void:
 
 func _update_animation(walking: bool) -> void:
 	if sprite == null: return
+	if avatar3d!=null:
+		avatar3d.set_motion(walking and not SettingsService.current.get("reduce_motion",false),facing)
+		avatar3d.visible=not get_parent().get_meta("hide_character_3d",false)
 	var settings := get_node_or_null("/root/SettingsService")
 	var reduced: bool = settings != null and settings.current.get("reduce_motion", false)
 	sprite.self_modulate = Color.WHITE.lerp(accent, .12)
