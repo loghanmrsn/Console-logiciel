@@ -1,0 +1,3 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WORLD_COLLISION : 1253 assertions, 0 échec(s). 672 objets physiques, 88326 segments vérifiés.
