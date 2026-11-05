@@ -1,0 +1,4 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CODE_CHAPTER_UI : 65 assertions, 0 échec(s).
+Manette simulée par événements natifs ; matériel physique non testé.
