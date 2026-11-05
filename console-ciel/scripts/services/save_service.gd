@@ -52,6 +52,7 @@ const CHAPTER_THREE_SOLUTIONS := {
 }
 const LEGACY_MIGRATION_NOTICE := "La progression du prototype contenait des interactions simulées. Elle a été remise au début pour jouer les vrais défis. Vos points, achats et récompenses déjà attribuées sont conservés : ils ne seront pas gagnés une seconde fois."
 const DEFAULT_ITEMS := ["avatar_default", "theme_brume", "frame_default"]
+const CharacterCatalog := preload("res://scripts/services/character_catalog.gd")
 const LocalAvatarLibrary := preload("res://scripts/services/local_avatar_library.gd")
 const GameLibrary := preload("res://scripts/services/game_library.gd")
 const MAX_POINTS := 2147483647
@@ -443,6 +444,8 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 		return _fail("Le profil Dev dédié doit conserver son rôle super administrateur.")
 	# Champ facultatif du schéma 1 : une image absente n'invalide jamais le profil.
 	# L'avatar du catalogue reste l'équipement possédé et sert de repli visuel.
+	if document.has("character") and not CharacterCatalog.valid(document.character):
+		return _fail("Le personnage 3D, son gabarit ou ses achats sont invalides.")
 	if document.has("avatar_image") and (not document.avatar_image is String or (not document.avatar_image.is_empty() and not LocalAvatarLibrary.is_safe_filename(document.avatar_image))):
 		return _fail("Le nom de l'image de profil locale est invalide.")
 	if not document.get("wallet") is Dictionary or not _is_integer(document.wallet.get("points"), 0, MAX_POINTS):
@@ -678,6 +681,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	progress.hotel.version = HOTEL_VERSION
 	progress.hotel.morning_stage = int(progress.hotel.morning_stage)
 	document.schema_version = SCHEMA_VERSION
+	if document.has("character"): document.character.version=1
 	document.wallet.points = int(document.wallet.points)
 	if document.has("penalties"):
 		for field in ["version", "count", "debt", "paid"]: document.penalties[field] = int(document.penalties[field])
