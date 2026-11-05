@@ -39,6 +39,11 @@ def check_profile_packages(project, base):
         (directory/'assets/licenses/GODOT_MIT.txt').write_text('Fixture Godot licence.\n', encoding='utf-8')
     shutil.copytree(pictures, selected/'images_profil')
     binary_before={path: path.read_bytes() for path in (selected/'Console_CIEL.exe', old/'Console_CIEL.exe')}
+    historical=project/'docs/screenshots/refonte/avant.png'
+    current=project/'docs/screenshots/decors_0.29.0/fontaine.webp'
+    for image in (historical,current):
+        image.parent.mkdir(parents=True,exist_ok=True)
+        image.write_bytes(b'ISOLATED CAPTURE FIXTURE')
 
     spec=importlib.util.spec_from_file_location('complete_package_fixture', project/'tools/package_complete.py')
     complete=importlib.util.module_from_spec(spec); spec.loader.exec_module(complete)
@@ -48,6 +53,11 @@ def check_profile_packages(project, base):
     old_prefix='console-ciel/builds/windows-x86_64-navigation-0.4.1/'
     with ZipFile(current_output) as archive:
         names=set(archive.namelist())
+        check('console-ciel/docs/screenshots/refonte/avant.png' not in names
+              and archive.read('console-ciel/docs/screenshots/decors_0.29.0/fontaine.webp')==current.read_bytes()
+              and historical.read_bytes()==b'ISOLATED CAPTURE FIXTURE'
+              and any(item['path'].startswith('docs/screenshots/refonte') for item in report['excluded']),
+              'Galerie historique omise et signalée, capture courante incluse, originaux intacts')
         check(archive.testzip() is None and report['crc_valid'] and report['all_source_hashes_verified'], 'Livraison courante : CRC et empreintes source vérifiés')
         check(archive.read(selected_prefix+'Console_CIEL.exe')==binary_before[selected/'Console_CIEL.exe'], 'Livraison courante : binaire sélectionné préservé avec chemin imbriqué')
         for prefix in ('console-ciel/images_profil/', selected_prefix+'images_profil/'):
