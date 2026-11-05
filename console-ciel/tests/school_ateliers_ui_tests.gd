@@ -41,7 +41,7 @@ func _run() -> void:
 	for pair in [["A","3"],["B","2"],["C","1"]]: _check(hotel.connect_school_wire(pair[0],pair[1]).ok,"Câblage conservé")
 	_check(hotel.travel("school_passage").ok,"Couloir des ateliers")
 	await _restore()
-	await _approach("school_tne")
+	await _approach("school_workshop")
 	await _key(KEY_SPACE)
 	var before: Dictionary=state.profile.duplicate(true)
 	saves.simulate_write_failure=true
@@ -49,7 +49,7 @@ func _run() -> void:
 	_check(state.profile==before and app.demo.world.room_id=="school_passage","Échec disque : aucune téléportation")
 	saves.simulate_write_failure=false
 	app.demo._close_overlay()
-	for room in ["school_workshop","school_tne","school_meeting","school_fed"]:
+	for room in ["school_workshop"]:
 		await _approach(room)
 		await _key(KEY_SPACE)
 		await _activate("hotel_travel_go")
@@ -64,10 +64,10 @@ func _run() -> void:
 		_check(_point_clear(app.demo.world.player.position),"Retour sans collision")
 	_check(state.profile.wallet==original.wallet and state.profile.rewarded_missions==original.rewarded_missions,"Exploration sans récompense ni coût ajouté")
 	_check(saves.read_profile(profile_id).data==state.profile,"Dernier passage écrit sur disque")
-	await _capture("couloir_cinq_ateliers_challenge")
+	await _capture("couloir_porte_unique_challenge")
 	root.size=Vector2i(800,480)
 	await _frames(10)
-	await _approach("school_meeting")
+	await _approach("school_workshop")
 	await _controller_interact()
 	_check(_find("hotel_travel_go").is_visible_in_tree(),"Porte disponible en 800 × 480")
 	await _capture("atelier_porte_compact_challenge")
