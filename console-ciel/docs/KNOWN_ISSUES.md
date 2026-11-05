@@ -36,3 +36,5 @@ Les corruptions et échecs d'écriture sont vérifiés automatiquement dans des 
 La source peut être présentée avec Godot sur un PC disposant d’un affichage après cette répétition. La livraison ARM64 fournit le programme autonome ; une démonstration sur le **Pi 4 64 bits** nécessite encore un lancement dans son bureau et la recette réelle avec son écran et son contrôleur. L’absence d’arrêt système intégré n’empêche pas le parcours applicatif ; elle doit être annoncée, et l’arrêt de Raspberry Pi OS doit rester distinct de Quitter.
 
 [Résultats automatiques réellement exécutés](TESTS.md) · [Interface](UI_TESTS.md) · [Installation Pi](RASPBERRY_PI.md) · [Parcours de soutenance](DEMONSTRATION.md).
+
+Les premières galeries historiques `refonte/` et `finition/` restent accessibles dans le dépôt et les anciennes archives ; voir [le contenu des archives courantes](ARCHIVE_COMPLETE.md).
