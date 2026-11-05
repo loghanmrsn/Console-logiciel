@@ -1,3 +1,11 @@
+# Livraison 0.31.0 — postes informatiques et couloir
+
+Postes fixes avec écrans agrandis sur pieds, clavier, souris et tour. Rendus Blender/Cycles originaux encodés sans perte. Une seule porte vers City CIEL dans le couloir ; autres portes, noms de salles et inscriptions au sol retirés. Retour à l’accueil conservé. Les anciennes salles et sauvegardes restent dans le projet.
+
+8057 assertions réussies, ressources compilées Windows et ARM64 chargées par Godot Linux, captures natives X11/Mesa et clavier/manette simulée. Matériel cible Windows et Raspberry Pi non testé. [Résultats](../tests/corrections_0.31.0_results/summary.json). 142 anciennes archives conservées.
+
+---
+
 # Livraison 0.30.0 — accueil du lycée et surveillante
 
 Accueil à murs blancs, PNJ adulte blonde en pull ample modélisée dans Blender, choix d’accompagnement de 2,6 secondes vers les ateliers ou Rien. Animation avec marche sur escalier droit puis couloir, passage facultatif, pause lors de la déconnexion de manette. La grande pancarte du lycée est supprimée et les escaliers de l’hôtel sont droits. Les sauvegardes et les décors de ville sont conservés.
