@@ -226,14 +226,14 @@ func _build_characters() -> void:
 		var visual := NpcVisual.new()
 		visual.name = "CharacterArt"
 		visual.configure(spec)
-		visual.scale = Vector2(.78, .78)
+		visual.scale = Vector2.ONE * float(spec.get("visual_scale",.78))
 		body.add_child(visual)
 		_characters[str(spec.id)] = visual
-		_add_target(str(spec.id), "Parler à %s · %s" % [spec.name, spec.role], spec.approach, 68)
+		_add_target(str(spec.id), "Parler à %s · %s" % [spec.name, spec.role], spec.approach, float(spec.get("radius",68)))
 		var target := get_interactable(str(spec.id))
 		target.dialogue_marker = true
 		target.speaker_name = str(spec.name)
-		target.marker_offset = spec.at - spec.approach + Vector2(14, -62)
+		target.marker_offset = spec.at - spec.approach + Vector2(14, -62)*float(spec.get("visual_scale",.78))/.78
 
 func _build_workshop() -> void:
 	_add_obstacle(Rect2(619, 50, 20, 226), "OfficeWallNorth")
