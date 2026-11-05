@@ -73,3 +73,5 @@ Les captures sont les textures réellement rendues par le viewport, enregistrée
 - Exporter et lancer le binaire ARM64 sur Raspberry Pi 5 ; mesurer les performances du menu et de l'enquête. Aucun chiffre de performance Pi n'est acquis ici.
 
 Quitter n'arrête pas le Raspberry Pi. Aucun test ne présente de batterie, réseau ou arrêt système non mesuré comme fonctionnel.
+
+Les premières galeries historiques `refonte/` et `finition/` restent accessibles dans le dépôt et les anciennes archives ; voir [le contenu des archives courantes](ARCHIVE_COMPLETE.md).
