@@ -1,0 +1,65 @@
+[
+	{
+		"file": "chapeau_paille_pantalon_ballon.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "d4cbfd84b88e85c3c35ef62f50c27435f638c10bebff254904904df6a9c714f5",
+		"source": "chapeau_paille_pantalon_ballon.png",
+		"source_sha256": "4e658e777d78c867c616b6c1336dfc8f89640265ae0d34aa62b45d5c8e9d6d55",
+		"width": 1280
+	},
+	{
+		"file": "configurateur_visage.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "c23bd27b62f9b0a0d975dfb1d012ebe88a0122a37e8dd0a7e8f743bcc3d685d5",
+		"source": "configurateur_visage.png",
+		"source_sha256": "2ac018cb372ef8a452062d54613c788a3730c125a157d5cffaab78611e03f9b7",
+		"width": 1280
+	},
+	{
+		"file": "dressing_casquette_baggy.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "abe1ba34c69be5c6509b9f07d5b3f2a0fa0ae9cd3b0c10d9d733d487429ae043",
+		"source": "dressing_casquette_baggy.png",
+		"source_sha256": "d7238eab25995857d7c11ff1bf5895ad626b4373b39e0a0205607d2243c590dd",
+		"width": 1280
+	},
+	{
+		"file": "dressing_compact.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "304b2aa2fe18bf06155d6e302d55b8457457e63b31bde6595920ee4ecef506b2",
+		"source": "dressing_compact.png",
+		"source_sha256": "181776c1ffc2fdb4b760561e7ea0a7b19033893bf0424fc71996fdd55fecbfdc",
+		"width": 800
+	},
+	{
+		"file": "personnage_3d_en_jeu.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "3cd9972d395151dd26e0d9e7b5269ddd6701032b8e8825ba9392b812bfb32d89",
+		"source": "personnage_3d_en_jeu.png",
+		"source_sha256": "a17b6b854435c57b4fa0e38ccefe260533eb7e4f4cf7d072296d8dd5c6b6f497",
+		"width": 800
+	},
+	{
+		"file": "pull_ample_3d.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "47bfbd2ec30dd138b6f28257258d2765bc1a146a569ce083d102008f870aee99",
+		"source": "pull_ample_3d.png",
+		"source_sha256": "d7477a17b408f0c962463c51785fe3e940b050f4955286ec71dff0e841297e97",
+		"width": 1280
+	},
+	{
+		"file": "test_personnage_collision_3d.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "e31de5a6bdb6a6c88d89584ded8833a1d11dcdd01bd8e67089604399f67effa2",
+		"source": "test_personnage_collision_3d.png",
+		"source_sha256": "8d0dfda7d51b51d12486d2c0d15d423565b38b3ad2d9143d721d1d88c1af5fef",
+		"width": 800
+	}
+]
