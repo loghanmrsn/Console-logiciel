@@ -11,7 +11,7 @@ static func draw_room(canvas: Node2D, zone: String) -> void:
 	if zone in Plan.Ateliers.IDS:
 		scene.door(canvas,Vector2(Plan.Ateliers.entry(zone).x,Plan.extent(zone).y-65),"",false)
 	if zone == "school_passage":
-		for item in [[1400,64,"1 · BAC PRO CIEL"],[2150,64,"2 · 2TNE"],[2700,64,"5 · BTS FED"],[900,636,"3 · RÉUNION"]]:
+		for item in [[1400,64,"1 · BAC PRO CIEL"],[2150,64,"2 · 2TNE"],[2700,64,"5 · BTS FED"],[900,636,"3 · RÉUNION"],[1750,636,"4 · CIEL INFORMATIQUE"],[430,636,"ACCUEIL"]]:
 			scene.door(canvas,Vector2(item[0],item[1]),item[2],item[1]==64)
 	if zone == "school_workshop":
 		left_door(canvas, Vector2(52,720))
