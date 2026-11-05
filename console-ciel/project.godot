@@ -4,13 +4,14 @@ config_version=5
 [application]
 config/name="Console CIEL"
 config/icon="res://assets/console.svg"
-config/version="0.31.0"
+config/version="0.32.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/use_custom_user_dir=true
 config/custom_user_dir_name="console-ciel"
 
 [autoload]
+CharacterService="*res://scripts/services/character_service.gd"
 SaveService="*res://scripts/services/save_service.gd"
 AppState="*res://scripts/services/app_state.gd"
 ShopService="*res://scripts/services/shop_service.gd"
