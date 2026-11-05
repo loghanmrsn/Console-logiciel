@@ -1,0 +1,102 @@
+{
+  "source_provenance": {
+    "version": 1,
+    "license": "CC0-1.0 original artwork",
+    "blender_version": "4.3.2",
+    "height_reference_metres": 1.7,
+    "rig": "standard_170",
+    "body_editable": false,
+    "mesh_objects": 37,
+    "all_variant_triangles": 71814,
+    "generator_sha256": "d4aea588648c5f2d95465fb8c4e516cee4392e5776baa7b323b20f19a19d6b89",
+    "glb_sha256": "9312c6bb3d788d94bd6b40efcc68f8b99f53582724cc363a606a9e9a1c7f606f",
+    "source_blend_sha256": "4d02971f55f6de53b5523d39ac0bb8b0538bd03d0311855d1abccce2bc5a17fe",
+    "animations": [
+      "idle",
+      "walk"
+    ],
+    "prompt": "Original adult character with a fixed regular 1.70 m build, naturally proportioned face, customizable skin, hair, eyes, lips and smile. Modular casual wardrobe: plain shirts, loose knitwear, regular, baggy and balloon trousers, denim and structured flat-brim caps, straw and felt hats, generic unbranded shoes. One shared skeleton and no garment colliders.",
+    "negative_prompt": "logos, brand names, sports team emblems, copied textures, variable body scaling, oversized cartoon head, downloaded models",
+    "external_models_or_images": false
+  },
+  "mesh_triangles": {
+    "body": 4768,
+    "eyes_almond": 2256,
+    "eyes_round": 2256,
+    "eyes_soft": 2256,
+    "hair_bun_high": 1696,
+    "hair_bun_low": 1696,
+    "hair_buzz": 640,
+    "hair_fringe_curly": 3664,
+    "hair_fringe_straight": 1504,
+    "hair_long": 1792,
+    "hair_middlepart": 1504,
+    "hair_mullet": 2656,
+    "hair_ponytails_long": 2368,
+    "hair_ponytails_mid": 2368,
+    "hair_short": 1504,
+    "hair_sidepart": 1504,
+    "headwear_cap_denim": 2016,
+    "headwear_cap_flat": 2016,
+    "headwear_fedora": 1024,
+    "headwear_straw": 4000,
+    "shoes_boots": 1920,
+    "shoes_canvas": 1536,
+    "shoes_court": 1536,
+    "shoes_high": 1920,
+    "shoes_loafers": 1344,
+    "shoes_runner": 2016,
+    "smile_neutral": 288,
+    "smile_soft": 288,
+    "smile_wide": 288,
+    "socks_socks": 384,
+    "top_cardigan": 2976,
+    "top_hoodie": 3196,
+    "top_sweater": 3006,
+    "top_tee": 2114,
+    "trousers_baggy": 1664,
+    "trousers_balloon": 2176,
+    "trousers_regular": 1664
+  },
+  "worst_case_selection": {
+    "hair": [
+      "hair_fringe_curly",
+      3664
+    ],
+    "top": [
+      "top_hoodie",
+      3196
+    ],
+    "trousers": [
+      "trousers_balloon",
+      2176
+    ],
+    "headwear": [
+      "headwear_straw",
+      4000
+    ],
+    "socks": [
+      "socks_socks",
+      384
+    ],
+    "shoes": [
+      "shoes_runner",
+      2016
+    ],
+    "eyes": [
+      "eyes_almond",
+      2256
+    ],
+    "smile": [
+      "smile_neutral",
+      288
+    ]
+  },
+  "maximum_visible_triangles": 22748,
+  "glb_total_triangles": 71804,
+  "glb_bytes": 2660128,
+  "bone_count": 13,
+  "raw_glb_sha256_verified": true,
+  "editable_blend_sha256_verified": true,
+  "no_external_provider": true
+}
