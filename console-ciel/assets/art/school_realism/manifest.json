@@ -1,441 +1,441 @@
 {
-	"blender_version": "4.3.2",
-	"generator_sha256": "635b136c8bc14b953f6c974ea5c66e60aa29a73ad973dd351fdddd65335f8ee9",
-	"license": "CC0-1.0 for original rendered artwork. No third-party model or photograph texture. The school logo is drawn separately by Godot and retains its own rights.",
-	"packing_generator_sha256": "e1292d999d2121f2717ec1459793fe5d75ae44119c6c558c8d8ba1d8ecbf7b4b",
-	"sprites": {
-		"bookcase_280x90": {
-			"alpha": "straight",
-			"file": "bookcase_280x90.webp",
-			"footprint": [
-				280.0,
-				90.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-105.0,
-				320.0,
-				227.0
-			],
-			"scale": 1.0,
-			"sha256": "0c5dadbc672a999c1f2fe6b071b5f6b65618bfa5abdfaaa4fdca3e2bd2c01c5a",
-			"source_png_sha256": "cebb21a91fa077757224ef6bcf9d31d253f3a34be56b2646609d0c8debee8710"
-		},
-		"chair_70x40": {
-			"alpha": "straight",
-			"file": "chair_70x40.webp",
-			"footprint": [
-				70.0,
-				40.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-16.0,
-				-78.0,
-				106.0,
-				150.0
-			],
-			"scale": 1.0,
-			"sha256": "b8933721cee8717baf58fd4efa352b49f413f3892f48e80d39a1b44c9e579d85",
-			"source_png_sha256": "dcbe8f3140a4f49c253e2995ff4ee7ede6065fa2a5eb263d57b4477c2d0d6b7b"
-		},
-		"cyber_desk_320x110": {
-			"alpha": "straight",
-			"file": "cyber_desk_320x110.webp",
-			"footprint": [
-				320.0,
-				110.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-83.0,
-				361.0,
-				220.0
-			],
-			"scale": 1.0,
-			"sha256": "845f9feaa804b4ee42ab835ddf5b38ea068ab9a156a55b02958c1cdff4489682",
-			"source_png_sha256": "419e587f652206d0110aa247d07c293c6b303f43855261f6051b4f439765ff83"
-		},
-		"electronics_420x150": {
-			"alpha": "straight",
-			"file": "electronics_420x150.webp",
-			"footprint": [
-				420.0,
-				150.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				460.0,
-				240.0
-			],
-			"scale": 1.0,
-			"sha256": "b98c3d360845b4703cb90dee6b9a2b8edfe792a513c79a07b57c664a1b029ea4",
-			"source_png_sha256": "67af050a2642cd33d90c19ed7385918a3f941911b3401acf71f21831acadda0c"
-		},
-		"hydraulic_bench_420x180": {
-			"alpha": "straight",
-			"file": "hydraulic_bench_420x180.webp",
-			"footprint": [
-				420.0,
-				180.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-104.0,
-				460.0,
-				316.0
-			],
-			"scale": 1.0,
-			"sha256": "607e86b33d6ad671e1088c621a7dd99e8b14d3f0d2f72b2d10dfd5a9f5ff790b",
-			"source_png_sha256": "c5a5b84b7b18922ce5ba96ee32910d88893eed2925fc489e6d63bda90da001b4"
-		},
-		"laptop_bench_480x150": {
-			"alpha": "straight",
-			"file": "laptop_bench_480x150.webp",
-			"footprint": [
-				480.0,
-				150.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				521.0,
-				240.0
-			],
-			"scale": 1.0,
-			"sha256": "1d44f52e857d784e2ac639f9964b53c5448276d106bd688d93ac7243b3b7694e",
-			"source_png_sha256": "bae47596cac28d794400c08ad1f37a5f4c79a49c703d0ea0e4d7c333bf998788"
-		},
-		"lycee_facade": {
-			"alpha": "straight",
-			"file": "lycee_facade.webp",
-			"footprint": [
-				1800.0,
-				330.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-23.0,
-				-68.0,
-				1850.0,
-				450.0
-			],
-			"scale": 1.0,
-			"sha256": "6664fffcbaa893b7b78cffb8d364422835b0dc55b2415ebfc12718cb3eaafb48",
-			"source_png_sha256": "f97be7283c0e559a02756b7cdaf815c7cfc6ae9549848f0bb5cdb15ececd89a0"
-		},
-		"measurement_bench_210x110": {
-			"alpha": "straight",
-			"file": "measurement_bench_210x110.webp",
-			"footprint": [
-				210.0,
-				110.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-69.0,
-				250.0,
-				206.0
-			],
-			"scale": 1.0,
-			"sha256": "af45649b8ccf50ebb337532f2c4aa37a3101432af9ecbd38b6f0c5e99884e8bf",
-			"source_png_sha256": "d1ee1d2cc0ed1d80e1211a3a235d5bdc9707d30ccfcf61450eacdbc337af4f2b"
-		},
-		"meeting_board_650x30": {
-			"alpha": "straight",
-			"file": "meeting_board_650x30.webp",
-			"footprint": [
-				650.0,
-				30.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-99.0,
-				690.0,
-				121.0
-			],
-			"scale": 1.0,
-			"sha256": "a16bdae76622bc93a0f2e80b6fea5a339193086bdae504a6f222f02059d50110",
-			"source_png_sha256": "99ba2862b1fdb08254c84144a16eae4e8173cbe17ada1c7842ae66aaa3fcbfe1"
-		},
-		"meeting_table_300x140": {
-			"alpha": "straight",
-			"file": "meeting_table_300x140.webp",
-			"footprint": [
-				300.0,
-				140.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				340.0,
-				230.0
-			],
-			"scale": 1.0,
-			"sha256": "048432339ad845ea8710d0a798bf19e9252d964fe54fbf069f59fdbf8a795388",
-			"source_png_sha256": "c6b24602959e44e18e8e49ba93636829a883d6fe778b8186e54977ee2455bce2"
-		},
-		"meeting_table_420x160": {
-			"alpha": "straight",
-			"file": "meeting_table_420x160.webp",
-			"footprint": [
-				420.0,
-				160.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				460.0,
-				250.0
-			],
-			"scale": 1.0,
-			"sha256": "7f54aad4b1786b8dfe773c25a10bd703df00261f6b1bba9f60d9d8d071437940",
-			"source_png_sha256": "27bbbc4263c93139869cedbb90fabad1aa5a09ef23a15e99fc65058b14e6d359"
-		},
-		"mezzanine_1220x80": {
-			"alpha": "straight",
-			"file": "mezzanine_1220x80.webp",
-			"footprint": [
-				1220.0,
-				80.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-109.0,
-				1260.0,
-				175.0
-			],
-			"scale": 1.0,
-			"sha256": "248e591976a968e1af254c7d4cc140b9ceb66f91623de6376e09ae3734851c57",
-			"source_png_sha256": "6321a4f255e588e4e8ca549d662e0e4256167cf4090b45873fc60a7cf21d7153"
-		},
-		"network_console_420x160": {
-			"alpha": "straight",
-			"file": "network_console_420x160.webp",
-			"footprint": [
-				420.0,
-				160.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				460.0,
-				250.0
-			],
-			"scale": 1.0,
-			"sha256": "edb536fe7c0bcd5e1627e30c92e897d3d0b08d8b45ad1d9863996610683581b6",
-			"source_png_sha256": "13328a09a39c20a8f6db251369ddcbf7ef0a9b7b9e98c33f31ecdfc1bf8581fa"
-		},
-		"parts_cabinet_250x80": {
-			"alpha": "straight",
-			"file": "parts_cabinet_250x80.webp",
-			"footprint": [
-				250.0,
-				80.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-105.0,
-				290.0,
-				217.0
-			],
-			"scale": 1.0,
-			"sha256": "c07c029adb2b48ab1509a2aa509cb9c297174a17a5bec9b0b233f521077b54f6",
-			"source_png_sha256": "ff23811bccf34d2782dec25ad9814660d515550d5b289823eadea5451370dd8b"
-		},
-		"parts_cabinet_360x100": {
-			"alpha": "straight",
-			"file": "parts_cabinet_360x100.webp",
-			"footprint": [
-				360.0,
-				100.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-105.0,
-				400.0,
-				237.0
-			],
-			"scale": 1.0,
-			"sha256": "d706c1b759b120e1d093271ced3cef246d4cba0365e5e167239dbc5ca5dfdfff",
-			"source_png_sha256": "0eea0558b29d53c162be900e1d25799ad61730dac11573fc74208d162ca76fb3"
-		},
-		"printer3d_420x150": {
-			"alpha": "straight",
-			"file": "printer3d_420x150.webp",
-			"footprint": [
-				420.0,
-				150.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-113.0,
-				460.0,
-				290.0
-			],
-			"scale": 1.0,
-			"sha256": "e95a45bccb0e9d0bc6e52a3c36b5b1a9d9d889cb3365429ba147bb9998c12c60",
-			"source_png_sha256": "fc78900e5e38b67fcdc776c056de10292521ca89b2c27ae683ad987942ee0451"
-		},
-		"rack_120x80": {
-			"alpha": "straight",
-			"file": "rack_120x80.webp",
-			"footprint": [
-				120.0,
-				80.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-138.0,
-				161.0,
-				258.0
-			],
-			"scale": 1.0,
-			"sha256": "8727b5243a9c3e1c34ed04aa7f97d12d5c53f40cc04a5bcfd755a806c029c575",
-			"source_png_sha256": "cde1ce7cbcb75faccc5cbcd1d8c226209fdd108853eebfef65affb6387f85d61"
-		},
-		"regulation_panel_420x110": {
-			"alpha": "straight",
-			"file": "regulation_panel_420x110.webp",
-			"footprint": [
-				420.0,
-				110.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-19.0,
-				-111.0,
-				463.0,
-				259.0
-			],
-			"scale": 1.0,
-			"sha256": "68c8608e73dbb1d2f8dc21d333f9ec11e53e6127177accc86ab65ed51091d77d",
-			"source_png_sha256": "681dbf5d25ffbd99698fe58fad1091d31d3f5bcbc59513a6ad84769ef5a7848c"
-		},
-		"steel_column_48x48": {
-			"alpha": "straight",
-			"file": "steel_column_48x48.webp",
-			"footprint": [
-				48.0,
-				48.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-150.0,
-				88.0,
-				230.0
-			],
-			"scale": 1.0,
-			"sha256": "8495727e0a7a55423c034ad62137923a925c65df7f8decf0e23bea33bcac923b",
-			"source_png_sha256": "570d1acf9067a20344799440563247b39f2fc0f909ca4bcc374d8650c93d6523"
-		},
-		"stool_48x42": {
-			"alpha": "straight",
-			"file": "stool_48x42.webp",
-			"footprint": [
-				48.0,
-				42.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-44.0,
-				88.0,
-				116.0
-			],
-			"scale": 1.0,
-			"sha256": "7c0224289ce991345e8e194007bbaf7971e2435ffb9ca3e5f06921c26cea1bfd",
-			"source_png_sha256": "42eb001372422d9bfdfb24e4ae3918dbb09096f29b7ffb98f5dc1c4d60dab600"
-		},
-		"tools_bench_440x150": {
-			"alpha": "straight",
-			"file": "tools_bench_440x150.webp",
-			"footprint": [
-				440.0,
-				150.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-63.0,
-				481.0,
-				240.0
-			],
-			"scale": 1.0,
-			"sha256": "40a8f9ab2c27b7f87e2fa2b35f385352f2ae540b4de8c13fb0605554ead78275",
-			"source_png_sha256": "a6b08f0bab72e83263b06b85dd4bb13000e4c8a7cc76b95d321fe3c67fb3bd9f"
-		},
-		"training_panel_420x90": {
-			"alpha": "straight",
-			"file": "training_panel_420x90.webp",
-			"footprint": [
-				420.0,
-				90.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-19.0,
-				-117.0,
-				463.0,
-				244.0
-			],
-			"scale": 1.0,
-			"sha256": "051c47c79ec54dcea1e94e844a1819e831e94dc9d2ffb5e93db8c33f7bb11db0",
-			"source_png_sha256": "2fe25b9b4674b1180176b4e03b806edf02750c8259605b95c5dae0ff671ddd89"
-		},
-		"whiteboard_520x30": {
-			"alpha": "straight",
-			"file": "whiteboard_520x30.webp",
-			"footprint": [
-				520.0,
-				30.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-99.0,
-				560.0,
-				121.0
-			],
-			"scale": 1.0,
-			"sha256": "2e68e2559e4642427845568bdbb51e759475629069c68b8f22be17ec946d0132",
-			"source_png_sha256": "8e869c38bec5e2609156db056d8d0c31fa671a0b0e982803231b708f051f3d42"
-		},
-		"whiteboard_600x30": {
-			"alpha": "straight",
-			"file": "whiteboard_600x30.webp",
-			"footprint": [
-				600.0,
-				30.0
-			],
-			"lossless_roundtrip_verified": true,
-			"rect": [
-				-18.0,
-				-99.0,
-				640.0,
-				121.0
-			],
-			"scale": 1.0,
-			"sha256": "cdfd5bb60a345e8d5f1add9d82e5841b1460afe49a78f251b0cdf4f326f73f9c",
-			"source_png_sha256": "9ea263e42bde00b6fd05ccf4bc5b4abd69e6214094a37e22ec1d00cb66bbd830"
-		}
-	},
-	"version": 1.0
+  "blender_version": "4.3.2",
+  "generator_sha256": "cc9b1c1ff89fad44e1d30e93d122bda5f7e612ba37528a0d2ee49650b9a410aa",
+  "license": "CC0-1.0 for original rendered artwork. No third-party model or photograph texture. The school logo is drawn separately by Godot and retains its own rights.",
+  "packing_generator_sha256": "e1292d999d2121f2717ec1459793fe5d75ae44119c6c558c8d8ba1d8ecbf7b4b",
+  "sprites": {
+    "bookcase_280x90": {
+      "alpha": "straight",
+      "file": "bookcase_280x90.webp",
+      "footprint": [
+        280.0,
+        90.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -105.0,
+        320.0,
+        227.0
+      ],
+      "scale": 1.0,
+      "sha256": "0c5dadbc672a999c1f2fe6b071b5f6b65618bfa5abdfaaa4fdca3e2bd2c01c5a",
+      "source_png_sha256": "cebb21a91fa077757224ef6bcf9d31d253f3a34be56b2646609d0c8debee8710"
+    },
+    "chair_70x40": {
+      "alpha": "straight",
+      "file": "chair_70x40.webp",
+      "footprint": [
+        70.0,
+        40.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -16.0,
+        -78.0,
+        106.0,
+        150.0
+      ],
+      "scale": 1.0,
+      "sha256": "b8933721cee8717baf58fd4efa352b49f413f3892f48e80d39a1b44c9e579d85",
+      "source_png_sha256": "dcbe8f3140a4f49c253e2995ff4ee7ede6065fa2a5eb263d57b4477c2d0d6b7b"
+    },
+    "cyber_desk_320x110": {
+      "alpha": "straight",
+      "file": "cyber_desk_320x110.webp",
+      "footprint": [
+        320.0,
+        110.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -89.0,
+        361.0,
+        226.0
+      ],
+      "scale": 1.0,
+      "sha256": "cd0d44147e9f942fe31f09276b58b543256dcbd1846aed83b64d405a07bbe7aa",
+      "source_png_sha256": "fae71ffca6c05d59e172c0e09418b78de18dfb7226f371c3e230e601345548e3"
+    },
+    "electronics_420x150": {
+      "alpha": "straight",
+      "file": "electronics_420x150.webp",
+      "footprint": [
+        420.0,
+        150.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        460.0,
+        240.0
+      ],
+      "scale": 1.0,
+      "sha256": "b98c3d360845b4703cb90dee6b9a2b8edfe792a513c79a07b57c664a1b029ea4",
+      "source_png_sha256": "67af050a2642cd33d90c19ed7385918a3f941911b3401acf71f21831acadda0c"
+    },
+    "hydraulic_bench_420x180": {
+      "alpha": "straight",
+      "file": "hydraulic_bench_420x180.webp",
+      "footprint": [
+        420.0,
+        180.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -104.0,
+        460.0,
+        316.0
+      ],
+      "scale": 1.0,
+      "sha256": "607e86b33d6ad671e1088c621a7dd99e8b14d3f0d2f72b2d10dfd5a9f5ff790b",
+      "source_png_sha256": "c5a5b84b7b18922ce5ba96ee32910d88893eed2925fc489e6d63bda90da001b4"
+    },
+    "laptop_bench_480x150": {
+      "alpha": "straight",
+      "file": "laptop_bench_480x150.webp",
+      "footprint": [
+        480.0,
+        150.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        521.0,
+        240.0
+      ],
+      "scale": 1.0,
+      "sha256": "1d44f52e857d784e2ac639f9964b53c5448276d106bd688d93ac7243b3b7694e",
+      "source_png_sha256": "bae47596cac28d794400c08ad1f37a5f4c79a49c703d0ea0e4d7c333bf998788"
+    },
+    "lycee_facade": {
+      "alpha": "straight",
+      "file": "lycee_facade.webp",
+      "footprint": [
+        1800.0,
+        330.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -23.0,
+        -68.0,
+        1850.0,
+        450.0
+      ],
+      "scale": 1.0,
+      "sha256": "6664fffcbaa893b7b78cffb8d364422835b0dc55b2415ebfc12718cb3eaafb48",
+      "source_png_sha256": "f97be7283c0e559a02756b7cdaf815c7cfc6ae9549848f0bb5cdb15ececd89a0"
+    },
+    "measurement_bench_210x110": {
+      "alpha": "straight",
+      "file": "measurement_bench_210x110.webp",
+      "footprint": [
+        210.0,
+        110.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -69.0,
+        250.0,
+        206.0
+      ],
+      "scale": 1.0,
+      "sha256": "af45649b8ccf50ebb337532f2c4aa37a3101432af9ecbd38b6f0c5e99884e8bf",
+      "source_png_sha256": "d1ee1d2cc0ed1d80e1211a3a235d5bdc9707d30ccfcf61450eacdbc337af4f2b"
+    },
+    "meeting_board_650x30": {
+      "alpha": "straight",
+      "file": "meeting_board_650x30.webp",
+      "footprint": [
+        650.0,
+        30.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -99.0,
+        690.0,
+        121.0
+      ],
+      "scale": 1.0,
+      "sha256": "a16bdae76622bc93a0f2e80b6fea5a339193086bdae504a6f222f02059d50110",
+      "source_png_sha256": "99ba2862b1fdb08254c84144a16eae4e8173cbe17ada1c7842ae66aaa3fcbfe1"
+    },
+    "meeting_table_300x140": {
+      "alpha": "straight",
+      "file": "meeting_table_300x140.webp",
+      "footprint": [
+        300.0,
+        140.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        340.0,
+        230.0
+      ],
+      "scale": 1.0,
+      "sha256": "048432339ad845ea8710d0a798bf19e9252d964fe54fbf069f59fdbf8a795388",
+      "source_png_sha256": "c6b24602959e44e18e8e49ba93636829a883d6fe778b8186e54977ee2455bce2"
+    },
+    "meeting_table_420x160": {
+      "alpha": "straight",
+      "file": "meeting_table_420x160.webp",
+      "footprint": [
+        420.0,
+        160.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        460.0,
+        250.0
+      ],
+      "scale": 1.0,
+      "sha256": "7f54aad4b1786b8dfe773c25a10bd703df00261f6b1bba9f60d9d8d071437940",
+      "source_png_sha256": "27bbbc4263c93139869cedbb90fabad1aa5a09ef23a15e99fc65058b14e6d359"
+    },
+    "mezzanine_1220x80": {
+      "alpha": "straight",
+      "file": "mezzanine_1220x80.webp",
+      "footprint": [
+        1220.0,
+        80.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -109.0,
+        1260.0,
+        175.0
+      ],
+      "scale": 1.0,
+      "sha256": "248e591976a968e1af254c7d4cc140b9ceb66f91623de6376e09ae3734851c57",
+      "source_png_sha256": "6321a4f255e588e4e8ca549d662e0e4256167cf4090b45873fc60a7cf21d7153"
+    },
+    "network_console_420x160": {
+      "alpha": "straight",
+      "file": "network_console_420x160.webp",
+      "footprint": [
+        420.0,
+        160.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        460.0,
+        250.0
+      ],
+      "scale": 1.0,
+      "sha256": "edb536fe7c0bcd5e1627e30c92e897d3d0b08d8b45ad1d9863996610683581b6",
+      "source_png_sha256": "08c8f3bdfa75f0cf3699411eedcf1362611b382e9912b91620c8f447b1019d5c"
+    },
+    "parts_cabinet_250x80": {
+      "alpha": "straight",
+      "file": "parts_cabinet_250x80.webp",
+      "footprint": [
+        250.0,
+        80.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -105.0,
+        290.0,
+        217.0
+      ],
+      "scale": 1.0,
+      "sha256": "c07c029adb2b48ab1509a2aa509cb9c297174a17a5bec9b0b233f521077b54f6",
+      "source_png_sha256": "ff23811bccf34d2782dec25ad9814660d515550d5b289823eadea5451370dd8b"
+    },
+    "parts_cabinet_360x100": {
+      "alpha": "straight",
+      "file": "parts_cabinet_360x100.webp",
+      "footprint": [
+        360.0,
+        100.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -105.0,
+        400.0,
+        237.0
+      ],
+      "scale": 1.0,
+      "sha256": "d706c1b759b120e1d093271ced3cef246d4cba0365e5e167239dbc5ca5dfdfff",
+      "source_png_sha256": "0eea0558b29d53c162be900e1d25799ad61730dac11573fc74208d162ca76fb3"
+    },
+    "printer3d_420x150": {
+      "alpha": "straight",
+      "file": "printer3d_420x150.webp",
+      "footprint": [
+        420.0,
+        150.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -113.0,
+        460.0,
+        290.0
+      ],
+      "scale": 1.0,
+      "sha256": "e95a45bccb0e9d0bc6e52a3c36b5b1a9d9d889cb3365429ba147bb9998c12c60",
+      "source_png_sha256": "fc78900e5e38b67fcdc776c056de10292521ca89b2c27ae683ad987942ee0451"
+    },
+    "rack_120x80": {
+      "alpha": "straight",
+      "file": "rack_120x80.webp",
+      "footprint": [
+        120.0,
+        80.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -138.0,
+        161.0,
+        258.0
+      ],
+      "scale": 1.0,
+      "sha256": "8727b5243a9c3e1c34ed04aa7f97d12d5c53f40cc04a5bcfd755a806c029c575",
+      "source_png_sha256": "cde1ce7cbcb75faccc5cbcd1d8c226209fdd108853eebfef65affb6387f85d61"
+    },
+    "regulation_panel_420x110": {
+      "alpha": "straight",
+      "file": "regulation_panel_420x110.webp",
+      "footprint": [
+        420.0,
+        110.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -19.0,
+        -111.0,
+        463.0,
+        259.0
+      ],
+      "scale": 1.0,
+      "sha256": "68c8608e73dbb1d2f8dc21d333f9ec11e53e6127177accc86ab65ed51091d77d",
+      "source_png_sha256": "681dbf5d25ffbd99698fe58fad1091d31d3f5bcbc59513a6ad84769ef5a7848c"
+    },
+    "steel_column_48x48": {
+      "alpha": "straight",
+      "file": "steel_column_48x48.webp",
+      "footprint": [
+        48.0,
+        48.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -150.0,
+        88.0,
+        230.0
+      ],
+      "scale": 1.0,
+      "sha256": "8495727e0a7a55423c034ad62137923a925c65df7f8decf0e23bea33bcac923b",
+      "source_png_sha256": "570d1acf9067a20344799440563247b39f2fc0f909ca4bcc374d8650c93d6523"
+    },
+    "stool_48x42": {
+      "alpha": "straight",
+      "file": "stool_48x42.webp",
+      "footprint": [
+        48.0,
+        42.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -44.0,
+        88.0,
+        116.0
+      ],
+      "scale": 1.0,
+      "sha256": "7c0224289ce991345e8e194007bbaf7971e2435ffb9ca3e5f06921c26cea1bfd",
+      "source_png_sha256": "42eb001372422d9bfdfb24e4ae3918dbb09096f29b7ffb98f5dc1c4d60dab600"
+    },
+    "tools_bench_440x150": {
+      "alpha": "straight",
+      "file": "tools_bench_440x150.webp",
+      "footprint": [
+        440.0,
+        150.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -63.0,
+        481.0,
+        240.0
+      ],
+      "scale": 1.0,
+      "sha256": "40a8f9ab2c27b7f87e2fa2b35f385352f2ae540b4de8c13fb0605554ead78275",
+      "source_png_sha256": "a6b08f0bab72e83263b06b85dd4bb13000e4c8a7cc76b95d321fe3c67fb3bd9f"
+    },
+    "training_panel_420x90": {
+      "alpha": "straight",
+      "file": "training_panel_420x90.webp",
+      "footprint": [
+        420.0,
+        90.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -19.0,
+        -117.0,
+        463.0,
+        244.0
+      ],
+      "scale": 1.0,
+      "sha256": "051c47c79ec54dcea1e94e844a1819e831e94dc9d2ffb5e93db8c33f7bb11db0",
+      "source_png_sha256": "2fe25b9b4674b1180176b4e03b806edf02750c8259605b95c5dae0ff671ddd89"
+    },
+    "whiteboard_520x30": {
+      "alpha": "straight",
+      "file": "whiteboard_520x30.webp",
+      "footprint": [
+        520.0,
+        30.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -99.0,
+        560.0,
+        121.0
+      ],
+      "scale": 1.0,
+      "sha256": "2e68e2559e4642427845568bdbb51e759475629069c68b8f22be17ec946d0132",
+      "source_png_sha256": "8e869c38bec5e2609156db056d8d0c31fa671a0b0e982803231b708f051f3d42"
+    },
+    "whiteboard_600x30": {
+      "alpha": "straight",
+      "file": "whiteboard_600x30.webp",
+      "footprint": [
+        600.0,
+        30.0
+      ],
+      "lossless_roundtrip_verified": true,
+      "rect": [
+        -18.0,
+        -99.0,
+        640.0,
+        121.0
+      ],
+      "scale": 1.0,
+      "sha256": "cdfd5bb60a345e8d5f1add9d82e5841b1460afe49a78f251b0cdf4f326f73f9c",
+      "source_png_sha256": "9ea263e42bde00b6fd05ccf4bc5b4abd69e6214094a37e22ec1d00cb66bbd830"
+    }
+  },
+  "version": 1.0
 }
