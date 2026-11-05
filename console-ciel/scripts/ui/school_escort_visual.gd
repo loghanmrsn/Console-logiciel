@@ -7,6 +7,7 @@ var elapsed := 0.0
 var stage: Node2D
 var guide: Node2D
 var player: AnimatedSprite2D
+var avatar3d: Control
 func _ready() -> void:
 	clip_contents=true
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -23,6 +24,12 @@ func _ready() -> void:
 	player.animation="right"
 	player.scale=Vector2.ONE*(66.0/player_frames.get_frame_texture("right",0).get_width())
 	stage.add_child(player)
+	player.hide()
+	avatar3d=preload("res://scripts/character/character_view.gd").new()
+	avatar3d.preview_mode=false
+	avatar3d.configure(CharacterService.current().appearance)
+	avatar3d.size=Vector2(48,74)
+	stage.add_child(avatar3d)
 	resized.connect(_fit)
 	_fit()
 func _fit() -> void:
@@ -45,6 +52,11 @@ func set_elapsed(value: float) -> void:
 	guide.queue_redraw()
 	player.position=Vector2(x,(stair_y(x) if stairs else 238)-35-bob)
 	player.frame=int(elapsed*10)%4
+	avatar3d.position=Vector2(x-24,(stair_y(x) if stairs else 238)-68-bob)
+	avatar3d.walking=true
+	avatar3d.heading=PI*.5
+	avatar3d.phase=elapsed
+	avatar3d.refresh()
 	queue_redraw()
 func _draw() -> void:
 	if stage==null: return
