@@ -1,0 +1,74 @@
+[
+	{
+		"file": "accompagnement_couloir_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "30f6d29c66046130df9fdbee23d5a04327639715eb54259839cb01719597dd32",
+		"source": "accompagnement_couloir_challenge.png",
+		"source_sha256": "00ec489a5f3fc0d01da3c4d08b10526945be97f3b594a367d5f2f1cdb5533c61",
+		"width": 1280
+	},
+	{
+		"file": "accompagnement_escalier_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "f62216ce7b2f4ee546be51306c8975b66fd7fef94780a4679a33bcd83cfd4349",
+		"source": "accompagnement_escalier_challenge.png",
+		"source_sha256": "cf72d8905669eafea54a4c4bf78dd2c8685bee3025b6a60f894e036b6022e895",
+		"width": 1280
+	},
+	{
+		"file": "accueil_surveillance_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "b0de8b991bb499547cc573daf025201acc6c9deda9cd98daec79a65a895c97bf",
+		"source": "accueil_surveillance_challenge.png",
+		"source_sha256": "3c6fb803a669e85591bf4240bf25a95447561701974c8ed31befb7d965e616c5",
+		"width": 1280
+	},
+	{
+		"file": "arrivee_ateliers_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "6dd1a66b82d63bba425a887975bf6743ee0e89495ac8213dc55c0788f794fab6",
+		"source": "arrivee_ateliers_challenge.png",
+		"source_sha256": "bfe6af09f3563ef9838aba4aa6fd7ba38c73460263d695cebeeb4c738cb078ae",
+		"width": 1280
+	},
+	{
+		"file": "hotel_deux_escaliers_droits_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "9ceeacc22a0c53f3e42be5edb88564f3a0e6a8169289b67ca0fb0f3969fa0705",
+		"source": "hotel_deux_escaliers_droits_challenge.png",
+		"source_sha256": "30b02935e69bc981c15543823360736b24c2e81bd1785acb8e06b1f611ec3c63",
+		"width": 1280
+	},
+	{
+		"file": "hotel_palier_droit_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "0a9129d8c2dffc69918a3c34224a70bf86b85825d5835ef60f77a7956d8c875d",
+		"source": "hotel_palier_droit_challenge.png",
+		"source_sha256": "83a121638ce544d79929a8f8f35795ac282b5105295b323b69a42502be8a4558",
+		"width": 1280
+	},
+	{
+		"file": "lycee_sans_pancarte_challenge.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "851fea9eb92b56901497914a59de2f3c92dbd5bc2b7f35d944b791991130401e",
+		"source": "lycee_sans_pancarte_challenge.png",
+		"source_sha256": "de06b8305f7cda1ca453eb4d48cbae46f1dfb1c8f6b157aee99f6a4e060e14d0",
+		"width": 1280
+	},
+	{
+		"file": "surveillant_choix_compact_challenge.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "8f7fe3852cfe860493b176da2445021599ab46a20122577774b7c729ecf68ca5",
+		"source": "surveillant_choix_compact_challenge.png",
+		"source_sha256": "cdab46986ba9a94d58ad2b8ba908530a962af6878e3017aa11fbb3b47c9f6e7b",
+		"width": 800
+	}
+]
