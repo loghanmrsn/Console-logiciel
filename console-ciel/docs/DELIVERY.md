@@ -1,3 +1,13 @@
+# Livraison 0.32.0 — personnage 3D, dressing et fluidité
+
+Personnage 3D original à squelette commun, gabarit fixe de 1,70 m, visage, cheveux et dressing personnalisables. Articles gratuits et achats en points de mission, essayage avant achat, sauvegarde atomique et inventaire par profil. Aucun argent réel, logo ou marque affiché. Démarche souple et bancale ou naturelle ; la torsion du squelette ne modifie pas les collisions. Un espace jouable 3D permet de tester les murs et une porte avec une capsule fixe de 1,70 m × 0,46 m. Les niveaux de l’enquête restent en 2D avec le personnage rendu en vraie 3D. Les sources Blender et le GLB sont inclus.
+
+Les thèmes d’interface sont réutilisés, la navigation utilise les positions mises en cache et les interactions immobiles sont recalculées à intervalle court, avec vérification immédiate à l’action. Les aperçus 3D immobiles ne dessinent qu’à la demande. Le microbenchmark CPU de mise à jour du profil passe de 7469.5 à 166.825 microsecondes sur cet hôte. Ce résultat ne mesure pas les images par seconde sur le matériel cible. [Mesures et limites](../tests/personnage3d_0.32.0_results/performance.json).
+
+18006 assertions réussies : 17 suites sources, 16 suites sur les ressources compilées Windows et ARM64, deux parcours avec rendu X11/Mesa et 30 contrôles des outils de livraison. Clavier et manette simulée ; exécution physique Windows, Raspberry Pi, son et manette physiques non vérifiés. [Résultats complets](../tests/personnage3d_0.32.0_results/summary.json). Quinze captures natives encodées en WebP sans perte, [aperçu animé de la démarche](screenshots/personnage3d_0.32.0/demarche_souple.gif) créé avec seize vues réelles du personnage exporté. Le maximum géométrique est de 22748 triangles visibles. Les sauvegardes et 146 archives précédentes sont conservées.
+
+---
+
 # Livraison 0.31.0 — postes informatiques et couloir
 
 Postes fixes avec écrans agrandis sur pieds, clavier, souris et tour. Rendus Blender/Cycles originaux encodés sans perte. Une seule porte vers City CIEL dans le couloir ; autres portes, noms de salles et inscriptions au sol retirés. Retour à l’accueil conservé. Les anciennes salles et sauvegardes restent dans le projet.
