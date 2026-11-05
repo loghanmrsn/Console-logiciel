@@ -1,0 +1,753 @@
+{
+  "version": "0.29.0",
+  "date_utc": "2026-11-05",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_tests": [
+    {
+      "name": "baked_art_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 704,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.32,
+      "script_sha256": "83c925cba8089debd545e3d9fb65f37ed985de27a08bd23ce1bd87dad639017f",
+      "log": "baked_art_tests.output.txt",
+      "log_sha256": "f8fa2a19b4194f2295aeb38f3b03bd00f7426620322d902730af03f4af66c6a1"
+    },
+    {
+      "name": "keyboard_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 786,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.91,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log": "keyboard_tests.output.txt",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.47,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "pseudo_blacklist_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.2,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log": "pseudo_blacklist_tests.output.txt",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "name": "pseudo_blacklist_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 10,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 5.08,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log": "pseudo_blacklist_ui_tests.output.txt",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.26,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "run_tests.output.txt",
+      "log_sha256": "060349a33783493704e01783b93e108c5534c224f53a00dfdbc397c61ffd3717"
+    },
+    {
+      "name": "school_ateliers_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 153,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 13.93,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log": "school_ateliers_ui_tests.output.txt",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "name": "school_realism_asset_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 328,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.44,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log": "school_realism_asset_tests.output.txt",
+      "log_sha256": "6131f4d009ee66b9a4fcaea08e9f2504e2a307d8711af0e1bd1458241a6dbb94"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 11.96,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "stability_tests.output.txt",
+      "log_sha256": "c031c144b228a3d6c429f7892d686719c71d9d598a460bcd343852ab66c57a68"
+    },
+    {
+      "name": "town_details_asset_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 6732,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.84,
+      "script_sha256": "0375915c55dbf809bb86931c3c88a32c1af83c84e0404d7026ed518137c9ea68",
+      "log": "town_details_asset_tests.output.txt",
+      "log_sha256": "c65234909aa23d220fc3aad1d8a7cb20b97ec6198c65ea605c93a65e6f01fe7f"
+    },
+    {
+      "name": "town_details_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 857,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 8.88,
+      "script_sha256": "8c46aae1973f6a5f1cd69d255d9845d62676a245864f7c46a094e36190753763",
+      "log": "town_details_ui_tests.output.txt",
+      "log_sha256": "5845d24494de59ef5c142cecee21cb760262b8706dd77bb12697425f8475fcbc"
+    },
+    {
+      "name": "transit_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 17,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.26,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log": "transit_services_tests.output.txt",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.89,
+      "script_sha256": "ab7c6b211e5eb34494c74442aef4d20800b1fb0630569609e914896a2217227c",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    },
+    {
+      "name": "world_collision_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1253,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.6,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log": "world_collision_tests.output.txt",
+      "log_sha256": "88f1459e59a8b991438c67bdb5bfb04b74a4d7e108406eec328797356974bc72"
+    }
+  ],
+  "source_assertions": 11210,
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ateliers_ui_tests",
+      "assertions": 153,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "1de8778f783586b7047a05f0693e8c58972e945e57cef099ec16e51452f987d9",
+      "log_sha256": "a025ae04581285b17f39eec578a5317d09b37a22a563f434e089ae299c50912a"
+    },
+    {
+      "platform": "windows",
+      "name": "town_details_ui_tests",
+      "assertions": 857,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8c46aae1973f6a5f1cd69d255d9845d62676a245864f7c46a094e36190753763",
+      "log_sha256": "5845d24494de59ef5c142cecee21cb760262b8706dd77bb12697425f8475fcbc"
+    },
+    {
+      "platform": "linux",
+      "name": "town_details_ui_tests",
+      "assertions": 857,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8c46aae1973f6a5f1cd69d255d9845d62676a245864f7c46a094e36190753763",
+      "log_sha256": "5845d24494de59ef5c142cecee21cb760262b8706dd77bb12697425f8475fcbc"
+    },
+    {
+      "platform": "windows",
+      "name": "pseudo_blacklist_ui_tests",
+      "assertions": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "platform": "linux",
+      "name": "pseudo_blacklist_ui_tests",
+      "assertions": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8ffc9f4eda763b9126d9573dce1d9e0c9613761f72db1aae08749cdc38f8d43b",
+      "log_sha256": "edfae0e13cd7c90b9a717c824a8f5b3531326d904e073dc98213491698525b55"
+    },
+    {
+      "platform": "windows",
+      "name": "world_collision_tests",
+      "assertions": 1253,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "88f1459e59a8b991438c67bdb5bfb04b74a4d7e108406eec328797356974bc72"
+    },
+    {
+      "platform": "linux",
+      "name": "world_collision_tests",
+      "assertions": 1253,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ccec3e1ece149687f89a9e6f0ad2389dbc5a85fd3d8661e9658c798f79125feb",
+      "log_sha256": "88f1459e59a8b991438c67bdb5bfb04b74a4d7e108406eec328797356974bc72"
+    },
+    {
+      "platform": "windows",
+      "name": "baked_art_tests",
+      "assertions": 683,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "83c925cba8089debd545e3d9fb65f37ed985de27a08bd23ce1bd87dad639017f",
+      "log_sha256": "46e3c96f2a163d08909b345dee2b1203bc9e9e9c3eb94f8b2f9347afa28028cb"
+    },
+    {
+      "platform": "linux",
+      "name": "baked_art_tests",
+      "assertions": 683,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "83c925cba8089debd545e3d9fb65f37ed985de27a08bd23ce1bd87dad639017f",
+      "log_sha256": "46e3c96f2a163d08909b345dee2b1203bc9e9e9c3eb94f8b2f9347afa28028cb"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "linux",
+      "name": "keyboard_tests",
+      "assertions": 786,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "52b17788cfb1aaa58748a7a6a7b2e4e7b075a042123b4e30e19b85691d75a5ba",
+      "log_sha256": "4dcf7c681b51501208218fdc53802d47dbb0eedba633d2e7b42d099a3d54c831"
+    },
+    {
+      "platform": "windows",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "linux",
+      "name": "school_realism_asset_tests",
+      "assertions": 302,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "7c23259e5772389f899a34f5013c772c30cc67b4b3f12d7435a5257840693597",
+      "log_sha256": "cd7f43a6d1770866161c40fbbf26443689d6b078a72042da5ab2d17dbdff3a26"
+    },
+    {
+      "platform": "windows",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "linux",
+      "name": "transit_services_tests",
+      "assertions": 17,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6277aa714c95f9032aa8135954926ffd69258a7def2b2e2a59603a4ae03ba88",
+      "log_sha256": "7592f1ec4d19695338280a7e86b33ff5fc8aa800c6baeb5721a112aa606850b0"
+    },
+    {
+      "platform": "windows",
+      "name": "pseudo_blacklist_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "platform": "linux",
+      "name": "pseudo_blacklist_tests",
+      "assertions": 39,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4b0664021df646d29e7b3f602d2f43aa127a52cef4a0efeaded3e1a88bebf6f4",
+      "log_sha256": "dfe69d192c01a30193dcaf243b47adf18654597df3d569330f3c1ed5a8f876b4"
+    },
+    {
+      "platform": "windows",
+      "name": "town_details_asset_tests",
+      "assertions": 6694,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0375915c55dbf809bb86931c3c88a32c1af83c84e0404d7026ed518137c9ea68",
+      "log_sha256": "85dcc705484f7d51dffe36a548ec4cc620c6fb0d8bafa29cf5a24245eba02457"
+    },
+    {
+      "platform": "linux",
+      "name": "town_details_asset_tests",
+      "assertions": 6694,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0375915c55dbf809bb86931c3c88a32c1af83c84e0404d7026ed518137c9ea68",
+      "log_sha256": "85dcc705484f7d51dffe36a548ec4cc620c6fb0d8bafa29cf5a24245eba02457"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e0266362813318f46ab0153e79fdab3d16c965887f8a3c26b518f082da5dd0a6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "school_realism_ui_tests",
+      "assertions": 163,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log_sha256": "b54b180f20d00ea06ee4d3b95144643029ab2032f07775f667431d71b1ca65f4"
+    },
+    {
+      "platform": "windows",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "windows",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "windows",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e0266362813318f46ab0153e79fdab3d16c965887f8a3c26b518f082da5dd0a6",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "school_realism_ui_tests",
+      "assertions": 163,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "fcb166051868fa3a66bcbfc0c4a33611cc6b93d5f2a5d2de1e30aac6946b540c",
+      "log_sha256": "b54b180f20d00ea06ee4d3b95144643029ab2032f07775f667431d71b1ca65f4"
+    },
+    {
+      "platform": "linux",
+      "name": "school_ui_tests",
+      "assertions": 87,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "bc9f4afa2e95fbe886ca99ea87cf9995dba38d8ff7a163145ad61d545a0d7267",
+      "log_sha256": "063d87472676bd79d0722420f1a44005094ca78f5a003490f45f96d8ae7ee8ec"
+    },
+    {
+      "platform": "linux",
+      "name": "workshop_ui_tests",
+      "assertions": 41,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5335eef4ed4fea444015d9c43de2dd60461ceb7e8db9909c0b8dee73d069e085",
+      "log_sha256": "4836341c0261080f77fc30732dfa24c5363f153eb1c64c071678403ea441c8a3"
+    },
+    {
+      "platform": "linux",
+      "name": "city_network_ui_tests",
+      "assertions": 73,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "38e430d78f6d7136aecc3b749cc70ff776f89a0fa9842d5c98cd88a777c19a57",
+      "log_sha256": "db45695183a5b1de5a6d8860adda9b34107d40a708298299a7e482de863963f6"
+    }
+  ],
+  "compiled_assertions": 22684,
+  "native_renderer": {
+    "town_details_ui_tests": {
+      "assertions": 1004,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_cycles_challenge.webp",
+          "bytes": 83964,
+          "sha256": "91319f9714cea8c63e8fa09bf6fec7989667f53411c9b60fae96fe1feaffa309",
+          "original_png_sha256": "98c1001149d1d9b80c1705e7576c654195a9fce55a4ff1d4d456597bfd0972ca",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_fleuriste_challenge.webp",
+          "bytes": 80878,
+          "sha256": "cc20aac3fb52e7e928668ed6d681d9e133c8b25c9bc7a8f470675e7a635d027c",
+          "original_png_sha256": "22764676eaf4da08af9edb60ee92c44d18a4ce78c2d9f289d9582f5ebaadf6e0",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_fontaine_challenge.webp",
+          "bytes": 59862,
+          "sha256": "425860f6f7d7b13f624e292054c8e9fde2e7e9c731cadf165b306824707c3113",
+          "original_png_sha256": "b94ff4c5431d70c7879d4c8d9093293e1cf782f8b2972f814de009bbbaf4a3aa",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_marche_challenge.webp",
+          "bytes": 140706,
+          "sha256": "dc0a5e0536fca71009ae4fbe9350e2758b52b2c301d38cb20a2282dd8b83090c",
+          "original_png_sha256": "cfe705164706641c189b63ba8c032009377cb9c9499ea3ee797abbd7b96721ad",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_musique_challenge.webp",
+          "bytes": 99256,
+          "sha256": "ded75e93f072eabf35c068018412380a2bee8d6eb4b8d4adaec605ccb4ab40c7",
+          "original_png_sha256": "6a396ec7010517c134794663a97467df8c890d2808040d9a6d9581e8d89b0b77",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/decors_0.29.0/town_details_ui_tests/civic_poste_challenge.webp",
+          "bytes": 111134,
+          "sha256": "7573215a4dedb284434e4fcfa2de0c614daa4b36fac5de27b9fac4dcee0a0844",
+          "original_png_sha256": "446876f79c0a86f3f59f5e109b3e66b7c60c8207758e9a11f129abbbee48db2d",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "095495ee75c51c76c257c61cedea91841e815f4cd37ce3354e7befe1e6582f47",
+      "script_sha256": "8c46aae1973f6a5f1cd69d255d9845d62676a245864f7c46a094e36190753763",
+      "log_sha256": "3ab08e167b1105bc214319bdd0e0c3b71f6ff3ecc223a8274c713c5bee4c329f",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original viewport PNG; no visual edits."
+    }
+  },
+  "native_assertions": 1004,
+  "packaging_stub_assertions": 30,
+  "all_passed": true,
+  "art": {
+    "town_renders": 34,
+    "existing_school_renders_preserved": 24,
+    "decorated_buildings": 40,
+    "forecourt_placements": 41,
+    "blender_version": "4.3.2",
+    "town_lossless_pixel_roundtrips": 34,
+    "render_pixels_per_world_pixel": 2,
+    "static_cache_entries": 169,
+    "unique_texture_files": 163,
+    "rgba_mipmaps_mib": 58.17,
+    "budget_mib": 64,
+    "game_dev_cli_available": false,
+    "external_model_or_photo_textures": false
+  },
+  "water_preview": {
+    "file": "docs/screenshots/decors_0.29.0/fontaine_animee.gif",
+    "sha256": "fe7cb14ba95460c7a351edaebf4613529373fd0de69c85fe6fec8c04ab9e81a7",
+    "frames": 20,
+    "size": [
+      152,
+      188
+    ],
+    "frame_duration_ms": 100,
+    "source": "Unedited crop of actual game SubViewport, exported ARM64 pack loaded by host Linux Godot",
+    "encoding": "GIF, shared 256-color palette; preview is quantized, original PNG captures retained in validation workspace",
+    "source_frame_hashes": [
+      {
+        "file": "water_00.png",
+        "sha256": "aa339daafeab54ac0862f7a1e1046994aeecfc62e3d3204fc1183e5d3e6682c3"
+      },
+      {
+        "file": "water_01.png",
+        "sha256": "17af4b319ed6b5d6bb8d6ac83bbc0392a8f836eb14363ed7fd02c9e7a127cf85"
+      },
+      {
+        "file": "water_02.png",
+        "sha256": "0fbadf31c98363962326ac8fdeb097e7632fe0a9a3d775711660a86298c3b29b"
+      },
+      {
+        "file": "water_03.png",
+        "sha256": "1651a7eaa1af515a38850e340309b60339e9d856a1954eda5d1c00b3a39a8cf2"
+      },
+      {
+        "file": "water_04.png",
+        "sha256": "9e6a2e9952feaf469ef01e93b69cba1a2351aa9f3110cd80a4a865d31ebf03ff"
+      },
+      {
+        "file": "water_05.png",
+        "sha256": "49ccb52841a6ca934a268f78aae045d83d6bd03866e6d5957adcf840d1322eba"
+      },
+      {
+        "file": "water_06.png",
+        "sha256": "434762ad4077f48a269580f4c7a0233113ffcb269e71e658acc5a55457099566"
+      },
+      {
+        "file": "water_07.png",
+        "sha256": "943bf141f2539eb34203c106450c7e1ffa02c33b28cfe6e998fd5ef9ba1a0688"
+      },
+      {
+        "file": "water_08.png",
+        "sha256": "9b4edb926305a804f8027310a8c93abab4f124abcaab96221c0b217619aeba1c"
+      },
+      {
+        "file": "water_09.png",
+        "sha256": "299aa38fc34bfcc06d64af86b380580f9f7af4bb4cb0e1273e6a66ab30a4a97c"
+      },
+      {
+        "file": "water_10.png",
+        "sha256": "66fddb7b011bbf4c0bcde188e79fb1eaa18130338656cab3150396c235ef47b8"
+      },
+      {
+        "file": "water_11.png",
+        "sha256": "52646b256b57d3657dc60ac68f14c506c1dd6077afd2106a5657588ae3cfc5fa"
+      },
+      {
+        "file": "water_12.png",
+        "sha256": "79f42ce307f6db4bcdf0ad24b8ae600e9a97bcaa855da2ccbf7c6efa548b0e7e"
+      },
+      {
+        "file": "water_13.png",
+        "sha256": "55f57215d5903cb26e453fed864cfefc78968dbeb54e478b3c5b73aea2709c6c"
+      },
+      {
+        "file": "water_14.png",
+        "sha256": "6e4bc81dece87d6edcebb8d14283ee1552978eb26042e20789c637d453dae8bd"
+      },
+      {
+        "file": "water_15.png",
+        "sha256": "fe6f554e0b6e394f181b6ab5b242df1bfa2c79ceb33536dee96154f6b91c368e"
+      },
+      {
+        "file": "water_16.png",
+        "sha256": "27b01b8efb1a302e778ed9bcb6cc3900302e0bf50d757ca0520b7a8f2091579e"
+      },
+      {
+        "file": "water_17.png",
+        "sha256": "45a693fa29d794b6c37e29c2803992d1585bc597d3597e9c326eb7a1b7662622"
+      },
+      {
+        "file": "water_18.png",
+        "sha256": "63bd7144d37df39a3ac489615399ed890492f70ea3284e1987dc893ab9ebbc31"
+      },
+      {
+        "file": "water_19.png",
+        "sha256": "49ffe32242619a945f3026cf043a84c1f2320c0cd956e5179439c7cbdabcf54c"
+      }
+    ],
+    "moving_pixels_verified": true,
+    "reduced_motion_pixels_static_verified": true,
+    "pause_pixels_static_verified": true
+  },
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "perceived_audio_tested": false,
+  "powershell_export_wrapper_executed": false,
+  "previous_archives_preserved": 134,
+  "total_assertions": 34928
+}
