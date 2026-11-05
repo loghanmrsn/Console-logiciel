@@ -1,7 +1,7 @@
 extends Control
 ## Hotel objectives and native modal interactions. Saved story state belongs to
 ## HotelService; this component only owns presentation and the seated clock.
-const HOTEL_ZONES := ["school_tne", "school_meeting", "school_fed", "school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
+const HOTEL_ZONES := ["school_reception", "school_tne", "school_meeting", "school_fed", "school_network_lab", "school_hall", "school_passage", "school_workshop", "school_stop", "school_cyber", "building_02", "hotel_it", "hotel_stairs_1", "hotel_floor_2", "hotel_room_206", "hotel_breakfast", "ctf_bus_stop", "ctf_lobby"]
 const CtfPanel = preload("res://scripts/ui/ctf_challenge_panel.gd")
 const CtfCatalog = preload("res://scripts/game/ctf_catalog.gd")
 const CoffeeWiringPanel = preload("res://scripts/ui/coffee_wiring_panel.gd")
@@ -106,7 +106,7 @@ func refresh() -> void:
 		objectives_expanded = true
 	_last_morning_stage = morning_stage
 	if morning_stage > 0:
-		objective_text.text = (("Découvrez les postes, le tableau et les baies réseau. Sortez pour retrouver le bus." if current_room == "school_cyber" else "Entrez au lycée et découvrez la salle cyber. Bus : retour en ville.") if current_room.begins_with("school_") else _morning_objective(morning_stage, current_room))
+		objective_text.text = (("Découvrez les postes, le tableau et les baies réseau. Sortez pour retrouver le bus." if current_room == "school_cyber" else "Entrez dans l’accueil du lycée. Bus : retour en ville.") if current_room.begins_with("school_") else _morning_objective(morning_stage, current_room))
 	elif not state.get("reserved", false):
 		objective_text.text = "Réservez votre chambre à la réception."
 	elif not state.get("repaired", false):
@@ -132,6 +132,9 @@ func refresh() -> void:
 	if current_room in preload("res://scripts/game/school_ateliers.gd").IDS:
 		objective_title.text = preload("res://scripts/game/school_ateliers.gd").TITLES[current_room].to_upper()
 		objective_text.text = "Explorez les équipements signalés par un point. Espace / bouton 0 pour observer ou emprunter une porte."
+	if current_room=="school_reception":
+		objective_title.text="ACCUEIL · LYCÉE LOUISE MICHEL"
+		objective_text.text="Adressez-vous à la surveillante pour rejoindre le couloir des ateliers. La sortie donne sur le parvis."
 	if current_room == "school_network_lab":
 		objective_title.text = "CITY CIEL · LABORATOIRE RÉSEAU"
 		var done: int = CityService.state().completed.size()
@@ -313,8 +316,9 @@ func handle_target(id: String) -> bool:
 			"school_hall_return": _show_travel("school_hall", "Premier couloir", "Revenir à la porte sécurisée.")
 			"school_workshop": _show_travel("school_workshop", "City CIEL", "La porte à gauche mène aux plans de travail et aux équipements.")
 			"school_passage_return": _show_travel("school_passage", "Long couloir", "Revenir dans le couloir de liaison.")
-			"school_enter": _show_travel("school_cyber", "Salle cyber", "Bienvenue au lycée Louise Michel de Ruffec. Découvrez les postes et le laboratoire réseau.")
-			"school_exit": _show_travel("school_stop", "Sortir du lycée", "Rejoignez l’arrêt de bus devant l’entrée.")
+			"school_enter": _show_travel("school_reception", "Accueil du lycée", "Bienvenue au lycée Louise Michel. La surveillante vous accueille et peut vous accompagner aux ateliers.")
+			"school_exit", "school_reception_return": _show_travel("school_reception", "Accueil du lycée", "Rejoignez la vie scolaire et la sortie du lycée.")
+			"school_reception_exit": _show_travel("school_stop", "Sortir du lycée", "Rejoignez l’arrêt de bus devant l’entrée.")
 			"school_bus": _show_return_bus()
 			_: game._show_dialog("Salle cyber · Louise Michel", {"school_3d": "Imprimante 3D : châssis, plateau, tête et bobine de filament. Utilisez cet établi pour les futures activités de prototypage.", "school_laptops": "Deux ordinateurs portables dédiés aux manipulations du laboratoire.", "school_electronics": "Banc électronique : carte de prototypage et instrument de mesure. Les futurs exercices se feront en basse tension.", "school_network": "Baie pédagogique : commutateur, routeur, panneau de brassage et onduleur. Les équipements de ce laboratoire sont isolés du réseau réel.", "school_course": "Espace de cours : observez les postes, les câbles et les équipements. Les prochains défis seront ajoutés ici."}.get(id, "Poste de travail équipé : écran, clavier, souris et unité centrale. Les prochaines épreuves seront préparées dans cette salle."), game._close_overlay)
 		return true
@@ -782,3 +786,40 @@ func _show_city_challenge(id: String) -> void:
 		game.notification_requested.emit(PenaltyService.reward_message("Configuration réseau validée", result))
 		game._show_dialog("Configuration enregistrée", CityCatalog.CHALLENGES[id].explanation, game._close_overlay))
 	game._wire_modal()
+
+func show_school_supervisor() -> void:
+	if game.world.room_id!="school_reception": return
+	game._open_overlay("school_guide")
+	var header := HBoxContainer.new()
+	game.modal_content.add_child(header)
+	var portrait := preload("res://scripts/ui/npc_dialogue_panel.gd").Portrait.new()
+	portrait.character=preload("res://scripts/game/npc_catalog.gd").find("npc_school_supervisor")
+	portrait.custom_minimum_size=Vector2(88,88)
+	header.add_child(portrait)
+	game._label(header,"Surveillant · vie scolaire",26)
+	game._label(game.modal_content,"Bonjour ! Souhaitez-vous que je vous accompagne jusqu’au couloir des ateliers ?")
+	game._button(game.modal_content,"M’emmener au couloir des ateliers",_start_school_escort,"school_guide_go")
+	game._button(game.modal_content,"Rien",game._close_overlay,"school_guide_leave")
+	game._wire_modal()
+
+func _start_school_escort() -> void:
+	if _action_busy or game.overlay_kind!="school_guide": return
+	_action_busy=true
+	var result: Dictionary=HotelService.escort_to_workshops()
+	_action_busy=false
+	if not result.ok:
+		_show_error("Accompagnement non enregistré",result,show_school_supervisor)
+		return
+	game._open_overlay("school_escort")
+	var panel := preload("res://scripts/ui/school_escort_panel.gd").new()
+	panel.player_frames=game.world.player.sprite.sprite_frames
+	game.modal_content.add_child(panel)
+	panel.finished.connect(func():
+		game.world.restore_progress(AppState.profile.progress)
+		game.world.restore_checkpoint()
+		game._close_overlay())
+	game._wire_modal()
+
+func finish_school_escort() -> void:
+	var panel=game.modal_content.get_node_or_null("school_escort_panel")
+	if is_instance_valid(panel): panel.finish()
