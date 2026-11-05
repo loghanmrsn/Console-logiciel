@@ -59,6 +59,9 @@ var _open_door_body: StaticBody2D
 var _open_door_shape: CollisionShape2D
 var camera: Camera2D
 var _last_camera_player_position := Vector2.INF
+var _probe_position := Vector2.INF
+var _probe_facing := Vector2.INF
+var _next_probe_msec := 0
 var target_id := ""
 var lighting_restored := false
 var door_open := false
@@ -512,6 +515,7 @@ func restore_checkpoint() -> void:
 	_update_target()
 
 func restore_progress(progress: Dictionary) -> void:
+	_probe_position=Vector2.INF
 	_pending_progress = progress.duplicate(true)
 	if not is_instance_valid(player):
 		return
@@ -597,6 +601,7 @@ func _sync_appearance() -> void:
 		if is_instance_valid(player):
 			var avatar: Dictionary = shop.item(str(equipment.get("avatar", "avatar_default")))
 			player.accent = Color(avatar.get("color", "#527fa3"))
+			player.set_character(preload("res://scripts/services/character_catalog.gd").record(app.profile).appearance)
 			player.queue_redraw()
 	for target in _targets:
 		target.accent = _accent
@@ -636,9 +641,14 @@ func _target_score(target: Node2D) -> float:
 	var direction_cost: float = (1.0 - player.facing.dot(toward.normalized())) * 12.0
 	return toward.length() + direction_cost
 
-func _update_target() -> void:
+func _update_target(force := false) -> void:
 	if not is_inside_tree() or not is_instance_valid(player):
 		return
+	var now := Time.get_ticks_msec()
+	if not force and player.global_position==_probe_position and player.facing==_probe_facing and now<_next_probe_msec: return
+	_probe_position=player.global_position
+	_probe_facing=player.facing
+	_next_probe_msec=now+100
 	var chosen: Node2D = null
 	var best_score := INF
 	for candidate in _targets:
@@ -671,7 +681,7 @@ func interact_nearest() -> void:
 	var router := get_node_or_null("/root/SceneRouter")
 	if not _controls_enabled or not is_visible_in_tree() or (router != null and not router.gameplay_allowed()):
 		return
-	_update_target()
+	_update_target(true)
 	if is_instance_valid(_target) and _can_reach(_target, 12.0):
 		interaction_requested.emit(_target.interaction_id)
 
@@ -830,7 +840,9 @@ func set_bed_pose(pose: String) -> void:
 	elif was_seated:
 		player.position = HotelLayout.checkpoints("hotel_room_206").room206_bed
 	if was_seated != _hotel_seated(): player.reset_physics_interpolation()
-	if is_instance_valid(player.sprite): player.sprite.visible = not _hotel_seated()
+	if is_instance_valid(player.sprite): player.sprite.visible = false
+	set_meta("hide_character_3d",_hotel_seated())
+	if is_instance_valid(player.avatar3d): player.avatar3d.visible=not _hotel_seated()
 	player.controls_enabled = _controls_enabled and not _hotel_seated()
 	if is_instance_valid(hotel_visual):
 		hotel_visual.bed_pose = _bed_pose
