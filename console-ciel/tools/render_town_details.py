@@ -85,19 +85,40 @@ def water_disk(name,cx,cy,r,z):
 
 def fountain():
  cx=.95;cy=.95/S.SIN
- S.material('granite',(.43,.46,.46),.72,0,'grain');water=S.material('water',(.025,.18,.23),.16,.08)
+ S.material('granite',(.38,.40,.38),.60,0,'grain');water=S.material('water',(.025,.18,.23),.16,.08)
  p=water.node_tree.nodes.get('Principled BSDF');p.inputs['Transmission Weight'].default_value=0;p.inputs['IOR'].default_value=1.333
  lathe('Carved stone basin',[(.70,.12),(.76,.30),(.79,.44),(.82,.49),(.91,.49),(.95,.44),(.95,.15),(.91,.08),(.78,.08)],cx,cy,'granite')
  water_disk('Inner water',cx,cy,.79,.32)
  S.cylinder('Central pedestal',(cx,cy,.13),(cx,cy,.91),.10,'stone',32)
  lathe('Upper stone cup',[(.08,.80),(.30,.91),(.38,1.00),(.38,1.05),(.33,1.06),(.29,.98),(.08,.90)],cx,cy,'granite')
  water_disk('Upper water',cx,cy,.32,1.01)
- S.cylinder('Water nozzle',(cx,cy,1.00),(cx,cy,1.10),.025,'chrome',24)
+ S.cylinder('Water nozzle',(cx,cy,1.00),(cx,cy,1.36),.025,'chrome',24)
+ # Segment joints and water-darkened edge in the carved limestone.
+ S.material('wet_stone',(.24,.28,.27),.27,.10,'grain')
+ lathe('Wet inner rim',[(.785,.40),(.795,.445),(.81,.454),(.806,.43)],cx,cy,'wet_stone')
+ for i in range(16):
+  a=i*math.tau/16
+  S.pipe([(cx+.826*math.cos(a),cy+.826*math.sin(a)/S.SIN,.496),(cx+.91*math.cos(a),cy+.91*math.sin(a)/S.SIN,.496)],.003,'metal')
  # Concentric shallow grooves give the stone rim a carved edge.
  lathe('Polished rim',[(.84,.492),(.86,.498),(.89,.498),(.91,.492)],cx,cy,'stone')
 
-records={}
-for name,size,build in [('flag_fr',(24,20),lambda:flag(False)),('flag_eu',(24,20),lambda:flag(True)),('book_box',(100,40),book_box),('media_kiosk',(76,34),media_kiosk),('fountain',(190,190),fountain)]:
- S.init();build();bpy.context.view_layer.update();key=f'{name}_{size[0]}x{size[1]}';records[key]=S.render(key,*size);print('TOWN_RENDERED',key,flush=True)
-result={'version':1,'sprites':records,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'rig_sha256':hashlib.sha256((project/'tools/render_school_assets.py').read_bytes()).hexdigest(),'blender_version':bpy.app.version_string,'license':'CC0-1.0 original artwork','eu_star_count':12,'fr_stripe_order':['blue','white','red'],'intent':'Public building forecourt decorations, French and European flags, books, media poster and realistic animated stone fountain.'}
-(S.OUT/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
+
+def main():
+ catalog_path=project/'data/town_forecourts.json';catalog=json.loads(catalog_path.read_text())
+ model_spec=importlib.util.spec_from_file_location('town_prop_models',project/'tools/town_prop_models.py');models=importlib.util.module_from_spec(model_spec);model_spec.loader.exec_module(models)
+ definitions={(x['kind'],*x['size']) for x in catalog['decorations']};definitions.add(('fountain',190,190))
+ records={}
+ for name,width,height in sorted(definitions):
+  S.init()
+  if name=='flag_fr':flag(False)
+  elif name=='flag_eu':flag(True)
+  elif name=='book_box':book_box()
+  elif name=='media_kiosk':media_kiosk()
+  elif name=='fountain':fountain()
+  else:models.build(S,name,width,height)
+  bpy.context.scene.render.resolution_percentage=200
+  bpy.context.scene.cycles.samples=256
+  bpy.context.view_layer.update();key=f'{name}_{width}x{height}';record=S.render(key,width,height);record['scale']=2.0;records[key]=record;print('TOWN_RENDERED',key,flush=True)
+ result={'version':1,'sprites':records,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'models_sha256':hashlib.sha256((project/'tools/town_prop_models.py').read_bytes()).hexdigest(),'catalog_sha256':hashlib.sha256(catalog_path.read_bytes()).hexdigest(),'rig_sha256':hashlib.sha256((project/'tools/render_school_assets.py').read_bytes()).hexdigest(),'blender_version':bpy.app.version_string,'license':'CC0-1.0 original artwork','eu_star_count':12,'fr_stripe_order':['blue','white','red'],'intent':'Domain-specific physical forecourt decorations for every city building, rendered at 2x resolution. Stone fountain with animated flowing water in Godot.'}
+ (S.OUT/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
+if __name__=='__main__':main()
