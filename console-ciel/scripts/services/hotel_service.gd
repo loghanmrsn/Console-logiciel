@@ -30,7 +30,9 @@ const ROUTES := {
  "school_cyber>school_hall": "school_hall_entry", "school_hall>school_cyber": "school_entry",
  "school_hall>school_passage": "school_passage_entry", "school_passage>school_hall": "school_hall_entry",
  "school_passage>school_workshop": "school_workshop_entry", "school_workshop>school_passage": "school_passage_entry",
- "school_stop>school_cyber": "school_entry", "school_cyber>school_stop": "school_door",
+ "school_stop>school_reception":"school_reception_entry", "school_reception>school_stop":"school_door",
+ "school_passage>school_reception":"school_reception_return", "school_cyber>school_reception":"school_reception_return",
+ "school_passage>school_cyber":"school_entry",
 	"building_02>hotel_it": "it_entrance",
 	"hotel_it>building_02": "hall_it",
 	"building_02>hotel_stairs_1": "stairs_from_hall",
@@ -340,4 +342,16 @@ func connect_school_wire(top: String, bottom: String) -> Dictionary:
 	if wires.has(top): return SaveService._ok()
 	wires[top] = bottom
 	progress.school_wires = wires
+	return _save_progress(progress)
+
+## The escort grants access without completing the optional wiring exercise.
+## Save the arrival once, before presentation; interruption resumes at the corridor.
+func escort_to_workshops() -> Dictionary:
+	var ready := _ready_for(["school_reception"])
+	if not ready.ok: return ready
+	var progress: Dictionary = AppState.profile.progress.duplicate(true)
+	progress.school_guided = true
+	progress.room_id = "school_passage"
+	progress.checkpoint_id = "school_passage_guide"
+	progress.active_mission = ""
 	return _save_progress(progress)
