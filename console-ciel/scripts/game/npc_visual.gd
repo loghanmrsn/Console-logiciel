@@ -1,7 +1,9 @@
 extends Node2D
 ## Original layered 2D characters. Only short focus gestures animate; feet stay fixed.
+const Supervisor = preload("res://assets/art/supervisor/supervisor.png")
 const Materials = preload("res://scripts/game/render_materials.gd")
 var character: Dictionary = {}
+var walk_cycle := -1.0
 var _attention := 0.0:
 	set(value):
 		_attention = value
@@ -16,7 +18,7 @@ func configure(spec: Dictionary) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	draw_character(self, character, _attention, _look)
+	draw_character(self, character, _attention, _look, walk_cycle)
 
 func set_attention(value: bool) -> void:
 	if _attentive == value: return
@@ -60,7 +62,12 @@ static func _ellipse(canvas: CanvasItem, at: Vector2, radius: Vector2, color: Co
 	canvas.draw_circle(Vector2.ZERO, 1, color)
 	canvas.draw_set_transform(Vector2.ZERO)
 
-static func draw_character(canvas: CanvasItem, spec: Dictionary, attention := 0.0, look := Vector2.ZERO) -> void:
+static func draw_character(canvas: CanvasItem, spec: Dictionary, attention := 0.0, look := Vector2.ZERO, walk := -1.0) -> void:
+	if spec.get("id", "") == "npc_school_supervisor":
+		var frame := 0 if walk < 0 else 1 + int(walk / TAU * 8) % 8
+		_ellipse(canvas, Vector2(0, -2), Vector2(12, 3), Color(0.15, 0.22, 0.23, 0.15))
+		canvas.draw_texture_rect_region(Supervisor, Rect2(-22, -74, 44, 77), Rect2(frame * 256, 0, 256, 448))
+		return
 	var coat := Color(str(spec.get("coat", "749b90")))
 	var skin := Color(str(spec.get("skin", "dfbca0")))
 	var hair := Color(str(spec.get("hair", "665248")))
@@ -73,10 +80,11 @@ static func draw_character(canvas: CanvasItem, spec: Dictionary, attention := 0.
 	if hairstyle == "bob": _rounded(canvas, Rect2(-15, -59, 30, 27), hair.darkened(.12), 11)
 	if hairstyle == "bun": canvas.draw_circle(Vector2(10, -62), 7, hair.darkened(.1))
 	for x in [-11, 2]:
-		_rounded(canvas, Rect2(x, -21, 9, 18), Color("51676b"))
-		canvas.draw_line(Vector2(x + 2, -15), Vector2(x + 2, -6), Color("698082"), 1, true)
-		_rounded(canvas, Rect2(x - 1, -6, 11, 6), Color("344d52"), 3)
-		canvas.draw_line(Vector2(x + 1, -3), Vector2(x + 7, -3), Color("61797c"), 1, true)
+		var stride := (sin(walk)*4 if x<0 else -sin(walk)*4) if walk>=0 else 0.0
+		_rounded(canvas, Rect2(x, -21, 9, 18+stride), Color("51676b"))
+		canvas.draw_line(Vector2(x + 2, -15), Vector2(x + 2, -6+stride), Color("698082"), 1, true)
+		_rounded(canvas, Rect2(x - 1, -6+stride, 11, 6), Color("344d52"), 3)
+		canvas.draw_line(Vector2(x + 1, -3+stride), Vector2(x + 7, -3+stride), Color("61797c"), 1, true)
 	_rounded(canvas, Rect2(-15, -38, 30, 26), coat.darkened(.24), 8)
 	_rounded(canvas, Rect2(-13, -37, 26, 23), coat, 7)
 	_rounded(canvas, Rect2(-11, -35, 9, 3), coat.lightened(.18), 2)
