@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.28.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.29.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -374,3 +374,6 @@ Mobilier et façade créés en volume puis précalculés pour le jeu : pieds et 
 DÉCORS ET PSEUDOS — 0.28.0
 Drapeaux français et européen devant la mairie, boîte à livres et banc devant la bibliothèque, panneau et banc devant la médiathèque. Fontaine en pierre avec jets animés ; accès aux portes dégagés.
 Liste noire : modifier pseudo_blacklist.json à côté de l’exécutable. blocked_names contient les noms complets ; blocked_terms les mots entiers interdits. Création et renommage contrôlés ; anciennes sauvegardes conservées. Garder le format JSON, puis enregistrer. Une configuration invalide est signalée. Conserver sa liste personnalisée lors d’une mise à jour.
+
+DÉCORS DEVANT CHAQUE BÂTIMENT — 0.29.0
+Les 40 bâtiments disposent d’objets adaptés à leur activité : grand panneau à enveloppe et boîte aux lettres, fleurs en pots, livres, vélo, outils, instruments, commerces et résidences. Les modèles sont réalisés dans Blender puis rendus à double résolution. La fontaine en pierre possède des jets, des gouttes et des filets d’eau qui débordent de la vasque. La pause et les animations réduites immobilisent l’eau.
