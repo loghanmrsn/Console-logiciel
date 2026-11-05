@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC0-1.0 original artwork",
+  "blender_version": "4.3.2",
+  "height_reference_metres": 1.7,
+  "rig": "standard_170",
+  "body_editable": false,
+  "mesh_objects": 37,
+  "all_variant_triangles": 71814,
+  "generator_sha256": "d4aea588648c5f2d95465fb8c4e516cee4392e5776baa7b323b20f19a19d6b89",
+  "glb_sha256": "9312c6bb3d788d94bd6b40efcc68f8b99f53582724cc363a606a9e9a1c7f606f",
+  "source_blend_sha256": "4d02971f55f6de53b5523d39ac0bb8b0538bd03d0311855d1abccce2bc5a17fe",
+  "animations": [
+    "idle",
+    "walk"
+  ],
+  "prompt": "Original adult character with a fixed regular 1.70 m build, naturally proportioned face, customizable skin, hair, eyes, lips and smile. Modular casual wardrobe: plain shirts, loose knitwear, regular, baggy and balloon trousers, denim and structured flat-brim caps, straw and felt hats, generic unbranded shoes. One shared skeleton and no garment colliders.",
+  "negative_prompt": "logos, brand names, sports team emblems, copied textures, variable body scaling, oversized cartoon head, downloaded models",
+  "external_models_or_images": false
+}
