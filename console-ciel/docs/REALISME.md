@@ -1,4 +1,4 @@
-# Salles et lycée — rendu 0.28.0
+# Salles, lycée et ville — rendu 0.29.0
 
 Les cinq ateliers et le laboratoire réseau conservent leurs portes, missions et géométries physiques. Le mobilier est remplacé par des rendus de modèles originaux créés dans Blender : plateaux en bois, pieds métalliques, sièges rembourrés, claviers, ordinateurs, imprimante 3D, baies, platines de câblage, instruments, tiroirs, banc hydraulique et mezzanine. Les volumes, les biseaux, les matières et les ombres sur les objets proviennent de ces modèles.
 
@@ -39,6 +39,28 @@ Le jeu doit être contrôlé au niveau des portes, des pieds du mobilier, des co
 
 ## Décors de ville
 
-La mairie reçoit deux mâts avec les drapeaux français et européen (douze étoiles). La bibliothèque possède une boîte à livres garnie et un banc ; la médiathèque, un panneau avec une bobine de film et un banc. Ces éléments restent sur les côtés des parvis, sans bloquer les portes ni les rues. Le bassin de la fontaine est modelé en pierre, avec une vasque supérieure et une surface d’eau ; Godot ajoute les jets et les ondulations. Pause et animations réduites immobilisent l’eau.
+Les **40 bâtiments** ont des objets liés à leur activité. Le catalogue `data/town_forecourts.json` comporte 41 placements : deux drapeaux à la mairie, et un ensemble devant chacun des autres bâtiments. Il comprend le Ritz et le bâtiment A d’origine, ainsi que le lycée isolé. Les bancs de la bibliothèque et de la médiathèque sont conservés. Les terrasses laissent un espace pour les présentoirs ; les portes, chaussées et parcours des passants restent libres.
 
-Les cinq rendus supplémentaires suivent la même chaîne sans perte. Pour les régénérer : `blender -b -t 6 --python tools/render_town_details.py -- --project .`. Copier les PNG et le catalogue dans un dossier externe, puis utiliser le compresseur avec `--source=/chemin/rendus-ville --destination=res://assets/art/town_details/`. Retirer les copies PNG après vérification, importer les WebP avec les mêmes réglages que ceux du lycée, puis régénérer le cache. Le catalogue `assets/art/town_details/manifest.json` conserve les empreintes des deux générateurs.
+Les 34 modèles/rendus comprennent notamment le grand panneau à enveloppe et la boîte aux lettres de La Poste ; les pots, pétales, feuilles et arrosoir du fleuriste ; des caisses de fruits, baguettes, machine à café, cloche de restaurant ; le vélo avec rayons, pédales et béquille ; des outils, pneus, bornes, bagages, livres, chevalet, guitare avec cordes et jardinières. Les volumes arrondis et les matériaux sont calculés dans Blender/Cycles. La résolution des images de ville est doublée par rapport aux pixels du monde, avec filtrage et mipmaps. Le jeu reste en 2D et ne calcule pas ces modèles 3D à chaque image.
+
+La fontaine conserve un bassin solide. Ses rebords en pierre, joints, zones humides, vasque et buse sont modélisés dans Blender. Godot anime cinq jets, les gouttes qui accélèrent dans leur chute, onze filets de débordement, les éclaboussures et les ondulations. Il s’agit d’une animation graphique déterministe, sans simulation physique des fluides. La pause et l’option d’animations réduites immobilisent l’ensemble.
+
+Pour régénérer les 34 rendus :
+
+```bash
+blender -b -t 6 --python tools/render_town_details.py -- --project .
+```
+
+Copier les PNG et `manifest.json` de `assets/art/town_details/` dans un dossier externe, puis lancer :
+
+```bash
+godot --headless --path . --script res://tools/pack_school_renders.gd -- --source=/chemin/rendus-ville --destination=res://assets/art/town_details/
+```
+
+Retirer les copies PNG après la réussite des comparaisons sans perte, importer les WebP avec les mêmes réglages que ceux du lycée, puis régénérer le cache avec `tools/bake_static_art.gd` et réimporter. Le catalogue conserve les SHA-256 du générateur, des modèles, du placement et du dispositif de rendu. Le budget de tous les décors précalculés, de la façade, de la fontaine et du sol est fixé à 64 Mio RGBA avec mipmaps, après déduplication des textures réutilisées.
+
+Vérifications : `tests/town_details_asset_tests.gd` contrôle les 40 bâtiments, les emprises distinctes, les ressources et les empreintes ; `tests/town_details_ui_tests.gd` contrôle les collisions, les portes, la circulation, les commandes et les pixels de l’eau en rendu natif, y compris en pause et avec les animations réduites.
+
+Rendus capturés dans le logiciel : [La Poste](screenshots/decors_0.29.0/town_details_ui_tests/civic_poste_challenge.webp) · [Fleuriste](screenshots/decors_0.29.0/town_details_ui_tests/civic_fleuriste_challenge.webp) · [Cycles](screenshots/decors_0.29.0/town_details_ui_tests/civic_cycles_challenge.webp) · [Commerces](screenshots/decors_0.29.0/town_details_ui_tests/civic_marche_challenge.webp) · [Musique](screenshots/decors_0.29.0/town_details_ui_tests/civic_musique_challenge.webp).
+
+![Écoulement réel de la fontaine dans le jeu, recadré du viewport et encodé en GIF.](screenshots/decors_0.29.0/fontaine_animee.gif)
