@@ -1,4 +1,5 @@
 extends Control
+const CharacterConfigurator=preload("res://scripts/ui/character_configurator.gd")
 const DevConsole = preload("res://scripts/ui/dev_console_panel.gd")
 const GlassButton=preload('res://scripts/ui/translucent_button.gd')
 const ThemeFactory=preload('res://scripts/ui/theme_factory.gd')
@@ -88,6 +89,7 @@ var _content_tween: Tween
 var _axes_elapsed=0.0
 var _pending_created_id=''
 var _pending_controller_message=''
+var _theme_signature=''
 
 
 func _ready() -> void:
@@ -268,6 +270,9 @@ func _apply_theme() -> void:
 		_content_tween.kill()
 		content.modulate.a=1.0
 	background_palette=_palette()
+	var signature=JSON.stringify([SettingsService.current,background_palette])
+	if signature==_theme_signature: return
+	_theme_signature=signature
 	theme=ThemeFactory.build(SettingsService.current,background_palette)
 	if header_brand!=null: header_brand.add_theme_color_override('font_color',Color(background_palette.foreground))
 	if header_profile!=null: header_profile.remove_theme_color_override('font_color')
@@ -380,11 +385,13 @@ func _clear(next: String) -> void:
 	_update_header()
 
 func _show_screen(next: String) -> void:
-	if next in ['home','game','shop','settings'] and AppState.profile.is_empty(): next='profiles'
+	if next in ['home','game','shop','settings','character','character_walk'] and AppState.profile.is_empty(): next='profiles'
 	if is_instance_valid(modal) or _screen_building: return
 	_screen_building=true
 	_clear(next)
 	match next:
+		'character_walk': _character_walk()
+		'character': _character()
 		'profiles': _profiles()
 		'dev_terminal': _dev_terminal()
 		'home': _home()
@@ -462,17 +469,19 @@ func _wire_navigation() -> void:
 	var targets=_focusables(content)
 	if navigation.visible: targets.append_array(_focusables(navigation))
 	if header_back.visible: targets.append(header_back)
+	var centers={}
+	for target in targets: centers[target]=target.get_global_rect().get_center()
 	for index in range(targets.size()):
 		var control=targets[index]
 		control.focus_next=control.get_path_to(targets[(index+1)%targets.size()])
 		control.focus_previous=control.get_path_to(targets[posmod(index-1,targets.size())])
-		var origin=control.get_global_rect().get_center()
+		var origin: Vector2=centers[control]
 		for side in [SIDE_TOP,SIDE_BOTTOM,SIDE_LEFT,SIDE_RIGHT]:
 			var best: Control=null
 			var best_score=INF
 			for candidate in targets:
 				if candidate==control: continue
-				var delta=candidate.get_global_rect().get_center()-origin
+				var delta: Vector2=centers[candidate]-origin
 				var advance=delta.y*(-1 if side==SIDE_TOP else 1) if side in [SIDE_TOP,SIDE_BOTTOM] else delta.x*(-1 if side==SIDE_LEFT else 1)
 				if advance<1: continue
 				var cross=absf(delta.x) if side in [SIDE_TOP,SIDE_BOTTOM] else absf(delta.y)
@@ -592,6 +601,7 @@ func _profiles() -> void:
 	if AppState.profile.is_empty(): _button(content,'Quitter',_request_quit,'quit_profiles')
 
 func _profile_overview() -> void:
+	_button(content,'Mon personnage 3D et ses vêtements',func():_show_screen('character'),'profile_character')
 	var panel=_panel(content)
 	panel.name='profile_overview'
 	var row=HBoxContainer.new()
@@ -906,6 +916,7 @@ func _home() -> void:
 		for index in range(1,entries.size()):
 			_add_home_game(home_game_library,entries[index],true)
 	_fit_home_library()
+	_button(content,'Mon personnage 3D',func():_show_screen('character'),'home_character')
 
 func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
@@ -1107,6 +1118,7 @@ func _game() -> void:
 	_responsive()
 
 func _shop() -> void:
+	_button(content,'Personnage 3D et dressing',func():_show_screen('character'),'shop_character')
 	_label(content,'La boutique CIEL',28)
 	var wallet=_panel(content)
 	wallet.name='shop_wallet'
@@ -1522,6 +1534,8 @@ func _back() -> void:
 		'profiles':
 			if AppState.profile.is_empty(): _request_quit()
 			else: _show_screen('home')
+		'character_walk': _show_screen('character')
+		'character': _leave_character()
 		'shop': _show_screen('home')
 		'dev_terminal': _show_screen('profiles')
 
@@ -1651,3 +1665,23 @@ func _music_selection(host: Node) -> void:
 
 func _game_controls_hint() -> String:
 	return '%s : interagir · %s : sprint · %s : missions · %s : carte · %s : pause' % [InputSetup.label_for('game_interact'), InputSetup.label_for('game_sprint'), InputSetup.label_for('game_missions'), InputSetup.label_for('game_map'), InputSetup.label_for('pause')]
+
+func _character() -> void:
+	var panel=CharacterConfigurator.new()
+	content.add_child(panel)
+	panel.close_requested.connect(_leave_character)
+	panel.navigation_changed.connect(_wire_navigation)
+	panel.walk_requested.connect(func():
+		if panel.dirty:_confirm("Tester le personnage enregistré ?","Le test utilise la dernière apparence enregistrée. Les essais non enregistrés seront abandonnés.","Tester",func():_show_screen("character_walk"))
+		else:_show_screen("character_walk"))
+
+func _leave_character() -> void:
+	var panel=content.get_node_or_null("character_configurator")
+	if panel!=null and panel.dirty:
+		_confirm("Quitter le configurateur ?","Les essais non enregistrés seront abandonnés. Les achats déjà enregistrés sont conservés.","Quitter",func():_show_screen('home'))
+	else:_show_screen('home')
+
+func _character_walk() -> void:
+	var panel=preload("res://scripts/ui/character_walk_panel.gd").new()
+	content.add_child(panel)
+	panel.close_requested.connect(func():_show_screen("character"))
