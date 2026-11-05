@@ -1,0 +1,834 @@
+{
+  "version": "0.32.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "date_utc": "2026-11-05",
+  "source_tests": [
+    {
+      "name": "appearance_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1881,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.29,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log": "appearance_tests.output.txt",
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "name": "character_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 147,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.44,
+      "script_sha256": "d2389306844976713687a81beceb9b1f0301c20db5c11f505f5bf6fc087b47a6",
+      "log": "character_services_tests.output.txt",
+      "log_sha256": "8b1caf4fb71cf2b76f96596fc1becdb450e4efffbb3219ecd37ef83f1cfa0d0b"
+    },
+    {
+      "name": "character_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 107,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 13.63,
+      "script_sha256": "f6229b1436312ffd5acf7a5474ed6832d6f9f997d64e0c1c1cb829f5bf1be3f6",
+      "log": "character_ui_tests.output.txt",
+      "log_sha256": "05e3fc8c4caf5e46985b0f125cea426746110de35a8b126bf3a23c93a36fed77"
+    },
+    {
+      "name": "dev_profile_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 48,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.61,
+      "script_sha256": "925171194b2cfbcb798c9a23c30aac2dbc13d288728a37207a72ee41131cd52a",
+      "log": "dev_profile_services_tests.output.txt",
+      "log_sha256": "0a99ce92a5a8942c898843065c4b4f3abbe0371050eb19ef678d634aa5761f6c"
+    },
+    {
+      "name": "hotel_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 356,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 139.32,
+      "script_sha256": "69081787f58807e22562322adb6e1ef87efdf5dff048f60a52b02c8b68c3e8d5",
+      "log": "hotel_ui_tests.output.txt",
+      "log_sha256": "86b29715f6fa37c6c0d13d2858e680d6a0ca24cf2c872432b77afea51e24c61e"
+    },
+    {
+      "name": "local_avatar_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 122,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.96,
+      "script_sha256": "67ab1325ff793dfe87d83fcb44280280b110d916ef8e5d1eb99db680791e07e2",
+      "log": "local_avatar_tests.output.txt",
+      "log_sha256": "e2ae2d1c7c09cc18b5be7736beae0d066df262a1c0faaa3fe8bcf4d78d2a0beb"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.39,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "npc_polish_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 426,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 40.12,
+      "script_sha256": "6d29b508511223efb240cd1418994054ddaaf39374e29ab148a7f51ddfc6f17b",
+      "log": "npc_polish_ui_tests.output.txt",
+      "log_sha256": "09f3d502791fdd4355a76f77f12a0b3fdb5afc2f2be6123e90575baca33785f3"
+    },
+    {
+      "name": "profile_editor_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 644,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 22.1,
+      "script_sha256": "8c53e2adad7bdce7302e15f1cc8e19050e058df321dccfd4fca8f98325906292",
+      "log": "profile_editor_tests.output.txt",
+      "log_sha256": "01ccd6b4c0bf27032f62077afa9f066b0b9d4bac7d73facc63748f8d445e7e0a"
+    },
+    {
+      "name": "profile_header_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1912,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 14.16,
+      "script_sha256": "e426d0ac459467db79d15eb108df3503eb44529e70d6647c9d35574db8fac95e",
+      "log": "profile_header_tests.output.txt",
+      "log_sha256": "beee7187337528a1cd1c6cea9e46b2adf1a0c63c3472e666dcf1212d775f9bdc"
+    },
+    {
+      "name": "refonte_navigation",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 1944,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 33.46,
+      "script_sha256": "f83fec1d3fe316f0916cc17eb4508f466f9ae5edae87606590fd570c07b6b8d5",
+      "log": "refonte_navigation.output.txt",
+      "log_sha256": "7dd3dc770710c1ffccfe82079c4744242fdd9820c952ee2a67673647264885ba"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.28,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "run_tests.output.txt",
+      "log_sha256": "2f8227dbbe6dd831a2ea210b9663d3a05b206dece076ebe857b6db730a13ae8a"
+    },
+    {
+      "name": "school_reception_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 161,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 13.25,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log": "school_reception_ui_tests.output.txt",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 12.61,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "stability_tests.output.txt",
+      "log_sha256": "57288b35fc9d01a8766f8cf1bc69af27d8d5994f769d91b48f55d92bdcb7e8cd"
+    },
+    {
+      "name": "town_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 695,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 12.77,
+      "script_sha256": "e1e0aea3f8d0ee48bb6beff6311037597ffadaeb26d31ca42831cc3de5c675c4",
+      "log": "town_ui_tests.output.txt",
+      "log_sha256": "5d1c52635b2dc0edd6ccbaa13088cffc56654941b396a922e54178e0a395e158"
+    },
+    {
+      "name": "windows_art_pack",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 111,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.88,
+      "script_sha256": "71742f6b8328289b1d77ef563191a6edbbaab539230bf47e349ab1f755be5bd7",
+      "log": "windows_art_pack.output.txt",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.79,
+      "script_sha256": "1b879e73beab1609163b04876949db66443cb06aab222e72ebf8e77aa53660bc",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    }
+  ],
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "profile_header_tests",
+      "assertions": 1912,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e426d0ac459467db79d15eb108df3503eb44529e70d6647c9d35574db8fac95e",
+      "log_sha256": "beee7187337528a1cd1c6cea9e46b2adf1a0c63c3472e666dcf1212d775f9bdc"
+    },
+    {
+      "platform": "linux",
+      "name": "profile_header_tests",
+      "assertions": 1912,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e426d0ac459467db79d15eb108df3503eb44529e70d6647c9d35574db8fac95e",
+      "log_sha256": "beee7187337528a1cd1c6cea9e46b2adf1a0c63c3472e666dcf1212d775f9bdc"
+    },
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 107,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6229b1436312ffd5acf7a5474ed6832d6f9f997d64e0c1c1cb829f5bf1be3f6",
+      "log_sha256": "05e3fc8c4caf5e46985b0f125cea426746110de35a8b126bf3a23c93a36fed77"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 107,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f6229b1436312ffd5acf7a5474ed6832d6f9f997d64e0c1c1cb829f5bf1be3f6",
+      "log_sha256": "05e3fc8c4caf5e46985b0f125cea426746110de35a8b126bf3a23c93a36fed77"
+    },
+    {
+      "platform": "windows",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "71742f6b8328289b1d77ef563191a6edbbaab539230bf47e349ab1f755be5bd7",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "71742f6b8328289b1d77ef563191a6edbbaab539230bf47e349ab1f755be5bd7",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 147,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "d2389306844976713687a81beceb9b1f0301c20db5c11f505f5bf6fc087b47a6",
+      "log_sha256": "8b1caf4fb71cf2b76f96596fc1becdb450e4efffbb3219ecd37ef83f1cfa0d0b"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 147,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "d2389306844976713687a81beceb9b1f0301c20db5c11f505f5bf6fc087b47a6",
+      "log_sha256": "8b1caf4fb71cf2b76f96596fc1becdb450e4efffbb3219ecd37ef83f1cfa0d0b"
+    },
+    {
+      "platform": "windows",
+      "name": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "platform": "linux",
+      "name": "appearance_tests",
+      "assertions": 1881,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "0d2457fd5b51a6bb6d127aa97612dad3b9e3dc42e720ae9cd83b7c8e23f754be",
+      "log_sha256": "9c95a7fe0d7a0ebadb5135160eb26c7498a479fc43b54b2ab328c4b5db85ec6b"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    }
+  ],
+  "native_renderer": {
+    "character_ui_tests": {
+      "assertions": 114,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/chapeau_paille_pantalon_ballon.webp",
+          "bytes": 70798,
+          "sha256": "d4cbfd84b88e85c3c35ef62f50c27435f638c10bebff254904904df6a9c714f5",
+          "original_png_sha256": "4e658e777d78c867c616b6c1336dfc8f89640265ae0d34aa62b45d5c8e9d6d55",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/configurateur_visage.webp",
+          "bytes": 74322,
+          "sha256": "c23bd27b62f9b0a0d975dfb1d012ebe88a0122a37e8dd0a7e8f743bcc3d685d5",
+          "original_png_sha256": "2ac018cb372ef8a452062d54613c788a3730c125a157d5cffaab78611e03f9b7",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/dressing_casquette_baggy.webp",
+          "bytes": 70690,
+          "sha256": "abe1ba34c69be5c6509b9f07d5b3f2a0fa0ae9cd3b0c10d9d733d487429ae043",
+          "original_png_sha256": "d7238eab25995857d7c11ff1bf5895ad626b4373b39e0a0205607d2243c590dd",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/dressing_compact.webp",
+          "bytes": 50960,
+          "sha256": "304b2aa2fe18bf06155d6e302d55b8457457e63b31bde6595920ee4ecef506b2",
+          "original_png_sha256": "181776c1ffc2fdb4b760561e7ea0a7b19033893bf0424fc71996fdd55fecbfdc",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/personnage_3d_en_jeu.webp",
+          "bytes": 42274,
+          "sha256": "3cd9972d395151dd26e0d9e7b5269ddd6701032b8e8825ba9392b812bfb32d89",
+          "original_png_sha256": "a17b6b854435c57b4fa0e38ccefe260533eb7e4f4cf7d072296d8dd5c6b6f497",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/pull_ample_3d.webp",
+          "bytes": 62628,
+          "sha256": "47bfbd2ec30dd138b6f28257258d2765bc1a146a569ce083d102008f870aee99",
+          "original_png_sha256": "d7477a17b408f0c962463c51785fe3e940b050f4955286ec71dff0e841297e97",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/character_ui_tests/test_personnage_collision_3d.webp",
+          "bytes": 23592,
+          "sha256": "e31de5a6bdb6a6c88d89584ded8833a1d11dcdd01bd8e67089604399f67effa2",
+          "original_png_sha256": "8d0dfda7d51b51d12486d2c0d15d423565b38b3ad2d9143d721d1d88c1af5fef",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "3ed618d0cefb3c7a45a55b882d810563616bd2833fb8eb580acc4ca3d0ebfc64",
+      "script_sha256": "f6229b1436312ffd5acf7a5474ed6832d6f9f997d64e0c1c1cb829f5bf1be3f6",
+      "log_sha256": "ca77bd22f1cbc2c1c7f81ec7153733d6acbe6502ffe3d65528c42314df5c0fba",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original engine PNG."
+    },
+    "school_reception_ui_tests": {
+      "assertions": 193,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/accompagnement_couloir_challenge.webp",
+          "bytes": 156324,
+          "sha256": "1e0e56d74da6e0c288dc44ebff8e68d8e4676166351932f9c78053fd5b4fc399",
+          "original_png_sha256": "48abcf7051ac64d98ec9facf7f79267fc6914d34da95a57200a2f90fb37ca5e2",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/accompagnement_escalier_challenge.webp",
+          "bytes": 161246,
+          "sha256": "ba0869262a119c9304c54b1f66aba7091569a7c93a21d9f93724ce2afd7082b4",
+          "original_png_sha256": "4d5ff021252342ac0bfc1d65799508921d2f7f535c0ed7081c2776a73aa5a4c6",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/accueil_surveillance_challenge.webp",
+          "bytes": 354746,
+          "sha256": "53a7ff6243a180504ae3025230b85d3ee56a09cd4beaedb69ed329f6589a0235",
+          "original_png_sha256": "da482b9ad6148ad7cb8a7c1292d8988abfe18e19b38ec23e130b6d17b3e01293",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/arrivee_ateliers_challenge.webp",
+          "bytes": 304998,
+          "sha256": "c1171d8d89e2ec6f07b9af127bdcd47fcb9ae027dac8ebb41dd9061219ae97c3",
+          "original_png_sha256": "b781ee79b6b87946dfc3366cdf8cf48e5de4dfe53154d3ac9d96eb3c74ceef49",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/hotel_deux_escaliers_droits_challenge.webp",
+          "bytes": 46194,
+          "sha256": "2fb51627fc621c44e58b737bd9d4b6d844966e037c21c6c9867f0e6b9ae59b5f",
+          "original_png_sha256": "7188c363a926c379fa53ef532652843abfe11fe156193672ca9ecda91a4b473f",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/hotel_palier_droit_challenge.webp",
+          "bytes": 52444,
+          "sha256": "050a15034a764b3c19e181b888319483485b16cca47c657f058aa871871de6c9",
+          "original_png_sha256": "17fe0bd806c037e480b0cef9d5d7f4f4db16df3160c1fa19dc9fd62c286328d5",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/lycee_sans_pancarte_challenge.webp",
+          "bytes": 217092,
+          "sha256": "6b6f3ebc803eb52dacdfe3bf7bc3a1d20ab3ef9e65d6252502afec7ee334ff28",
+          "original_png_sha256": "7d1091c2981adacad542174a74fd0f26b7a5c075f687356c81f00fe8301eb8da",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/personnage3d_0.32.0/school_reception_ui_tests/surveillant_choix_compact_challenge.webp",
+          "bytes": 93590,
+          "sha256": "921ea7f5bc84f6844877cda16b1ae7c6b0e60313a9a3c3126777c3c5cb4534d4",
+          "original_png_sha256": "91aa310bba8ef73320144afec7e27756c895f020b3e61997850a0a9105f10d95",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "4e971ea3e669ff7b8fd403023325812b425f54ebdec8d48da962c5ea0427f1d6",
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "f01125ee8a6e267bee4fcd0003811593064ac55ed67fdfbf28386fa52f50e4ca",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original engine PNG."
+    }
+  },
+  "gait_preview": {
+    "file": "docs/screenshots/personnage3d_0.32.0/demarche_souple.gif",
+    "sha256": "bab82994f1e8aeb8d61603a3bac118dc61047753b78fec15989d8de92613dd66",
+    "frames": 16,
+    "duration_ms_per_frame": 60,
+    "source": "Actual 3D SubViewport of the exported ARM64 resource pack, loaded by Godot Linux x86_64 / X11 / Mesa llvmpipe",
+    "encoding": "Unedited engine frames, alpha composited onto the light preview background, GIF shared 256-colour palette. Original RGBA PNG frame hashes retained.",
+    "native_arm64_execution": false,
+    "source_frames": [
+      {
+        "file": "walk_00.png",
+        "sha256": "a17a405ca8e2659cb5ffedfbfd026b48063e89f70a619ad10ed55c08f0101a95"
+      },
+      {
+        "file": "walk_01.png",
+        "sha256": "3035b67ce8277b119db365aa81eecbe7d77ce968bf2e831a9784299aeb43c96f"
+      },
+      {
+        "file": "walk_02.png",
+        "sha256": "ba6463e4ed6dc2010141feb7e50873f09eae648070a4dd2392babaa21df4b8e4"
+      },
+      {
+        "file": "walk_03.png",
+        "sha256": "cb3df183cc60460d52c95943fafd932b821293822cfac0997df8a60fa39aca39"
+      },
+      {
+        "file": "walk_04.png",
+        "sha256": "16f7f76941697b803a8820220e072f71e1ffafcac1fe7a505fc86dadacf4dd70"
+      },
+      {
+        "file": "walk_05.png",
+        "sha256": "1c11223034aae78c93165854569d701038eab8e8013fc6812f79628f698f97c2"
+      },
+      {
+        "file": "walk_06.png",
+        "sha256": "22cf746cd082d662c6f18999adcd14ee1890dd834651ca362829b9f019003d00"
+      },
+      {
+        "file": "walk_07.png",
+        "sha256": "e6cd0738fa722478442444f8f090cb1ffaeb2775169596eac26c5b7164f7bfb9"
+      },
+      {
+        "file": "walk_08.png",
+        "sha256": "60fd9df7cd502d6dec84bf0233468a8931031f81238a0b600ff3e47fae9978e1"
+      },
+      {
+        "file": "walk_09.png",
+        "sha256": "837604ba4b18b2d7056bc249a201f3dc0df4ccc8555837085c2fcf5b7303da1e"
+      },
+      {
+        "file": "walk_10.png",
+        "sha256": "c26da35bbaea6c650e6dc6fb099ba957343b79c2916ed57fcc8b3bd18d11150b"
+      },
+      {
+        "file": "walk_11.png",
+        "sha256": "cb670b8f6fa64138668ac565d763424b12c0a524c8c0d598de7da425194ab8d9"
+      },
+      {
+        "file": "walk_12.png",
+        "sha256": "9b44e6dd6d9c7223fd47cc5e01219b192ffec87a36eec678713c7c4cac3edb44"
+      },
+      {
+        "file": "walk_13.png",
+        "sha256": "b3aa74b11f31760ef71621f985f214af4bb8b628aa696b262a62ca6a6b609fab"
+      },
+      {
+        "file": "walk_14.png",
+        "sha256": "24ab756988d7cc3c878378561007a1ccd706b28416baa58f02a8be63dcfbf22f"
+      },
+      {
+        "file": "walk_15.png",
+        "sha256": "90cb31e3a3e5a57f7ae0973008d8a3c8a865e30e17d20cfdf21a0b100442dcb0"
+      }
+    ]
+  },
+  "performance": {
+    "baseline": {
+      "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+      "profile_handler_median_us": 7469.5,
+      "profile_samples_us": [
+        7327.0,
+        7397.05,
+        7430.55,
+        7469.5,
+        7805.675,
+        7836.5,
+        7988.6
+      ],
+      "renderer": "headless",
+      "same_profile_repeats_per_batch": 40,
+      "target_repeats_per_batch": 500,
+      "target_samples_us": [
+        51.956,
+        60.09,
+        60.922,
+        61.396,
+        64.016,
+        67.96,
+        127.538
+      ],
+      "target_selection_median_us": 61.396,
+      "version": "0.31.0",
+      "world_targets": 7
+    },
+    "candidate_before_new_3d_feature": {
+      "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+      "profile_handler_median_us": 153.35,
+      "profile_samples_us": [
+        118.775,
+        135.9,
+        144.175,
+        153.35,
+        158.725,
+        189.625,
+        208.9
+      ],
+      "renderer": "headless",
+      "same_profile_repeats_per_batch": 40,
+      "target_repeats_per_batch": 500,
+      "target_samples_us": [
+        0.458,
+        0.508,
+        0.726,
+        0.784,
+        1.054,
+        1.294,
+        1.506
+      ],
+      "target_selection_median_us": 0.784,
+      "version": "0.31.0",
+      "world_targets": 7
+    },
+    "final_with_3d_feature": {
+      "host": "Linux x86_64; CPU microbenchmarks; no hardware FPS claim",
+      "profile_handler_median_us": 166.825,
+      "profile_samples_us": [
+        143.775,
+        148.4,
+        165.825,
+        166.825,
+        170.875,
+        193.075,
+        196.35
+      ],
+      "renderer": "headless",
+      "same_profile_repeats_per_batch": 40,
+      "target_repeats_per_batch": 500,
+      "target_samples_us": [
+        0.462,
+        0.54,
+        0.684,
+        0.686,
+        0.768,
+        0.976,
+        1.384
+      ],
+      "target_selection_median_us": 0.686,
+      "version": "0.32.0",
+      "world_targets": 7
+    },
+    "improvement_percent": {
+      "profile_handler_median_us": 97.77,
+      "target_selection_median_us": 98.88
+    },
+    "limits": "CPU microbenchmarks of repeated real UI profile handlers and stationary target selection on this Linux host. These timings are not native hardware FPS or a Raspberry Pi/Windows performance claim. Same engine and benchmark script; seven batches per measurement."
+  },
+  "model": {
+    "source_provenance": {
+      "version": 1,
+      "license": "CC0-1.0 original artwork",
+      "blender_version": "4.3.2",
+      "height_reference_metres": 1.7,
+      "rig": "standard_170",
+      "body_editable": false,
+      "mesh_objects": 37,
+      "all_variant_triangles": 71814,
+      "generator_sha256": "d4aea588648c5f2d95465fb8c4e516cee4392e5776baa7b323b20f19a19d6b89",
+      "glb_sha256": "9312c6bb3d788d94bd6b40efcc68f8b99f53582724cc363a606a9e9a1c7f606f",
+      "source_blend_sha256": "4d02971f55f6de53b5523d39ac0bb8b0538bd03d0311855d1abccce2bc5a17fe",
+      "animations": [
+        "idle",
+        "walk"
+      ],
+      "prompt": "Original adult character with a fixed regular 1.70 m build, naturally proportioned face, customizable skin, hair, eyes, lips and smile. Modular casual wardrobe: plain shirts, loose knitwear, regular, baggy and balloon trousers, denim and structured flat-brim caps, straw and felt hats, generic unbranded shoes. One shared skeleton and no garment colliders.",
+      "negative_prompt": "logos, brand names, sports team emblems, copied textures, variable body scaling, oversized cartoon head, downloaded models",
+      "external_models_or_images": false
+    },
+    "mesh_triangles": {
+      "body": 4768,
+      "eyes_almond": 2256,
+      "eyes_round": 2256,
+      "eyes_soft": 2256,
+      "hair_bun_high": 1696,
+      "hair_bun_low": 1696,
+      "hair_buzz": 640,
+      "hair_fringe_curly": 3664,
+      "hair_fringe_straight": 1504,
+      "hair_long": 1792,
+      "hair_middlepart": 1504,
+      "hair_mullet": 2656,
+      "hair_ponytails_long": 2368,
+      "hair_ponytails_mid": 2368,
+      "hair_short": 1504,
+      "hair_sidepart": 1504,
+      "headwear_cap_denim": 2016,
+      "headwear_cap_flat": 2016,
+      "headwear_fedora": 1024,
+      "headwear_straw": 4000,
+      "shoes_boots": 1920,
+      "shoes_canvas": 1536,
+      "shoes_court": 1536,
+      "shoes_high": 1920,
+      "shoes_loafers": 1344,
+      "shoes_runner": 2016,
+      "smile_neutral": 288,
+      "smile_soft": 288,
+      "smile_wide": 288,
+      "socks_socks": 384,
+      "top_cardigan": 2976,
+      "top_hoodie": 3196,
+      "top_sweater": 3006,
+      "top_tee": 2114,
+      "trousers_baggy": 1664,
+      "trousers_balloon": 2176,
+      "trousers_regular": 1664
+    },
+    "worst_case_selection": {
+      "hair": [
+        "hair_fringe_curly",
+        3664
+      ],
+      "top": [
+        "top_hoodie",
+        3196
+      ],
+      "trousers": [
+        "trousers_balloon",
+        2176
+      ],
+      "headwear": [
+        "headwear_straw",
+        4000
+      ],
+      "socks": [
+        "socks_socks",
+        384
+      ],
+      "shoes": [
+        "shoes_runner",
+        2016
+      ],
+      "eyes": [
+        "eyes_almond",
+        2256
+      ],
+      "smile": [
+        "smile_neutral",
+        288
+      ]
+    },
+    "maximum_visible_triangles": 22748,
+    "glb_total_triangles": 71804,
+    "glb_bytes": 2660128,
+    "bone_count": 13,
+    "raw_glb_sha256_verified": true,
+    "editable_blend_sha256_verified": true,
+    "no_external_provider": true
+  },
+  "escort_timing": {
+    "deterministic_stairs_and_corridor_captures": true,
+    "maximum_seconds": 3,
+    "natural_duration_seconds": 2.729636
+  },
+  "all_passed": true,
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "game_dev_cli_available": false,
+  "previous_archives_preserved": 146,
+  "packaging_stub_assertions": 30,
+  "total_assertions": 18006
+}
