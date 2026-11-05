@@ -1,0 +1,515 @@
+{
+  "version": 1,
+  "specification": "Original Blender models, clear central doors and connected pavements; 40 city buildings. Two render pixels per world pixel, straight alpha, 64 MiB combined RGBA+mip budget.",
+  "buildings": 40,
+  "decorations": [
+    {
+      "building": 0,
+      "kind": "bread_stall",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 1,
+      "kind": "produce_stall",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 2,
+      "kind": "pharmacy_sign",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 3,
+      "kind": "post_envelope",
+      "size": [
+        120,
+        38
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 4,
+      "kind": "coffee_cart",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 5,
+      "kind": "cyber_terminal",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 6,
+      "kind": "flag_fr",
+      "size": [
+        24,
+        20
+      ],
+      "offset": [
+        24,
+        4
+      ],
+      "at": [
+        4365,
+        655
+      ]
+    },
+    {
+      "building": 7,
+      "kind": "media_kiosk",
+      "size": [
+        76,
+        34
+      ],
+      "offset": [
+        24,
+        4
+      ],
+      "at": [
+        4850,
+        665
+      ]
+    },
+    {
+      "building": 8,
+      "kind": "book_box",
+      "size": [
+        100,
+        40
+      ],
+      "offset": [
+        24,
+        4
+      ],
+      "at": [
+        5325,
+        665
+      ]
+    },
+    {
+      "building": 9,
+      "kind": "flower_display",
+      "size": [
+        120,
+        44
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 10,
+      "kind": "school_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ],
+      "at": [
+        8380,
+        964
+      ]
+    },
+    {
+      "building": 11,
+      "kind": "residence_planter",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 12,
+      "kind": "health_sign",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 13,
+      "kind": "optician_sign",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 14,
+      "kind": "bicycle",
+      "size": [
+        126,
+        42
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 15,
+      "kind": "bar_barrel",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 16,
+      "kind": "cinema_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 17,
+      "kind": "restaurant_service",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 18,
+      "kind": "art_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 19,
+      "kind": "tool_cart",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 20,
+      "kind": "association_board",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 21,
+      "kind": "hotel_luggage",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 22,
+      "kind": "garden_planter",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 23,
+      "kind": "canal_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 24,
+      "kind": "garage_tools",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 25,
+      "kind": "community_board",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 26,
+      "kind": "stationery_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 27,
+      "kind": "organic_stall",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 28,
+      "kind": "laundry_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 29,
+      "kind": "coffee_cart",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 30,
+      "kind": "garden_planter",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 31,
+      "kind": "music_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 32,
+      "kind": "garden_planter",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 33,
+      "kind": "stationery_display",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 34,
+      "kind": "restaurant_service",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 35,
+      "kind": "residence_planter",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 36,
+      "kind": "bank_terminal",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 37,
+      "kind": "butcher_stall",
+      "size": [
+        110,
+        36
+      ],
+      "offset": [
+        24,
+        4
+      ]
+    },
+    {
+      "building": 6,
+      "kind": "flag_eu",
+      "size": [
+        24,
+        20
+      ],
+      "at": [
+        4610,
+        655
+      ]
+    },
+    {
+      "building": "academy",
+      "kind": "school_display",
+      "size": [
+        110,
+        36
+      ],
+      "at": [
+        560,
+        1025
+      ]
+    },
+    {
+      "building": "ritz",
+      "kind": "hotel_luggage",
+      "size": [
+        110,
+        36
+      ],
+      "at": [
+        1110,
+        358
+      ]
+    }
+  ]
+}
