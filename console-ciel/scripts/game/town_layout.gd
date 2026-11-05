@@ -51,14 +51,8 @@ static func crosswalks() -> Array[Rect2]:
 static func roundabouts() -> Array[Vector2]: return [Vector2(1935,1410),Vector2(4010,2760)]
 static func props() -> Array[Dictionary]:
 	var result: Array[Dictionary] = [{"kind":"fountain","rect":Rect2(FOUNTAIN-Vector2(95,95),Vector2(190,190))},{"kind":"shelter","rect":Rect2(1080,850,170,22)}]
-	# Civic forecourts: decoration at the sides, with an open central doorway.
-	result.append_array([
-		{"kind":"flag_fr","rect":Rect2(4365,655,24,20)},
-		{"kind":"flag_eu","rect":Rect2(4610,655,24,20)},
-		{"kind":"media_kiosk","rect":Rect2(4850,665,76,34)},
-		{"kind":"bench","rect":Rect2(5060,685,100,45)},
-		{"kind":"book_box","rect":Rect2(5325,665,100,40)},
-		{"kind":"bench","rect":Rect2(5550,685,100,45)}])
+	result.append_array(forecourt_specs())
+	for at in [Vector2(5060,685),Vector2(5550,685)]: result.append({"kind":"bench","rect":Rect2(at,Vector2(100,45))})
 	for point in roundabouts(): result.append({"kind":"island","rect":Rect2(point-Vector2(65,65),Vector2(130,130))})
 	for at in [Vector2(2380,1790),Vector2(3380,1790),Vector2(2380,2310),Vector2(3380,2310)]: result.append({"kind":"tree","rect":Rect2(at,Vector2(60,60))})
 	for at in [Vector2(2520,1870),Vector2(3160,2270)]: result.append({"kind":"bench","rect":Rect2(at,Vector2(180,45))})
@@ -80,10 +74,25 @@ static func props() -> Array[Dictionary]:
 		if not preload("res://scripts/game/storefront_art.gd").is_food(building.title): continue
 		var rect: Rect2=building.rect
 		for x in [rect.position.x+70,rect.end.x-70]:
-			var center := Vector2(x,rect.end.y+68)
+			var center := Vector2(x,rect.end.y+(76 if x==rect.position.x+70 else 68))
 			result.append({"kind":"cafe_table","rect":Rect2(center-Vector2(32,32),Vector2(64,64))})
-			for y in [-40,40]: result.append({"kind":"cafe_chair","rect":Rect2(center+Vector2(-11,y-10),Vector2(22,20))})
+			for y in ([40] if x==rect.position.x+70 else [-40,40]): result.append({"kind":"cafe_chair","rect":Rect2(center+Vector2(-11,y-10),Vector2(22,20))})
 		result.append({"kind":"menu_board","rect":Rect2(rect.get_center().x+45,rect.end.y+46,42,22)})
+	return result
+static var _forecourt_catalog: Dictionary = {}
+static func forecourt_specs() -> Array[Dictionary]:
+	if _forecourt_catalog.is_empty():
+		_forecourt_catalog=JSON.parse_string(FileAccess.get_file_as_string("res://data/town_forecourts.json"))
+	var facades := buildings()
+	var result: Array[Dictionary] = []
+	for entry in _forecourt_catalog.decorations:
+		var at: Vector2
+		if entry.has("at"): at=Vector2(entry.at[0],entry.at[1])
+		else:
+			var facade: Rect2=facades[int(entry.building)].rect
+			at=Vector2(facade.position.x+entry.offset[0],facade.end.y+entry.offset[1])
+		var owner := str(int(entry.building)) if entry.building is float else str(entry.building)
+		result.append({"kind":entry.kind,"rect":Rect2(at,Vector2(entry.size[0],entry.size[1])),"forecourt_owner":owner})
 	return result
 static func solid_specs() -> Array[Dictionary]:
 	var result: Array[Dictionary] = buildings()
