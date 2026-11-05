@@ -76,3 +76,11 @@ Le trajet vers les ateliers dure 2,6 secondes et comporte deux plans : escalier 
 ## Correction des postes et du couloir — 0.31.0
 
 Les écrans des postes fixes possèdent des dalles agrandies et des pieds plus hauts. La tour, le clavier et la souris sont séparés. Le modèle original est régénéré avec Blender/Cycles et compressé sans perte. Le couloir conserve une porte vers City CIEL, sans panneaux ni textes au sol. Les anciennes salles et leurs sauvegardes sont conservées, mais leurs portes ne sont plus présentées dans ce couloir. Le retour vers l’accueil reste disponible à proximité de l’arrivée.
+
+## Personnage 3D et gabarit fixe — 0.32.0
+
+Le joueur devient un modèle 3D articulé, modélisé dans Blender et exporté en GLB avec un squelette commun et les animations de repos et de marche. Le configurateur utilise une caméra 3D et permet le teint, les yeux, les lèvres, le sourire, les cheveux et le dressing. Les casquettes utilisent des formes originales sans marque ni logo. Les 37 groupes de maillages sont sélectionnés selon l’apparence ; la combinaison la plus détaillée représente 22 748 triangles. Les matériaux sont réutilisés dans chaque personnage. Les mini-vues de jeu utilisent un viewport 128 × 192, les aperçus 384 × 512. Une vue immobile ne dessine qu’à la demande.
+
+La démarche souple ajoute balancement, torsion et mouvement des bras au squelette ; elle n’applique pas de force au corps de collision. La démarche naturelle et les animations réduites restent disponibles. Les collisions 2D gardent leur rayon de 10 unités ; le personnage 3D jouable utilise une capsule constante de 1,70 m × 0,46 m. Aucun vêtement ni coiffure ne change ces formes. L’espace Marcher en 3D sert à essayer cette capsule. Les niveaux de l’enquête restent en 2D pendant cette première étape de migration. Le rendu vise un personnage stylisé, pas un humain photographique.
+
+Régénérer les sources : `blender -b -t 6 --python tools/build_character_3d.py -- --project .`. Les sources Blender sont incluses dans les nouveaux projets complets. Aucun service payant n’est requis. La disponibilité des achats est validée à la lecture et à chaque enregistrement ; les anciens profils restent compatibles sans réécriture forcée.
