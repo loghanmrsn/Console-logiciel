@@ -31,7 +31,7 @@ static func draw_floor(c: Node2D, zone: String) -> void:
 		c.draw_circle(target.at,2,Color("f8fafb"))
 	var at := A.entry(zone)
 	if zone=="school_cyber": at=Vector2(1000,1200)
-	label(c,"PARVIS / BUS" if zone=="school_cyber" else "COULOIR DES ATELIERS",Vector2(at.x,size.y-90),18)
+	label(c,"ACCUEIL / SORTIE" if zone=="school_cyber" else "COULOIR DES ATELIERS",Vector2(at.x,size.y-90),18)
 static func door(c: Node2D, at: Vector2, title: String, top: bool) -> void:
 	var face := Rect2(at-Vector2(85,42),Vector2(170,67))
 	M.rounded(c,face,Color("677f8e"),4)
