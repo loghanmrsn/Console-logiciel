@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "license": "CC0-1.0 original procedural artwork",
+  "generator_sha256": "7e4ea9be2a6cd5570e2bb36eda60af76d8aed9314d2d8885fda29d7aa969139a",
+  "channels": {
+    "R": "neutral albedo detail",
+    "G": "height",
+    "B": "roughness"
+  },
+  "external_images_or_models": false,
+  "textures": {
+    "skin": {
+      "file": "skin.png",
+      "size": [
+        256,
+        256
+      ],
+      "sha256": "ca04374726b09dd1fcd20666be9bba62f817e0c2523016677a3c7408cd44b12e",
+      "seamless_edges": true
+    },
+    "cotton": {
+      "file": "cotton.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "4a3b7b639e8ba466e6ea79a3960f69e41fe1e0081b5d1488a20e7f176c930aca",
+      "seamless_edges": true
+    },
+    "knit": {
+      "file": "knit.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "6e9bcb162a8b85b8aba687a508316c5f0c5b1c5f638aff9f7fd0a61b182272a9",
+      "seamless_edges": true
+    },
+    "denim": {
+      "file": "denim.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "3b18526c13030a4f1b1d881cf9fc5eb854f6b5b4509029a26af58e45ef68c2b3",
+      "seamless_edges": true
+    },
+    "leather": {
+      "file": "leather.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "3675550267db0b4c9357c533c726215d75e29bc1a151b52eca66245aacaa1f87",
+      "seamless_edges": true
+    },
+    "felt": {
+      "file": "felt.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "3a151067190c549f9c202ac3bb8c72f06c19b77305c9ad62cd16e8840cc06182",
+      "seamless_edges": true
+    },
+    "straw": {
+      "file": "straw.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "36be91df634022bebd2bae6f2d90db8a44d9286d3c26a0eca64f5b678495bf7a",
+      "seamless_edges": true
+    },
+    "hair": {
+      "file": "hair.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "d2870e5be558a0efc6a5654612d5fd786ddfb0c857818455f73b99d088c6ffee",
+      "seamless_edges": true
+    }
+  },
+  "rgba_mipmaps_bytes": 961192
+}
