@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.32.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.33.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -302,8 +302,11 @@ Liste noire : modifier pseudo_blacklist.json à côté de l’exécutable. block
 DÉCORS DEVANT CHAQUE BÂTIMENT — 0.29.0
 Les 40 bâtiments disposent d’objets adaptés à leur activité : grand panneau à enveloppe et boîte aux lettres, fleurs en pots, livres, vélo, outils, instruments, commerces et résidences. Les modèles sont réalisés dans Blender puis rendus à double résolution. La fontaine en pierre possède des jets, des gouttes et des filets d’eau qui débordent de la vasque. La pause et les animations réduites immobilisent l’eau.
 
-ACCUEIL DU LYCÉE — 0.32.0
+ACCUEIL DU LYCÉE — 0.33.0
 Entrée à l’accueil. La surveillante blonde en pull ample propose un accompagnement de 2,6 secondes vers les ateliers ou le choix Rien. Animation désactivée avec animations réduites, et suspendue en cas de déconnexion de manette. Aucun point ni exercice validé automatiquement. Grande pancarte extérieure supprimée ; logo conservé sur la façade. Deux escaliers droits à l’hôtel et aux paliers. Sauvegardes et anciens paquets conservés.
 
-PERSONNAGE 3D ET FLUIDITÉ — 0.32.0
+PERSONNAGE 3D ET FLUIDITÉ — 0.33.0
 Accueil, Profils ou Boutique : ouvrir Mon personnage 3D. Gabarit fixe de 1,70 m, personnalisation du visage, des cheveux et des habits. Les achats utilisent des points virtuels et restent enregistrés par profil. Essayage libre, Enregistrer pour équiper, Annuler pour abandonner les essais. Aucun logo ni marque. Choix de démarche souple et bancale ou naturelle. Marcher en 3D ouvre un espace de test sans modifier les missions. Les niveaux du jeu restent en 2D avec le personnage 3D animé. Contrôles et sauvegardes existants conservés.
+
+TEXTURES ET BOUTIQUE — 0.33.0
+Boutique → Dressing 3D : catégories, recherche, articles gratuits ou disponibles, vignettes, essayage, couleurs, achat en points et équipement séparé. Jeux et thèmes reste disponible. Les matières de peau, cheveux, coton, maille, denim, cuir, feutre et paille sont détaillées. La taille, les collisions et les démarches restent celles de la version précédente.
