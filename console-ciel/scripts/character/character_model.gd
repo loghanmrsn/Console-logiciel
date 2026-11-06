@@ -1,5 +1,6 @@
 extends Node3D
 ## One real skinned GLB; outfit meshes and materials are shared within this rig.
+const Surfaces=preload("res://scripts/character/character_materials.gd")
 const Catalog=preload("res://scripts/services/character_catalog.gd")
 const Body=preload("res://assets/character3d/character.glb")
 var figure: Node3D
@@ -8,7 +9,6 @@ var skeleton: Skeleton3D
 var meshes: Array[MeshInstance3D]=[]
 var _materials={}
 var _appearance={}
-const HAIR_SHADER="shader_type spatial; render_mode cull_disabled; uniform vec4 tint : source_color; uniform bool capped=false; varying float hair_height; void vertex(){hair_height=VERTEX.y;} void fragment(){if(capped && hair_height>1.594){discard;} ALBEDO=tint.rgb; ROUGHNESS=0.82;}"
 func _ready() -> void:
 	figure=Body.instantiate()
 	add_child(figure)
@@ -34,14 +34,12 @@ func configure(a: Dictionary) -> void:
 			var name_=str(original.resource_name)
 			if name_ not in colors: continue
 			if not _materials.has(name_):
-				if name_=="hair":
-					var shader=Shader.new();shader.code=HAIR_SHADER
-					var material=ShaderMaterial.new();material.shader=shader;_materials[name_]=material
-				else:_materials[name_]=original.duplicate()
-			if name_=="hair":
-				_materials[name_].set_shader_parameter("tint",Color(str(colors[name_])))
-				_materials[name_].set_shader_parameter("capped",a.headwear!="none")
-			else:_materials[name_].albedo_color=Color(str(colors[name_]))
+				_materials[name_]=original.duplicate() if name_=="eyes" else ShaderMaterial.new()
+			if name_=="eyes":
+				_materials[name_].albedo_color=Color(str(colors[name_]))
+				_materials[name_].roughness=.26
+				_materials[name_].metallic_specular=.45
+			else:Surfaces.configure(_materials[name_],name_,Color(str(colors[name_])),a)
 			mesh.set_surface_override_material(surface,_materials[name_])
 	pose(false,0)
 func pose(walking: bool, seconds: float) -> void:
