@@ -1,0 +1,65 @@
+[
+	{
+		"file": "boutique_compacte_confirmation.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "cf560e10d363bad1de3cf856f7373e9171404a027c2689934f11e9e5e6d8555b",
+		"source": "boutique_compacte_confirmation.png",
+		"source_sha256": "d98d24fae9aa64aff6cf658fc7b8821ed0436d21d25bd0153ddc59c7135da7fc",
+		"width": 800
+	},
+	{
+		"file": "boutique_compacte_nuit.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "a693764476e5165f90cbaafbd1144272768596a8b83b6236d45155b988d11c71",
+		"source": "boutique_compacte_nuit.png",
+		"source_sha256": "35de171e963b17a626a7793c1b30550ea1efcc4dddf5ca2ce277b6e4ad5fdc05",
+		"width": 800
+	},
+	{
+		"file": "boutique_console.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "058325799fa30f117bd45974e269238929c30891d2b311cbb2e289bafe471f33",
+		"source": "boutique_console.png",
+		"source_sha256": "a2ceb0a48ae178c0f73051e2d0728bae434544c9b3dfe7316cb23ef89c008a32",
+		"width": 1280
+	},
+	{
+		"file": "dressing_accessoires.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "4ea3686ce13715abc98ba74d13bc254c735a9e55928fa5cd8e4264632fd4e719",
+		"source": "dressing_accessoires.png",
+		"source_sha256": "6ba6e56beb1b00c108ac90fc5978f8f325458fe5a8a0ae6755dbf0c639c43ee0",
+		"width": 1280
+	},
+	{
+		"file": "dressing_chaussures.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "83953beddea81bae44a54b8ed32d5728521f20b9ad4938c36a7fc8614c4f67a8",
+		"source": "dressing_chaussures.png",
+		"source_sha256": "f994744f6d297558871eca9e726868f831e06b9504c8cbd9329ea07e0fbd15e8",
+		"width": 1280
+	},
+	{
+		"file": "dressing_pull_texture.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "0b7204cecfc7093d5d2b39a345fa848e50a1209f4faa2be1410f2596b08939d4",
+		"source": "dressing_pull_texture.png",
+		"source_sha256": "2461e0b67562d552b6aca7d098b4af63a0aa2602ffac4c138a278251b3c8e898",
+		"width": 1280
+	},
+	{
+		"file": "peau_cheveux_visage.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "f61c39d492f3a9dad35855a3e7004ce1edb2f812d6e502648d932e9ba1d7146b",
+		"source": "peau_cheveux_visage.png",
+		"source_sha256": "9fc526978c5a097ce26cd1ead967da85d18748a775caab5bf5deb92fe79411c0",
+		"width": 1280
+	}
+]
