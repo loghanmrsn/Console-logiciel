@@ -72,6 +72,7 @@ var editor_keyboard: Control
 var editor_image_tab=false
 var editor_avatar_buttons: Array[Button]=[]
 var name_edit: LineEdit
+var shop_section="console"
 var shop_filter=0
 var shop_inventory=false
 var demo: Control
@@ -380,6 +381,7 @@ func _clear(next: String) -> void:
 		navigation.visible=next in ['home','shop','profiles','settings','help','controls'] and not pause_settings and not pause_help
 		navigation.update_state(next,not AppState.profile.is_empty())
 	header_back.visible=next not in ['home','boot','recovery','settings_recovery','fatal'] and not (next=='editor' and ProfileService.profiles.is_empty())
+	footer.visible=next!='shop'
 	footer.text='Flèches / joystick : naviguer   ·   Entrée / face bas : valider   ·   Échap / face droit : retour'
 	scroll.scroll_vertical=0
 	_update_header()
@@ -470,7 +472,9 @@ func _wire_navigation() -> void:
 	if navigation.visible: targets.append_array(_focusables(navigation))
 	if header_back.visible: targets.append(header_back)
 	var centers={}
-	for target in targets: centers[target]=target.get_global_rect().get_center()
+	for target in targets:
+		centers[target]=target.get_global_rect().get_center()
+		if not target.focus_entered.is_connected(_ensure_focus_visible):target.focus_entered.connect(_ensure_focus_visible)
 	for index in range(targets.size()):
 		var control=targets[index]
 		control.focus_next=control.get_path_to(targets[(index+1)%targets.size()])
@@ -501,6 +505,7 @@ func _wire_navigation() -> void:
 			if not body.is_empty():
 				tab.focus_neighbor_top=tab.get_path_to(body[-1])
 				tab.focus_neighbor_bottom=tab.get_path_to(body[0])
+	_ensure_focus_visible.call_deferred()
 
 	if screen == "dev_terminal":
 		var console := content.get_node_or_null("dev_console_panel")
@@ -1118,7 +1123,21 @@ func _game() -> void:
 	_responsive()
 
 func _shop() -> void:
-	_button(content,'Personnage 3D et dressing',func():_show_screen('character'),'shop_character')
+	var sections=HBoxContainer.new()
+	sections.add_theme_constant_override('separation',10)
+	content.add_child(sections)
+	var dressing=_button(sections,'Dressing 3D',func():shop_section='dressing';_show_screen('shop'),'shop_dressing')
+	var console=_button(sections,'Jeux et thèmes',func():shop_section='console';_show_screen('shop'),'shop_console')
+	(dressing if shop_section=='dressing' else console).theme_type_variation='NavigationSelected'
+	if shop_section=='dressing':
+		var store=preload("res://scripts/ui/wardrobe_shop.gd").new()
+		store.host=self
+		content.add_child(store)
+		store.navigation_changed.connect(_wire_navigation)
+		_button(content,'Visage et personnage',func():_show_screen('character'),'shop_character')
+	else:_console_shop()
+
+func _console_shop() -> void:
 	_label(content,'La boutique CIEL',28)
 	var wallet=_panel(content)
 	wallet.name='shop_wallet'
@@ -1616,6 +1635,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed('tab_previous'): step=-1
 		if step!=0:
 			get_viewport().set_input_as_handled()
+			if screen=='shop' and shop_section=='dressing':
+				var store=content.get_node_or_null('wardrobe_shop')
+				if store!=null:
+					var choices=store.find_child('wardrobe_category',true,false)
+					var selected=posmod(store.category+step,store.SLOTS.size())
+					choices.select(selected);choices.item_selected.emit(selected)
+				return
 			if screen=='settings': settings_category=posmod(settings_category+step,8)
 			else: shop_filter=posmod(shop_filter+step,5)
 			_show_screen(screen)
