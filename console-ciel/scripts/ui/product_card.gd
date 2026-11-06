@@ -18,7 +18,7 @@ func configure(item: Dictionary, owned: bool, equipped: bool, enough: bool) -> v
 	category.autowrap_mode = TextServer.AUTOWRAP_OFF
 	category.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(category)
-	var status = _label('✓ Équipé' if equipped else ('✓ Possédé' if owned else ('Inclus' if int(item.get('price', 0)) == 0 else '%d pts' % int(item.price))), 13)
+	var status = _label('✓ Équipé' if equipped else ('✓ Acheté' if owned else ('Inclus' if int(item.get('price', 0)) == 0 else '%d pts' % int(item.price))), 13)
 	status.theme_type_variation = 'StatusLabel'
 	status.name = 'product_status_' + str(item.id)
 	status.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -31,7 +31,7 @@ func configure(item: Dictionary, owned: bool, equipped: bool, enough: bool) -> v
 		preview = Preview.new()
 	column.add_child(preview)
 	preview.call('configure', item)
-	preview.custom_minimum_size = Vector2(0, 84)
+	preview.custom_minimum_size = Vector2(0, 132)
 	preview.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	preview.name = 'product_preview_' + str(item.id)
 	var title = _label(str(item.get('name', 'Article')), 22)
