@@ -1,10 +1,10 @@
 # Console Logiciel
 
-**Version 0.32.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.33.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_personnage3d_0.32.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_boutique_0.33.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.32.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.33.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -129,7 +129,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `console-ciel/project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.32.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.32.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.33.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.33.0.zip).
 - **Installation détaillée :** [Windows](console-ciel/docs/WINDOWS.md) · [Raspberry Pi](console-ciel/docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](console-ciel/docs/ENQUETE.md) · [Profils et clavier](console-ciel/docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](console-ciel/docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](console-ciel/docs/ARCHITECTURE.md) · [Tests et livraisons](console-ciel/docs/DELIVERY.md) · [Problèmes connus](console-ciel/docs/KNOWN_ISSUES.md).
@@ -163,10 +163,12 @@ Un boulevard périphérique relie désormais toutes les extrémités des rues : 
 
 Les quatre bâtiments accessibles possèdent un petit point permanent devant leur porte, visible à distance et sur la carte. Le lycée Louise Michel est isolé dans un campus à l’est, avec une façade basse crème et rose, une entrée vitrée, des volets et le logo fourni à côté du nom. Le parvis comprend des bancs et des jardinières ; son ancien emplacement est un jardin.
 
-La version **0.32.0** ajoute l’accueil du lycée et l’accompagnement par la surveillante. La grande pancarte du parvis est supprimée. Les deux escaliers de l’hôtel et ceux des paliers sont droits, avec marches en pierre et rampes. Les décors de ville, la fontaine animée, les ateliers et les sauvegardes sont conservés. [Détails du rendu](console-ciel/docs/REALISME.md).
+La version **0.33.0** ajoute l’accueil du lycée et l’accompagnement par la surveillante. La grande pancarte du parvis est supprimée. Les deux escaliers de l’hôtel et ceux des paliers sont droits, avec marches en pierre et rampes. Les décors de ville, la fontaine animée, les ateliers et les sauvegardes sont conservés. [Détails du rendu](console-ciel/docs/REALISME.md).
 
 Les postes informatiques disposent d’écrans sur pieds agrandis. Le couloir des ateliers conserve une seule porte vers City CIEL ; les autres portes et les inscriptions murales et au sol sont retirées. Le retour à l’accueil reste accessible.
 
-La version **0.32.0** ajoute un personnage 3D animé et un configurateur accessible depuis l’accueil, les profils et la boutique. Le gabarit reste fixe (1,70 m) ; teint, yeux, sourire, lèvres, cheveux et vêtements sont personnalisables. T-shirts et pantalons regular en noir, bleu et blanc, chaussettes noires/blanches, baskets en toile et casquette denim sont gratuits. Les pulls amples, pantalons baggy/ballon, chapeaux, autres casquettes, certaines coiffures et chaussures se débloquent avec les points de mission, sans argent réel ni marque affichée. Les articles peuvent être essayés avant achat.
+Le logiciel propose un personnage 3D animé et un configurateur accessible depuis l’accueil, les profils et la boutique. Le gabarit reste fixe (1,70 m) ; teint, yeux, sourire, lèvres, cheveux et vêtements sont personnalisables. T-shirts et pantalons regular en noir, bleu et blanc, chaussettes noires/blanches, baskets en toile et casquette denim sont gratuits. Les pulls amples, pantalons baggy/ballon, chapeaux, autres casquettes, certaines coiffures et chaussures se débloquent avec les points de mission, sans argent réel ni marque affichée. Les articles peuvent être essayés avant achat.
 
 La démarche **souple et bancale** fait bouger le buste, les épaules et les bras sans modifier les collisions ; une démarche naturelle reste disponible. **Marcher en 3D** ouvre un espace de test avec murs et passage de porte. Le personnage est rendu en vraie 3D dans le jeu actuel ; les niveaux et leurs collisions restent en 2D pendant cette étape de migration. Les aperçus immobiles sont rendus une fois, les mises à jour de thème sont réutilisées et les interactions stables sont recalculées moins souvent.
+
+La version **0.33.0** améliore les matières du personnage : peau au relief discret, mèches, coton, maille, denim, cuir, feutre et paille. La boutique propose une section **Dressing 3D** avec vignettes des articles, recherche, filtres, choix de couleur et essayage. Le prix, la disponibilité et l’équipement sont distingués. Acheter et porter restent deux actions séparées ; les achats utilisent uniquement les points de mission. La section **Jeux et thèmes** reste disponible. Le gabarit, les collisions et les deux démarches sont conservés.
