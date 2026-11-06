@@ -1,3 +1,13 @@
+# Livraison 0.33.0 — matières et boutique du personnage
+
+Huit cartes originales ajoutent grain et rugosité à la peau, aux cheveux, au coton, à la maille, au denim, au cuir, au feutre et à la paille. Projection sans UV supplémentaires, relief cutané discret et reflets adoucis ; mipmaps pour limiter le scintillement. Les cartes représentent moins de 1 Mio RGBA avec mipmaps. Le modèle, les démarches et les formes de collision de la version 0.32.0 sont conservés. [Sources et régénération](REALISME.md).
+
+Boutique → Dressing 3D : catégories, recherche, filtre gratuit/mon dressing, trente vignettes issues du vrai modèle et un seul aperçu 3D actif. Couleurs, prix et état gratuit/acheté/équipé sont distincts. L’essayage ne coûte rien ; achat en points et équipement sont deux actions explicites, sauvegardées par les services existants. Les échecs d’écriture, annulations, points insuffisants, reprises et achats déjà possédés sont contrôlés. La section Jeux et thèmes reste disponible. Les cartes de ce catalogue ont des aperçus agrandis.
+
+12696 assertions réussies : 9 suites sources, 14 suites sur les ressources compilées Windows/ARM64, deux parcours avec rendu X11/Mesa et 30 contrôles des outils de livraison. Quatorze captures natives encodées en WebP sans perte, dont [boutique et matières](screenshots/boutique_0.33.0/wardrobe_shop_ui_tests/). Clavier/manette simulée et affichage compact 800 × 480 avec grand texte vérifiés. Le lancement physique sous Windows ou sur Raspberry Pi, le son et les manettes physiques restent à tester sur ces appareils. [Résultats complets](../tests/boutique_0.33.0_results/summary.json). Les sauvegardes et 150 archives précédentes sont conservées.
+
+---
+
 # Livraison 0.32.0 — personnage 3D, dressing et fluidité
 
 Personnage 3D original à squelette commun, gabarit fixe de 1,70 m, visage, cheveux et dressing personnalisables. Articles gratuits et achats en points de mission, essayage avant achat, sauvegarde atomique et inventaire par profil. Aucun argent réel, logo ou marque affiché. Démarche souple et bancale ou naturelle ; la torsion du squelette ne modifie pas les collisions. Un espace jouable 3D permet de tester les murs et une porte avec une capsule fixe de 1,70 m × 0,46 m. Les niveaux de l’enquête restent en 2D avec le personnage rendu en vraie 3D. Les sources Blender et le GLB sont inclus.
