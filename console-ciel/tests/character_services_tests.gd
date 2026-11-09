@@ -61,6 +61,16 @@ func run() -> void:
 	saves.simulate_write_failure=true
 	check(not service.apply(a).ok and state.profile==before and saves.read_profile(before.id).data==before,"Erreur disque : apparence, solde et inventaire inchangés")
 	saves.simulate_write_failure=false
+	var legacy=state.profile.duplicate(true)
+	legacy.character.appearance.gait="loose"
+	check(saves.validate_profile(legacy).ok,"Ancienne démarche toujours acceptée dans les sauvegardes")
+	state.commit_profile(saves.write_profile(legacy).data)
+	var persisted=state.profile.duplicate(true)
+	var normalized=service.current()
+	check(normalized.appearance.gait=="natural","Ancien personnage repris avec une marche naturelle")
+	var expected=persisted.character.duplicate(true);expected.appearance.gait="natural"
+	check(normalized==expected,"Tenue, couleurs et achats conservés pendant la reprise")
+	check(state.profile==persisted and saves.read_profile(persisted.id).data==persisted,"Lire l'ancienne démarche ne réécrit pas le profil ni le disque")
 	check(profiles.select_profile(original.id).ok and state.profile.wallet.points==0,"Isolation des achats entre profils")
 	check(service.current().owned.is_empty(),"Un autre profil ne reçoit pas les achats")
 	print("CHARACTER_SERVICES : %d assertions, %d échec(s)."%[checks,failures])
