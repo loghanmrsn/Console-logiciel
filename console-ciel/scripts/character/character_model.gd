@@ -9,6 +9,8 @@ var skeleton: Skeleton3D
 var meshes: Array[MeshInstance3D]=[]
 var _materials={}
 var _appearance={}
+var _sample_rotations: Array[Quaternion]=[]
+var _sample_positions: Array[Vector3]=[]
 func _ready() -> void:
 	figure=Body.instantiate()
 	add_child(figure)
@@ -48,30 +50,28 @@ func pose(walking: bool, seconds: float) -> void:
 	for id in animation.get_animation_list():
 		if ("walk" if walking else "idle") in id: selected=id;break
 	if selected.is_empty(): return
+	# AnimationMixer can omit constant tracks. Always discard the preceding
+	# procedural/seated pose before sampling, even at the exact same timestamp.
+	if skeleton!=null:skeleton.reset_bone_poses()
 	if animation.current_animation!=selected: animation.play(selected)
 	animation.seek(fmod(seconds,animation.get_animation(selected).length) if walking else 0,true)
 	animation.advance(0)
-	if walking and _appearance.get("gait","loose")=="loose" and skeleton!=null:
-		var t=seconds*TAU
-		# Secondary movement is entirely visual: the fixed collision body keeps
-		# its upright shape and follows the exact input direction.
-		_sway("hips",Vector3(.035*sin(t*2),.05*sin(t),.065*sin(t)))
-		_sway("spine",Vector3(.09,.10*sin(t+.5),.12*sin(t+.25)))
-		_sway("head",Vector3(-.045,.04*sin(t-.4),-.085*sin(t+.1)))
-		for side in [-1,1]:
-			_sway("arm_"+str(side),Vector3(.11*sin(t+side*.8),side*.10,side*(.10+.055*sin(t+.7))))
-			_sway("forearm_"+str(side),Vector3(-.14+.06*sin(t+side),0,side*.04))
+	_sample_rotations.clear();_sample_positions.clear()
+	if skeleton!=null:
+		for i in skeleton.get_bone_count():
+			_sample_rotations.append(skeleton.get_bone_pose_rotation(i))
+			_sample_positions.append(skeleton.get_bone_pose_position(i))
 func _sway(name_: String,angles: Vector3) -> void:
 	var index=skeleton.find_bone(name_)
 	if index<0: index=skeleton.find_bone(name_.replace("-1","_1"))
-	if index>=0:skeleton.set_bone_pose_rotation(index,skeleton.get_bone_pose_rotation(index)*Quaternion.from_euler(angles))
+	if index>=0 and index<_sample_rotations.size():skeleton.set_bone_pose_rotation(index,_sample_rotations[index]*Quaternion.from_euler(angles))
 func sit() -> void:
 	if skeleton==null:return
 	for side in [-1,1]:
 		_sway("thigh_"+str(side),Vector3(-1.25,0,0))
 		_sway("shin_"+str(side),Vector3(1.15,0,0))
 	var hips=skeleton.find_bone("hips")
-	if hips>=0:skeleton.set_bone_pose_position(hips,skeleton.get_bone_pose_position(hips)+Vector3(0,-.27,0))
+	if hips>=0 and hips<_sample_positions.size():skeleton.set_bone_pose_position(hips,_sample_positions[hips]+Vector3(0,-.27,0))
 func visible_triangles() -> int:
 	var total=0
 	for mesh in meshes:
