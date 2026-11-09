@@ -21,6 +21,7 @@ func _run() -> void:
 	_check(panel.view.model.figure!=null and panel.view.model.meshes.size()>=30,"Véritable scène 3D modulaire chargée")
 	_check(panel.view.model.animation!=null and panel.view.model.animation.get_animation_list().size()>=2,"Squelette avec repos et marche")
 	_check(panel.view.model.skeleton!=null and panel.view.model.skeleton.find_bone("spine")>=0,"Squelette 3D réel avec colonne animable")
+	_check(_find("character_gait")==null,"La démarche bancale n'est plus proposée")
 	_check(panel.view.model.visible_triangles()<25000,"Budget du personnage visible inférieur à 25 000 triangles")
 	var updates=panel.view.rendered_updates
 	await _frames(20)
@@ -47,8 +48,8 @@ func _run() -> void:
 	a_pose.gait="natural";panel.view.model.configure(a_pose);panel.view.model.pose(true,.22)
 	var natural=panel.view.model.skeleton.get_bone_pose_rotation(spine)
 	a_pose.gait="loose";panel.view.model.configure(a_pose);panel.view.model.pose(true,.22)
-	_check(not panel.view.model.skeleton.get_bone_pose_rotation(spine).is_equal_approx(natural),"Démarche bancale : torsion visuelle du squelette")
-	_check(panel.view.model.figure.transform==shape_before,"Démarche bancale sans déplacement du corps de collision")
+	_check(panel.view.model.skeleton.get_bone_pose_rotation(spine).is_equal_approx(natural),"Ancienne démarche : marche naturelle sans torsion du buste")
+	_check(panel.view.model.figure.transform==shape_before,"Marche naturelle sans déplacement du corps de collision")
 	panel.view.configure(panel.draft)
 	# Inspect every mesh variant, independent of ownership, as a showroom preview.
 	var a=panel.draft.duplicate()
@@ -111,6 +112,7 @@ func _run() -> void:
 	for i in range(110):await physics_frame
 	Input.action_release("game_up")
 	_check(actor.position.z< -1.5,"Passage de porte franchissable avec le gabarit fixe")
+	_check(_upright(actor.model),"Marche dans la vraie scène 3D : corps vertical")
 	actor.model.configure(a)
 	_check(actor.collider.shape==shape and is_equal_approx(shape.height,1.70) and is_equal_approx(shape.radius,.23),"Vêtements et chapeau ne changent jamais la capsule")
 	await _capture("test_personnage_collision_3d")
@@ -136,11 +138,36 @@ func _run() -> void:
 	await _frames(4)
 	_check(world.player.position.x>before.x and world.player.avatar3d.model.animation!=null,"Marche du personnage dans le vrai jeu")
 	await _capture("personnage_3d_en_jeu")
+	# Exercise raw keyboard and virtual stick events, including diagonals and stops.
+	var keyboard=InputEventKey.new();keyboard.keycode=KEY_Z;keyboard.pressed=true
+	Input.parse_input_event(keyboard)
+	for i in range(20):await physics_frame
+	_check(world.player.avatar3d.walking and _upright(world.player.avatar3d.model),"Clavier : marche debout vers le haut")
+	await _capture("marche_clavier_de_dos")
+	keyboard.pressed=false;Input.parse_input_event(keyboard)
+	for i in range(3):await physics_frame
+	_check(world.player.velocity.is_zero_approx() and not world.player.avatar3d.walking and _upright(world.player.avatar3d.model),"Clavier relâché : arrêt debout sans glissement")
+	for direction in [Vector2.RIGHT,Vector2(1,1).normalized(),Vector2.DOWN,Vector2.LEFT]:
+		for axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
+			var stick=InputEventJoypadMotion.new();stick.device=0;stick.axis=axis;stick.axis_value=direction.x if axis==JOY_AXIS_LEFT_X else direction.y
+			Input.parse_input_event(stick)
+		for i in range(18):await physics_frame
+		_check(world.player.avatar3d.walking and _upright(world.player.avatar3d.model),"Stick simulé : corps vertical dans la direction "+str(direction))
+		await _capture("marche_stick_%d"%int((direction.angle()+PI)*100))
+	for axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
+		var stick=InputEventJoypadMotion.new();stick.device=0;stick.axis=axis;stick.axis_value=0
+		Input.parse_input_event(stick)
+	for i in range(3):await physics_frame
+	_check(world.player.velocity.is_zero_approx() and not world.player.avatar3d.walking and _upright(world.player.avatar3d.model),"Stick relâché : retour debout sans rotation résiduelle")
 	app.demo.request_pause();await _frames(6)
 	updates=world.player.avatar3d.rendered_updates
 	await _frames(20)
 	_check(world.player.avatar3d.rendered_updates==updates,"Pause sans animation 3D cachée")
 	await _finish()
+func _upright(model: Node3D) -> bool:
+	var hips=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("hips"))
+	var head=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("head"))
+	return (model.basis*hips.basis.y).normalized().dot(Vector3.UP)>.99 and head.origin.y>hips.origin.y+.5
 func _option(id: String,index: int) -> void:
 	var option=_find(id) as OptionButton
 	_check(option!=null,"Sélecteur natif : "+id)
