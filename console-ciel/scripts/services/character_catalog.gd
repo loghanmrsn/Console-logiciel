@@ -10,7 +10,7 @@ const EYE_COLORS := {"brown":"684932","hazel":"837140","green":"587953","blue":"
 const LIPS := {"natural":"af796d","rose":"bb7b81","peach":"c78e78","berry":"895163","brown":"845e4e"}
 const EYES := ["almond","round","soft"]
 const SMILES := ["soft","wide","neutral"]
-const GAITS := ["loose","natural"]
+const GAITS := ["natural","loose"] # Accept the old value when reading existing saves.
 const CATEGORIES := ["hair","top","trousers","headwear","socks","shoes"]
 const BASIC_COLORS := ["black","blue","white"]
 const ITEMS := [
@@ -60,9 +60,11 @@ static func allowed_colors(slot: String,id: String) -> Array:
 	if id=="canvas": return ["white","black"]
 	return COLORS.keys()
 static func defaults() -> Dictionary:
-	return {"version":1,"rig":RIG,"owned":[],"appearance":{"gait":"loose","skin":"warm","hair":"short","hair_color":"brown","eyes":"almond","eye_color":"brown","smile":"soft","lips":"natural","top":"tee","top_color":"blue","trousers":"regular","trousers_color":"black","headwear":"none","headwear_color":"black","socks":"socks","socks_color":"white","shoes":"canvas","shoes_color":"white"}}
+	return {"version":1,"rig":RIG,"owned":[],"appearance":{"gait":"natural","skin":"warm","hair":"short","hair_color":"brown","eyes":"almond","eye_color":"brown","smile":"soft","lips":"natural","top":"tee","top_color":"blue","trousers":"regular","trousers_color":"black","headwear":"none","headwear_color":"black","socks":"socks","socks_color":"white","shoes":"canvas","shoes_color":"white"}}
 static func record(profile: Dictionary) -> Dictionary:
-	return profile.get("character",defaults()).duplicate(true)
+	var result: Dictionary=profile.get("character",defaults()).duplicate(true)
+	result.appearance.gait="natural"
+	return result
 static func owned(record_: Dictionary, entry: Dictionary) -> bool:
 	return int(entry.price)==0 or key(entry.slot,entry.id) in record_.get("owned",[])
 static func valid(record_: Variant, require_ownership:=true) -> bool:
