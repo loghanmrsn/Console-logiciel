@@ -1,3 +1,15 @@
+# Livraison 0.34.0 — marche naturelle et personnage debout
+
+Le personnage pouvait se coucher ou rester incliné pendant la marche : les rotations de la démarche bancale s’accumulaient sur les os que les pistes constantes ne réécrivaient pas. Ce balancement est supprimé. Chaque image repart du squelette réinitialisé avant de lire la marche ou le repos ; la pose assise utilise aussi un échantillon stable. Le corps reste vertical pendant les virages, les arrêts et le passage assis/debout. L’alternance des jambes est conservée.
+
+Les anciens profils utilisent automatiquement la marche naturelle. Lire un profil ne le réécrit pas ; l’apparence, les achats, les points et les collisions sont conservés. Le choix de démarche bancale est retiré du configurateur. [Détails techniques](REALISME.md) · [Cycle de marche capturé dans Godot](screenshots/marche_0.34.0/marche_naturelle.gif).
+
+1989 assertions réussies : sept suites sources, quatorze suites sur les ressources compilées Windows/ARM64 et un parcours avec rendu natif X11/Mesa. Le nouveau test échoue huit fois avec l’ancien script et passe après correction : même instant répété 1 200 fois, 60 secondes simulées dans huit directions, arrêts et transitions assises. Les commandes clavier et joystick simulés sont vérifiées dans le jeu, avec douze captures sans perte et un cycle de seize images. [Résultats complets](../tests/marche_0.34.0_results/summary.json).
+
+Les exécutables Windows x86_64 et Linux ARM64 sont exportés avec Godot 4.6.3 officiel. Les ressources compilées sont testées avec Godot Linux x86_64 ; cela ne constitue pas un lancement natif sous Windows ou sur un Raspberry Pi. Le lancement, le son et la manette physique restent à essayer sur ces appareils. Les 154 archives précédentes sont conservées.
+
+---
+
 # Livraison 0.33.0 — matières et boutique du personnage
 
 Huit cartes originales ajoutent grain et rugosité à la peau, aux cheveux, au coton, à la maille, au denim, au cuir, au feutre et à la paille. Projection sans UV supplémentaires, relief cutané discret et reflets adoucis ; mipmaps pour limiter le scintillement. Les cartes représentent moins de 1 Mio RGBA avec mipmaps. Le modèle, les démarches et les formes de collision de la version 0.32.0 sont conservés. [Sources et régénération](REALISME.md).
