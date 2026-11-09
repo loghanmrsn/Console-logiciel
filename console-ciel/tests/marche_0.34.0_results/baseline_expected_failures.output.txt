@@ -1,0 +1,11 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CHARACTER_MOVEMENT_FAIL : S'asseoir plusieurs fois ne cumule ni rotation ni descente : natural
+CHARACTER_MOVEMENT_FAIL : Même instant répété 1 200 fois sans accumulation : loose
+CHARACTER_MOVEMENT_FAIL : 60 secondes de marche, huit directions : tête au-dessus du bassin et corps vertical : loose
+CHARACTER_MOVEMENT_FAIL : Marche et arrêts indépendants des poses précédentes : loose
+CHARACTER_MOVEMENT_FAIL : Relâcher restaure exactement le repos : loose
+CHARACTER_MOVEMENT_FAIL : S'asseoir plusieurs fois ne cumule ni rotation ni descente : loose
+CHARACTER_MOVEMENT_FAIL : Se relever restaure tous les os : loose
+CHARACTER_MOVEMENT_FAIL : Marcher après une pose assise restaure le cycle : loose
+CHARACTER_MOVEMENT : 18 assertions, 8 échec(s).
