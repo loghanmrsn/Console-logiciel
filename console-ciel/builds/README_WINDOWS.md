@@ -1,10 +1,10 @@
-# Console CIEL 0.33.0 — Windows x86_64
+# Console CIEL 0.34.0 — Windows x86_64
 
-[Télécharger Windows 0.33.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_boutique_0.33.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.34.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_marche_0.34.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.33.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.33.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-boutique-0.33.0/Console_CIEL.exe`.
+Le [projet complet Windows 0.34.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.34.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-marche-0.34.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
@@ -14,7 +14,7 @@ Les treize missions de l’enquête rapportent **50 points à leur première ré
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.33.0](Console_CIEL_Windows_x86_64_boutique_0.33.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.33.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.34.0](Console_CIEL_Windows_x86_64_marche_0.34.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.34.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
@@ -83,3 +83,5 @@ La version **0.33.0** propose le bouton **Dev · Super administrateur** : profil
 Les cinq épreuves **Sudo Hack** se jouent dans le hall du CTF. Chaque poste donne 50 points une seule fois. Après le flag final, le bus devant le CTF ramène en ville ; les lieux restent visitables. [Toutes les solutions illustrées](../../solution/README.md).
 
 Décors Blender adaptés aux 40 bâtiments, grand panneau à enveloppe, fleurs, livres, vélo et fontaine avec eau courante : [rendu 0.33.0](../docs/REALISME.md). Pour personnaliser la liste noire, modifier `pseudo_blacklist.json` à côté de l’exécutable : [règles des pseudos](../docs/PSEUDOS.md).
+
+La version **0.34.0** rétablit une marche naturelle : le personnage reste debout pendant les déplacements, les virages et les arrêts, y compris avec un profil existant.
