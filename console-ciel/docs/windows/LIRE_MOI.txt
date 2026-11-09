@@ -1,5 +1,5 @@
 ﻿CONSOLE CIEL — VERSION DE TEST WINDOWS x86_64
-Logiciel 0.33.0 — Godot 4.6.3 stable — rendu Compatibility
+Logiciel 0.34.0 — Godot 4.6.3 stable — rendu Compatibility
 
 DÉMARRER
 1. Décompressez tout le ZIP dans un dossier accessible de votre choix.
@@ -382,7 +382,10 @@ ACCUEIL DU LYCÉE — 0.33.0
 Entrée à l’accueil. La surveillante blonde en pull ample propose un accompagnement de 2,6 secondes vers les ateliers ou le choix Rien. Animation désactivée avec animations réduites, et suspendue en cas de déconnexion de manette. Aucun point ni exercice validé automatiquement. Grande pancarte extérieure supprimée ; logo conservé sur la façade. Deux escaliers droits à l’hôtel et aux paliers. Sauvegardes et anciens paquets conservés.
 
 PERSONNAGE 3D ET FLUIDITÉ — 0.33.0
-Accueil, Profils ou Boutique : ouvrir Mon personnage 3D. Gabarit fixe de 1,70 m, personnalisation du visage, des cheveux et des habits. Les achats utilisent des points virtuels et restent enregistrés par profil. Essayage libre, Enregistrer pour équiper, Annuler pour abandonner les essais. Aucun logo ni marque. Choix de démarche souple et bancale ou naturelle. Marcher en 3D ouvre un espace de test sans modifier les missions. Les niveaux du jeu restent en 2D avec le personnage 3D animé. Contrôles et sauvegardes existants conservés.
+Accueil, Profils ou Boutique : ouvrir Mon personnage 3D. Gabarit fixe de 1,70 m, personnalisation du visage, des cheveux et des habits. Les achats utilisent des points virtuels et restent enregistrés par profil. Essayage libre, Enregistrer pour équiper, Annuler pour abandonner les essais. Aucun logo ni marque. Marche naturelle pour tous les profils, y compris les anciens personnages. Marcher en 3D ouvre un espace de test sans modifier les missions. Les niveaux du jeu restent en 2D avec le personnage 3D animé. Contrôles et sauvegardes existants conservés.
 
 TEXTURES ET BOUTIQUE — 0.33.0
-Boutique → Dressing 3D : catégories, recherche, articles gratuits ou disponibles, vignettes, essayage, couleurs, achat en points et équipement séparé. Jeux et thèmes reste disponible. Les matières de peau, cheveux, coton, maille, denim, cuir, feutre et paille sont détaillées. La taille, les collisions et les démarches restent celles de la version précédente.
+Boutique → Dressing 3D : catégories, recherche, articles gratuits ou disponibles, vignettes, essayage, couleurs, achat en points et équipement séparé. Jeux et thèmes reste disponible. Les matières de peau, cheveux, coton, maille, denim, cuir, feutre et paille sont détaillées. La taille et les collisions restent celles de la version précédente.
+
+MARCHE NATURELLE — 0.34.0
+Correction des rotations qui couchaient le personnage pendant la marche. Les poses sont remises à zéro à chaque image ; le personnage reste debout en marchant, en tournant et à l’arrêt, y compris après une animation assise. L’ancienne démarche bancale n’est plus proposée. Apparence, achats et progression conservés.
