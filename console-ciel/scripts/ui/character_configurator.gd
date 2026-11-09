@@ -74,7 +74,6 @@ func _page() -> void:
 	var focus_id=str(focus.name) if focus!=null and controls.is_ancestor_of(focus) else ""
 	for child in controls.get_children():controls.remove_child(child);child.queue_free()
 	if page==0:
-		_choice("Démarche","gait",Catalog.GAITS,{"loose":"Souple et bancale","natural":"Naturelle"})
 		_choice("Teint","skin",Catalog.SKIN.keys(),{"porcelain":"Porcelaine","light":"Clair","warm":"Doré","tan":"Mat","brown":"Brun","deep":"Profond"})
 		_choice("Forme des yeux","eyes",Catalog.EYES,{"almond":"Amande","round":"Arrondis","soft":"Doux"})
 		_choice("Couleur des yeux","eye_color",Catalog.EYE_COLORS.keys(),{"brown":"Marron","hazel":"Noisette","green":"Vert","blue":"Bleu","grey":"Gris"})
