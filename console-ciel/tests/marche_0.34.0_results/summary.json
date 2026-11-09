@@ -1,0 +1,450 @@
+{
+  "version": "0.34.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "date_utc": "2026-11-09",
+  "source_tests": [
+    {
+      "name": "character_movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.07,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log": "character_movement_tests.output.txt",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "name": "character_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 151,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.2,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log": "character_services_tests.output.txt",
+      "log_sha256": "5ee953281da1417ae4cb99d8cec65888acbba23c16afe2c249470cb44c66a12e"
+    },
+    {
+      "name": "character_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 116,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 15.95,
+      "script_sha256": "33f64cb47ee91567dd5d608a6afc2ade92959d2dadbe2c876c5ee956f9917ca9",
+      "log": "character_ui_tests.output.txt",
+      "log_sha256": "6a07c946aa18979602eed5252de4978f2cf80ef8641c44b1d2a49d27095e4f8a"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.05,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "school_reception_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 161,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 11.58,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log": "school_reception_ui_tests.output.txt",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "name": "windows_art_pack",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 111,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.95,
+      "script_sha256": "db6e3a808fc34742136d5eaec104c6935acf7e90a5bcd20296cec818f24b2316",
+      "log": "windows_art_pack.output.txt",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.1,
+      "script_sha256": "9c268f2531973a48dba54cbe98f764a155be5567abc3ea79156c1fc9d42f7c1e",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    }
+  ],
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 116,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "33f64cb47ee91567dd5d608a6afc2ade92959d2dadbe2c876c5ee956f9917ca9",
+      "log_sha256": "6a07c946aa18979602eed5252de4978f2cf80ef8641c44b1d2a49d27095e4f8a"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 116,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "33f64cb47ee91567dd5d608a6afc2ade92959d2dadbe2c876c5ee956f9917ca9",
+      "log_sha256": "6a07c946aa18979602eed5252de4978f2cf80ef8641c44b1d2a49d27095e4f8a"
+    },
+    {
+      "platform": "windows",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db6e3a808fc34742136d5eaec104c6935acf7e90a5bcd20296cec818f24b2316",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db6e3a808fc34742136d5eaec104c6935acf7e90a5bcd20296cec818f24b2316",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 151,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "5ee953281da1417ae4cb99d8cec65888acbba23c16afe2c249470cb44c66a12e"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 151,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "5ee953281da1417ae4cb99d8cec65888acbba23c16afe2c249470cb44c66a12e"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "linux",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    }
+  ],
+  "native_renderer": {
+    "character_ui_tests": {
+      "assertions": 128,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/chapeau_paille_pantalon_ballon.webp",
+          "bytes": 71818,
+          "sha256": "ad8300adaf1198ba793f62585a2027342d00aa27b53897ba2f58d3f68df259cf",
+          "original_png_sha256": "fec22c571e1737d996f650985b09aede17c4e79fd214dbfcdc3c5f05aefb3112",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/configurateur_visage.webp",
+          "bytes": 77372,
+          "sha256": "91683e78d2811833846960735bf90809e59eeb66b244f0b19acf490c49dfdcbd",
+          "original_png_sha256": "65cffaa7390c060e4dc70be9c0c8cc164eed9d0a57e3c313947abd82753a74cc",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/dressing_casquette_baggy.webp",
+          "bytes": 71992,
+          "sha256": "bd6ba86065f289e0b073af1a5522ce64d11e059fef7c2359351bf201222bdfe6",
+          "original_png_sha256": "ff68b557caa6ee825724b2d5ff6be3debd975a8a9e2d437891e028529c190cd8",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/dressing_compact.webp",
+          "bytes": 51204,
+          "sha256": "c6df9ca4652072ad78b06a7b40f5dc80454e1191fc93ebf168c083eb86ed13a3",
+          "original_png_sha256": "4cf660a2ea1874e30db5630067f85e005531a4bf6544da56ba1b1ec64ff421f1",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/marche_clavier_de_dos.webp",
+          "bytes": 39574,
+          "sha256": "5495141d35a2d38188b5ed145bbf78f9d727eb441b313de3cb5f46383e8e77d7",
+          "original_png_sha256": "3d1e750c2633e08e759c77f797cc31230f55af70878327022f4fefaec48a636f",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/marche_stick_314.webp",
+          "bytes": 40668,
+          "sha256": "0ec7699dae5eec0a25483f63937970bd36e241ae74f0ff4b7156a5224f5cc40c",
+          "original_png_sha256": "e9718a4e53f1cfea82e4d009bb54f252ff483d79e1553d85b292912058ad93bf",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/marche_stick_392.webp",
+          "bytes": 41604,
+          "sha256": "c9891ee5a4bcd2e8d310689a3ee5dbc893cf27c4906a6ef9d010d4e4ba759038",
+          "original_png_sha256": "2882adf60d931cb1117a36330c4e8b257716b5d29c8ca0f8a2bfc7975295f6a2",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/marche_stick_471.webp",
+          "bytes": 39884,
+          "sha256": "1123b10b772c1e5b166577c997b59baa8829372c99f2fff425da275123745b00",
+          "original_png_sha256": "2fda41238490e746701e85f1c4f793ff1fa2507d06a8720c268b8e2f4576e1c4",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/marche_stick_628.webp",
+          "bytes": 41456,
+          "sha256": "229be108602afd295f9990296862eacd8bc2946bce659e6150e5e2c11e428440",
+          "original_png_sha256": "f70e09e6638bd37ff9619f36e6206494a8824fdc4c2e8aa4243ad3b376760176",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/personnage_3d_en_jeu.webp",
+          "bytes": 42104,
+          "sha256": "490c05c22738c2891311b3b7824f9300df57e091ae7e3a348caf8c0981d669cc",
+          "original_png_sha256": "a1ae74cb35e32708461c170aab8930a2bb621c170b87d31a126c9042f250c1d1",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/pull_ample_3d.webp",
+          "bytes": 64092,
+          "sha256": "c4a1a5c39deee2cc9d3e37e62bed90b2b5fdb82c9e7f4ae9a351b25a7159946b",
+          "original_png_sha256": "d67da1e8cbfbba5be1b86234c5ce479c2e48261b45bd4a1c54fcb81036a021df",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/marche_0.34.0/character_ui_tests/test_personnage_collision_3d.webp",
+          "bytes": 23606,
+          "sha256": "152b4fcd244a2f5a5c902bf22358d8191510bc988ec62951e85bd7d1cb958456",
+          "original_png_sha256": "77bd8cb37f2586c3321df0c0b051abce73b877d2787b30f806d688bcf5ad88ce",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "9425cb87c04eee277484d49e7add219d4efa3e9ed934d66143d603d314a595d9",
+      "script_sha256": "33f64cb47ee91567dd5d608a6afc2ade92959d2dadbe2c876c5ee956f9917ca9",
+      "log_sha256": "db85680e11fdf6c101fd937099ef2ef072ac013d235f41faefc5e89867b2aa73",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original engine PNG."
+    }
+  },
+  "animation": {
+    "file": "docs/screenshots/marche_0.34.0/marche_naturelle.gif",
+    "sha256": "11fad98daaf96e5e72793e64cbaff23af23788149a816e45f4cbd881e4319cfa",
+    "frames": 16,
+    "duration_ms": 1000,
+    "source": "Godot native SubViewport frames, no procedural sway; only background composited for GIF.",
+    "source_frames": [
+      {
+        "file": "walk_00.png",
+        "sha256": "a0121a2351c17bd99c004abebb444edf748c3208a14527da0388bb4de5c4978f"
+      },
+      {
+        "file": "walk_01.png",
+        "sha256": "c196a31cda5784fe13dd642d410b283df1378834397291dd3b3e920485b1e4db"
+      },
+      {
+        "file": "walk_02.png",
+        "sha256": "07e1232d4faee4ddec0164169239f3b5f60480f8e41bb6fdc435534c4d75fe87"
+      },
+      {
+        "file": "walk_03.png",
+        "sha256": "6c0b1fa5b2cc68e9473c8b91670df40226f3914236b461b6d79d1e1c71edb789"
+      },
+      {
+        "file": "walk_04.png",
+        "sha256": "fd7aa25ecf8a3242034961f0ff932a462850f9cc9ae6c7c33596a3172b7e6384"
+      },
+      {
+        "file": "walk_05.png",
+        "sha256": "b9d284f0d91db29f21e03a3e0dabce23774a2b25fbe126aa286947346e2e9fa3"
+      },
+      {
+        "file": "walk_06.png",
+        "sha256": "f975b8067ab8f53b83785bf28467599a29b7aae495cee2a630eb5d8871a3a95a"
+      },
+      {
+        "file": "walk_07.png",
+        "sha256": "e76bac6bf42542dfc2217795feb8996a2e3a426f4e045a43f84b025745cf7fe6"
+      },
+      {
+        "file": "walk_08.png",
+        "sha256": "2990b6e63a1e0d1a4eb9c4eb71db006e69bfd9bb9ccf57499bb72332eb74924e"
+      },
+      {
+        "file": "walk_09.png",
+        "sha256": "23aa04edfa61edbb63df35ae3422098bbba1373ed6b11bde71b207b10c5cc108"
+      },
+      {
+        "file": "walk_10.png",
+        "sha256": "cc04fc8c5df955057c9d4af458d2f5cd00a94396415955f4eb09004ddfac4e82"
+      },
+      {
+        "file": "walk_11.png",
+        "sha256": "33d4a9322a721dedb006a1bafd3bb09b9db62f6020c61fea67478f1b802b26cd"
+      },
+      {
+        "file": "walk_12.png",
+        "sha256": "b6b80ec7a209f9ae8be5b04e10232957c7aff7ac08e4546a7c791e117f6b6386"
+      },
+      {
+        "file": "walk_13.png",
+        "sha256": "fa4983d43a3e57438aec1581944baea1abdd41e6377a7fcfbf48e1818679e43a"
+      },
+      {
+        "file": "walk_14.png",
+        "sha256": "f99f92ad529296e587c4053ca53f36f454b3b56a58f81254d94b30a75af47cd8"
+      },
+      {
+        "file": "walk_15.png",
+        "sha256": "d9e08b406847a0d98e7da7d183bc95c72240e4300ec8786dc3fd933efb735d61"
+      }
+    ]
+  },
+  "baseline_reproduction": {
+    "source_commit": "72156b2853110731e02af801c42c55be16ff90b3",
+    "old_model_sha256": "6fad616addb55283c62e64a83a33684ed25661f54a88cbc4a05b6a8446b33304",
+    "test_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+    "expected_failures_before_fix": 8,
+    "failures_after_fix": 0,
+    "log": "baseline_expected_failures.output.txt",
+    "method": "Same regression with Model preload redirected to the original model script from the baseline commit; current catalog and assets."
+  },
+  "all_candidate_tests_passed": true,
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "previous_archives_preserved": 154,
+  "fixed_dimensions_and_original_rig_preserved": true,
+  "model_sha256": "9312c6bb3d788d94bd6b40efcc68f8b99f53582724cc363a606a9e9a1c7f606f",
+  "total_assertions": 1989
+}
