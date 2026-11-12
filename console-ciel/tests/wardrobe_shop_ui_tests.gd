@@ -12,7 +12,7 @@ func _run() -> void:
 	await _capture("boutique_console")
 	await _activate("shop_dressing",true);await _frames(8)
 	var store=_find("wardrobe_shop")
-	_check(store!=null and store.grid.get_child_count()==4,"Quatre hauts avec vignettes, gratuits et payants")
+	_check(store!=null and store.grid.get_child_count()==5,"Cinq hauts avec vignettes, gratuits et payants")
 	await _press(KEY_E)
 	_check(store.category==1,"Raccourci de catégorie suivant dans le dressing")
 	await _press(KEY_Q)
