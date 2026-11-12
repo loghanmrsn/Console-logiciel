@@ -49,6 +49,9 @@ func _ready() -> void:
 	buy=_button(right,"Acheter",_purchase,"character_buy")
 	apply=_button(left,"Enregistrer l’apparence",_save,"character_save")
 	_button(left,"Annuler les modifications",_reset,"character_reset")
+	_button(right,"Essayer la tenue Madison",func():
+		draft=Catalog.madison_appearance();page=2;find_child("character_category",true,false).select(2)
+		_page();view.focus_face(false),"character_madison")
 	_button(right,"Marcher en 3D",func():walk_requested.emit(),"character_walk")
 	_button(left,"Retour",func():close_requested.emit(),"character_back")
 	var hint=Label.new();hint.text="Les achats utilisent uniquement les points gagnés en jeu. Aucun argent réel.";hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;hint.add_theme_font_size_override("font_size",13);right.add_child(hint)
