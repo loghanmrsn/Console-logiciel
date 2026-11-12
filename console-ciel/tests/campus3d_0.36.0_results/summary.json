@@ -1,0 +1,391 @@
+{
+  "version": "0.36.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_suites": [
+    {
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "ok": true,
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "name": "character_services_tests",
+      "assertions": 171,
+      "ok": true,
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "name": "character_ui_tests",
+      "assertions": 124,
+      "ok": true,
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "ok": true,
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "ok": true,
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "name": "movement_tests",
+      "assertions": 26,
+      "ok": true,
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "campus_3d_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 46,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 17.51,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log": "/workspace/console-ciel-campus3d-validation/regression/campus_3d_tests/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.76,
+      "script_sha256": "6bffaa2827ac436b40144ef31b91cd9c760312ad07d01c429c294d1a128b9c6b",
+      "log": "/workspace/console-ciel-campus3d-validation/regression/windows_contracts/run.log"
+    },
+    {
+      "name": "windows_art_pack",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 111,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.89,
+      "script_sha256": "206896838a162a1900c21dc5f6e19934329bee8e349df828b98905a26d58e863",
+      "log": "/workspace/console-ciel-campus3d-validation/regression/windows_art_pack/run.log"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.3,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "/workspace/console-ciel-campus3d-validation/regression/run_tests/run.log"
+    }
+  ],
+  "compiled_suites": [
+    {
+      "platform": "windows",
+      "name": "campus_3d_tests",
+      "assertions": 46,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log_sha256": "6b1980e1c7654d6deb0b2547cc7b0e39135413450c8153692e6701587b8c2de9"
+    },
+    {
+      "platform": "linux",
+      "name": "campus_3d_tests",
+      "assertions": 46,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log_sha256": "2ce5559c03879a338f143249f6220e7487db2a7c583f23ea1ee5c905e4c04044"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "206896838a162a1900c21dc5f6e19934329bee8e349df828b98905a26d58e863",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "206896838a162a1900c21dc5f6e19934329bee8e349df828b98905a26d58e863",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 171,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 124,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "platform": "windows",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "windows",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 171,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 124,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "platform": "linux",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "linux",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    }
+  ],
+  "native_assertions": 53,
+  "package_checks": 30,
+  "asset_checks": {
+    "glb_sha256": "c6ef59794a5525ab9ed4a430a7d951c1511c22428dbd9fe84430a2537fbff002",
+    "source_blend_sha256": "87da355c44a1bd18968947d2fc1772207d0e3ab3ec3944e3959cd349d9f27087",
+    "generator_sha256": "9944e339ccf88a20e4ed35bbc7714b4e0a2365bf8b2c1edc8cb6086207848433",
+    "mesh_objects": 41,
+    "bones": 13,
+    "all_vertices_finite": true,
+    "vertices_checked": 64909,
+    "all_skin_weights_normalized": true,
+    "maximum_weight_sum_error": 5.960464477539063e-08,
+    "thumbnails_verified": 34,
+    "all_passed": true,
+    "reference": "User-provided outfit image, original local geometry; stylized interpretation."
+  },
+  "campus_assets": [
+    {
+      "zone": "square",
+      "sha256": "bf492eec1e21ecd4e0208b29a8407753747d63541f74fa4eab622ae772277111",
+      "vertices": 80655,
+      "triangles": 57464,
+      "collision_boxes": 18,
+      "checks_passed": true
+    },
+    {
+      "zone": "reception",
+      "sha256": "f24df4f47c1b2fae9fc7ac6d1c53e2430740ad43bfd6d8f05b90786d5328e98e",
+      "vertices": 16052,
+      "triangles": 12092,
+      "collision_boxes": 8,
+      "checks_passed": true
+    },
+    {
+      "zone": "workshop",
+      "sha256": "0aed16a3daed8798418b02c20254ceec00a2903321f997be568f03f7fd9b781a",
+      "vertices": 31137,
+      "triangles": 21324,
+      "collision_boxes": 14,
+      "checks_passed": true
+    }
+  ],
+  "captures": [
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/accueil_surveillante_3d.webp",
+      "sha256": "a2d5ef54d239fc434113682d9c8faab33f80f59ec502580672b4f91a9185b27f",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/atelier_ciel_3d.webp",
+      "sha256": "9ed5e0b2e684ae1135e262bb2db1bca6379aa0ba40e8b29bfa09526865304b79",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/dialogue_surveillante_3d.webp",
+      "sha256": "f58f181ea8fd52e9e950d4a0d2c747fff402a805cfb6f3863b2ad44464f5fe0b",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/escalier_droit_3d.webp",
+      "sha256": "4ecf41532635280d731d2d1b2a6ca30e74aa7500d84325c9bbf19bfa7c634a5f",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/fontaine_3d.webp",
+      "sha256": "3b6ee120048f19bc645764be0f05310bbd346212fbbb464da6d35e06d11ef46b",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/parvis_3d.webp",
+      "sha256": "6add1081bf05a9cfa1fda5daa2794655350159c551ef0c2d11b754c7c17d3c36",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/campus3d_0.36.0/pause_compacte_3d.webp",
+      "sha256": "96197b65aa5a6d64b76aacb79509417d3d6bd889d5aa4486e5d4167ca10150a4",
+      "width": 800,
+      "height": 480,
+      "lossless": true
+    }
+  ],
+  "native_renderer": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "perceived_audio_tested": false,
+  "all_passed": true,
+  "old_archives_preserved": 162,
+  "total_assertions": 2185
+}
