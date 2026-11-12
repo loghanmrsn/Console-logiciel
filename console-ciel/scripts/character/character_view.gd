@@ -31,9 +31,9 @@ func _ready() -> void:
 	environment.environment.background_mode=Environment.BG_CLEAR_COLOR
 	environment.environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR
 	environment.environment.ambient_light_color=Color("dce5ed")
-	environment.environment.ambient_light_energy=.65
+	environment.environment.ambient_light_energy=.45
 	viewport.add_child(environment)
-	for spec in [[Vector3(-.5,-.5,0),1.25,Color("fff2df")],[Vector3(-.3,.7,0),.65,Color("dceaff")]]:
+	for spec in [[Vector3(-.35,-.7,0),1.15,Color("fff2df")],[Vector3(-.25,.8,0),.40,Color("dceaff")]]:
 		var light=DirectionalLight3D.new()
 		light.rotation=spec[0]
 		light.light_energy=spec[1]
