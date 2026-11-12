@@ -381,17 +381,18 @@ func _clear(next: String) -> void:
 		navigation.visible=next in ['home','shop','profiles','settings','help','controls'] and not pause_settings and not pause_help
 		navigation.update_state(next,not AppState.profile.is_empty())
 	header_back.visible=next not in ['home','boot','recovery','settings_recovery','fatal'] and not (next=='editor' and ProfileService.profiles.is_empty())
-	footer.visible=next!='shop'
+	footer.visible=next not in ['shop','campus3d']
 	footer.text='Flèches / joystick : naviguer   ·   Entrée / face bas : valider   ·   Échap / face droit : retour'
 	scroll.scroll_vertical=0
 	_update_header()
 
 func _show_screen(next: String) -> void:
-	if next in ['home','game','shop','settings','character','character_walk'] and AppState.profile.is_empty(): next='profiles'
+	if next in ['home','game','shop','settings','character','character_walk','campus3d'] and AppState.profile.is_empty(): next='profiles'
 	if is_instance_valid(modal) or _screen_building: return
 	_screen_building=true
 	_clear(next)
 	match next:
+		'campus3d': _campus_3d()
 		'character_walk': _character_walk()
 		'character': _character()
 		'profiles': _profiles()
@@ -417,6 +418,9 @@ func _show_screen(next: String) -> void:
 
 func _focus_initial() -> void:
 	if is_instance_valid(modal): return
+	if screen == 'campus3d':
+		content.get_node('campus_3d_panel').grab_focus()
+		return
 	var key=SceneRouter.focus_key(screen)
 	var choices=_focusables(content)
 	if navigation.visible: choices.append_array(_focusables(navigation))
@@ -922,6 +926,7 @@ func _home() -> void:
 			_add_home_game(home_game_library,entries[index],true)
 	_fit_home_library()
 	_button(content,'Mon personnage 3D',func():_show_screen('character'),'home_character')
+	_button(content,'Explorer le quartier et le lycée en 3D',func():_show_screen('campus3d'),'home_campus_3d')
 
 func _add_home_game(host: Node,entry: Dictionary,compact: bool) -> Control:
 	var educational=entry.id==GameLibrary.EDUCATIONAL_ID
@@ -1538,6 +1543,7 @@ func _open_diagnostics() -> void:
 func _back() -> void:
 	if is_instance_valid(modal): modal.cancel_dialog(); return
 	match screen:
+		'campus3d': content.get_node('campus_3d_panel').handle_back()
 		'home': _request_quit()
 		'arcade': _close_arcade()
 		'game':
@@ -1623,6 +1629,9 @@ func _input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(modal): return
+	if screen == 'campus3d' and content.get_node('campus_3d_panel').handle_event(event):
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed('ui_cancel'):
 		get_viewport().set_input_as_handled()
 		_back()
@@ -1711,3 +1720,8 @@ func _character_walk() -> void:
 	var panel=preload("res://scripts/ui/character_walk_panel.gd").new()
 	content.add_child(panel)
 	panel.close_requested.connect(func():_show_screen("character"))
+
+func _campus_3d() -> void:
+	var panel = preload("res://scripts/ui/campus_3d_panel.gd").new()
+	content.add_child(panel)
+	panel.close_requested.connect(func(): _show_screen("home"))
