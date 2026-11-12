@@ -1,0 +1,14 @@
+{
+  "glb_sha256": "c6ef59794a5525ab9ed4a430a7d951c1511c22428dbd9fe84430a2537fbff002",
+  "source_blend_sha256": "87da355c44a1bd18968947d2fc1772207d0e3ab3ec3944e3959cd349d9f27087",
+  "generator_sha256": "9944e339ccf88a20e4ed35bbc7714b4e0a2365bf8b2c1edc8cb6086207848433",
+  "mesh_objects": 41,
+  "bones": 13,
+  "all_vertices_finite": true,
+  "vertices_checked": 64909,
+  "all_skin_weights_normalized": true,
+  "maximum_weight_sum_error": 5.960464477539063e-08,
+  "thumbnails_verified": 34,
+  "all_passed": true,
+  "reference": "User-provided outfit image, original local geometry; stylized interpretation."
+}
