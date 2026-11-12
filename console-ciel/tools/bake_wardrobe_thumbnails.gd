@@ -19,6 +19,7 @@ func run() -> void:
 		var view=View.new();view.appearance=a;view.size=Vector2(256,256);root.add_child(view)
 		view.viewport.size=Vector2i(256,256)
 		var framing={"hair":[1.56,.48],"top":[1.11,.73],"trousers":[.53,1.04],"headwear":[1.65,.40],"socks":[.15,.34],"shoes":[.10,.40]}[item.slot]
+		if item.id=="madison":framing=[1.0,1.1]
 		view.camera.size=framing[1];view.camera.position=Vector3(0,framing[0]+.18,3);view.camera.look_at(Vector3(0,framing[0],0))
 		view.heading=.35 if item.slot!="hair" else .15
 		for mesh in view.model.meshes:
