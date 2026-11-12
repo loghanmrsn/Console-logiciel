@@ -2,8 +2,8 @@ extends RefCounted
 ## Original, unbranded wardrobe. Prices are virtual mission points only.
 const RIG := "standard_170"
 const HEIGHT_METRES := 1.70
-const COLORS := {"black":"222a34","blue":"365f99","white":"e7e8e2","navy":"25364e","grey":"87939b","cream":"cabd9e","brown":"70513e","red":"a7353d","green":"4b7663","pink":"c6849c","purple":"7764a6","yellow":"d3b14d","denim":"8eafc4"}
-const COLOR_NAMES := {"black":"Noir","blue":"Bleu","white":"Blanc","navy":"Marine","grey":"Gris","cream":"Crème","brown":"Marron","red":"Rouge","green":"Vert","pink":"Rose","purple":"Violet","yellow":"Jaune","denim":"Denim clair"}
+const COLORS := {"black":"222a34","blue":"365f99","white":"e7e8e2","navy":"25364e","grey":"87939b","taupe":"68625e","cream":"cabd9e","brown":"70513e","red":"a7353d","green":"4b7663","pink":"c6849c","purple":"7764a6","yellow":"d3b14d","denim":"8eafc4"}
+const COLOR_NAMES := {"black":"Noir","blue":"Bleu","white":"Blanc","navy":"Marine","grey":"Gris","taupe":"Gris cendré","cream":"Crème","brown":"Marron","red":"Rouge","green":"Vert","pink":"Rose","purple":"Violet","yellow":"Jaune","denim":"Denim clair"}
 const SKIN := {"porcelain":"efd0b7","light":"dcb396","warm":"bf8965","tan":"a66f4f","brown":"7e513a","deep":"50372e"}
 const HAIR_COLORS := {"black":"26211f","brown":"5b3a27","chestnut":"875b39","blonde":"d3ad62","copper":"a65c35","silver":"bfc0b6","white":"e4dfcd"}
 const EYE_COLORS := {"brown":"684932","hazel":"837140","green":"587953","blue":"537f9b","grey":"8b969b"}
@@ -45,6 +45,10 @@ const ITEMS := [
 	{"id":"loafers","slot":"shoes","name":"Mocassins","price":75},
 	{"id":"runner","slot":"shoes","name":"Baskets de sport","price":80},
 	{"id":"high","slot":"shoes","name":"Baskets montantes","price":85}
+	,{"id":"madison","slot":"top","name":"Robe Madison · manches séparées","price":120}
+	,{"id":"updo","slot":"hair","name":"Chignon avec mèches","price":45}
+	,{"id":"tights","slot":"trousers","name":"Collants fins","price":30}
+	,{"id":"heels","slot":"shoes","name":"Escarpins à brides","price":65}
 ]
 static func item(id: String, slot: String="") -> Dictionary:
 	for entry in ITEMS:
@@ -86,3 +90,9 @@ static func valid(record_: Variant, require_ownership:=true) -> bool:
 		if product.is_empty() or (require_ownership and not owned(record_,product)): return false
 		if slot!="hair" and a.get(slot+"_color","") not in allowed_colors(slot,product.id): return false
 	return true
+
+static func madison_appearance() -> Dictionary:
+	var a=defaults().appearance
+	a.skin="light";a.hair="updo";a.hair_color="brown";a.eye_color="hazel";a.smile="soft";a.lips="rose"
+	a.top="madison";a.top_color="taupe";a.trousers="regular";a.trousers_color="black";a.shoes="heels";a.shoes_color="black";a.socks_color="black"
+	return a
