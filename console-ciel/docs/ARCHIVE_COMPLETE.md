@@ -93,3 +93,9 @@ Depuis 0.29.0, les deux premières galeries historiques `docs/screenshots/refont
 Depuis la version 0.32.0, les archives complètes incluent aussi `art_sources/` avec les fichiers Blender courants. Les copies de travail `.blend1`, `.blend2`, etc. sont exclues. Les personnages et accessoires sont utilisables sans Blender dans les exécutables livrés.
 
 Les nouvelles archives 0.33.0 n’incluent pas la galerie historique `docs/screenshots/graphics_0.26.0/`, en plus des deux premières galeries déjà exclues. Ces captures restent conservées dans Git et les livraisons antérieures. Les captures courantes et toutes les ressources nécessaires au logiciel restent incluses.
+
+Depuis 0.36.0, les galeries historiques `personnage3d_0.32.0/` et `realisme_0.28.0/` restent également dans Git et leurs archives d’origine, sans duplication dans les nouveaux projets complets. Cela libère la place nécessaire au nouveau modèle Blender et à ses ressources sous la limite de 100 Mio par fichier GitHub. Aucun ancien fichier n’est supprimé.
+
+La galerie historique `boutique_0.33.0` reste également conservée dans le dépôt et les anciennes archives, mais exclue des nouveaux ZIP complets pour rester sous la limite GitHub de 100 Mio.
+Les captures historiques `traffic_0.13.0` et `marche_0.34.0` suivent la même règle à partir de 0.36.0. Les captures actuelles du quartier 3D et du personnage sont incluses.
+Les anciennes galeries `campus_0.25.0` et `facades_0.19.1` sont aussi disponibles dans Git et leurs archives plutôt que dupliquées avec le nouveau quartier 3D.
