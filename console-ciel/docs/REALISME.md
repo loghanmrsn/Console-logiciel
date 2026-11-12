@@ -102,3 +102,17 @@ Les nouveaux personnages utilisent `natural`. La valeur historique `loose` reste
 La régression `tests/character_movement_tests.gd` répète le même instant 1 200 fois puis simule 60 secondes de marche dans huit directions pour chaque valeur historique. Elle contrôle la verticalité, les arrêts, l’alternance des jambes et les transitions assises. Le parcours natif teste aussi les événements clavier et joystick simulés dans le jeu, ainsi que le passage de porte du personnage 3D.
 
 [Voir le cycle de marche naturelle capturé dans Godot](screenshots/marche_0.34.0/marche_naturelle.gif) · [Captures du jeu et du configurateur](screenshots/marche_0.34.0/character_ui_tests/).
+
+## Anatomie et couture — 0.35.0
+
+Le modèle original est repris dans Blender : volumes de bassin, taille et thorax, membres effilés avec coudes et genoux, paumes et doigts séparés, joues, mâchoire, nez et paupières. Les vêtements suivent ces volumes ; les épaules sont inclinées, les pantalons ont un bassin continu, une ceinture et des coutures. Les tissus recouvrent la peau selon leur coupe afin de limiter les traversées. Le squelette, sa marche corrigée et les collisions restent à dimensions fixes. Budget visible inférieur à 40 000 triangles, contre 25 000 dans la première version plus simple.
+
+La tenue Madison interprète la référence fournie : robe à bandeau replié gris cendré, manches séparées avec rubans, collants noirs, chignon relevé avec mèches et escarpins à brides. La robe inclut visuellement les collants noirs. Le preset utilise trois achats existants en points : robe 120, chignon 45, chaussures 65. Des collants séparés à 30 points sont aussi disponibles. Le modèle est original et stylisé ; il ne constitue pas un scan photoréaliste ni un asset officiel. Aucune marque ou logo n’est dessiné sur la tenue.
+
+Sources : `tools/build_character_3d.py` et `art_sources/character_modular.blend`. Blender 4.3.2 produit le GLB et le manifeste d’empreintes ; Godot 4.6.3 recalcule les 34 vignettes de boutique. Le CLI game-dev du plugin est absent de cet environnement : génération, inspection et validation sont effectuées avec Blender, Godot et les outils locaux. Aucun prestataire payant utilisé.
+
+[Tenue en mouvement dans Godot](screenshots/couture_0.35.0/tenue_madison_marche.gif) · [Portrait, vues de face, de dos et boutique](screenshots/couture_0.35.0/couture_ui_tests/).
+
+## Parcours en vraie 3D — 0.36.0
+
+Le quartier, l’accueil et l’atelier disposent maintenant d’un parcours 3D distinct, avec le personnage du dressing, des collisions et des interactions. Voir [les sources, commandes et limites](CAMPUS_3D.md). Les sections précédentes décrivent les décors historiques de l’enquête.
