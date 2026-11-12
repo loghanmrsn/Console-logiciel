@@ -1,3 +1,25 @@
+# Livraison 0.36.0 — personnages et quartier 3D
+
+Le personnage et ses vêtements sont remodelés, avec proportions adultes, doigts, visage sculpté et tenue Madison. La nouvelle entrée **Explorer le quartier et le lycée en 3D** reprend l’apparence enregistrée : parvis, commerces, fontaine animée, accueil et atelier en volume. Surveillante blonde, conversations à deux choix, trajet par escalier droit de 2,7 secondes, diagnostics du poste informatique et de la baie réseau. Les murs restent blancs. Marche droite, virages progressifs, capsule fixe et respiration légère au repos. La réduction des animations et la navigation clavier/manette sont conservées.
+
+Le quartier est une nouvelle partie jouable ; les cinq chapitres existants conservent leurs décors 2D et leur progression. Le rendu est stylisé avec des matériaux plus détaillés, pas une reproduction photoréaliste. [Sources, instructions et skills utilisés](CAMPUS_3D.md) · [Captures natives](screenshots/campus3d_0.36.0/).
+
+2185 assertions réussies : 10 suites sources, 18 suites sur les packs Windows/ARM64, un parcours natif avec sept captures et 30 contrôles des outils de livraison. Le squelette, les poids, les variantes et les empreintes des modèles sont vérifiés. [Résultats détaillés](../tests/campus3d_0.36.0_results/summary.json).
+
+Les contrôles natifs utilisent Linux x86_64 et Mesa, avec clavier et manette simulés. Windows, Raspberry Pi, la manette physique et le son restent à vérifier sur le matériel cible ; aucune fréquence d’images Raspberry Pi n’est annoncée. Les 162 archives antérieures sont conservées.
+
+---
+
+# Préparation 0.35.0 — anatomie et tenue Madison (intégrée à 0.36.0)
+
+Le personnage est remodelé dans Blender : silhouette adulte plus anatomique, taille et bassin dessinés, épaules inclinées, articulations effilées, mains avec doigts et visage sculpté. Les vêtements utilisent des coupes plus proches du corps, des coutures et des surfaces continues. Les parties de peau recouvertes sont masquées selon la tenue pour éviter les traversées. Le modèle reste stylisé, avec un budget visible sous 40 000 triangles et le même gabarit de collision.
+
+**Mon personnage 3D → Essayer la tenue Madison** présente l’interprétation de la photo fournie : robe grise à revers, manches séparées et rubans, collants noirs intégrés, chignon avec mèches et escarpins à brides. Les trois articles se débloquent pour 230 points ; les collants seuls coûtent 30 points. Essayage sans débit, achat puis équipement explicites ; les anciens profils et inventaires sont conservés. Trente-quatre vignettes de boutique sont régénérées à partir du vrai modèle. [Rendu et sources](REALISME.md) · [Tenue en mouvement](screenshots/couture_0.35.0/tenue_madison_marche.gif).
+
+1965 assertions réussies : huit suites sources, seize suites sur les ressources compilées Windows/ARM64, deux parcours avec rendu natif X11/Mesa et trente contrôles des outils de livraison. Vérification du rig à treize os, des poids de peau normalisés, des achats, échecs disque, anciens profils, commandes clavier/manette simulée, marche droite et petit écran. [Rapports](../tests/couture_0.35.0_results/summary.json). Les lancements Windows et Raspberry Pi ainsi que la manette physique restent à tester sur matériel réel. Les 158 anciennes archives sont conservées.
+
+---
+
 # Livraison 0.34.0 — marche naturelle et personnage debout
 
 Le personnage pouvait se coucher ou rester incliné pendant la marche : les rotations de la démarche bancale s’accumulaient sur les os que les pistes constantes ne réécrivaient pas. Ce balancement est supprimé. Chaque image repart du squelette réinitialisé avant de lire la marche ou le repos ; la pose assise utilise aussi un échantillon stable. Le corps reste vertical pendant les virages, les arrêts et le passage assis/debout. L’alternance des jambes est conservée.
