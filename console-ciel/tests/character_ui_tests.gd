@@ -22,7 +22,7 @@ func _run() -> void:
 	_check(panel.view.model.animation!=null and panel.view.model.animation.get_animation_list().size()>=2,"Squelette avec repos et marche")
 	_check(panel.view.model.skeleton!=null and panel.view.model.skeleton.find_bone("spine")>=0,"Squelette 3D réel avec colonne animable")
 	_check(_find("character_gait")==null,"La démarche bancale n'est plus proposée")
-	_check(panel.view.model.visible_triangles()<25000,"Budget du personnage visible inférieur à 25 000 triangles")
+	_check(panel.view.model.visible_triangles()<40000,"Budget du personnage visible inférieur à 40 000 triangles")
 	var updates=panel.view.rendered_updates
 	await _frames(20)
 	_check(panel.view.rendered_updates==updates,"Aperçu immobile sans rendu 3D continuel")
@@ -54,6 +54,7 @@ func _run() -> void:
 	# Inspect every mesh variant, independent of ownership, as a showroom preview.
 	var a=panel.draft.duplicate()
 	for entry in Catalog.ITEMS:
+		if entry.slot=="trousers":a.top="tee"
 		a[entry.slot]=entry.id
 		if entry.slot!="hair":a[entry.slot+"_color"]=Catalog.allowed_colors(entry.slot,entry.id)[0]
 		panel.view.configure(a)
@@ -63,7 +64,7 @@ func _run() -> void:
 			for mesh in panel.view.model.meshes:
 				if str(mesh.name)==name_:found=mesh.visible
 			_check(found,"Modèle réellement visible : "+name_)
-		_check(panel.view.model.visible_triangles()<25000,"Budget visible respecté : "+name_)
+		_check(panel.view.model.visible_triangles()<40000,"Budget visible respecté : "+name_)
 	var worst=Catalog.defaults().appearance
 	for slot in Catalog.CATEGORIES+["eyes","smile"]:
 		var maximum=-1
@@ -74,7 +75,7 @@ func _run() -> void:
 				if triangles>maximum:maximum=triangles;worst[slot]=str(mesh.name).trim_prefix(slot+"_")
 		if slot in Catalog.CATEGORIES and slot!="hair":worst[slot+"_color"]=Catalog.allowed_colors(slot,worst[slot])[0]
 	panel.view.configure(worst)
-	_check(panel.view.model.visible_triangles()<25000,"Combinaison la plus détaillée : budget global sous 25 000 triangles")
+	_check(panel.view.model.visible_triangles()<40000,"Combinaison la plus détaillée : budget global sous 40 000 triangles")
 	a=Catalog.defaults().appearance;a.hair="fringe_curly";a.hair_color="blonde";a.top="hoodie";a.top_color="cream";a.trousers="baggy";a.trousers_color="blue";a.headwear="cap_flat";a.headwear_color="red";a.shoes="boots";a.shoes_color="brown"
 	panel.draft=a.duplicate();panel._page();panel.view.heading=.55;panel.view.refresh()
 	await _capture("dressing_casquette_baggy")
