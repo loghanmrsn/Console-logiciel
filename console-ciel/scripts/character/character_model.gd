@@ -11,21 +11,31 @@ var _materials={}
 var _appearance={}
 var _sample_rotations: Array[Quaternion]=[]
 var _sample_positions: Array[Vector3]=[]
+var _clips: Dictionary = {}
 func _ready() -> void:
 	figure=Body.instantiate()
 	add_child(figure)
 	animation=figure.find_child("AnimationPlayer",true,false)
 	for node in figure.find_children("*","Skeleton3D",true,false): skeleton=node;break
 	if animation!=null: animation.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
+	if animation != null:
+		for clip in animation.get_animation_list():
+			for state in ["walk", "idle"]:
+				if state in clip: _clips[state] = clip
 	for node in figure.find_children("*","MeshInstance3D",true,false): meshes.append(node)
 	configure(_appearance if not _appearance.is_empty() else Catalog.defaults().appearance)
 func configure(a: Dictionary) -> void:
 	_appearance=a.duplicate()
 	if figure==null: return
 	var selected=["body","eyes_"+a.eyes,"smile_"+a.smile]
-	for slot in Catalog.CATEGORIES: selected.append(slot+"_"+a[slot])
+	for slot in Catalog.CATEGORIES:
+		if slot=="socks" and (a.trousers=="tights" or a.top=="madison"):continue
+		if slot=="trousers" and a.top=="madison":
+			selected.append("trousers_tights")
+		else:selected.append(slot+"_"+a[slot])
 	var colors={"skin":Catalog.SKIN[a.skin],"hair":Catalog.HAIR_COLORS[a.hair_color],"eyes":Catalog.EYE_COLORS[a.eye_color],"lips":Catalog.LIPS[a.lips]}
 	for slot in ["top","trousers","headwear","socks","shoes"]: colors["hat" if slot=="headwear" else slot]=Catalog.COLORS[a[slot+"_color"]]
+	if a.top=="madison":colors.trousers=Catalog.COLORS.black
 	for mesh in meshes:
 		mesh.visible=String(mesh.name) in selected
 		mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -46,9 +56,7 @@ func configure(a: Dictionary) -> void:
 	pose(false,0)
 func pose(walking: bool, seconds: float) -> void:
 	if animation==null: return
-	var selected=""
-	for id in animation.get_animation_list():
-		if ("walk" if walking else "idle") in id: selected=id;break
+	var selected: String = _clips.get("walk" if walking else "idle", "")
 	if selected.is_empty(): return
 	# AnimationMixer can omit constant tracks. Always discard the preceding
 	# procedural/seated pose before sampling, even at the exact same timestamp.
@@ -72,6 +80,16 @@ func sit() -> void:
 		_sway("shin_"+str(side),Vector3(1.15,0,0))
 	var hips=skeleton.find_bone("hips")
 	if hips>=0 and hips<_sample_positions.size():skeleton.set_bone_pose_position(hips,_sample_positions[hips]+Vector3(0,-.27,0))
+
+func breathe(seconds: float) -> void:
+	# Small, additive rest pose. Never rotate the actor or change its collision capsule.
+	if skeleton == null: return
+	_sway("spine", Vector3(sin(seconds * 1.8) * .009, 0, 0))
+	_sway("head", Vector3(0, sin(seconds * .55) * .025, 0))
+
+func enable_world_shadows() -> void:
+	for mesh in meshes:
+		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 func visible_triangles() -> int:
 	var total=0
 	for mesh in meshes:
