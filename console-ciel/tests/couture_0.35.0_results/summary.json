@@ -1,0 +1,559 @@
+{
+  "version": "0.35.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "date_utc": "2026-11-10",
+  "source_tests": [
+    {
+      "name": "character_movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 17.81,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log": "character_movement_tests.output.txt",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "name": "character_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 171,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 24.56,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log": "character_services_tests.output.txt",
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "name": "character_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 124,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 53.26,
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log": "character_ui_tests.output.txt",
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "name": "couture_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 34.49,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log": "couture_ui_tests.output.txt",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.16,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "movement_tests.output.txt",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "name": "wardrobe_shop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 86,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 18.27,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log": "wardrobe_shop_ui_tests.output.txt",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "name": "windows_art_pack",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 111,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.89,
+      "script_sha256": "609410fb6d62528300f78c0f957ee57621d7c2438f33b259afeae3958909a770",
+      "log": "windows_art_pack.output.txt",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.56,
+      "script_sha256": "be27d0bc58276a1bac225492c8634a2a3f5338c2ce56c7515a3147a91bbeb601",
+      "log": "windows_contracts.output.txt",
+      "log_sha256": "09ced3760abcec7cb5d2d978fba529a7db656cede49dbb77a8b0b85e0ad6985d"
+    }
+  ],
+  "compiled_tests": [
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 124,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 124,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log_sha256": "f568393ed57eff00a1a5763cba7ca7d80004b133c09532bc1952ed62d84b5615"
+    },
+    {
+      "platform": "windows",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "linux",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 171,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 171,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "70e6adc298e03dc4555c98a35962a4d934fb35adf378670c4e22523aa5850ef8"
+    },
+    {
+      "platform": "windows",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "linux",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "windows",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "linux",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "411a5a5cbae9d047b83274e1c0691db4e65f67d3ed929e57041f1140b731e01b",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "609410fb6d62528300f78c0f957ee57621d7c2438f33b259afeae3958909a770",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "609410fb6d62528300f78c0f957ee57621d7c2438f33b259afeae3958909a770",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    }
+  ],
+  "native_renderer": {
+    "couture_ui_tests": {
+      "assertions": 25,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/anatomie_tenue_simple.webp",
+          "bytes": 73864,
+          "sha256": "7b4b0641937d907d99b83dcf1fc168feaf513bf023da425c76c1b2e992da61f0",
+          "original_png_sha256": "6904479dd48529ac7e3626b4c71bb32e33886409c67fc26340e7a25e1abd0ec8",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/boutique_madison_compacte.webp",
+          "bytes": 34398,
+          "sha256": "bc6872ba70b3f9f4190b5019f4b9387b8074364c86663e8f793719a35b0def16",
+          "original_png_sha256": "76f76e8cd1e4d94c0a5a491ee939e9be7c0eb4a7ff08ca9749422f8f4d33e88f",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/boutique_robe_madison.webp",
+          "bytes": 97782,
+          "sha256": "fb06e9bd295bfd59e8ad47decca57701d8606c608980bd39da4554fed4e4631a",
+          "original_png_sha256": "8142b9aebcb0e2e3c9a7c27e6e46b83221130b4e445b69846694eed89880aabe",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/madison_dos.webp",
+          "bytes": 80062,
+          "sha256": "a86f66e85ad288bdf19465801cbbf551c4ff7d06e6c2db94fdeddedd4ac280c2",
+          "original_png_sha256": "33a27b55c2701b4c6effe2b3bd9fa0b953d7a65e6cdd846ef3d4a43401dfda7b",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/madison_face.webp",
+          "bytes": 80282,
+          "sha256": "7700fcba3459a7167e04d6a907cab69b505e5d0bbedbc795b97d7c92a1002ae8",
+          "original_png_sha256": "f18fe03ef0eb20246a2bf57317b02e6f6bfaa7d1987062e2de9b112b014e801c",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/madison_trois_quarts.webp",
+          "bytes": 79566,
+          "sha256": "30cd5ce73e77906ac1f5240facee3ede9c23d4e1655b55dd34fe1d6fe7c4b75e",
+          "original_png_sha256": "6547f636e47b2831bdb1445e0dea4b17e04fe656b816ec205ff5e3c59175f05e",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/couture_ui_tests/madison_visage.webp",
+          "bytes": 94038,
+          "sha256": "3317c09e350c97828ba7755680a78bdc3c93e4c78fe63993f03c84c6cda5759f",
+          "original_png_sha256": "480df9d896056f81897e6601dc0cff73fa00c10d29b6a7457222fcf9758df74c",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "df6ec6cafb47d92e2ea18df50dd75711f8e34f26c0c580259e224f71bc000e83",
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "d3bd0019c1a748d7a4fa1047f3653abeb32e3fc389e4fc6599a49947321cab8a",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original engine PNG."
+    },
+    "character_ui_tests": {
+      "assertions": 136,
+      "failures": 0,
+      "exit_code": 0,
+      "unexpected_errors": [],
+      "ok": true,
+      "backend": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+      "host": "Linux x86_64, exported ARM64 embedded pack loaded by host Godot",
+      "native_arm64_execution": false,
+      "native_windows_execution": false,
+      "physical_controller_tested": false,
+      "perceived_audio_tested": false,
+      "captures": [
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/chapeau_paille_pantalon_ballon.webp",
+          "bytes": 72232,
+          "sha256": "b39e3037b6da13a198c50acfc4fcdc93b7180102a169ea4c2dd4284ad75521ca",
+          "original_png_sha256": "5f13a0971c94d61e69ded4c8b64f96bfcd5e3bf83821dad7b1a4153154d5173f",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/configurateur_visage.webp",
+          "bytes": 76240,
+          "sha256": "222d35e4f6ebb18324dd8c458a3b677452464377f0ff5c293932d54a41c9c969",
+          "original_png_sha256": "ac6118da570a9834183dd3fea7e3d9f8bd2490a7a6b20fff14fe5f41b269e89a",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/dressing_casquette_baggy.webp",
+          "bytes": 71890,
+          "sha256": "77a263870211eac436721796544fb6882c74401e69043c1f12dc9d287bb17028",
+          "original_png_sha256": "423f5e505060c188e962f662970034125eb7efe24f82be251482f55e47905b79",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/dressing_compact.webp",
+          "bytes": 51104,
+          "sha256": "307188bfa696653de52ed1a8d5ad005c560ba21783cf49b5b50659032c350858",
+          "original_png_sha256": "5eb58b2f39fe41e8e90e2c847ab263aab695fdc8907060ba9913b5c62096dc5f",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/marche_clavier_de_dos.webp",
+          "bytes": 39886,
+          "sha256": "29d7fa83178a34bd50995d91b5ab9a44e62e07da88cfa912b0608d0a2b34c3c4",
+          "original_png_sha256": "a11063cf6e9a957c445f328bfda846f67822bdcf61f2037a635040fc252f62f8",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/marche_stick_314.webp",
+          "bytes": 40776,
+          "sha256": "be176c15feecf865d9947d607fabbd580fc87ab5d1869aa397e87c95547297ea",
+          "original_png_sha256": "329266c3afd7be255c051c4c71fa385a5d36c8138cee55f617c46e596d7f24b7",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/marche_stick_392.webp",
+          "bytes": 41296,
+          "sha256": "585f787d13480005fef1b95183b633cf7a1a4677fd9b7ff246f2fa1c222e2ad1",
+          "original_png_sha256": "1d7759659fede9c84d2141aa80ce8c35507d18b707ffac39160c1fb2287c3aef",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/marche_stick_471.webp",
+          "bytes": 39450,
+          "sha256": "8f80d1cee1a1b38f30711756e683848438b3923735e13532f1df8778539df852",
+          "original_png_sha256": "0bf3cff724eac30fd3710f745952c94ac4f4ec523e2bd0e8f0ce19dbd44d447a",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/marche_stick_628.webp",
+          "bytes": 40836,
+          "sha256": "1ff2b5f499946a0e1016998ebc892c1bd69f079922a3bd5b9afdc98b12bf11bc",
+          "original_png_sha256": "d4bd4f8bae1e64b49537d9b78463817b9465719c8ccf910a36561688fb87f455",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/personnage_3d_en_jeu.webp",
+          "bytes": 42030,
+          "sha256": "b5e1d2c97383a3e860b089914e7fe6084aac994e2edec2df73bcbc243a0bb3e3",
+          "original_png_sha256": "8e030b962da23184cb6dc13c4e7a229bfb4f1d3517c825cf172137d80fe358b6",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/pull_ample_3d.webp",
+          "bytes": 62966,
+          "sha256": "78643005c7e4bc501dcadabe5db2d1320384409debd8fd59762a8f6c35e81b1c",
+          "original_png_sha256": "7e780ab0a0c5f5050af0142e8497f25483b91aefd6891acec93a1fba09e408fc",
+          "lossless_roundtrip_verified": true
+        },
+        {
+          "file": "docs/screenshots/couture_0.35.0/character_ui_tests/test_personnage_collision_3d.webp",
+          "bytes": 23662,
+          "sha256": "01e35c53f84d0bd59d7de6b49d34182da8c4f52151bf12d3cb53684a5d7951be",
+          "original_png_sha256": "7ca98382127db520326b6d31c2901e99afd98858fe5679767407e9a9a7fb9159",
+          "lossless_roundtrip_verified": true
+        }
+      ],
+      "capture_selection": "all",
+      "driver_sha256": "1f8911c4870c9ae5fb9ce0cb3fc2b9ecb350bd90297b9559c9bdbfa068221377",
+      "script_sha256": "e3f335d71457b0e7dd66f8fef31b68d9ede23f96c2de9cbdf4ac57e7b24febf1",
+      "log_sha256": "698bd3690d7f311d27be5243642b6f65e224df999b3ea727e8c038284b94533c",
+      "capture_encoding": "Lossless WebP; exact RGBA comparison to original engine PNG."
+    }
+  },
+  "animation": {
+    "file": "docs/screenshots/couture_0.35.0/tenue_madison_marche.gif",
+    "sha256": "8216f48bd51a38a1c107aff9b96f7d04ac89d270e4c7af0f84dbe9b498c5ef41",
+    "frames": 16,
+    "duration_ms": 1000,
+    "source": "Native Godot frames with neutral background composited for GIF.",
+    "source_frames": [
+      {
+        "file": "walk_00.png",
+        "sha256": "af6d6627192da9236633756a58310ff7af9db88e4999887f0c95c24ddb75d7f9"
+      },
+      {
+        "file": "walk_01.png",
+        "sha256": "d4bebd4fc2a7681cb05baa4d21a48723c0d657095baa463d5fef44ec48505fa3"
+      },
+      {
+        "file": "walk_02.png",
+        "sha256": "f5ba857a91439801fb4fdad13c7cd93eed0d6314dadef0a10796071f83525cb7"
+      },
+      {
+        "file": "walk_03.png",
+        "sha256": "e63f785f719f871746cdeb7d38f7f54852ec37dffbdf1ec55a61ec9715e93883"
+      },
+      {
+        "file": "walk_04.png",
+        "sha256": "4a3509f95070bf049d2a5aa8cf94f58bcd364ad7d46320a355a344555e2c1ccc"
+      },
+      {
+        "file": "walk_05.png",
+        "sha256": "c7d9ac8eaec0266ae1b8d6a92f3d41c1590299d8bd23a9981c52820f636763f3"
+      },
+      {
+        "file": "walk_06.png",
+        "sha256": "47da5fee465f581e8019b746885a26a3ffb6944a6090816f1dfb50d1d3a6ce4a"
+      },
+      {
+        "file": "walk_07.png",
+        "sha256": "0e8f5167469d397fa36b062402e8295a913b69e6dc583f24a8c82f967ed3fa0e"
+      },
+      {
+        "file": "walk_08.png",
+        "sha256": "bcd604c5baef32c702c1de1a7aa5a55140dc6710c7bacf521939d476815a2fd8"
+      },
+      {
+        "file": "walk_09.png",
+        "sha256": "28fd211cc128b22da2fb971783de17fae4fe9127fa8020673c5a838d41e4a0d2"
+      },
+      {
+        "file": "walk_10.png",
+        "sha256": "70caf1f77c741ddd61701f982be050912b0943b5c954a905140c7f55af9e461d"
+      },
+      {
+        "file": "walk_11.png",
+        "sha256": "f8cf48810226693fbc8f66254c894e20132f20a2d571e30ecbcc9f2f0fecf8cb"
+      },
+      {
+        "file": "walk_12.png",
+        "sha256": "416eb0ee7a81e2441897c83c0bd0a7a099e036107354ef69ec83f5bd52f13d6e"
+      },
+      {
+        "file": "walk_13.png",
+        "sha256": "d2725218ff8407f669c36f7a69b964cdbed60ebad78f4d77f37d3a580b8a2389"
+      },
+      {
+        "file": "walk_14.png",
+        "sha256": "81f63c2690e72c2e30188a240fb7de78011bcd5f36eaa6e5642549ff321e8575"
+      },
+      {
+        "file": "walk_15.png",
+        "sha256": "82ab7a1026e4d173159dbd9ae7e01995ad7f5888baf9ff824e3419b94ee14010"
+      }
+    ]
+  },
+  "assets": {
+    "glb_sha256": "c6ef59794a5525ab9ed4a430a7d951c1511c22428dbd9fe84430a2537fbff002",
+    "source_blend_sha256": "87da355c44a1bd18968947d2fc1772207d0e3ab3ec3944e3959cd349d9f27087",
+    "generator_sha256": "9944e339ccf88a20e4ed35bbc7714b4e0a2365bf8b2c1edc8cb6086207848433",
+    "mesh_objects": 41,
+    "bones": 13,
+    "all_vertices_finite": true,
+    "vertices_checked": 64909,
+    "all_skin_weights_normalized": true,
+    "maximum_weight_sum_error": 5.960464477539063e-08,
+    "thumbnails_verified": 34,
+    "all_passed": true,
+    "reference": "User-provided outfit image, original local geometry; stylized interpretation."
+  },
+  "all_passed": true,
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "previous_archives_preserved": 158,
+  "fixed_collisions_preserved": true,
+  "packaging_assertions": 30,
+  "total_assertions": 1965
+}
