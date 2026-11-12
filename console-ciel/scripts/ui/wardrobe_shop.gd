@@ -113,7 +113,7 @@ func _select(item: Dictionary,update_cards:=true) -> void:
 	preview.configure(draft)
 	preview.focus_face(item.slot=="hair" or item.slot=="headwear")
 	if item.slot=="top":
-		preview.camera.size=1.0;preview.camera.position=Vector3(0,1.24,4);preview.camera.look_at(Vector3(0,1.18,0));preview.refresh()
+		preview.camera.size=1.65 if item.id=="madison" else 1.0;preview.camera.position=Vector3(0,1.0 if item.id=="madison" else 1.24,4);preview.camera.look_at(Vector3(0,.85 if item.id=="madison" else 1.18,0));preview.refresh()
 	elif item.slot in ["shoes","socks","trousers"]:
 		var framing={"shoes":[.12,.42],"socks":[.18,.55],"trousers":[.56,1.08]}[item.slot]
 		preview.camera.size=framing[1];preview.camera.position=Vector3(0,framing[0]+.15,4);preview.camera.look_at(Vector3(0,framing[0],0));preview.refresh()
@@ -170,6 +170,8 @@ func _equip() -> void:
 	feedback.visible=true
 static func _material(item: Dictionary) -> String:
 	if item.slot=="hair":return "Mèches et reflets doux"
+	if item.id=="madison":return "Maille ajustée · collants intégrés"
+	if item.id=="tights":return "Maille fine"
 	if item.slot=="top":return "Maille texturée" if item.id in ["sweater","cardigan"] else "Coton tissé"
 	if item.slot=="trousers":return "Denim texturé" if item.id=="baggy" else "Coton souple"
 	if item.slot=="socks":return "Maille côtelée"
