@@ -27,3 +27,9 @@ Le logo fourni du lycée Louise Michel de Ruffec (`lycee/logo_louise_michel.jpg`
 - **Personnage modulaire 0.32.0** (`character3d/character.glb`, `art_sources/character_modular.blend`) : modèle, coiffures, vêtements, chaussures et animations originaux créés dans Blender, **CC0 1.0** pour les créations graphiques. Générateur `tools/build_character_3d.py`, provenance et empreintes dans `character3d/manifest.json`. Squelette unique, aucun modèle téléchargé, texture photographique, marque ni logo intégré. Les gestes supplémentaires de démarche sont animés par le moteur.
 
 - **Matières et boutique 0.33.0** : huit cartes de détail procédurales originales (`character3d/materials/`), créées avec `tools/generate_character_materials.py`, et trente vignettes du modèle original rendues par Godot (`character3d/shop/`), générées avec `tools/bake_wardrobe_thumbnails.gd`. **CC0 1.0** pour ces graphismes originaux ; aucun modèle, photographie, logo ou texture externe. Les manifestes conservent les sources, paramètres et empreintes.
+
+Personnage et tenue 0.35.0 : géométrie et vêtements originaux créés localement dans Blender, CC0-1.0 pour les fichiers créés. La photo de référence fournie par l’utilisateur sert à guider la coupe ; elle n’est pas intégrée aux textures ni distribuée. La dénomination Madison indique l’inspiration, sans affiliation officielle. Voir `character3d/manifest.json`.
+
+## Quartier et intérieurs 3D (0.36.0)
+
+Géométries originales créées par script dans Blender 4.3.2 : `tools/build_campus_3d.py`, exportées dans `assets/campus3d/`. Aucun modèle commercial ni logo tiers. Sources, échelle, matériaux, collisions simples et empreintes sont consignés dans `assets/campus3d/manifest.json`. Mise à disposition CC0 comme les autres dessins originaux du projet.
