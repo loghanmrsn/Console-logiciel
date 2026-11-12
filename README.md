@@ -12,7 +12,7 @@
 
 Godot n’a pas besoin d’être installé pour jouer.
 
-## Télécharger pour Linux / Raspberry Pi
+## Télécharger pour Raspberry Pi
 
 **[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.34.0.zip)**
 
