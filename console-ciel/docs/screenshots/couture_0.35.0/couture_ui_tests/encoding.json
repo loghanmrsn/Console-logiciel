@@ -1,0 +1,65 @@
+[
+	{
+		"file": "anatomie_tenue_simple.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "7b4b0641937d907d99b83dcf1fc168feaf513bf023da425c76c1b2e992da61f0",
+		"source": "anatomie_tenue_simple.png",
+		"source_sha256": "6904479dd48529ac7e3626b4c71bb32e33886409c67fc26340e7a25e1abd0ec8",
+		"width": 1280
+	},
+	{
+		"file": "boutique_madison_compacte.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "bc6872ba70b3f9f4190b5019f4b9387b8074364c86663e8f793719a35b0def16",
+		"source": "boutique_madison_compacte.png",
+		"source_sha256": "76f76e8cd1e4d94c0a5a491ee939e9be7c0eb4a7ff08ca9749422f8f4d33e88f",
+		"width": 800
+	},
+	{
+		"file": "boutique_robe_madison.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "fb06e9bd295bfd59e8ad47decca57701d8606c608980bd39da4554fed4e4631a",
+		"source": "boutique_robe_madison.png",
+		"source_sha256": "8142b9aebcb0e2e3c9a7c27e6e46b83221130b4e445b69846694eed89880aabe",
+		"width": 1280
+	},
+	{
+		"file": "madison_dos.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "a86f66e85ad288bdf19465801cbbf551c4ff7d06e6c2db94fdeddedd4ac280c2",
+		"source": "madison_dos.png",
+		"source_sha256": "33a27b55c2701b4c6effe2b3bd9fa0b953d7a65e6cdd846ef3d4a43401dfda7b",
+		"width": 1280
+	},
+	{
+		"file": "madison_face.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "7700fcba3459a7167e04d6a907cab69b505e5d0bbedbc795b97d7c92a1002ae8",
+		"source": "madison_face.png",
+		"source_sha256": "f18fe03ef0eb20246a2bf57317b02e6f6bfaa7d1987062e2de9b112b014e801c",
+		"width": 1280
+	},
+	{
+		"file": "madison_trois_quarts.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "30cd5ce73e77906ac1f5240facee3ede9c23d4e1655b55dd34fe1d6fe7c4b75e",
+		"source": "madison_trois_quarts.png",
+		"source_sha256": "6547f636e47b2831bdb1445e0dea4b17e04fe656b816ec205ff5e3c59175f05e",
+		"width": 1280
+	},
+	{
+		"file": "madison_visage.webp",
+		"height": 900,
+		"lossless_roundtrip_verified": true,
+		"sha256": "3317c09e350c97828ba7755680a78bdc3c93e4c78fe63993f03c84c6cda5759f",
+		"source": "madison_visage.png",
+		"source_sha256": "480df9d896056f81897e6601dc0cff73fa00c10d29b6a7457222fcf9758df74c",
+		"width": 1280
+	}
+]
