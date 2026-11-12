@@ -1,0 +1,110 @@
+[
+	{
+		"file": "chapeau_paille_pantalon_ballon.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "b39e3037b6da13a198c50acfc4fcdc93b7180102a169ea4c2dd4284ad75521ca",
+		"source": "chapeau_paille_pantalon_ballon.png",
+		"source_sha256": "5f13a0971c94d61e69ded4c8b64f96bfcd5e3bf83821dad7b1a4153154d5173f",
+		"width": 1280
+	},
+	{
+		"file": "configurateur_visage.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "222d35e4f6ebb18324dd8c458a3b677452464377f0ff5c293932d54a41c9c969",
+		"source": "configurateur_visage.png",
+		"source_sha256": "ac6118da570a9834183dd3fea7e3d9f8bd2490a7a6b20fff14fe5f41b269e89a",
+		"width": 1280
+	},
+	{
+		"file": "dressing_casquette_baggy.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "77a263870211eac436721796544fb6882c74401e69043c1f12dc9d287bb17028",
+		"source": "dressing_casquette_baggy.png",
+		"source_sha256": "423f5e505060c188e962f662970034125eb7efe24f82be251482f55e47905b79",
+		"width": 1280
+	},
+	{
+		"file": "dressing_compact.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "307188bfa696653de52ed1a8d5ad005c560ba21783cf49b5b50659032c350858",
+		"source": "dressing_compact.png",
+		"source_sha256": "5eb58b2f39fe41e8e90e2c847ab263aab695fdc8907060ba9913b5c62096dc5f",
+		"width": 800
+	},
+	{
+		"file": "marche_clavier_de_dos.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "29d7fa83178a34bd50995d91b5ab9a44e62e07da88cfa912b0608d0a2b34c3c4",
+		"source": "marche_clavier_de_dos.png",
+		"source_sha256": "a11063cf6e9a957c445f328bfda846f67822bdcf61f2037a635040fc252f62f8",
+		"width": 800
+	},
+	{
+		"file": "marche_stick_314.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "be176c15feecf865d9947d607fabbd580fc87ab5d1869aa397e87c95547297ea",
+		"source": "marche_stick_314.png",
+		"source_sha256": "329266c3afd7be255c051c4c71fa385a5d36c8138cee55f617c46e596d7f24b7",
+		"width": 800
+	},
+	{
+		"file": "marche_stick_392.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "585f787d13480005fef1b95183b633cf7a1a4677fd9b7ff246f2fa1c222e2ad1",
+		"source": "marche_stick_392.png",
+		"source_sha256": "1d7759659fede9c84d2141aa80ce8c35507d18b707ffac39160c1fb2287c3aef",
+		"width": 800
+	},
+	{
+		"file": "marche_stick_471.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "8f80d1cee1a1b38f30711756e683848438b3923735e13532f1df8778539df852",
+		"source": "marche_stick_471.png",
+		"source_sha256": "0bf3cff724eac30fd3710f745952c94ac4f4ec523e2bd0e8f0ce19dbd44d447a",
+		"width": 800
+	},
+	{
+		"file": "marche_stick_628.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "1ff2b5f499946a0e1016998ebc892c1bd69f079922a3bd5b9afdc98b12bf11bc",
+		"source": "marche_stick_628.png",
+		"source_sha256": "d4bd4f8bae1e64b49537d9b78463817b9465719c8ccf910a36561688fb87f455",
+		"width": 800
+	},
+	{
+		"file": "personnage_3d_en_jeu.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "b5e1d2c97383a3e860b089914e7fe6084aac994e2edec2df73bcbc243a0bb3e3",
+		"source": "personnage_3d_en_jeu.png",
+		"source_sha256": "8e030b962da23184cb6dc13c4e7a229bfb4f1d3517c825cf172137d80fe358b6",
+		"width": 800
+	},
+	{
+		"file": "pull_ample_3d.webp",
+		"height": 720,
+		"lossless_roundtrip_verified": true,
+		"sha256": "78643005c7e4bc501dcadabe5db2d1320384409debd8fd59762a8f6c35e81b1c",
+		"source": "pull_ample_3d.png",
+		"source_sha256": "7e780ab0a0c5f5050af0142e8497f25483b91aefd6891acec93a1fba09e408fc",
+		"width": 1280
+	},
+	{
+		"file": "test_personnage_collision_3d.webp",
+		"height": 480,
+		"lossless_roundtrip_verified": true,
+		"sha256": "01e35c53f84d0bd59d7de6b49d34182da8c4f52151bf12d3cb53684a5d7951be",
+		"source": "test_personnage_collision_3d.png",
+		"source_sha256": "7ca98382127db520326b6d31c2901e99afd98858fe5679767407e9a9a7fb9159",
+		"width": 800
+	}
+]
