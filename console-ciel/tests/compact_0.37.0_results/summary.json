@@ -1,0 +1,454 @@
+{
+  "version": "0.37.0",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_suites": [
+    {
+      "name": "campus_3d_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 46,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 16.04,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log": "/workspace/console-ciel-compact-validation/regression/campus_3d_tests/run.log"
+    },
+    {
+      "name": "character_movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.46,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log": "/workspace/console-ciel-compact-validation/regression/character_movement_tests/run.log"
+    },
+    {
+      "name": "character_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 187,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.9,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log": "/workspace/console-ciel-compact-validation/regression/character_services_tests/run.log"
+    },
+    {
+      "name": "character_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 131,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 16.19,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log": "/workspace/console-ciel-compact-validation/regression/character_ui_tests/run.log"
+    },
+    {
+      "name": "compact_characters_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 72,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.71,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log": "/workspace/console-ciel-compact-validation/regression/compact_characters_tests/run.log"
+    },
+    {
+      "name": "couture_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 5.85,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log": "/workspace/console-ciel-compact-validation/regression/couture_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 2.25,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-compact-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.4,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "/workspace/console-ciel-compact-validation/regression/run_tests/run.log"
+    },
+    {
+      "name": "wardrobe_shop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 86,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 14.09,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log": "/workspace/console-ciel-compact-validation/regression/wardrobe_shop_ui_tests/run.log"
+    },
+    {
+      "name": "windows_art_pack",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 111,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.71,
+      "script_sha256": "9170a32efd15c1c19455a88f8cd6859eea7bbfe2cb0b42406624df48b41e82de",
+      "log": "/workspace/console-ciel-compact-validation/regression/windows_art_pack/run.log"
+    },
+    {
+      "name": "windows_contracts",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.89,
+      "script_sha256": "86d1556d6aa70a9dc22f1c86c7697b217cc6b821d75a456d72e9338a7b48fd5d",
+      "log": "/workspace/console-ciel-compact-validation/regression/windows_contracts/run.log"
+    }
+  ],
+  "compiled_suites": [
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 131,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log_sha256": "7429960492d3ca61d0e33e5b79ee8b4a51c7a00b7ab1be744eaf64b446fa926f"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 131,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log_sha256": "7429960492d3ca61d0e33e5b79ee8b4a51c7a00b7ab1be744eaf64b446fa926f"
+    },
+    {
+      "platform": "windows",
+      "name": "campus_3d_tests",
+      "assertions": 46,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log_sha256": "764d679cd56e826bef04532ba97d74de9d835744756095479626e22d863cdd34"
+    },
+    {
+      "platform": "linux",
+      "name": "campus_3d_tests",
+      "assertions": 46,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "4205e6c3ab0eba779e2f7322d0226dee1d9e534eee292d33f8448bad00603537",
+      "log_sha256": "2ce5559c03879a338f143249f6220e7487db2a7c583f23ea1ee5c905e4c04044"
+    },
+    {
+      "platform": "windows",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "linux",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 86,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e9f950806fc4d8bdc8cd9528cc252439c15759f9e056e85f8757044598272743",
+      "log_sha256": "a7f7171953dcf49a65626e5a5958738a18890d0ab2eab9ee0d3ab7b708b4080d"
+    },
+    {
+      "platform": "windows",
+      "name": "compact_characters_tests",
+      "assertions": 72,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log_sha256": "982863b4a61c6235e76e13d9ccb2e13839bed9dbb5bcbd3470aa5bf0ef209da2"
+    },
+    {
+      "platform": "linux",
+      "name": "compact_characters_tests",
+      "assertions": 72,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log_sha256": "982863b4a61c6235e76e13d9ccb2e13839bed9dbb5bcbd3470aa5bf0ef209da2"
+    },
+    {
+      "platform": "windows",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "linux",
+      "name": "couture_ui_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "8f819835cdd4c40576b1d7f253ada3184e2947f7292069c375d653a2d0005f95",
+      "log_sha256": "5163b27480a9bf33bedf5308549f2996e6e7aa6bc470c953f801322442a421e9"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9170a32efd15c1c19455a88f8cd6859eea7bbfe2cb0b42406624df48b41e82de",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9170a32efd15c1c19455a88f8cd6859eea7bbfe2cb0b42406624df48b41e82de",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 187,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "9ccd25d43d5cbbcce671878f42440c21418caaf5b700808add9535fe8f24e141"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 187,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "9ccd25d43d5cbbcce671878f42440c21418caaf5b700808add9535fe8f24e141"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "linux",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    }
+  ],
+  "native_assertions": 81,
+  "package_checks": 30,
+  "asset_checks": {
+    "models": [
+      {
+        "model": "classic",
+        "sha256": "fb92d60b88fa829f9ec05dfd439be2efc23c53295bbc0f3176e8a8f9a3f68e0b",
+        "vertices_checked": 66389,
+        "bones": 13,
+        "meshes": 44,
+        "maximum_weight_error": 5.960464477539063e-08,
+        "all_passed": true
+      },
+      {
+        "model": "human",
+        "sha256": "eae17db2076e60846a209a78c55f9d3a9e7315047c92602e2f71e4cb12462d66",
+        "vertices_checked": 67437,
+        "bones": 13,
+        "meshes": 44,
+        "maximum_weight_error": 5.960464477539063e-08,
+        "all_passed": true
+      },
+      {
+        "model": "rabbit",
+        "sha256": "bb9551c93c8d4b83749354de2d689ba0f5b5429fe5dfb1aa05be26db300f22f5",
+        "vertices_checked": 67621,
+        "bones": 13,
+        "meshes": 44,
+        "maximum_weight_error": 5.960464477539063e-08,
+        "all_passed": true
+      }
+    ],
+    "thumbnails_verified": 37,
+    "all_passed": true
+  },
+  "captures": [
+    {
+      "file": "docs/screenshots/compact_0.37.0/boutique_accessoires.webp",
+      "sha256": "c7f8b792577917f193fb5a85711cf077cbe8ae3008b6dcd87172066daa104c6b",
+      "width": 800,
+      "height": 480,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/dressing_compact_800.webp",
+      "sha256": "759ca26428f7dd9375a77f379f9be84a844da001062a31b5df1eaa47cf4a631f",
+      "width": 800,
+      "height": 480,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/humain_compact.webp",
+      "sha256": "7d0a98da00e7922bf5c7a6dcbbfce799fbbd2c3734e1ed8284a1ec2d4c16b045",
+      "width": 1280,
+      "height": 900,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/humain_lunettes.webp",
+      "sha256": "a3c926b4ccb778c2c372c4d3e884c1db209df594d02bdbd2b0078c443a5bcd7f",
+      "width": 1280,
+      "height": 900,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/lapin_dans_le_quartier.webp",
+      "sha256": "3f3b6e60e0652ebf7a7b87924225ee6494473bd0f1483ad370f531778e1ca8a7",
+      "width": 800,
+      "height": 480,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/lapin_echarpe.webp",
+      "sha256": "57af90b7a48514fba23a0a89d7f609853145678ddb90950e9c9d50c84219062d",
+      "width": 1280,
+      "height": 900,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/compact_0.37.0/lapin_sac_a_dos.webp",
+      "sha256": "8e95621b4f427734f056285ea27e01b72f78fa6c28cf7ebe4447d43ceec3c04d",
+      "width": 1280,
+      "height": 900,
+      "lossless": true
+    }
+  ],
+  "native_renderer": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "perceived_audio_tested": false,
+  "all_passed": true,
+  "old_archives_preserved": 166,
+  "total_assertions": 2498
+}
