@@ -6,7 +6,7 @@ signal navigation_changed
 const Catalog=preload("res://scripts/services/character_catalog.gd")
 const View=preload("res://scripts/character/character_view.gd")
 const ButtonType=preload("res://scripts/ui/translucent_button.gd")
-const PAGES=["Visage","Coiffure","Hauts","Pantalons","Couvre-chefs","Chaussettes","Chaussures"]
+const PAGES=["Visage","Coiffure","Hauts","Pantalons","Couvre-chefs","Chaussettes","Chaussures","Accessoires"]
 var draft: Dictionary
 var saved: Dictionary
 var page:=0
@@ -19,6 +19,7 @@ var balance: Label
 var buy: Button
 var apply: Button
 var dirty:=false
+var model_selector: OptionButton
 func _ready() -> void:
 	name="character_configurator"
 	saved=CharacterService.current().appearance
@@ -27,6 +28,11 @@ func _ready() -> void:
 	var title=Label.new();title.text="Mon personnage 3D";title.add_theme_font_size_override("font_size",28);add_child(title)
 	grid=GridContainer.new();grid.columns=2;grid.add_theme_constant_override("h_separation",24);add_child(grid)
 	var left=VBoxContainer.new();left.size_flags_horizontal=Control.SIZE_EXPAND_FILL;grid.add_child(left)
+	model_selector=OptionButton.new();model_selector.name="character_model";model_selector.custom_minimum_size.y=44
+	for id in Catalog.MODELS:
+		model_selector.add_item(Catalog.MODELS[id]);model_selector.set_item_metadata(model_selector.item_count-1,id)
+	model_selector.item_selected.connect(func(index):draft.model=model_selector.get_item_metadata(index);_page())
+	left.add_child(model_selector)
 	var stage=PanelContainer.new();left.add_child(stage)
 	view=View.new();view.name="character_preview";view.custom_minimum_size=Vector2(240,300);stage.add_child(view)
 	var rotate=HBoxContainer.new();left.add_child(rotate)
@@ -36,7 +42,7 @@ func _ready() -> void:
 	_button(rotate,"Marche",func():
 		view.focus_face(false)
 		view.set_motion(not view.walking and not SettingsService.current.reduce_motion,Vector2(sin(view.heading),cos(view.heading))),"character_animate")
-	var body=Label.new();body.text="1,70 m · gabarit standard fixe";body.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;body.add_theme_font_size_override("font_size",14);left.add_child(body)
+	var body=Label.new();body.text="Silhouette fixe · tenue personnalisable";body.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;body.add_theme_font_size_override("font_size",14);left.add_child(body)
 	var right=VBoxContainer.new();right.size_flags_horizontal=Control.SIZE_EXPAND_FILL;right.custom_minimum_size.x=290;grid.add_child(right)
 	var tabs=OptionButton.new();tabs.name="character_category";tabs.custom_minimum_size.y=44
 	for title_ in PAGES:tabs.add_item(title_)
@@ -52,6 +58,9 @@ func _ready() -> void:
 	_button(right,"Essayer la tenue Madison",func():
 		draft=Catalog.madison_appearance();page=2;find_child("character_category",true,false).select(2)
 		_page();view.focus_face(false),"character_madison")
+	_button(right,"Essayer le lapin à écharpe",func():
+		draft=Catalog.rabbit_appearance();page=0;find_child("character_category",true,false).select(0)
+		_page(),"character_rabbit")
 	_button(right,"Marcher en 3D",func():walk_requested.emit(),"character_walk")
 	_button(left,"Retour",func():close_requested.emit(),"character_back")
 	var hint=Label.new();hint.text="Les achats utilisent uniquement les points gagnés en jeu. Aucun argent réel.";hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;hint.add_theme_font_size_override("font_size",13);right.add_child(hint)
@@ -70,18 +79,22 @@ func _choice(label_: String,field: String,values: Array,names: Dictionary={}) ->
 	options.selected=maxi(0,values.find(draft[field]))
 	options.item_selected.connect(func(index):draft[field]=options.get_item_metadata(index);_changed())
 	controls.add_child(options)
-func _slot() -> String: return ["","hair","top","trousers","headwear","socks","shoes"][page]
+func _slot() -> String: return ["","hair","top","trousers","headwear","socks","shoes","accessory"][page]
 func _page() -> void:
-	view.focus_face(page==0)
+	model_selector.select(Catalog.MODELS.keys().find(draft.model))
+	view.focus_face(false)
 	var focus=get_viewport().gui_get_focus_owner()
 	var focus_id=str(focus.name) if focus!=null and controls.is_ancestor_of(focus) else ""
 	for child in controls.get_children():controls.remove_child(child);child.queue_free()
 	if page==0:
-		_choice("Teint","skin",Catalog.SKIN.keys(),{"porcelain":"Porcelaine","light":"Clair","warm":"Doré","tan":"Mat","brown":"Brun","deep":"Profond"})
+		if draft.model=="rabbit":_choice("Pelage","fur",Catalog.FUR.keys(),{"ivory":"Ivoire","sand":"Sable","grey":"Gris","cocoa":"Cacao","charcoal":"Anthracite"})
+		else:_choice("Teint","skin",Catalog.SKIN.keys(),{"porcelain":"Porcelaine","light":"Clair","warm":"Doré","tan":"Mat","brown":"Brun","deep":"Profond"})
 		_choice("Forme des yeux","eyes",Catalog.EYES,{"almond":"Amande","round":"Arrondis","soft":"Doux"})
 		_choice("Couleur des yeux","eye_color",Catalog.EYE_COLORS.keys(),{"brown":"Marron","hazel":"Noisette","green":"Vert","blue":"Bleu","grey":"Gris"})
 		_choice("Sourire","smile",Catalog.SMILES,{"soft":"Léger","wide":"Souriant","neutral":"Neutre"})
-		_choice("Couleur des lèvres","lips",Catalog.LIPS.keys(),{"natural":"Naturel","rose":"Rose","peach":"Pêche","berry":"Prune","brown":"Brun"})
+		_choice("Museau et sourire" if draft.model=="rabbit" else "Couleur des lèvres","lips",Catalog.LIPS.keys(),{"natural":"Naturel","rose":"Rose","peach":"Pêche","berry":"Prune","brown":"Brun"})
+	elif page==1 and draft.model=="rabbit":
+		var note=Label.new();note.text="Le lapin garde ses grandes oreilles. Choisissez son pelage dans Visage, ou essayez un couvre-chef.";note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;controls.add_child(note)
 	else:
 		var slot=_slot();var ids=[];var names_={}
 		for entry in Catalog.ITEMS:
