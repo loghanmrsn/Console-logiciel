@@ -1,5 +1,5 @@
 CONSOLE CIEL — LINUX ARM64 POUR RASPBERRY PI 4
-Logiciel 0.36.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
+Logiciel 0.37.0 — Godot 4.6.3 stable — rendu Compatibility / OpenGL ES 3
 
 DÉMARRER
 1. Utilisez Raspberry Pi OS 64 bits avec bureau, sur votre Raspberry Pi 4.
@@ -314,7 +314,7 @@ Boutique → Dressing 3D : catégories, recherche, articles gratuits ou disponib
 MARCHE NATURELLE — 0.34.0
 Correction des rotations qui couchaient le personnage pendant la marche. Les poses sont remises à zéro à chaque image ; le personnage reste debout en marchant, en tournant et à l’arrêt, y compris après une animation assise. L’ancienne démarche bancale n’est plus proposée. Apparence, achats et progression conservés.
 
-PERSONNAGE ET TENUE MADISON — 0.36.0
+PERSONNAGE ET TENUE MADISON — 0.37.0
 Silhouette adulte remodelée, mains avec doigts, visage sculpté et coupes de vêtements affinées. Mon personnage 3D → Essayer la tenue Madison : robe grise, manches séparées, collants intégrés, chignon avec mèches et escarpins à brides. Trois articles, 230 points de mission au total. Essayage gratuit puis achat et enregistrement avec les services existants. Les collants seuls se trouvent aussi dans Pantalons.
 
 Depuis l’accueil : Explorer le quartier et le lycée en 3D. Déplacez-vous au clavier ou au joystick, approchez un objet puis utilisez Interagir. La surveillante accompagne le joueur à l’atelier en 2,7 secondes. Échap ouvre la pause.
