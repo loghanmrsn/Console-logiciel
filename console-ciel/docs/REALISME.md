@@ -116,3 +116,6 @@ Sources : `tools/build_character_3d.py` et `art_sources/character_modular.blend`
 ## Parcours en vraie 3D — 0.36.0
 
 Le quartier, l’accueil et l’atelier disposent maintenant d’un parcours 3D distinct, avec le personnage du dressing, des collisions et des interactions. Voir [les sources, commandes et limites](CAMPUS_3D.md). Les sections précédentes décrivent les décors historiques de l’enquête.
+# Petits personnages 0.37.0
+
+Deux silhouettes compactes en vraie 3D, humain et lapin, reprennent les proportions des nouvelles références. La silhouette classique reste disponible. [Modèles, personnalisation et provenance](COMPACT_CHARACTERS.md).
