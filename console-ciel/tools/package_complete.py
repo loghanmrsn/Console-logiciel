@@ -30,7 +30,7 @@ def excluded(path: Path, project: Path) -> str:
     relative = path.relative_to(project)
     if any(part in EXCLUDED_DIRS or part.startswith('.runtime-') for part in relative.parts):
         return 'cache ou sauvegarde personnelle'
-    if relative.parts[:3] in {('docs', 'screenshots', 'refonte'), ('docs', 'screenshots', 'finition'), ('docs', 'screenshots', 'graphics_0.26.0'), ('docs', 'screenshots', 'personnage3d_0.32.0'), ('docs', 'screenshots', 'realisme_0.28.0'), ('docs', 'screenshots', 'boutique_0.33.0'), ('docs', 'screenshots', 'traffic_0.13.0'), ('docs', 'screenshots', 'marche_0.34.0'), ('docs', 'screenshots', 'campus_0.25.0'), ('docs', 'screenshots', 'facades_0.19.1')}:
+    if relative.parts[:3] in {('docs', 'screenshots', 'refonte'), ('docs', 'screenshots', 'finition'), ('docs', 'screenshots', 'graphics_0.26.0'), ('docs', 'screenshots', 'personnage3d_0.32.0'), ('docs', 'screenshots', 'realisme_0.28.0'), ('docs', 'screenshots', 'boutique_0.33.0'), ('docs', 'screenshots', 'traffic_0.13.0'), ('docs', 'screenshots', 'marche_0.34.0'), ('docs', 'screenshots', 'campus_0.25.0'), ('docs', 'screenshots', 'facades_0.19.1'), ('docs', 'screenshots', 'couture_0.35.0'), ('docs', 'screenshots', 'campus3d_0.36.0'), ('docs', 'screenshots', 'polish_0.19.0'), ('docs', 'screenshots', 'npc_polish_0.16.0'), ('docs', 'screenshots', 'bibliotheque_0.5.0'), ('docs', 'screenshots', 'loop_0.24.3'), ('docs', 'screenshots', 'navigation_0.4.1'), ('docs', 'screenshots', 'accueil_0.30.0')}:
         return 'galerie historique conservée dans le dépôt et les anciennes archives ; voir docs/ARCHIVE_COMPLETE.md'
     if path.suffix.lower() in {'.zip', '.tpz'}:
         return 'archive imbriquée ou modèles régénérables'
