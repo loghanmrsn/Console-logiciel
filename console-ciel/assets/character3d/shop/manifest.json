@@ -1,17 +1,117 @@
 {
 	"engine": "4.6.3-stable (official)",
-	"generator_sha256": "fbda22cdfa6129c7f5d17213c38ee2c58adbc3ed6a81a0c913b5ba71fd5d251e",
+	"generator_sha256": "fb75464883233d0f6bf932fcadf9e92593c63849a43b3eb5d1d9d4fc84eda88b",
 	"items": {
-		"hair/bun_high": {
+		"accessory/backpack": {
 			"appearance": {
+				"accessory": "backpack",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
+				"gait": "natural",
+				"hair": "short",
+				"hair_color": "brown",
+				"headwear": "none",
+				"headwear_color": "black",
+				"lips": "natural",
+				"model": "human",
+				"shoes": "canvas",
+				"shoes_color": "white",
+				"skin": "warm",
+				"smile": "soft",
+				"socks": "socks",
+				"socks_color": "white",
+				"top": "tee",
+				"top_color": "blue",
+				"trousers": "regular",
+				"trousers_color": "black"
+			},
+			"file": "accessory_backpack.webp",
+			"sha256": "2a2a9c6303168e709ead15db81f2877879c87669ee450b953cd5f7a498983a6b",
+			"size": [
+				256,
+				256
+			]
+		},
+		"accessory/glasses": {
+			"appearance": {
+				"accessory": "glasses",
+				"accessory_color": "red",
+				"eye_color": "brown",
+				"eyes": "almond",
+				"fur": "ivory",
+				"gait": "natural",
+				"hair": "short",
+				"hair_color": "brown",
+				"headwear": "none",
+				"headwear_color": "black",
+				"lips": "natural",
+				"model": "human",
+				"shoes": "canvas",
+				"shoes_color": "white",
+				"skin": "warm",
+				"smile": "soft",
+				"socks": "socks",
+				"socks_color": "white",
+				"top": "tee",
+				"top_color": "blue",
+				"trousers": "regular",
+				"trousers_color": "black"
+			},
+			"file": "accessory_glasses.webp",
+			"sha256": "31f4cfd352259faa85dc69547ffe24eef4b24b88cb537a4a1fd78967dda7d0dd",
+			"size": [
+				256,
+				256
+			]
+		},
+		"accessory/scarf": {
+			"appearance": {
+				"accessory": "scarf",
+				"accessory_color": "red",
+				"eye_color": "brown",
+				"eyes": "almond",
+				"fur": "ivory",
+				"gait": "natural",
+				"hair": "short",
+				"hair_color": "brown",
+				"headwear": "none",
+				"headwear_color": "black",
+				"lips": "natural",
+				"model": "human",
+				"shoes": "canvas",
+				"shoes_color": "white",
+				"skin": "warm",
+				"smile": "soft",
+				"socks": "socks",
+				"socks_color": "white",
+				"top": "tee",
+				"top_color": "blue",
+				"trousers": "regular",
+				"trousers_color": "black"
+			},
+			"file": "accessory_scarf.webp",
+			"sha256": "10814f48d569d33760752cd46c7ef45a93803da152e06811677dd69637cb067b",
+			"size": [
+				256,
+				256
+			]
+		},
+		"hair/bun_high": {
+			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
+				"eye_color": "brown",
+				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "bun_high",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -24,7 +124,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_bun_high.webp",
-			"sha256": "5a1ff85cf0bb7bd0c6871c048cf50c865abd9156900ff2578a6d7a8297d5ec5d",
+			"sha256": "54234d555c4c641ad9e7a04ffa59fda5557e97a5af8b37229e1aaa3ae422ba70",
 			"size": [
 				256,
 				256
@@ -32,14 +132,18 @@
 		},
 		"hair/bun_low": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "bun_low",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -52,7 +156,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_bun_low.webp",
-			"sha256": "ad820003a0978f4ca44afc8b97ec03ef3e724a0907e7962287b3b747d245ea18",
+			"sha256": "095b8d022382f834e08d4e3cdcfa80cfa243c660ecbcfd270ad1ee73807aa462",
 			"size": [
 				256,
 				256
@@ -60,14 +164,18 @@
 		},
 		"hair/buzz": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "buzz",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -80,7 +188,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_buzz.webp",
-			"sha256": "cfd76749a56a6d2b316c1c007908733caf0585ad1a4011b9d2f5358d36e7e4f0",
+			"sha256": "0b1098859c3584e49b837fdd9a650c272eb379bbfbfc47840058375642e81e34",
 			"size": [
 				256,
 				256
@@ -88,14 +196,18 @@
 		},
 		"hair/fringe_curly": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "fringe_curly",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -108,7 +220,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_fringe_curly.webp",
-			"sha256": "f5f64c4a1f43ca8e86b2f2439431301a6acd725d6c337db6f93b499a48700233",
+			"sha256": "c2e0b767253ee98560e2731b5ca397a8c658f06a7a8a0ede5a5a21c15fe61794",
 			"size": [
 				256,
 				256
@@ -116,14 +228,18 @@
 		},
 		"hair/fringe_straight": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "fringe_straight",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -136,7 +252,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_fringe_straight.webp",
-			"sha256": "eeff7ce13b1d5dc1d678519488f718669adf97060acfc37635e573236dabe56b",
+			"sha256": "db30ca518790707c09a8613ebc0392a706415f3069efba60bc57ab7c42374e2a",
 			"size": [
 				256,
 				256
@@ -144,14 +260,18 @@
 		},
 		"hair/long": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "long",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -164,7 +284,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_long.webp",
-			"sha256": "43f63b71c1e6960017b6ba2ec14d641647c0795d8bc9e497fc1de389d9ac3427",
+			"sha256": "add2c567a93eba5660c3c223adb6e3c48d55b1547665225dbc0aa7389202e592",
 			"size": [
 				256,
 				256
@@ -172,14 +292,18 @@
 		},
 		"hair/middlepart": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "middlepart",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -192,7 +316,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_middlepart.webp",
-			"sha256": "3e24caf3b0919d2a58ac013dd341f314f21a9a82a6365ae2e348c02f460ddaf4",
+			"sha256": "98d4f4a7a90f14ac523bc73d24900b343edfe4f2ac751c46590d6cbb69a67249",
 			"size": [
 				256,
 				256
@@ -200,14 +324,18 @@
 		},
 		"hair/mullet": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "mullet",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -220,7 +348,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_mullet.webp",
-			"sha256": "138150bf7764fc7b243d15e87c39bf63ba8c67621f406812325d4ad5d4e1cc98",
+			"sha256": "e58b3e00d61363173ebeb1368c325d3e04f6cba5fee5db08acf9b17dc661e780",
 			"size": [
 				256,
 				256
@@ -228,14 +356,18 @@
 		},
 		"hair/ponytails_long": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "ponytails_long",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -248,7 +380,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_ponytails_long.webp",
-			"sha256": "b0dd5961eac5f345a82d49bd8b2ef5a663b64ab423b5a3015b0c39b593438955",
+			"sha256": "11d1e62524bcdb2dac1733d841eb0d191285abd7b4c74f2c52afd39b988c274c",
 			"size": [
 				256,
 				256
@@ -256,14 +388,18 @@
 		},
 		"hair/ponytails_mid": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "ponytails_mid",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -276,7 +412,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_ponytails_mid.webp",
-			"sha256": "ed4c406d221638322da9ff6f96ffea0c847ef264fcfea496855381e048aa2aa7",
+			"sha256": "d4915758e5458d8817cdcf23ce237962d5494340a4c3dbffb1a704ffe2dfa547",
 			"size": [
 				256,
 				256
@@ -284,14 +420,18 @@
 		},
 		"hair/short": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -304,7 +444,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_short.webp",
-			"sha256": "eeff7ce13b1d5dc1d678519488f718669adf97060acfc37635e573236dabe56b",
+			"sha256": "db30ca518790707c09a8613ebc0392a706415f3069efba60bc57ab7c42374e2a",
 			"size": [
 				256,
 				256
@@ -312,14 +452,18 @@
 		},
 		"hair/sidepart": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "sidepart",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -332,7 +476,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_sidepart.webp",
-			"sha256": "eeff7ce13b1d5dc1d678519488f718669adf97060acfc37635e573236dabe56b",
+			"sha256": "db30ca518790707c09a8613ebc0392a706415f3069efba60bc57ab7c42374e2a",
 			"size": [
 				256,
 				256
@@ -340,14 +484,18 @@
 		},
 		"hair/updo": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "updo",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -360,7 +508,7 @@
 				"trousers_color": "black"
 			},
 			"file": "hair_updo.webp",
-			"sha256": "d39fe4484b3c5a684a16bf273dd0eec5c57fe9f4d07dde274f3a274456a18835",
+			"sha256": "79241217297e2316ef2129fabdb47a868afb3064cb5256c71ccbcd484605167a",
 			"size": [
 				256,
 				256
@@ -368,14 +516,18 @@
 		},
 		"headwear/cap_denim": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "cap_denim",
 				"headwear_color": "denim",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -388,7 +540,7 @@
 				"trousers_color": "black"
 			},
 			"file": "headwear_cap_denim.webp",
-			"sha256": "072a870ce485d935db8a6a0c2ed50116679f7bca4ad1ae6ff9116a82b26c6063",
+			"sha256": "b63d656164a4299951b99d091e7b056a6be9547af8ff4a60d497497b66fdb6cf",
 			"size": [
 				256,
 				256
@@ -396,14 +548,18 @@
 		},
 		"headwear/cap_flat": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "cap_flat",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -416,7 +572,7 @@
 				"trousers_color": "black"
 			},
 			"file": "headwear_cap_flat.webp",
-			"sha256": "26d6866d5fe9ef4c4c56ec36d6fe9598f152481e3e752aca5938922278250053",
+			"sha256": "777e267b2a1ea69db6e4334d1db150610e6093ab2acfe2b50c88164829c0c7b3",
 			"size": [
 				256,
 				256
@@ -424,14 +580,18 @@
 		},
 		"headwear/fedora": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "fedora",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -444,7 +604,7 @@
 				"trousers_color": "black"
 			},
 			"file": "headwear_fedora.webp",
-			"sha256": "814dc1d23ad3c6bb690b6bad45653fa5d420883c1ffa3ec976b8677df936d4f2",
+			"sha256": "47599a946de95855e45716bae2ffdc68ee8f8b8214e7894bd8e56b3d043f2d66",
 			"size": [
 				256,
 				256
@@ -452,14 +612,18 @@
 		},
 		"headwear/straw": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "straw",
 				"headwear_color": "cream",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -472,7 +636,7 @@
 				"trousers_color": "black"
 			},
 			"file": "headwear_straw.webp",
-			"sha256": "f586e174aad177cb76bd6124e2d55f486df24358a703fa6b07c29277c0812af8",
+			"sha256": "6537d6a3ce1f0700ee2a3e0001a20d4551a8e9a400b01b867c39e2518d612365",
 			"size": [
 				256,
 				256
@@ -480,14 +644,18 @@
 		},
 		"shoes/boots": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "boots",
 				"shoes_color": "brown",
 				"skin": "warm",
@@ -500,7 +668,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_boots.webp",
-			"sha256": "9f505890bd41035558a45e7fc4797e1a47233a4b49b6d649765759d352f3b464",
+			"sha256": "837fb377a9f2678d49473dbe01178d03944d1cc9c1170c5682d78e8cc958bca9",
 			"size": [
 				256,
 				256
@@ -508,14 +676,18 @@
 		},
 		"shoes/canvas": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -528,7 +700,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_canvas.webp",
-			"sha256": "d3f388250caac8232d8ed60e17c78bb1c112f39b15e56c0e216da701f0a65cb5",
+			"sha256": "bb03c6df73d65e77f4d5e3b73a3dbd88e547d7623d1b53d3cf7b50f7754a0027",
 			"size": [
 				256,
 				256
@@ -536,14 +708,18 @@
 		},
 		"shoes/court": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "court",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -556,7 +732,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_court.webp",
-			"sha256": "b26675a407efdf441b700015c7052e2754bfe8819e2f589e8f074d3774a1614c",
+			"sha256": "0dc0c0390553eae0bbb486b4d4116e4bc27515d33e54b7ef010d69fb6159f635",
 			"size": [
 				256,
 				256
@@ -564,14 +740,18 @@
 		},
 		"shoes/heels": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "heels",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -584,7 +764,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_heels.webp",
-			"sha256": "14fd4c72fed79b83274e294012ee85a0f34d403744a7267fdbdd23c6155410e2",
+			"sha256": "09e24f97c1797c2939290e8d0bdc9af0f3b64689c538483ec121d228fa3b9b2b",
 			"size": [
 				256,
 				256
@@ -592,14 +772,18 @@
 		},
 		"shoes/high": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "high",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -612,7 +796,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_high.webp",
-			"sha256": "1458107a658af60b30140e72cf8371f8b6b469528a28c84fd97ba664f3b5cb08",
+			"sha256": "b043958cca9486bd06c6388ccd039d764edfef59da83d181ea023aecd6517bd7",
 			"size": [
 				256,
 				256
@@ -620,14 +804,18 @@
 		},
 		"shoes/loafers": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "loafers",
 				"shoes_color": "brown",
 				"skin": "warm",
@@ -640,7 +828,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_loafers.webp",
-			"sha256": "901f2211ed233f345cf71b2d1ac8e2b3fed3ab53a4e70281f0e8bd2756689bac",
+			"sha256": "ff672f91a2319204f8e9bd14719d711fddd4a247e26953286eead482aa4c1bd6",
 			"size": [
 				256,
 				256
@@ -648,14 +836,18 @@
 		},
 		"shoes/runner": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "runner",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -668,7 +860,7 @@
 				"trousers_color": "black"
 			},
 			"file": "shoes_runner.webp",
-			"sha256": "21bdca02633bf61a052a24b157f281202110432d3e591f824a2b4401ec466cd9",
+			"sha256": "88cce8da50b05f8046f19d77ee62fde0a717c2ac91a00cc4e0ce1ae9f51669b0",
 			"size": [
 				256,
 				256
@@ -676,14 +868,18 @@
 		},
 		"socks/socks": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -696,7 +892,7 @@
 				"trousers_color": "black"
 			},
 			"file": "socks_socks.webp",
-			"sha256": "22d9e8cd57fe1d97bbdcb100016ffdec1174a0140bd8591670d30ea6ab009800",
+			"sha256": "4731cf51f73c3e136be7a7e23757a5137d7ba236040ad7b7186c7e838eddc7f3",
 			"size": [
 				256,
 				256
@@ -704,14 +900,18 @@
 		},
 		"top/cardigan": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -724,7 +924,7 @@
 				"trousers_color": "black"
 			},
 			"file": "top_cardigan.webp",
-			"sha256": "791f1b581637f757ce7d2a69f6f8080a104778801426064c724ac491dc0a2894",
+			"sha256": "be88c958c57d99b8530d3a967c2a00953b51cd64e6960c9c7202a41f8d9f0fe2",
 			"size": [
 				256,
 				256
@@ -732,14 +932,18 @@
 		},
 		"top/hoodie": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -752,7 +956,7 @@
 				"trousers_color": "black"
 			},
 			"file": "top_hoodie.webp",
-			"sha256": "a9c98f8aa8f5f0ac1dc5f315f78bb062fb30804377c8fb3a16d51921518a7aed",
+			"sha256": "f99ccd19fb5a006442633f13468528d89fabaac67f108df35775b247ea6113c4",
 			"size": [
 				256,
 				256
@@ -760,14 +964,18 @@
 		},
 		"top/madison": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -780,7 +988,7 @@
 				"trousers_color": "black"
 			},
 			"file": "top_madison.webp",
-			"sha256": "8aaa7cf68e499b1d20fb8c2ef557f13e618c00775824ecdb7f0e26e54c2da6c9",
+			"sha256": "c23e590da08f8eea8510b404ced4aa8a1b2808829901836779470eeb1e91e149",
 			"size": [
 				256,
 				256
@@ -788,14 +996,18 @@
 		},
 		"top/sweater": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -808,7 +1020,7 @@
 				"trousers_color": "black"
 			},
 			"file": "top_sweater.webp",
-			"sha256": "925263bf0bb784ef8ed1823347c56dea06838bece6f310be7058b48146a39099",
+			"sha256": "ed1cdb323ddc0858ffc445e96dcf97ce280ad61d306ba55c6200cc479f65a528",
 			"size": [
 				256,
 				256
@@ -816,14 +1028,18 @@
 		},
 		"top/tee": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -836,7 +1052,7 @@
 				"trousers_color": "black"
 			},
 			"file": "top_tee.webp",
-			"sha256": "9955117c671c678a81aad42cf98e48198dfe61c822010fbc8919884815b2ef89",
+			"sha256": "002cb49f10f064a807e57aab322c5f8b7338aeb366f26d401e256f4747533bb6",
 			"size": [
 				256,
 				256
@@ -844,14 +1060,18 @@
 		},
 		"trousers/baggy": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -864,7 +1084,7 @@
 				"trousers_color": "blue"
 			},
 			"file": "trousers_baggy.webp",
-			"sha256": "99ed48203345bad3372718093690d0c7a4f3ab8ee73c33a46543e173ee5363a8",
+			"sha256": "651ba4c692f082e78407902eb6de3aa9e6c1d26f0bd6acfa0fdd3cbf5527acf0",
 			"size": [
 				256,
 				256
@@ -872,14 +1092,18 @@
 		},
 		"trousers/balloon": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -892,7 +1116,7 @@
 				"trousers_color": "blue"
 			},
 			"file": "trousers_balloon.webp",
-			"sha256": "73bcf3c57b315c2a54fd25a474a38ebf87dfab589cade7fa71bca5524f17bc95",
+			"sha256": "cc321497f30ae6dd7a2fd4c8e18116efe8078dd3ed28976f35f6adbe73c18162",
 			"size": [
 				256,
 				256
@@ -900,14 +1124,18 @@
 		},
 		"trousers/regular": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -920,7 +1148,7 @@
 				"trousers_color": "blue"
 			},
 			"file": "trousers_regular.webp",
-			"sha256": "03eda6102c455bbc4d648e5cdb910d9c882c561d3368188b686a830d88622b32",
+			"sha256": "b11dab1db9ef814cb5bac818b1014e1a2b9d9865029112c0950ed623c7a5afa1",
 			"size": [
 				256,
 				256
@@ -928,14 +1156,18 @@
 		},
 		"trousers/tights": {
 			"appearance": {
+				"accessory": "none",
+				"accessory_color": "red",
 				"eye_color": "brown",
 				"eyes": "almond",
+				"fur": "ivory",
 				"gait": "natural",
 				"hair": "short",
 				"hair_color": "brown",
 				"headwear": "none",
 				"headwear_color": "black",
 				"lips": "natural",
+				"model": "human",
 				"shoes": "canvas",
 				"shoes_color": "white",
 				"skin": "warm",
@@ -948,7 +1180,7 @@
 				"trousers_color": "blue"
 			},
 			"file": "trousers_tights.webp",
-			"sha256": "787d9fa0444b988f3e5a347ebefec70bd5da7bce32c74b85f93e6fb40a122ba0",
+			"sha256": "1cb36549302c10eb425abbdff21ec84eb0c44cb6966e2d24581208eb5dde5ee6",
 			"size": [
 				256,
 				256
@@ -956,10 +1188,10 @@
 		}
 	},
 	"license": "CC0-1.0 original rendered artwork",
-	"material_factory_sha256": "8f7a3cb81b0e93161e84de256b3880ebc525d8e0b14df0a816c9d3245f64064c",
+	"material_factory_sha256": "334e904100111ad65cfb9b1f3db67f966d6d24cc34dae99591949ff9a5955e91",
 	"materials_sha256": "1f01783cac88db9a346ee24494222795c8fd415fadeb8fd315c8d46e4dce3351",
-	"model_sha256": "c6ef59794a5525ab9ed4a430a7d951c1511c22428dbd9fe84430a2537fbff002",
-	"shader_sha256": "e2e235abe7d5edb1390ecef03485d2e2dacb5ed684e5cfa5d9d279b70fc7ef43",
+	"model_sha256": "eae17db2076e60846a209a78c55f9d3a9e7315047c92602e2f71e4cb12462d66",
+	"shader_sha256": "f6a35487c0d4899c2f4f84a02697d31f77a41e2cd04a9b72dac02fa1650d878e",
 	"source": "Actual offscreen Godot Compatibility render; no external imagery or brand",
 	"version": 1
 }
