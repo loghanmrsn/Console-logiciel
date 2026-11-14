@@ -1,3 +1,17 @@
+# Livraison 0.37.0 — petits personnages et accessoires
+
+**Mon personnage 3D** propose un petit humain et un petit lapin : têtes rondes, corps courts, yeux expressifs, oreilles et pattes modelées. Ce sont des modèles articulés en vraie 3D, inspirés des deux références fournies. La silhouette classique reste disponible. Les anciens profils gardent leur apparence et leurs achats ; les nouveaux profils commencent avec le petit humain.
+
+**Essayer le lapin à écharpe** propose une tenue blanche et une écharpe rouge, gratuitement. La catégorie **Accessoires** ajoute un sac à dos à 45 points et des lunettes rondes à 35 points. Les coloris sont inclus. Le pelage, les yeux, le sourire, les vêtements et les couvre-chefs sont personnalisables. Les accessoires conviennent aux trois silhouettes sans rachat ; la capsule et les règles de déplacement restent identiques. L’aperçu du dressing conserve son rendu à la demande, avec rotation et zoom corrigés. Trente-sept vignettes sont précalculées.
+
+Le plugin Game Asset Production a été consulté ; sa commande `game-dev` étant absente, la modélisation et les contrôles utilisent Blender et Godot localement. Les skills GameDev ont été lus sur GitHub, sans installation dans le projet. [Production et utilisation](COMPACT_CHARACTERS.md) · [Captures natives](screenshots/compact_0.37.0/).
+
+2498 assertions réussies : 11 suites sources, 20 suites sur les packs Windows/ARM64, un parcours natif avec sept captures et 30 contrôles de livraison. Vérification des trois squelettes, des poids, des variantes, des empreintes et des vignettes. [Résultats détaillés](../tests/compact_0.37.0_results/summary.json).
+
+Les contrôles natifs utilisent Linux x86_64 et Mesa avec clavier et manette simulés. Windows, Raspberry Pi, la manette physique et le son restent à vérifier sur le matériel cible. Les 166 archives antérieures sont conservées. Les galeries historiques exclues des nouvelles archives sont conservées dans Git et leurs livraisons d’origine, conformément à [ARCHIVE_COMPLETE.md](ARCHIVE_COMPLETE.md).
+
+---
+
 # Livraison 0.36.0 — personnages et quartier 3D
 
 Le personnage et ses vêtements sont remodelés, avec proportions adultes, doigts, visage sculpté et tenue Madison. La nouvelle entrée **Explorer le quartier et le lycée en 3D** reprend l’apparence enregistrée : parvis, commerces, fontaine animée, accueil et atelier en volume. Surveillante blonde, conversations à deux choix, trajet par escalier droit de 2,7 secondes, diagnostics du poste informatique et de la baie réseau. Les murs restent blancs. Marche droite, virages progressifs, capsule fixe et respiration légère au repos. La réduction des animations et la navigation clavier/manette sont conservées.
