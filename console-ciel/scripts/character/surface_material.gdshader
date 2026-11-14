@@ -11,6 +11,7 @@ uniform bool capped = false;
 uniform bool skin_coverage = false;
 uniform bool evening_dress = false;
 uniform bool short_sleeves = false;
+uniform bool compact_body = false;
 varying vec3 surface_position;
 varying vec3 surface_normal;
 void vertex() {
@@ -20,11 +21,14 @@ void vertex() {
 void fragment() {
 	if (skin_coverage) {
 		float h = surface_position.y;
-		bool arm = abs(surface_position.x) > 0.18;
+		if (compact_body) {
+			h = h <= 0.30 ? h * (0.77 / 0.30) : (h <= 0.65 ? 0.77 + (h - 0.30) * (0.66 / 0.35) : 1.43 + (h - 0.65) / 1.85);
+		}
+		bool arm = abs(surface_position.x) > (compact_body ? 0.162 : 0.18);
 		if (!arm && h < (evening_dress ? 1.278 : 1.373)) { discard; }
 		if (arm && h > (evening_dress ? 0.853 : 0.863) && h < (evening_dress ? 1.210 : (short_sleeves ? 1.330 : 1.365)) && (!short_sleeves || h > 1.18)) { discard; }
 	}
-	if (capped && surface_position.y > 1.594) { discard; }
+	if (capped && surface_position.y > (compact_body ? .9534 : 1.594)) { discard; }
 	vec3 weights = pow(abs(normalize(surface_normal)), vec3(4.0));
 	weights /= max(weights.x + weights.y + weights.z, 0.001);
 	vec3 data = texture(detail_map, surface_position.yz * tile_scale).rgb * weights.x
