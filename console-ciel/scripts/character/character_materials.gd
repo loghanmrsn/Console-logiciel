@@ -12,7 +12,7 @@ const MAPS={
 	"hair":preload("res://assets/character3d/materials/hair.png")}
 static func kind(surface: String,a: Dictionary) -> String:
 	match surface:
-		"skin","lips":return "skin"
+		"skin","lips","fur":return "skin"
 		"hair":return "hair"
 		"top":return "knit" if a.top in ["sweater","cardigan","madison"] else "cotton"
 		"trousers":return "denim" if a.trousers=="baggy" else "cotton"
@@ -25,7 +25,8 @@ static func configure(material: ShaderMaterial,surface: String,color: Color,a: D
 	material.shader=ShaderSource
 	material.set_shader_parameter("tint",color)
 	material.set_shader_parameter("detail_map",MAPS[style])
-	material.set_shader_parameter("skin_coverage",surface=="skin")
+	material.set_shader_parameter("skin_coverage",surface in ["skin","fur"])
+	material.set_shader_parameter("compact_body",a.get("model","classic")!="classic")
 	material.set_shader_parameter("evening_dress",a.top=="madison")
 	material.set_shader_parameter("short_sleeves",a.top=="tee")
 	material.set_shader_parameter("capped",surface=="hair" and a.headwear!="none")
