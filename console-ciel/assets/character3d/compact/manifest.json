@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "CC0-1.0 original project geometry",
+  "engine": "Godot 4.6.3 Compatibility",
+  "blender": "4.3.2",
+  "source_sha256": "87da355c44a1bd18968947d2fc1772207d0e3ab3ec3944e3959cd349d9f27087",
+  "generator_sha256": "d518f39be4621b64afa4aa815fa14137aff213be9c50e515d90bc2606acc05f4",
+  "reference": "Two user-provided screenshots: compact human and white rabbit. Original 3D interpretation; no reference pixels or third-party meshes copied.",
+  "prompt": "Compact friendly 3D characters: large rounded head, short sturdy body, expressive dark eyes, brown swept hair or white rabbit ears. Warm matte materials, original unbranded modular clothes. Scarf, backpack and round glasses. Feet at origin, natural upright walk, one fixed gameplay capsule.",
+  "negative_prompt": "logos, copied textures, realistic adult facial microdetail, elongated limbs, ragdoll lean, variable collider scale",
+  "models": [
+    {
+      "id": "classic",
+      "file": "classic.glb",
+      "sha256": "fb92d60b88fa829f9ec05dfd439be2efc23c53295bbc0f3176e8a8f9a3f68e0b",
+      "all_variant_triangles": 117063,
+      "meshes": 44,
+      "bones": 13,
+      "animations": [
+        "walk",
+        "idle"
+      ]
+    },
+    {
+      "id": "human",
+      "file": "human.glb",
+      "sha256": "eae17db2076e60846a209a78c55f9d3a9e7315047c92602e2f71e4cb12462d66",
+      "all_variant_triangles": 118717,
+      "meshes": 44,
+      "bones": 13,
+      "animations": [
+        "walk",
+        "idle"
+      ]
+    },
+    {
+      "id": "rabbit",
+      "file": "rabbit.glb",
+      "sha256": "bb9551c93c8d4b83749354de2d689ba0f5b5429fe5dfb1aa05be26db300f22f5",
+      "all_variant_triangles": 118737,
+      "meshes": 44,
+      "bones": 13,
+      "animations": [
+        "walk",
+        "idle"
+      ]
+    }
+  ]
+}
