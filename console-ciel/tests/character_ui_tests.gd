@@ -168,7 +168,8 @@ func _run() -> void:
 func _upright(model: Node3D) -> bool:
 	var hips=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("hips"))
 	var head=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("head"))
-	return (model.basis*hips.basis.y).normalized().dot(Vector3.UP)>.99 and head.origin.y>hips.origin.y+.5
+	var expected_gap=.5 if model._model_id=="classic" else .25
+	return (model.basis*hips.basis.y).normalized().dot(Vector3.UP)>.99 and head.origin.y>hips.origin.y+expected_gap
 func _option(id: String,index: int) -> void:
 	var option=_find(id) as OptionButton
 	_check(option!=null,"Sélecteur natif : "+id)
