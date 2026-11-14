@@ -1,6 +1,6 @@
-# Console CIEL 0.36.0 — Raspberry Pi 4, Linux ARM64
+# Console CIEL 0.37.0 — Raspberry Pi 4, Linux ARM64
 
-[Télécharger le logiciel Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.36.0.zip). Cible : **Raspberry Pi 4, Raspberry Pi OS 64 bits avec bureau**, architecture **aarch64**. Bookworm ou Trixie à jour sont recommandés ; le binaire requiert des symboles jusqu’à **GLIBC 2.28**.
+[Télécharger le logiciel Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.37.0.zip). Cible : **Raspberry Pi 4, Raspberry Pi OS 64 bits avec bureau**, architecture **aarch64**. Bookworm ou Trixie à jour sont recommandés ; le binaire requiert des symboles jusqu’à **GLIBC 2.28**.
 
 Extraire tout le ZIP sur le Pi, ouvrir un terminal dans le dossier extrait, puis :
 
@@ -12,7 +12,7 @@ bash ./Installer_raccourci.sh
 
 Le véritable exécutable est **console-ciel.arm64**. Ses ressources sont intégrées ; Godot n’est pas nécessaire pour jouer. Garder le lanceur, **LIRE_MOI.txt**, les licences et **images_profil/** dans le même dossier. Le [guide Raspberry Pi](../docs/RASPBERRY_PI.md) décrit le lancement direct, les données, les images et les journaux.
 
-Le [projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.36.0.zip) réunit les sources et ce binaire sous `console-ciel/builds/linux-arm64-raspberry-pi-0.36.0/`. Les sources s’ouvrent dans Godot standard **4.6.3.stable.official.7d41c59c4**, rendu **Compatibility**. Le [paquet Windows 0.36.0](Console_CIEL_Windows_x86_64_campus3d_0.36.0.zip) et son projet complet restent conservés séparément.
+Le [projet complet Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.37.0.zip) réunit les sources et ce binaire sous `console-ciel/builds/linux-arm64-raspberry-pi-0.37.0/`. Les sources s’ouvrent dans Godot standard **4.6.3.stable.official.7d41c59c4**, rendu **Compatibility**. Le [paquet Windows 0.37.0](Console_CIEL_Windows_x86_64_compact_0.37.0.zip) et son projet complet restent conservés séparément.
 
 ## Jeu et données
 
@@ -22,7 +22,7 @@ Les sauvegardes sont généralement dans **`~/.local/share/console-ciel/`** ; Go
 
 ## Vérifications et essai sur le Pi
 
-Le [rapport ARM64](Console_CIEL_Raspberry_Pi_ARM64_0.36.0.verification.json) décrit le format ELF / AArch64, le pack embarqué, les fichiers livrés et les empreintes. Le [rapport du projet complet Raspberry Pi](Console_CIEL_Projet_Complet_Raspberry_Pi_0.36.0.verification.json) détaille son inventaire et son empreinte finale. Les contrôles de l’export sont distincts de l’exécution du pack avec Godot Linux x86_64.
+Le [rapport ARM64](Console_CIEL_Raspberry_Pi_ARM64_0.37.0.verification.json) décrit le format ELF / AArch64, le pack embarqué, les fichiers livrés et les empreintes. Le [rapport du projet complet Raspberry Pi](Console_CIEL_Projet_Complet_Raspberry_Pi_0.37.0.verification.json) détaille son inventaire et son empreinte finale. Les contrôles de l’export sont distincts de l’exécution du pack avec Godot Linux x86_64.
 
 Les résultats courants de la recette Windows et ARM64 sont consignés dans le [bilan de livraison](../docs/DELIVERY.md). Les résultats des anciennes versions restent distincts.
 
@@ -56,6 +56,8 @@ Décors Blender adaptés aux 40 bâtiments, grand panneau à enveloppe, fleurs, 
 
 La version **0.34.0** rétablit une marche naturelle : le personnage reste debout pendant les déplacements, les virages et les arrêts, y compris avec un profil existant.
 
-La version **0.36.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
+La version **0.37.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
 
 Depuis l’accueil : Explorer le quartier et le lycée en 3D. Déplacez-vous au clavier ou au joystick, approchez un objet puis utilisez Interagir. La surveillante accompagne le joueur à l’atelier en 2,7 secondes. Échap ouvre la pause.
+
+Les petits personnages humain et lapin se choisissent dans **Mon personnage 3D**. Le lapin à écharpe est gratuit ; la boutique propose également un sac à dos et des lunettes rondes. Les profils existants et leurs achats sont conservés.
