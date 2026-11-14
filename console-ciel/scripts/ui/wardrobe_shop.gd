@@ -5,8 +5,8 @@ const Catalog=preload("res://scripts/services/character_catalog.gd")
 const View=preload("res://scripts/character/character_view.gd")
 const Card=preload("res://scripts/ui/wardrobe_card.gd")
 const ButtonType=preload("res://scripts/ui/translucent_button.gd")
-const SLOTS=["top","trousers","headwear","shoes","hair","socks"]
-const TITLES=["Hauts","Pantalons","Couvre-chefs","Chaussures","Coiffures","Chaussettes"]
+const SLOTS=["top","trousers","headwear","shoes","hair","socks","accessory"]
+const TITLES=["Hauts","Pantalons","Couvre-chefs","Chaussures","Coiffures","Chaussettes","Accessoires"]
 var host: Control
 var category:=0
 var inventory:=0
@@ -82,6 +82,7 @@ func _rebuild() -> void:
 	var items=[];var record_=CharacterService.current()
 	for item in Catalog.ITEMS:
 		if item.id=="none" or item.slot!=SLOTS[category]:continue
+		if item.slot=="hair" and record_.appearance.model=="rabbit":continue
 		if inventory==1 and item.price!=0:continue
 		if inventory==2 and not Catalog.owned(record_,item):continue
 		if not search.text.strip_edges().is_empty() and not item.name.to_lower().contains(search.text.strip_edges().to_lower()):continue
@@ -96,6 +97,7 @@ func _rebuild() -> void:
 		card.configure(item,Catalog.owned(record_,item),a[item.slot]==item.id,not selected.is_empty() and selected.id==item.id)
 		card.pressed.connect(func():_select(item))
 	result_count.text="%d article(s) · %s"%[items.size(),TITLES[category]] if not items.is_empty() else "Aucun article ne correspond aux filtres."
+	if SLOTS[category]=="hair" and record_.appearance.model=="rabbit":result_count.text="Les coiffures sont proposées aux personnages humains. Le lapin personnalise son pelage dans Mon personnage 3D."
 	preview_panel.visible=not selected.is_empty()
 	if not selected.is_empty():_select(selected,false)
 	navigation_changed.emit()
@@ -117,6 +119,10 @@ func _select(item: Dictionary,update_cards:=true) -> void:
 	elif item.slot in ["shoes","socks","trousers"]:
 		var framing={"shoes":[.12,.42],"socks":[.18,.55],"trousers":[.56,1.08]}[item.slot]
 		preview.camera.size=framing[1];preview.camera.position=Vector3(0,framing[0]+.15,4);preview.camera.look_at(Vector3(0,framing[0],0));preview.refresh()
+	if draft.model!="classic" or item.slot=="accessory":
+		preview.focus_face(item.slot in ["hair","headwear"] or item.id=="glasses")
+		preview.heading=PI-.35 if item.id=="backpack" else .25
+		preview.refresh()
 	title.text=item.name
 	description.text=_material(item)+" · coloris inclus" if item.price>0 else _material(item)+" · disponible sans points"
 	for child in colors.get_children():colors.remove_child(child);child.queue_free()
@@ -169,6 +175,7 @@ func _equip() -> void:
 	else:feedback.text=result.error
 	feedback.visible=true
 static func _material(item: Dictionary) -> String:
+	if item.slot=="accessory":return {"scarf":"Maille douce","backpack":"Toile et poche extérieure","glasses":"Monture ronde"}.get(item.id,"Accessoire")
 	if item.slot=="hair":return "Mèches et reflets doux"
 	if item.id=="madison":return "Maille ajustée · collants intégrés"
 	if item.id=="tights":return "Maille fine"
