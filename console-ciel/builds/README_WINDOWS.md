@@ -1,10 +1,10 @@
-# Console CIEL 0.36.0 — Windows x86_64
+# Console CIEL 0.37.0 — Windows x86_64
 
-[Télécharger Windows 0.36.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_campus3d_0.36.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
+[Télécharger Windows 0.37.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_compact_0.37.0.zip). Choisir **Extraire tout**, puis ouvrir **Console_CIEL.exe** à la racine du dossier extrait. Garder l’aide, les licences et **images_profil/** à côté de l’exécutable. Godot n’est pas nécessaire pour jouer.
 
 Avec **Code → Download ZIP**, extraire aussi le ZIP Windows dans `console-ciel/builds/`. Le paquet contient le véritable EXE avec ses ressources intégrées, sans pointeur Git LFS.
 
-Le [projet complet Windows 0.36.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.36.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-campus3d-0.36.0/Console_CIEL.exe`.
+Le [projet complet Windows 0.37.0](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.37.0.zip) réunit sources et logiciel. Après extraction : `console-ciel/builds/windows-x86_64-compact-0.37.0/Console_CIEL.exe`.
 
 ## Chapitre 3 — atelier du code
 
@@ -14,7 +14,7 @@ Les treize missions de l’enquête rapportent **50 points à leur première ré
 
 ## Rapports et essai sur votre PC
 
-Le [rapport Windows 0.36.0](Console_CIEL_Windows_x86_64_campus3d_0.36.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.36.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
+Le [rapport Windows 0.37.0](Console_CIEL_Windows_x86_64_compact_0.37.0.verification.json) et le [rapport du projet complet Windows](Console_CIEL_Projet_Complet_Windows_0.37.0.verification.json) décrivent le contenu et les empreintes. [Bilan des vérifications](../docs/DELIVERY.md).
 
 Les tests des ressources compilées utilisent Godot **Linux** et des données isolées ; ils ne constituent pas un lancement natif de l’EXE Windows. Le double-clic, le son et une manette USB physique restent à essayer sur votre PC. [Guide Windows](../docs/WINDOWS.md). Les anciennes livraisons sont conservées séparément sur GitHub.
 
@@ -86,6 +86,8 @@ Décors Blender adaptés aux 40 bâtiments, grand panneau à enveloppe, fleurs, 
 
 La version **0.34.0** rétablit une marche naturelle : le personnage reste debout pendant les déplacements, les virages et les arrêts, y compris avec un profil existant.
 
-La version **0.36.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
+La version **0.37.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
 
 Depuis l’accueil : Explorer le quartier et le lycée en 3D. Déplacez-vous au clavier ou au joystick, approchez un objet puis utilisez Interagir. La surveillante accompagne le joueur à l’atelier en 2,7 secondes. Échap ouvre la pause.
+
+Les petits personnages humain et lapin se choisissent dans **Mon personnage 3D**. Le lapin à écharpe est gratuit ; la boutique propose également un sac à dos et des lunettes rondes. Les profils existants et leurs achats sont conservés.
