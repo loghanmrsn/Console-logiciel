@@ -99,3 +99,7 @@ Depuis 0.36.0, les galeries historiques `personnage3d_0.32.0/` et `realisme_0.28
 La galerie historique `boutique_0.33.0` reste également conservée dans le dépôt et les anciennes archives, mais exclue des nouveaux ZIP complets pour rester sous la limite GitHub de 100 Mio.
 Les captures historiques `traffic_0.13.0` et `marche_0.34.0` suivent la même règle à partir de 0.36.0. Les captures actuelles du quartier 3D et du personnage sont incluses.
 Les anciennes galeries `campus_0.25.0` et `facades_0.19.1` sont aussi disponibles dans Git et leurs archives plutôt que dupliquées avec le nouveau quartier 3D.
+
+À partir de 0.37.0, la galerie historique `couture_0.35.0/` reste dans Git et ses archives, sans duplication dans les nouvelles archives complètes. La galerie des nouveaux petits personnages est incluse. Aucun ancien fichier n’est supprimé.
+
+Les galeries historiques `campus3d_0.36.0`, `polish_0.19.0`, `npc_polish_0.16.0`, `bibliotheque_0.5.0`, `loop_0.24.3`, `navigation_0.4.1` et `accueil_0.30.0` restent elles aussi dans Git et les anciennes livraisons. Elles ne sont plus dupliquées dans les archives complètes 0.37.0, afin de rester sous 100 Mio malgré les trois nouveaux modèles articulés.
