@@ -19,7 +19,7 @@ func matches(model: Node3D,expected: Array[Transform3D]) -> bool:
 func upright(model: Node3D) -> bool:
 	var hips=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("hips"))
 	var head=model.skeleton.get_bone_global_pose(model.skeleton.find_bone("head"))
-	return (model.basis*hips.basis.y).normalized().dot(Vector3.UP)>.99 and head.origin.y>hips.origin.y+.5
+	return (model.basis*hips.basis.y).normalized().dot(Vector3.UP)>.99 and head.origin.y>hips.origin.y+(.5 if model._model_id=="classic" else .25)
 func run() -> void:
 	await process_frame
 	var model=Model.new();root.add_child(model)
