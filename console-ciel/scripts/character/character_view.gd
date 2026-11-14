@@ -15,9 +15,13 @@ var heading:=0.0
 var phase:=0.0
 var rendered_updates:=0
 func _ready() -> void:
+	if appearance.is_empty():appearance=Catalog.defaults().appearance
 	mouse_filter=Control.MOUSE_FILTER_STOP if preview_mode else Control.MOUSE_FILTER_IGNORE
 	clip_contents=true
 	viewport=SubViewport.new()
+	# UI poses are sampled explicitly and rendered once. Physics interpolation
+	# would capture a partly interpolated rotation/camera and leave it frozen.
+	viewport.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF
 	viewport.name="Character3DViewport"
 	viewport.size=Vector2i(384,512) if preview_mode else Vector2i(128,192)
 	viewport.transparent_bg=true
@@ -63,7 +67,10 @@ func _ready() -> void:
 func configure(a: Dictionary) -> void:
 	if appearance==a and model!=null: return
 	appearance=a.duplicate()
-	if model!=null: model.configure(a);refresh()
+	if model!=null:
+		model.configure(a)
+		if preview_mode:focus_face(close_up)
+		else:refresh()
 func refresh() -> void:
 	if viewport==null: return
 	model.rotation.y=heading
@@ -87,9 +94,12 @@ func turn(radians_: float) -> void:
 func focus_face(enabled: bool) -> void:
 	close_up=enabled
 	if camera==null:return
-	camera.size=.65 if enabled else 1.90
-	camera.position=Vector3(0,1.55 if enabled else 1.15,4)
-	camera.look_at(Vector3(0,1.49 if enabled else .86,0))
+	var style=str(appearance.get("model","classic"))
+	var face_height=1.49 if style=="classic" else (1.01 if style=="rabbit" else .90)
+	var body_height=.86 if style=="classic" else (.70 if style=="rabbit" else .58)
+	camera.size=(.65 if style=="classic" else .98) if enabled else (1.90 if style=="classic" else (1.65 if style=="rabbit" else 1.45))
+	camera.position=Vector3(0,(face_height if enabled else body_height)+.20,4)
+	camera.look_at(Vector3(0,face_height if enabled else body_height,0))
 	refresh()
 func _gui_input(event: InputEvent) -> void:
 	if preview_mode and event is InputEventMouseMotion and event.button_mask&MOUSE_BUTTON_MASK_LEFT:
