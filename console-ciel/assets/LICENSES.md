@@ -33,3 +33,7 @@ Personnage et tenue 0.35.0 : géométrie et vêtements originaux créés localem
 ## Quartier et intérieurs 3D (0.36.0)
 
 Géométries originales créées par script dans Blender 4.3.2 : `tools/build_campus_3d.py`, exportées dans `assets/campus3d/`. Aucun modèle commercial ni logo tiers. Sources, échelle, matériaux, collisions simples et empreintes sont consignés dans `assets/campus3d/manifest.json`. Mise à disposition CC0 comme les autres dessins originaux du projet.
+
+## Personnages compacts et accessoires — 0.37.0
+
+Les modèles de `character3d/compact/` sont des créations originales CC0-1.0 produites localement dans Blender à partir du personnage original du projet. Les deux images fournies par l’utilisateur servent de référence de proportions et de silhouette ; aucune texture ni géométrie tierce n’est copiée. Le générateur `tools/build_compact_characters.py` conserve la source adulte et exporte trois variantes, avec leurs empreintes et leur provenance dans `manifest.json`.
