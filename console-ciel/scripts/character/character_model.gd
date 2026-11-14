@@ -2,7 +2,7 @@ extends Node3D
 ## One real skinned GLB; outfit meshes and materials are shared within this rig.
 const Surfaces=preload("res://scripts/character/character_materials.gd")
 const Catalog=preload("res://scripts/services/character_catalog.gd")
-const Body=preload("res://assets/character3d/character.glb")
+const BODIES={"classic":"res://assets/character3d/compact/classic.glb","human":"res://assets/character3d/compact/human.glb","rabbit":"res://assets/character3d/compact/rabbit.glb"}
 var figure: Node3D
 var animation: AnimationPlayer
 var skeleton: Skeleton3D
@@ -12,8 +12,17 @@ var _appearance={}
 var _sample_rotations: Array[Quaternion]=[]
 var _sample_positions: Array[Vector3]=[]
 var _clips: Dictionary = {}
+var _model_id: String = ""
+var _world_shadows := false
 func _ready() -> void:
-	figure=Body.instantiate()
+	configure(_appearance if not _appearance.is_empty() else Catalog.defaults().appearance)
+func _load_body(id: String) -> void:
+	if figure!=null:
+		remove_child(figure)
+		figure.free()
+	meshes.clear();_materials.clear();_clips.clear();_sample_rotations.clear();_sample_positions.clear()
+	animation=null;skeleton=null;_model_id=id
+	figure=load(BODIES[id]).instantiate()
 	add_child(figure)
 	animation=figure.find_child("AnimationPlayer",true,false)
 	for node in figure.find_children("*","Skeleton3D",true,false): skeleton=node;break
@@ -23,22 +32,24 @@ func _ready() -> void:
 			for state in ["walk", "idle"]:
 				if state in clip: _clips[state] = clip
 	for node in figure.find_children("*","MeshInstance3D",true,false): meshes.append(node)
-	configure(_appearance if not _appearance.is_empty() else Catalog.defaults().appearance)
 func configure(a: Dictionary) -> void:
+	a=Catalog.normalize_appearance(a)
 	_appearance=a.duplicate()
-	if figure==null: return
+	if not is_inside_tree(): return
+	if figure==null or _model_id!=a.model:_load_body(a.model)
 	var selected=["body","eyes_"+a.eyes,"smile_"+a.smile]
 	for slot in Catalog.CATEGORIES:
+		if slot=="hair" and a.model=="rabbit":continue
 		if slot=="socks" and (a.trousers=="tights" or a.top=="madison"):continue
 		if slot=="trousers" and a.top=="madison":
 			selected.append("trousers_tights")
 		else:selected.append(slot+"_"+a[slot])
-	var colors={"skin":Catalog.SKIN[a.skin],"hair":Catalog.HAIR_COLORS[a.hair_color],"eyes":Catalog.EYE_COLORS[a.eye_color],"lips":Catalog.LIPS[a.lips]}
-	for slot in ["top","trousers","headwear","socks","shoes"]: colors["hat" if slot=="headwear" else slot]=Catalog.COLORS[a[slot+"_color"]]
+	var colors={"skin":Catalog.SKIN[a.skin],"fur":Catalog.FUR[a.fur],"tail_fur":Catalog.FUR[a.fur],"hair":Catalog.HAIR_COLORS[a.hair_color],"eyes":Catalog.EYE_COLORS[a.eye_color],"lips":Catalog.LIPS[a.lips]}
+	for slot in ["top","trousers","headwear","socks","shoes","accessory"]: colors["hat" if slot=="headwear" else slot]=Catalog.COLORS[a[slot+"_color"]]
 	if a.top=="madison":colors.trousers=Catalog.COLORS.black
 	for mesh in meshes:
 		mesh.visible=String(mesh.name) in selected
-		mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if _world_shadows else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		if not mesh.visible: continue
 		for surface in mesh.mesh.get_surface_count():
 			var original=mesh.mesh.surface_get_material(surface)
@@ -46,10 +57,10 @@ func configure(a: Dictionary) -> void:
 			var name_=str(original.resource_name)
 			if name_ not in colors: continue
 			if not _materials.has(name_):
-				_materials[name_]=original.duplicate() if name_=="eyes" else ShaderMaterial.new()
-			if name_=="eyes":
+				_materials[name_]=original.duplicate() if name_ in ["eyes","tail_fur"] else ShaderMaterial.new()
+			if name_ in ["eyes","tail_fur"]:
 				_materials[name_].albedo_color=Color(str(colors[name_]))
-				_materials[name_].roughness=.26
+				_materials[name_].roughness=.90 if name_=="tail_fur" else .26
 				_materials[name_].metallic_specular=.45
 			else:Surfaces.configure(_materials[name_],name_,Color(str(colors[name_])),a)
 			mesh.set_surface_override_material(surface,_materials[name_])
@@ -88,6 +99,7 @@ func breathe(seconds: float) -> void:
 	_sway("head", Vector3(0, sin(seconds * .55) * .025, 0))
 
 func enable_world_shadows() -> void:
+	_world_shadows=true
 	for mesh in meshes:
 		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 func visible_triangles() -> int:
