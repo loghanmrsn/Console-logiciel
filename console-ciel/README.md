@@ -1,10 +1,10 @@
 # Console CIEL
 
-**Version 0.36.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
+**Version 0.37.0** — Une enquête éducative et une bibliothèque de jeux, utilisables hors ligne au clavier ou à la manette.
 
 ## Télécharger pour Windows
 
-**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_campus3d_0.36.0.zip)**
+**[Télécharger Console CIEL pour Windows 64 bits](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Windows_x86_64_compact_0.37.0.zip)**
 
 1. Télécharger le ZIP et choisir **Extraire tout**.
 2. Ouvrir le dossier extrait.
@@ -14,7 +14,7 @@ Godot n’a pas besoin d’être installé pour jouer.
 
 ## Télécharger pour Linux / Raspberry Pi
 
-**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.36.0.zip)**
+**[Télécharger Console CIEL pour Raspberry Pi ARM64](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Raspberry_Pi_ARM64_0.37.0.zip)**
 
 Cette version est prévue pour un **Raspberry Pi 4 avec Raspberry Pi OS 64 bits et bureau**.
 
@@ -33,6 +33,8 @@ Pour ajouter un raccourci au menu du bureau : `bash ./Installer_raccourci.sh`. G
 Console CIEL permet d’apprendre en explorant un atelier, une salle réseau et un espace consacré au code et un laboratoire réseau. Le joueur résout des pannes simulées, gagne des points et personnalise son profil. Tout fonctionne localement, sans compte en ligne ni paiement réel.
 
 ![Accueil de Console CIEL : enquête à gauche, bibliothèque à droite et navigation en bas.](docs/screenshots/chapitre_3_0.7.0/home_three_chapters.png)
+
+**Nouveaux personnages :** dans **Mon personnage 3D**, choisissez **Petit humain** ou **Petit lapin**, puis les couleurs et les vêtements. **Essayer le lapin à écharpe** propose une tenue entièrement gratuite. La boutique ajoute une catégorie **Accessoires** : écharpe gratuite, sac à dos et lunettes rondes à débloquer avec les points du jeu. Les anciens profils gardent leur silhouette classique et leurs achats.
 
 **Nouveau parcours 3D :** depuis l’accueil, choisissez **Explorer le quartier et le lycée en 3D**. Retrouvez votre personnage personnalisé sur le parvis, entrez à l’accueil, parlez à la surveillante et rejoignez l’atelier par l’escalier droit. Poste informatique, baie réseau, fontaine et boîte à livres sont interactifs. Ce parcours complète l’enquête existante ; ses cinq chapitres conservent leurs décors 2D.
 
@@ -131,7 +133,7 @@ Le bouton de face haut correspond généralement à **Triangle sur PlayStation, 
 
 Les sources s’ouvrent avec **Godot 4.6.3 stable**, édition standard, à partir de `project.godot`.
 
-- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.36.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.36.0.zip).
+- **Projet complet avec sources et logiciel :** [Windows](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Windows_0.37.0.zip) · [Raspberry Pi](https://github.com/loghanmrsn/Console-logiciel/raw/refs/heads/main/console-ciel/builds/Console_CIEL_Projet_Complet_Raspberry_Pi_0.37.0.zip).
 - **Installation détaillée :** [Windows](docs/WINDOWS.md) · [Raspberry Pi](docs/RASPBERRY_PI.md).
 - **Fonctionnement :** [Enquête et missions](docs/ENQUETE.md) · [Profils et clavier](docs/PROFILS_ET_CLAVIER.md) · [Bibliothèque et thèmes](docs/BIBLIOTHEQUE_ET_THEMES.md).
 - **Suivi du projet :** [Architecture](docs/ARCHITECTURE.md) · [Tests et livraisons](docs/DELIVERY.md) · [Problèmes connus](docs/KNOWN_ISSUES.md).
@@ -177,4 +179,4 @@ La version **0.33.0** améliore les matières du personnage : peau au relief dis
 
 La version **0.34.0** corrige les rotations qui finissaient par coucher le personnage. La marche et les retours à l’arrêt repartent d’une pose propre, y compris après une animation assise.
 
-La version **0.36.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
+La version **0.37.0** remodèle le personnage : silhouette adulte plus anatomique, mains avec doigts, visage sculpté, épaules inclinées et vêtements mieux ajustés. **Mon personnage 3D → Essayer la tenue Madison** présente une robe grise à revers avec manches séparées et collants intégrés, un chignon avec mèches et des escarpins à brides. La tenue complète se débloque pour **230 points de mission** ; chaque pièce peut être essayée avant achat. Le rendu reste celui d’un personnage de jeu stylisé.
