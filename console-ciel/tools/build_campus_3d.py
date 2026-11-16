@@ -161,89 +161,98 @@ def save(zone, labels, anchors):
 def clear():
     bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False);collisions.clear()
 
-clear()
-box('Square',(0,-.15,5),(38,.3,38),'paving',True)
-for x in range(-18,19,2):box('Paving joint',(x,.005,5),(.018,.008,38),'grout',bevel=0)
-for z in range(-14,25,2):box('Paving joint',(0,.006,z),(38,.008,.018),'grout',bevel=0)
-building(0,-5,18,5,'brick')
-for x in [-7,-3.5,3.5,7]:window(x,3.9,-4.91,2.4,1.35)
-box('Canopy',(0,2.85,-4.0),(4.5,.15,2.5),'metal')
-for x in [-2.12,2.12]:box('Canopy post',(x,1.4,-2.85),(.07,2.8,.07),'metal')
-building(-13,4,7,4,'stone');building(13,4,7,4,'white')
-building(-13,16,7,4,'brick')
-for x,z in [(-3,-2),(3,-2),(-10,5),(10,5),(-10,16)]:plant(x,z,x==10)
-for i in range(5):plant(10+i*.55,5.7,True)
-bench(-5,5);bench(5,5);bench(3,17)
-box('Post envelope sign',(-13,1.5,4.65),(1.35,1.05,.12),'yellow')
-box('Envelope',(-13,1.5,4.73),(.95,.58,.025),'paper')
-pipe('Envelope fold',[(-13.46,1.77,4.75),(-13,1.43,4.75),(-12.54,1.77,4.75)],.015,'metal')
-box('Book exchange',(-11,1,16.6),(1.0,1.3,.50),'wood',True)
-for i in range(8):box('Books',(-11.40+i*.10,1.15,16.9),(.075,.55,.23),['red','blue','paper'][i%3])
-for z in [0,10,21]:
-    for x in [-8.5,8.5]:
-        cylinder('Lamp post',(x,1.65,z),.045,3.3,'metal')
-        box('Lamp head',(x,3.3,z),(.45,.08,.25),'metal')
-        box('Lamp diffuser',(x,3.255,z),(.37,.015,.19),'paper')
-for x,z in [(-7,11),(7,11),(-7,20),(7,20)]:
-    cylinder('Tree trunk',(x,1.2,z),.12,2.4,'wood')
-    for i in range(8):
-        a=i*2.4;end=(x+.85*math.cos(a),2.6+(i%3)*.3,z+.85*math.sin(a))
-        pipe('Branch',[(x,1.7,z),end],.025,'wood')
-        for j in range(50):
-            dx=random.uniform(-.58,.58);dy=random.uniform(-.45,.45);dz=random.uniform(-.58,.58)
-            if dx*dx+dz*dz+dy*dy>.55:continue
-            leaf((end[0]+dx,end[1]+dy,end[2]+dz),random.uniform(.18,.35),random.uniform(0,math.tau),'leaf' if j%3 else 'green')
-    collisions.append({'position':[x,1,z],'size':[.35,2,.35]})
-for r,y in [(1.8,.25),(1.65,.52)]:
-    bpy.ops.mesh.primitive_torus_add(major_segments=64,minor_segments=10,location=xyz((0,y,10)),major_radius=r,minor_radius=.12)
-    finish(bpy.context.object,'Carved basin rim','stone')
-cylinder('Basin base',(0,.17,10),1.8,.22,'stone')
-cylinder('Water surface',(0,.40,10),1.6,.025,'water')
-cylinder('Fountain stem',(0,.83,10),.22,1.2,'stone',.13)
-cylinder('Upper bowl',(0,1.45,10),.65,.16,'stone',.78)
-for i in range(12):
-    a=i*math.tau/12
-    pts=[((.70+t*.35)*math.cos(a),1.50-t*t*1.04,10+(.70+t*.35)*math.sin(a)) for t in [j/12 for j in range(13)]]
-    pipe('Water stream',pts,.016,'stream')
-collisions.append({'position':[0,.4,10],'size':[3.7,.8,3.7]})
-for x in [-19,19]:collisions.append({'position':[x,2,5],'size':[.3,4,38]})
-for z in [-14,24]:collisions.append({'position':[0,2,z],'size':[38,4,.3]})
-save('square',[
- {'text':'LYCÉE LOUISE MICHEL','position':[0,3.25,-4.74],'size':.009},
- {'text':'LA POSTE','position':[-13,3.25,4.26],'size':.009},
- {'text':'FLEURISTE','position':[13,3.25,4.26],'size':.009},
- {'text':'BIBLIOTHÈQUE','position':[-13,3.25,16.26],'size':.008}],
- {'spawn':[0,.05,2],'school':[0,0,-3.8],'post':[-13,0,5.8],'flowers':[13,0,5.6],'books':[-11,0,18],'fountain':[0,0,12.7]})
+def build_original():
+    clear()
+    box('Square',(0,-.15,5),(38,.3,38),'paving',True)
+    for x in range(-18,19,2):box('Paving joint',(x,.005,5),(.018,.008,38),'grout',bevel=0)
+    for z in range(-14,25,2):box('Paving joint',(0,.006,z),(38,.008,.018),'grout',bevel=0)
+    building(0,-5,18,5,'brick')
+    for x in [-7,-3.5,3.5,7]:window(x,3.9,-4.91,2.4,1.35)
+    box('Canopy',(0,2.85,-4.0),(4.5,.15,2.5),'metal')
+    for x in [-2.12,2.12]:box('Canopy post',(x,1.4,-2.85),(.07,2.8,.07),'metal')
+    building(-13,4,7,4,'stone');building(13,4,7,4,'white')
+    building(-13,16,7,4,'brick')
+    for x,z in [(-3,-2),(3,-2),(-10,5),(10,5),(-10,16)]:plant(x,z,x==10)
+    for i in range(5):plant(10+i*.55,5.7,True)
+    bench(-5,5);bench(5,5);bench(3,17)
+    box('Post envelope sign',(-13,1.5,4.65),(1.35,1.05,.12),'yellow')
+    box('Envelope',(-13,1.5,4.73),(.95,.58,.025),'paper')
+    pipe('Envelope fold',[(-13.46,1.77,4.75),(-13,1.43,4.75),(-12.54,1.77,4.75)],.015,'metal')
+    box('Book exchange',(-11,1,16.6),(1.0,1.3,.50),'wood',True)
+    for i in range(8):box('Books',(-11.40+i*.10,1.15,16.9),(.075,.55,.23),['red','blue','paper'][i%3])
+    for z in [0,10,21]:
+        for x in [-8.5,8.5]:
+            cylinder('Lamp post',(x,1.65,z),.045,3.3,'metal')
+            box('Lamp head',(x,3.3,z),(.45,.08,.25),'metal')
+            box('Lamp diffuser',(x,3.255,z),(.37,.015,.19),'paper')
+    for x,z in [(-7,11),(7,11),(-7,20),(7,20)]:
+        cylinder('Tree trunk',(x,1.2,z),.12,2.4,'wood')
+        for i in range(8):
+            a=i*2.4;end=(x+.85*math.cos(a),2.6+(i%3)*.3,z+.85*math.sin(a))
+            pipe('Branch',[(x,1.7,z),end],.025,'wood')
+            for j in range(50):
+                dx=random.uniform(-.58,.58);dy=random.uniform(-.45,.45);dz=random.uniform(-.58,.58)
+                if dx*dx+dz*dz+dy*dy>.55:continue
+                leaf((end[0]+dx,end[1]+dy,end[2]+dz),random.uniform(.18,.35),random.uniform(0,math.tau),'leaf' if j%3 else 'green')
+        collisions.append({'position':[x,1,z],'size':[.35,2,.35]})
+    for r,y in [(1.8,.25),(1.65,.52)]:
+        bpy.ops.mesh.primitive_torus_add(major_segments=64,minor_segments=10,location=xyz((0,y,10)),major_radius=r,minor_radius=.12)
+        finish(bpy.context.object,'Carved basin rim','stone')
+    cylinder('Basin base',(0,.17,10),1.8,.22,'stone')
+    cylinder('Water surface',(0,.40,10),1.6,.025,'water')
+    cylinder('Fountain stem',(0,.83,10),.22,1.2,'stone',.13)
+    cylinder('Upper bowl',(0,1.45,10),.65,.16,'stone',.78)
+    for i in range(12):
+        a=i*math.tau/12
+        pts=[((.70+t*.35)*math.cos(a),1.50-t*t*1.04,10+(.70+t*.35)*math.sin(a)) for t in [j/12 for j in range(13)]]
+        pipe('Water stream',pts,.016,'stream')
+    collisions.append({'position':[0,.4,10],'size':[3.7,.8,3.7]})
+    for x in [-19,19]:collisions.append({'position':[x,2,5],'size':[.3,4,38]})
+    for z in [-14,24]:collisions.append({'position':[0,2,z],'size':[38,4,.3]})
+    save('square',[
+     {'text':'LYCÉE LOUISE MICHEL','position':[0,3.25,-4.74],'size':.009},
+     {'text':'LA POSTE','position':[-13,3.25,4.26],'size':.009},
+     {'text':'FLEURISTE','position':[13,3.25,4.26],'size':.009},
+     {'text':'BIBLIOTHÈQUE','position':[-13,3.25,16.26],'size':.008}],
+     {'spawn':[0,.05,2],'school':[0,0,-3.8],'post':[-13,0,5.8],'flowers':[13,0,5.6],'books':[-11,0,18],'fountain':[0,0,12.7]})
 
-clear();room()
-box('Reception desk',(-3.5,.53,-2.7),(3.4,1.06,.85),'wood',True)
-box('Reception counter',(-3.5,1.08,-2.7),(3.55,.08,1),'stone')
-for x in [-4.9,-4.7,-4.5,-4.3,-4.1,-3.9,-3.7,-3.5,-3.3,-3.1,-2.9,-2.7,-2.5,-2.3,-2.1]:box('Oak rib',(x,.56,-2.23),(.055,.92,.05),'oak')
-box('Reception screen',(-3.9,1.36,-2.8),(.5,.35,.05),'black');box('Screen stand',(-3.9,1.19,-2.8),(.06,.2,.07),'metal')
-bench(-4,3);plant(-5.9,-5.8);plant(5.8,4.5)
-box('Notice board',(-6.81,1.6,0),(.10,1.25,2.1),'oak')
-for z in [-.6,0,.6]:box('Notice',(-6.74,1.65,z),(.01,.65,.38),'paper')
-for i in range(10):
-    box('Straight stair',(3,.09+i*.18,-1.0-i*.30),(2.2,.18,.31),'stone')
-    for x in [1.8,4.2]:box('Stair baluster',(x,.5+i*.18,-1-i*.3),(.035,.85,.035),'metal')
-for x in [1.8,4.2]:pipe('Straight handrail',[(x,.95,-.9),(x,2.57,-3.7)],.035,'wood')
-box('Upper landing',(3,1.77,-4.5),(2.3,.18,1.3),'stone')
-collisions.append({'position':[3,1,-2.5],'size':[2.6,2,3.6]})
-window(0,1.2,6.84,1.8,2.4)
-save('reception',[{'text':'ACCUEIL','position':[-3.5,2.4,-6.7],'size':.013},{'text':'ATELIERS  →','position':[3,2.9,-6.7],'size':.01}],
- {'spawn':[0,.05,3.7],'exit':[0,0,5.2],'supervisor':[-2,0,-.6],'stairs':[3,0,.4]})
+    clear();room()
+    box('Reception desk',(-3.5,.53,-2.7),(3.4,1.06,.85),'wood',True)
+    box('Reception counter',(-3.5,1.08,-2.7),(3.55,.08,1),'stone')
+    for x in [-4.9,-4.7,-4.5,-4.3,-4.1,-3.9,-3.7,-3.5,-3.3,-3.1,-2.9,-2.7,-2.5,-2.3,-2.1]:box('Oak rib',(x,.56,-2.23),(.055,.92,.05),'oak')
+    box('Reception screen',(-3.9,1.36,-2.8),(.5,.35,.05),'black');box('Screen stand',(-3.9,1.19,-2.8),(.06,.2,.07),'metal')
+    bench(-4,3);plant(-5.9,-5.8);plant(5.8,4.5)
+    box('Notice board',(-6.81,1.6,0),(.10,1.25,2.1),'oak')
+    for z in [-.6,0,.6]:box('Notice',(-6.74,1.65,z),(.01,.65,.38),'paper')
+    for i in range(10):
+        box('Straight stair',(3,.09+i*.18,-1.0-i*.30),(2.2,.18,.31),'stone')
+        for x in [1.8,4.2]:box('Stair baluster',(x,.5+i*.18,-1-i*.3),(.035,.85,.035),'metal')
+    for x in [1.8,4.2]:pipe('Straight handrail',[(x,.95,-.9),(x,2.57,-3.7)],.035,'wood')
+    box('Upper landing',(3,1.77,-4.5),(2.3,.18,1.3),'stone')
+    collisions.append({'position':[3,1,-2.5],'size':[2.6,2,3.6]})
+    window(0,1.2,6.84,1.8,2.4)
+    save('reception',[{'text':'ACCUEIL','position':[-3.5,2.4,-6.7],'size':.013},{'text':'ATELIERS  →','position':[3,2.9,-6.7],'size':.01}],
+     {'spawn':[0,.05,3.7],'exit':[0,0,5.2],'supervisor':[-2,0,-.6],'stairs':[3,0,.4]})
 
-clear();room()
-for x in [-3,1]:
-    for z in [-3.5,.0]:desk(x,z)
-box('Network rack',(5.8,1.05,-4.9),(.8,2.1,.8),'metal',True)
-for y in [.35,.65,.95,1.25,1.55,1.85]:
-    box('Rack server',(5.8,y,-4.46),(.69,.22,.06),'black')
-    for x in [5.54,5.62,5.70]:box('Status LED',(x,y,-4.42),(.025,.025,.012),'leaf')
-box('Whiteboard',(0,1.9,-6.80),(3.5,1.2,.08),'paper')
-box('Board tray',(0,1.26,-6.66),(3.5,.04,.18),'metal')
-plant(5.5,4.8)
-save('workshop',[{'text':'ATELIER CIEL','position':[0,2.1,-6.70],'size':.010},{'text':'RÉSEAUX · INFORMATIQUE · ÉLECTRONIQUE','position':[0,1.7,-6.69],'size':.0038}],
- {'spawn':[0,.05,4.6],'exit':[0,0,5.7],'computer':[-3,0,1.65],'rack':[5.8,0,-3.1]})
+    clear();room()
+    for x in [-3,1]:
+        for z in [-3.5,.0]:desk(x,z)
+    box('Network rack',(5.8,1.05,-4.9),(.8,2.1,.8),'metal',True)
+    for y in [.35,.65,.95,1.25,1.55,1.85]:
+        box('Rack server',(5.8,y,-4.46),(.69,.22,.06),'black')
+        for x in [5.54,5.62,5.70]:box('Status LED',(x,y,-4.42),(.025,.025,.012),'leaf')
+    box('Whiteboard',(0,1.9,-6.80),(3.5,1.2,.08),'paper')
+    box('Board tray',(0,1.26,-6.66),(3.5,.04,.18),'metal')
+    plant(5.5,4.8)
+    save('workshop',[{'text':'ATELIER CIEL','position':[0,2.1,-6.70],'size':.010},{'text':'RÉSEAUX · INFORMATIQUE · ÉLECTRONIQUE','position':[0,1.7,-6.69],'size':.0038}],
+     {'spawn':[0,.05,4.6],'exit':[0,0,5.7],'computer':[-3,0,1.65],'rack':[5.8,0,-3.1]})
 
-(out/'manifest.json').write_text(json.dumps({'version':1,'source':'tools/build_campus_3d.py','tool':bpy.app.version_string,'license':'Original project geometry; no third-party models or logos','units':'metres','renderer':'Godot 4.6.3 Compatibility','zones':zones},ensure_ascii=False,indent=2)+'\n')
+
+if __name__ == "__main__":
+    build_original()
+    manifest_path=out/'manifest.json'
+    manifest=json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    manifest.update({'version':1,'source':'tools/build_campus_3d.py','tool':bpy.app.version_string,'license':'Original project geometry; no third-party models or logos','units':'metres','renderer':'Godot 4.6.3 Compatibility'})
+    # Regenerating the original district must not remove separately authored rooms.
+    manifest.setdefault('zones',{}).update(zones)
+    manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
