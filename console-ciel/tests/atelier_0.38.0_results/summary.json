@@ -1,0 +1,604 @@
+{
+  "version": "0.38.0",
+  "date": "2026-11-16",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_baseline": "bd8eea7e61a6342dfa0e2a06b96719e77cd931ff",
+  "source_suites": [
+    {
+      "name": "atelier_exit_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 11,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.65,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log": "/workspace/console-ciel-atelier-validation/regression/atelier_exit_ui_tests/run.log"
+    },
+    {
+      "name": "campus_3d_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 53,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 17.05,
+      "script_sha256": "292a6936bb67691595aeae1cc6c954ee4cd8d067a603016bd9ea731923419bf7",
+      "log": "/workspace/console-ciel-atelier-validation/regression/campus_3d_tests/run.log"
+    },
+    {
+      "name": "campus_courses_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 84,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 19.97,
+      "script_sha256": "f0ab203462296ed72a796d56242cf02036ae3d09adbdc1613e1053138e04d607",
+      "log": "/workspace/console-ciel-atelier-validation/regression/campus_courses_tests/run.log"
+    },
+    {
+      "name": "character_movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 18,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.73,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log": "/workspace/console-ciel-atelier-validation/regression/character_movement_tests/run.log"
+    },
+    {
+      "name": "character_services_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 182,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.31,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log": "/workspace/console-ciel-atelier-validation/regression/character_services_tests/run.log"
+    },
+    {
+      "name": "character_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 129,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 15.73,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log": "/workspace/console-ciel-atelier-validation/regression/character_ui_tests/run.log"
+    },
+    {
+      "name": "comfort_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 39,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 5.42,
+      "script_sha256": "1221f61d4cdabdfb38ca8253b3e7a329b838c3ae43fe6b0d7e286c903d89994f",
+      "log": "/workspace/console-ciel-atelier-validation/regression/comfort_ui_tests/run.log"
+    },
+    {
+      "name": "compact_characters_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 72,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 9.51,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log": "/workspace/console-ciel-atelier-validation/regression/compact_characters_tests/run.log"
+    },
+    {
+      "name": "couture_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 19,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 3.74,
+      "script_sha256": "e2feff567e2a08c47bd2cdd2e11381244aa7315c46633e647280fe3f4a8aca5d",
+      "log": "/workspace/console-ciel-atelier-validation/regression/couture_ui_tests/run.log"
+    },
+    {
+      "name": "movement_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 26,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 1.85,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log": "/workspace/console-ciel-atelier-validation/regression/movement_tests/run.log"
+    },
+    {
+      "name": "run_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 190,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 0.88,
+      "script_sha256": "09b64c36f7b6752152a365406aae9d6030153f7c4f3ae2e638f90f0ac3c2c384",
+      "log": "/workspace/console-ciel-atelier-validation/regression/run_tests/run.log"
+    },
+    {
+      "name": "school_reception_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 161,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 10.14,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log": "/workspace/console-ciel-atelier-validation/regression/school_reception_ui_tests/run.log"
+    },
+    {
+      "name": "stability_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 97,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 10.73,
+      "script_sha256": "ef25c97c4b40cef5bb8af9b66430b944f826660ce153b0da59a78118789a3546",
+      "log": "/workspace/console-ciel-atelier-validation/regression/stability_tests/run.log"
+    },
+    {
+      "name": "wardrobe_shop_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 84,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 14.63,
+      "script_sha256": "641762cbc9b2297e373e41e3f1b1943fb478fac59927f5222285af6816abc53d",
+      "log": "/workspace/console-ciel-atelier-validation/regression/wardrobe_shop_ui_tests/run.log"
+    }
+  ],
+  "compiled_suites": [
+    {
+      "platform": "windows",
+      "name": "campus_courses_tests",
+      "assertions": 84,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f0ab203462296ed72a796d56242cf02036ae3d09adbdc1613e1053138e04d607",
+      "log_sha256": "bf24d79f011835bbeff6439382cdb837e439cbca3ff1b7adcd03353b799d0e85"
+    },
+    {
+      "platform": "linux",
+      "name": "campus_courses_tests",
+      "assertions": 84,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "f0ab203462296ed72a796d56242cf02036ae3d09adbdc1613e1053138e04d607",
+      "log_sha256": "bf24d79f011835bbeff6439382cdb837e439cbca3ff1b7adcd03353b799d0e85"
+    },
+    {
+      "platform": "windows",
+      "name": "campus_3d_tests",
+      "assertions": 53,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "292a6936bb67691595aeae1cc6c954ee4cd8d067a603016bd9ea731923419bf7",
+      "log_sha256": "0c2b0a45674543e727b271ea08f4c0e426c3afc06ca544070e13ddf51bee7f09"
+    },
+    {
+      "platform": "linux",
+      "name": "campus_3d_tests",
+      "assertions": 53,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "292a6936bb67691595aeae1cc6c954ee4cd8d067a603016bd9ea731923419bf7",
+      "log_sha256": "9e3e665e2992f5bf013c2abf5eafa9af6e5cd0126c3702db2b7dcae90a1db4f4"
+    },
+    {
+      "platform": "windows",
+      "name": "character_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log_sha256": "1b05129a3c4fa03770a73636d1fc4a8db881322268f3ae7487525391f3409e83"
+    },
+    {
+      "platform": "linux",
+      "name": "character_ui_tests",
+      "assertions": 129,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "9b96a3739feeeacee53ecde429b4f4cb87c86992c1ba7f00ab75a3f0b4bddf03",
+      "log_sha256": "1b05129a3c4fa03770a73636d1fc4a8db881322268f3ae7487525391f3409e83"
+    },
+    {
+      "platform": "windows",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 84,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "641762cbc9b2297e373e41e3f1b1943fb478fac59927f5222285af6816abc53d",
+      "log_sha256": "bf24d79f011835bbeff6439382cdb837e439cbca3ff1b7adcd03353b799d0e85"
+    },
+    {
+      "platform": "linux",
+      "name": "wardrobe_shop_ui_tests",
+      "assertions": 84,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "641762cbc9b2297e373e41e3f1b1943fb478fac59927f5222285af6816abc53d",
+      "log_sha256": "bf24d79f011835bbeff6439382cdb837e439cbca3ff1b7adcd03353b799d0e85"
+    },
+    {
+      "platform": "windows",
+      "name": "compact_characters_tests",
+      "assertions": 72,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log_sha256": "982863b4a61c6235e76e13d9ccb2e13839bed9dbb5bcbd3470aa5bf0ef209da2"
+    },
+    {
+      "platform": "linux",
+      "name": "compact_characters_tests",
+      "assertions": 72,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "5c270e5487ee1e910e83f8311d05c4c3a0ea76c04aa7fa1ab94715bab9464dc1",
+      "log_sha256": "982863b4a61c6235e76e13d9ccb2e13839bed9dbb5bcbd3470aa5bf0ef209da2"
+    },
+    {
+      "platform": "windows",
+      "name": "atelier_exit_ui_tests",
+      "assertions": 11,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log_sha256": "14bdd422516bbbc89d85ad9c06d05452f747487dd0c6e2b9079148222e3e3077"
+    },
+    {
+      "platform": "linux",
+      "name": "atelier_exit_ui_tests",
+      "assertions": 11,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log_sha256": "14bdd422516bbbc89d85ad9c06d05452f747487dd0c6e2b9079148222e3e3077"
+    },
+    {
+      "platform": "windows",
+      "name": "couture_ui_tests",
+      "assertions": 19,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e2feff567e2a08c47bd2cdd2e11381244aa7315c46633e647280fe3f4a8aca5d",
+      "log_sha256": "7a2fed3a33baee0cf471e45ad1b1200bf4116ba9a4deae7d30a317f2fcfdf814"
+    },
+    {
+      "platform": "linux",
+      "name": "couture_ui_tests",
+      "assertions": 19,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e2feff567e2a08c47bd2cdd2e11381244aa7315c46633e647280fe3f4a8aca5d",
+      "log_sha256": "7a2fed3a33baee0cf471e45ad1b1200bf4116ba9a4deae7d30a317f2fcfdf814"
+    },
+    {
+      "platform": "windows",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "linux",
+      "name": "movement_tests",
+      "assertions": 26,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "b096b6e0bb1ac849c08e672d55c468d5bb00ae3e9ac95f7388a6df96ab22fdbd",
+      "log_sha256": "abceaedadfc6eb4837a6a82f73247ad4110b59153fda707576e9a67bbc562f0b"
+    },
+    {
+      "platform": "windows",
+      "name": "character_services_tests",
+      "assertions": 182,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "56a1b74c7d31b63eb87a6772a55fb6f12593dab0202c35718704cb0ff1348f2d"
+    },
+    {
+      "platform": "linux",
+      "name": "character_services_tests",
+      "assertions": 182,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "e1e27945d6bd6171b1abd1739f7762d40aaf5fad52cf83d0a86f8b1c483b8da1",
+      "log_sha256": "56a1b74c7d31b63eb87a6772a55fb6f12593dab0202c35718704cb0ff1348f2d"
+    },
+    {
+      "platform": "windows",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "linux",
+      "name": "character_movement_tests",
+      "assertions": 18,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "c28da3345a24424629bc01afc8f002d4790c6618ffcfa54b4a730cd121f2d3ca",
+      "log_sha256": "d073f545c9d3552c3f652414e0b5f8bbd9347d872b5d055ef52f07d1d49f9c4f"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_pack",
+      "assertions": 47,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "db705e8d7c43bd1a873b63fcf773e83ff54933920627a01d2985052e13913bab",
+      "log_sha256": "3097b30f7a306b6e0776af44bc24f6eda8f964566755458c3cb836ae0c9d0cb6"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "92865b8346edb8fd4a92165b57b7e23fe4a936ae06627ec1e73ab416857d451b",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "92865b8346edb8fd4a92165b57b7e23fe4a936ae06627ec1e73ab416857d451b",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native_suites": [
+    {
+      "name": "campus_courses_tests",
+      "assertions": 89,
+      "script_sha256": "f0ab203462296ed72a796d56242cf02036ae3d09adbdc1613e1053138e04d607",
+      "log_sha256": "52ea7bf58944474e4eea9254caf96c66498684caadfadd1294295a1a5a125773",
+      "passed": true
+    },
+    {
+      "name": "atelier_exit_ui_tests",
+      "assertions": 19,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log_sha256": "1837e45d80978de157a5cd176a3ea6a92ca41ed022d134eef8bd61a6fab795b0",
+      "passed": true
+    },
+    {
+      "name": "couture_ui_tests",
+      "assertions": 20,
+      "script_sha256": "e2feff567e2a08c47bd2cdd2e11381244aa7315c46633e647280fe3f4a8aca5d",
+      "log_sha256": "5ad07d2d6ab7befcd8c9908823b62373cea51802c036afef59807442afda9a75",
+      "passed": true
+    },
+    {
+      "name": "campus_3d_tests",
+      "assertions": 60,
+      "script_sha256": "292a6936bb67691595aeae1cc6c954ee4cd8d067a603016bd9ea731923419bf7",
+      "log_sha256": "4315b81e7625af6eab3f005235c7463a36cd1daa222d79e84807106727d8fd87",
+      "passed": true
+    }
+  ],
+  "package_checks": 30,
+  "asset_checks": {
+    "all_passed": true,
+    "assets": [
+      {
+        "asset": "square",
+        "sha256": "bf492eec1e21ecd4e0208b29a8407753747d63541f74fa4eab622ae772277111",
+        "triangles": 57464,
+        "finite_vertices_checked": 80655,
+        "surfaces": 18,
+        "passed": true
+      },
+      {
+        "asset": "reception",
+        "sha256": "f24df4f47c1b2fae9fc7ac6d1c53e2430740ad43bfd6d8f05b90786d5328e98e",
+        "triangles": 12092,
+        "finite_vertices_checked": 16052,
+        "surfaces": 12,
+        "passed": true
+      },
+      {
+        "asset": "workshop",
+        "sha256": "0aed16a3daed8798418b02c20254ceec00a2903321f997be568f03f7fd9b781a",
+        "triangles": 21324,
+        "finite_vertices_checked": 31137,
+        "surfaces": 14,
+        "passed": true
+      },
+      {
+        "asset": "corridor",
+        "sha256": "cd7417ac7448d4ac9d20732d3a8b1241c1a38bbf939c67d257fca7eb3037da20",
+        "triangles": 3348,
+        "finite_vertices_checked": 4480,
+        "surfaces": 10,
+        "passed": true
+      },
+      {
+        "asset": "network",
+        "sha256": "18e8b89c1f38ef829b160986c951f29158f29c5b1ff513f553960c12f7c364df",
+        "triangles": 40288,
+        "finite_vertices_checked": 65517,
+        "surfaces": 15,
+        "passed": true
+      },
+      {
+        "asset": "cyber",
+        "sha256": "fd3d31d4c668b7ad9ace765efcb718b9ac6d62ad9f7293bd966760ceb032b9d2",
+        "triangles": 16644,
+        "finite_vertices_checked": 24994,
+        "surfaces": 15,
+        "passed": true
+      },
+      {
+        "asset": "fire_exit_door",
+        "sha256": "d191f4a357e3029a2cf8fc8e7ff8a602ea5946fb618b9a0143bc0d6511016f33",
+        "triangles": 5724,
+        "finite_vertices_checked": 8582,
+        "surfaces": 6,
+        "passed": true
+      }
+    ],
+    "blender_source_verified": true,
+    "preview_verified": true,
+    "reference": "User supplied photograph; original geometry, no copied pixels",
+    "policy": "Metres; finite positions; embedded buffers; <100000 triangles and <=24 surfaces per asset; positive collision sizes; hashes match."
+  },
+  "captures": [
+    {
+      "file": "docs/screenshots/atelier_0.38.0/couloir_ateliers_3d.webp",
+      "sha256": "94e5c747acea3d2a4791c03b6166a4c60afbe65fac353a107808385d0e04dfcd",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/exercice_reseau_compact.webp",
+      "sha256": "9cceeb8c9b5f2592d35207b9bf1530a54af1d59cce8507d1593103342e810301",
+      "width": 800,
+      "height": 480,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/porte_antipanique_3d.webp",
+      "sha256": "0b77b2932cd6fe31e048a849c0a2984bd0419557fa2d3c3e3ec539fcfc20ccb7",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/salle_cyber_3d.webp",
+      "sha256": "1b01198d60425a4fa3e725ce72f92356c306ec323e938e1a4402c81b7a1451d6",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/salle_network_3d.webp",
+      "sha256": "742a9a255f13ce73e6c096ae32f510cb5ef247de34f1c805602a40d34a1df879",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/accueil_sans_texte_challenge.webp",
+      "sha256": "f217f0aaf5538f188bb7dcd53ec1c676a91b46d13eb343f32ef3cab47a26c564",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/porte_sortie_ateliers_challenge.webp",
+      "sha256": "ba07b27b7719e18fe915abdf04e385036629a6e770308c65e7fc05530c7436d3",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    },
+    {
+      "file": "docs/screenshots/atelier_0.38.0/boutique_sans_madison.webp",
+      "sha256": "8697e5437b6126f57526af75f722632fcc8866ff1f22f845631ee5b41d8d6467",
+      "width": 1280,
+      "height": 720,
+      "lossless": true
+    }
+  ],
+  "native_renderer": "X11 / OpenGL ES 3.2 / Mesa llvmpipe / Compatibility",
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "perceived_audio_tested": false,
+  "all_passed": true,
+  "old_archives_preserved": 170,
+  "total_assertions": 3055
+}
