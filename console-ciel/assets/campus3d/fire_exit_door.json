@@ -1,0 +1,15 @@
+{
+  "source": "tools/build_fire_door.py",
+  "blender": "4.3.2",
+  "license": "Original project geometry; user reference only, no copied pixels or branding",
+  "units": "metres",
+  "dimensions": [
+    2.22,
+    2.29,
+    0.26
+  ],
+  "triangles": 5724,
+  "sha256": "d191f4a357e3029a2cf8fc8e7ff8a602ea5946fb618b9a0143bc0d6511016f33",
+  "source_sha256": "adc1f170e424f4218ca898ae592d02ce2f9b47c37f153506a363bcb5a5551bdd",
+  "preview_sha256": "6939e12e81a31ce2f9221b5125b1534fd67ee7b00766120f549cd2eff674c4c5"
+}
