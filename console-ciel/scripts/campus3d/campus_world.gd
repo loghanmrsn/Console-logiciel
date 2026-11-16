@@ -10,9 +10,12 @@ const Catalog = preload("res://scripts/services/character_catalog.gd")
 const SCENES = {
 	"square": preload("res://assets/campus3d/square.glb"),
 	"reception": preload("res://assets/campus3d/reception.glb"),
-	"workshop": preload("res://assets/campus3d/workshop.glb")}
-const TITLES = {"square":"Parvis · quartier du lycée", "reception":"Lycée · accueil", "workshop":"Lycée · atelier CIEL"}
-const PROMPTS = {"school":"Entrer à l’accueil", "post":"Consulter la boîte aux lettres", "flowers":"Découvrir les plantations", "books":"Ouvrir la boîte à livres", "fountain":"Examiner la fontaine", "exit":"Sortir", "supervisor":"Parler à la surveillante", "stairs":"Rejoindre les ateliers", "computer":"Examiner le poste informatique", "rack":"Vérifier la baie réseau"}
+	"workshop": preload("res://assets/campus3d/workshop.glb"),
+	"corridor": preload("res://assets/campus3d/corridor.glb"),
+	"network": preload("res://assets/campus3d/network.glb"),
+	"cyber": preload("res://assets/campus3d/cyber.glb")}
+const TITLES = {"square":"Parvis · quartier du lycée", "reception":"Lycée · accueil", "workshop":"Lycée · atelier CIEL", "corridor":"Lycée · couloir des ateliers", "network":"Parcours 1 · salle réseau", "cyber":"Parcours 2 · cybersécurité"}
+const PROMPTS = {"school":"Entrer à l’accueil", "post":"Consulter la boîte aux lettres", "flowers":"Découvrir les plantations", "books":"Ouvrir la boîte à livres", "fountain":"Examiner la fontaine", "exit":"Sortir", "supervisor":"Parler à la surveillante", "stairs":"Rejoindre les ateliers", "computer":"Examiner le poste informatique", "rack":"Vérifier la baie réseau", "to_workshop":"Entrer dans l’atelier CIEL", "to_network":"Entrer dans la salle réseau", "to_cyber":"Entrer dans la salle cybersécurité", "net_cable":"Baie réseau · relier le poste", "net_address":"PC-01 · configurer l’adresse IP", "net_gateway":"PC-02 · configurer la passerelle", "cyber_mail":"Messagerie · examiner le courriel", "cyber_mfa":"Compte · activer un second facteur", "cyber_incident":"Console d’analyse · traiter l’incident"}
 var zone := "square"
 var actor: CharacterBody3D
 var scenery: Node3D
@@ -100,6 +103,11 @@ func load_zone(id: String) -> void:
 			surface.set_shader_parameter("wood", str(mesh.name) in ["wood", "oak"])
 			mesh.material_override = surface
 	var data: Dictionary = manifest.zones[id]
+	for placement in data.get("doors",[]):
+		var door=preload("res://assets/campus3d/fire_exit_door.glb").instantiate()
+		door.position=_vector(placement.position)
+		door.rotation.y=float(placement.rotation_y)
+		scenery.add_child(door)
 	for proxy in data.collisions:
 		var body := StaticBody3D.new()
 		body.position = _vector(proxy.position)
@@ -193,7 +201,7 @@ func interact() -> void:
 func begin_escort() -> void:
 	if zone != "reception" or escorting: return
 	if SettingsService.current.reduce_motion:
-		load_zone("workshop")
+		load_zone("corridor")
 		set_locked(false)
 		escort_finished.emit()
 		return
@@ -223,7 +231,7 @@ func _process(delta: float) -> void:
 		if t >= 1.0:
 			last_escort_seconds = escort_time
 			escorting = false
-			load_zone("workshop")
+			load_zone("corridor")
 			set_locked(false)
 			SceneRouter.lock_until_release()
 			escort_finished.emit()
