@@ -25,7 +25,6 @@ static func draw(c: Node2D) -> void:
 		c.draw_colored_polygon(PackedVector2Array([Vector2(x+5,115),Vector2(x+258,115),Vector2(x+350,310),Vector2(x+75,310)]),Color(1,1,1,.16))
 	M.rounded(c,Rect2(440,135,720,70),Color("f5f7f7"),8)
 	label(c,"LYCÉE LOUISE MICHEL · ACCUEIL",Vector2(800,180),28)
-	label(c,"VIE SCOLAIRE",Vector2(470,295),23)
 	label(c,"ESPACE D’ATTENTE",Vector2(400,855),19)
 	label(c,"ATELIERS · À L’ÉTAGE",Vector2(1280,500),20)
 	label(c,"La surveillante vous accompagne",Vector2(1280,530),16)
