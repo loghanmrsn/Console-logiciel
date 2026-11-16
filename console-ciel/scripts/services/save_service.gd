@@ -480,6 +480,8 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	if not document.get("progress") is Dictionary:
 		return _fail("La progression est invalide.")
 	var progress: Dictionary = document.progress
+	if progress.has("campus3d") and not preload("res://scripts/campus3d/course_catalog.gd").valid(progress.campus3d):
+		return _fail("La progression des parcours 3D est invalide.")
 	var allowed_rooms := ["room_01", "room_02", "room_03", "room_04", "room_05", "maze_05", "courtyard"] + HOTEL_ROOMS
 	var allowed_checkpoints := ["entrance", "elevator", "exit", "maze_entry", "maze_terminal", "building_exit", "from_first", "from_second"] + HOTEL_CHECKPOINTS.keys() + MISSION_IDS
 	if not progress.get("started") is bool or not progress.get("room_id") is String or progress.room_id not in allowed_rooms or progress.get("checkpoint_id") not in allowed_checkpoints or not progress.get("completed_missions") is Array:
@@ -674,6 +676,7 @@ func validate_profile(value: Variant, expected_id: String = "") -> Dictionary:
 	for index in range(city.completed.size()):
 		if city.completed[index] != CityCatalog.IDS[index] or CityCatalog.REWARD_IDS[index] not in rewarded:
 			return _fail("Ordre ou reçu des missions City CIEL invalide.")
+	if progress.has("campus3d"): progress.campus3d.version = 1
 	if progress.has("city_network"): progress.city_network.version = 1
 	var ctf_validation := _validate_ctf_progress(progress, rewarded)
 	if not ctf_validation.ok: return ctf_validation
