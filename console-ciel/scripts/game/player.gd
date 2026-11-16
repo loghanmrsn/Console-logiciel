@@ -1,6 +1,6 @@
 extends CharacterBody2D
 ## Physics keeps the feet solid; interpolation smooths the rendered character.
-const SPEED := 190.0
+const SPEED := 260.0
 const SPRINT_MULTIPLIER := 1.10
 const ACCELERATION := 2400.0
 var controls_enabled := true
