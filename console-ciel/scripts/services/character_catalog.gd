@@ -47,7 +47,6 @@ const ITEMS := [
 	{"id":"loafers","slot":"shoes","name":"Mocassins","price":75},
 	{"id":"runner","slot":"shoes","name":"Baskets de sport","price":80},
 	{"id":"high","slot":"shoes","name":"Baskets montantes","price":85}
-	,{"id":"madison","slot":"top","name":"Robe Madison · manches séparées","price":120}
 	,{"id":"updo","slot":"hair","name":"Chignon avec mèches","price":45}
 	,{"id":"tights","slot":"trousers","name":"Collants fins","price":30}
 	,{"id":"heels","slot":"shoes","name":"Escarpins à brides","price":65}
@@ -56,8 +55,10 @@ const ITEMS := [
 	,{"id":"backpack","slot":"accessory","name":"Petit sac à dos","price":45}
 	,{"id":"glasses","slot":"accessory","name":"Lunettes rondes","price":35}
 ]
+# Kept only to validate old purchases; never offered or equipped again.
+const RETIRED_ITEMS := [{"id":"madison","slot":"top","name":"Ancienne tenue retirée","price":120,"retired":true}]
 static func item(id: String, slot: String="") -> Dictionary:
-	for entry in ITEMS:
+	for entry in ITEMS + RETIRED_ITEMS:
 		if entry.id==id and (slot.is_empty() or entry.slot==slot): return entry.duplicate()
 	return {}
 static func key(slot: String,id: String) -> String: return slot+"/"+id
@@ -71,11 +72,13 @@ static func allowed_colors(slot: String,id: String) -> Array:
 	return COLORS.keys()
 static func defaults() -> Dictionary:
 	return {"version":1,"rig":RIG,"owned":[],"appearance":{"model":"human","fur":"ivory","accessory":"none","accessory_color":"red","gait":"natural","skin":"warm","hair":"short","hair_color":"brown","eyes":"almond","eye_color":"brown","smile":"soft","lips":"natural","top":"tee","top_color":"blue","trousers":"regular","trousers_color":"black","headwear":"none","headwear_color":"black","socks":"socks","socks_color":"white","shoes":"canvas","shoes_color":"white"}}
-static func normalize_appearance(a: Dictionary) -> Dictionary:
+static func normalize_appearance(a: Dictionary, retire_outfits:=true) -> Dictionary:
 	var result=a.duplicate(true)
 	# Additive legacy migration in memory only; reading never writes a save.
 	for field in ["model","fur","accessory","accessory_color"]:
 		if not result.has(field):result[field]="classic" if field=="model" else defaults().appearance[field]
+	if retire_outfits and result.get("top")=="madison":
+		result.top="tee";result.top_color="white"
 	return result
 static func record(profile: Dictionary) -> Dictionary:
 	var result: Dictionary=profile.get("character",defaults()).duplicate(true)
@@ -94,7 +97,7 @@ static func valid(record_: Variant, require_ownership:=true) -> bool:
 		var product=item(parts[1],parts[0])
 		if product.is_empty() or int(product.price)==0: return false
 		seen.append(id)
-	var a: Dictionary=normalize_appearance(record_.appearance)
+	var a: Dictionary=normalize_appearance(record_.appearance,false)
 	if a.size()!=defaults().appearance.size() or a.get("model","") not in MODELS or a.get("fur","") not in FUR: return false
 	for field in a:
 		if not defaults().appearance.has(field):return false
@@ -109,11 +112,4 @@ static func valid(record_: Variant, require_ownership:=true) -> bool:
 static func rabbit_appearance() -> Dictionary:
 	var a=defaults().appearance
 	a.model="rabbit";a.fur="ivory";a.eyes="round";a.top_color="white";a.trousers_color="white";a.shoes_color="white";a.accessory="scarf";a.accessory_color="red"
-	return a
-
-static func madison_appearance() -> Dictionary:
-	var a=defaults().appearance
-	a.model="classic"
-	a.skin="light";a.hair="updo";a.hair_color="brown";a.eye_color="hazel";a.smile="soft";a.lips="rose"
-	a.top="madison";a.top_color="taupe";a.trousers="regular";a.trousers_color="black";a.shoes="heels";a.shoes_color="black";a.socks_color="black"
 	return a
