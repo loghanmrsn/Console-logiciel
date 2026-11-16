@@ -1,3 +1,19 @@
+# Livraison 0.38.0 — parcours réseau et cybersécurité
+
+Deux nouvelles salles 3D accessibles depuis le couloir des ateliers : **Réseaux**, puis **Cybersécurité**. Six exercices successifs : câble Ethernet, IPv4, passerelle, courriel suspect, second facteur et réaction à un incident. Progression enregistrée par profil via le service existant, sans modifier les points ou les chapitres de l’enquête. Les mauvaises réponses proposent une explication ; les erreurs d’écriture ne valident aucune étape. Les portes permettent de revenir dans le couloir, près de la salle quittée.
+
+La surveillante conduit désormais au couloir 3D. Tout à gauche, une porte blanche à deux battants, cadre métallique, ferme-portes et barres antipanique ramène à l’accueil. Modèle original créé dans **Blender 4.3.2**, source `.blend`, export GLB et rendu transparent pour le couloir de l’enquête existante. Le texte derrière les ordinateurs d’accueil est supprimé. Marche de base accélérée d’environ **35 %** (190 → 260 unités/s ; 2,4 → 3,25 m/s en 3D), sprint toujours +10 %, collisions conservées.
+
+La tenue et la présélection Madison sont retirées du configurateur et de la boutique. Les profils anciens restent valides ; le haut retiré apparaît comme un T-shirt blanc. Aucun achat historique ou point n’est supprimé. Le petit humain, le lapin, la silhouette classique et les autres cosmétiques restent disponibles.
+
+3055 assertions réussies : 14 suites sources, 24 suites sur les ressources compilées Windows/ARM64, quatre suites natives Linux et 30 contrôles de livraison. Vérification des GLB, empreintes et budgets géométriques. Huit captures natives, dont l’exercice complet en 800 × 480. [Résultats](../tests/atelier_0.38.0_results/summary.json) · [Captures](screenshots/atelier_0.38.0/) · [Parcours et sources Blender](CAMPUS_3D.md).
+
+Skills GameDev consultés directement sur GitHub : routeur, scènes 3D, production d’assets, conception des parcours et sauvegardes. Aucun skill installé dans le dépôt. La commande du plugin Game Asset Production étant absente, production et vérification locales avec Blender et Godot **4.6.3 Compatibility**.
+
+Les vérifications natives utilisent Linux x86_64 et Mesa avec événements clavier/manette simulés. Les packs Windows et ARM64 sont chargés par le moteur Linux pour vérifier leurs ressources ; ce n’est pas une exécution native sur ces plateformes. Le lancement Windows, les performances Raspberry Pi, la manette physique et le son restent à vérifier sur le matériel cible. Les 170 archives antérieures sont conservées. Certaines galeries historiques restent dans Git et leurs archives d’origine pour maintenir les nouveaux ZIP sous 100 Mio ; voir [ARCHIVE_COMPLETE.md](ARCHIVE_COMPLETE.md).
+
+---
+
 # Livraison 0.37.0 — petits personnages et accessoires
 
 **Mon personnage 3D** propose un petit humain et un petit lapin : têtes rondes, corps courts, yeux expressifs, oreilles et pattes modelées. Ce sont des modèles articulés en vraie 3D, inspirés des deux références fournies. La silhouette classique reste disponible. Les anciens profils gardent leur apparence et leurs achats ; les nouveaux profils commencent avec le petit humain.
