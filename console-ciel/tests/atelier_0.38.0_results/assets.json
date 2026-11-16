@@ -1,0 +1,65 @@
+{
+  "all_passed": true,
+  "assets": [
+    {
+      "asset": "square",
+      "sha256": "bf492eec1e21ecd4e0208b29a8407753747d63541f74fa4eab622ae772277111",
+      "triangles": 57464,
+      "finite_vertices_checked": 80655,
+      "surfaces": 18,
+      "passed": true
+    },
+    {
+      "asset": "reception",
+      "sha256": "f24df4f47c1b2fae9fc7ac6d1c53e2430740ad43bfd6d8f05b90786d5328e98e",
+      "triangles": 12092,
+      "finite_vertices_checked": 16052,
+      "surfaces": 12,
+      "passed": true
+    },
+    {
+      "asset": "workshop",
+      "sha256": "0aed16a3daed8798418b02c20254ceec00a2903321f997be568f03f7fd9b781a",
+      "triangles": 21324,
+      "finite_vertices_checked": 31137,
+      "surfaces": 14,
+      "passed": true
+    },
+    {
+      "asset": "corridor",
+      "sha256": "cd7417ac7448d4ac9d20732d3a8b1241c1a38bbf939c67d257fca7eb3037da20",
+      "triangles": 3348,
+      "finite_vertices_checked": 4480,
+      "surfaces": 10,
+      "passed": true
+    },
+    {
+      "asset": "network",
+      "sha256": "18e8b89c1f38ef829b160986c951f29158f29c5b1ff513f553960c12f7c364df",
+      "triangles": 40288,
+      "finite_vertices_checked": 65517,
+      "surfaces": 15,
+      "passed": true
+    },
+    {
+      "asset": "cyber",
+      "sha256": "fd3d31d4c668b7ad9ace765efcb718b9ac6d62ad9f7293bd966760ceb032b9d2",
+      "triangles": 16644,
+      "finite_vertices_checked": 24994,
+      "surfaces": 15,
+      "passed": true
+    },
+    {
+      "asset": "fire_exit_door",
+      "sha256": "d191f4a357e3029a2cf8fc8e7ff8a602ea5946fb618b9a0143bc0d6511016f33",
+      "triangles": 5724,
+      "finite_vertices_checked": 8582,
+      "surfaces": 6,
+      "passed": true
+    }
+  ],
+  "blender_source_verified": true,
+  "preview_verified": true,
+  "reference": "User supplied photograph; original geometry, no copied pixels",
+  "policy": "Metres; finite positions; embedded buffers; <100000 triangles and <=24 surfaces per asset; positive collision sizes; hashes match."
+}
