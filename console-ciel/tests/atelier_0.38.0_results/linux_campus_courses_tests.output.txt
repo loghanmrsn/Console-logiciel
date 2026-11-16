@@ -1,0 +1,4 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PROFILE_EDITOR_TESTS : 84 assertions, 0 échec(s).
+Événements clavier et manette simulés ; manette physique et exécutable Windows natif à tester sur matériel réel.
