@@ -37,3 +37,7 @@ Géométries originales créées par script dans Blender 4.3.2 : `tools/build_ca
 ## Personnages compacts et accessoires — 0.37.0
 
 Les modèles de `character3d/compact/` sont des créations originales CC0-1.0 produites localement dans Blender à partir du personnage original du projet. Les deux images fournies par l’utilisateur servent de référence de proportions et de silhouette ; aucune texture ni géométrie tierce n’est copiée. Le générateur `tools/build_compact_characters.py` conserve la source adulte et exporte trois variantes, avec leurs empreintes et leur provenance dans `manifest.json`.
+
+## Couloir, parcours et porte — 0.38.0
+
+Les géométries de `assets/campus3d/{corridor,network,cyber,fire_exit_door}.glb`, le rendu `fire_exit_door.png` et `art_sources/fire_exit_door.blend` sont des créations originales du projet sous CC0-1.0, produites avec Blender 4.3.2. La photographie fournie par l’utilisateur guide seulement la forme de la porte ; aucun pixel, logo ou modèle commercial n’est incorporé. Les générateurs sont `tools/build_campus_routes.py` et `tools/build_fire_door.py`. Les empreintes et budgets figurent dans les manifests voisins.
