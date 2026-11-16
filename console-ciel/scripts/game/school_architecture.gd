@@ -12,6 +12,7 @@ static func draw_room(canvas: Node2D, zone: String) -> void:
 		scene.door(canvas,Vector2(Plan.Ateliers.entry(zone).x,Plan.extent(zone).y-65),"",false)
 	if zone == "school_passage":
 		scene.door(canvas,Vector2(1400,64),"",true)
+		canvas.draw_texture_rect(preload("res://assets/campus3d/fire_exit_door.png"),Rect2(30,185,185,250),false)
 	if zone == "school_workshop":
 		left_door(canvas, Vector2(52,720))
 		label(canvas,"SALLE RÉSEAU",Vector2(218,603),20)
