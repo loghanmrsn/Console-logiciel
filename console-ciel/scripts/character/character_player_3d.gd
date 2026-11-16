@@ -3,7 +3,7 @@ extends CharacterBody3D
 const Model=preload("res://scripts/character/character_model.gd")
 const HEIGHT:=1.70
 const RADIUS:=.23
-const SPEED:=2.4
+const SPEED:=3.25
 var model: Node3D
 var phase:=0.0
 var controls_enabled:=true
