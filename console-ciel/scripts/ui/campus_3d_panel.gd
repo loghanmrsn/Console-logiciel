@@ -1,5 +1,6 @@
 extends Control
 signal close_requested
+const Course = preload("res://scripts/campus3d/course_catalog.gd")
 const World = preload("res://scripts/campus3d/campus_world.gd")
 const ActionButton = preload("res://scripts/ui/translucent_button.gd")
 const Inputs = preload("res://scripts/input_setup.gd")
@@ -7,6 +8,8 @@ var world: Node3D
 var viewport: SubViewport
 var place: Label
 var prompt: Label
+var dialog_scroll: ScrollContainer
+var dialog_content: VBoxContainer
 var dialog: PanelContainer
 var veil: ColorRect
 var overlay: Control
@@ -72,6 +75,7 @@ func _ready() -> void:
 	prompt.add_theme_font_size_override("font_size", 16)
 	strip.add_child(prompt)
 	viewport.add_child(world)
+	resized.connect(_size_dialog)
 	get_viewport().size_changed.connect(_fit)
 	visibility_changed.connect(_visibility_changed)
 	_fit()
@@ -89,7 +93,7 @@ func _location_changed(title: String) -> void:
 	place.text = title
 
 func _prompt_changed(text: String) -> void:
-	prompt.text = (text + " · " + Inputs.label_for("game_interact")) if not text.is_empty() else "Flèches / ZQSD / joystick : marcher · Approchez-vous des portes et des objets."
+	prompt.text = (text + " · " + Inputs.label_for("game_interact")) if not text.is_empty() else Course.objective(AppState.profile)+" · Approchez-vous des équipements pour interagir."
 
 func _gui_input(event: InputEvent) -> void:
 	if is_instance_valid(dialog): return
@@ -143,14 +147,22 @@ func _show_dialog(title: String, body: String, choices: Array) -> void:
 	dialog = PanelContainer.new()
 	dialog.name = "campus_dialog"
 	center.add_child(dialog)
+	dialog_scroll=ScrollContainer.new()
+	dialog_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	dialog_scroll.follow_focus=true
+	dialog.add_child(dialog_scroll)
 	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 9)
-	dialog.add_child(box)
+	dialog_content=box
+	box.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation", 6 if size.y<400 else 9)
+	dialog_scroll.add_child(box)
 	var heading := Label.new()
-	heading.text = title; heading.add_theme_font_size_override("font_size", 22)
+	heading.text = title; heading.add_theme_font_size_override("font_size", 20 if size.y<400 else 22)
+	heading.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(heading)
 	var text := Label.new()
 	text.text = body
+	text.add_theme_font_size_override("font_size",16 if size.y<400 else 18)
 	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(text)
 	var buttons: Array[Button] = []
@@ -158,7 +170,9 @@ func _show_dialog(title: String, body: String, choices: Array) -> void:
 		var button := ActionButton.new()
 		button.name = "campus_choice_%d" % index
 		button.text = choices[index].text
-		button.custom_minimum_size.y = 42
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.custom_minimum_size.y = 36 if size.y<400 else 42
+		button.add_theme_font_size_override("font_size",16 if size.y<400 else 18)
 		button.pressed.connect(choices[index].action)
 		box.add_child(button)
 		buttons.append(button)
@@ -170,14 +184,28 @@ func _show_dialog(title: String, body: String, choices: Array) -> void:
 		buttons[i].focus_next = buttons[(i+1)%buttons.size()].get_path()
 		buttons[i].focus_previous = buttons[(i-1+buttons.size())%buttons.size()].get_path()
 	_size_dialog()
+	_size_dialog.call_deferred()
 	buttons[0].grab_focus()
 
 func _size_dialog() -> void:
-	dialog.custom_minimum_size.x = minf(540, maxf(220, size.x-32))
+	if not is_instance_valid(dialog):return
+	dialog.custom_minimum_size.x = minf(720 if size.y<400 else 540, maxf(220, size.x-32))
+	dialog_content.add_theme_constant_override("separation",5 if size.y<400 else 9)
+	for child in dialog_content.get_children():
+		if child is Label:
+			child.add_theme_font_size_override("font_size",(20 if size.y<400 else 22) if child.get_index()==0 else (16 if size.y<400 else 18))
+		elif child is Button:
+			child.add_theme_font_size_override("font_size",16 if size.y<400 else 18)
+			child.custom_minimum_size.y=36 if size.y<400 else 42
+	var padding=dialog.get_theme_stylebox("panel").get_minimum_size().y
+	dialog_scroll.custom_minimum_size.y=minf(dialog_content.get_combined_minimum_size().y,maxf(100,size.y-padding-24))
 
 func _travel(zone: String) -> void:
 	_close_dialog()
+	var previous: String=world.zone
 	world.load_zone(zone)
+	if zone=="corridor" and previous in ["workshop","network","cyber"]:
+		world.teleport(world._targets["to_"+previous]+Vector3(0,.05,.9))
 	SceneRouter.lock_until_release()
 
 func _escort() -> void:
@@ -185,11 +213,17 @@ func _escort() -> void:
 	world.begin_escort()
 
 func _interact(id: String) -> void:
+	if id in Course.IDS:
+		_show_lesson(id)
+		return
 	match id:
+		"to_workshop", "to_network", "to_cyber":
+			var destination=id.trim_prefix("to_")
+			_show_dialog(World.TITLES[destination], "Entrez pour explorer la salle et utiliser ses équipements.", [{"text":"Entrer", "action":func(): _travel(destination)}, {"text":"Rester dans le couloir", "action":_close_dialog}])
 		"school":
 			_show_dialog("Lycée Louise Michel", "Entrez à l’accueil. La surveillante peut vous accompagner à l’atelier CIEL.", [{"text":"Entrer", "action":func(): _travel("reception")}, {"text":"Rester sur le parvis", "action":_close_dialog}])
 		"exit":
-			_show_dialog("Sortir", "Où souhaitez-vous aller ?", [{"text":"Retour au parvis" if world.zone=="reception" else "Retour à l’accueil du lycée", "action":func(): _travel("square" if world.zone=="reception" else "reception")}, {"text":"Rester ici", "action":_close_dialog}])
+			_show_dialog("Sortir", "Où souhaitez-vous aller ?", [{"text":"Retour au parvis" if world.zone=="reception" else ("Retour à l’accueil du lycée" if world.zone=="corridor" else "Retour au couloir des ateliers"), "action":func(): _travel("square" if world.zone=="reception" else ("reception" if world.zone=="corridor" else "corridor"))}, {"text":"Rester ici", "action":_close_dialog}])
 		"supervisor", "stairs":
 			_show_dialog("Surveillante", "Bonjour ! Je peux vous accompagner dans le couloir des ateliers.", [{"text":"M’accompagner aux ateliers", "action":_escort}, {"text":"Non merci", "action":_close_dialog}])
 		"rack":
@@ -204,3 +238,22 @@ func _interact(id: String) -> void:
 
 func _message(title: String, text: String) -> void:
 	_show_dialog(title, text, [{"text":"Reprendre l’exploration", "action":_close_dialog}])
+
+func _show_lesson(id: String) -> void:
+	var completed: Array=Course.current(AppState.profile).completed
+	if Course.IDS.find(id)>completed.size():
+		_message("Exercice suivant", "Commencez par « %s ». Votre progression est conservée dans ce profil." % Course.LESSONS[Course.IDS[completed.size()]].title)
+		return
+	var lesson: Dictionary=Course.LESSONS[id]
+	var choices: Array=[]
+	for i in lesson.choices.size():
+		choices.append({"text":lesson.choices[i],"action":func(): _answer_lesson(id,i)})
+	choices.append({"text":"Revenir à la salle","action":_close_dialog})
+	_show_dialog(lesson.title,lesson.prompt,choices)
+
+func _answer_lesson(id: String, choice: int) -> void:
+	var result=Course.answer(AppState,SaveService,id,choice)
+	if result.ok:
+		_message("Exercice validé · %d/6" % Course.current(AppState.profile).completed.size(), Course.LESSONS[id].success+"\nProgression enregistrée." )
+	else:
+		_show_dialog("À vérifier",result.error,[{"text":"Réessayer","action":func():_show_lesson(id)},{"text":"Revenir à la salle","action":_close_dialog}])
