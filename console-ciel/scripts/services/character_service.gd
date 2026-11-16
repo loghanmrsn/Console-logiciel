@@ -4,7 +4,7 @@ func current() -> Dictionary: return Catalog.record(AppState.profile)
 func purchase(slot: String,id: String) -> Dictionary:
 	if AppState.profile.is_empty(): return SaveService._fail("Sélectionnez un profil.")
 	var entry=Catalog.item(id,slot)
-	if entry.is_empty(): return SaveService._fail("Article inconnu.")
+	if entry.is_empty() or entry.get("retired",false): return SaveService._fail("Article inconnu.")
 	var document=AppState.profile.duplicate(true)
 	var character=Catalog.record(document)
 	if Catalog.owned(character,entry): return SaveService._fail("Cet article est déjà disponible.")
@@ -15,6 +15,7 @@ func purchase(slot: String,id: String) -> Dictionary:
 	return _commit(document)
 func apply(appearance: Dictionary) -> Dictionary:
 	if AppState.profile.is_empty(): return SaveService._fail("Sélectionnez un profil.")
+	if appearance.get("top")=="madison": return SaveService._fail("Cette tenue a été retirée. Choisissez un autre haut.")
 	var document=AppState.profile.duplicate(true)
 	var character=Catalog.record(document)
 	character.appearance=appearance.duplicate(true)
