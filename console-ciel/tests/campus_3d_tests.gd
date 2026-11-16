@@ -79,9 +79,12 @@ func _run() -> void:
 	await _capture("escalier_droit_3d")
 	await create_timer(2.9).timeout
 	process_frame.disconnect(measure_frame)
-	_check(world.zone=="workshop" and not world.locked and not world.escorting,"Arrivée dans l’atelier et contrôle restauré")
+	_check(world.zone=="corridor" and not world.locked and not world.escorting,"Arrivée dans le couloir et contrôle restauré")
 	_check(world.last_escort_seconds>=2.7 and world.last_escort_seconds<2.8+frame_clock.gap,"Trajet animé de 2,7 secondes, terminé à la première image disponible")
 	print("ESCORT_TIMING seconds=%.3f longest_frame=%.3f" % [world.last_escort_seconds,frame_clock.gap])
+	world.teleport(Vector3(-5,.05,-.8));await create_timer(.25).timeout
+	world.interact();await _frames(3);await _activate("campus_choice_0")
+	_check(world.zone=="workshop","Porte du couloir vers l’atelier")
 	await _capture("atelier_ciel_3d")
 	world.teleport(Vector3(-3,.05,2.0));await create_timer(.25).timeout
 	world.interact();await _frames(3);await _activate("campus_choice_0")
@@ -96,10 +99,13 @@ func _run() -> void:
 	await _activate("campus_choice_0")
 	world.teleport(Vector3(0,.05,5.5));await create_timer(.25).timeout
 	world.interact();await _frames(3);await _activate("campus_choice_0")
-	_check(world.zone=="reception","Retour à l’accueil depuis l’atelier")
+	_check(world.zone=="corridor","Retour au couloir depuis l’atelier")
+	world.teleport(Vector3(-8.2,.05,0));await create_timer(.25).timeout
+	world.interact();await _frames(3);await _activate("campus_choice_0")
+	_check(world.zone=="reception","Porte tout à gauche vers l’accueil")
 	settings.current.reduce_motion=true
 	panel._escort();await _frames(4)
-	_check(world.zone=="workshop" and not world.escorting,"Réduction des animations : trajet immédiat")
+	_check(world.zone=="corridor" and not world.escorting,"Réduction des animations : trajet immédiat")
 	settings.current.reduce_motion=false
 	panel.handle_back();await _frames(4)
 	_check(is_instance_valid(panel.dialog) and world.process_mode==Node.PROCESS_MODE_DISABLED,"Pause complète du parcours")
