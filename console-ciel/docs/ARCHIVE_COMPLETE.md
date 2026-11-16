@@ -103,3 +103,5 @@ Les anciennes galeries `campus_0.25.0` et `facades_0.19.1` sont aussi disponible
 À partir de 0.37.0, la galerie historique `couture_0.35.0/` reste dans Git et ses archives, sans duplication dans les nouvelles archives complètes. La galerie des nouveaux petits personnages est incluse. Aucun ancien fichier n’est supprimé.
 
 Les galeries historiques `campus3d_0.36.0`, `polish_0.19.0`, `npc_polish_0.16.0`, `bibliotheque_0.5.0`, `loop_0.24.3`, `navigation_0.4.1` et `accueil_0.30.0` restent elles aussi dans Git et les anciennes livraisons. Elles ne sont plus dupliquées dans les archives complètes 0.37.0, afin de rester sous 100 Mio malgré les trois nouveaux modèles articulés.
+
+Pour 0.38.0, les galeries historiques `corrections_0.31.0`, `livres_reseau_0.8.0` et `npc_0.15.0` restent dans le dépôt et leurs anciennes livraisons, sans duplication dans les nouvelles archives complètes. Les huit captures courantes et les sources Blender restent incluses. Aucun fichier historique n’est supprimé.
