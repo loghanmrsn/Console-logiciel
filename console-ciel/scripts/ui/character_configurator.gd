@@ -55,9 +55,6 @@ func _ready() -> void:
 	buy=_button(right,"Acheter",_purchase,"character_buy")
 	apply=_button(left,"Enregistrer l’apparence",_save,"character_save")
 	_button(left,"Annuler les modifications",_reset,"character_reset")
-	_button(right,"Essayer la tenue Madison",func():
-		draft=Catalog.madison_appearance();page=2;find_child("character_category",true,false).select(2)
-		_page();view.focus_face(false),"character_madison")
 	_button(right,"Essayer le lapin à écharpe",func():
 		draft=Catalog.rabbit_appearance();page=0;find_child("character_category",true,false).select(0)
 		_page(),"character_rabbit")
