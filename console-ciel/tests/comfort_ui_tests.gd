@@ -119,6 +119,6 @@ func _run() -> void:
 	Input.action_release("game_right")
 	Input.action_release("game_sprint")
 	await _physics_frames(3)
-	_check(is_equal_approx(walking, 190.0) and is_equal_approx(running, 209.0), "Sprint exactement +10 %")
+	_check(is_equal_approx(walking, 260.0) and is_equal_approx(running, 286.0), "Sprint exactement +10 %")
 	_check(app.demo.world.player.velocity == Vector2.ZERO, "Relâcher arrête immédiatement")
 	await _finish()
