@@ -49,3 +49,5 @@ Ces instructions ont été lues depuis GitHub. Aucun skill n’a été installé
 Le rapport courant est dans `tests/atelier_0.38.0_results/summary.json`, avec des captures natives dans `docs/screenshots/atelier_0.38.0/`. Les suites vérifient le parcours, les collisions, l’apparence, la pause, les choix, la réduction des animations, le petit écran, le clavier et un joystick simulé. Les packs Windows et ARM64 sont chargés par le moteur Linux pour vérifier leurs ressources : cela ne constitue pas une exécution native sur ces plateformes.
 
 Les performances sur Raspberry Pi, le lancement Windows, le son et la manette physique restent à vérifier sur le matériel cible. Aucune promesse de fréquence d’images n’est déduite du rendu logiciel Mesa utilisé ici.
+
+Correction 0.38.1 : le rendu de la porte dans le couloir de l’enquête suit désormais le mur gauche, sans perspective diagonale. `tools/build_wall_door_render.py` projette le modèle Blender existant dans cet axe ; la cible d’interaction se trouve devant les battants. Le modèle des salles 3D reste inchangé.
