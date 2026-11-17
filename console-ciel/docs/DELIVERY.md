@@ -1,3 +1,11 @@
+# Livraison 0.38.1 — porte alignée sur le mur
+
+La porte du couloir de l’atelier suit maintenant le mur gauche. Un rendu orthographique du modèle Blender remplace la vue diagonale ; les deux battants occupent l’ouverture verticale du mur et la cible d’interaction reste devant la porte. Le trajet vers l’accueil et les sauvegardes restent fonctionnels.
+
+Vérification native Linux avec clavier et manette simulés, deux suites sources et six suites sur les packs Windows/ARM64. [Résultats](../tests/porte_0.38.1_results/summary.json) · [Capture](screenshots/porte_0.38.1/porte_alignee.webp). Le lancement natif Windows et Raspberry Pi reste à vérifier sur le matériel cible. Les anciennes archives sont conservées.
+
+---
+
 # Livraison 0.38.0 — parcours réseau et cybersécurité
 
 Deux nouvelles salles 3D accessibles depuis le couloir des ateliers : **Réseaux**, puis **Cybersécurité**. Six exercices successifs : câble Ethernet, IPv4, passerelle, courriel suspect, second facteur et réaction à un incident. Progression enregistrée par profil via le service existant, sans modifier les points ou les chapitres de l’enquête. Les mauvaises réponses proposent une explication ; les erreurs d’écriture ne valident aucune étape. Les portes permettent de revenir dans le couloir, près de la salle quittée.
