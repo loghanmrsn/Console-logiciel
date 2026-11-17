@@ -1,0 +1,105 @@
+{
+  "version": "0.38.1",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "source_suites": [
+    {
+      "name": "atelier_exit_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 11,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 4.17,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log": "/workspace/console-ciel-door-validation/regression/atelier_exit_ui_tests/run.log"
+    },
+    {
+      "name": "school_reception_ui_tests",
+      "ok": true,
+      "exit_code": 0,
+      "completed": true,
+      "assertions": 161,
+      "failures": 0,
+      "engine_errors": [],
+      "seconds": 12.24,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log": "/workspace/console-ciel-door-validation/regression/school_reception_ui_tests/run.log"
+    }
+  ],
+  "compiled_suites": [
+    {
+      "platform": "windows",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "linux",
+      "name": "school_reception_ui_tests",
+      "assertions": 161,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "6d828606c53563c6be9953cd5f1d89cd041d7e4308023b544405aa40cf6d8b0b",
+      "log_sha256": "ee2d1d69df4149396112935682400d192e21010f9e46bf21f425ecbc70af851a"
+    },
+    {
+      "platform": "windows",
+      "name": "atelier_exit_ui_tests",
+      "assertions": 11,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log_sha256": "14bdd422516bbbc89d85ad9c06d05452f747487dd0c6e2b9079148222e3e3077"
+    },
+    {
+      "platform": "linux",
+      "name": "atelier_exit_ui_tests",
+      "assertions": 11,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "ed294f4f7410de23b224f8af6d3847b465f9f65708755742d6223e418bb00c34",
+      "log_sha256": "14bdd422516bbbc89d85ad9c06d05452f747487dd0c6e2b9079148222e3e3077"
+    },
+    {
+      "platform": "windows",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "312f8dbcc71b23dc5eb2959e57b0ed207d4fa11c4d48936dd7b4cd043693ce5d",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    },
+    {
+      "platform": "linux",
+      "name": "windows_art_pack",
+      "assertions": 111,
+      "failures": 0,
+      "exit_code": 0,
+      "engine_errors": [],
+      "ok": true,
+      "script_sha256": "312f8dbcc71b23dc5eb2959e57b0ed207d4fa11c4d48936dd7b4cd043693ce5d",
+      "log_sha256": "e9bd476c8ed54f80544dff7a7100594ecbff1192e9d0717f9f25fe50393aa33f"
+    }
+  ],
+  "native_assertions": 19,
+  "all_passed": true,
+  "native_windows_execution": false,
+  "native_arm64_execution": false,
+  "physical_controller_tested": false,
+  "total_assertions": 757,
+  "capture_sha256": "c1967c4afc6896d388ec355abfcf08d640b498b4911a02718a3210b5c5220935"
+}
