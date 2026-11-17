@@ -41,3 +41,5 @@ Les modèles de `character3d/compact/` sont des créations originales CC0-1.0 pr
 ## Couloir, parcours et porte — 0.38.0
 
 Les géométries de `assets/campus3d/{corridor,network,cyber,fire_exit_door}.glb`, le rendu `fire_exit_door.png` et `art_sources/fire_exit_door.blend` sont des créations originales du projet sous CC0-1.0, produites avec Blender 4.3.2. La photographie fournie par l’utilisateur guide seulement la forme de la porte ; aucun pixel, logo ou modèle commercial n’est incorporé. Les générateurs sont `tools/build_campus_routes.py` et `tools/build_fire_door.py`. Les empreintes et budgets figurent dans les manifests voisins.
+
+0.38.1 : `fire_exit_door_wall.png` est un nouveau rendu orthographique du même modèle original CC0-1.0, produit par `tools/build_wall_door_render.py`.
